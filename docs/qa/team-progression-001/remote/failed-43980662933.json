@@ -1,0 +1,29 @@
+{
+  "id": 43980662933,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662933",
+  "jobs": [
+    {
+      "id": 133695956441,
+      "name": "shared-ui",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:40:04Z",
+      "log": "job-133695956441.log.gz",
+      "rawSha256": "87d25b5453963082c4a0bf261e3bd02271232b59eefb41ef1761bea0e942f7b2",
+      "summary": [
+        "2026-11-16T23:38:33.5221332Z AssertionError [ERR_ASSERTION]: actual browser receipt required normal",
+        "2026-11-16T23:38:33.5305690Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('unclipped content')&&bad.error.includes('research'));\u001b[0m",
+        "2026-11-16T23:38:33.6462085Z Error: ENOENT: no such file or directory, open '/home/runner/work/Lumenfall/Lumenfall/shared-ui-validation/visual/receipt.json'",
+        "2026-11-16T23:38:33.6519709Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('active dot visible battle'));\u001b[0m",
+        "2026-11-16T23:38:33.7564972Z Error: ENOENT: no such file or directory, open '/home/runner/work/Lumenfall/Lumenfall/shared-ui-validation/rift-looks/receipt.json'",
+        "2026-11-16T23:38:33.7624229Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('no hidden timer wakes'));\u001b[0m",
+        "2026-11-16T23:38:33.7625445Z \u001b[36;1massert.equal(save.status,'fail');assert(save.error.includes('autosave boundary preserves Study completion'));\u001b[0m",
+        "2026-11-16T23:39:26.6921617Z {\"status\":\"fail\",\"baseline\":false,\"mutant\":true,\"autosaveMutant\":false,\"checks\":19,\"sourceSha256\":\"ffeecc9831c00089a6aa67273cf65ef3148cb3e8468aa26863fecf030e1d942a\",\"error\":\"AssertionError [ERR_ASSERTION]: no hidden timer wakes\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/mobile-power-browser.cjs:49:50)\\n    at main (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/mobile-power-browser.cjs:105:17)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\",\"records\":[]}",
+        "2026-11-16T23:39:45.8206260Z {\"status\":\"fail\",\"baseline\":false,\"mutant\":false,\"autosaveMutant\":true,\"checks\":14,\"sourceSha256\":\"cc23a7441151c62f9c8716fd7d77fe366541314e6c86ba5651ae0a59061d1f22\",\"error\":\"AssertionError [ERR_ASSERTION]: autosave boundary preserves Study completion presentation and committed save\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/mobile-power-browser.cjs:49:50)\\n    at main (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/mobile-power-browser.cjs:89:4)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\",\"records\":[]}"
+      ]
+    }
+  ]
+}

@@ -27,9 +27,9 @@ function contracts(html){
  var literal=seed(['stone','gale','thorn','tide','aurora'],99,false);
  ['gale','thorn'].forEach(function(id){literal.spirits[id]=100;literal.heroRarity[id]=0;literal.wispModules[id]=0;literal.wispUltimate[id]=false;});
  literal.research.conduction=0;b.set(literal);var lv=clone(b.compare(99,clock)).steady;
- eq(lv.rows[3].shardsPerCast,15218,'literal Gale100 Quarry/Dawn reward after shared development');eq(lv.rows[4].lumenPerCast,43544,'literal Thorn100 Harvest/Dawn reward after shared development');
+ eq(lv.rows[3].shardsPerCast,1940,'literal Gale100 Quarry/Dawn reward');eq(lv.rows[4].lumenPerCast,20298,'literal Thorn100 Harvest/Dawn reward');
  literal.research.dualchannel=5;b.set(literal);lv=clone(b.compare(99,clock)).steady;
- eq(lv.rows[3].lumenPerCast,15218,'literal Dual Channel Gale secondary reward');eq(lv.rows[4].shardsPerCast,4354,'literal Dual Channel Thorn secondary reward');
+ eq(lv.rows[3].lumenPerCast,1940,'literal Dual Channel Gale secondary reward');eq(lv.rows[4].shardsPerCast,2029,'literal Dual Channel Thorn secondary reward');
  combos(ids,5).forEach(function(party){[99,160,170,180].forEach(function(depth){[false,true].forEach(function(forge){
   var s=seed(party,depth,forge);b.set(s);var before=JSON.stringify(b.get()),r=clone(b.compare(depth,clock)),v=r.steady;
   near(v.totalDps,b.dps(depth),'authoritative total');near(v.rawDps+v.bondDps+v.supportDps,v.totalDps,'additive ledger');
@@ -116,7 +116,7 @@ function preservation(html,baseline){
  // Use the current Rift currency input ceiling for the depths exercised by
  // this oracle. The frozen rounding, multipliers and chronology stay intact.
  approvedRule('function abilityRewardRaw(sp,level,conductionLevel){',
-  "function abilityRewardRaw(sp,level,conductionLevel){\n  var d=state.depth,rift=d<=100?d:d<=150?100+(d-100)*0.648744172973063:132.43720864865315+(d-150)*0.35346620182323135;\n  var originalPower=wispPower;wispPower=function(w,l){var p=originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
+  "function abilityRewardRaw(sp,level,conductionLevel){\n  var d=state.depth,rift=d<=100?d:d<=150?100+(d-100)*0.648744172973063:132.43720864865315+(d-150)*0.35346620182323135;\n  var originalPower=wispPower;wispPower=function(w,l){var p=(w.abilityType==='ranged'||w.abilityType==='druid')?w.basePower*l*(1+.01*(l-1))*RARITY_MULT[state.heroRarity[w.id]||0]:originalPower(w,l);return w.id===sp.id&&w.abilityType==='ranged'?Math.min(p,40*Math.pow(1.09,rift)):w.id===sp.id&&w.abilityType==='druid'?Math.min(p,100*Math.pow(1.11,rift)):p;};\n  try{return cappedAbilityRewardRaw(sp,level,conductionLevel);}finally{wispPower=originalPower;}\n}\nfunction cappedAbilityRewardRaw(sp,level,conductionLevel){");
  // The read-only estimator is intentionally revised for independent Support
  // cycles and stored-epoch precision. Share that display input in this frozen
  // scheduler comparison; actual rates still face the separate unchanged

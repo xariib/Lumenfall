@@ -458,7 +458,7 @@ function combinedCases(html,a) {
     const x=app(html),q=x.q,party=who==='gale'?['gale','stone','tide','aurora']:['thorn','aurora','tide','gale'];
     const s=battle(q,party,1);s.spirits[who]=100;s.wispModules[who]=3;s.wispUltimate[who]=true;s.heroRarity[who]=5;
     s.research.dualchannel=5;s.research.overflowconduit=5;s.research.spillway=5;s.enemyHp=1;s.luminousAccum=0;q.set(s);
-    const resourcePower=Math.min(q.power(who),who==='gale'?40*1.09:100*1.11);
+    const resourcePower=Math.min(q.resourcePower(who),who==='gale'?40*1.09:100*1.11);
     const native=Math.round(resourcePower*(who==='gale'?.05:.10)*1.15*2*1.25*1.20),extraNative=Math.floor(native*.10),cross=Math.floor(native*(who==='gale'?1:.10));
     const lumenCasts=who==='gale'?cross:native+extraNative,shardCasts=who==='gale'?native+extraNative:cross;
     const expectedL=lumenCasts+q.lumen(1,false)+q.lumen(2,false),expectedS=shardCasts+q.shards(1,false)+q.shards(2,false),before=clone(q.get()),scale=kind==='offline'?.7:1;
@@ -469,7 +469,7 @@ function combinedCases(html,a) {
   }
   for(const who of ['gale','thorn']){
     const x=app(html),q=x.q,s=battle(q,[who]);s.spirits[who]=100;s.research.overflowconduit=5;q.set(s);
-    const curve=100+(s.depth-100)*0.648744172973063,resourcePower=Math.min(q.power(who),(who==='gale'?40*Math.pow(1.09,curve):100*Math.pow(1.11,curve)));
+    const curve=100+(s.depth-100)*0.648744172973063,resourcePower=Math.min(q.resourcePower(who),(who==='gale'?40*Math.pow(1.09,curve):100*Math.pow(1.11,curve)));
     const native=Math.round(resourcePower*(who==='gale'?.05:.10)),hit=q.abilityDamage(who),hp=hit*31/32;q.get().enemyHp=hp;
     const expectedExtra=Math.floor(native/32),before=clone(q.get()),key=who==='gale'?'shards':'lumen',kill=who==='gale'?q.shards(s.depth,false):q.lumen(s.depth,false);cast(q,who);
     a.ok(expectedExtra>0,'partial overkill fixture has nonzero grant');a.near(q.get()[key]-before[key],native+expectedExtra+kill,'Overflow uses actual fraction below purchased cap '+who);

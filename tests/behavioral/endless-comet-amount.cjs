@@ -17,7 +17,7 @@ function ready(q,id,level,wallet){
  q.set(s);return clone(q.get());
 }
 const current=source.includes('var ASTRAL_UPGRADES=');
-const activeCatalog=current?[{id:'autoascend',prices:[100]},...['astralcore','astralecho','astralconvergence'].map((id,i)=>({id,prices:Array.from({length:10},(_,rank)=>Math.ceil([750,1250,2000][i]*1.2**rank))}))]:CATALOG;
+const activeCatalog=current?['astralcore','astralecho','astralconvergence'].map((id,i)=>({id,prices:Array.from({length:10},(_,rank)=>Math.ceil([750,1250,2000][i]*1.2**rank))})):CATALOG;
 for(const item of activeCatalog)for(let level=0;level<item.prices.length;level++)for(const wallet of ['1e400','9007199254740993e0']){
  const e=app(source),q=e.q;ready(q,item.id,level,wallet);q.save();const before=clone(q.get()),slots=Array.from(e.storage),cost=item.prices[level];
  eq(q.buyPlan(item.id).cost,cost,'independent Comet quote '+item.id+'/'+level);ok(q.buyPlan(item.id).available,'wide Comet funds are available');
@@ -27,7 +27,7 @@ for(const item of activeCatalog)for(let level=0;level<item.prices.length;level++
  const endpoint=clone(q.get());q.load();eq(q.get(),endpoint,'wide Comet cold load');eq(q.accept(q.decode(q.export())),endpoint,'wide Comet backup/import');
 }
 {
- const e=app(source),q=e.q;ready(q,'autoascend',0,2**54);ok(q.buy('autoascend'),'native exactly payable Comet purchase');eq(typeof q.get().comets,'number','native exact Comet debit retains Number');eq(q.get().comets,2**54-100,'native exact Comet debit retains established rounding');
+ const e=app(source),q=e.q,id=current?'astralcore':'autoascend',level=current?1:0,cost=current?900:100;ready(q,id,level,2**54);ok(q.buy(id),'native exactly payable Comet purchase');eq(typeof q.get().comets,'number','native exact Comet debit retains Number');eq(q.get().comets,2**54-cost,'native exact Comet debit retains established rounding');
 }
 if(!current)for(const wallet of [2**53,'1e400']){
  const e=app(source),q=e.q;ready(q,'autoascend',0,wallet);q.get().owned.autoascend=true;q.get().questDay='';q.ensureDaily();q.save();

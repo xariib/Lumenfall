@@ -3177,7 +3177,7 @@
     <section class="tab-panel" id="tab-ascend">
       <div class="card ascend-summary">
         <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">A stronger beginning</span><h2>Ascend the Rift</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-ascend"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
-        <div style="font-size:.8rem;color:var(--ink-dim);width:100%;text-align:left;">Ascend manually after clearing Rift 15. Each later Ascend requires a higher clear than your best rewarded Rift. Check the Prism reward, then choose when to reset. Permanent progression stays.</div>
+        <div style="font-size:.8rem;color:var(--ink-dim);width:100%;text-align:left;">Ascend manually after clearing Rift 15. Each later Ascend requires a higher clear than your best rewarded Rift. Eligible records keep the full earned upgrade bonus. Check the Prism reward, then choose when to reset. Permanent progression stays.</div>
         <div class="ascend-breakdown">
           <div class="ab-col ab-reset"><div class="ab-head">Resets</div><ul><li>Rift depth</li><li>Wisp levels</li><li>Current Lumen</li></ul></div>
           <div class="ab-col ab-keep"><div class="ab-head">Keeps</div><ul><li>Wisp Rarity, Modules, Ultimates &amp; Mastery</li><li>Recruitment entitlements</li><li>Rift Forge upgrades</li><li>Research Lab progress</li><li>Prisms &amp; this tree</li><li>Comets, Motes, Sigils &amp; Deeds</li></ul></div>
@@ -6980,6 +6980,20 @@ function wispPower(sp,level){
   value=Amount.mul(value,astralFactor('astralcore'));
   wispPowerCache[sp.id]={key:key,value:value};return value;
 }
+var wispResourcePowerCache={};
+function wispResourcePower(sp,level){
+  if(!sp || Amount.le(level,0))return 0;
+  if(sp.abilityType!=='ranged' && sp.abilityType!=='druid')return wispPower(sp,level);
+  // The shared development curve is a damage rebalance. Keep already accepted
+  // utility-resource pacing, prices and caps on their original level curve.
+  var tier=state.heroRarity[sp.id]||0;
+  var key=[level,sp.basePower,tier,RARITY_MULT[tier],wispMasteryLevel(sp.id),researchLevel('masterwork'),ENDLESS_PROGRESSION.masterworkPowerPerLevel,astralLevel('astralcore')].join('|');
+  var cached=wispResourcePowerCache[sp.id];if(cached && cached.key===key)return cached.value;
+  var raw=Amount.mul(Amount.mul(sp.basePower,level),Amount.add(1,Amount.mul(.01,Amount.sub(level,1))));
+  var value=Amount.mul(Amount.mul(Amount.mul(raw,RARITY_MULT[tier]),wispMasteryFactor(sp.id)),masterworkPowerFactor());
+  value=Amount.mul(value,astralFactor('astralcore'));
+  wispResourcePowerCache[sp.id]={key:key,value:value};return value;
+}
 function totalActivePartyPower(){
   var sum = 0;
   state.activeParty.forEach(function(id){
@@ -7290,7 +7304,7 @@ function abilityBurstDamage(sp, depth){
 }
 function abilityRewardRaw(sp,level,conductionLevel,ids){
   if(!sp || Amount.le(level,0)) return {lumen:0,shards:0};
-  var power = wispPower(sp,level);
+  var power = wispResourcePower(sp,level);
   // Overkill cannot print unlimited currency on a shallow Rift. Cap only the
   // resource input, before the purchased Module/Ultimate/Bond/Forge factors.
   // Damage and Support strength continue to use their own uncapped formulas.
@@ -10993,7 +11007,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Rift Regions', meta:'World progression', desc:'The Rift changes region every 25 levels, moving through the Starlit Verge, Ashen Canopy, Glass Wastes, Drowned Observatory, Void Basilica and Crown of Night before deeper echoes begin.'},
   {name:'Farm', meta:'Rift mode', desc:'Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP.'},
   {name:'Formation & Presets', meta:'Wisp selection', desc:'Choose up to five Active Wisps; Sixth Companion in the Tree raises this to six. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save your chosen lineups, but do not switch automatically when Rift mode changes. After Ascend, remembered members return as they are recruited again.'},
-  {name:'Wisp Power', meta:'Combat stat', desc:'All Wisps gain the same development curve after level 70, with modest Wisp-specific strength. Early base strength is bounded at 26. Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging or resource abilities. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
+  {name:'Wisp Power', meta:'Combat stat', desc:'All Wisps gain the same development curve after level 70, with modest Wisp-specific strength. Early base strength is bounded at 26. Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging abilities. Utility resource rewards retain their original level curve and paid factors, shown per cast. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
   {name:'Passive Wisp Damage', meta:'Combat rule', desc:'Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage.'},
   {name:'Ability Charge', meta:'Automatic combat', desc:'Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge.'},
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
@@ -13695,7 +13709,16 @@ function advanceAuthoritativeTime(elapsedSec,options){
     }
   }
 
-  if(binaryClock)persistCanonicalAutomation(binaryClock);
+  if(binaryClock){
+    persistCanonicalAutomation(binaryClock);
+    // A full Support bar can land one epoch quantum below100 at a caller
+    // boundary. Normalize only while its recast still blocks casting, without
+    // moving any combat event or changing a cast deadline.
+    var endpoint=binaryClock.nowMs(),chargeQuantum=(100/ABILITY_BASE_CYCLE_SEC)*fillRateMult()*(cycleNativeThreshold.nextUp(endpoint)-endpoint)/1000;
+    state.activeParty.forEach(function(id){var sp=SPIRITS.find(function(s){return s.id===id;});
+      if(sp.abilityType==='support' && supportRecastSeconds(sp,endpoint,{binary:binaryClock})>SIM_EPS && 100-(state.heroResource[id]||0)<=chargeQuantum)state.heroResource[id]=100;
+    });
+  }
   delete summary._cycle;cycleOwner=null;
   summary.endDepth = state.depth;
   summary.pushDepth = progressionDepth();

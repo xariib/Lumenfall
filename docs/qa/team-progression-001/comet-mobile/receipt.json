@@ -1,0 +1,1516 @@
+{
+  "status": "fail",
+  "scope": "actual Chromium browser emulation; native Android untested",
+  "cometIdentity": {
+    "testSha256": "630f432baf2ddafdb4f623de0e7be8770fb6a137fd44595a90ed09df4af2849f",
+    "helperSha256": "f93b387f0e0033eb5ea13b5fd8fe79b843318ae08ac717d4fa9789a9787f7225",
+    "transportSha256": "62480ea3a22833fca0f42fdfcf139ba6b50b5de364fd6d0cd10b66ecc682d06c",
+    "numericalSha256": "4873b3057bf3434d7acee6ee4562a718565f04b849ed3b3f2f3d3e2f9b84c27c"
+  },
+  "diagnostics": {
+    "readiness": [
+      {
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference"
+        },
+        "phase": "initial-navigation",
+        "deadlineMs": 10000,
+        "status": "ready",
+        "probes": [
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 1905,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 2048,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 2245,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3580,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 4858,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 5427,
+            "calls": 1,
+            "status": "initialized",
+            "initialized": true
+          }
+        ],
+        "action": {
+          "method": "Runtime.evaluate",
+          "expression": "(function(){window.__cometBeforeReady.push({status:prismQa.cometPersistence(),toast:document.getElementById('toast').textContent,shown:document.getElementById('toast').classList.contains('show')});prismQa.ready();return true;})()",
+          "calls": 1,
+          "status": "completed"
+        },
+        "elapsedMs": 9833
+      },
+      {
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference"
+        },
+        "phase": "intro-completion",
+        "deadlineMs": 10000,
+        "status": "ready",
+        "probes": [
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 2,
+            "calls": 1,
+            "status": "initialized",
+            "initialized": true
+          }
+        ],
+        "action": {
+          "method": "Runtime.evaluate",
+          "expression": "(function(){window.__cometBeforeReady.push({status:prismQa.cometPersistence(),toast:document.getElementById('toast').textContent,shown:document.getElementById('toast').classList.contains('show')});prismQa.ready();return true;})()",
+          "calls": 1,
+          "status": "completed"
+        },
+        "elapsedMs": 694
+      },
+      {
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference"
+        },
+        "phase": "legacy-three-owner",
+        "deadlineMs": 10000,
+        "status": "ready",
+        "probes": [
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 6,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 424,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3091,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3217,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3464,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3581,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3762,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3916,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 3988,
+            "calls": 1,
+            "status": "waiting",
+            "initialized": false
+          },
+          {
+            "method": "Runtime.evaluate",
+            "expression": "!!window.prismQa&&prismQa.initialized()",
+            "elapsedMs": 4254,
+            "calls": 1,
+            "status": "initialized",
+            "initialized": true
+          }
+        ],
+        "action": {
+          "method": "Runtime.evaluate",
+          "expression": "(function(){window.__cometBeforeReady.push({status:prismQa.cometPersistence(),toast:document.getElementById('toast').textContent,shown:document.getElementById('toast').classList.contains('show')});prismQa.ready();return true;})()",
+          "calls": 1,
+          "status": "completed"
+        },
+        "elapsedMs": 6112
+      }
+    ],
+    "migration": [
+      {
+        "profile": {
+          "width": 320,
+          "scale": 1,
+          "motion": "no-preference"
+        },
+        "phase": "legacy-three-owner",
+        "primarySha256": "6c487c36c2eae853b50d326fa0aa7ec864c36874d61b2442ed9c2ad93fad8767",
+        "recoverySha256": "6c487c36c2eae853b50d326fa0aa7ec864c36874d61b2442ed9c2ad93fad8767",
+        "primary": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}",
+        "recovery": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}",
+        "bootstrap": {
+          "synthetic": true,
+          "primary": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}",
+          "recovery": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}"
+        },
+        "loaded": {
+          "schemaVersion": 6,
+          "offline12hRefund": null,
+          "astralUpgrades": {
+            "astralcore": 0,
+            "astralecho": 0,
+            "astralconvergence": 0
+          },
+          "commandRefund": {
+            "policy": "commands-retired-v1",
+            "total": 0,
+            "paid": true
+          },
+          "swiftRecoveryRefund": null,
+          "swiftRecoveryRefundAudit": null,
+          "feedbackMigration": {
+            "version": 1,
+            "bondsCreditAuditVersion": 1,
+            "applied": true,
+            "history": {
+              "bonds": {
+                "levels": 25
+              },
+              "echo": {
+                "levels": 9
+              }
+            },
+            "receipts": {
+              "node.bonds": {
+                "from": 20,
+                "to": 25,
+                "unpricedFrom": 0,
+                "amounts": {
+                  "prisms": [
+                    3376,
+                    4896,
+                    7098,
+                    10292,
+                    14924
+                  ]
+                },
+                "creditAuditVersion": 1,
+                "remainingCredits": []
+              },
+              "node.echo": {
+                "from": 6,
+                "to": 9,
+                "unpricedFrom": 0,
+                "amounts": {
+                  "prisms": [
+                    16,
+                    22,
+                    30
+                  ]
+                },
+                "creditAuditVersion": 1,
+                "remainingCredits": []
+              }
+            },
+            "echoCreditAuditVersion": 1
+          },
+          "refundCredits": {
+            "prisms": []
+          },
+          "lumen": 1000000,
+          "shards": 1000000,
+          "prisms": 41654,
+          "comets": 457,
+          "motes": 321,
+          "sigils": 249,
+          "moteNextAtMs": 0,
+          "studyBoosts": {},
+          "studyBoostHours": {
+            "wispascend": 8,
+            "guardmastery": 8,
+            "riftattune": 8,
+            "shardstudy": 8,
+            "lumenstudy": 8,
+            "formationstudy": 8,
+            "motestudy": 8,
+            "prismstudy": 8,
+            "measuredinquiry": 8,
+            "wispdamage": 8,
+            "wispcritchance": 8,
+            "wispcritdamage": 8,
+            "supportduration": 8,
+            "labcapacity": 8,
+            "procurement": 8,
+            "catalysis": 8,
+            "focusprotocol": 8,
+            "fieldnotes": 8,
+            "curriculum": 8,
+            "bossledger": 8,
+            "luminousdistill": 8,
+            "sigilcartography": 8,
+            "rarityappraisal": 8,
+            "modulefabrication": 8,
+            "ultimateanalysis": 8,
+            "resonantefficiency": 8,
+            "adaptivegrowth": 8
+          },
+          "depth": 21,
+          "maxDepthEver": 250,
+          "riftMode": "push",
+          "farmDepth": 0,
+          "farmReturnDepth": 0,
+          "farmAutoResume": false,
+          "enemyDepth": 21,
+          "enemyHp": 379.6069163999999,
+          "enemyMaxHp": 1031,
+          "enemyIsLuminous": false,
+          "spirits": {
+            "ember": 20,
+            "tide": 0,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          },
+          "heroRarity": {
+            "ember": 0,
+            "tide": 0,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          },
+          "heroResource": {
+            "ember": 98.56666666666666,
+            "tide": 0,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          },
+          "wispModules": {
+            "ember": 0,
+            "tide": 0,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          },
+          "wispUltimate": {
+            "ember": false,
+            "tide": false,
+            "stone": false,
+            "gale": false,
+            "thorn": false,
+            "void": false,
+            "aurora": false,
+            "titan": false
+          },
+          "wispMastery": {
+            "ember": 0,
+            "tide": 0,
+            "stone": 0,
+            "gale": 0,
+            "thorn": 0,
+            "void": 0,
+            "aurora": 0,
+            "titan": 0
+          },
+          "canonicalAutomationClock": {},
+          "recruitmentEntitlements": {
+            "ember": true,
+            "tide": true,
+            "stone": true,
+            "gale": true,
+            "thorn": true,
+            "void": true,
+            "aurora": true,
+            "titan": true
+          },
+          "empowerQueue": {
+            "ember": false,
+            "tide": false,
+            "stone": false,
+            "gale": false,
+            "thorn": false,
+            "void": false,
+            "aurora": false,
+            "titan": false
+          },
+          "activeParty": [
+            "ember"
+          ],
+          "formationPresets": {
+            "push": [
+              "ember"
+            ],
+            "farm": [
+              "ember"
+            ],
+            "boss": [
+              "ember"
+            ]
+          },
+          "activeFormationPreset": "push",
+          "formationRebuild": null,
+          "nodes": {
+            "starlight": 12,
+            "steady": 9,
+            "echo": 9,
+            "bonds": 25,
+            "swift": 10,
+            "momentum": 7,
+            "reserves": 0,
+            "swiftcharter": 0,
+            "lumenmemory": 0,
+            "veteranrecruits": 0,
+            "rosterrecall": 0,
+            "chargememory": 0,
+            "supportmemory": 0,
+            "phasememory": 0,
+            "riftstep": 0,
+            "frontier": 0,
+            "stardust": 0,
+            "gentlegrowth": 0,
+            "formationseat": 0,
+            "benchmentor": 0,
+            "empowerbatch": 0,
+            "wallwisdom": 0,
+            "invitations": 0,
+            "recruitreserve": 0
+          },
+          "treeTrainingProgress": 0,
+          "research": {
+            "focus": 3,
+            "sense": 4,
+            "formation": 5,
+            "resolve": 6,
+            "charge": 0,
+            "arcanecal": 0,
+            "conduction": 0,
+            "luminoustracking": 0,
+            "masterwork": 0,
+            "cauterize": 0,
+            "fracturekey": 0,
+            "guardianseal": 0,
+            "spillway": 0,
+            "sustainedchannel": 0,
+            "tapconduit": 0,
+            "guardiancadence": 0,
+            "relay": 0,
+            "resonantedge": 0,
+            "victorycharge": 0,
+            "amplifiertrim": 0,
+            "dualchannel": 0,
+            "overflowconduit": 0,
+            "resonancecells": 0,
+            "resonancecascade": 0,
+            "resonancereclaim": 0,
+            "battletempering": 0,
+            "arcanetempering": 0,
+            "harvesttempering": 0
+          },
+          "researchQueue": {
+            "focus": false,
+            "sense": false,
+            "formation": false,
+            "resolve": false,
+            "charge": false,
+            "arcanecal": false,
+            "conduction": false,
+            "luminoustracking": false,
+            "masterwork": false,
+            "cauterize": false,
+            "fracturekey": false,
+            "guardianseal": false,
+            "spillway": false,
+            "sustainedchannel": false,
+            "tapconduit": false,
+            "guardiancadence": false,
+            "relay": false,
+            "resonantedge": false,
+            "victorycharge": false,
+            "amplifiertrim": false,
+            "dualchannel": false,
+            "overflowconduit": false,
+            "resonancecells": false,
+            "resonancecascade": false,
+            "resonancereclaim": false,
+            "battletempering": false,
+            "arcanetempering": false,
+            "harvesttempering": false
+          },
+          "longStudyLevels": {
+            "wispascend": 0,
+            "guardmastery": 2,
+            "riftattune": 0,
+            "shardstudy": 0,
+            "lumenstudy": 0,
+            "formationstudy": 0,
+            "motestudy": 0,
+            "prismstudy": 3,
+            "measuredinquiry": 0,
+            "wispdamage": 0,
+            "wispcritchance": 0,
+            "wispcritdamage": 0,
+            "supportduration": 0,
+            "labcapacity": 1,
+            "procurement": 0,
+            "catalysis": 0,
+            "focusprotocol": 0,
+            "fieldnotes": 0,
+            "curriculum": 0,
+            "bossledger": 0,
+            "luminousdistill": 0,
+            "sigilcartography": 0,
+            "rarityappraisal": 0,
+            "modulefabrication": 0,
+            "ultimateanalysis": 0,
+            "resonantefficiency": 0,
+            "adaptivegrowth": 0
+          },
+          "activeStudies": [
+            {
+              "id": "wispascend",
+              "slot": 0,
+              "remainingSec": 81.129,
+              "totalDurationSec": 180,
+              "speedMult": 1.5
+            },
+            {
+              "id": "shardstudy",
+              "slot": 1,
+              "remainingSec": 88.172,
+              "totalDurationSec": 200,
+              "speedMult": 2
+            }
+          ],
+          "studySlotProjects": [
+            "wispascend",
+            "shardstudy",
+            null,
+            null,
+            null
+          ],
+          "pausedStudies": [],
+          "studyQueue": {
+            "wispascend": false,
+            "guardmastery": false,
+            "riftattune": false,
+            "shardstudy": false,
+            "lumenstudy": false,
+            "formationstudy": false,
+            "motestudy": false,
+            "prismstudy": false,
+            "measuredinquiry": false,
+            "wispdamage": false,
+            "wispcritchance": false,
+            "wispcritdamage": false,
+            "supportduration": false,
+            "labcapacity": false,
+            "procurement": false,
+            "catalysis": false,
+            "focusprotocol": false,
+            "fieldnotes": false,
+            "curriculum": false,
+            "bossledger": false,
+            "luminousdistill": false,
+            "sigilcartography": false,
+            "rarityappraisal": false,
+            "modulefabrication": false,
+            "ultimateanalysis": false,
+            "resonantefficiency": false,
+            "adaptivegrowth": false
+          },
+          "studyUseMotes": {
+            "wispascend": false,
+            "guardmastery": false,
+            "riftattune": false,
+            "shardstudy": false,
+            "lumenstudy": false,
+            "formationstudy": false,
+            "motestudy": false,
+            "prismstudy": false,
+            "measuredinquiry": false,
+            "wispdamage": false,
+            "wispcritchance": false,
+            "wispcritdamage": false,
+            "supportduration": false,
+            "labcapacity": false,
+            "procurement": false,
+            "catalysis": false,
+            "focusprotocol": false,
+            "fieldnotes": false,
+            "curriculum": false,
+            "bossledger": false,
+            "luminousdistill": false,
+            "sigilcartography": false,
+            "rarityappraisal": false,
+            "modulefabrication": false,
+            "ultimateanalysis": false,
+            "resonantefficiency": false,
+            "adaptivegrowth": false
+          },
+          "studySpeedTargets": {
+            "wispascend": 1.5,
+            "guardmastery": 1.5,
+            "riftattune": 1.5,
+            "shardstudy": 1.5,
+            "lumenstudy": 1.5,
+            "formationstudy": 1.5,
+            "motestudy": 1.5,
+            "prismstudy": 1.5,
+            "measuredinquiry": 1.5,
+            "wispdamage": 1.5,
+            "wispcritchance": 1.5,
+            "wispcritdamage": 1.5,
+            "supportduration": 1.5,
+            "labcapacity": 1.5,
+            "procurement": 1.5,
+            "catalysis": 1.5,
+            "focusprotocol": 1.5,
+            "fieldnotes": 1.5,
+            "curriculum": 1.5,
+            "bossledger": 1.5,
+            "luminousdistill": 1.5,
+            "sigilcartography": 1.5,
+            "rarityappraisal": 1.5,
+            "modulefabrication": 1.5,
+            "ultimateanalysis": 1.5,
+            "resonantefficiency": 1.5,
+            "adaptivegrowth": 1.5
+          },
+          "achieved": {
+            "d10": true,
+            "d25": true,
+            "d50": true,
+            "d100": true,
+            "d250": true,
+            "tap100": true,
+            "tap1000": true,
+            "tap10000": true,
+            "fullparty": true,
+            "asc1": true,
+            "asc5": true,
+            "asc10": true,
+            "all": true,
+            "mythic": true,
+            "idle8": true,
+            "autotap": true,
+            "labmaster": true,
+            "study1": true,
+            "study25": true,
+            "allstudies": true,
+            "labqueue": true,
+            "firstultimate": true,
+            "modulemax": true,
+            "endless_rift_500": true,
+            "endless_rift_1000": true,
+            "endless_rift_2500": true,
+            "endless_rift_5000": true,
+            "endless_rift_10000": true,
+            "endless_rift_25000": true,
+            "endless_rift_100000": true,
+            "endless_rift_1000000": true,
+            "endless_ascend_25": true,
+            "endless_ascend_50": true,
+            "endless_ascend_100": true,
+            "endless_ascend_250": true,
+            "endless_ascend_500": true,
+            "endless_ascend_1000": true,
+            "endless_ascend_10000": true,
+            "endless_ascend_100000": true,
+            "endless_kills_10000": true,
+            "endless_kills_100000": true,
+            "endless_kills_1000000": true,
+            "endless_kills_10000000": true,
+            "endless_kills_100000000": true,
+            "endless_kills_1000000000": true,
+            "endless_lab_50": true,
+            "endless_lab_100": true,
+            "endless_lab_250": true,
+            "endless_lab_500": true,
+            "endless_lab_1000": true,
+            "endless_lab_2000": true,
+            "endless_forge_100": true,
+            "endless_forge_200": true,
+            "endless_forge_300": true,
+            "endless_forge_400": true,
+            "endless_forge_500": true,
+            "endless_forge_600": true,
+            "endless_mastery_10": true,
+            "endless_mastery_25": true,
+            "endless_mastery_50": true,
+            "endless_mastery_100": true,
+            "endless_mastery_250": true,
+            "endless_mastery_500": true,
+            "endless_mastery_1000": true,
+            "endless_mastery_5000": true,
+            "endless_mastery_10000": true,
+            "endless_rest_24": true,
+            "endless_rest_72": true,
+            "endless_rest_168": true,
+            "endless_rest_720": true,
+            "endless_rest_2160": true,
+            "endless_rest_8760": true
+          },
+          "owned": {
+            "meteor": false,
+            "starcall": false,
+            "autoascend": true
+          },
+          "riftTheme": "default",
+          "riftLook": {
+            "backdrop": "default",
+            "wisp": "default",
+            "enemy": "default",
+            "motion": true
+          },
+          "cometUpgrades": {
+            "cometreservoir": 0,
+            "cometcycle": 0,
+            "meteorcore": 0
+          },
+          "cometCharges": 0,
+          "cometWork": 0,
+          "cometMeteorUsed": false,
+          "cometCalled": false,
+          "cometEvents": {
+            "firstCommand": false,
+            "firstRecharge": false,
+            "bossStrike": false,
+            "calledKill": false
+          },
+          "cometClaims": {
+            "policy": "comet-commands-001",
+            "retired": {
+              "comettrials": "settled",
+              "rifttrail": "settled",
+              "starfallcrest": "settled"
+            },
+            "deeds": {}
+          },
+          "cometTrial": null,
+          "cometTrialMarks": {
+            "quiet": true,
+            "single": true
+          },
+          "cometTrialResult": null,
+          "cometCosmetics": {
+            "trail": false,
+            "crest": false
+          },
+          "legacyCometPurchases": {},
+          "buffUntil": 0,
+          "buffMult": 1,
+          "supportBuffs": null,
+          "supportRecastUntil": {
+            "tide": 0,
+            "aurora": 0
+          },
+          "ascendCount": 0,
+          "ascendRewardedDepth": 0,
+          "sigilResonanceUses": 0,
+          "totalTaps": 5,
+          "totalKills": 0,
+          "totalOfflineSeconds": 5.914,
+          "luminousAccum": 0,
+          "savedLabMultiplier": 1,
+          "autoAscendEnabled": false,
+          "autoAscendTargetDepth": 200,
+          "loginStreak": 0,
+          "questDay": "2026-11-17",
+          "questIds": [
+            "q_tap_small",
+            "q_empower",
+            "q_boss"
+          ],
+          "questClaimed": {},
+          "dailyQuestRefreshes": 0,
+          "dailyStats": {
+            "taps": 5,
+            "kills": 0,
+            "empowers": 0,
+            "research": 0,
+            "bossKills": 0,
+            "luminousKills": 0,
+            "ascends": 0
+          },
+          "lastSeen": 1794874041604,
+          "offlineClockHighWaterMs": 1794874041604,
+          "autoAscendRefund": {
+            "policy": "autoascend-retired-v1",
+            "total": 100,
+            "paid": true
+          },
+          "_autoTapAccum": 913.9999999999995,
+          "_autoEmpowerAccum": 913.9999999999995
+        },
+        "slots": [
+          {
+            "key": "lumenfall_save_v2",
+            "raw": "{\"schemaVersion\":6,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":25},\"echo\":{\"levels\":9}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":25,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924]},\"creditAuditVersion\":1,\"remainingCredits\":[]},\"node.echo\":{\"from\":6,\"to\":9,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[16,22,30]},\"creditAuditVersion\":1,\"remainingCredits\":[]}},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":1000000,\"shards\":1000000,\"prisms\":41654,\"comets\":457,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":379.6069163999999,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":98.56666666666666,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"slot\":0,\"remainingSec\":81.129,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"slot\":1,\"remainingSec\":88.172,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[\"wispascend\",\"shardstudy\",null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"meteor\":false,\"starcall\":false,\"autoascend\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"settled\",\"rifttrail\":\"settled\",\"starfallcrest\":\"settled\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":5,\"totalKills\":0,\"totalOfflineSeconds\":5.914,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":5,\"kills\":0,\"empowers\":0,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":1794874041604,\"offlineClockHighWaterMs\":1794874041604,\"autoAscendRefund\":{\"policy\":\"autoascend-retired-v1\",\"total\":100,\"paid\":true},\"_autoTapAccum\":913.9999999999995,\"_autoEmpowerAccum\":913.9999999999995}"
+          },
+          {
+            "key": "lumenfall_save_recovery_v1",
+            "raw": "{\"schemaVersion\":6,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":25},\"echo\":{\"levels\":9}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":25,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924]},\"creditAuditVersion\":1,\"remainingCredits\":[]},\"node.echo\":{\"from\":6,\"to\":9,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[16,22,30]},\"creditAuditVersion\":1,\"remainingCredits\":[]}},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":1000000,\"shards\":1000000,\"prisms\":41654,\"comets\":457,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":379.6069163999999,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":98.56666666666666,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"slot\":0,\"remainingSec\":81.129,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"slot\":1,\"remainingSec\":88.172,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[\"wispascend\",\"shardstudy\",null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"meteor\":false,\"starcall\":false,\"autoascend\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"settled\",\"rifttrail\":\"settled\",\"starfallcrest\":\"settled\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":5,\"totalKills\":0,\"totalOfflineSeconds\":5.914,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":5,\"kills\":0,\"empowers\":0,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":1794874041604,\"offlineClockHighWaterMs\":1794874041604,\"autoAscendRefund\":{\"policy\":\"autoascend-retired-v1\",\"total\":100,\"paid\":true},\"_autoTapAccum\":913.9999999999995,\"_autoEmpowerAccum\":913.9999999999995}"
+          }
+        ],
+        "beforeReady": [
+          {
+            "status": {
+              "failureCount": 0,
+              "warningShown": false,
+              "lastError": "",
+              "blocked": false,
+              "blockedReason": "",
+              "recovered": false
+            },
+            "toast": "",
+            "shown": false
+          }
+        ]
+      }
+    ],
+    "purchases": [],
+    "commands": [],
+    "refresh": [],
+    "preservation": [],
+    "negatives": [],
+    "images": []
+  },
+  "sourceSha256": "6773532a21c30ce22eddfa2a8ffb4735b3a01c249e2b00883638da0ea4d234c7",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: exact retirement compensation while retaining benefits\n    at ok (C:\\lf-team\\tests\\behavioral\\.comet-mobile-26928.cjs:86:27)\n    at migrationAssertions (C:\\lf-team\\tests\\behavioral\\.comet-mobile-26928.cjs:200:160)\n    at profile (C:\\lf-team\\tests\\behavioral\\.comet-mobile-26928.cjs:215:96)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-team\\tests\\behavioral\\.comet-mobile-26928.cjs:137:3)\n    at async C:\\lf-team\\tests\\behavioral\\.comet-mobile-26928.cjs:483:6",
+  "input": [],
+  "failure": {
+    "state": {
+      "schemaVersion": 6,
+      "offline12hRefund": null,
+      "astralUpgrades": {
+        "astralcore": 0,
+        "astralecho": 0,
+        "astralconvergence": 0
+      },
+      "commandRefund": {
+        "policy": "commands-retired-v1",
+        "total": 0,
+        "paid": true
+      },
+      "swiftRecoveryRefund": null,
+      "swiftRecoveryRefundAudit": null,
+      "feedbackMigration": {
+        "version": 1,
+        "bondsCreditAuditVersion": 1,
+        "applied": true,
+        "history": {
+          "bonds": {
+            "levels": 25
+          },
+          "echo": {
+            "levels": 9
+          }
+        },
+        "receipts": {
+          "node.bonds": {
+            "from": 20,
+            "to": 25,
+            "unpricedFrom": 0,
+            "amounts": {
+              "prisms": [
+                3376,
+                4896,
+                7098,
+                10292,
+                14924
+              ]
+            },
+            "creditAuditVersion": 1,
+            "remainingCredits": []
+          },
+          "node.echo": {
+            "from": 6,
+            "to": 9,
+            "unpricedFrom": 0,
+            "amounts": {
+              "prisms": [
+                16,
+                22,
+                30
+              ]
+            },
+            "creditAuditVersion": 1,
+            "remainingCredits": []
+          }
+        },
+        "echoCreditAuditVersion": 1
+      },
+      "refundCredits": {
+        "prisms": []
+      },
+      "lumen": 1000000,
+      "shards": 1000000,
+      "prisms": 41654,
+      "comets": 457,
+      "motes": 321,
+      "sigils": 249,
+      "moteNextAtMs": 0,
+      "studyBoosts": {},
+      "studyBoostHours": {
+        "wispascend": 8,
+        "guardmastery": 8,
+        "riftattune": 8,
+        "shardstudy": 8,
+        "lumenstudy": 8,
+        "formationstudy": 8,
+        "motestudy": 8,
+        "prismstudy": 8,
+        "measuredinquiry": 8,
+        "wispdamage": 8,
+        "wispcritchance": 8,
+        "wispcritdamage": 8,
+        "supportduration": 8,
+        "labcapacity": 8,
+        "procurement": 8,
+        "catalysis": 8,
+        "focusprotocol": 8,
+        "fieldnotes": 8,
+        "curriculum": 8,
+        "bossledger": 8,
+        "luminousdistill": 8,
+        "sigilcartography": 8,
+        "rarityappraisal": 8,
+        "modulefabrication": 8,
+        "ultimateanalysis": 8,
+        "resonantefficiency": 8,
+        "adaptivegrowth": 8
+      },
+      "depth": 21,
+      "maxDepthEver": 250,
+      "riftMode": "push",
+      "farmDepth": 0,
+      "farmReturnDepth": 0,
+      "farmAutoResume": false,
+      "enemyDepth": 21,
+      "enemyHp": 379.6069163999999,
+      "enemyMaxHp": 1031,
+      "enemyIsLuminous": false,
+      "spirits": {
+        "ember": 20,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "heroRarity": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "heroResource": {
+        "ember": 98.56666666666666,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "wispModules": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "wispUltimate": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "wispMastery": {
+        "ember": 0,
+        "tide": 0,
+        "stone": 0,
+        "gale": 0,
+        "thorn": 0,
+        "void": 0,
+        "aurora": 0,
+        "titan": 0
+      },
+      "canonicalAutomationClock": {},
+      "recruitmentEntitlements": {
+        "ember": true,
+        "tide": true,
+        "stone": true,
+        "gale": true,
+        "thorn": true,
+        "void": true,
+        "aurora": true,
+        "titan": true
+      },
+      "empowerQueue": {
+        "ember": false,
+        "tide": false,
+        "stone": false,
+        "gale": false,
+        "thorn": false,
+        "void": false,
+        "aurora": false,
+        "titan": false
+      },
+      "activeParty": [
+        "ember"
+      ],
+      "formationPresets": {
+        "push": [
+          "ember"
+        ],
+        "farm": [
+          "ember"
+        ],
+        "boss": [
+          "ember"
+        ]
+      },
+      "activeFormationPreset": "push",
+      "formationRebuild": null,
+      "nodes": {
+        "starlight": 12,
+        "steady": 9,
+        "echo": 9,
+        "bonds": 25,
+        "swift": 10,
+        "momentum": 7,
+        "reserves": 0,
+        "swiftcharter": 0,
+        "lumenmemory": 0,
+        "veteranrecruits": 0,
+        "rosterrecall": 0,
+        "chargememory": 0,
+        "supportmemory": 0,
+        "phasememory": 0,
+        "riftstep": 0,
+        "frontier": 0,
+        "stardust": 0,
+        "gentlegrowth": 0,
+        "formationseat": 0,
+        "benchmentor": 0,
+        "empowerbatch": 0,
+        "wallwisdom": 0,
+        "invitations": 0,
+        "recruitreserve": 0
+      },
+      "treeTrainingProgress": 0,
+      "research": {
+        "focus": 3,
+        "sense": 4,
+        "formation": 5,
+        "resolve": 6,
+        "charge": 0,
+        "arcanecal": 0,
+        "conduction": 0,
+        "luminoustracking": 0,
+        "masterwork": 0,
+        "cauterize": 0,
+        "fracturekey": 0,
+        "guardianseal": 0,
+        "spillway": 0,
+        "sustainedchannel": 0,
+        "tapconduit": 0,
+        "guardiancadence": 0,
+        "relay": 0,
+        "resonantedge": 0,
+        "victorycharge": 0,
+        "amplifiertrim": 0,
+        "dualchannel": 0,
+        "overflowconduit": 0,
+        "resonancecells": 0,
+        "resonancecascade": 0,
+        "resonancereclaim": 0,
+        "battletempering": 0,
+        "arcanetempering": 0,
+        "harvesttempering": 0
+      },
+      "researchQueue": {
+        "focus": false,
+        "sense": false,
+        "formation": false,
+        "resolve": false,
+        "charge": false,
+        "arcanecal": false,
+        "conduction": false,
+        "luminoustracking": false,
+        "masterwork": false,
+        "cauterize": false,
+        "fracturekey": false,
+        "guardianseal": false,
+        "spillway": false,
+        "sustainedchannel": false,
+        "tapconduit": false,
+        "guardiancadence": false,
+        "relay": false,
+        "resonantedge": false,
+        "victorycharge": false,
+        "amplifiertrim": false,
+        "dualchannel": false,
+        "overflowconduit": false,
+        "resonancecells": false,
+        "resonancecascade": false,
+        "resonancereclaim": false,
+        "battletempering": false,
+        "arcanetempering": false,
+        "harvesttempering": false
+      },
+      "longStudyLevels": {
+        "wispascend": 0,
+        "guardmastery": 2,
+        "riftattune": 0,
+        "shardstudy": 0,
+        "lumenstudy": 0,
+        "formationstudy": 0,
+        "motestudy": 0,
+        "prismstudy": 3,
+        "measuredinquiry": 0,
+        "wispdamage": 0,
+        "wispcritchance": 0,
+        "wispcritdamage": 0,
+        "supportduration": 0,
+        "labcapacity": 1,
+        "procurement": 0,
+        "catalysis": 0,
+        "focusprotocol": 0,
+        "fieldnotes": 0,
+        "curriculum": 0,
+        "bossledger": 0,
+        "luminousdistill": 0,
+        "sigilcartography": 0,
+        "rarityappraisal": 0,
+        "modulefabrication": 0,
+        "ultimateanalysis": 0,
+        "resonantefficiency": 0,
+        "adaptivegrowth": 0
+      },
+      "activeStudies": [
+        {
+          "id": "wispascend",
+          "slot": 0,
+          "remainingSec": 81.129,
+          "totalDurationSec": 180,
+          "speedMult": 1.5
+        },
+        {
+          "id": "shardstudy",
+          "slot": 1,
+          "remainingSec": 88.172,
+          "totalDurationSec": 200,
+          "speedMult": 2
+        }
+      ],
+      "studySlotProjects": [
+        "wispascend",
+        "shardstudy",
+        null,
+        null,
+        null
+      ],
+      "pausedStudies": [],
+      "studyQueue": {
+        "wispascend": false,
+        "guardmastery": false,
+        "riftattune": false,
+        "shardstudy": false,
+        "lumenstudy": false,
+        "formationstudy": false,
+        "motestudy": false,
+        "prismstudy": false,
+        "measuredinquiry": false,
+        "wispdamage": false,
+        "wispcritchance": false,
+        "wispcritdamage": false,
+        "supportduration": false,
+        "labcapacity": false,
+        "procurement": false,
+        "catalysis": false,
+        "focusprotocol": false,
+        "fieldnotes": false,
+        "curriculum": false,
+        "bossledger": false,
+        "luminousdistill": false,
+        "sigilcartography": false,
+        "rarityappraisal": false,
+        "modulefabrication": false,
+        "ultimateanalysis": false,
+        "resonantefficiency": false,
+        "adaptivegrowth": false
+      },
+      "studyUseMotes": {
+        "wispascend": false,
+        "guardmastery": false,
+        "riftattune": false,
+        "shardstudy": false,
+        "lumenstudy": false,
+        "formationstudy": false,
+        "motestudy": false,
+        "prismstudy": false,
+        "measuredinquiry": false,
+        "wispdamage": false,
+        "wispcritchance": false,
+        "wispcritdamage": false,
+        "supportduration": false,
+        "labcapacity": false,
+        "procurement": false,
+        "catalysis": false,
+        "focusprotocol": false,
+        "fieldnotes": false,
+        "curriculum": false,
+        "bossledger": false,
+        "luminousdistill": false,
+        "sigilcartography": false,
+        "rarityappraisal": false,
+        "modulefabrication": false,
+        "ultimateanalysis": false,
+        "resonantefficiency": false,
+        "adaptivegrowth": false
+      },
+      "studySpeedTargets": {
+        "wispascend": 1.5,
+        "guardmastery": 1.5,
+        "riftattune": 1.5,
+        "shardstudy": 1.5,
+        "lumenstudy": 1.5,
+        "formationstudy": 1.5,
+        "motestudy": 1.5,
+        "prismstudy": 1.5,
+        "measuredinquiry": 1.5,
+        "wispdamage": 1.5,
+        "wispcritchance": 1.5,
+        "wispcritdamage": 1.5,
+        "supportduration": 1.5,
+        "labcapacity": 1.5,
+        "procurement": 1.5,
+        "catalysis": 1.5,
+        "focusprotocol": 1.5,
+        "fieldnotes": 1.5,
+        "curriculum": 1.5,
+        "bossledger": 1.5,
+        "luminousdistill": 1.5,
+        "sigilcartography": 1.5,
+        "rarityappraisal": 1.5,
+        "modulefabrication": 1.5,
+        "ultimateanalysis": 1.5,
+        "resonantefficiency": 1.5,
+        "adaptivegrowth": 1.5
+      },
+      "achieved": {
+        "d10": true,
+        "d25": true,
+        "d50": true,
+        "d100": true,
+        "d250": true,
+        "tap100": true,
+        "tap1000": true,
+        "tap10000": true,
+        "fullparty": true,
+        "asc1": true,
+        "asc5": true,
+        "asc10": true,
+        "all": true,
+        "mythic": true,
+        "idle8": true,
+        "autotap": true,
+        "labmaster": true,
+        "study1": true,
+        "study25": true,
+        "allstudies": true,
+        "labqueue": true,
+        "firstultimate": true,
+        "modulemax": true,
+        "endless_rift_500": true,
+        "endless_rift_1000": true,
+        "endless_rift_2500": true,
+        "endless_rift_5000": true,
+        "endless_rift_10000": true,
+        "endless_rift_25000": true,
+        "endless_rift_100000": true,
+        "endless_rift_1000000": true,
+        "endless_ascend_25": true,
+        "endless_ascend_50": true,
+        "endless_ascend_100": true,
+        "endless_ascend_250": true,
+        "endless_ascend_500": true,
+        "endless_ascend_1000": true,
+        "endless_ascend_10000": true,
+        "endless_ascend_100000": true,
+        "endless_kills_10000": true,
+        "endless_kills_100000": true,
+        "endless_kills_1000000": true,
+        "endless_kills_10000000": true,
+        "endless_kills_100000000": true,
+        "endless_kills_1000000000": true,
+        "endless_lab_50": true,
+        "endless_lab_100": true,
+        "endless_lab_250": true,
+        "endless_lab_500": true,
+        "endless_lab_1000": true,
+        "endless_lab_2000": true,
+        "endless_forge_100": true,
+        "endless_forge_200": true,
+        "endless_forge_300": true,
+        "endless_forge_400": true,
+        "endless_forge_500": true,
+        "endless_forge_600": true,
+        "endless_mastery_10": true,
+        "endless_mastery_25": true,
+        "endless_mastery_50": true,
+        "endless_mastery_100": true,
+        "endless_mastery_250": true,
+        "endless_mastery_500": true,
+        "endless_mastery_1000": true,
+        "endless_mastery_5000": true,
+        "endless_mastery_10000": true,
+        "endless_rest_24": true,
+        "endless_rest_72": true,
+        "endless_rest_168": true,
+        "endless_rest_720": true,
+        "endless_rest_2160": true,
+        "endless_rest_8760": true
+      },
+      "owned": {
+        "meteor": false,
+        "starcall": false,
+        "autoascend": true
+      },
+      "riftTheme": "default",
+      "riftLook": {
+        "backdrop": "default",
+        "wisp": "default",
+        "enemy": "default",
+        "motion": true
+      },
+      "cometUpgrades": {
+        "cometreservoir": 0,
+        "cometcycle": 0,
+        "meteorcore": 0
+      },
+      "cometCharges": 0,
+      "cometWork": 0,
+      "cometMeteorUsed": false,
+      "cometCalled": false,
+      "cometEvents": {
+        "firstCommand": false,
+        "firstRecharge": false,
+        "bossStrike": false,
+        "calledKill": false
+      },
+      "cometClaims": {
+        "policy": "comet-commands-001",
+        "retired": {
+          "comettrials": "settled",
+          "rifttrail": "settled",
+          "starfallcrest": "settled"
+        },
+        "deeds": {}
+      },
+      "cometTrial": null,
+      "cometTrialMarks": {
+        "quiet": true,
+        "single": true
+      },
+      "cometTrialResult": null,
+      "cometCosmetics": {
+        "trail": false,
+        "crest": false
+      },
+      "legacyCometPurchases": {},
+      "buffUntil": 0,
+      "buffMult": 1,
+      "supportBuffs": null,
+      "supportRecastUntil": {
+        "tide": 0,
+        "aurora": 0
+      },
+      "ascendCount": 0,
+      "ascendRewardedDepth": 0,
+      "sigilResonanceUses": 0,
+      "totalTaps": 5,
+      "totalKills": 0,
+      "totalOfflineSeconds": 5.914,
+      "luminousAccum": 0,
+      "savedLabMultiplier": 1,
+      "autoAscendEnabled": false,
+      "autoAscendTargetDepth": 200,
+      "loginStreak": 0,
+      "questDay": "2026-11-17",
+      "questIds": [
+        "q_tap_small",
+        "q_empower",
+        "q_boss"
+      ],
+      "questClaimed": {},
+      "dailyQuestRefreshes": 0,
+      "dailyStats": {
+        "taps": 5,
+        "kills": 0,
+        "empowers": 0,
+        "research": 0,
+        "bossKills": 0,
+        "luminousKills": 0,
+        "ascends": 0
+      },
+      "lastSeen": 1794874041604,
+      "offlineClockHighWaterMs": 1794874041604,
+      "autoAscendRefund": {
+        "policy": "autoascend-retired-v1",
+        "total": 100,
+        "paid": true
+      },
+      "_autoTapAccum": 913.9999999999995,
+      "_autoEmpowerAccum": 913.9999999999995
+    },
+    "slots": [
+      {
+        "key": "lumenfall_save_v2",
+        "raw": "{\"schemaVersion\":6,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":25},\"echo\":{\"levels\":9}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":25,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924]},\"creditAuditVersion\":1,\"remainingCredits\":[]},\"node.echo\":{\"from\":6,\"to\":9,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[16,22,30]},\"creditAuditVersion\":1,\"remainingCredits\":[]}},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":1000000,\"shards\":1000000,\"prisms\":41654,\"comets\":457,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":379.6069163999999,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":98.56666666666666,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"slot\":0,\"remainingSec\":81.129,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"slot\":1,\"remainingSec\":88.172,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[\"wispascend\",\"shardstudy\",null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"meteor\":false,\"starcall\":false,\"autoascend\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"settled\",\"rifttrail\":\"settled\",\"starfallcrest\":\"settled\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":5,\"totalKills\":0,\"totalOfflineSeconds\":5.914,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":5,\"kills\":0,\"empowers\":0,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":1794874041604,\"offlineClockHighWaterMs\":1794874041604,\"autoAscendRefund\":{\"policy\":\"autoascend-retired-v1\",\"total\":100,\"paid\":true},\"_autoTapAccum\":913.9999999999995,\"_autoEmpowerAccum\":913.9999999999995}"
+      },
+      {
+        "key": "lumenfall_save_recovery_v1",
+        "raw": "{\"schemaVersion\":6,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"feedbackMigration\":{\"version\":1,\"bondsCreditAuditVersion\":1,\"applied\":true,\"history\":{\"bonds\":{\"levels\":25},\"echo\":{\"levels\":9}},\"receipts\":{\"node.bonds\":{\"from\":20,\"to\":25,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[3376,4896,7098,10292,14924]},\"creditAuditVersion\":1,\"remainingCredits\":[]},\"node.echo\":{\"from\":6,\"to\":9,\"unpricedFrom\":0,\"amounts\":{\"prisms\":[16,22,30]},\"creditAuditVersion\":1,\"remainingCredits\":[]}},\"echoCreditAuditVersion\":1},\"refundCredits\":{\"prisms\":[]},\"lumen\":1000000,\"shards\":1000000,\"prisms\":41654,\"comets\":457,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":379.6069163999999,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":98.56666666666666,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":true,\"stone\":true,\"gale\":true,\"thorn\":true,\"void\":true,\"aurora\":true,\"titan\":true},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"slot\":0,\"remainingSec\":81.129,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"slot\":1,\"remainingSec\":88.172,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[\"wispascend\",\"shardstudy\",null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"meteor\":false,\"starcall\":false,\"autoascend\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometUpgrades\":{\"cometreservoir\":0,\"cometcycle\":0,\"meteorcore\":0},\"cometCharges\":0,\"cometWork\":0,\"cometMeteorUsed\":false,\"cometCalled\":false,\"cometEvents\":{\"firstCommand\":false,\"firstRecharge\":false,\"bossStrike\":false,\"calledKill\":false},\"cometClaims\":{\"policy\":\"comet-commands-001\",\"retired\":{\"comettrials\":\"settled\",\"rifttrail\":\"settled\",\"starfallcrest\":\"settled\"},\"deeds\":{}},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":5,\"totalKills\":0,\"totalOfflineSeconds\":5.914,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{\"taps\":5,\"kills\":0,\"empowers\":0,\"research\":0,\"bossKills\":0,\"luminousKills\":0,\"ascends\":0},\"lastSeen\":1794874041604,\"offlineClockHighWaterMs\":1794874041604,\"autoAscendRefund\":{\"policy\":\"autoascend-retired-v1\",\"total\":100,\"paid\":true},\"_autoTapAccum\":913.9999999999995,\"_autoEmpowerAccum\":913.9999999999995}"
+      }
+    ],
+    "bootstrap": {
+      "synthetic": true,
+      "primary": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}",
+      "recovery": "{\"schemaVersion\":2,\"offline12hRefund\":null,\"astralUpgrades\":{\"astralcore\":0,\"astralecho\":0,\"astralconvergence\":0},\"commandRefund\":{\"policy\":\"commands-retired-v1\",\"total\":0,\"paid\":true},\"swiftRecoveryRefund\":null,\"swiftRecoveryRefundAudit\":null,\"lumen\":1000000,\"shards\":1000000,\"prisms\":1000,\"comets\":7,\"motes\":321,\"sigils\":249,\"moteNextAtMs\":0,\"studyBoosts\":{},\"studyBoostHours\":{\"wispascend\":8,\"guardmastery\":8,\"riftattune\":8,\"shardstudy\":8,\"lumenstudy\":8,\"formationstudy\":8,\"motestudy\":8,\"prismstudy\":8,\"measuredinquiry\":8,\"wispdamage\":8,\"wispcritchance\":8,\"wispcritdamage\":8,\"supportduration\":8,\"labcapacity\":8,\"procurement\":8,\"catalysis\":8,\"focusprotocol\":8,\"fieldnotes\":8,\"curriculum\":8,\"bossledger\":8,\"luminousdistill\":8,\"sigilcartography\":8,\"rarityappraisal\":8,\"modulefabrication\":8,\"ultimateanalysis\":8,\"resonantefficiency\":8,\"adaptivegrowth\":8},\"depth\":21,\"maxDepthEver\":250,\"riftMode\":\"push\",\"farmDepth\":0,\"farmReturnDepth\":0,\"farmAutoResume\":false,\"enemyDepth\":21,\"enemyHp\":1031,\"enemyMaxHp\":1031,\"enemyIsLuminous\":false,\"spirits\":{\"ember\":20,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroRarity\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"heroResource\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispModules\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"wispUltimate\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"wispMastery\":{\"ember\":0,\"tide\":0,\"stone\":0,\"gale\":0,\"thorn\":0,\"void\":0,\"aurora\":0,\"titan\":0},\"canonicalAutomationClock\":{},\"recruitmentEntitlements\":{\"ember\":true,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"empowerQueue\":{\"ember\":false,\"tide\":false,\"stone\":false,\"gale\":false,\"thorn\":false,\"void\":false,\"aurora\":false,\"titan\":false},\"activeParty\":[\"ember\"],\"formationPresets\":{\"push\":[\"ember\"],\"farm\":[\"ember\"],\"boss\":[\"ember\"]},\"activeFormationPreset\":\"push\",\"formationRebuild\":null,\"nodes\":{\"starlight\":12,\"steady\":9,\"echo\":9,\"bonds\":25,\"swift\":10,\"momentum\":7,\"reserves\":0,\"swiftcharter\":0,\"lumenmemory\":0,\"veteranrecruits\":0,\"rosterrecall\":0,\"chargememory\":0,\"supportmemory\":0,\"phasememory\":0,\"riftstep\":0,\"frontier\":0,\"stardust\":0,\"gentlegrowth\":0,\"formationseat\":0,\"benchmentor\":0,\"empowerbatch\":0,\"wallwisdom\":0,\"invitations\":0,\"recruitreserve\":0},\"treeTrainingProgress\":0,\"research\":{\"focus\":3,\"sense\":4,\"formation\":5,\"resolve\":6,\"charge\":0,\"arcanecal\":0,\"conduction\":0,\"luminoustracking\":0,\"masterwork\":0,\"cauterize\":0,\"fracturekey\":0,\"guardianseal\":0,\"spillway\":0,\"sustainedchannel\":0,\"tapconduit\":0,\"guardiancadence\":0,\"relay\":0,\"resonantedge\":0,\"victorycharge\":0,\"amplifiertrim\":0,\"dualchannel\":0,\"overflowconduit\":0,\"resonancecells\":0,\"resonancecascade\":0,\"resonancereclaim\":0,\"battletempering\":0,\"arcanetempering\":0,\"harvesttempering\":0},\"researchQueue\":{\"focus\":false,\"sense\":false,\"formation\":false,\"resolve\":false,\"charge\":false,\"arcanecal\":false,\"conduction\":false,\"luminoustracking\":false,\"masterwork\":false,\"cauterize\":false,\"fracturekey\":false,\"guardianseal\":false,\"spillway\":false,\"sustainedchannel\":false,\"tapconduit\":false,\"guardiancadence\":false,\"relay\":false,\"resonantedge\":false,\"victorycharge\":false,\"amplifiertrim\":false,\"dualchannel\":false,\"overflowconduit\":false,\"resonancecells\":false,\"resonancecascade\":false,\"resonancereclaim\":false,\"battletempering\":false,\"arcanetempering\":false,\"harvesttempering\":false},\"longStudyLevels\":{\"wispascend\":0,\"guardmastery\":2,\"riftattune\":0,\"shardstudy\":0,\"lumenstudy\":0,\"formationstudy\":0,\"motestudy\":0,\"prismstudy\":3,\"measuredinquiry\":0,\"wispdamage\":0,\"wispcritchance\":0,\"wispcritdamage\":0,\"supportduration\":0,\"labcapacity\":1,\"procurement\":0,\"catalysis\":0,\"focusprotocol\":0,\"fieldnotes\":0,\"curriculum\":0,\"bossledger\":0,\"luminousdistill\":0,\"sigilcartography\":0,\"rarityappraisal\":0,\"modulefabrication\":0,\"ultimateanalysis\":0,\"resonantefficiency\":0,\"adaptivegrowth\":0},\"activeStudies\":[{\"id\":\"wispascend\",\"remainingSec\":90,\"totalDurationSec\":180,\"speedMult\":1.5},{\"id\":\"shardstudy\",\"remainingSec\":100,\"totalDurationSec\":200,\"speedMult\":2}],\"studySlotProjects\":[null,null,null,null,null],\"pausedStudies\":[],\"studyQueue\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studyUseMotes\":{\"wispascend\":false,\"guardmastery\":false,\"riftattune\":false,\"shardstudy\":false,\"lumenstudy\":false,\"formationstudy\":false,\"motestudy\":false,\"prismstudy\":false,\"measuredinquiry\":false,\"wispdamage\":false,\"wispcritchance\":false,\"wispcritdamage\":false,\"supportduration\":false,\"labcapacity\":false,\"procurement\":false,\"catalysis\":false,\"focusprotocol\":false,\"fieldnotes\":false,\"curriculum\":false,\"bossledger\":false,\"luminousdistill\":false,\"sigilcartography\":false,\"rarityappraisal\":false,\"modulefabrication\":false,\"ultimateanalysis\":false,\"resonantefficiency\":false,\"adaptivegrowth\":false},\"studySpeedTargets\":{\"wispascend\":1.5,\"guardmastery\":1.5,\"riftattune\":1.5,\"shardstudy\":1.5,\"lumenstudy\":1.5,\"formationstudy\":1.5,\"motestudy\":1.5,\"prismstudy\":1.5,\"measuredinquiry\":1.5,\"wispdamage\":1.5,\"wispcritchance\":1.5,\"wispcritdamage\":1.5,\"supportduration\":1.5,\"labcapacity\":1.5,\"procurement\":1.5,\"catalysis\":1.5,\"focusprotocol\":1.5,\"fieldnotes\":1.5,\"curriculum\":1.5,\"bossledger\":1.5,\"luminousdistill\":1.5,\"sigilcartography\":1.5,\"rarityappraisal\":1.5,\"modulefabrication\":1.5,\"ultimateanalysis\":1.5,\"resonantefficiency\":1.5,\"adaptivegrowth\":1.5},\"achieved\":{\"d10\":true,\"d25\":true,\"d50\":true,\"d100\":true,\"d250\":true,\"tap100\":true,\"tap1000\":true,\"tap10000\":true,\"fullparty\":true,\"asc1\":true,\"asc5\":true,\"asc10\":true,\"all\":true,\"mythic\":true,\"idle8\":true,\"autotap\":true,\"labmaster\":true,\"study1\":true,\"study25\":true,\"allstudies\":true,\"labqueue\":true,\"firstultimate\":true,\"modulemax\":true,\"endless_rift_500\":true,\"endless_rift_1000\":true,\"endless_rift_2500\":true,\"endless_rift_5000\":true,\"endless_rift_10000\":true,\"endless_rift_25000\":true,\"endless_rift_100000\":true,\"endless_rift_1000000\":true,\"endless_ascend_25\":true,\"endless_ascend_50\":true,\"endless_ascend_100\":true,\"endless_ascend_250\":true,\"endless_ascend_500\":true,\"endless_ascend_1000\":true,\"endless_ascend_10000\":true,\"endless_ascend_100000\":true,\"endless_kills_10000\":true,\"endless_kills_100000\":true,\"endless_kills_1000000\":true,\"endless_kills_10000000\":true,\"endless_kills_100000000\":true,\"endless_kills_1000000000\":true,\"endless_lab_50\":true,\"endless_lab_100\":true,\"endless_lab_250\":true,\"endless_lab_500\":true,\"endless_lab_1000\":true,\"endless_lab_2000\":true,\"endless_forge_100\":true,\"endless_forge_200\":true,\"endless_forge_300\":true,\"endless_forge_400\":true,\"endless_forge_500\":true,\"endless_forge_600\":true,\"endless_mastery_10\":true,\"endless_mastery_25\":true,\"endless_mastery_50\":true,\"endless_mastery_100\":true,\"endless_mastery_250\":true,\"endless_mastery_500\":true,\"endless_mastery_1000\":true,\"endless_mastery_5000\":true,\"endless_mastery_10000\":true,\"endless_rest_24\":true,\"endless_rest_72\":true,\"endless_rest_168\":true,\"endless_rest_720\":true,\"endless_rest_2160\":true,\"endless_rest_8760\":true},\"owned\":{\"autoascend\":true,\"comettrials\":true,\"rifttrail\":true,\"starfallcrest\":true},\"riftTheme\":\"default\",\"riftLook\":{\"backdrop\":\"default\",\"wisp\":\"default\",\"enemy\":\"default\",\"motion\":true},\"cometTrial\":null,\"cometTrialMarks\":{\"quiet\":true,\"single\":true},\"cometTrialResult\":null,\"cometCosmetics\":{\"trail\":false,\"crest\":false},\"legacyCometPurchases\":{},\"buffUntil\":0,\"buffMult\":1,\"supportBuffs\":null,\"supportRecastUntil\":{\"tide\":0,\"aurora\":0},\"ascendCount\":0,\"ascendRewardedDepth\":0,\"sigilResonanceUses\":0,\"totalTaps\":0,\"totalKills\":0,\"totalOfflineSeconds\":0,\"luminousAccum\":0,\"savedLabMultiplier\":1,\"autoAscendEnabled\":false,\"autoAscendTargetDepth\":200,\"loginStreak\":0,\"questDay\":\"2026-11-17\",\"questIds\":[\"q_tap_small\",\"q_empower\",\"q_boss\"],\"questClaimed\":{},\"dailyQuestRefreshes\":0,\"dailyStats\":{},\"lastSeen\":1794874035642,\"offlineClockHighWaterMs\":0}"
+    },
+    "beforeReady": [
+      {
+        "status": {
+          "failureCount": 0,
+          "warningShown": false,
+          "lastError": "",
+          "blocked": false,
+          "blockedReason": "",
+          "recovered": false
+        },
+        "toast": "",
+        "shown": false
+      }
+    ],
+    "runtimeErrors": [],
+    "dom": "failure-dom.html"
+  },
+  "teardown": "browser teardown deadline",
+  "checks": 5,
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/157.0.8103.79",
+    "revision": "@52886f99c599c22139930531da30c7c8be9f38a",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "jsVersion": "15.7.112.43"
+  },
+  "instrumentedHtmlSha256": "ea436977733bd0c5319341836d03165cded4aab200a950e75c510a0fbe77bf1c",
+  "stderr": ""
+}

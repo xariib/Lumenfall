@@ -1,0 +1,28 @@
+{
+  "id": 43980662721,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662721",
+  "jobs": [
+    {
+      "id": 133695955170,
+      "name": "tree",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:37:00Z",
+      "log": "job-133695955170.log.gz",
+      "rawSha256": "de9c464c04cda7ed243bd99d78f6cc9c70f36fd09c78a0129446c248711524d9",
+      "summary": [
+        "2026-11-16T23:36:55.1810741Z   throw new AssertionError(obj);",
+        "2026-11-16T23:36:55.1811593Z AssertionError [ERR_ASSERTION]: ending passive interval performs exactly one actual Auto-Ascend",
+        "2026-11-16T23:36:55.2578721Z AssertionError [ERR_ASSERTION]: intro must explain full earned bonus",
+        "2026-11-16T23:36:55.2620175Z   throw new AssertionError(obj);",
+        "2026-11-16T23:36:55.2620934Z AssertionError [ERR_ASSERTION]: Tree browser acceptance failed; inspect raw receipt/screenshots",
+        "2026-11-16T23:36:55.3097233Z AssertionError [ERR_ASSERTION]: intro must explain full earned bonus",
+        "2026-11-16T23:36:57.0956484Z   \"status\": \"fail\",",
+        "2026-11-16T23:36:57.0962263Z   \"error\": \"AssertionError [ERR_ASSERTION]: legacy migration and every paid subsystem: original F26 32 Prisms plus F21 40586 and Echo68 Prisms and300 Comets; no retired-card ownership\\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-v8.cjs:14:52)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/tree-expansion-v8.cjs:124:67)\\n    at Module._compile (module.js:573:30)\\n    at Object.Module._extensions..js (module.js:584:10)\\n    at Module.load (module.js:507:32)\\n    at tryModuleLoad (module.js:470:12)\\n    at Function.Module._load (module.js:462:3)\\n    at Function.Module.runMain (module.js:609:10)\\n    at startup (bootstrap_node.js:158:16)\\n    at bootstrap_node.js:578:3\","
+      ]
+    }
+  ]
+}

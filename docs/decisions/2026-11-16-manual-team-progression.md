@@ -36,6 +36,10 @@ Announced gameplay rules within that scope:
   `min(basePower,26)*L*(1+.01*(L-1)) + 352*max(0,L-70)^2*strength`.
   This bounds later-roster advantages at comparable development without
   imposing a dynamic damage-share cap or removing paid upgrades.
+  Shared growth applies to direct damage only. Gale/Thorn resource abilities
+  retain their original Power curve and upgrade factors, preserving the existing
+  Lumen/Shard economy and long-term Workshop budgets. Damage and resource rewards
+  are labeled separately. This scope correction was announced before editing.
 - Rift and Wisp cards use the same current passive DPS, including contextual
   damage Bonds and current Support. Wisp cards also show base DPS and Support
   multiplier; expandable details separate raw Power and ability hit damage.

@@ -44,6 +44,7 @@ function app(source, saved, options) {
     buy:function(id,n){var old=labMultiplier;labMultiplier=n===undefined?1:n;try{return buyResearch(qaResearch(id));}finally{labMultiplier=old;}},
     queue:autoLabQueueTick,
     power:function(id,l){return wispPower(qaSpirit(id),l===undefined?state.spirits[id]:l);},
+    resourcePower:function(id,l){return (typeof wispResourcePower==='function'?wispResourcePower:wispPower)(qaSpirit(id),l===undefined?state.spirits[id]:l);},
     empowerCost:function(id){return spiritCost(qaSpirit(id));},
     empower:function(id){return buySpirit(qaSpirit(id));},
     startStudy:function(id){return commitStudyStart(LONG_STUDIES.find(function(study){return study.id===id;}));},

@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,'../..'),sourcePath=path.resolve(process.argv[
 const evidence=path.resolve(process.argv[3]||'prism-acceptance-evidence'),source=fs.readFileSync(sourcePath,'utf8');
 const chrome=process.env.LUMENFALL_QA_CDP_CHROME||['google-chrome','google-chrome-stable','chromium','chromium-browser'].find(x=>spawnSync('which',[x]).status===0);
 const {reward}=require('./prism-earning-reference.cjs');
-assert(source.includes("Each Ascend earns Prisms. Repeat runs keep 20% of the base reward plus the full earned upgrade bonus. Clearing beyond your best rewarded Rift adds a new-depth bonus. The current run resets; permanent progression stays."),'intro must explain full earned bonus');
+assert(source.includes("Ascend manually after clearing Rift 15. Each later Ascend requires a higher clear than your best rewarded Rift. Eligible records keep the full earned upgrade bonus. Check the Prism reward, then choose when to reset. Permanent progression stays."),'intro must explain manual forward progress and full earned bonus');
 assert(!source.includes("Your first Ascend sets a Prism reward benchmark. Repeating at the same depth earns a 20% reserve reward; pushing beyond the benchmark adds the newly earned depth bonus. Ascending still resets the current run while permanent progression stays."),'obsolete full-reward penalty text must not remain');
 const bridge=String.raw`
 window.prismQa={
@@ -68,19 +68,21 @@ async function run(){
    await ev(`prismQa.set(prismQa.seed(${c},${b},${t},${l}));prismQa.ready()`);const before=await ev('JSON.stringify(prismQa.get())');
    const measured=await ev(`(function(){var scope=document.getElementById('tab-ascend'),nodes=scope.querySelectorAll('#prism-preview,#prism-calculation,#prism-calculation dt,#prism-calculation dd,#ascend-note,#ascend-btn,[data-autoascend-target],[data-autoascend-toggle]');var failures=[];nodes.forEach(function(e){var r=e.getBoundingClientRect();if(r.width<=0||r.height<=0||r.left<-.5||r.right>innerWidth+.5||e.scrollWidth>e.clientWidth+1)failures.push({tag:e.tagName,id:e.id,text:e.textContent.slice(0,70),left:r.left,right:r.right,width:r.width,scroll:e.scrollWidth,client:e.clientWidth});});return {failures:failures,preview:document.getElementById('prism-preview').textContent,detail:document.getElementById('prism-calculation').textContent,disabled:document.getElementById('ascend-btn').disabled,bodyWidth:document.body.scrollWidth,inner:innerWidth};})()`);
    ok(measured.failures.length===0,'clipping '+JSON.stringify({width,scale,motion,c,failures:measured.failures}));ok(measured.bodyWidth<=measured.inner+1,'no horizontal overflow');
-   ok(measured.disabled===(c<15),'correct eligibility');ok(measured.detail.includes('You receive now'+reward(c,b,t,l)+' Prisms'),'exact oracle in visible explanation');
+   ok(measured.disabled===(c<15||c<=b),'correct forward-only eligibility');ok(measured.detail.includes('You receive now'+reward(c,b,t,l)+' Prisms'),'exact oracle in visible explanation');
    await ev('prismQa.refresh()');ok(await ev('JSON.stringify(prismQa.get())')===before,'render never changes save');samples.push({c,b,t,l,reward:reward(c,b,t,l)});
   }
   await ev('prismQa.set(prismQa.seed(20,89,7,0));prismQa.ready()');await shot('prism-'+width+'-'+scale+'-'+motion);
-  const picker='[data-autoascend-target]';await point(picker);await ev(`document.querySelector('${picker}').focus();window.__prismPicker=document.activeElement;window.__prismScroll=document.querySelector('main').scrollTop;prismQa.refresh()`);
-  ok(await ev("document.activeElement===window.__prismPicker&&Math.abs(document.querySelector('main').scrollTop-window.__prismScroll)<=1"),'refresh retains picker and scroll');
-  const previous=await ev('prismQa.get().autoAscendTargetDepth');await key('ArrowDown','ArrowDown',40);await key('Tab','Tab',9);
-  ok(await ev('prismQa.get().autoAscendTargetDepth')===previous+1,'real keyboard changes saved Rift target');
-  await tap('[data-autoascend-toggle]');ok(await ev('prismQa.get().autoAscendEnabled')===true,'real touch toggles ON');
-  await ev("document.querySelector('[data-autoascend-toggle]').focus()");await key('Enter','Enter',13);ok(await ev('prismQa.get().autoAscendEnabled')===false,'keyboard toggles OFF');
-  await tap('#ascend-btn');ok(await ev('prismQa.get().prisms')===1004,'real touch awards four Prisms once');ok(await ev('prismQa.get().ascendCount')===1,'one Ascend');
-  ok(await ev("prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k)).prisms;}).every(function(v){return v===1004;})"),'actual input persists both wallets');
-  const ax=await send('Accessibility.getFullAXTree');ok(ax.nodes.some(n=>!n.ignored&&n.name&&/Auto-Ascend/.test(n.name.value)),'Auto-Ascend exposed to accessibility tree');
+  ok(await ev("!document.querySelector('[data-autoascend-target],[data-autoascend-toggle],[data-autoascend-unlock]')"),'retired automatic controls absent');
+  await ev('prismQa.set(prismQa.seed(20,19,7,0));prismQa.ready()');const gain=reward(20,19,7,0);
+  await point('#ascend-btn');await ev("document.getElementById('ascend-btn').focus();window.__prismAction=document.activeElement;window.__prismScroll=document.querySelector('main').scrollTop;prismQa.refresh()");
+  ok(await ev("document.activeElement===window.__prismAction&&Math.abs(document.querySelector('main').scrollTop-window.__prismScroll)<=1"),'refresh retains manual action and scroll');
+  await key('Enter','Enter',13);ok(await ev('prismQa.get().prisms')===1000+gain,'real keyboard awards exactly quoted eligible Prisms');ok(await ev('prismQa.get().ascendCount')===1,'one manual keyboard Ascend');
+  ok(await ev('prismQa.get().autoAscendEnabled')===false,'manual action cannot revive retired automation');
+  await ev('(()=>{var s=prismQa.seed(21,20,7,0);s.prisms='+(1000+gain)+';s.ascendCount=1;prismQa.set(s);prismQa.ready();})()');
+  const next=reward(21,20,7,0);await tap('#ascend-btn');const wallet=1000+gain+next;
+  ok(await ev('prismQa.get().prisms')===wallet,'real touch awards next higher record exactly once');ok(await ev('prismQa.get().ascendCount')===2,'two deliberate manual Ascends');
+  ok(await ev("prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k)).prisms;}).every(function(v){return v==="+wallet+";})"),'actual input persists both wallets');
+  const ax=await send('Accessibility.getFullAXTree');ok(!ax.nodes.some(n=>!n.ignored&&n.name&&/Auto-Ascend/.test(n.name.value)&&n.role&&['button','combobox'].includes(n.role.value)),'retired automatic actions absent from accessibility tree');
   ok((await ev('window.__prismErrors')).length===0,'no runtime errors');records.push({width,scale,motion,samples,input:await ev('window.__prismInput')});
   await send('Target.disposeBrowserContext',{browserContextId:context.browserContextId},null);
  }

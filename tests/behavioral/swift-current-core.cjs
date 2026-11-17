@@ -277,10 +277,11 @@ test('paid Study work follows the canonical clock across combat events and Ascen
   Object.keys(s.studyQueue).forEach(id=>s.studyQueue[id]=false);
   for(const kind of ['live','offline']){
     b.set(copy(s));const sum=b.advance(60,{kind,clockStartMs:s.lastSeen,offlineWindowStartMs:s.lastSeen});
-    assert(sum.kills>0&&sum.ascends>0,'real combat and canonical Ascend copies exercised');
+    assert(sum.kills>0&&sum.ascends===0,'real combat keeps paid work without automatic reset');
     assert.equal(b.get().activeStudies[0].remainingSec,1e12-480,'exact representable paid work, no event-subtraction drift');
     b.set(copy(s));for(let i=0;i<6;i++)b.advance(10,{kind,clockStartMs:s.lastSeen+i*10000,offlineWindowStartMs:s.lastSeen});
     assert.equal(b.get().activeStudies[0].remainingSec,1e12-480,'same work across caller boundaries');
+    b.ascend();assert.equal(b.get().activeStudies[0].remainingSec,1e12-480,'explicit manual mutation preserves exact paid work');
   }
 });
 test('paid Study work survives real foreground ticks with wall-clock jitter and autosave',()=>{

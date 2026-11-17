@@ -1,0 +1,35 @@
+{
+  "id": 43980662683,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662683",
+  "jobs": [
+    {
+      "id": 133695955474,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:36:54Z",
+      "log": "job-133695955474.log.gz",
+      "rawSha256": "6ab64c15f6f7e754a4b947cc695a98658df19065c5af97a9b793770ba1f5016c",
+      "summary": [
+        "2026-11-16T23:36:44.3741716Z SyntaxError: Unexpected end of JSON input"
+      ]
+    },
+    {
+      "id": 133695955926,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:38:47Z",
+      "log": "job-133695955926.log.gz",
+      "rawSha256": "72cdd5b1438221ea052b7101a5de9d072df744d95b443a24a2a73a1c322db6cc",
+      "summary": [
+        "2026-11-16T23:37:02.3803366Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-16T23:38:43.4341589Z   process: { \"exitcode\": 1, \"timed_out\": false, \"stderr\": \"AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: economy/order baseline live\\n+ actual - expected\\n\\n  {\\n    achievements: [],\\n    ascendGains: [],\\n    ascends: 0,\\n    autoTaps: 3600,\\n+   bossKills: 19,\\n-   bossKills: 20,\\n    clockEndMs: 1791365164477,\\n    closedStudies: [],\\n    completedStudies: [\\n      \\\"Guardian's Mastery\\\"\\n    ],\\n    elapsedSec: 3600,\\n+   empowers: 683,\\n+   endDepth: 200,\\n-   empowers: 726,\\n-   endDepth: 210,\\n    fastForwardedKills: 0,\\n+   iterations: 8740,\\n+   kills: 199,\\n+   lumenGained: 3568705941619,\\n+   luminousKills: 45,\\n-   iterations: 8750,\\n-   kills: 209,\\n-   lumenGained: 10133058552901,\\n-   luminousKills: 49,\\n    motesGained: 706,\\n+   pushDepth: 200,\\n-   pushDepth: 210,\\n    researchBought: 10,\\n    retreated: false,\\n    retreats: 0,\\n    retries: 0,\\n+   shardGained: 6917064754,\\n+   sigilsGained: 190,\\n-   shardGained: 16375208246,\\n-   sigilsGained: 210,\\n    studiesStarted: 0\\n  }\\n\\n    at baselineSummary (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:161:9)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:361:2)\\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\\n    at work (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup-parallel.cjs:52:8)\\n    at Object.<anonymous> (/home/runner/work/Lum",
+        "2026-11-16T23:38:43.4357432Z   detail: { \"status\": \"fail\", \"scenario\": \"offline-catchup-core\", \"message\": \"AssertionError [ERR_ASSERTION]: economy/order baseline live\\n+ actual - expected\\n\\n  {\\n    achievements: [],\\n    ascendGains: [],\\n    ascends: 0,\\n    autoTaps: 3600,\\n+   bossKills: 19,\\n-   bossKills: 20,\\n    clockEndMs: 1791365164477,\\n    closedStudies: [],\\n    completedStudies: [\\n      \\\"Guardian's Mastery\\\"\\n    ],\\n    elapsedSec: 3600,\\n+   empowers: 683,\\n+   endDepth: 200,\\n-   empowers: 726,\\n-   endDepth: 210,\\n    fastForwardedKills: 0,\\n+   iterations: 8740,\\n+   kills: 199,\\n+   lumenGained: 3568705941619,\\n+   luminousKills: 45,\\n-   iterations: 8750,\\n-   kills: 209,\\n-   lumenGained: 10133058552901,\\n-   luminousKills: 49,\\n    motesGained: 706,\\n+   pushDepth: 200,\\n-   pushDepth: 210,\\n    researchBought: 10,\\n    retreated: false,\\n    retreats: 0,\\n    retries: 0,\\n+   shardGained: 6917064754,\\n+   sigilsGained: 190,\\n-   shardGained: 16375208246,\\n-   sigilsGained: 210,\\n    studiesStarted: 0\\n  }\\n\\n    at baselineSummary (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:161:9)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:361:2)\\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\\n    at work (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup-parallel.cjs:52:8)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenf"
+      ]
+    }
+  ]
+}

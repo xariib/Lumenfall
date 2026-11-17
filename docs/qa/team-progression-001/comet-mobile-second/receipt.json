@@ -1,0 +1,54 @@
+{
+  "status": "fail",
+  "scope": "actual Chromium browser emulation; native Android untested",
+  "cometIdentity": {
+    "testSha256": "630f432baf2ddafdb4f623de0e7be8770fb6a137fd44595a90ed09df4af2849f",
+    "helperSha256": "fa8afeff3d2192956aae3dbfb606afd3371cebe03eb0353a1d4d8794d9781606",
+    "transportSha256": "62480ea3a22833fca0f42fdfcf139ba6b50b5de364fd6d0cd10b66ecc682d06c",
+    "numericalSha256": "4873b3057bf3434d7acee6ee4562a718565f04b849ed3b3f2f3d3e2f9b84c27c"
+  },
+  "diagnostics": {
+    "readiness": [],
+    "migration": [],
+    "purchases": [],
+    "commands": [],
+    "refresh": [],
+    "preservation": [],
+    "negatives": [],
+    "images": []
+  },
+  "sourceSha256": "6773532a21c30ce22eddfa2a8ffb4735b3a01c249e2b00883638da0ea4d234c7",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe",
+  "profiles": [],
+  "error": "Error: CDP deadline Page.navigate\n    at Timeout._onTimeout (C:\\lf-team\\tests\\behavioral\\.comet-mobile-25380.cjs:88:146)\n    at listOnTimeout (node:internal/timers:685:17)\n    at process.processTimers (node:internal/timers:618:7)",
+  "input": [],
+  "failure": {
+    "state": null,
+    "slots": [
+      {
+        "key": "lumenfall_save_v2",
+        "raw": null
+      },
+      {
+        "key": "lumenfall_save_recovery_v1",
+        "raw": null
+      }
+    ],
+    "bootstrap": null,
+    "beforeReady": [],
+    "runtimeErrors": [],
+    "dom": "failure-dom.html"
+  },
+  "teardown": "browser teardown deadline",
+  "checks": 0,
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/157.0.8103.79",
+    "revision": "@52886f99c599c22139930531da30c7c8be9f38a",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "jsVersion": "15.7.112.43"
+  },
+  "instrumentedHtmlSha256": "ea436977733bd0c5319341836d03165cded4aab200a950e75c510a0fbe77bf1c",
+  "stderr": ""
+}

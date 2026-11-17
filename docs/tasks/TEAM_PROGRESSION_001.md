@@ -79,62 +79,47 @@ unrelated progression/paid work preservation and existing relevant CI gates.
 Review full diff and save first failures honestly. Required failures remain
 open; never weaken gates or call self-review independent review.
 
-17 November checkpoint: product implementation and focused migration/behavior
-suite PASS1,144 checks/seven causal controls. Supplied save was transcribed into
-`tests/behavioral/fixtures/team-progression-user-save.json` (not loaded into any
-real player app). All protected supplied fields, work, boosts and clocks retained;
-100-Comet refund is idempotent, including wide balances and corrupt-primary recovery.
-Rift/Wisp DPS sums actual contextual passive damage; supplied shares are
-Ember44%, Stone31%, Tide15%, Gale10%. Equal developed Titan stays below20%.
-Required Support entrypoint PASS1,958 plus paid research checks/controls; required
-power entrypoint also runs the new full feature tests. Existing mobile contribution
-checks plus new feature cases PASS455 across12 original +12 new profiles:
-320/390/430px,100/200% text,both motion modes, six-Wisp fit, touch/keyboard,
-same displayed DPS, details purity/focus/scroll, real manual Ascend and refund
-reload. Screenshots visually inspected. Browser Chrome157.0.8103.79 via Brave.
+17 November checkpoint: current draft [PR58](https://github.com/xariib/Lumenfall/pull/58),
+branch feature/team-progression-work at C:/lf-team; main remains ba879406.
+Pushed checkpoints e32656df and51966f91. No other feature edits or agents used.
+Supplied save is transcribed into tests/behavioral/fixtures/team-progression-user-save.json;
+no real player app/save was touched. All balances/work/history retained, including
+an idempotent100-Comet retirement refund (20→120 for the supplied save).
 
-First broader run retained under QA/regressions. Intentional-policy expectation
-failures remain in legacy Auto-Ascend/repeat/refund/scaling suites. Most unrelated
-core/paid Lab tests pass. Optional old `forge-lab-caps.cjs` also expects pre-PR42
-caps and catalog (baseline verification required before calling it a new failure).
-No gate is waived. Newly exposed HUD calibration defect: normalized reference
-cycles miss saved-epoch rounding at Relay/natural-fill ties (about0.6% first-Wisp
-rate error). Fixed reference to physical seconds and stored epoch precision;
-more precise sample4096 cycles for different Support/natural cycles. The actual
-cast-rate tolerance remains unchanged. Final calibration rerun is active.
+Focused feature suite passes1,144+ checks/seven controls. Required Support and
+paid90-day work checks pass; Forge9,404/25 controls, Tree5,811/28, Lab2,841/ten,
+Comet12,884 and Prism state checks pass at their recorded candidate hashes.
+Mobile467 checks includes twelve new profiles320/390/430px,100/200% text,both
+motion settings, actual input, six-Wisp fit and stable disclosure/focus/scroll.
+Screenshots inspected. Browser Brave/Chrome157.0.8103.79; Node24.22.1. Actual
+Node8.3/V8 6.0 Forge, Lab, Tree, Comet and permanent-progression checks pass locally.
+Self/automated verification only. [All exact receipts/first failures](../qa/team-progression-001/README.md).
 
-Changed so far: root product, Support/current-power/calibration/mobile tests,
-new feature tests and user fixture, task/QA. No workflows, native/signing,
-branding/fonts or historical originals edited. Main remainsba879406; no PR/build
-or release has been created yet. New main integration must recheck overlap.
+Announced scope correction: shared growth is direct damage only. Gale/Thorn
+resource abilities keep their original curve and upgrade factors, preserving
+existing Lumen/Shard pacing and Workshop budgets. Independent resource oracle
+and Workshop pacing pass. Current passive shares: Ember44%,Stone31%,Tide15%,Gale10%;
+equal developed Titan below20%. No dynamic share cap or paid-upgrade removal.
 
-Second milestone17 November: Forge9,404 assertions/25 controls, Tree5,811/28,
-Lab2,841/ten, Comet12,884, Prism state and progression pacing PASS after explicit
-manual/no-automatic expectations. Support1,958 + paid Endurance3,319 and power
-2,400/five controls plus new feature checks PASS. Cast-rate calibration3,134/
-eight controls PASS177s; saved-epoch rounding defect is causally caught while
-all original accuracy bounds remain. Current contribution8,099/seven controls
-and frozen preservation28,896 PASS with only announced policy inputs adapted.
-Mobile now467 checks, including full-render disclosure/open/focus/scroll retention.
+Long-window checks exposed dropped automation clock across Push/Farm/Push.
+Keep exact timers through Farm; new full8h whole/one-second/cold60s gate proves
+3 retreats,3 retries,722 kills,28,800 taps andzero automatic Ascends/Prisms.
+HUD stored-epoch sampling correction passes3,134 checks/eight causal controls
+with original accuracy bounds. One native-epoch-quantum Support charge-bar
+saturation is normalized only at returned endpoints while recast still blocks;
+no cast deadline or combat event moves. Broader final-source reruns remain open.
 
-The long-window regression exposed a real dropped timer tick across automatic
-Push→Farm→Push. Keep the existing exact clock in Farm too. New full eight-hour
-whole/one-second/cold60s partitions PASS30,466 checks: each has3 retreats,
-3 retries,722 kills,28,800 taps andzero Ascends/automatic Prisms. The old Farm
-clock branch is caught by its causal control. This runs in the existing required
-Support CI entrypoint. Existing full offline cases now pass their current-world
-whole/split/yield/cap portion; remaining frozen comparisons need intentional
-manual/Support/price-input adapters, with all historical originals untouched.
+First PR CI failures and raw/hash-bound logs are retained. Updating obsolete
+Auto-Ascend/repeat/catalog assertions to manual gates and paid transactions.
+No workflow gates waived/deleted. Retired trillion-reset arithmetic stress tests
+retain original entry conditions through an explicitly historical-only adapter
+and immutable released-policy gzip; actual manual game is separately mandatory.
+Archives and original receipts remain unchanged. Optional pre-PR42 cap script
+is an older expectation, not a demonstrated new regression. Full regression and
+browser drivers still need current-source acceptance; do not merge on partial PASS.
 
-Rules/decision saved in [manual progression decision](../decisions/2026-11-16-manual-team-progression.md).
-Current task's root instructions reflect the explicit manual/new-record rule;
-F05 rounding and protected earned bonuses remain for eligible records. Fixed
-the repository's stale Git credential-helper path to the installed authenticated
-CLI, without changing credentials/scopes. First durable branch commit`e32656df`
-is pushed. Current main remainsba879406, no concurrent open PR observed at startup.
-
-Next: finish frozen comparisons and update affected
-current expectations explicitly, retain historical fixtures unchanged. Then
-validate PR/integrated main, build/publish signed APK and verify native/public
-assets. Physical phone, exact WebView60 DOM, TalkBack and human pacing require
-observed acceptance and remain unverified until then. No archiving while open.
+Next: finish long-window/frozen comparisons and all required PR CI gates,
+review complete diff, integrate serially, rerun integrated gates, build signed
+APK and verify save upgrade/updater/retail/public assets. Phone, exact WebView60
+DOM, TalkBack and human pacing remain unobserved. Keep feature/chat open;
+no archive or completion claim before delivery/required observed acceptance.

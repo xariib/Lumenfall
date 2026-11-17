@@ -366,7 +366,10 @@ const samePaidWork=runAsync(beyond,12*3600);assert.equal(long.result.kills,sameP
 // inputs. Freeze only those inputs on this explicitly historical comparison;
 // all actual-current long/whole/split, transaction and cap checks remain above.
 // The original archived HTML is still byte-checked and never edited.
-let legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration','guardianTapBaseDamage','spiritPower']);
+let legacyBalanceSource=legacyPrismPolicy(oldRewardSource,baseline,['enemyHpFor','enemyRewardFor','shardRewardFor','studyCost','studyDuration','guardianTapBaseDamage']);
+// Both sides use the same pre-team-growth curve, including the previously
+// accepted Ember/Stone development bonus added by supportRuleReference.
+legacyBalanceSource=legacyPrismPolicy(legacyBalanceSource,correctedClockBaseline,['spiritPower']);
 // Longer manual runs can now afford the later, intentionally increased Forge
 // cap. Restore its original10 only for this frozen-price chronology oracle;
 // actual current caps and transactions remain tested above and in the Lab lane.

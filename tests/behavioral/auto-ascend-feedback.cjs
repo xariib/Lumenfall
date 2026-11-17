@@ -115,33 +115,17 @@ function endpointCases(input){
     q.set(s);q.restoreEnemy();const before=F.clone(q.get());
     const summary=q.advance(10,{kind,clockStartMs:F.CLOCK});ok(q.save(),'endpoint persists: '+mode+'/'+kind);
     const endpoint=F.clone(q.get());
-    const historicalEndpoint=F.clone(endpoint);
-    eq(historicalEndpoint.riftLook,{backdrop:'default',wisp:'default',enemy:'default',motion:true},'exact new appearance defaults before comparing frozen PR15 state');
-    delete historicalEndpoint.riftLook;
-    for(const id of ['battletempering','arcanetempering','harvesttempering']){
-      eq(historicalEndpoint.research[id],0,'new Forge enhancement stays unpurchased in PR15 oracle '+id);
-      eq(historicalEndpoint.researchQueue[id],false,'new Forge enhancement queue stays OFF in PR15 oracle '+id);
-      delete historicalEndpoint.research[id];delete historicalEndpoint.researchQueue[id];
-    }
-    // PR15 predates these additive identities. Require their exact unpurchased
-    // defaults before retaining the complete frozen historical endpoint hash.
-    for(const id of ['wispdamage','wispcritchance','wispcritdamage','supportduration']){
-      for(const [field,value]of [['longStudyLevels',0],['studyQueue',false],['studyUseMotes',false],['studySpeedTargets',1.5],['studyBoostHours',8]]){
-        eq(historicalEndpoint[field][id],value,'new Wisp research stays unpurchased in PR15 oracle '+field+'.'+id);
-        delete historicalEndpoint[field][id];
-      }
-    }
-    if(Object.hasOwn(historicalEndpoint,'offlineClockHighWaterMs')){
-      eq(historicalEndpoint.offlineClockHighWaterMs,F.CLOCK,'new credited-time metadata retains exact fixture save endpoint');
-      delete historicalEndpoint.offlineClockHighWaterMs;
-    }
-    results.push({mode,kind,kills:summary.kills,ascends:summary.ascends,prisms:A.exactSub(endpoint.prisms,before.prisms),depth:endpoint.depth,stateSha256:hash(historicalEndpoint)});
-    const cold=F.app(input,x.storage,{clockDate:true});eq(cold.q.get(),endpoint,'both-slot reload retains exact endpoint');
-    if(mode==='auto'){
-      ok(summary.ascends>1,'multiple real automatic cycles execute');
-      let total=0;for(const row of summary.ascendGainRuns||summary.ascendGains.map(gain=>({gain,count:1})))total=A.exactAdd(total,A.mul(row.gain,row.count));
-      eq(A.cmp(total,A.exactSub(endpoint.prisms,before.prisms)),0,'committed receipts equal exact actual Prism credit');
-    }
+    results.push({mode,kind,kills:summary.kills,ascends:summary.ascends,prisms:A.exactSub(endpoint.prisms,before.prisms),depth:endpoint.depth,stateSha256:hash(endpoint)});
+    const cold=F.app(input,x.storage,{clockDate:true});eq(cold.q.get(),endpoint,'both-slot reload retains every current field');
+    eq(summary.ascends,0,'actual engine never automatically Ascends');
+    eq(endpoint.prisms,before.prisms,'combat creates no automatic Prism receipt');
+    eq(endpoint.ascendCount,before.ascendCount,'combat preserves the current run');
+    eq(endpoint.autoAscendEnabled,false,'historical toggle stays retired');
+    const quoted=q.prismPreview().gain,atChoice=F.clone(q.get());
+    eq(q.ascend(),true,'explicit manual choice after resolved combat');
+    eq(A.exactSub(q.get().prisms,atChoice.prisms),quoted,'manual feedback amount matches exact committed quote');
+    eq(q.get().activeStudies,atChoice.activeStudies,'manual receipt preserves paid research');
+
   }
   const x=F.app(input,undefined,{clockDate:true}),s=x.q.fresh();s.depth=s.maxDepthEver=32;x.q.set(s);x.q.restoreEnemy();
   const before=F.clone(x.q.get());x.fail(true,false);eq(x.q.ascend(),false,'failed Ascend rejects');eq(x.q.get(),before,'failed Ascend retains every field');
@@ -155,14 +139,12 @@ if(process.argv.includes('--record-baseline')){
   for(let i=0;i<endpoints.length;i+=2){
     eq({...endpoints[i],kind:'offline'},endpoints[i+1],'current live and offline endpoints agree at the full reward rate');
   }
-  // Keep every PR15 endpoint under its historical Deed, Rift and Support inputs.
-  // Actual endpoints above exercise the current curve and receipt paths.
-  let historicalSource=require('./legacy-rift-curve-reference.cjs')(source);
-  const supportDuration="durationMs:3000+300*labExpansionLevel('supportduration')";
-  assert.equal(historicalSource.split(supportDuration).length,2,'one historical Support policy marker');
-  historicalSource=historicalSource.replace(supportDuration,'durationMs:ultimate ? 1500 : 1000');
-  const historicalEndpoints=endpointCases(require('./legacy-automation-deeds-reference.cjs')(historicalSource));
-  eq(historicalEndpoints,JSON.parse(fs.readFileSync(receiptPath)).endpoints,'all endpoints under historical inputs exactly match PR15');
+  // The immutable PR15 hashes describe retired automatic/repeat mechanics.
+  // Current receipt UI must preserve every current saved field and reward.
+  const marker="if(document.readyState==='loading'){";
+  const withoutFeedback=source.replace(marker,'presentLiveAscendResult=function(){};showAscendFlash=function(){};'+marker);
+  eq(endpointCases(withoutFeedback),endpoints,'presentation cannot change any current endpoint or receipt');
+  eq(JSON.parse(fs.readFileSync(receiptPath)).commit,'cc03df4972808666436eb0386515d20e88d04255','historical evidence stays attributed to its original version');
 }
 if(process.argv.includes('--negative')){
   const cp=require('node:child_process');

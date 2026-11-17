@@ -1,0 +1,27 @@
+{
+  "id": 43980662746,
+  "sha": "51966f91856e8ef369ea08d984e9801ac8595e8f",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/43980662746",
+  "jobs": [
+    {
+      "id": 133695955535,
+      "name": "comet",
+      "conclusion": "failure",
+      "started": "2026-11-16T23:35:59Z",
+      "completed": "2026-11-16T23:37:04Z",
+      "log": "job-133695955535.log.gz",
+      "rawSha256": "c35ef67f325a7db2f8a48430c09c8696a1a854b3df1385f821fcee57565e45bd",
+      "summary": [
+        "2026-11-16T23:36:59.4418683Z   \"status\": \"FAIL\",",
+        "2026-11-16T23:36:59.5543325Z     \"name\": \"AssertionError\",",
+        "2026-11-16T23:36:59.5546319Z     \"stack\": \"AssertionError [ERR_ASSERTION]: independent exact catalog quote autoascend 0\\n\\nundefined !== 100\\n\\n    at equal (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs:191:36)\\n    at runNumerical (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs:313:7)\\n    at cli (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs:351:14)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-numerical.cjs:358:26)\\n    at Module._compile (node:internal/modules/cjs/loader:1521:14)\\n    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)\\n    at Module.load (node:internal/modules/cjs/loader:1266:32)\\n    at Module._load (node:internal/modules/cjs/loader:1091:12)\\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\\n    at node:internal/main/run_main_module:28:49\"",
+        "2026-11-16T23:36:59.6580654Z AssertionError [ERR_ASSERTION]: intro must explain full earned bonus",
+        "2026-11-16T23:36:59.7468787Z {\"status\":\"fail\",\"kind\":\"exact protected-warning source reversion\",\"positiveProfiles\":0,\"originalCausalPairs\":0,\"warningReversionsCaught\":0,\"receipt\":\"/home/runner/work/Lumenfall/Lumenfall/comet-validation/warning/receipt.json\",\"error\":\"ENOENT: no such file or directory, open '/home/runner/work/Lumenfall/Lumenfall/comet-validation/mobile/receipt.json'\",\"nativeAndroid\":\"untested\"}",
+        "2026-11-16T23:37:00.9868017Z   \"status\": \"fail\",",
+        "2026-11-16T23:37:00.9873270Z   \"error\": \"AssertionError [ERR_ASSERTION]: permanent-catalog-and-all-exact-prices: only permanent paid catalogue\\n    at eq (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-v8.cjs:13:52)\\n    at /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/permanent-progression-v8.cjs:8:54\\n    at scenario (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-v8.cjs:17:53)\\n    at module.exports (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/permanent-progression-v8.cjs:7:2)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/comet-expansion-v8.cjs:90:55)\\n    at Module._compile (module.js:573:30)\\n    at Object.Module._extensions..js (module.js:584:10)\\n    at Module.load (module.js:507:32)\\n    at tryModuleLoad (module.js:470:12)\\n    at Function.Module._load (module.js:462:3)\","
+      ]
+    }
+  ]
+}

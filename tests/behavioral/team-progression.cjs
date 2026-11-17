@@ -76,6 +76,7 @@ function verify(html){
   let total=0;const powers={};for(const id of Object.keys(weights)){
    const base=Math.min(26,q.sp(id).basePower),expected=(base*level*(1+.01*(level-1))+352*Math.max(0,level-70)**2*weights[id])*rarity[3];
    near(q.power(id),expected,'independent shared power '+id+'/'+level);ok(q.power(id,level+1)>q.power(id),'every Empower increases own Power '+id+'/'+level);powers[id]=q.power(id);total+=powers[id];
+   if(id==='gale'||id==='thorn')near(q.resourcePower(id),q.sp(id).basePower*level*(1+.01*(level-1))*rarity[3],'independent original utility-resource curve '+id+'/'+level);
   }
   if(level>=100){for(const id of ['tide','gale','aurora'])ok(powers[id]/total>.08,'Support and utility retain material direct damage '+id+'/'+level);ok(powers.titan/total<.2,'Titan cannot dominate equal development');shares.push({level,shares:Object.fromEntries(Object.keys(powers).map(id=>[id,powers[id]/total]))});}
  }

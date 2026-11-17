@@ -1,0 +1,18 @@
+{
+  "status": "fail",
+  "phase": "effect swift",
+  "checks": 2762,
+  "priceCases": 94,
+  "faultCases": 34,
+  "effects": [
+    "echo",
+    "bonds"
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: effect swift: original minimum repeat\n    at eq (C:\\lf-team\\tests\\behavioral\\tree-expansion-v8.cjs:14:52)\n    at C:\\lf-team\\tests\\behavioral\\tree-expansion-v8.cjs:138:99\n    at scenario (C:\\lf-team\\tests\\behavioral\\tree-expansion-v8.cjs:72:64)\n    at Object.<anonymous> (C:\\lf-team\\tests\\behavioral\\tree-expansion-v8.cjs:138:1)\n    at Module._compile (module.js:573:30)\n    at Object.Module._extensions..js (module.js:584:10)\n    at Module.load (module.js:507:32)\n    at tryModuleLoad (module.js:470:12)\n    at Function.Module._load (module.js:462:3)\n    at Function.Module.runMain (module.js:609:10)",
+  "actual": 0,
+  "expected": 1,
+  "sourceSha256": "06a67b87664c801ce0750d0a8cba41bad9dc1bcab6bf3fefc95303dd27e00f75",
+  "testSha256": "3530cd18e2dcd03bb839481e9dd8cb0f2cfdab21d4377b12c9341d7dd535b779",
+  "node": "v8.3.0",
+  "v8": "6.0.286.52"
+}

@@ -16,7 +16,9 @@ window.ascendUiQa={show:showAscendFlash,present:presentLiveAscendResult,clear:cl
   s.heroRarity.ember=5;s.wispModules.ember=20;s.wispUltimate.ember=true;s.wispMastery.ember=250;
   state=acceptPersistedState(s);restoreEnemyOrSpawn();renderAll();
   var beforePrisms=state.prisms,beforeCount=state.ascendCount;tick();
-  return {gain:Amount.exactSub(state.prisms,beforePrisms),count:Amount.exactSub(state.ascendCount,beforeCount),receipt:this.receipt()};
+  var automatic={gain:Amount.exactSub(state.prisms,beforePrisms),count:Amount.exactSub(state.ascendCount,beforeCount),receipt:this.receipt()};
+  var accepted=doAscend(false);
+  return {accepted:accepted,automatic:automatic,gain:Amount.exactSub(state.prisms,beforePrisms),count:Amount.exactSub(state.ascendCount,beforeCount),receipt:this.receipt()};
  }
 };`;
 const prelude='<script>window.ascendUiErrors=[];addEventListener("error",e=>ascendUiErrors.push(e.message));addEventListener("unhandledrejection",e=>ascendUiErrors.push(String(e.reason)));window.setInterval=function(){return 0;};Object.defineProperty(performance,"now",{configurable:true,value:function(){return 0;}});</script>';
@@ -72,7 +74,8 @@ async function run(){
  await ev('ascendUiQa.clear();ascendUiQa.show(23,false);ascendUiQa.show(7,true,2)');await pause(3100);
  ok(await ev('document.querySelector(".auto-ascend-summary strong").textContent==="+7 PRISMS"'),'real timer presents queued receipts after manual reading');
  await ev('ascendUiQa.clear()');const actual=await ev('ascendUiQa.actualTick()');
- ok(actual.count>1,'actual live tick commits multiple Ascensions');assert.deepEqual(actual.receipt,{gain:actual.gain,count:actual.count},'actual tick presents complete exact committed receipt');
+ assert.deepEqual(actual.automatic,{gain:0,count:0,receipt:null},'actual live tick produces no automatic reset or feedback');
+ ok(actual.accepted&&actual.count===1,'actual manual choice commits one Ascension');assert.deepEqual(actual.receipt,{gain:actual.gain,count:actual.count},'manual choice presents complete exact committed receipt');
  await ev('Object.defineProperty(document,"hidden",{configurable:true,value:true});document.dispatchEvent(new Event("visibilitychange"))');
  ok(await ev('!document.querySelector(".ascend-flash") && ascendUiQa.receipt()===null'),'real background handler clears live feedback');
  ok((await ev('ascendUiErrors')).length===0,'no browser runtime errors');
