@@ -44,6 +44,11 @@ Baseline Support/recast/paid90-day research and early-Wisp power suites PASS;
 source-bound receipts: [QA](../qa/team-progression-001/README.md).
 Node24.22.1. CI full runner pins24.19.0; browser availability being verified.
 
+Pre-existing separate finding: the unchanged Modules & Ultimates encyclopedia
+duration sentence still quotes old1s/1.5s. Current Wisp/Lab descriptions and
+runtime use3s–6s. [Recorded help-copy follow-up](SUPPORT_HELP_COPY_001.md);
+this feature does not claim a complete legacy-help audit.
+
 ## Implementation decisions announced before edits
 
 - Support stays3s base. Independent recast minimum6s without Endurance, giving
