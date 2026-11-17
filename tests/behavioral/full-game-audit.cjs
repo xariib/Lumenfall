@@ -69,9 +69,9 @@ test('workshop-catalogue-and-cap-boundaries',()=>{
   for(const node of q.defs()){
     ok(!ids.has(node.id),'unique Forge ID '+node.id);ids.add(node.id);
     if(['battletempering','arcanetempering','harvesttempering'].includes(node.id)){
-      eq(node.levelCap,undefined,'continuing Forge has no final level '+node.id);eq(node.endless,true,'explicit continuing investment '+node.id);
+      eq(node.levelCap,{battletempering:375,arcanetempering:325,harvesttempering:315}[node.id],'specified finite Forge cap '+node.id);eq(node.endless,undefined,'no endless Forge investment '+node.id);
       q.get().research[node.id]=300;eq(q.plan(node.id,1).affordable,true,'old Forge cap permits purchase '+node.id);
-      eq(q.buy(node.id,1),true,'real continuing purchase '+node.id);eq(q.get().research[node.id],301,'paid continuing level '+node.id);continue;
+      eq(q.buy(node.id,1),true,'real post300 purchase '+node.id);eq(q.get().research[node.id],301,'paid post300 level '+node.id);
     }
     ok(Number.isInteger(node.levelCap)&&node.levelCap>0,'finite utility Forge cap '+node.id);
     const cap=node.levelCap;q.get().research[node.id]=cap;eq(q.plan(node.id,1).reason,node.retiredTo?'retired':'maxed','Forge cap rejects purchase '+node.id);

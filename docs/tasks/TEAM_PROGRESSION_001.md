@@ -183,3 +183,16 @@ then original14/14 after matching captured frame input; raw failure retained.
 Ordinary split/cold historical stress lanes retain13s,1102 checks each PASS;
 these are retired-policy stress helpers, not current automatic gameplay.
 Full manual-game8h acceptance remains the unmodified-source30466 checks.
+
+Concurrent integration checkpoint: main advanced through PR59 to0adb60eb.
+Merged finite Forge caps and Lab fresh-viewport/presentation repair into this
+isolated feature. Resolved only adjacent help rows (retain both Support text
+and finite Masterwork), both status histories, and source binding. New source
+3a223893fe90c81c8a3f06bf4aae8374c09bc4e89aed4e1aed75a412cf52fd88.
+Independent four8h one-second replay retains every full-state hash and kill
+count; source binding regenerated. Recast2012, team1929, Forge9409, actual
+V8 Forge2530 and finite385/four PASS. Other exact-combined checks pending.
+Main has an active integrated Forge validation/release; preserve its source
+until publication finishes, then serialize this integration against latest main.
+PR60/61 are separate active UI changes; no agents/message tools used.
+Earlierb955 receipts remain standalone evidence, not combined acceptance.

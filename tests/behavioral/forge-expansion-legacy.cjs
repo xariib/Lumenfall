@@ -40,6 +40,15 @@ var ids=specs.map(function(d){return d[0];}),old=['focus','sense','formation','r
 var initial=app(),q=initial.q;
 eq(q.defs().map(function(n){return n.id;}),old.concat(['masterwork'],ids,['battletempering','arcanetempering','harvesttempering']),'original catalogue plus three workshop enhancements');
 eq(q.defs().filter(function(n){return !n.retiredTo;}).length,24,'twenty-four active Forge tracks');
+// Execute the new tail functions and final/historical transactions on V8 6.0.
+[['battletempering',375,300,1.002,.01],['arcanetempering',325,300,1.002,.01],['harvesttempering',315,300,1.002,.01],['masterwork',500,50,1.025,.05]].forEach(function(d){
+ var x=app(),q=x.q,id=d[0],cap=d[1],tail=d[2],node=q.node(id);
+ eq([node.levelCap,node.endless,node.grandfatheredCap],[cap,undefined,true],'finite legacy-engine cap '+id);
+ near(Number(q.cost(id,tail,1).lumen)/Number(q.cost(id,tail-1,1).lumen),d[3],'first future price uses slower growth '+id);
+ var s=seed(q);s.maxDepthEver=10000;s.research[id]=cap-1;var price=q.cost(id,cap-1,1);s.lumen=price.lumen;s.shards=price.shard;q.set(s);
+ eq(q.buy(id,1),true,'actual V8 final tail purchase '+id);eq(q.get().research[id],cap,'V8 final level');eq([q.get().lumen,q.get().shards],[0,0],'V8 exact final debit');eq(q.plan(id,1).reason,'maxed','V8 cap stops purchases');
+ s.research[id]=cap+100;q.set(s);q.save();eq(app(x.storage).q.get().research[id],cap+100,'V8 cold historical rank retained');near(q.effect(id,cap+100).factor,1+d[4]*(cap+100),'V8 historical effect retained');
+});
 // Independent decimal oracle: the exact IEEE integer represented by 1e30.
 function subtractLarge(price){var digits='1000000000000000019884624838656'.split(''),carry=price;for(var i=digits.length-1;i>=0;i--){var n=Number(digits[i])-carry%10;carry=Math.floor(carry/10);if(n<0){n+=10;carry++;}digits[i]=String(n);}return digits.join('')+'e0';}
 var legacy=seed(q);ids.forEach(function(id){delete legacy.research[id];delete legacy.researchQueue[id];});legacy.labQueueOn=true;delete legacy.researchQueue;

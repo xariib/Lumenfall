@@ -77,6 +77,11 @@ Read archives and technical guides only when needed.
 - Every upgrade UI must show each insufficient resource amount in red and
   disable the purchase button when the upgrade is unaffordable. Refresh both
   as resources change.
+- All Forge upgrades have finite caps; full completion targets roughly 2–3 years
+  of sustained progression, with Labs helping overcome later combat and economy
+  walls. Preserve historical paid above-cap bonuses. The user's 17 November
+  decision supersedes the earlier endless Forge requirement; see
+  `docs/tasks/FORGE_YEARS_001.md` for calibration assumptions and acceptance.
 - Ascension is manual: first clear Rift15; each later Ascend requires a clear
   above the highest previously rewarded clear. Auto-Ascend is retired; previous
   owners receive a validated one-time100-Comet refund. Preserve prior progress.

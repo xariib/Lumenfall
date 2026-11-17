@@ -8,6 +8,7 @@ const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 assert.equal(hash(baseline),'4246093dad1dfd496307c7281e97df53bd6f902f33d804c246ca9f36f66cae65','immutable Git blob (checkout CRLF has a different byte hash)');
 const specs=[['battletempering',100,10000000,250000],['arcanetempering',150,25000000,625000],['harvesttempering',200,40000000,1000000]];
 const ids=specs.map(s=>s[0]);
+const caps={battletempering:375,arcanetempering:325,harvesttempering:315};
 function verify(source){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const near=(a,b,m)=>ok(Math.abs(Number(a)-Number(b))<=Math.max(1,Math.abs(Number(b)))*2e-12,m);
@@ -15,9 +16,11 @@ function verify(source){
  function seed(q){const s=F.seed(q);s.lumen=s.shards='1e100';s.maxDepthEver=1000;return s;}
  const q=game().q,b=F.app(baseline).q;
  eq(q.defs().map(n=>n.id),b.defs().map(n=>n.id).concat(ids),'three additive long-tail identities');
- eq(q.defs().filter(n=>!ids.includes(n.id)),b.defs(),'every old definition, cap, price and effect retained');
+ const oldDefs=F.clone(b.defs()),masterwork=oldDefs.find(n=>n.id==='masterwork');
+ masterwork.priceTailStart=50;masterwork.priceTailGrowth=1.025;masterwork.desc+=' Prices rise by 35% per level through 50, then 2.5%. Completed damage Labs help reach later Rift bands.';
+ eq(q.defs().filter(n=>!ids.includes(n.id)),oldDefs,'every old definition retained except the specified Masterwork future-price tail');
  for(const [id,unlock,lumen,shard]of specs){
-  const node=q.node(id);eq([node.unlockDepth,node.levelCap,node.endless,node.effectPerLevel,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.forgeGroup],[unlock,undefined,true,.01,lumen,shard,1.1,1.1,'Enhancements'],'independent continuing enhancement definition');
+  const node=q.node(id);eq([node.unlockDepth,node.levelCap,node.endless,node.effectPerLevel,node.lumenBase,node.shardBase,node.lumenGrowth,node.shardGrowth,node.forgeGroup],[unlock,caps[id],undefined,.01,lumen,shard,1.1,1.1,'Enhancements'],'independent finite enhancement definition');
   // Rational 11/10, independent of geometricSum and the amount runtime.
   function rational(base,start,count){let numerator=0n;const denominator=10n**BigInt(start+count-1);for(let k=start;k<start+count;k++)numerator+=BigInt(base)*11n**BigInt(k)*10n**BigInt(start+count-1-k);return Number((numerator+denominator-1n)/denominator);}
   for(const start of [0,1,25,100,200,299])for(const count of [1,Math.min(25,300-start),300-start]){
@@ -27,7 +30,7 @@ function verify(source){
   for(const level of [0,1,99,299,300,301]){
    const s=seed(q);s.research[id]=level;q.set(s);near(q.effect(id,level).factor,1+.01*level,'linear continuing effect');
    eq(q.preview(id,1).next===null,false,'next preview continues past former cap');ok(q.previewText(id,1).includes('×'+Number((1+.01*level).toFixed(2))),'current earned multiplier visible');
-   ok(q.plan(id,'max').buyCount>300,'funded bulk investment continues past former cap');
+   eq(q.plan(id,'max').buyCount,caps[id]-level,'funded bulk investment stops at the new finite cap');
   }
   for(const request of [1,5,25,'max']){
    const x=game(),c=x.q,s=seed(c);s.research[id]=275;c.set(s);const plan=c.plan(id,request),before=F.clone(c.get());
@@ -100,4 +103,9 @@ if(process.argv.includes('--negative'))for(const [name,from,to]of [
  ['missing-kill-effect',"* researchFactor('harvesttempering')",''],
  ['missing-passive-effect',"* researchFactor('battletempering')",'']
 ]){assert(original.includes(from),'mutation anchor '+name);let caught;try{verify(original.replace(from,to));}catch(e){assert(e instanceof assert.AssertionError);caught=e.message;}assert(caught,'defect rejected '+name);negative.push({name,caught});}
-console.log(JSON.stringify({status:'pass',sourceSha256:hash(original),...result,negative,limitations:'Fixed-depth optimistic 24h/day forecasts; actual progression, player choices and human months-long pacing remain unverified.'},null,2));
+// This existing required CI entrypoint also enforces the user's newer finite
+// completion policy. Preserve the original checks and all four causal controls.
+const {execFileSync}=require('node:child_process'),path=require('node:path');
+const finite=JSON.parse(execFileSync(process.execPath,[path.join(__dirname,'finite-forge-years.cjs'),file,'--negative'],{encoding:'utf8',maxBuffer:8*1024*1024}));
+const reinvestment=JSON.parse(execFileSync(process.execPath,[path.join(__dirname,'../../scripts/qa/finite-forge-reinvestment.cjs'),file,'--check'],{encoding:'utf8',maxBuffer:8*1024*1024}));
+console.log(JSON.stringify({status:'pass',sourceSha256:hash(original),...result,negative,finite,reinvestment,limitations:'Fixed-depth optimistic 24h/day forecasts; actual progression, player choices and human multi-year pacing remain unverified.'},null,2));

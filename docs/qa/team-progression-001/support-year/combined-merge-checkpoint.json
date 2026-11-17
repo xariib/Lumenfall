@@ -1,0 +1,24 @@
+{
+  "status": "combined candidate; remaining exact-source acceptance pending",
+  "base": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
+  "priorFeature": "2dd3a05c71f5d803d68731032201366bae302f1d",
+  "sourceSha256": "3a223893fe90c81c8a3f06bf4aae8374c09bc4e89aed4e1aed75a412cf52fd88",
+  "passed": {
+    "recast": 2012,
+    "team": 1929,
+    "forge": 9409,
+    "v8Forge": 2530,
+    "finite": 385
+  },
+  "golden": "four independently regenerated8h full-state hashes/kills identical to accepted main",
+  "remaining": [
+    "combined calibration",
+    "combined mobile",
+    "combined offline",
+    "full PR/integrated CI",
+    "signed native/public delivery"
+  ],
+  "localLimitation": "Near-zero free RAM; active owned workers stopped. Incomplete outputs not passes; no test/deadline changes.",
+  "baselineWhitespace": "Imported main history has existing final blank line unchanged. Feature diff against origin/main --check PASS.",
+  "integration": "Preserve active0adb Forge release before serial integration; PR60/61 separate. No agent/message tools."
+}
