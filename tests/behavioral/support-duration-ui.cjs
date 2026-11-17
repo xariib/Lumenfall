@@ -7,8 +7,10 @@ module.exports=async function({send,ev,pause,check,records,args}){
  async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click();clarityQA.select(0)');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');}
  async function touch(selector){
   await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  // The whole research card is the action; enlarged text can make it taller
+  // than the viewport. Require a44px visible intersection around a real hit.
   const frame=await send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:false});
-  const hit=await ev('(()=>{var e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y);return{x,y,width:r.width,height:r.height,visible:r.top>=0&&r.bottom<=innerHeight+1&&r.left>=0&&r.right<=innerWidth+1,hit:!!h&&(h===e||e.contains(h))}})()');
+  const hit=await ev('(()=>{var e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y);return{x,y,width:r.width,height:r.height,visible:Math.min(r.right,innerWidth)-Math.max(r.left,0)>=44&&Math.min(r.bottom,innerHeight)-Math.max(r.top,0)>=44&&x>=0&&x<innerWidth&&y>=0&&y<innerHeight,hit:!!h&&(h===e||e.contains(h))}})()');
   if(evidence){fs.writeFileSync(path.join(evidence,'last-native-target.json'),JSON.stringify({selector,hit},null,2));fs.writeFileSync(path.join(evidence,'last-native-target.png'),Buffer.from(frame.data,'base64'));}
   check(hit.visible&&hit.hit&&hit.width>=44&&hit.height>=44,'presented Support purchase target is visible, hittable and44px '+JSON.stringify(hit));
   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:hit.x,y:hit.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(20);

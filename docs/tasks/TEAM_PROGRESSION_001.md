@@ -82,7 +82,11 @@ assertion (219checks), before Support UI. Same assertion is recorded on publishe
 Rift12122. Root cause remains unproven. Both touch helpers now require a presented
 screen frame, independently hit-test a visible44px target, and preserve native
 gestures, original behavioral assertions and15s CDP deadlines. Failure evidence
-is retained; complete CI replay is mandatory. No product change for this repair.
+is retained. New guard initially rejected the intentionally whole-card research
+action at200% text because its full rectangle exceeds viewport height. Corrected
+to require a visible44px intersection plus on-screen hit-tested center. Original
+paid start/payment/persistence assertions remain. Complete CI replay mandatory;
+no product change for this driver repair.
 
 Local near-zero RAM interrupted workers, and optional Windows browser runs
 reported startup/input/cleanup failures. Incomplete runs are not passes. The

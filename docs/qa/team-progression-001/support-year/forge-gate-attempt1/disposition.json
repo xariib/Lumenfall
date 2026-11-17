@@ -1,0 +1,25 @@
+{
+  "run": 44110904299,
+  "attempt": 1,
+  "head": "85ec277d189c88bdf00cf8daebf1f4924b1329e0",
+  "sourceSha256": "b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57",
+  "core": {
+    "status": "pass",
+    "checks": 538
+  },
+  "mobile": {
+    "status": "fail",
+    "checks": 1131,
+    "assertion": "New presented Support purchase target full-rectangle visibility guard",
+    "geometry": {
+      "width": 298,
+      "height": 1499.28125,
+      "x": 160,
+      "y": 459.984375,
+      "hit": true
+    }
+  },
+  "cause": "The added guard incorrectly required full visibility of intentional whole-card research action at200% text. This is a test-driver condition introduced here; not a failed original native purchase/payment assertion.",
+  "repair": "Require >=44px of visible viewport intersection and an on-screen center that independently hit-tests intended card action; retain original target-size, gesture, paid start, payment, persisted work and runtime assertions/deadlines.",
+  "next": "Full exact-head PR/integrated replay still required."
+}
