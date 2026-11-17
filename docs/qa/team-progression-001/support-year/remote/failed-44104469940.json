@@ -1,0 +1,63 @@
+{
+  "id": 44104469940,
+  "sha": "71cb74fe0f712f8e58a7f33d7116c0a3c8167aa7",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44104469940",
+  "jobs": [
+    {
+      "id": 134115851830,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T14:38:18Z",
+      "completed": "2026-11-17T15:00:31Z",
+      "log": "job-134115851830.log.gz",
+      "rawSha256": "0116a45fa49f30025d61eb1230352a689991e0850de24c5c06972605bcde3e76",
+      "summary": [
+        "2026-11-17T14:53:29.7239264Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:53:51.5732531Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-ui\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 3, \"maxGap\": 83.2, \"last\": 199.9 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 603, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 3, \"maxGap\": 83.2, \"last\": 199.9 }, \"errors\": 0 }, \"cold\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": false, \"offlinePending\": false, \"resumeFlowBusy\": false }, \"kills\": 385868, \"ascends\": 15142, \"lastSeen\": 205247",
+        "2026-11-17T14:53:51.5741760Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:13.3177867Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-legacy-dom\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 5, \"maxGap\": 66.8, \"last\": 256.6 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 603, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"legacy dialog background without color-mix/alpha hex\", \"paint\": { \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"backgroundImage\": \"radial-gradient(at 100% 0%, rgba(57, 49, 75, 0.533), rgba(0, 0, 0, 0) 65%), linear-gradient(145deg, rgb(27, 41, 65), rgb(17, 26, 44))\" } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"fram",
+        "2026-11-17T14:54:13.3185623Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:14.4226761Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:32.5537945Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:37.5290759Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:42.6134543Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:54:47.6850849Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T14:58:11.3909023Z {\"status\":\"PASS\",\"checks\":206,\"sourceSha256\":\"b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57\",\"records\":[{\"raw\":0,\"wallet\":17,\"value\":\"17\"},{\"raw\":20,\"wallet\":17,\"value\":\"17\"},{\"raw\":21,\"wallet\":17,\"value\":\"3393\"},{\"raw\":40,\"wallet\":17,\"value\":\"12655555\"},{\"raw\":95,\"wallet\":0,\"value\":\"9501183244965278\"},{\"raw\":2000,\"wallet\":0,\"value\":\"500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534643397160\"},{\"raw\":21,\"wallet\":1e+30,\"value\":\"1000000000000000019884624842032\"}],\"scope\":\"current twenty-path Tree, exact restitution, paid Studies, Forge ownership, cold load, backup, transactional storage failures and F26 coexistence; native acceptance separate\"}",
+        "2026-11-17T14:58:13.6877416Z {\"status\":\"PASS\",\"sourceSha256\":\"b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57\",\"checks\":627,\"records\":[{\"raw\":0,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":5,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":6,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":7,\"wallet\":17,\"bonds\":0,\"total\":\"33\",\"creditEntries\":0},{\"raw\":10,\"wallet\":17,\"bonds\":21,\"total\":\"3503\",\"creditEntries\":0},{\"raw\":95,\"wallet\":0,\"bonds\":40,\"total\":\"381182898585695\",\"creditEntries\":0},{\"raw\":2000,\"wallet\":0,\"bonds\":2000,\"total\":\"500418951316048248359259143653257427704520915174220620846883637219407899119006556520838354479689090677357342012369317099560156326442675676130854467602599141993713117534622650218426389825356917442087587709690091692033347198318871629159963139589581309573294292137977671743966661487529024757903887558981399300640\",\"creditEntries\":3715},{\"raw\":2100,\"wallet\":0,\"bonds\":0,\"total\":\"36969615064988623589546261493193773023062879891788863797188853546802815946586656691785735357153331322601888634767964027566503488120225610700355898842160253576222901959466171158637687612638060932728861853527923708313574602394317186610647479455968451044886549686351133777954892931694504782202759143546773354488\",\"creditEntries\":1996},{\"raw\":1e+300,\"wallet\":0,\"bonds\":0,\"total\":\"545593533174429112660680659083780728936790541299067481987023091744666711373531269789706239693500133011524053940817719665274192256578199479997005078714987885",
+        "2026-11-17T14:58:37.1603332Z Killed handler: Error: Error: UI maxed even with affordable wallet 20",
+        "2026-11-17T14:58:38.1631805Z Killed ui: Error: Error: UI maxed even with affordable wallet 20",
+        "2026-11-17T14:58:39.1664734Z Killed raw: Error: Error: legacy raw count visible",
+        "2026-11-17T14:58:40.1487866Z Killed refund: Error: Error: refund receipt prevents a second credit 21",
+        "2026-11-17T14:58:41.1597745Z Killed credit: Error: Error: fractional original wallet retains exact refund value",
+        "2026-11-17T14:58:42.1686371Z Killed free-credit: Error: Error: large credit quote conserves exact value",
+        "2026-11-17T14:58:43.2345969Z Killed wallet: Error: Error: representable large-wallet debit pays exactly",
+        "2026-11-17T14:58:45.1716619Z Killed receipt: Error: Error: wrong receipt amount rejects for recovery",
+        "2026-11-17T14:58:46.5276620Z Killed cache: Error: Error: completed large refund avoids repeated price calculation at Ascend boundaries",
+        "2026-11-17T14:58:48.4601355Z Killed credit-record: Error: Error: malformed persisted Prism credit rejects for recovery",
+        "2026-11-17T14:58:49.7772262Z Killed ascend-copy: Error: Error: historical internal stress: actual auto-Ascends avoid repeated refund cloning and validation",
+        "2026-11-17T14:58:51.7477442Z Killed version-check: Error: Error: unsupported migration version rejects before any early return",
+        "2026-11-17T14:58:53.7068880Z Killed credit-reconcile: Error: Error: own credit sequence reconciles with saved receipt",
+        "2026-11-17T14:58:55.7530122Z Killed missing-receipt: Error: Error: deleted completed receipt rejects instead of refunding twice",
+        "2026-11-17T14:58:57.7134524Z Killed missing-audit-history: Error: Error: retained completed history rejects deleted receipt and marker",
+        "2026-11-17T14:58:59.6881435Z Killed missing-audit-proof: Error: Error: retained completed marker rejects deleted receipt and history",
+        "2026-11-17T14:59:01.2809891Z Killed quote-copy: Error: Error: large legacy price quotes never clone the refund ledger",
+        "2026-11-17T15:00:21.5485047Z AssertionError [ERR_ASSERTION]: real touch opens damage details"
+      ]
+    },
+    {
+      "id": 134115854414,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T14:34:28Z",
+      "completed": "2026-11-17T14:36:53Z",
+      "log": "job-134115854414.log.gz",
+      "rawSha256": "e58ebe2d23ebaf84f78e3edeef7055e9bff9648c17b8d664389c8a79e665f2cc",
+      "summary": [
+        "2026-11-17T14:35:05.3863767Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T14:36:48.8230997Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

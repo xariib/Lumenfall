@@ -1,0 +1,18 @@
+Error: Command failed: C:\Program Files\WindowsApps\OpenAI.CodexPrimaryRuntime.v26-1104-2876-0_26.1104.2876.0_x64__3k8sg7r9htsxt\dependencies\node\bin\node.exe validation-evidence/watch-support-year.cjs 2dd3a05c71f5d803d68731032201366bae302f1d pull_request
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at checkExecSyncError (node:child_process:943:11)
+    at Object.execFileSync (node:child_process:979:15)
+    at run (C:\lf-team\validation-evidence\deliver-support-year.cjs:7:30)
+    at C:\lf-team\validation-evidence\deliver-support-year.cjs:21:2
+    at Object.<anonymous> (C:\lf-team\validation-evidence\deliver-support-year.cjs:35:3)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 21624,
+  stdout: null,
+  stderr: null
+}

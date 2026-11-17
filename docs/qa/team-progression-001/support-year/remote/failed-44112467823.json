@@ -1,0 +1,34 @@
+{
+  "id": 44112467823,
+  "sha": "1d861c3c072ff28be166854f7461d35efecd8962",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44112467823",
+  "jobs": [
+    {
+      "id": 134141464719,
+      "name": "lab",
+      "conclusion": "failure",
+      "started": "2026-11-17T15:16:47Z",
+      "completed": "2026-11-17T15:18:28Z",
+      "log": "job-134141464719.log.gz",
+      "rawSha256": "cedc007a77156da04b805d27adb5836dcabf756919857bdde508d87c0d32a357",
+      "summary": [
+        "2026-11-17T15:17:39.4119341Z {\"status\":\"pass\",\"source_sha256\":\"b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}",
+        "2026-11-17T15:18:21.5671415Z {\"status\":\"fail\",\"sourceSha256\":\"b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57\",\"node\":\"v20.20.2\",\"browser\":\"google-chrome\",\"profiles\":[],\"error\":\"Error: CDP deadline Target.createBrowserContext\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.lab-mobile-2524.cjs:46:146)\\n    at listOnTimeout (node:internal/timers:581:17)\\n    at process.processTimers (node:internal/timers:519:7)\",\"exit\":{\"code\":0,\"signal\":null},\"checks\":0,\"stderr\":\"[2539:2569:1117/151759.263017:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2539:2569:1117/151759.802090:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2539:2569:1117/151800.612803:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2539:2572:1117/151801.832692:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2539:2572:1117/151801.832736:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n",
+        "2026-11-17T15:18:21.5725952Z   throw new AssertionError(obj);",
+        "2026-11-17T15:18:21.5727970Z AssertionError [ERR_ASSERTION]: Lab browser acceptance failed"
+      ]
+    },
+    {
+      "id": 134141465479,
+      "name": "timed-slot-speed",
+      "conclusion": "success",
+      "started": "2026-11-17T15:16:47Z",
+      "completed": "2026-11-17T15:18:17Z",
+      "log": "job-134141465479.log.gz",
+      "rawSha256": "0d28df5b73189c35d9a7fe58be4735a60e1c2cb80d5e4344c9e9e953d2045f73",
+      "summary": []
+    }
+  ]
+}

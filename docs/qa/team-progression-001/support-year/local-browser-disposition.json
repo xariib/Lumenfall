@@ -1,0 +1,28 @@
+{
+  "sourceSha256": "b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed",
+  "diagnosticBrowser": "Brave",
+  "stopped": "Optional local Brave run had already exited when cleanup was attempted (PID not found); not a full-suite PASS.",
+  "passed": 10,
+  "failures": [
+    "FAIL upgrade-identity-contracts",
+    "FAIL upgrade-identity-chronology",
+    "FAIL upgrade-identity-farm-clock"
+  ],
+  "rawLog": "local-main-brave-diagnostic.txt.gz",
+  "rawSha256": "76759c136982b8e32030c6e55ab8921aa6805e6c8c5d69ab2370d58a78a36559",
+  "edgeReplays": [
+    {
+      "scenario": "upgrade-identity-contracts",
+      "status": "success",
+      "originalDeadline": 25
+    },
+    {
+      "scenario": "upgrade-identity-chronology",
+      "status": "success",
+      "originalDeadline": 25
+    }
+  ],
+  "next": "Run original190 local cases with installed Edge; required CI remains Chrome and unchanged. Root cause unproven.",
+  "exitCode": 1,
+  "stderr": "EPERM, Permission denied: 'C:\\Users\\xarib\\AppData\\Local\\Temp\\lumenfall-qa-upgrade-identity-save-reload-HDtBQa'\n"
+}

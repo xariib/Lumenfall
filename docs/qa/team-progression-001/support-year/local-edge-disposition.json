@@ -1,0 +1,17 @@
+{
+  "sourceSha256": "b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed",
+  "status": "Incomplete optional local diagnostic; not PASS",
+  "browser": "Edge",
+  "passed": 5,
+  "failures": [
+    "FAIL formation-collapse",
+    "FAIL wisp-rarity-scroll",
+    "FAIL wisp-card-simplicity"
+  ],
+  "rawLog": "local-main-edge-diagnostic.txt.gz",
+  "rawSha256": "e4a5a73bdbb1e41fbef0f33a79f64789808d92c548babb294a1ef01ca01fa1a1",
+  "stderr": "",
+  "queueReplay": "queue-edge-diagnostic.json",
+  "observed": "Queue driver timed out Browser.getVersion at0 assertions with empty stderr; full local native scenarios also failed. Root cause unproven. Two dump-dom identity replays passed.",
+  "next": "Required exact-head Linux Chrome full suite remains mandatory; preserve Windows diagnostic as limitation."
+}

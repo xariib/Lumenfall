@@ -1,0 +1,35 @@
+{
+  "id": 44110904299,
+  "sha": "85ec277d189c88bdf00cf8daebf1f4924b1329e0",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44110904299",
+  "jobs": [
+    {
+      "id": 134135895034,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T15:08:38Z",
+      "completed": "2026-11-17T15:12:09Z",
+      "log": "job-134135895034.log.gz",
+      "rawSha256": "6b80ee601554c70e975c80f8babddd269e4cb4ef49dc2bb760ca30b5e9e37b45",
+      "summary": [
+        "2026-11-17T15:09:17.2709611Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T15:11:42.3931922Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3912,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3926,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\"
+      ]
+    },
+    {
+      "id": 134135900663,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T15:08:39Z",
+      "completed": "2026-11-17T15:11:39Z",
+      "log": "job-134135900663.log.gz",
+      "rawSha256": "32f74062d72254605efa04e448f1e2ee65029b4a35548037ca1d2bdddc2758d6",
+      "summary": [
+        "2026-11-17T15:09:05.7557970Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T15:11:36.5304485Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

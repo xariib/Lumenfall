@@ -1,0 +1,32 @@
+{
+  "id": 44104469940,
+  "sha": "71cb74fe0f712f8e58a7f33d7116c0a3c8167aa7",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44104469940",
+  "jobs": [
+    {
+      "id": 134113355894,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-17T14:34:28Z",
+      "completed": "2026-11-17T14:36:27Z",
+      "log": "job-134113355894.log.gz",
+      "rawSha256": "bdf142997c516f7cb0c028b96d9c901495d645cc3ffc7390a006e68c7ef5fdfb",
+      "summary": []
+    },
+    {
+      "id": 134113356399,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-17T14:34:28Z",
+      "completed": "2026-11-17T14:36:53Z",
+      "log": "job-134113356399.log.gz",
+      "rawSha256": "e58ebe2d23ebaf84f78e3edeef7055e9bff9648c17b8d664389c8a79e665f2cc",
+      "summary": [
+        "2026-11-17T14:35:05.3863767Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T14:36:48.8230997Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

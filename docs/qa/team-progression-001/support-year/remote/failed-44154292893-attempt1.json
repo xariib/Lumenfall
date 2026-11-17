@@ -1,0 +1,21 @@
+{
+  "id": 44154292893,
+  "sha": "e6139c988a196e131696776784bdb15eec613f03",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44154292893",
+  "jobs": [
+    {
+      "id": 134290733197,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-17T19:02:39Z",
+      "completed": "2026-11-17T19:12:01Z",
+      "log": "job-134290733197.log.gz",
+      "rawSha256": "e76bf8d2a906999f2a4e5b5e065755bbd8b48ffd82d50c15ac8a804f04b6eb2c",
+      "summary": [
+        "2026-11-17T19:09:34.8165226Z verify both save slots and origin with the inspection probe: Error: Command failed: adb install -r Lumenfall.apk"
+      ]
+    }
+  ]
+}

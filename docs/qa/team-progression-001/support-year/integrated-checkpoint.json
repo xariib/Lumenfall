@@ -1,0 +1,122 @@
+{
+  "status": "Integrated; finalSupportreleasepending",
+  "utc": "2026-11-17T20:15:13.522Z",
+  "pr": "https://github.com/xariib/Lumenfall/pull/62",
+  "featureHead": "f8663ccedbc313edcdfceee52785acef0f061ed5",
+  "integratedCommit": "ceb2463f83d49402e2702e987af89958790b16db",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "prProof": "pr-full-suite.json",
+  "integratedValidation": {
+    "utc": "2026-11-17T20:14:40.258Z",
+    "sha": "ceb2463f83d49402e2702e987af89958790b16db",
+    "event": "workflow_dispatch",
+    "passed": 6,
+    "total": 9,
+    "missing": [],
+    "running": [
+      {
+        "id": 44165420457,
+        "name": "pre-merge-validation.yml"
+      },
+      {
+        "id": 44165431575,
+        "name": "forge-expansion-validation.yml"
+      },
+      {
+        "id": 44165440634,
+        "name": "shared-ui-validation.yml"
+      }
+    ],
+    "failed": [],
+    "progress": [
+      {
+        "name": "Lumenfall isolated offline catch-up",
+        "status": "success",
+        "failed": []
+      },
+      {
+        "name": "Lumenfall pre-merge validation",
+        "status": "in_progress",
+        "step": "Simple Lab timer and direct research selection",
+        "failed": []
+      }
+    ],
+    "runs": [
+      {
+        "id": 44165420457,
+        "path": ".github/workflows/pre-merge-validation.yml",
+        "attempt": 1,
+        "conclusion": null,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165420457"
+      },
+      {
+        "id": 44165425607,
+        "path": ".github/workflows/comet-expansion-validation.yml",
+        "attempt": 1,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165425607"
+      },
+      {
+        "id": 44165431575,
+        "path": ".github/workflows/forge-expansion-validation.yml",
+        "attempt": 1,
+        "conclusion": null,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165431575"
+      },
+      {
+        "id": 44165436353,
+        "path": ".github/workflows/lab-expansion-validation.yml",
+        "attempt": 1,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165436353"
+      },
+      {
+        "id": 44165440634,
+        "path": ".github/workflows/shared-ui-validation.yml",
+        "attempt": 1,
+        "conclusion": null,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165440634"
+      },
+      {
+        "id": 44165445195,
+        "path": ".github/workflows/tree-focused-qa.yml",
+        "attempt": 1,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165445195"
+      },
+      {
+        "id": 44165450738,
+        "path": ".github/workflows/permanent-progression-validation.yml",
+        "attempt": 2,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165450738"
+      },
+      {
+        "id": 44165457116,
+        "path": ".github/workflows/wisp-scroll-validation.yml",
+        "attempt": 1,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165457116"
+      },
+      {
+        "id": 44165548176,
+        "path": ".github/workflows/migration-focused-validation.yml",
+        "attempt": 1,
+        "conclusion": "success",
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44165548176"
+      }
+    ]
+  },
+  "currentMobile": "current-mobile/artifact.json andvisual-review.json; authenticatedranges withZIPentryCRC/sizechecks;7PNGinspected",
+  "baselinePublication": "baseline-upgrade-release/public-verification.json andvisual-review.json;0.2.138/e613verified",
+  "preservation": "Game/tests/scripts/workflows/assets identical to checkedfeaturehead. NewmainUI/Forge/Rift records retained. Mainfixedthroughpublication.",
+  "next": "Require all9exactmainworkflowPASS andraw190+1 proof, buildpublishtrueexactM, verifyactualsigned/native/publicfinalAPK andinspectinstalledframes, finalizeTask/State/evidenceafterpublication.",
+  "review": "Self-review/automated/assistantvisualonly",
+  "unobserved": [
+    "physicalphone",
+    "exactWebView60DOM",
+    "TalkBack",
+    "humanpacing"
+  ],
+  "prAcceptance": "8workflowsPASS,190main+1offline,mobile758withSupport12/265"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 44165450738,
+  "sha": "ceb2463f83d49402e2702e987af89958790b16db",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44165450738",
+  "jobs": [
+    {
+      "id": 134330170209,
+      "name": "focused",
+      "conclusion": "failure",
+      "started": "2026-11-17T20:04:56Z",
+      "completed": "2026-11-17T20:06:30Z",
+      "log": "job-134330170209.log.gz",
+      "rawSha256": "d342109f1397bde5b932eaa413f89e4b9403e9f69b740206ad963de9af856a60",
+      "summary": [
+        "2026-11-17T20:06:27.0231859Z {\"status\":\"fail\",\"sourceSha256\":\"fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059\",\"mutation\":null,\"checks\":0,\"profiles\":[],\"error\":\"Error: CDP deadline Browser.getVersion\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:28:146)\\n    at listOnTimeout (node:internal/timers:635:17)\\n    at process.processTimers (node:internal/timers:571:7)\",\"stderr\":\"[2597:2626:1117/200613.589694:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2597:2626:1117/200613.863239:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2597:2626:1117/200614.271288:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2597:2629:1117/200614.804830:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2597:2629:1117/200614.804869:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2597:2629:1117/200614.804881:ERROR:dbus/bus.cc:406] Failed to conn"
+      ]
+    }
+  ]
+}
