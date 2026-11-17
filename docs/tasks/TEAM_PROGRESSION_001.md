@@ -133,6 +133,16 @@ assertions and90s deadline stay unchanged. Both actual3f91 source scenarios
 PASS all12 profiles with normal cleanup. Source and bound golden stay unchanged.
 Push this test-only repair, finish exact-head/integrated gates and signed release.
 
+fda099d4 PR main attempt1: boost protocol timeout after16 profiles; attempt2
+passes boost unchanged, then offline UI catches a test-generation race. Its
+restart snapshot already shows resumeFlowBusy=true; the next failure case
+cancelled that older intro and counted its callback as the new one. Driver now
+waits for the previous real return/intro to finish before counting callbacks for
+the next case, using the original60s until timeout. All original error-cleanup,
+wallet/endpoint, retry and daily assertions stay. Both actual3f91 native normal
+and legacy offline UI scenarios PASS completely with normal teardown. No product
+change; frame initialization/readiness has not eliminated all protocol flakes.
+
 Signed candidate0.2.129/build43999391752 passed both-save upgrade, paid work,
 100-Comet refund, updater install, retail Android12 launch and assets. It
 contains earlier081f source and is unpublished; final delivery requires a new

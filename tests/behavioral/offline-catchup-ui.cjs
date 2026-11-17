@@ -92,6 +92,10 @@ async function run(){
  // Real page reload after interruption, no unload write may erase the debt.
  await evaluate('localStorage.setItem(window.__lumenfallQaContext.phaseKey,"1")');
  await send('Page.reload');await until('!!window.__lumenfallQaBridge && window.__lumenfallQaBridge.getFlags().offlineBusy','restart catch-up starts');await until('!window.__lumenfallQaBridge.getFlags().offlineBusy','restart catch-up');
+ // Offline work can commit before this return's intro completes. Finish that
+ // generation before counting callbacks for the next independent failure case;
+ // otherwise cancelling this intro can be mistaken for the next intro ending.
+ await until('!window.__lumenfallQaBridge.getFlags().resumeFlowBusy&&document.getElementById("startup-intro").style.display==="none"','restart return intro finishes');
  const restarted=await stateSummary();assert(restarted.kills-resumed.kills===swiftGolden.phases[2].kills&&restarted.primaryKills===restarted.kills,'restart awards interrupted window once');
  records.push({case:'interruption/restart',interrupted,restarted});
  // Failure ends offline work immediately; presentation remains busy until the

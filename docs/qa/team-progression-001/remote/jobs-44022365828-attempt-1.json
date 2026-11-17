@@ -1,0 +1,234 @@
+[
+  {
+    "id": 133834568967,
+    "run_id": 44022365828,
+    "workflow_name": "Wisp scroll validation",
+    "head_branch": "feature/team-progression-work",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44022365828",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfKSl1Bw",
+    "head_sha": "fda099d4fdede1c2bbd22ad079710fba6a79f9bd",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/133834568967",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44022365828/job/133834568967",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-17T05:11:48Z",
+    "started_at": "2026-11-17T05:11:50Z",
+    "completed_at": "2026-11-17T05:12:52Z",
+    "name": "Wisp scroll (ubuntu-latest)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-17T05:11:51Z",
+        "completed_at": "2026-11-17T05:11:53Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-17T05:11:53Z",
+        "completed_at": "2026-11-17T05:12:27Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-17T05:12:27Z",
+        "completed_at": "2026-11-17T05:12:34Z"
+      },
+      {
+        "name": "Browser and task context",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-17T05:12:34Z",
+        "completed_at": "2026-11-17T05:12:34Z"
+      },
+      {
+        "name": "Replay entrance-animation race and removed-wait control",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 5,
+        "started_at": "2026-11-17T05:12:34Z",
+        "completed_at": "2026-11-17T05:12:50Z"
+      },
+      {
+        "name": "Original scroll and focus causal controls",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6,
+        "started_at": "2026-11-17T05:12:50Z",
+        "completed_at": "2026-11-17T05:12:50Z"
+      },
+      {
+        "name": "Complete Wisp scenario with original 90-second deadline",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 7,
+        "started_at": "2026-11-17T05:12:50Z",
+        "completed_at": "2026-11-17T05:12:50Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-17T05:12:50Z",
+        "completed_at": "2026-11-17T05:12:50Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 15,
+        "started_at": "2026-11-17T05:12:50Z",
+        "completed_at": "2026-11-17T05:12:50Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-17T05:12:50Z",
+        "completed_at": "2026-11-17T05:12:51Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-11-17T05:12:51Z",
+        "completed_at": "2026-11-17T05:12:51Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/133834568967",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000003509,
+    "runner_name": "GitHub Actions 1000003509",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 133834569191,
+    "run_id": 44022365828,
+    "workflow_name": "Wisp scroll validation",
+    "head_branch": "feature/team-progression-work",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44022365828",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfKSl15w",
+    "head_sha": "fda099d4fdede1c2bbd22ad079710fba6a79f9bd",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/133834569191",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44022365828/job/133834569191",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-17T05:11:48Z",
+    "started_at": "2026-11-17T05:11:50Z",
+    "completed_at": "2026-11-17T05:15:10Z",
+    "name": "Wisp scroll (windows-latest)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-17T05:11:51Z",
+        "completed_at": "2026-11-17T05:11:52Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-17T05:11:53Z",
+        "completed_at": "2026-11-17T05:13:29Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-17T05:13:29Z",
+        "completed_at": "2026-11-17T05:13:37Z"
+      },
+      {
+        "name": "Browser and task context",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-17T05:13:37Z",
+        "completed_at": "2026-11-17T05:13:37Z"
+      },
+      {
+        "name": "Replay entrance-animation race and removed-wait control",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-17T05:13:37Z",
+        "completed_at": "2026-11-17T05:13:54Z"
+      },
+      {
+        "name": "Original scroll and focus causal controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-17T05:13:54Z",
+        "completed_at": "2026-11-17T05:14:04Z"
+      },
+      {
+        "name": "Complete Wisp scenario with original 90-second deadline",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-17T05:14:04Z",
+        "completed_at": "2026-11-17T05:15:04Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-17T05:15:04Z",
+        "completed_at": "2026-11-17T05:15:05Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-17T05:15:05Z",
+        "completed_at": "2026-11-17T05:15:06Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-17T05:15:06Z",
+        "completed_at": "2026-11-17T05:15:08Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-11-17T05:15:08Z",
+        "completed_at": "2026-11-17T05:15:08Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/133834569191",
+    "labels": [
+      "windows-latest"
+    ],
+    "runner_id": 1000003510,
+    "runner_name": "GitHub Actions 1000003510",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]

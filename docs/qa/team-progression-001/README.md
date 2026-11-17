@@ -2,6 +2,17 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+fda main attempt1 boost timeout after16 profiles is preserved. Attempt2 passed
+that lane unchanged and found an offline UI setup race: restart work completed
+while its intro was active (raw snapshot resumeFlowBusy=true). Starting the next
+failure cancelled that old generation, whose callback incorrectly satisfied a
+global callback-count wait for the new failed return. Driver now waits for the
+previous flow/intro to finish before the next case; same60s until timeout and
+all original cleanup/reward/save/retry/daily assertions. Both full native normal
+and legacy variants PASS on3f91, logs `offline-settled-*.log.gz`. Product unchanged.
+Runtime/DOM initialization and painted-coordinate reads have not eliminated all
+observed native protocol timeouts; no definitive root cause is claimed.
+
 Full5fe1d1ad run44015722026 reached all190 main cases; its only final failures
 were Comet native normal/reduced, whose last helper still queried the removed
 Auto-Ascend Ritual. All prior steps, repaired Linux boost lane, seven specialist
