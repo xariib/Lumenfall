@@ -99,6 +99,17 @@ affected browser/Android checks and final-source CI before integration/release.
 Current overlapping PR59 and PR61 both touch index.html; they are separate work.
 Main was stillb075cfba at the latest integration check; recheck before main update.
 
+8371fc6f HTML e210529dca00e0e32c13a3910a14f79b5df8197685cd323802817cd55b6011a6:
+revised full18-profile matrix558/four controls PASS. Android132/build44066560998
+passed upgrade/updater; both retail frames visibly retain ring and enemy. The
+retail accessibility XML omitted the game tree, failing the unchanged launch
+gate despite visible live combat; diagnostics retained, same-source retry running.
+Wisp Linux first attempt failed its existing300ms settling deadline; unchanged
+retry passed Linux/Windows. Cause unproven; no deadline/assertion changed.
+Broad CI then caught rift-cast-text.cjs's old Push→Farm Tab expectation. Update
+the test to Farm→Push, preserving native input and visible focus assertions.
+This changes no product bytes. Repeat required final-source CI before integration.
+
 Next: publish this checkpoint, run required remote CI, resolve all regressions,
 integrate serially with any newer main work, then signed Android acceptance and
 publication. Until required checks/build pass this remains open. Self-review only.

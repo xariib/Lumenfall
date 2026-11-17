@@ -153,10 +153,10 @@ async function run() {
       });
       return {states:result,textIssues:textIssues};
     })()`);
-    await send('Runtime.evaluate',{expression:'document.querySelector("#rift-push-btn").focus()'});
+    await send('Runtime.evaluate',{expression:'document.querySelector("#rift-farm-btn").focus()'});
     await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
     await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
-    assert.equal(await evaluate('document.activeElement.id'),'rift-farm-btn','native keyboard focus unchanged');
+    assert.equal(await evaluate('document.activeElement.id'),'rift-push-btn','native keyboard follows Farm then Push');
     const focus=await evaluate('getComputedStyle(document.activeElement).outlineStyle');
     assert.notEqual(focus,'none','keyboard focus visible');
     const screenshot=await send('Page.captureScreenshot',{format:'png'});
