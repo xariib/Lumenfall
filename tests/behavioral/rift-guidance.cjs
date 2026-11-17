@@ -11,6 +11,12 @@
 const {spawn}=require('node:child_process'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const [chrome,webRoot,evidenceDir,...flags]=process.argv.slice(2);
 if(!chrome||!webRoot||!evidenceDir)throw Error('Expected chrome, instrumented webRoot, evidenceDir');
+// Current acceptance replaces the retired hints; historical probes still work
+// when supplied their original HTML source.
+if(!fs.readFileSync(path.join(webRoot,'index.html'),'utf8').includes('id="rift-guidance-slot"')){
+ const result=require('node:child_process').spawnSync(process.execPath,[path.join(__dirname,'rift-screen-fixes.cjs'),path.join(webRoot,'index.html'),evidenceDir],{stdio:'inherit',env:{...process.env,LUMENFALL_QA_CDP_CHROME:chrome}});
+ if(result.error)throw result.error;process.exit(result.status??1);
+}
 const sourceRoot=path.resolve(webRoot),root=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-guidance-www-')),out=path.resolve(evidenceDir),baseline=flags.includes('--baseline-probe'),contract=flags.includes('--existing-contract'),readabilityProbe=flags.includes('--readability-probe');
 const collectTitleInverse=flags.includes('--collect-title-inverse');
 const midgameAccept=flags.includes('--midgame-accept');

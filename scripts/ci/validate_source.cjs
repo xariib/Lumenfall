@@ -38,7 +38,7 @@ async function validate(file = 'index.html') {
   const restore = /function restoreSaveBackup\(\)\{(.*?)\n\}/s.exec(src);
   if (!restore || !restore[1].includes('reloadInProgress = true;')) throw Error('QA failed: save restore is not protected from reload/autosave overwrite');
   if (!src.includes('function tick(){\n  if(document.hidden || resetInProgress || reloadInProgress) return;')) throw Error('QA failed: game loop is not suspended during reset/restore reload');
-  if (!src.includes('renderRiftMode();\n  renderRiftObjective();')) throw Error('QA failed: expected Rift fast-render path changed');
+  if (!src.includes('renderRiftMode();') || /id="(?:rift-objective|rift-guidance-slot|rift-hints-toggle|rift-guidance-toggle)"/.test(src)) throw Error('QA failed: Rift mode must render without retired hint controls');
   const riftMode = /function renderRiftMode\(\)\{(.*?)\n\}/s.exec(src);
   if (riftMode && riftMode[1].includes('syncMainScrollMode')) throw Error('QA failed: scroll sync regressed into the 100ms Rift render loop');
   console.log(`QA passed: ${scripts.length} scripts syntax-checked, ${requiredIds.length} unique IDs verified, cache/state lifecycle guards present.`);
