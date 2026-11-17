@@ -1,21 +1,24 @@
 {
   "status": "in progress; prerequisite-specific navigation assertion updated; new CI required",
-  "utc": "2026-11-17T12:51:41.006Z",
+  "utc": "2026-11-17T12:53:39.826Z",
   "featureBranch": "feature/upgrade-states-001",
-  "featureHead": "be015365469d200aeb2bd2444318c3172d1d8df7",
+  "featureHead": "f6a141e7a4bffb09f5923d31628b3e74399e2be8",
   "productSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
   "pullRequest": 61,
   "mainBaseline": "b075cfbac508096c240d3cba8885384235e4a210",
   "ci": {
-    "runId": 44072682657,
+    "runId": 44087196592,
     "firstMainJob": 134002780556,
     "unchangedRetryJob": 134019237033,
     "specialists": "all seven passed",
     "isolatedOffline": "passed",
     "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures",
-    "phase": "Attempt2:189/190 main scenarios pass. Expanded Apparatus price assertion superseded by requested unlock presentation. Narrow test update pending new exact-head CI; product unchanged.",
+    "phase": "All required checks rerunning on f6a141e7; product unchanged. Only prerequisite-specific navigation assertion updated. Previous main run189/190 and isolated offline passed.",
     "localWispOriginalRetry": "PASS467 unchanged",
-    "localUpgradeStates": "PASS15402/6 profiles plus3 controls"
+    "localUpgradeStates": "PASS15402/6 profiles plus3 controls",
+    "previousRunId": 44072682657,
+    "currentMainJob": 134052595529,
+    "currentOfflineJob": 134052595208
   },
   "next": "Push narrow navigation assertion and saved evidence to feature PR, finish all required new-head CI, integrate and perform exact-main validation plus signed Android delivery.",
   "authorization": "Standing scope authorization; no permission prompts. No new chats, subagents or messages. Evidence branch preserves pending results without restarting source CI.",
@@ -65,5 +68,6 @@
         "cleanShutdown": true
       }
     ]
-  }
+  },
+  "cleanup": "Automatic approval review rejected removal of C:/Users/xarib/AppData/Local/Temp/lumenfall-behavioral-lK019w as blocked by policy. Directory retained. Aborted oversized local staging copy was not acceptance."
 }
