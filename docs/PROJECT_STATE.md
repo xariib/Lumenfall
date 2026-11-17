@@ -1,9 +1,13 @@
 # Lumenfall — current delivery status
 
-17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
-Remove hints, Farm left/Push right and correct arena/enemy layering. Previous
-source passed666 focused checks/five controls and signed Android133; newer
-main/PR59 is now retained and combined-source validation is required.
+17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated
+at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)
+published/verified. Removes hints, Farm left/Push right, opaque arena and isolated
+enemy layer; retains newer main/PR59.666 mobile checks/five controls, four paired8h
+replays, six required exact-SHA release workflows/190+1 scenarios, signed save
+upgrade/updater/retail and anonymous APK/assets/feed PASS. Duplicate PR full rerun
+still pending; physical-phone/WebView60/TalkBack/human review stays open. Self-review
+only. [Evidence](qa/rift-screen-fixes-001/README.md); chat remains open.
 [Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
 The previously reported rapid-repeat economy finding remains open; no economy
 fix is introduced by this Rift presentation task.
