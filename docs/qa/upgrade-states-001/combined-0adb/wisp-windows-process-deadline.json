@@ -5,12 +5,15 @@
   "runId": 44097173605,
   "jobId": 134087264488,
   "error": "settled-setup finishes within the original deadline",
-  "observation": "Settled setup child did not return its driver result before original90s process deadline. Exact internal phase and cause are unproven. Linux counterpart134087263948 passed.",
+  "observation": "Child result: zero checks, CDP deadline Browser.getVersion, then Browser close deadline. Outer original90s process limit also expired. Startup/teardown failed before game assertions; underlying cause unproven. Linux counterpart134087263948 passed.",
   "artifact": {
     "id": 14333938842,
     "bytes": 651,
     "sha256": "9613214aa12ce80702c4f150d54a8cbdd13afd94f88d800c1e4cde0409a91c7d",
     "shaAndAllZipCrcsVerified": true
   },
-  "response": "Rerun without changes to product, driver, deadline, assertions or workflow. Original artifact retained."
+  "response": "Rerun without changes to product, driver, deadline, assertions or workflow. Original artifact retained.",
+  "checks": 0,
+  "childError": "CDP deadline Browser.getVersion",
+  "childTeardown": "Browser close deadline"
 }
