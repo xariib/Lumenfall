@@ -5,8 +5,8 @@ at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/an
 published/verified. Removes hints, Farm left/Push right, opaque arena and isolated
 enemy layer; retains newer main/PR59.666 mobile checks/five controls, four paired8h
 replays, six required exact-SHA release workflows/190+1 scenarios, signed save
-upgrade/updater/retail and anonymous APK/assets/feed PASS. Duplicate PR full rerun
-still pending; physical-phone/WebView60/TalkBack/human review stays open. Self-review
+upgrade/updater/retail and anonymous APK/assets/feed PASS. All eight PR workflows
+also PASS; physical-phone/WebView60/TalkBack/human review stays open. Self-review
 only. [Evidence](qa/rift-screen-fixes-001/README.md); chat remains open.
 [Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
 The previously reported rapid-repeat economy finding remains open; no economy

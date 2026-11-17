@@ -1,7 +1,7 @@
 # Rift screen controls and enemy visibility
 
 17 November2026. Owner: this feature chat. **Integrated and Android0.2.136
-published/verified; duplicate PR full-suite acceptance pending.** Physical/human
+published/verified; all required automated acceptance PASS.** Physical/human
 acceptance remains open. Self-review and automation only; no independent review.
 Do not archive this chat while required acceptance remains unverified.
 
@@ -47,7 +47,10 @@ merge-preview tree both5fff90d24b8ff41ffb86a70fea151d5632ab427a. All six mandato
 release-ci-gate workflow_dispatch runs passed on this identical SHA before
 integration; their actual ref was the feature branch. No gate was modified.
 Previous main build44099434281 completed publication before this ref update.
-The duplicate PR rerun continues; completion still requires that result.
+All eight applicable PR workflows now PASS, including the unchanged full rerun.
+Both complete full workflows prove190 main scenarios plus isolated offline.
+Two Prism-only workflows are skipped by their existing conditions.
+Automated acceptance is satisfied; physical/human acceptance remains open.
 
 Published [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136),
 [build44101297138](https://github.com/xariib/Lumenfall/actions/runs/44101297138),
@@ -106,10 +109,11 @@ compressed raw logs live under`docs/qa/rift-screen-fixes-001/`.
   Tree44091482012. Full coverage:190 main scenarios plus isolated offline PASS.
   CI Node24.19.0/Chrome157.0.8103.78; local Node24.22.1/Chrome157; Android Node22.
   Legacy V8 JavaScript checks pass; exact WebView60 DOM is not observed.
-- Seven focused PR workflows PASS. Full PR44091395146 first attempt failed an
+- All eight applicable PR workflows PASS. Full PR44091395146 first attempt failed an
   existing native Wisp disclosure touch assertion; identical-source prepared
-  workflow passed the whole step. Unchanged retry134084435082 passed that step
-  and is running the stateful suite. Final completion still waits for it.
+  workflow passed the whole step. Unchanged retry134084435082 passed the entire
+  suite, including190 main scenarios; isolated offline also PASS. Raw first
+  failure and passing retry are retained; cause of the initial input failure is unproven.
 - Signed Android134 candidate and published136 PASS identity/assets, retained
   UID/both saves/paid work/legacy cosmetics, actual updater/system install and
   normal Android12 retail launch without debugger/instrumentation. Three actual
@@ -137,7 +141,7 @@ weakened. Earlier-source browser/Android receipts are explicitly historical.
 - Linux Wisp300ms setup waits and earlier Lab CDP touch calls failed transiently
   in retained attempts; unchanged retries pass. Newer-main Lab fixes are retained.
   Current PR native disclosure first failure remains recorded, cause unproven;
-  its unchanged retry passed the step and still needs full-suite completion.
+  its unchanged retry passed the entire full suite without assertion/deadline changes.
 - Local Windows browser setup/dump-DOM timeouts produced no QA result; no pass
   claimed. Baseline quick test stopped at old Workshop active-dot assertion.
   Separate existing reduced-motion probe rejects both baseline and candidate
@@ -152,11 +156,16 @@ Source/main app commit stays12122b80; do not confuse it with QA/document commits
 Worktree is on docs-only`checkpoint/rift-screen-fixes-001-12122b80-qa`, currently
 rooted at12122b80. Do not start another APK merely because QA HEAD differs.
 
-Wait for unchanged full PR44091395146 to pass. Retain final raw logs/results.
-Recheck actual main, preserve any newer work, and integrate QA/final status as a
-docs-only descendant after publication. If main remains12122b80, fast-forward
-the local source branch to the QA branch, then append final evidence/status and
-push only the docs descendant to main. If main moved, merge/preserve it first
-and verify the final diff adds no product changes. Keep the feature/chat open
-for physical/human acceptance; do not archive. No permission prompts, other
-chats, subagents or message tools were used. No new binding rules introduced.
+Full PR44091395146 and all required gates PASS; final raw logs/results retained.
+After publication, main's Forge documentation update e599ed16 was merged into
+the QA/final-doc branch. All28 incoming non-shared files are byte-identical;
+the complete Forge owner status is retained. Product still equals published
+source12122b80. Final delivery/status integration is documentation only.
+
+Remaining concrete action: physical-phone/actual-account review of the three
+requested Rift changes, plus unobserved WebView60 DOM/TalkBack/Play Protect/human
+acceptance as relevant. Read this checkpoint and actual current main before
+responding to findings; preserve newer work and record any newly observed issue.
+Keep this feature/chat open and do not archive while that acceptance is unknown.
+No permission prompts, other chats, subagents or message tools were used.
+No new binding rules introduced.

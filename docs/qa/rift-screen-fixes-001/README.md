@@ -3,7 +3,7 @@
 Task: [RIFT_SCREEN_FIXES_001](../../tasks/RIFT_SCREEN_FIXES_001.md).
 [PR60](https://github.com/xariib/Lumenfall/pull/60) is merged into main12122b80.
 [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)
-is published and verified. Duplicate PR full-suite rerun remains pending;
+is published and verified. All required automated acceptance passes;
 physical/human acceptance remains open. Self-review and automation only.
 
 The change removes the Rift hint strip/dialog and redundant Settings toggle,
@@ -43,9 +43,11 @@ Workshop advice, combat, saves and newer main's finite Forge work are retained.
   Fractured Serpent/Effigy/Behemoth PNGs; images self-reviewed.
 - `ci/validation.json` and compressed job logs: six required release workflows
   PASS, including190 main scenarios and isolated offline coverage. Seven focused
-  PR workflows PASS; unchanged full PR rerun44091395146 remains pending. Its
-  earlier native disclosure failure is retained separately and the retry passed
-  that step. Node24.19.0/Chrome157.0.8103.78; actual legacy V8 JavaScript checks
+  PR workflows and unchanged full PR rerun44091395146 PASS. Both full workflows
+  prove190 main scenarios plus isolated offline. Its earlier native disclosure
+  failure is retained separately; the unchanged retry passes the entire suite.
+  Two Prism-only workflows remain skipped by their existing conditions.
+  Node24.19.0/Chrome157.0.8103.78; actual legacy V8 JavaScript checks
   pass, without claiming an exact WebView60 DOM observation.
 - `android-candidate-134/`: unpublished combined-source candidate PASS identity,
   assets/save/paid work/updater/retail/frame review.
@@ -79,7 +81,7 @@ remain in GitHub; no failed/incomplete attempt is counted as a pass.
   Wisp/boss assertions remain. Current mandatory full suite passes.
 - `combined-pr-wisp-first-failure.json` and its raw CI log retain the first
   current PR disclosure-touch failure. The identical source passed the prepared
-  whole step; unchanged PR retry passed it and still needs full completion.
+  whole step; unchanged PR retry passed the entire full suite.
 - `wisp-combined-first-failure/`, earlier Wisp folders and Lab failure JSON retain
   300ms setup/CDP input failures and passing unchanged retries. No deadlines or
   assertions changed. Newer-main Lab surface/profile fixes are retained exactly.

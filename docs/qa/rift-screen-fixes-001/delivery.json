@@ -1,0 +1,185 @@
+{
+  "status": "RELEASED; automated acceptance PASS; physical/human review open",
+  "utc": "2026-11-17T14:47:20.888Z",
+  "requirements": [
+    "Remove Rift hint bar",
+    "Farm left and Push right",
+    "Enemies above arena background"
+  ],
+  "pr": "https://github.com/xariib/Lumenfall/pull/60",
+  "initialBaseline": "b075cfbac508096c240d3cba8885384235e4a210",
+  "newerProductBaseline": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
+  "integratedCommit": "12122b805b4dd7ad28fef5f26dad94e8a5a8c3df",
+  "sourceSha256": "0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a",
+  "integration": "Lease-checked fast-forward after all six required same-SHA release workflows passed; duplicate PR retry also passed before final delivery",
+  "prWorkflows": [
+    {
+      "id": 44091395198,
+      "workflow": "Permanent progression and direct cards validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395198"
+    },
+    {
+      "id": 44091395493,
+      "workflow": "Comet shop and Deeds validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395493"
+    },
+    {
+      "id": 44091395358,
+      "workflow": "Research Lab expansion validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395358"
+    },
+    {
+      "id": 44091395146,
+      "workflow": "Pre-merge validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395146"
+    },
+    {
+      "id": 44091395529,
+      "workflow": "Ascension Tree focused validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395529"
+    },
+    {
+      "id": 44091395510,
+      "workflow": "Wisp scroll validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395510"
+    },
+    {
+      "id": 44091395153,
+      "workflow": "Rift Forge expansion validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395153"
+    },
+    {
+      "id": 44091395261,
+      "workflow": "Shared UI layout validation",
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395261"
+    }
+  ],
+  "requiredReleaseWorkflows": [
+    {
+      "id": 44091482012,
+      "workflow": "Ascension Tree focused validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091482012",
+      "actualRef": "fix/rift-screen-fixes-001"
+    },
+    {
+      "id": 44091477819,
+      "workflow": "Shared UI layout validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091477819",
+      "actualRef": "fix/rift-screen-fixes-001"
+    },
+    {
+      "id": 44091472947,
+      "workflow": "Research Lab expansion validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091472947",
+      "actualRef": "fix/rift-screen-fixes-001"
+    },
+    {
+      "id": 44091468619,
+      "workflow": "Rift Forge expansion validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091468619",
+      "actualRef": "fix/rift-screen-fixes-001"
+    },
+    {
+      "id": 44091463570,
+      "workflow": "Comet shop and Deeds validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091463570",
+      "actualRef": "fix/rift-screen-fixes-001"
+    },
+    {
+      "id": 44091457972,
+      "workflow": "Pre-merge validation",
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091457972",
+      "actualRef": "fix/rift-screen-fixes-001"
+    }
+  ],
+  "fullCoverage": {
+    "mainScenarios": 190,
+    "isolatedOfflineScenarios": 1,
+    "bothFullWorkflows": "PASS"
+  },
+  "matrix": {
+    "checks": 666,
+    "profiles": 18,
+    "encounterThemeSamples": 24840,
+    "negativeControlsRejected": 5
+  },
+  "release": {
+    "version": "0.2.136",
+    "versionCode": 1000136,
+    "tag": "android-1000136",
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/44101297138",
+    "url": "https://github.com/xariib/Lumenfall/releases/tag/android-1000136",
+    "apkSha256": "aac1b427e9f573320a968fd3d6b616da5edb6bae4f4bf643ffddb4bdbde41e0e",
+    "bytes": 5163041,
+    "anonymousDownloads": [
+      {
+        "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000136/Lumenfall.apk",
+        "sha256": "aac1b427e9f573320a968fd3d6b616da5edb6bae4f4bf643ffddb4bdbde41e0e",
+        "bytes": 5163041
+      },
+      {
+        "url": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+        "sha256": "aac1b427e9f573320a968fd3d6b616da5edb6bae4f4bf643ffddb4bdbde41e0e",
+        "bytes": 5163041
+      }
+    ],
+    "publicVerification": "android-release/public-verification.json",
+    "package": "com.lumenfall.app"
+  },
+  "retainedFailures": "Raw earlier failures and passing unchanged retries are retained in this directory and ci/",
+  "review": "Self-review and automation only; not independent review",
+  "physicalDevice": false,
+  "unverified": [
+    "Physical phone/actual account",
+    "Exact WebView60 DOM",
+    "TalkBack",
+    "Google Play Protect",
+    "Human acceptance"
+  ],
+  "archive": "Owner chat remains open; do not archive before required unobserved acceptance",
+  "next": "Review the published APK on the physical phone and record any observed issue in the same feature scope",
+  "existingConditionalPrismSkips": [
+    {
+      "id": 44091395196,
+      "workflow": "Prism feature validation",
+      "event": "pull_request",
+      "conclusion": "skipped",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395196"
+    },
+    {
+      "id": 44091395615,
+      "workflow": "Prism mobile engine and economy acceptance",
+      "event": "pull_request",
+      "conclusion": "skipped",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395615"
+    }
+  ]
+}

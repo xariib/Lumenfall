@@ -1,7 +1,190 @@
 {
   "sha": "12122b805b4dd7ad28fef5f26dad94e8a5a8c3df",
-  "utc": "2026-11-17T14:15:26.064Z",
+  "utc": "2026-11-17T14:44:54.414Z",
   "runs": [
+    {
+      "id": 44101297138,
+      "name": "Build Android APK",
+      "event": "workflow_dispatch",
+      "status": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44101297138",
+      "jobs": [
+        {
+          "id": 134101686362,
+          "name": "build-apk",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Checkout",
+              "status": "success"
+            },
+            {
+              "name": "Require integrated validation before publishing",
+              "status": "success"
+            },
+            {
+              "name": "Set up Node.js",
+              "status": "success"
+            },
+            {
+              "name": "Set up Java",
+              "status": "success"
+            },
+            {
+              "name": "Set up Gradle",
+              "status": "success"
+            },
+            {
+              "name": "Verify Android SDK",
+              "status": "success"
+            },
+            {
+              "name": "Restore and verify stable Android signing key",
+              "status": "success"
+            },
+            {
+              "name": "Install Capacitor dependencies",
+              "status": "success"
+            },
+            {
+              "name": "Reject high and critical dependency advisories",
+              "status": "success"
+            },
+            {
+              "name": "Validate game source",
+              "status": "success"
+            },
+            {
+              "name": "Stage Android web assets",
+              "status": "success"
+            },
+            {
+              "name": "Browser runtime smoke test",
+              "status": "success"
+            },
+            {
+              "name": "Generate Android project",
+              "status": "success"
+            },
+            {
+              "name": "Configure production build and separate native test runner",
+              "status": "success"
+            },
+            {
+              "name": "Install native signed APK updater",
+              "status": "success"
+            },
+            {
+              "name": "Compute continuing Android version",
+              "status": "success"
+            },
+            {
+              "name": "Set Android app version",
+              "status": "success"
+            },
+            {
+              "name": "Stage Android icon and splash sources",
+              "status": "success"
+            },
+            {
+              "name": "Generate Android icons and splash",
+              "status": "success"
+            },
+            {
+              "name": "Sync Capacitor",
+              "status": "success"
+            },
+            {
+              "name": "Build APK",
+              "status": "success"
+            },
+            {
+              "name": "Prepare APK",
+              "status": "success"
+            },
+            {
+              "name": "Verify final APK identity",
+              "status": "success"
+            },
+            {
+              "name": "Verify exact packaged production assets and origin",
+              "status": "success"
+            },
+            {
+              "name": "Enable emulator hardware acceleration",
+              "status": "success"
+            },
+            {
+              "name": "Build disposable older-version updater fixture",
+              "status": "success"
+            },
+            {
+              "name": "Free native build memory before emulator acceptance",
+              "status": "success"
+            },
+            {
+              "name": "In-place signed APK and save upgrade on emulator",
+              "status": "success"
+            },
+            {
+              "name": "Require completed upgrade receipt for this exact APK",
+              "status": "success"
+            },
+            {
+              "name": "Verify normal production launch on a retail Android image",
+              "status": "success"
+            },
+            {
+              "name": "Preserve failed native upgrade diagnostics",
+              "status": "skipped"
+            },
+            {
+              "name": "Upload failed native upgrade diagnostics",
+              "status": "skipped"
+            },
+            {
+              "name": "Preserve verified build",
+              "status": "success"
+            },
+            {
+              "name": "Publish verified APK release",
+              "status": "success"
+            },
+            {
+              "name": "Remove temporary signing copy",
+              "status": "success"
+            },
+            {
+              "name": "Post Set up Gradle",
+              "status": "success"
+            },
+            {
+              "name": "Post Set up Java",
+              "status": "success"
+            },
+            {
+              "name": "Post Set up Node.js",
+              "status": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44101297138-job-134101686362.log.gz",
+          "bytes": 70643,
+          "sha256": "a5e776c4ab01b77b33487b0d9dc70799d69eab1e09cda343cf06c3de9f73c4af"
+        }
+      ]
+    },
     {
       "id": 44091482012,
       "name": "Ascension Tree focused validation",
@@ -864,6 +1047,534 @@
       ]
     },
     {
+      "id": 44091395198,
+      "name": "Permanent progression and direct cards validation",
+      "event": "pull_request",
+      "status": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395198",
+      "jobs": [
+        {
+          "id": 134067108782,
+          "name": "focused",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Source and task",
+              "status": "success"
+            },
+            {
+              "name": "Purchases refunds Farm and chronology",
+              "status": "success"
+            },
+            {
+              "name": "Native browser input across 18 profiles",
+              "status": "success"
+            },
+            {
+              "name": "Preserve mobile evidence",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395198-job-134067108782.log.gz",
+          "bytes": 9783,
+          "sha256": "0cb80591b4187015d1ec151fadbed50cffa0319a4bc732c1d36343ca04369f02"
+        }
+      ]
+    },
+    {
+      "id": 44091395493,
+      "name": "Comet shop and Deeds validation",
+      "event": "pull_request",
+      "status": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395493",
+      "jobs": [
+        {
+          "id": 134067110384,
+          "name": "comet",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Exact source identity and Comet task context",
+              "status": "success"
+            },
+            {
+              "name": "Actual purchases commands save recovery and causal controls",
+              "status": "success"
+            },
+            {
+              "name": "Independent exact Meteor and bounded credit arithmetic",
+              "status": "success"
+            },
+            {
+              "name": "Actual defeat recharge offline chronology and Auto-Ascend",
+              "status": "success"
+            },
+            {
+              "name": "Twelve browser profiles with real input and causal failures",
+              "status": "success"
+            },
+            {
+              "name": "Exact protected-save warning reversion after the complete positive browser lane",
+              "status": "success"
+            },
+            {
+              "name": "Complete actual Comet execution on V8 6.0",
+              "status": "success"
+            },
+            {
+              "name": "Preserve complete source-bound Comet evidence",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395493-job-134067110384.log.gz",
+          "bytes": 62679,
+          "sha256": "80fa27bf5f488574f5a6a1b730cc17d8eec50c2094520f46f15bda4f33073f08"
+        }
+      ]
+    },
+    {
+      "id": 44091395358,
+      "name": "Research Lab expansion validation",
+      "event": "pull_request",
+      "status": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395358",
+      "jobs": [
+        {
+          "id": 134067110206,
+          "name": "lab",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Exact source identity and task context",
+              "status": "success"
+            },
+            {
+              "name": "Complete-game Lab effects purchases save and causal controls",
+              "status": "success"
+            },
+            {
+              "name": "Actual mobile touch keyboard seven-slot persistence and currency colors",
+              "status": "success"
+            },
+            {
+              "name": "Execute full product on actual V8 6.0",
+              "status": "success"
+            },
+            {
+              "name": "Preserve full source-bound evidence",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395358-job-134067110206.log.gz",
+          "bytes": 10352,
+          "sha256": "3480a61f34ce806ac8f5e6f21f24a627ade52db62d00aabdc50af0267c93d9ef"
+        },
+        {
+          "id": 134067110479,
+          "name": "timed-slot-speed",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Actual browser slot speed and focus regression",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395358-job-134067110479.log.gz",
+          "bytes": 5482,
+          "sha256": "fff63cf5cbc8b247d14af60b197244e6d4458769bb4ceb64bb4d9b5a6fc1ac3e"
+        }
+      ]
+    },
+    {
+      "id": 44091395196,
+      "name": "Prism feature validation",
+      "event": "pull_request",
+      "status": "skipped",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395196",
+      "jobs": []
+    },
+    {
+      "id": 44091395615,
+      "name": "Prism mobile engine and economy acceptance",
+      "event": "pull_request",
+      "status": "skipped",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395615",
+      "jobs": []
+    },
+    {
+      "id": 44091395146,
+      "name": "Pre-merge validation",
+      "event": "pull_request",
+      "status": "success",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395146",
+      "jobs": [
+        {
+          "id": 134084435082,
+          "name": "Lumenfall pre-merge validation",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Checkout",
+              "status": "success"
+            },
+            {
+              "name": "Set up Node.js",
+              "status": "success"
+            },
+            {
+              "name": "Rift hint removal, mode order and enemy visibility",
+              "status": "success"
+            },
+            {
+              "name": "Paid Lab work and player action chronology",
+              "status": "success"
+            },
+            {
+              "name": "Stationary purchases and rejected transaction rollback",
+              "status": "success"
+            },
+            {
+              "name": "Continuing Forge investments and earned Lab access",
+              "status": "success"
+            },
+            {
+              "name": "Production Android security regression checks",
+              "status": "success"
+            },
+            {
+              "name": "Paid boosts, clock replay and capped automation regressions",
+              "status": "success"
+            },
+            {
+              "name": "In-app signed update policy and controller",
+              "status": "success"
+            },
+            {
+              "name": "Complete game audit and stationary Auto-Empower targets",
+              "status": "success"
+            },
+            {
+              "name": "Native Lab Begin focus boundaries",
+              "status": "success"
+            },
+            {
+              "name": "Slot-first Lab, concise cards and expanded Deeds",
+              "status": "success"
+            },
+            {
+              "name": "Simple Lab timer and direct research selection",
+              "status": "success"
+            },
+            {
+              "name": "Lab queue continuity and Speed Up modal",
+              "status": "success"
+            },
+            {
+              "name": "Editable next boost and independent Speed Up queue",
+              "status": "success"
+            },
+            {
+              "name": "APK identity verifier self-test",
+              "status": "success"
+            },
+            {
+              "name": "Readable offline recap and expanded Lab results",
+              "status": "success"
+            },
+            {
+              "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+              "status": "success"
+            },
+            {
+              "name": "Exponential Rift progression and explicit Farm intent",
+              "status": "success"
+            },
+            {
+              "name": "Forge workshop long-term progression",
+              "status": "success"
+            },
+            {
+              "name": "Long Lab pacing and basic Wisp research",
+              "status": "success"
+            },
+            {
+              "name": "Repository migration version and historical-baseline controls",
+              "status": "success"
+            },
+            {
+              "name": "Node tooling regression checks",
+              "status": "success"
+            },
+            {
+              "name": "Validate game source",
+              "status": "success"
+            },
+            {
+              "name": "Verify existing independent offline reference binding",
+              "status": "success"
+            },
+            {
+              "name": "Stage web assets",
+              "status": "success"
+            },
+            {
+              "name": "Phone feedback startup and input acceptance",
+              "status": "success"
+            },
+            {
+              "name": "Existing settled-screen UI acceptance after actual startup",
+              "status": "success"
+            },
+            {
+              "name": "Existing Rift layout after hint removal",
+              "status": "success"
+            },
+            {
+              "name": "Endless progression amounts, gates, persistence and chronology",
+              "status": "success"
+            },
+            {
+              "name": "Endless automation clock and repeated Ascend regressions",
+              "status": "success"
+            },
+            {
+              "name": "Rift replacement acceptance through former guidance entrypoint",
+              "status": "success"
+            },
+            {
+              "name": "Preserve early Guidance readability evidence",
+              "status": "success"
+            },
+            {
+              "name": "Rift cosmetics selection, persistence and mobile acceptance",
+              "status": "success"
+            },
+            {
+              "name": "Exact Prism earning numerical and causal regression",
+              "status": "success"
+            },
+            {
+              "name": "Tree caps original-value refunds and current collection",
+              "status": "success"
+            },
+            {
+              "name": "Swift cap, original Shard value and reachable Forge Deeds",
+              "status": "success"
+            },
+            {
+              "name": "Wisp contribution readability and unchanged gameplay",
+              "status": "success"
+            },
+            {
+              "name": "Compact Wisp cards, live next action and original purchase preservation",
+              "status": "success"
+            },
+            {
+              "name": "Development currency UI and retained-value acceptance",
+              "status": "success"
+            },
+            {
+              "name": "Read Ascend alerts and stationary daily quest claims",
+              "status": "success"
+            },
+            {
+              "name": "Cheaper Recruitment cap and refund regression",
+              "status": "success"
+            },
+            {
+              "name": "Independent exact Prism funding oracle",
+              "status": "success"
+            },
+            {
+              "name": "Cheaper Recruitment defect controls",
+              "status": "success"
+            },
+            {
+              "name": "Behavioral harness negative self-test",
+              "status": "success"
+            },
+            {
+              "name": "Stateful behavioral regression suite",
+              "status": "success"
+            },
+            {
+              "name": "Install runtime error guard in staged copy",
+              "status": "success"
+            },
+            {
+              "name": "Browser runtime smoke test",
+              "status": "success"
+            },
+            {
+              "name": "Preserve full regression evidence",
+              "status": "success"
+            },
+            {
+              "name": "Post Set up Node.js",
+              "status": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395146-job-134084435082.log.gz",
+          "bytes": 95527,
+          "sha256": "a9126accefe4d8c3594ccee50de26db3fa8f7b67c76fb0ff0e010186478f3ec6"
+        },
+        {
+          "id": 134084439857,
+          "name": "Lumenfall isolated offline catch-up",
+          "status": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Stage exact product and assets",
+              "status": "success"
+            },
+            {
+              "name": "Original offline regression with unchanged assertions and deadline",
+              "status": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "success"
+            }
+          ],
+          "log": "run-44091395146-job-134084439857.log.gz",
+          "bytes": 6413,
+          "sha256": "ef6d93e9a83b0bbce316a4f72cd9f0216971a75b0f181650cc26840ebb5a2c53"
+        }
+      ]
+    },
+    {
       "id": 44091395529,
       "name": "Ascension Tree focused validation",
       "event": "pull_request",
@@ -1204,257 +1915,6 @@
           "sha256": "511a8d50b1c60c2976dd3dc39a636added41d5bb2029adad9dfd648c5a8e6ba6"
         }
       ]
-    },
-    {
-      "id": 44091395198,
-      "name": "Permanent progression and direct cards validation",
-      "event": "pull_request",
-      "status": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395198",
-      "jobs": [
-        {
-          "id": 134067108782,
-          "name": "focused",
-          "status": "success",
-          "steps": [
-            {
-              "name": "Set up job",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Source and task",
-              "status": "success"
-            },
-            {
-              "name": "Purchases refunds Farm and chronology",
-              "status": "success"
-            },
-            {
-              "name": "Native browser input across 18 profiles",
-              "status": "success"
-            },
-            {
-              "name": "Preserve mobile evidence",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Complete job",
-              "status": "success"
-            }
-          ],
-          "log": "run-44091395198-job-134067108782.log.gz",
-          "bytes": 9783,
-          "sha256": "0cb80591b4187015d1ec151fadbed50cffa0319a4bc732c1d36343ca04369f02"
-        }
-      ]
-    },
-    {
-      "id": 44091395493,
-      "name": "Comet shop and Deeds validation",
-      "event": "pull_request",
-      "status": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395493",
-      "jobs": [
-        {
-          "id": 134067110384,
-          "name": "comet",
-          "status": "success",
-          "steps": [
-            {
-              "name": "Set up job",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Exact source identity and Comet task context",
-              "status": "success"
-            },
-            {
-              "name": "Actual purchases commands save recovery and causal controls",
-              "status": "success"
-            },
-            {
-              "name": "Independent exact Meteor and bounded credit arithmetic",
-              "status": "success"
-            },
-            {
-              "name": "Actual defeat recharge offline chronology and Auto-Ascend",
-              "status": "success"
-            },
-            {
-              "name": "Twelve browser profiles with real input and causal failures",
-              "status": "success"
-            },
-            {
-              "name": "Exact protected-save warning reversion after the complete positive browser lane",
-              "status": "success"
-            },
-            {
-              "name": "Complete actual Comet execution on V8 6.0",
-              "status": "success"
-            },
-            {
-              "name": "Preserve complete source-bound Comet evidence",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Complete job",
-              "status": "success"
-            }
-          ],
-          "log": "run-44091395493-job-134067110384.log.gz",
-          "bytes": 62679,
-          "sha256": "80fa27bf5f488574f5a6a1b730cc17d8eec50c2094520f46f15bda4f33073f08"
-        }
-      ]
-    },
-    {
-      "id": 44091395358,
-      "name": "Research Lab expansion validation",
-      "event": "pull_request",
-      "status": "success",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395358",
-      "jobs": [
-        {
-          "id": 134067110206,
-          "name": "lab",
-          "status": "success",
-          "steps": [
-            {
-              "name": "Set up job",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Exact source identity and task context",
-              "status": "success"
-            },
-            {
-              "name": "Complete-game Lab effects purchases save and causal controls",
-              "status": "success"
-            },
-            {
-              "name": "Actual mobile touch keyboard seven-slot persistence and currency colors",
-              "status": "success"
-            },
-            {
-              "name": "Execute full product on actual V8 6.0",
-              "status": "success"
-            },
-            {
-              "name": "Preserve full source-bound evidence",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Complete job",
-              "status": "success"
-            }
-          ],
-          "log": "run-44091395358-job-134067110206.log.gz",
-          "bytes": 10352,
-          "sha256": "3480a61f34ce806ac8f5e6f21f24a627ade52db62d00aabdc50af0267c93d9ef"
-        },
-        {
-          "id": 134067110479,
-          "name": "timed-slot-speed",
-          "status": "success",
-          "steps": [
-            {
-              "name": "Set up job",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Actual browser slot speed and focus regression",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/setup-node@v4",
-              "status": "success"
-            },
-            {
-              "name": "Post Run actions/checkout@v4",
-              "status": "success"
-            },
-            {
-              "name": "Complete job",
-              "status": "success"
-            }
-          ],
-          "log": "run-44091395358-job-134067110479.log.gz",
-          "bytes": 5482,
-          "sha256": "fff63cf5cbc8b247d14af60b197244e6d4458769bb4ceb64bb4d9b5a6fc1ac3e"
-        }
-      ]
-    },
-    {
-      "id": 44091395196,
-      "name": "Prism feature validation",
-      "event": "pull_request",
-      "status": "skipped",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395196",
-      "jobs": []
-    },
-    {
-      "id": 44091395615,
-      "name": "Prism mobile engine and economy acceptance",
-      "event": "pull_request",
-      "status": "skipped",
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44091395615",
-      "jobs": []
     }
   ]
 }
