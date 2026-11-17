@@ -77,3 +77,22 @@ Current source also keeps one “Recruit first” instruction on locked Ability
 buttons, matching existing control-state wording and avoiding duplicated hints.
 The canonical replay is regenerated on these exact bytes with unchanged full
 endpoints; the original horizontal scenario receipt binds its preceding row fix.
+
+## Exact-source local verification and pending CI retry
+
+On source84917 the [current upgrade suite](current-source/upgrade-states.json)
+passes15,402 assertions/six mobile/text profiles with clean shutdown. The
+[original unmodified Wisp replay](current-source/wisp-native.json) passes467
+checks, including12 original readout profiles and12 Team native-input profiles.
+The first CI [touch failure](ci-touch-attempt1.json) remains retained at check319;
+an earlier local unmodified replay failed at219. The same assertion has prior
+released-source intermittent history. Paired [baseline](touch-diagnostic-comparison/baseline.json)
+and [candidate](touch-diagnostic-comparison/candidate.json) each pass467 with
+read-only input tracing; the diagnostic driver adds observation only, but these
+instrumented comparisons are not substituted for the original required tests.
+The failure's cause remains unproven. No product/test/deadline edits followed
+the failure; full CI attempt2 is running on unchanged feature headbe015365.
+
+[Continuation checkpoint](continuation.json) records the exact branch/source,
+CI run/jobs, authorization, limitations and next action. This evidence branch
+keeps pending results durable without restarting the feature's required CI.
