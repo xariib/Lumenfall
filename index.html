@@ -10495,7 +10495,7 @@ function openStudySpeedMenu(slot){
 }
 function runningStudyMarkup(node,active,maxed,pct,progressValue){
   var regular=node&&!node.retiredTo&&active.slot<5,queueOn=!!state.studyQueue[active.id];
-  return '<div class="card study-card study-running '+(expandedStudySpeedSlot===active.slot?'study-speed-expanded ':'')+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="'+active.id+'">'+
+  return '<div class="card study-card study-running '+(expandedStudySpeedSlot===active.slot?'study-speed-expanded ':'')+(active.slot<5?'study-slot':'legacy-study')+'" '+(active.slot<5?'style="order:'+active.slot+'" data-lab-slot="'+active.slot+'"':'data-legacy-slot="'+active.slot+'"')+' data-running-study="'+active.id+'"'+(maxed?' data-state="maxed"':'')+'>'+
     (regular?'<button class="study-select" data-study-slot="'+active.slot+'" aria-label="Select research for Lab '+(active.slot+1)+'"><span class="study-slot-number">Lab '+(active.slot+1)+'</span><strong>'+node.name+'</strong><span class="study-level">Lv. '+longStudyLevel(active.id)+(node.levelCap!==undefined?' / '+node.levelCap:'')+'</span><span aria-hidden="true">›</span></button>':'<h3>Legacy paid study · '+(node?node.name:'Research')+'</h3>')+
     (node?projectEarnedMarkup(active.id):'')+
     (node&&!node.retiredTo?'<button class="node-queue-toggle study-repeat '+(queueOn?'active':'')+'" data-study-queue="'+active.id+'" aria-pressed="'+queueOn+'" aria-label="'+node.name+' — Queue '+(queueOn?'ON':'OFF')+'. Finish current level'+(queueOn?' and repeat.':'.')+'" title="Repeat research after this level"><span aria-hidden="true">↻</span><span class="study-queue-state">'+(queueOn?'ON':'OFF')+'</span></button>':'')+
@@ -10573,7 +10573,7 @@ function renderLongStudies(){
     var level=plan.level,cost=plan.cost,dur=plan.duration;
     var queueOn = !!state.studyQueue[lnode.id];
     if(plan.paused){
-      html += '<div class="card study-card" data-study-card="'+lnode.id+'"><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note" id="study-price-'+lnode.id+'">'+fmtStudyDuration(dur)+' of paid work remains. No additional cost.</div>'+studyChoiceAction(lnode,plan)+'</div>';
+      html += '<div class="card study-card" data-study-card="'+lnode.id+'"'+(plan.maxed?' data-state="maxed"':'')+'><div class="name"><span class="study-title">'+lnode.name+'</span><span class="study-level">Lv. '+level+(plan.maxed?' · Maxed':'')+' · Saved work</span></div>'+'<p class="desc">'+lnode.desc+'</p>'+projectEarnedMarkup(lnode.id)+'<div class="effect-note" id="study-price-'+lnode.id+'">'+fmtStudyDuration(dur)+' of paid work remains. No additional cost.</div>'+studyChoiceAction(lnode,plan)+'</div>';
       return;
     }
     if(plan.maxed){

@@ -1,10 +1,10 @@
 # Upgrade states — candidate evidence
 
-Product SHA256: `3998ae3b995f84121a212ede9d0b10db836abb345e9b227d9b3239090b5a13a4`.
+Current product SHA256: `dad915b4352abc95c234b30184eeacbab23302367f0f30036583e9fa95bba726`.
 Baseline main: `b075cfba`. Node24.22.1, Chrome for Testing/headless shell157,
 Windows. Self-review only; no physical phone, exact WebView60 DOM or TalkBack.
 
-The [final browser receipt](browser-runs/final/receipt.json) passes15,252
+The [initial accepted browser receipt](browser-runs/final/receipt.json) passes15,252
 assertions across320/390/430px and100/200% text. It covers all current Wisp,
 Forge, Lab, Tree and Astral upgrade families, every insufficient currency,
 disabled purchase attempts, live requirements/wallet refresh, independently
@@ -16,6 +16,10 @@ Causal defects are caught at the intended assertions with normal shutdown:
 [gold border](browser-runs/final-control-gold/receipt.json),
 [locked price](browser-runs/final-control-lock/receipt.json),
 [red shortage](browser-runs/final-control-red/receipt.json).
+Those receipts bind candidate3998, before the additional paid-cap styling.
+Current [Windows paid-cap run](paid-cap-windows.json) passed15,264 assertions
+but failed shutdown, so remains FAIL. Its [canonical replay](canonical-offline-final.json)
+preserves all four exact endpoints. Current-head Linux acceptance is pending.
 The existing required `upgrade-affordability.cjs --negative` CI entry point
 retains its original tests/two controls and additionally executes this suite
 and all three new controls. No workflow or acceptance gate was removed.
@@ -46,3 +50,9 @@ were shortened; the largest required task now totals31,954 bytes. The local
 [existing required-entry log](windows-required-entry.log) records its unchanged
 240s timeout/no receipt; this does not count as an accepted run. All initial
 failures remain visible while current-head Linux CI is pending.
+
+[Old plain-cap assertion](ci-plain-cap-assertion.json) was caught by Linux CI.
+The updated check strictly requires gold for capped ability modules and retains
+plain surfaces for unfinished ones. Its [Windows retry](wisp-layout-windows.json)
+passes2,204 assertions/one profile, then fails initialization/close; no full PASS
+is claimed for that run. Required assertions/deadlines remain intact.

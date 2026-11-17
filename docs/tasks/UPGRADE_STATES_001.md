@@ -60,7 +60,8 @@ advanced Wisp could already have Mastery2000 and no next requirement. Advice
 now selects only uncapped Mastery and returns no Mastery advice when all cap.
 This necessary fix has dedicated single/all-Wisp cap browser coverage.
 
-Product SHA256 `3998ae3b995f84121a212ede9d0b10db836abb345e9b227d9b3239090b5a13a4`.
+Initial accepted UI candidate SHA256
+`3998ae3b995f84121a212ede9d0b10db836abb345e9b227d9b3239090b5a13a4`.
 Source validation, workshop417, team progression1,228/seven controls and
 guidance191 passed. The canonical original offline-catchup generator reproduces
 all four released full-state hashes (722/618/1161/678 kills, zero automatic
@@ -103,3 +104,14 @@ before producing a receipt. Its log is retained; final15,252 focused assertions
 and three causal controls passed separately. Linux required-entry acceptance is
 still pending. No deadline or assertion was weakened. Other openPR59 (Forge
 caps) andPR60 (Rift screen) are separate; recheck main before integration.
+
+Current product SHA256
+`dad915b4352abc95c234b30184eeacbab23302367f0f30036583e9fa95bba726` also
+marks capped running/paused paid Lab cards gold, retaining all work/free resume.
+Its canonical four-window full-state hashes still match main. All15,264 focused
+browser assertions/six profiles passed before a Windows shutdown failure;
+that run is retained as FAIL, pending clean Linux acceptance. Original Wisp
+layout passed2,204 assertions/one profile before a Windows initialization/close
+failure. CI9f2 caught its obsolete universal plain-Module assertion; the new
+conditional strictly requires gold at cap and retains plain unfinished panels.
+These are requirement updates, not relaxed layout or timeout checks.

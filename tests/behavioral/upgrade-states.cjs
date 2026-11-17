@@ -103,6 +103,10 @@ async function run(){
    await install(locked,tab);const cards=await ev('Array.from(document.querySelectorAll("#tab-'+tab+' [data-state=locked]")).map(e=>e.closest(".card")||e).map(e=>({text:e.textContent,prices:e.querySelectorAll("[data-price-currency]").length}))');
    ok(cards.length>0,'locked catalogue covered '+tab);for(const card of cards)ok(!card.prices&&/Rift|Requires|Unlock/.test(card.text),'locked catalogue shows unlock without price '+tab);
   }
+  const paid=copy();paid.activeStudies=[{id:'bossledger',slot:0,remainingSec:60,totalDurationSec:120,speedMult:1}];await install(paid,'research');
+  ok((await observe('[data-running-study=bossledger]')).gold,'capped running paid Lab work stays gold');
+  paid.activeStudies=[];paid.pausedStudies=[{id:'bossledger',remainingSec:60,totalDurationSec:120,speedMult:1}];await install(paid,'research');
+  const resumed=await observe('[data-study-card=bossledger]');ok(resumed.gold&&!resumed.prices.length&&resumed.text.includes('No additional cost'),'capped saved Lab work stays gold and resumes free');
   await install(challenge,'research');
   await unchanged('upgradeQa.patch({})','passive refresh');ok((await ev('__upgradeErrors')).length===0,'no runtime errors');
   const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'upgrades-'+width+'-'+scale+'.png'),Buffer.from(shot.data,'base64'));
