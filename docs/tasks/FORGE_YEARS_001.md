@@ -1,6 +1,6 @@
 # FORGE_YEARS_001 — long-term Forge progression
 
-Status: investigation in progress; gameplay design clarification pending.
+Status: implementation in progress; finite completion requirement confirmed.
 Owner: this feature chat. No subagents, chat creation or message tools used.
 
 ## Original requirement, 17 November 2026
@@ -13,6 +13,16 @@ Owner: this feature chat. No subagents, chat creation or message tools used.
 Goal: a varied Forge with useful short and long upgrade paths, whose overall
 development remains meaningful for years rather than one or two weeks.
 Preserve all paid levels/effects, saves, recovery, unrelated mechanics and UI.
+
+User clarification, 17 November:
+> It should be 2 3 years possibly to max out, there should not be any endless
+> forge upgrades, when you come to a point where it feels like you can never go
+> further, then its because there is some lab upgrades that could be needed or
+> some to strengthen everything to go further
+
+All Forge paths must be finite. Target possible completion in roughly2–3years;
+Lab damage/economy research must provide meaningful help through later walls.
+This supersedes the former endless Forge requirement. No new permission needed.
 
 ## Baseline and overlap
 
@@ -31,9 +41,8 @@ target; this user's new years target supersedes it for this feature.
 
 ## Acceptance and design decision
 
-- Define whether a final completion point is wanted or some paths stay endless;
-  the current code already has endless paths. Asked as a gameplay clarification,
-  not an authorization request. Exact new caps/effects/costs remain undesigned.
+- Every Forge path has an explicit finite cap and final maxed UI. Preserve
+  above-cap historical levels and effects without allowing further purchases.
 - Quantify 7/14-day and longer horizons with explicit account/farming assumptions,
   considering deeper records and reinvestment rather than claiming that a high
   cap or static price alone proves years of player progression.
@@ -54,7 +63,12 @@ All20 short finite tracks fit the synthetic shared14-day wallets; Masterwork500
 costs about4.20e71 Lumen and1.05e70 Shards, while three tracks are endless.
 The audit explicitly does not measure a fresh account's completion calendar.
 
-Finite-versus-endless clarification remains unanswered; do not silently replace
-previously accepted endless mechanics. Next: resolve that gameplay requirement,
-document exact varied caps/effects/prices and multi-year calibration assumptions,
-then implement with focused regression coverage. No PR/integration/APK yet.
+The finite requirement is now confirmed. Candidate calibration: Battle375,
+Arcane325, Harvest315, with original prices through300 then0.2% marginal price
+growth; Masterwork500 retains record bands and original first50 prices, then
+2.5% marginal growth. Other caps/effects unchanged. Existing Lab damage/critical
+and economy improvements must be measured as routes through walls, without
+introducing arbitrary calendar locks. Paid above-cap levels retain their full
+effects. Candidate numbers remain subject to actual cost/reinvestment checks.
+Next: implement/test finite transactions, preservation and a multi-year
+reinvestment forecast with explicit limits. No PR/integration/APK yet.

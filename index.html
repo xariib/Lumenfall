@@ -3704,14 +3704,15 @@ var FORGE_EXPANSION = [
   {"id":"resonancereclaim","name":"Resonance Reclaim","forgeGroup":"Resonance","desc":"Each boss kill restores up to one already-spent Resonate use per level, up to 3. Cannot store extra uses beyond the current run capacity.","unlockDepth":100,"levelCap":3,"effectPerLevel":1,"lumenBase":153442000,"lumenGrowth":2.0,"shardBase":2536500,"shardGrowth":2.0}
 ];
 RESEARCH = RESEARCH.concat(FORGE_EXPANSION);
-// Deep currency investments alongside the short, mechanically bounded tracks.
+// Finite deep investments alongside the short, mechanically bounded tracks.
 // Existing saves initialize these IDs to zero with their queues OFF.
 var FORGE_ENHANCEMENTS = [
-  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate passive Wisp damage multiplier per level. Also strengthens the Wisp-powered part of tap damage. No final level; prices rise by 10% per level.',unlockDepth:100,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
-  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate damaging ability multiplier per level. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. No final level; prices rise by 10% per level.',unlockDepth:150,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
-  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',endless:true,desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level. No ability currencies, Motes, Prisms or Sigils. No final level; prices rise by 10% per level.',unlockDepth:200,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
+  {id:'battletempering',name:'Battle Tempering',forgeGroup:'Enhancements',levelCap:375,grandfatheredCap:true,priceTailStart:300,priceTailGrowth:1.002,desc:'+1 percentage point to a separate passive Wisp damage multiplier per level, up to level 375. Also strengthens the Wisp-powered part of tap damage. Prices rise by 10% per level through 300, then 0.2%. Damage and critical Labs help push further.',unlockDepth:100,effectPerLevel:0.01,lumenBase:10000000,lumenGrowth:1.10,shardBase:250000,shardGrowth:1.10},
+  {id:'arcanetempering',name:'Arcane Tempering',forgeGroup:'Enhancements',levelCap:325,grandfatheredCap:true,priceTailStart:300,priceTailGrowth:1.002,desc:'+1 percentage point to a separate damaging ability multiplier per level, up to level 325. Includes owned Resonant Edge hits; no ability currencies, Support buff or charge bonus. Prices rise by 10% per level through 300, then 0.2%. Damage and critical Labs help push further.',unlockDepth:150,effectPerLevel:0.01,lumenBase:25000000,lumenGrowth:1.10,shardBase:625000,shardGrowth:1.10},
+  {id:'harvesttempering',name:'Harvest Tempering',forgeGroup:'Enhancements',levelCap:315,grandfatheredCap:true,priceTailStart:300,priceTailGrowth:1.002,desc:'+1 percentage point to a separate Lumen and Shard kill-reward multiplier per level, up to level 315. No ability currencies, Motes, Prisms or Sigils. Prices rise by 10% per level through 300, then 0.2%. Lumen, Shard and encounter-reward Labs help afford later upgrades.',unlockDepth:200,effectPerLevel:0.01,lumenBase:40000000,lumenGrowth:1.10,shardBase:1000000,shardGrowth:1.10}
 ];
 RESEARCH = RESEARCH.concat(FORGE_ENHANCEMENTS);
+RESEARCH.forEach(function(node){if(node.id==='masterwork'){node.priceTailStart=50;node.priceTailGrowth=1.025;node.desc+=' Prices rise by 35% per level through 50, then 2.5%. Completed damage Labs help reach later Rift bands.';}});
 // Finite long-tail paths retain their existing prices and earned levels.
 // Existing saves beyond a newly introduced cap keep their paid effects.
 RESEARCH.forEach(function(node){
@@ -8150,6 +8151,13 @@ function researchCostForLevels(node, level, count){
     var row=Amount.integer(level) && Amount.ge(level,0) && FORGE_PRICES[node.id][level];
     var price=Amount.integer(count) && Amount.gt(count,0) && row && row[Amount.sub(count,1)];
     return price ? {lumen:price[0],shard:price[1]} : {lumen:Infinity,shard:Infinity};
+  }
+  if(node.priceTailStart!==undefined && level+count>node.priceTailStart){
+    var early=Math.max(0,Math.min(count,node.priceTailStart-level)),late=count-early;
+    function tailCost(base,growth){
+      return Amount.round(Amount.add(geometricSum(base,growth,level,early),geometricSum(Amount.mul(base,Amount.pow(growth,node.priceTailStart)),node.priceTailGrowth,Math.max(0,level-node.priceTailStart),late)),'ceil');
+    }
+    return {lumen:tailCost(node.lumenBase,node.lumenGrowth),shard:tailCost(node.shardBase,node.shardGrowth)};
   }
   return {
     lumen: Amount.round(geometricSum(node.lumenBase, node.lumenGrowth, level, count),'ceil'),

@@ -46,3 +46,46 @@ not a simulation of a multi-year player's account or proof of human pacing.
 Next: resolve finite completion versus retained endless tracks; specify a varied
 catalogue and calibrate meaningful longer progression with changing account
 power/income. Existing tests alone cannot establish the new years requirement.
+
+## Finite candidate after user clarification
+
+Product SHA256:`53ab7e3d82db877fd637da95604854f0f86880136ea477fab14fb80cbd5f621b`.
+The user confirmed all Forge paths must be finite, with possible2–3year completion
+and useful Lab growth through walls. [Decision](../../decisions/2026-11-17-finite-forge.md).
+
+Finite core373assertions/four causal controls PASS: rational independent tail
+quotes, real final manual/Max/queued payments, individual resource shortages,
+write rollback, cap/above-cap ownership/effects, cold load, recovery, backup
+and Ascend. Completed damage/critical Labs increase measured combat7.5x;
+resource Labs100 increase measured kill payouts9x versus those Labs at0.
+Original Forge9404/25controls, workshop480/four, earned Lab access538/four,
+permanent progression4225, slot contract55, whole-game audit318/three and
+early Wisp2400/five controls PASS. These are self-review/automated checks.
+
+`reinvestment.json` records four real-purchase forecast cases. Reference1001
+finishes on day1063; all cases remain incomplete at14days. Economy Labs100
+instead of500 and fixed Rift501 instead of1001 remain incomplete after1200days.
+The growing farm501→1001/economy Labs100→500 case is23/24 complete at1200days.
+Only the stated mature reference is calibrated to2–3productive years. No actual
+fresh-account completion guarantee or global minimum is claimed.
+
+Reproduce added checks:
+
+```powershell
+node tests/behavioral/finite-forge-years.cjs index.html --negative
+node scripts/qa/finite-forge-reinvestment.cjs index.html --check
+```
+
+First local UI attempt used a nonexistent system Chrome path and failed before
+any profile; retry uses verified installed test Chrome. An accidental Node24
+invocation of the legacy-only Forge runner correctly rejected the runtime;
+actual V8 acceptance still requires the existing dedicated V8 lane. Product
+checks above were not altered for these setup errors. CI/mobile/Android results
+remain pending; task remains open.
+
+The first browser retry reached266checks then hit the unchanged CDP evaluation
+deadline with a teardown timeout. Retained `mobile-rerun` receipt; cause unproven.
+No timeout/assertion was relaxed. GitHub rejected the initial push containing a
+workflow-file edit because its credential lacks `workflow` scope. That unpublished
+commit was amended to keep workflows unchanged and run the new finite/pacing
+checks through the already required `forge-workshop-pacing.cjs` entrypoint.

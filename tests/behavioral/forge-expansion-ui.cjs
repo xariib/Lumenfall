@@ -192,6 +192,17 @@ const cases=String.raw`
   await frames();await pause(150);const capSettled=await measure(lastCard);ok(capSettled.visible,'settled continuing card visible');ok(await ev('document.activeElement===document.querySelector('+JSON.stringify(lastQueue)+')'),'settled continuing focus retained');
   ok(await ev('('+function(sel){const card=document.querySelector(sel);return card.dataset.state!=='maxed'&&!!card.querySelector('[data-research]')&&!!card.querySelector('[data-queue]')&&card.querySelector('[data-research]').disabled&&Array.from(card.querySelectorAll('[data-price-currency]')).filter(e=>e.style.color==='var(--danger)').length===2&&card.querySelector('[data-forge-preview]').textContent.startsWith('Current: ')&&/Next:/.test(card.textContent);}.toString()+')('+JSON.stringify(lastCard)+')'),'continuing card retains next effect and two red prices');
   await shot('forge-last-continuing-'+width+'-'+scale+'-'+motion);await fit('last continuing');
+  for(const [finiteId,ceiling]of [['battletempering',375],['arcanetempering',325],['harvesttempering',315]]){
+   const near=copy(paid);near.research[finiteId]=ceiling-1;near.savedLabMultiplier=1;
+   const price=await ev('prismQa.forgeCost('+JSON.stringify(finiteId)+','+(ceiling-1)+',1)');near.lumen=price.lumen;near.shards=price.shard;
+   await install(near);await prepare(selector('data-research',finiteId),true);await key('Enter','Enter',13);await frames();
+   const state=await ev('prismQa.get()');ok(state.research[finiteId]===ceiling&&state.lumen===0&&state.shards===0,'real final finite purchase '+finiteId);
+   const sel=selector('data-forge-card',finiteId),card=await measure(sel);ok(card.visible,'final cap card stays visible '+finiteId);
+   ok(await ev('('+function(sel,ceiling){const c=document.querySelector(sel);return c.dataset.state==='maxed'&&c.textContent.includes(' / '+ceiling)&&c.textContent.includes('Current:')&&!c.querySelector('[data-research]')&&!c.querySelector('[data-queue]')&&!c.textContent.includes('Next:');}.toString()+')('+JSON.stringify(sel)+','+ceiling+')'),'finite maxed card exposes paid bonus and no purchase '+finiteId);
+   await fit('finite cap '+finiteId);await shot('finite-cap-'+finiteId+'-'+width+'-'+scale+'-'+motion);
+   near.research[finiteId]=10000;await install(near);
+   ok(await ev('document.querySelector('+JSON.stringify(sel)+').textContent.includes("×101")'),'historical overcap bonus stays visible '+finiteId);
+  }
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.code==='Space'||e.trusted&&e.key===' '),'trusted touch and keyboard evidence');
   await ev('prismQa.forgeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready();await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('forge')");
   const cold=await ev('prismQa.get()');for(const field of ['research','researchQueue','nodes','longStudyLevels','activeStudies','owned','cometClaims','autoAscendEnabled','autoAscendTargetDepth','sigilResonanceUses'])ok(JSON.stringify(cold[field])===JSON.stringify(committed[field]),'actual reload preserves paid '+field);
