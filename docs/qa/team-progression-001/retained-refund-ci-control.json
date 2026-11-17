@@ -1,0 +1,30 @@
+{
+  "status": "FAIL",
+  "sourcePath": "C:\\lf-team\\index.html",
+  "sourceSha256": "081f82c0d62a4c679f94fd512db423737489a0e394438e92113bcd3853f1c502",
+  "mutationSha256": "4c992520de4295a10d8256cce232e665e405d5977748e0f5038ea187f0e50221",
+  "browserIdentity": {
+    "selected": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "resolved": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "version": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/157.0.8103.79",
+      "revision": "@52886f99c599c22139930531da30c7c8be9f38a",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+      "jsVersion": "15.7.112.43"
+    }
+  },
+  "mutation": "ascend-copy",
+  "observedAt": "2026-11-17T01:53:49.968Z",
+  "records": [],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  },
+  "failure": "Error: Error: historical internal stress: actual auto-Ascends avoid repeated refund cloning and validation\n    at ok (http://127.0.0.1:65335/index.html:14813:41)\n    at window.runCheaperRefundContracts (http://127.0.0.1:65335/index.html:14880:3)\n    at <anonymous>:1:1\n    at evaluate (C:\\lf-team\\tests\\behavioral\\cheaper-recruitment.cjs:75:154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-team\\tests\\behavioral\\cheaper-recruitment.cjs:102:48)\n    at async C:\\lf-team\\tests\\behavioral\\cheaper-recruitment.cjs:209:6",
+  "stderr": ""
+}
