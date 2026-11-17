@@ -1,18 +1,19 @@
 # Lumenfall — current delivery status
 
-17 November: [Upgrade presentation](tasks/UPGRADE_STATES_001.md) is in progress
-on isolated `feature/upgrade-states-001`: gold boxes for capped components,
-unlock instructions in place of locked prices, independent red currency
-shortages and disabled unaffordable actions across the game. Candidate checks
-and full-cap Rift guidance fix are recorded in the task. Combined with PR59's
-finite Forge baseline:15,438 mobile/text assertions, finite-cap checks and exact
-offline endpoints pass locally. Combined CI/integration and signed Android
-delivery remain pending; this is not a released change.
+17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) is integrated
+at e6139c98: gold caps, unlock instructions and independent red shortages across
+upgrade families. Newer Forge/Rift changes are retained. All PR checks pass;
+exact-main acceptance and signed Android delivery remain pending. Source-bound
+checks, initial failures and continuation evidence are saved in the task.
 
-17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) in progress.
-Remove hints, Farm left/Push right and correct arena/enemy layering. Previous
-source passed666 focused checks/five controls and signed Android133; newer
-main/PR59 is now retained and combined-source validation is required.
+17 November: [Rift screen fixes/PR60](tasks/RIFT_SCREEN_FIXES_001.md) integrated
+at12122b80; [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136)
+published/verified. Removes hints, Farm left/Push right, opaque arena and isolated
+enemy layer; retains newer main/PR59.666 mobile checks/five controls, four paired8h
+replays, six required exact-SHA release workflows/190+1 scenarios, signed save
+upgrade/updater/retail and anonymous APK/assets/feed PASS. All eight PR workflows
+also PASS; physical-phone/WebView60/TalkBack/human review stays open. Self-review
+only. [Evidence](qa/rift-screen-fixes-001/README.md); chat remains open.
 [Full pre-feature status snapshot](PROJECT_STATE_2026-11-17_RIFT_BASELINE.md) is intact.
 The previously reported rapid-repeat economy finding remains open; no economy
 fix is introduced by this Rift presentation task.

@@ -1,180 +1,171 @@
 # Rift screen controls and enemy visibility
 
-17 November 2026. Owner: this feature chat. Status: in progress; final full CI
-pending. Self-review and automated checks only. No independent review claimed.
+17 November2026. Owner: this feature chat. **Integrated and Android0.2.136
+published/verified; all required automated acceptance PASS.** Physical/human
+acceptance remains open. Self-review and automation only; no independent review.
+Do not archive this chat while required acceptance remains unverified.
 
-CURRENT COMBINED SOURCE:0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a.
-Merged newer main0adb60eb/PR59 without a product conflict. Finite Forge and
-Lab surface-synchronization/isolated-profile tests are retained exactly.
-Four paired8h replays against that newer main PASS every saved field/reward;
-only the combined HTML oracle binding changed, all original endpoints retained.
-The upstream canonical status-history file remains byte-identical; this task's
-complete b075 pre-feature snapshot is now`PROJECT_STATE_2026-11-17_RIFT_BASELINE.md`.
-All42ab/browser/Android133 evidence below is historical. Required combined-source
-CI and signed Android acceptance must pass before integration/publication.
-
-## Historical pre-merge checkpoint
-
-Current follow-up: fc7068706ee42d8426bc92abbc5ad46f69372556, with unchanged
-HTML42ab3e34. Early PR CI now PASS for corrected Wisp formula/Encyclopedia
-assertions and the666-check Rift matrix/five controls. Full PR44087287979 and
-prepared full44087341618 remain running. Other prepared gates:44087347242
-Comet,44087351567 Forge,44087356067 Lab,44087361381 Shared,44087365716 Tree.
-These replace the failed a882 full gates below. No new Android candidate is
-needed for a test-only follow-up; final integrated publish build remains
-required. Signed133 source bytes equal current HTML/fonts/branding/native files.
-Do not integrate until exact follow-up commit gates pass. Main wasb075cfba;
-recheck main and merge-preview tree before any lease-checked integration.
-
-Integration checkpoint: main moved to0adb60eb36a3be15ce152d6ffe416d5996b039c7
-through PR59 (finite Forge and Lab presented-surface input fixes). Do not move
-main back to b075 or fc706870. Preserve the complete current Rift QA checkpoint,
-merge newer main, retain both concurrently created status-history snapshots
-under distinct paths, and resolve only actual overlaps. Rebind the combined
-HTML oracle only after paired preservation replays against the new main.
-Then run all required checks and signed Android acceptance on combined bytes.
-All existing source42ab/android133 evidence becomes pre-merge historical.
-
-## Requirements and scope
+## Original requirements and scope
 
 User: “Remove the bar with hints on the rift screen. Switch farm and push
 buttons position with each other. On rift screen the enemies sometimes are
-behind the background.” Original phone screenshots are retained as
+behind the background.” Original phone JPEGs of Rifts286–288 are retained under
 `docs/qa/rift-screen-fixes-001/reported-rift-286.jpg`,287.jpg and288.jpg.
 
-Remove the Rift hint strip and redundant Settings toggle; put Farm left and
-Push right in visual/DOM/keyboard order; keep enemies above scene/theme fills.
-Preserve combat, all original artwork and six themes, Workshop advice, mode
-actions, navigation, accessibility, paid cosmetics, progression and both saves.
-No economy, balance, save-schema, signing-identity or new binding-rule changes.
+Remove the Rift hint strip and redundant Settings control, put Farm left and
+Push right in visual/DOM/keyboard order, and keep enemies above scene/theme
+fills. Preserve original artwork/six themes, combat, mode actions, Workshop
+advice, navigation, accessibility, paid cosmetics, progression and both saves.
+This feature introduces no economy, balance, save-schema, native dependency,
+signing-identity or binding-rule change. Keep newer main's accepted Forge work.
 
-Acceptance: removed controls expose no rendered/focusable strip or reserved gap;
-Farm/Push retain actions and >=44px targets; attack region >=120px; all themes,
-encounters, bosses/Luminous/hit states and both motion modes remain usable at
-320/390/430px and enlarged text. Required CI, signed Android save upgrade,
-actual updater, normal retail launch and public package/assets/feed must pass.
-Physical phone, exact WebView60 DOM, TalkBack and human acceptance remain open
-until observed, so this task/chat must not be archived.
+Acceptance includes removed/focusable controls and reserved gap, unchanged mode
+actions, >=44px mode controls, >=120px attack region, all encounters/themes,
+boss/Luminous/hit states,320/390/430px, enlarged text and both motion modes.
+Required CI and signed Android identity/assets/save upgrade/updater/retail launch
+and anonymous public downloads/feed must pass. Physical phone, exact WebView60
+DOM, TalkBack, Google Play Protect and human acceptance are not observed.
 
-## Baseline and current candidate
+## Baseline, integration and release
 
-Baseline main: b075cfbac508096c240d3cba8885384235e4a210.
-Isolated branch: `fix/rift-screen-fixes-001`, worktree `C:/lf-rift-screen-fixes`.
-Original checkout and other worktrees untouched. [PR60](https://github.com/xariib/Lumenfall/pull/60).
-Read startup/state/workflow and original [theme](RIFT_THEME_REDESIGN_001.md),
-[combat layout](RIFT_COMBAT_LAYOUT_001.md) and
+Initial main: b075cfbac508096c240d3cba8885384235e4a210. Isolated source branch:
+`fix/rift-screen-fixes-001`, worktree `C:/lf-rift-screen-fixes`. Original checkout,
+its attachments and other feature worktrees were not changed. Read startup,
+state/workflow and original [theme](RIFT_THEME_REDESIGN_001.md),
+[combat](RIFT_COMBAT_LAYOUT_001.md) and
 [menu](MOBILE_MENU_CORRECTIONS_001.md) requirements before editing.
 
-Product verification commit: a882428349d8a412b2f3fa47108a104693a1aaaf.
-Its full suites exposed one remaining stale hint-bar expectation in
-`wisp-formula-contract`. The follow-up changes only the test bridge/assertion
-and documentation: check hint removal and keep boss-trait wording in the
-Encyclopedia, retaining every numerical boss/Wisp formula assertion. No HTML
-or production JavaScript bytes changed. New exact-commit CI is required.
-HTML SHA256:42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad.
-Main last checked atb075cfba; overlapping PR59/61/62 are excluded.
-PR merge preview and candidate both have tree
-e8c19a6e749f139684edaeb19b3a14782f4398b3. Recheck main immediately before
-lease-checked serial integration; preserve/revalidate newer work if main moved.
-No integration or public release yet.
+Newer main0adb60eb36a3be15ce152d6ffe416d5996b039c7/PR59 merged during validation.
+Retained its finite Forge progression, paid above-cap effects and presented-
+surface/isolated-profile Lab tests exactly. Resolved only shared status/history
+and HTML oracle overlaps; product merged without conflict.
 
-## Implementation and affected files
+[PR60](https://github.com/xariib/Lumenfall/pull/60) is merged. Main was advanced
+by lease-checked fast-forward from0adb60eb to exact validated commit
+**12122b805b4dd7ad28fef5f26dad94e8a5a8c3df**,14:16:23UTC. Candidate and PR
+merge-preview tree both5fff90d24b8ff41ffb86a70fea151d5632ab427a. All six mandatory
+release-ci-gate workflow_dispatch runs passed on this identical SHA before
+integration; their actual ref was the feature branch. No gate was modified.
+Previous main build44099434281 completed publication before this ref update.
+All eight applicable PR workflows now PASS, including the unchanged full rerun.
+Both complete full workflows prove190 main scenarios plus isolated offline.
+Two Prism-only workflows are skipped by their existing conditions.
+Automated acceptance is satisfied; physical/human acceptance remains open.
 
-`index.html`: remove hint strip/dialog, Settings toggle and their presentation
-preferences/rendering/listeners. Keep pure objective quote logic and Workshop
-power advice. The obsolete device-only preference remains inert; no migration.
-Farm precedes Push in the actual DOM; combat handlers are unchanged.
+Published [Android0.2.136](https://github.com/xariib/Lumenfall/releases/tag/android-1000136),
+[build44101297138](https://github.com/xariib/Lumenfall/actions/runs/44101297138),
+from main12122b80. HTML SHA256:
+`0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a`.
+APK SHA256:`aac1b427e9f573320a968fd3d6b616da5edb6bae4f4bf643ffddb4bdbde41e0e`,
+5,163,041bytes, versionCode1000136, package`com.lumenfall.app`.
+Established signing certificate retained; exact identity is in the receipt.
 
-Use an isolated explicit z1 enemy-visuals layer. Its separate opaque SVG field
-at z-1 masks landscape silhouettes; existing legacy Comet Trail at auto/0,
-original ring at z1 and enemy at z2 remain above it. Separate SVGs retain the
-original ring definitions. All61 original SVG symbols, including29 creature
-symbols and six rings, are byte-identical; fonts/branding/mobile files unchanged.
+## Implementation
 
-Focused regression: `tests/behavioral/rift-screen-fixes.cjs` uses established
-native CDP input/render/save transport,18 viewport/text-size/motion profiles,
-six themes,230 encounters per theme/profile, reload and paid Trail fixture.
-Five causal controls restore hints, reverse modes, lower enemy under ring,
-make the field transparent, or raise field over Trail. Current-source focused
-  CI passes (666 checks and five rejected controls). Existing hint-specific checks now verify removal; unrelated checks,
-assertions and deadlines remain. Updated layout/status/mobile/endless/cast-text
-probes, Android acceptance, source contract and former guidance entrypoints.
-Pre-merge runs the focused matrix first instead of the retired hint-dialog gate.
+`index.html`: remove hint strip/dialog, redundant Settings toggle and related
+presentation preference/rendering/listeners. Keep pure objective quote logic and
+Workshop power advice. The old device-only hint key stays inert; no migration.
+Farm precedes Push in actual DOM; purchase/combat/save handlers are unchanged.
 
-`tests/behavioral/rift-screen-parity.cjs` pairs four8h one-second replays against
-released main and compares every saved field/reward. Only the HTML source hash
-in the existing browser oracle changes; original endpoint hashes remain.
-`docs/PROJECT_STATE_2026-11-17_HISTORY.md` preserves the complete prior status
-byte-for-byte; compacted active older status to fix an existing58-byte context
-overrun without changing the32KiB gate. No archived original was edited.
+Explicit isolated enemy-visuals z1 contains a separate opaque SVG field at z-1.
+Legacy Comet Trail auto/0, original theme ring z1 and enemy z2 stay above it.
+The opaque center masks landscape silhouettes without changing original ring
+definitions. All61 original SVG symbols, including29 creature definitions and
+six rings, are byte-identical to newer main. Fonts/branding/native files unchanged.
+Product diff against newer main is7 additions/150 removals, confined to this UI.
 
-## Verification and evidence
+Supporting changes: new18-profile `rift-screen-fixes.cjs`, paired-replay helper,
+updated retired-hint/order assertions in existing UI/native tests and source
+contract. Corrected remaining Wisp formula test to check hint absence and
+retained Fractured Core Encyclopedia text; every numerical formula assertion
+stays intact. Run that case and the Rift matrix early in pre-merge CI. Existing
+unrelated gates, assertions and deadlines remain; no acceptance was reduced.
 
-[Evidence index](../qa/rift-screen-fixes-001/README.md), raw receipts/screenshots
-and compressed CI logs are retained under`docs/qa/rift-screen-fixes-001/`.
+Upstream canonical history`docs/PROJECT_STATE_2026-11-17_HISTORY.md` is retained
+byte-for-byte. This task's complete pre-feature state snapshot is separately
+preserved byte-for-byte as`docs/PROJECT_STATE_2026-11-17_RIFT_BASELINE.md`.
+Active status compaction fixed an existing58-byte32KiB startup overrun without
+changing the gate. Open rapid-repeat economy finding remains open and unrelated.
 
-- Node24.22.1/Chromium157 locally; full CI pins Node24.19.0; Android Node22.
-- Source syntax/unique IDs/lifecycle guards, task context and diff whitespace
-  checks PASS. Complete source diff self-reviewed; all61 original SVG symbols,
-  native files/fonts/branding and prior status snapshot compared byte-for-byte.
-- Four paired8h windows,115,200 one-second calls per source: every saved field
-  and reward matches baseline. `trail-layer-only-proof.json` proves final
-  production JavaScript is byte-identical to that replay's candidate.
-- Earlier e210 source passed558 checks/18 profiles/24,840 encounter-theme
-  samples and four controls. Final42ab source adds paid Trail layering and a
-  fifth control; its focused matrix/controls pass in current PR CI.
-- Final-source unpublished signed Android0.2.133, run44077735744: PASS identity,
-  packaged assets, save upgrade/both slots/paid entitlements, installed Rift
-  controls/layers, native Workshop→Lab, actual updater and retail Android12
-  launch without debugger/instrumentation. APK SHA256
-  b061f48a3859fd1c23c73f6b49d501e2ac6b7315deb34d09b5134150adc889b7.
-  Self-reviewed all three actual frames: no hints, Farm left/Push right,
-  visible original ring/enemy, landscape outside center and paid cosmetic kept.
-  See`android-candidate-133/`; this is emulator acceptance, not physical-device.
-- Eight applicable PR workflows on a882: seven PASS; broad44076809305 failed
-  only the stale `wisp-formula-contract` hint expectation after completing all
-  main scenarios. The correction preserves actual boss-trait Encyclopedia text.
-  Prism-only workflows are skipped by existing conditions.
-- Six prepared same-SHA workflow_dispatch gates:44077714868 full (same stale assertion failure),
-  44077719366 Comet,44077723702 Forge,44077728141 Lab,44077732074 Shared,
-  44077735978 Tree (five PASS). These run on the feature ref, not main; integration
-  must retain the exact validated SHA or rerun on the changed integrated SHA.
+## Checks and durable evidence
 
-## Retained failures and corrections
+[Evidence index](../qa/rift-screen-fixes-001/README.md), JSON/PNG receipts and
+compressed raw logs live under`docs/qa/rift-screen-fixes-001/`.
 
-No failed/incomplete attempt is counted as a pass. No test or deadline was
-weakened to resolve these results. Earlier-source receipts are historical.
+- Source syntax/IDs/lifecycle guards, task context/links and diff against newer
+  main PASS. Source/assets/snapshots compared byte-for-byte; full diff self-reviewed.
+- Four paired8h windows against newer main0adb60eb,115,200 one-second calls per
+  source: every saved field/reward matches. `combined-paired-replay.json` retains
+  original VM endpoints and the original browser oracle values; only HTML binding
+  changes. Upstream's independent Forge replay binds the immutable earlier VM
+  reference to newer main. No archived reference was rewritten.
+- Combined matrix:666 checks,18 profiles,24,840 encounter/theme samples, six
+  themes, both motion modes and five rejected causal controls. Controls restore
+  hints, reverse modes, lower enemy, make field transparent or cover paid Trail.
+  Actual Fractured Serpent/Effigy/Behemoth screenshots self-reviewed against the
+  user's JPEGs. Synthetic state matches species/region/theme, not the user's save.
+- All six required release workflows PASS on12122b80: full44091457972,
+  Comet44091463570, Forge44091468619, Lab44091472947, Shared44091477819,
+  Tree44091482012. Full coverage:190 main scenarios plus isolated offline PASS.
+  CI Node24.19.0/Chrome157.0.8103.78; local Node24.22.1/Chrome157; Android Node22.
+  Legacy V8 JavaScript checks pass; exact WebView60 DOM is not observed.
+- All eight applicable PR workflows PASS. Full PR44091395146 first attempt failed an
+  existing native Wisp disclosure touch assertion; identical-source prepared
+  workflow passed the whole step. Unchanged retry134084435082 passed the entire
+  suite, including190 main scenarios; isolated offline also PASS. Raw first
+  failure and passing retry are retained; cause of the initial input failure is unproven.
+- Signed Android134 candidate and published136 PASS identity/assets, retained
+  UID/both saves/paid work/legacy cosmetics, actual updater/system install and
+  normal Android12 retail launch without debugger/instrumentation. Three actual
+  published frames self-reviewed: no hints, Farm left, original ring/enemy clear,
+  landscape outside center and paid cosmetic retained.
+- `android-release/public-verification.json`: anonymous versioned and latest APK
+  downloads, release feed, exact commit/identity/assets/security/dependency and
+  upgrade/updater metadata all PASS at14:28:18UTC. Artifact14337221478 digest
+  `ae2af872888492681567ded13c38298f39dfaa933016d66a4c39ec470e05cab5`.
 
-- Initial baseline visual quick test stopped at existing Workshop active-dot
-  assertion after43 checks. Edge failed before CDP context. Local expanded/last
-  Trail quick attempts timed out at browser setup/network-service crash; use
-  passing exact-source Linux CI for those checks.
-- Initial hint-removal candidate0.2.131 passed functional Android checks, but
-  fresh retail screenshot lacked its ring. Separate SVG field corrected this.
-- Separate-field0.2.132 initially failed retail accessibility capture despite
-  visible game frames; an unchanged-source retry passed. Final0.2.133 independently
-  passes. Cause of the earlier omitted accessibility tree remains unproven.
-- Full review caught z0 field covering the paid legacy Trail; corrected to z-1
-  and added a fifth causal control plus valid settled-entitlement save fixture.
-- New test's initial reload race fixed with a per-document token; cast-text
-  test's old Push→Farm expectation corrected to requested Farm→Push while
-  retaining native keyboard and visible-focus assertions.
-- Superseded Wisp attempts failed existing300ms setup waits; unchanged retries
-  passed. Superseded prepared full-suite attempts hit a Lab slot touch assertion,
-  then a different CDP touch deadline after that assertion passed. Failures
-  retained; current-source full gates must independently pass.
-- Separate baseline harness finding: Windows reduced-motion dump-DOM charge
-  assertion rejects BOTH main and candidate because existing global CSS reports
-  transition-property none/duration0.001ms rather than exactly0s. Charge CSS and
-  assertion unchanged. Diagnostic retained for a separate harness task.
+## Retained failures and limitations
 
-## Next concrete action
+No failed/incomplete attempt is counted as a pass; no deadline/assertion was
+weakened. Earlier-source browser/Android receipts are explicitly historical.
 
-Run all required gates on the test-only follow-up. Once they pass, recheck main/merge-preview and
-lease-fast-forward the exact validated candidate without other branch changes.
-Verify PR60 merged, dispatch signed build on main with publish=true, inspect
-its actual frames and verify anonymous versioned/latest APK, identity, assets,
-metadata and feed. Preserve final raw evidence and task/current status in
-GitHub with a docs-only descendant after publication. Do not move main during
-the publish build. Keep physical-phone/WebView60/TalkBack/human acceptance open;
-do not archive the chat. No permission prompts, new chats or delegation.
+- First opaque-field candidate131 lost its fresh retail ring; corrected by a
+  separate SVG. Candidate132 first retail accessibility tree failed, then an
+  unchanged retry passed. Candidates134 and published136 independently pass.
+- Self-review caught field z0 covering paid Trail; corrected to z-1 with a fifth
+  control and valid settled-entitlement fixture. Early reload race fixed with a
+  per-document token; keyboard expectation follows requested Farm→Push order.
+- A stale hint-bar expectation in wisp-formula-contract failed both earlier
+  full suites. Updated only UI assertions/bridge, retaining all numerical checks
+  and Encyclopedia boss text; current early/full required checks pass.
+- Linux Wisp300ms setup waits and earlier Lab CDP touch calls failed transiently
+  in retained attempts; unchanged retries pass. Newer-main Lab fixes are retained.
+  Current PR native disclosure first failure remains recorded, cause unproven;
+  its unchanged retry passed the entire full suite without assertion/deadline changes.
+- Local Windows browser setup/dump-DOM timeouts produced no QA result; no pass
+  claimed. Baseline quick test stopped at old Workshop active-dot assertion.
+  Separate existing reduced-motion probe rejects both baseline and candidate
+  for transition-property none/duration0.001ms instead of exactly0s. Charge CSS
+  unchanged; diagnostic retained for a separate harness task.
+- Physical phone, exact WebView60 DOM, TalkBack, Play Protect and human review
+  remain unverified. Emulator/synthetic fixtures do not prove those acceptances.
+
+## Continuation and next action
+
+Source/main app commit stays12122b80; do not confuse it with QA/document commits.
+Worktree is on docs-only`checkpoint/rift-screen-fixes-001-12122b80-qa`, currently
+rooted at12122b80. Do not start another APK merely because QA HEAD differs.
+
+Full PR44091395146 and all required gates PASS; final raw logs/results retained.
+After publication, main's Forge documentation update e599ed16 was merged into
+the QA/final-doc branch. All28 incoming non-shared files are byte-identical;
+the complete Forge owner status is retained. Product still equals published
+source12122b80. Final delivery/status integration is documentation only.
+
+Remaining concrete action: physical-phone/actual-account review of the three
+requested Rift changes, plus unobserved WebView60 DOM/TalkBack/Play Protect/human
+acceptance as relevant. Read this checkpoint and actual current main before
+responding to findings; preserve newer work and record any newly observed issue.
+Keep this feature/chat open and do not archive while that acceptance is unknown.
+No permission prompts, other chats, subagents or message tools were used.
+No new binding rules introduced.

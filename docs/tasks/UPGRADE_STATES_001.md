@@ -145,16 +145,21 @@ coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
 
-## Current continuation checkpoint — 17 November,14:45 UTC
+## Current continuation checkpoint — 17 November,15:45 UTC
 
 Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
-Owner: this chat, no delegation. Implementation remains in progress; no APK
-delivery or completion claim. Original baseline b075cfba is retained above.
+Owner: this chat, no delegation. Integrated, exact-main acceptance/APK pending;
+no delivery/completion claim. Original baseline b075cfba is retained above.
 Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
 heada0394981c74d12149ed2c8a13aef1467fc12558a. Source merge b3b6b512 includes actual remote maine599ed16
 (finite Forge/Rift UI plus newer delivery records), verified by remote ref/API.
-Other worktrees remain untouched. New pre-merge run44106176907/main134119026031
-and isolated offline134119025789 are running; specialists run concurrently.
+Other worktrees remain untouched. All a039 PR workflows PASS, including native493,
+required suppressed-touch control171, upgrades15438/controls and190main+1offline.
+PR61 is merged at e6139c988a196e131696776784bdb15eec613f03; actual tree d38c2055.
+Only PROJECT_STATE conflicted with newer main0823102c; all newer release records
+are retained. Product/tests/scripts/workflows match the passing PR head exactly;
+all33 merge-context checks pass. Normal non-forced promotion and PR merged state
+were verified. [Integration proof](../qa/upgrade-states-001/prepared-integration.json).
 
 Product merged cleanly; status conflicts retain this feature plus main's newer
 Forge release/Rift records. Workflows are unchanged relative to newer main.
@@ -183,14 +188,13 @@ exit cleanly. Source7943 and finite baseline af692 each PASS493; suppressed
 control rejects at171. Latest5097 source also PASS493/control171 and upgrade
 DOM15438/six profiles/three controls, all with clean exit. Canonical generator
 reproduces all four accepted serialized endpoints; only source binding changed.
-All33 relevant context checks PASS. Full new-head/integrated CI remains pending.
+All33 relevant context checks PASS. Exact-main nine-workflow acceptance is running.
 [Native decision/receipts](../qa/upgrade-states-001/native-presented/decision.json).
 
-Next: save evidence, commit/push current merge and run all new-head CI.
-Recheck actual remote main and active Android build before integration;
-preserve concurrent updates and do not invalidate another release. Merge only
-PR61, verify exact integrated source/tree, dispatch all nine relevant integrated
-workflows, then existing publish=true Android flow. Verify package/signing,
+Next: finish all nine exact-e613 workflow_dispatch checks. Pre-merge run44117341563
+uses main134158929108/offline134158928688; the other eight IDs are saved in
+integrated/dispatched.json under QA. Then existing publish=true Android flow.
+Recheck actual main before building; preserve concurrent work. Verify package/signing,
 save upgrade/updater, retail launch and anonymous public APK/assets/feed.
 Record final status in GitHub. Temporary helpers are under C:/tmp/lf-*.cjs.
 

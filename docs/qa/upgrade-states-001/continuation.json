@@ -1,6 +1,6 @@
 {
-  "status": "in progress; full CI running on exact combined head",
-  "utc": "2026-11-17T15:29:40.054Z",
+  "status": "integrated; exact-main validation and signed/public Android delivery pending",
+  "utc": "2026-11-17T15:45:51.158Z",
   "featureBranch": "feature/upgrade-states-001",
   "featureHead": "a0394981c74d12149ed2c8a13aef1467fc12558a",
   "sourceMerge": "b3b6b5121e56a44f9f277f3d21918c44d50ba8d9",
@@ -26,7 +26,15 @@
     "phase": "All earlier lanes including native493 and required suppressed-touch causal control PASS; final190 scenarios running at step47.",
     "specialistsStatus": "all seven PASS on a0394981; Wisp first layout-settling failure and unchanged3277 PASS retained",
     "offlineStatus": "PASS job134119025789",
-    "nativePositive": "PASS required contribution lane with presented/hit/44px checks"
+    "nativePositive": "PASS required contribution lane with presented/hit/44px checks",
+    "prStatus": "all eight relevant workflows PASS, including190main+1offline,493native,15438upgrades/3controls and171suppressed-touch control",
+    "integrated": {
+      "runId": 44117341563,
+      "mainJob": 134158929108,
+      "offlineJob": 134158928688,
+      "allNine": "running",
+      "receipt": "docs/qa/upgrade-states-001/integrated/dispatched.json"
+    }
   },
   "local": {
     "node": "v24.22.1",
@@ -44,7 +52,7 @@
   "preservedMain": "PR59 finite Forge, PR60 Rift fixes/workflow, newer Forge delivery docs; no feature workflow edits relative to main",
   "priorCi": "f6 passed all seven specialists/190main+1offline.6cb seven specialists/offline PASS; main failed native touch419; original evidence retained.",
   "nativeCorrection": "Presented surface plus fresh viewport/hit/44px checks; original touch and40ms; post-gesture painted frame. All original assertions/profiles/deadlines retained. Required suppressed-touch control added. Underlying platform cause unproven; no product fix claimed.",
-  "next": "Finish exact a039 PR CI. Recheck actual remote main and active Android build. Prepared e613 merge resolves only PROJECT_STATE conflict and preserves newer release evidence. If remote main still0823102c and all PR CI green, promote prepared merge using normal non-forced fast-forward push e613:main; preserve any concurrent advance. If baseline moves, reassess and prepare updated merge with identical code and context checks, without overwriting work. Verify actual integrated tree/source; dispatch all nine required workflow_dispatch checks on exact main via existing helpers. Only after all pass, publish signed Android using existing flow, verify native/retail/public bytes and save final status. No permission requests.",
+  "next": "Keep main e613 stable for exact-main acceptance. Monitor all nine workflow_dispatch runs using lf-track-integrated.cjs; inspect/retain failures and run necessary unchanged retries without weakening gates. After all nine and both premerge jobs PASS, dispatch existing build-android publish=true on validated main. Verify signed/native/retail acceptance and public APK/assets/feed; save final task/status/evidence in GitHub. No app delivery claimed yet. Evidence branch now merges actual main for later documentation-only reconciliation after release.",
   "authorization": "Standing scope approval. No permission questions, subagents, messages or new chats.",
   "archive": "open; physical phone/exact WebView60 DOM/TalkBack unverified; self-review only",
   "cleanup": "Automatic approval review rejected removal of C:/Users/xarib/AppData/Local/Temp/lumenfall-behavioral-lK019w as blocked by policy. Left in place; report rejection separately at delivery.",
@@ -58,6 +66,16 @@
     "remotePublished": true,
     "receipt": "docs/qa/upgrade-states-001/prepared-integration.json",
     "mainBranchProtected": false,
-    "releaseQueue": "No active build at15:17UTC; recheck before promotion"
+    "releaseQueue": "No active build at15:17UTC; recheck before promotion",
+    "status": "PROMOTED to main and PR61 merged"
+  },
+  "integration": {
+    "commit": "e6139c988a196e131696776784bdb15eec613f03",
+    "tree": "d38c20550628cc2fee115b89d9ecf4def3eef437",
+    "base": "0823102c00ce5c69c2a71d4ea5efbf0c54bdce28",
+    "pullRequestMerged": true,
+    "normalFastForward": true,
+    "actualMainAndTreeVerified": true,
+    "sourceSha256": "5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa"
   }
 }
