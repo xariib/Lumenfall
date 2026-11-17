@@ -1,0 +1,46 @@
+{
+  "id": 44034510468,
+  "sha": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1",
+  "event": "workflow_dispatch",
+  "conclusion": "success",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44034510468",
+  "jobs": [
+    {
+      "id": 133874041757,
+      "name": "focused (offline-catchup-core)",
+      "conclusion": "success",
+      "started": "2026-11-17T06:53:11Z",
+      "completed": "2026-11-17T06:56:02Z",
+      "log": "job-133874041757.log.gz",
+      "rawSha256": "4aa39d8199d8bed54af37dbc5179143c4069c55e779135205b3d005f576fb480",
+      "summary": [
+        "2026-11-17T06:55:59.1195117Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-core\", \"sourceSha256\": \"3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80\", \"originalTestSha256\": \"d635329cb0af0b0a234171a92e251bd72d4dcab13cc58d934033716c52f771e8\", \"wallMs\": 130365.353344, \"execution\": \"All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged\", \"records\": [ { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 256, \"batches\": 247, \"kills\": 722, \"ascends\": 0, \"iterations\": 63404, \"earned\": 185272283925.60025 }, { \"case\": \"Prism policy isolation\", \"perAscend\": 0, \"newPrisms\": 6963, \"legacyPrisms\": 6963 }, { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 31, \"batches\": 2045, \"kills\": 722, \"ascends\": 0, \"iterations\": 63404, \"earned\": 185272283925.60025 }, { \"case\": \"ON Clear20\", \"seconds\": 28800, \"batch\": 256, \"batches\": 247, \"kills\": 722, \"ascends\": 0, \"iterations\": 63404, \"earned\": 185272283925.60025 }, { \"case\": \"OFF\", \"seconds\": 28800, \"batch\": 256, \"batches\": 247, \"kills\": 722, \"ascends\": 0, \"iterations\": 63404, \"earned\": 185272283925.60025 }, { \"case\": \"ON Clear21\", \"seconds\": 259200, \"batch\": 256, \"batches\": 360, \"kills\": 1069, \"ascends\": 0, \"iterations\": 92297, \"earned\": 1025586575097.6077 }, { \"case\": \"ON Clear21\", \"seconds\": 345600, \"batch\": 256, \"batches\": 331, \"kills\": 765, \"ascends\": 0, \"iterations\": 84923, \"earned\": 288083547168.0003 }, { \"case\": \"ON Clear21\", \"seconds\": 43200, \"batch\": 256",
+        "2026-11-17T06:55:59.1205098Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 133874042162,
+      "name": "focused (rift-status-stacking-mobile)",
+      "conclusion": "success",
+      "started": "2026-11-17T06:53:11Z",
+      "completed": "2026-11-17T06:55:40Z",
+      "log": "job-133874042162.log.gz",
+      "rawSha256": "77667635d1273e4ed09b07e7bcc51e9158cd90a0d07397f89d024ffa4a1f6654",
+      "summary": [
+        "2026-11-17T06:55:37.4205470Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 133874042194,
+      "name": "focused (wisp-card-simplicity)",
+      "conclusion": "success",
+      "started": "2026-11-17T06:53:11Z",
+      "completed": "2026-11-17T06:54:09Z",
+      "log": "job-133874042194.log.gz",
+      "rawSha256": "20020459585d983fe07fd43cbd3265029b0e5419eb2b95a128729d7044ef2c29",
+      "summary": [
+        "2026-11-17T06:54:05.6538128Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

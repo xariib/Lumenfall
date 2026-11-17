@@ -95,6 +95,13 @@ branch saves continuation and evidence without changing the release source.
 No product/test changes after the checked feature head; post-release integration
 of the final delivery documents will be documentation only.
 
+Eight of nine integrated workflows now PASS, including migration and both-OS
+Wisp after its unchanged retry. Integrated main44034487772 attempt1 hit native
+boost Input.dispatchTouchEvent after16 passing profiles, target opener at
+(382,445.984375); original raw failure saved. Unchanged failed-job attempt2 is
+running. Same52fa source; no deadline/assertion/gate changes. Build/publication
+still blocked until the complete main190 + isolated1 acceptance is green.
+
 Implemented: six-second initial Support recast, unchanged paid90-day earliest
 sustained per-source work; shared direct-damage growth with original Gale/Thorn
 resource economy; matching current DPS and separate base/Support/ability

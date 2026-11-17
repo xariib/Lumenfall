@@ -2,6 +2,13 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Integrated52fa continuation: eight specialist workflows PASS. Full main
+44034487772 attempt1 hit native boost Input.dispatchTouchEvent after16 profiles
+at opener coordinates382,445.984375. Raw attempt1 is preserved; unchanged main
+retry runs against the same integrated commit. Wisp's first integrated negative
+anchor setup hit its existing300ms ceiling; unchanged retry PASS on both OS.
+Signed/public delivery remains pending the full integrated main acceptance.
+
 fda main attempt1 boost timeout after16 profiles is preserved. Attempt2 passed
 that lane unchanged and found an offline UI setup race: restart work completed
 while its intro was active (raw snapshot resumeFlowBusy=true). Starting the next
