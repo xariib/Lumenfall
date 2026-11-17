@@ -48,3 +48,7 @@ These are implementation decisions under the user's requested rebalance, not
 new workflow restrictions or a separate approval stage. Integration, CI, signed
 delivery and observed human/device acceptance remain required as recorded in
 the task. A local candidate or this decision document does not prove completion.
+
+Support timing/90-day target above is superseded by the17 November user
+correction: [year-earned Support](2026-11-17-year-earned-support.md). Other
+manual Ascension, shared damage and display decisions remain current.

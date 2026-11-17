@@ -107,11 +107,11 @@ function verify(html){
  contextual.activeParty=['ember','void','stone','titan','gale','thorn'];for(const id of contextual.activeParty)contextual.spirits[id]=200;
  q.set(contextual);for(const depth of [176,180]){q.get().depth=depth;near(q.get().activeParty.reduce((sum,id)=>sum+q.chip(id),0),t.idle(),'all contextual Bond DPS reconciles '+depth);}
  // Actual cast limits with unlimited charge and both Support sources. Work
- // commitment is checked by the existing paid45/90-day Endurance regression.
- for(const rank of [0,1,2,10])for(const charge of [0,5,10]){
+ // commitment is checked by the existing paid45/90/360-day Endurance regression.
+ for(const rank of [0,1,2,7,8,10])for(const charge of [0,1,2,5,10]){
   const x=world(html),s=x.q.fresh();s.depth=s.enemyDepth=99;s.enemyHp=s.enemyMaxHp=1e100;s.maxDepthEver=1000;s.longStudyLevels.supportduration=rank;s.research.charge=charge;s.activeParty=['tide','aurora'];
   s.spirits.tide=s.spirits.aurora=100;s.heroResource.tide=s.heroResource.aurora=100;x.q.set(s);
-  const cycle=Math.max(6/(1+.08*charge),6-1.2*Math.min(2,rank)),duration=3+.3*rank;near(x.t.cycle(),cycle,'independent Support recast floor');
+  const cycle=Math.max(6/(1+.08*charge),[13,13,13,13,13,13,13,13,4.8,4.8,4.8][rank]),duration=3+.3*rank;near(x.t.cycle(),cycle,'independent Support recast floor');
   let now=CLOCK;
   for(let i=0;i<12;i++){
    x.clock(now);x.q.get().heroResource.tide=x.q.get().heroResource.aurora=100;x.q.abilities('offline',now);
@@ -119,9 +119,11 @@ function verify(html){
    x.q.get().heroResource.tide=x.q.get().heroResource.aurora=100;const held=clone(x.q.get());x.q.cast('tide','offline',now+cycle*1000-1);eq(x.q.get(),held,'unlimited grants cannot bypass1ms before floor');
    now=x.q.get().supportRecastUntil.tide;
   }
-  if(rank===0){eq(cycle,6,'unresearched Support always six seconds');eq(duration/cycle,.5,'unresearched source limited to50% uptime');}
+  if(rank===0){eq(cycle,13,'unresearched Support always thirteen seconds');near(duration/cycle,3/13,'unresearched source follows independent3/13 uptime');}
+  if(rank<8)ok(cycle-duration>duration,'downtime exceeds active duration before earned sustained milestone');
   if(rank===1)ok(duration<cycle,'one45-day level still cannot sustain');
-  if(rank===2&&charge===10)near(duration,cycle,'90-day commitment opens sustained source');
+  if(rank===2)ok(duration<cycle,'90-day investment no longer grants sustained uptime');
+  if(rank===8)eq(duration>=cycle,charge>=2,'360-day milestone plus sufficient Charge opens sustained source');
  }
  // Save failure cannot commit a manual reset, resources or the new benchmark.
  q.set(user);q.get().riftMode='push';q.get().depth=281;q.get().enemyDepth=281;q.get().maxDepthEver=281;const initial=clone(q.get());
@@ -133,7 +135,7 @@ function verify(html){
  return {checks,records};
 }
 const mutations=[
- ['early-uptime','return Math.max(abilityCycleSeconds(),6-1.2*Math.min(2,labExpansionLevel(\'supportduration\')));','return abilityCycleSeconds();'],
+ ['early-uptime','return Math.max(abilityCycleSeconds(),rank<8 ? 13 : 4.8);','return abilityCycleSeconds();'],
  ['repeat-reset','return clearedProgressionRift()>=nextAscendClearedRift();','return clearedProgressionRift()>=15;'],
  ['repeat-preview','if(full<=0 || cleared<=benchmark){','if(full<=0){'],
  ['auto-reset','return false; // Automatic Ascension is retired, including imported ON states.','return true;'],

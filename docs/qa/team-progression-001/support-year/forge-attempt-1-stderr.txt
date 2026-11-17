@@ -1,0 +1,24 @@
+C:\lf-team\tests\behavioral\forge-expansion.cjs:688
+    const before=a.count();try{all[name]();}catch(error){error.message='['+name+'] '+error.message;throw error;}sections[name]=a.count()-before;
+                                                                                                   ^
+
+AssertionError [ERR_ASSERTION]: bounded actual charge profile
+    at Object.ok (C:\lf-team\tests\behavioral\forge-expansion.cjs:53:35)
+    at controllerCases (C:\lf-team\tests\behavioral\forge-expansion.cjs:629:57)
+    at Object.controller (C:\lf-team\tests\behavioral\forge-expansion.cjs:683:20)
+    at verify (C:\lf-team\tests\behavioral\forge-expansion.cjs:688:41)
+    at Object.<anonymous> (C:\lf-team\tests\behavioral\forge-expansion.cjs:696:16)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

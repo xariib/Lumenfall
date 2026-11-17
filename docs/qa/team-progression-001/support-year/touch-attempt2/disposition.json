@@ -1,0 +1,11 @@
+{
+  "sourceSha256": "b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57",
+  "run": 44104469940,
+  "attempt": 2,
+  "checks": 219,
+  "assertion": "real touch opens damage details",
+  "baselineSameFailure": "docs/qa/rift-screen-fixes-001/combined-pr-wisp-first-failure.json",
+  "cause": "Unproven; previous helper did not record target hit/presentation/event completion.",
+  "repair": "Require real presented surface frame and independent visible >=44px hit test, initialize agents, retain native gesture, original open assertion and 15s CDP deadline; no product change.",
+  "acceptance": "Exact-head full replay pending."
+}

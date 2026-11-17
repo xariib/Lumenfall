@@ -10,6 +10,7 @@ if(process.env.LUMENFALL_CYCLE_CAPTURED_SUPPORT==='1'){
  const marker="durationMs:3000+300*labExpansionLevel('supportduration')";
  assert.equal(source.split(marker).length,2,'one captured Support input');
  source=source.replace(marker,'durationMs:ultimate ? 1500 : 1000');
+ source=require('./legacy-support-recast-reference.cjs')(source);
 }
 if(process.env.LUMENFALL_CYCLE_MUTATION==='frameClock'){
  function edit(a,b){assert.equal(source.split(a).length,2,a);source=source.replace(a,b);}

@@ -1,0 +1,31 @@
+{
+  "id": 44153968327,
+  "sha": "f8663ccedbc313edcdfceee52785acef0f061ed5",
+  "event": "pull_request",
+  "conclusion": "success",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968327",
+  "jobs": [
+    {
+      "id": 134289560053,
+      "name": "lab",
+      "conclusion": "success",
+      "started": "2026-11-17T19:00:50Z",
+      "completed": "2026-11-17T19:04:12Z",
+      "log": "job-134289560053.log.gz",
+      "rawSha256": "2b6eaecf238d015b7d00b42edb9a1137e9630754cc5699d0e716eda5e375d268",
+      "summary": [
+        "2026-11-17T19:01:36.3815341Z {\"status\":\"pass\",\"source_sha256\":\"fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}"
+      ]
+    },
+    {
+      "id": 134289560236,
+      "name": "timed-slot-speed",
+      "conclusion": "success",
+      "started": "2026-11-17T19:00:50Z",
+      "completed": "2026-11-17T19:02:37Z",
+      "log": "job-134289560236.log.gz",
+      "rawSha256": "600605bdfb9417ea3afcdd3c8f034b668836d2a0b925b44b70e2a841f5428ca1",
+      "summary": []
+    }
+  ]
+}

@@ -41,16 +41,18 @@ the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests
 within assigned Lumenfall work; missing requirements can still be clarified.
 
-17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) shipped as
-[Android 0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130), source`52fae53d`.
-Manual higher-record Ascension replaces Auto-Ascend with once-only100-Comet
-owner refund. Shared Wisp damage growth, matching DPS displays and initial
-3s Support/6s recast retain paid progression and original utility economy.
-Eight PR and nine integrated workflows PASS. Signed save upgrade, actual
-updater, normal retail Android12 launch and anonymous public APK/assets/feed
-PASS. [Evidence](qa/team-progression-001/delivery.json) retains original failures
-and passing unchanged retries. Self-review only; physical phone, exact WebView60
-DOM, TalkBack and human pacing acceptance remain open. Owner chat stays open.
+17 November correction in progress: [TEAM_PROGRESSION_001](tasks/TEAM_PROGRESSION_001.md)
+is integrated for release:3s active/10s off; EnduranceVIII plus Charge after
+at least360 fastest dedicated research days can sustain. Sourcefbd58e91;
+checked featuref8663cce passes all8 PR workflows/190+1 scenarios and758 mobile
+checks. Current Forge/Rift/upgrade-state delivery stays. Exact-main validation
+and signed/native/public Support release are underway; preserve this source
+through publication. Paid work/saves stay; physical/human acceptance remains open.
+
+17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md),
+[Android0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130):
+shared Wisp DPS, manual higher-record Ascension and the retirement refund.
+Its initial Support timing is superseded above. [Full prior status](qa/team-progression-001/support-year/pre-integration-main-state.md).
 
 16 November: [Support duration/PR57](tasks/SUPPORT_DURATION_001.md) shipped as
 [Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128),
@@ -77,6 +79,9 @@ acceptance remain open. This supersedes earlier presentation acceptance.
 
 [Earlier delivery entries with later corrections](PROJECT_STATE_2026-11-17_HISTORY.md)
 retain the complete 12–14 November receipts and acceptance limitations.
+
+[14–12 November release checkpoints](PROJECT_STATE_2026-11-17_RELEASE_HISTORY.md)
+preserve the earlier versions, evidence, first failures and limitations.
 
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known

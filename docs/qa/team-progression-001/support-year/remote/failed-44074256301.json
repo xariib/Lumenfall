@@ -1,0 +1,44 @@
+{
+  "id": 44074256301,
+  "sha": "f9d01314567d81095467e61d9203a8c84ac3e087",
+  "event": "pull_request",
+  "conclusion": "cancelled",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44074256301",
+  "jobs": [
+    {
+      "id": 134008080843,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "cancelled",
+      "started": "2026-11-17T11:28:02Z",
+      "completed": "2026-11-17T11:38:38Z",
+      "log": "job-134008080843.log.gz",
+      "rawSha256": "75d1c8caaf39aed5ceafb3a6a25645c3ad9cbd144ca9eecc583d5cbc9aa8f90d",
+      "summary": [
+        "2026-11-17T11:30:20.8805990Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3859,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3873,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-17T11:30:42.0722806Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-17T11:30:49.8419237Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:32993/index.html:14662:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:32993/index.html:14670:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"b65ba05779f66c6b612cee91c4f461de80d1671ec6282242949fcff996e9bebf\",\"mutant\":true}",
+        "2026-11-17T11:31:38.0088672Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:32:02.1156203Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:32:56.4582583Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-17T11:36:29.2329071Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:36:39.6329057Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:36:49.7974364Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-17T11:36:49.8100993Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m"
+      ]
+    },
+    {
+      "id": 134008081270,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "failure",
+      "started": "2026-11-17T11:28:03Z",
+      "completed": "2026-11-17T11:30:39Z",
+      "log": "job-134008081270.log.gz",
+      "rawSha256": "fac2f6cf5f18a31e8b255c006d63004f1946c88c6881811039f7e529ad5e654f",
+      "summary": [
+        "2026-11-17T11:28:55.2865225Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T11:30:35.3197173Z   process: { \"exitcode\": 1, \"timed_out\": false, \"stderr\": \"AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: economy/order baseline live\\n+ actual - expected\\n\\n  {\\n    achievements: [],\\n    ascendGains: [],\\n    ascends: 0,\\n    autoTaps: 3600,\\n+   bossKills: 19,\\n-   bossKills: 20,\\n    clockEndMs: 1791365164477,\\n    closedStudies: [],\\n    completedStudies: [\\n      \\\"Guardian's Mastery\\\"\\n    ],\\n    elapsedSec: 3600,\\n+   empowers: 683,\\n+   endDepth: 200,\\n-   empowers: 726,\\n-   endDepth: 210,\\n    fastForwardedKills: 0,\\n+   iterations: 8128,\\n+   kills: 199,\\n+   lumenGained: 3568705941619,\\n+   luminousKills: 45,\\n-   iterations: 8750,\\n-   kills: 209,\\n-   lumenGained: 10133058552901,\\n-   luminousKills: 49,\\n    motesGained: 709,\\n+   pushDepth: 200,\\n-   pushDepth: 210,\\n    researchBought: 10,\\n    retreated: false,\\n    retreats: 0,\\n    retries: 0,\\n+   shardGained: 6917064754,\\n+   sigilsGained: 190,\\n-   shardGained: 16375208246,\\n-   sigilsGained: 210,\\n    studiesStarted: 0\\n  }\\n\\n    at baselineSummary (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:161:9)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:364:2)\\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\\n    at work (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup-parallel.cjs:52:8)\\n    at Object.<anonymous> (/home/runner/work/Lum",
+        "2026-11-17T11:30:35.3207875Z   detail: { \"status\": \"fail\", \"scenario\": \"offline-catchup-core\", \"message\": \"AssertionError [ERR_ASSERTION]: economy/order baseline live\\n+ actual - expected\\n\\n  {\\n    achievements: [],\\n    ascendGains: [],\\n    ascends: 0,\\n    autoTaps: 3600,\\n+   bossKills: 19,\\n-   bossKills: 20,\\n    clockEndMs: 1791365164477,\\n    closedStudies: [],\\n    completedStudies: [\\n      \\\"Guardian's Mastery\\\"\\n    ],\\n    elapsedSec: 3600,\\n+   empowers: 683,\\n+   endDepth: 200,\\n-   empowers: 726,\\n-   endDepth: 210,\\n    fastForwardedKills: 0,\\n+   iterations: 8128,\\n+   kills: 199,\\n+   lumenGained: 3568705941619,\\n+   luminousKills: 45,\\n-   iterations: 8750,\\n-   kills: 209,\\n-   lumenGained: 10133058552901,\\n-   luminousKills: 49,\\n    motesGained: 709,\\n+   pushDepth: 200,\\n-   pushDepth: 210,\\n    researchBought: 10,\\n    retreated: false,\\n    retreats: 0,\\n    retries: 0,\\n+   shardGained: 6917064754,\\n+   sigilsGained: 190,\\n-   shardGained: 16375208246,\\n-   sigilsGained: 210,\\n    studiesStarted: 0\\n  }\\n\\n    at baselineSummary (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:161:9)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup.cjs:364:2)\\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\\n    at work (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/offline-catchup-parallel.cjs:52:8)\\n    at Object.<anonymous> (/home/runner/work/Lumenfall/Lumenf"
+      ]
+    }
+  ]
+}

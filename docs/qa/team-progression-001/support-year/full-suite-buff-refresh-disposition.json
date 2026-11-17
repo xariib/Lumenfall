@@ -1,0 +1,32 @@
+{
+  "utc": "2026-11-17T16:22:27.276Z",
+  "run": 44112467584,
+  "attempt": 1,
+  "head": "1d861c3c072ff28be166854f7461d35efecd8962",
+  "sourceSha256": "b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57",
+  "full": {
+    "coverage": 190,
+    "failed": [
+      "buff-timing"
+    ],
+    "status": "FAIL; no full-suite PASS claim",
+    "observed": "Only named real-scenario FAIL in preserved full-run log is buff-timing; viewport variants and harness result controls also emit PASS lines."
+  },
+  "cause": "The isolated refresh fixture forced a second Tide cast at9s after first0.5s; accepted13s recast blocks the8.5s attempt. Product behavior agrees with requirement.",
+  "correction": "Keep original legacy/source isolation assertions across legal14s cast, extend represented legacy entitlement to20s, add blocked9s snapshot/recast13500 assertion. No production, deadline, tolerance or scenario removal.",
+  "combinedSourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "targetedResult": "Actual Edge complete-source buff-timing PASS68, including unchanged independent integral/old epoch causal control; source-bound stdout retained.",
+  "nativeMobile": [
+    {
+      "source": "b222810016165678ff353a0efd5f2d0e5c046c9f25b78eb5d6ed0ea780efac57",
+      "checks": 745,
+      "profiles": 12,
+      "team": 12,
+      "support": {
+        "checks": 265,
+        "profiles": 12
+      }
+    }
+  ],
+  "next": "Commit/push combined source+fixture; require all8 new-head PR and9 integrated workflows +signed/native/public acceptance."
+}

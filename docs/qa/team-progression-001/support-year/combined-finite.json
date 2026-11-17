@@ -1,0 +1,67 @@
+{
+  "status": "pass",
+  "sourceSha256": "3a223893fe90c81c8a3f06bf4aae8374c09bc4e89aed4e1aed75a412cf52fd88",
+  "checks": 385,
+  "labComparison": {
+    "weak": {
+      "passive": 37600290065,
+      "ability": 168211823975,
+      "lumen": 15840500321,
+      "shards": 89781116
+    },
+    "strong": {
+      "passive": 282002175487.5,
+      "ability": 1261588679812.5,
+      "lumen": 142564502888,
+      "shards": 808030046
+    }
+  },
+  "walls": [
+    {
+      "kind": "live",
+      "researched": false,
+      "verdict": "wall",
+      "kills": 0,
+      "endingDepth": 490
+    },
+    {
+      "kind": "live",
+      "researched": true,
+      "verdict": "sustained",
+      "kills": 17,
+      "endingDepth": 507
+    },
+    {
+      "kind": "offline",
+      "researched": false,
+      "verdict": "wall",
+      "kills": 0,
+      "endingDepth": 490
+    },
+    {
+      "kind": "offline",
+      "researched": true,
+      "verdict": "sustained",
+      "kills": 17,
+      "endingDepth": 507
+    }
+  ],
+  "negative": [
+    {
+      "name": "endless-returns",
+      "caught": "every Forge upgrade has a finite ceiling"
+    },
+    {
+      "name": "paid-bonus-clamped",
+      "caught": "all paid above-cap effects retained battletempering/376"
+    },
+    {
+      "name": "tail-too-cheap",
+      "caught": "independent finite cap and price-tail policy battletempering\n+ actual - expected\n\n  [\n    375,\n    true,\n    300,\n+   1.00001\n-   1.002\n  ]\n"
+    },
+    {
+      "name": "tail-off-by-one",
+      "caught": "first new rank immediately uses the stated slower growth battletempering"
+    }
+  ]
+}

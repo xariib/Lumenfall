@@ -25,9 +25,9 @@ function seed(q,level,ultimate){
 for(const level of [0,5,10])for(const ultimate of [false,true]){
   const x=app(html),q=x.q;
   q.set(seed(q,level,ultimate));
-  const cycle=6,duration=3000;
+  const cycle=13,duration=3000;
   const estimate=q.profile(99);
-  for(const id of ['tide','aurora'])ok(estimate.rates[id]<=1/cycle+1e-9,'HUD Support rate respects independent six-second interval');
+  for(const id of ['tide','aurora'])ok(estimate.rates[id]<=1/cycle+1e-9,'HUD Support rate respects independent thirteen-second interval');
   q.abilities('offline',CLOCK);
   for(const id of ['tide','aurora']){
     eq(q.supportProfile(id).durationMs,duration,'approved cast duration');
@@ -61,9 +61,11 @@ for(const level of [0,5,10])for(const ultimate of [false,true]){
 // Adversarial full charge before every tenth-second step, with both Ultimates
 // staggered by half a natural cycle. Independent interval-union integration
 // proves each source and the full combined buff still have downtime without
-// earned duration research. Alternating sources can cover time at lower strength.
-for(const stagger of [0,5/3]){
- const x=app(html),q=x.q;q.set(seed(q,10,true));q.get().heroResource.aurora=0;
+// earned duration research. Alternating sources also retain gaps before the earned milestone.
+for(const endurance of [0,4,7])for(const stagger of [0,5/3,[13,13,13,13,13,13,13,13][endurance]/2]){
+ const x=app(html),q=x.q;q.set(seed(q,10,true));q.get().longStudyLevels.supportduration=endurance;q.get().heroResource.aurora=0;
+ const cycle=[13,13,13,13,13,13,13,13][endurance],duration=3+.3*endurance;
+ ok(cycle-duration>duration,'actual adversarial scenario has longer downtime than active duration');
  const casts={tide:[],aurora:[]},until={tide:0,aurora:0},sourceUptime={tide:0,aurora:0};let uptime=0,fullUptime=0;
  for(let tick=0;tick<600;tick++){
   const at=CLOCK+tick*100;
@@ -78,10 +80,11 @@ for(const stagger of [0,5/3]){
   if(q.buff(at)>=2)fullUptime+=.1;
   for(const id of ['tide','aurora'])if(q.get().supportBuffs.sources[id]&&q.get().supportBuffs.sources[id].until>at)sourceUptime[id]+=.1;
  }
- for(const id of ['tide','aurora'])for(let i=1;i<casts[id].length;i++)ok(casts[id][i]-casts[id][i-1]>=6000-1e-4,'each pair cast interval respects exact independent floor');
- for(const id of ['tide','aurora'])ok(sourceUptime[id]<31,'each unresearched Support stays at50% uptime under unlimited external charge');
- ok(fullUptime<31,'full combined Support strength stays at most50% uptime');
- records.push({stagger,uptime,fullUptime,sourceUptime,seconds:60,casts});
+ for(const id of ['tide','aurora'])for(let i=1;i<casts[id].length;i++)ok(casts[id][i]-casts[id][i-1]>=cycle*1000-1e-4,'each pair cast interval respects exact independent floor');
+ for(const id of ['tide','aurora'])ok(sourceUptime[id]<=Math.ceil(60/cycle)*duration+.11,'each source respects the independent maximum cast-window coverage');
+ if(endurance===0){for(const id of ['tide','aurora'])ok(sourceUptime[id]<16,'each unresearched Support stays at25% uptime under unlimited external charge');ok(fullUptime<16,'full combined Support strength stays at most25% uptime');ok(uptime<31,'perfect unresearched staggering cannot exceed50% coverage');}
+ ok(uptime<60,'even perfectly staggered sources retain actual gaps before Endurance8');
+ records.push({endurance,stagger,uptime,fullUptime,sourceUptime,seconds:60,casts});
 }
 // Real scheduler must compose and give matching live/offline results; no enemy
 // deaths in this case, so comparisons cover every save field exactly/tightly.

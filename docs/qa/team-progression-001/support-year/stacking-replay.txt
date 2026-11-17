@@ -1,0 +1,57 @@
+Browser identity: { "selected_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "resolved_path": "C:\\Users\\xarib\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application\\brave.exe", "sha256": "f37ec0d048fa283fc58d54b74907797af0fb96039897fed1802dbb73c3a8acba", "version_note": "Windows browser version is obtained through CDP by native-input drivers" }
+Staged source: { "source_sha256": "6f4283b55f7db18bdbf086cf427fc29880a16b68b8f98e834eda6c4f17956a87", "instrumented_sha256": "88c4ad745ed5e44ca8d98c473cdbd32c6d8383e9444258f5e9f7b23aac64f8c6" }
+FAIL support-stacking
+  process: { "exitcode": 1, "timed_out": false, "elapsed_sec": 13.7072632, "timeout_sec": 25 }
+  observed QA: { "qa_count": 1, "qa_status": "fail", "qa_scenario": "support-stacking", "json_status": "fail", "json_scenario": "support-stacking", "runtime_markers": [], "runtime_error_count": 0, "json_error": null, "valid": true }
+  failure: { "message": "Cannot read properties of null (reading 'sources')", "stack": "TypeError: Cannot read properties of null (reading 'sources')\n    at window.runSupportStacking (http://127.0.0.1:63171/index.html?qaScenario=support-stacking&qaFixture=fresh:18904:43)\n    at HTMLDocument.run (http://127.0.0.1:63171/index.html?qaScenario=support-stacking&qaFixture=fresh:20271:46)" }
+  raw artifacts: C:\lf-team\docs\qa\team-progression-001\support-year\stacking-replay\support-stacking-lOyI2Y
+  Chromium stderr tail:
+Error: browser close deadline
+    at Timeout.<anonymous> (C:\lf-team\tests\behavioral\browser-dom.cjs:40:201)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+
+  stdout tail:
+safeEconomy=bridge.endgameEconomyContract();
+          assert(
+            unsafeEconomy.sigilResonanceRunLimit>100 || unsafeEconomy.questRefreshCost<unsafeEconomy.maxQuestCometReward,
+            'intentional endgame currency regression: bounded Sigil use / Comet anti-arbitrage guard was not detected'
+          );
+          finish('pass',{unexpected:'endgame currency regression was not detected'});
+          return;
+        }
+
+        case 'self-test-wisp-role-regression': {
+          var staleRoles=bridge.wispRoleContract();
+          assert(
+            staleRoles.some(function(entry){return entry.role==='Tank' || entry.abilityType==='tank';}),
+            'intentional Wisp role regression: stale Tank semantics were not detected'
+          );
+          finish('pass',{unexpected:'Wisp role regression was not detected'});
+          return;
+        }
+
+        default:
+          throw new Error('unknown scenario '+ctx.scenario);
+      }
+    }catch(error){
+      finish('fail',{message:error && error.message ? error.message : String(error), stack:error && error.stack ? error.stack : null});
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+
+
+<div class="ascend-flash" role="status" aria-live="polite" aria-atomic="true"><span>ASCENDED</span><strong>+20 PRISMS</strong><small>The Rift begins again. You do not.</small></div><pre id="qa-result" data-status="fail" data-scenario="support-stacking">{
+  "scenario": "support-stacking",
+  "status": "fail",
+  "detail": {
+    "message": "Cannot read properties of null (reading 'sources')",
+    "stack": "TypeError: Cannot read properties of null (reading 'sources')\n    at window.runSupportStacking (http://127.0.0.1:63171/index.html?qaScenario=support-stacking&amp;qaFixture=fresh:18904:43)\n    at HTMLDocument.run (http://127.0.0.1:63171/index.html?qaScenario=support-stacking&amp;qaFixture=fresh:20271:46)"
+  },
+  "runtimeErrors": []
+}</pre></body></html>

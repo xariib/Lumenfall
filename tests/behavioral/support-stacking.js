@@ -20,7 +20,7 @@ window.runSupportStacking=function(b,ctx,assert,parity){
         var expected=1.5+ults.length*.25;factor(T,expected,'simultaneous additive '+kind+' '+ids+' '+ults);
         var s=b.getState();ok(s.buffUntil===0&&s.buffMult===1,'new cast leaves legacy untouched');
         ids.forEach(id=>{ok(s.supportBuffs.sources[id].mult===(ults.includes(id)?1.5:1.25),'cast-time source strength');ok(s.supportBuffs.sources[id].until===T+3000,'cast-time source deadline');});
-        near(q.average(),1+ids.reduce((n,id)=>n+(ults.includes(id)?.5:.25)*(3/6),0),'additive mean forecast');
+        near(q.average(),1+ids.reduce((n,id)=>n+(ults.includes(id)?.5:.25)*(3/13),0),'additive mean forecast');
         records.push({kind,ids,ults,factor:expected,records:s.supportBuffs});
       });
     });
@@ -28,7 +28,7 @@ window.runSupportStacking=function(b,ctx,assert,parity){
   ['tide','aurora'].forEach(id=>{seed([id]);cast(id,T);factor(T,1.25,'single support');});
   function stagger(){seed(['tide','aurora'],['aurora']);cast('aurora',T);cast('tide',T+1000);factor(T+2999.999,1.75,'stagger before');factor(T+3000,1.25,'stagger exact');factor(T+3000.001,1.25,'stagger after');factor(T+4000,1,'last expiry');ok(q.next(T+1000)===2,'earliest independent expiry');}
   stagger();
-  function refresh(){seed(['tide']);var s=b.getState();s.supportBuffs={version:1,sources:{tide:{mult:1.5,until:T+8000}}};b.setState(s);cast('tide',T+1000);factor(T+1000,1.5,'same source max strength');ok(b.getState().supportBuffs.sources.tide.until===T+8000,'same source shorter refresh retains earned legacy duration');cast('tide',T+7000);ok(b.getState().supportBuffs.sources.tide.until===T+10000,'later cast extends only its own deadline when its new duration lasts longer');factor(T+7000,1.5,'same source no self stacking');cast('tide',T+13000);factor(T+13000,1.25,'expired source cannot pass old strength');}
+  function refresh(){seed(['tide']);var s=b.getState();s.supportBuffs={version:1,sources:{tide:{mult:1.5,until:T+15500}}};b.setState(s);cast('tide',T+1000);factor(T+1000,1.5,'same source max strength');ok(b.getState().supportBuffs.sources.tide.until===T+15500,'same source shorter refresh retains earned legacy duration');cast('tide',T+14000);ok(b.getState().supportBuffs.sources.tide.until===T+17000,'later cast extends only its own deadline when its new duration lasts longer');factor(T+14000,1.5,'same source no self stacking');cast('tide',T+27000);factor(T+27000,1.25,'expired source cannot pass old strength');}
   refresh();
   function legacy(){seed(['tide','aurora']);var s=b.getState();s.buffUntil=T+7000;s.buffMult=1.8;b.setState(s);cast('tide',T);cast('aurora',T+1000);factor(T+1000,1.8,'legacy floor without double counting');ok(b.getState().buffUntil===T+7000&&b.getState().buffMult===1.8,'legacy exact entitlement unchanged');factor(T+7000,1,'expired legacy neutral');}
   legacy();seed(['tide','aurora']);var ls=b.getState();ls.buffUntil=T+3000;ls.buffMult=1.25;b.setState(ls);cast('tide',T);cast('aurora',T);factor(T+500,1.5,'known sources exceed legacy without duplication');
@@ -61,7 +61,10 @@ window.runSupportStacking=function(b,ctx,assert,parity){
   ok(s.formationRebuild.members.join(',')==='tide,aurora' && s.spirits.tide===0 && s.spirits.aurora===0,'Ascension keeps ordered intent, resets support power');
   s.lumen=1e8;b.setState(s);var price=b.formationTest.cost('tide'),funds=b.getState().lumen;b.formationTest.buy('tide');
   near(funds-b.getState().lumen,price,'reconstruction Wisp paid exactly once');ok(!b.getState().supportBuffs,'recruitment alone creates no boost');
+  ok(b.getState().supportRecastUntil.tide===T+13000,'manual Ascend retains the already recorded Support interval');
   q.ready(['tide','aurora']);b.simulateTimeline(0,'live',T+6000);
+  ok(!b.getState().supportBuffs,'reconstruction cannot bypass the retained recast before its deadline');
+  b.simulateTimeline(0,'live',T+13000);
   ok(Object.keys(b.getState().supportBuffs.sources).join(',')==='tide' && b.getState().activeParty.join(',')==='tide','only rebuilt powered intended member casts');
   ok(b.getState().formationRebuild.members.join(',')==='tide,aurora','partial reconstruction retains exact intent');
   // Parsing is bounded, source order deterministic, and independent of clock.

@@ -1,0 +1,33 @@
+{
+  "id": 44075804553,
+  "sha": "93f3c2ea2de3938e1efa58c34bf85f19248e3c40",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44075804553",
+  "jobs": [
+    {
+      "id": 134013372105,
+      "name": "timed-slot-speed",
+      "conclusion": "failure",
+      "started": "2026-11-17T11:38:17Z",
+      "completed": "2026-11-17T11:39:22Z",
+      "log": "job-134013372105.log.gz",
+      "rawSha256": "4096cf14e96e5ab9ad77e431de27fc9dccf9957557de5e698154a8f4f6ccdbb9",
+      "summary": [
+        "2026-11-17T11:39:20.9218958Z {\"status\":\"fail\",\"sourceSha256\":\"b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed\",\"mutation\":null,\"checks\":0,\"profiles\":[],\"error\":\"Error: CDP deadline Browser.getVersion\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:25:146)\\n    at listOnTimeout (node:internal/timers:581:17)\\n    at process.processTimers (node:internal/timers:519:7)\",\"stderr\":\"[2501:2527:1117/113912.512752:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2501:2527:1117/113912.702314:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2501:2527:1117/113912.856162:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2501:2531:1117/113913.210090:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2501:2531:1117/113913.210307:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2501:2531:1117/113913.210315:ERROR:dbus/bus.cc:406] Failed to conn"
+      ]
+    },
+    {
+      "id": 134013372533,
+      "name": "lab",
+      "conclusion": "success",
+      "started": "2026-11-17T11:38:18Z",
+      "completed": "2026-11-17T11:41:33Z",
+      "log": "job-134013372533.log.gz",
+      "rawSha256": "3c2b7730785225f5739b2abc3f074c5331db281c607899251004883429f6d33c",
+      "summary": [
+        "2026-11-17T11:39:15.0868627Z {\"status\":\"pass\",\"source_sha256\":\"b955a8d8b3c455f7dfe43025e2246a41dfed6a60788de9d053a294ef7b5803ed\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}"
+      ]
+    }
+  ]
+}
