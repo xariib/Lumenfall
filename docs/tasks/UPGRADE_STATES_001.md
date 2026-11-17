@@ -151,8 +151,9 @@ Goal: the original all-game gold-cap/unlock/red-shortage requirement above.
 Owner: this chat, no delegation. Implementation remains in progress; no APK
 delivery or completion claim. Original baseline b075cfba is retained above.
 Own worktree C:/lf-upgrade-states; feature/upgrade-states-001; PR61 last remote
-head6cb2fad6. Latest local helper commit21c3c4ef; merge of newer main12122b80
-(finite Forge plus Rift UI) is in progress. Other worktrees remain untouched.
+head6cb2fad6. Local source merge b3b6b512 includes actual remote maine599ed16
+(finite Forge/Rift UI plus newer delivery records), verified by remote ref/API.
+Other worktrees remain untouched; final evidence commit/new-head CI follows.
 
 Product merged cleanly; status conflicts retain this feature plus main's newer
 Forge release/Rift records. Workflows are unchanged relative to newer main.
@@ -178,13 +179,14 @@ waits one painted frame. Original40ms, all functional assertions,12 original
 mutation. A suppressed-touch causal control is wired through existing required
 affordability --negative; it must fail the original disclosure assertion and
 exit cleanly. Source7943 and finite baseline af692 each PASS493; suppressed
-control rejects at171. Latest5097 source also PASS493/control171. New source
-upgrade DOM/controls are running; canonical replay/binding still pending.
+control rejects at171. Latest5097 source also PASS493/control171 and upgrade
+DOM15438/six profiles/three controls, all with clean exit. Canonical generator
+reproduces all four accepted serialized endpoints; only source binding changed.
+All33 relevant context checks PASS. Full new-head/integrated CI remains pending.
 [Native decision/receipts](../qa/upgrade-states-001/native-presented/decision.json).
 
-Next: finish current-source browser/canonical checks; bind only after exact
-accepted endpoints match; save evidence, commit/push current merge and run all
-new-head CI. Recheck actual main and active Android build before integration;
+Next: save evidence, commit/push current merge and run all new-head CI.
+Recheck actual remote main and active Android build before integration;
 preserve concurrent updates and do not invalidate another release. Merge only
 PR61, verify exact integrated source/tree, dispatch all nine relevant integrated
 workflows, then existing publish=true Android flow. Verify package/signing,

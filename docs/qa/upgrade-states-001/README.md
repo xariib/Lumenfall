@@ -124,3 +124,20 @@ startup/close failure remains FAIL. All32 relevant context checks pass.
 Prior [f6 CI](f6-ci.json) passed190main+1offline and all seven specialists;
 new-head combined CI and Android delivery remain pending. No assertions,
 deadlines or gates were changed for this merge.
+
+The combined0adb full job failed at native touch/check419; original failure and
+ZIP-verified context remain in combined-0adb/native-touch-failure (its PNG is an
+earlier passing profile). All seven specialists and isolated offline passed.
+The [native helper decision](native-presented/decision.json) adds a presented
+surface, fresh hit/44px checks and one post-gesture painted frame. Original40ms,
+native gesture, functional assertions,12+12 profiles and deadlines remain.
+Suppressed-touch control is required through affordability --negative and must
+fail the original disclosure assertion with clean exit. Actual cause of the
+previous platform failures remains unproven; no game fix is claimed.
+
+Main now includes PR60/Rift corrections and Forge delivery records at e599ed16.
+Current source5097d0c3 is [locally verified](combined-rift/verification.json):
+15,438 upgrade checks/six profiles/three controls;493 native checks and171-check
+suppressed-touch rejection; all33 relevant contexts and all four exact canonical
+offline endpoints. Product merged cleanly; workflow files are unchanged relative
+to actual newer main. New-head CI, integration and Android delivery are pending.
