@@ -1,11 +1,15 @@
 # Lumenfall — current delivery status
 
-17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) is integrated
-as`52fae53d`. All eight PR workflows PASS, including190 main +1 isolated
-offline scenarios. Nine exact integrated-main workflows and a new signed public
-APK remain pending. Manual higher-record Ascension, Auto-Ascend retirement/
-refund, shared Wisp damage growth, matching DPS and harder early Support uptime
-are implemented. The released version below remains the public baseline.
+17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) shipped as
+[Android 0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130), source`52fae53d`.
+Manual higher-record Ascension replaces Auto-Ascend with once-only100-Comet
+owner refund. Shared Wisp damage growth, matching DPS displays and initial
+3s Support/6s recast retain paid progression and original utility economy.
+Eight PR and nine integrated workflows PASS. Signed save upgrade, actual
+updater, normal retail Android12 launch and anonymous public APK/assets/feed
+PASS. [Evidence](qa/team-progression-001/delivery.json) retains original failures
+and passing unchanged retries. Self-review only; physical phone, exact WebView60
+DOM, TalkBack and human pacing acceptance remain open. Owner chat stays open.
 
 16 November: [Support duration/PR57](tasks/SUPPORT_DURATION_001.md) shipped as
 [Android0.2.128](https://github.com/xariib/Lumenfall/releases/tag/android-1000128),

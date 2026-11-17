@@ -2,6 +2,12 @@
 
 See [task](../../tasks/TEAM_PROGRESSION_001.md) for requirements and status.
 
+Current: public Android 0.2.130, integrated source `52fae53d5c9615e92e65acd99e34aa8eacb6c2e1`.
+Eight PR and nine integrated workflows PASS; signed native upgrade/updater/retail
+launch and anonymous public bytes/assets/feed PASS. [Delivery](delivery.json).
+Human/device acceptance remains open; self-review only. Earlier entries below
+are chronological checkpoints and do not override this delivered status.
+
 Integrated52fa: all nine workflows PASS. Main44034487772 attempt4 verifies
 190 main +1 isolated offline scenarios in the raw logs. Prior failures and
 unchanged passing replays remain below. Product3f912328 unchanged. Signed
@@ -467,4 +473,84 @@ verify native receipts and anonymous public bytes/assets/feed, and save final
 status/evidence in GitHub. Keep task/chat open: physical phone, exact WebView60
 DOM, TalkBack, independent review and human pacing remain unobserved. Do not
 claim archive or human acceptance. No permission prompts, agents or new chats.
+
+
+## Final pre-delivery checkpoint history
+
+17 November checkpoint: [PR58](https://github.com/xariib/Lumenfall/pull/58)
+merged as`52fae53d5c9615e92e65acd99e34aa8eacb6c2e1`.
+Checked feature head`0f56d555b7114013d0fa1a8e54a1c0a3093168d7`.
+All eight exact-head PR workflows PASS. Main run44026327144 proves190 main
+and1 isolated offline scenarios in the actual raw logs; merge guard verified
+both counts. [Integration receipt](../qa/team-progression-001/integration.json).
+Final product SHA256:
+3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80.
+
+All nine existing integrated-main workflows were dispatched at52fae53d and are
+running. Main must remain at this exact source until signed publication/native/
+anonymous public verification finish. This delivery/team-progression-001-evidence
+branch saves continuation and evidence without changing the release source.
+No product/test changes after the checked feature head; post-release integration
+of the final delivery documents will be documentation only.
+
+Eight of nine integrated workflows now PASS, including migration and both-OS
+Wisp after its unchanged retry. Integrated main44034487772 attempt1 hit native
+boost Input.dispatchTouchEvent after16 passing profiles, target opener at
+(382,445.984375); original raw failure saved. Unchanged failed-job attempt2 is
+running. Same52fa source; no deadline/assertion/gate changes. Build/publication
+still blocked until the complete main190 + isolated1 acceptance is green.
+
+Integrated main attempt2 passed the prior boost lane unchanged, then failed
+new Wisp UI assertion "real touch opens damage details" at check269, after
+the original12 profiles and initial matching-DPS checks. Artifact14307694021
+failure/last observation/context images are preserved under remote/main-52fa-
+attempt2-wisp with ZIP CRC/size verification. Original unchanged local replay
+then PASS467, including all12 new Team profiles; cause remains unproven.
+Unchanged integrated main attempt3 is running. No touch/assertion/product edit.
+
+Counter correction:check269 is the fifth new Team profile (390px/100%/reduce),
+after four complete new profiles, not the first. Main attempt3 then stopped
+earlier in existing Lab catalogue touch, after six320px profiles on the first
+390px profile. Same unchanged local Lab replay PASS1,264/36; Wisp replay PASS467
+with12 Team profiles. Original failure records retained; cause unproven.
+Unchanged main attempt4 runs at52fa. No product/test edits or acceptance waiver.
+
+Integrated main attempt4 PASS: all190 main +1 isolated offline scenarios
+verified in actual raw job logs. All nine exact52fa integrated workflows PASS.
+Original failed attempts and unchanged passing replays remain saved. Product
+SHA3f912328 is unchanged; signed public build is next.
+
+Implemented: six-second initial Support recast, unchanged paid90-day earliest
+sustained per-source work; shared direct-damage growth with original Gale/Thorn
+resource economy; matching current DPS and separate base/Support/ability
+readouts; manual higher-record resets and once-only100-Comet owner refund.
+Supplied save keeps balances, paid work/boosts, roster and history;20→120 Comets
+once. Passive shares44/31/15/10% Ember/Stone/Tide/Gale. Equal-development Titan
+approximately25% of five/20% of six; tested configurations, not universal caps.
+No actual player save/app was modified.
+
+Final-source focused checks: feature1,228/seven controls; full8h partition30,466;
+Support/paid research3,319; guidance191/two controls; actual V8 6.0 Comet and
+permanent vectors1,267. Canonical four8h windows preserve complete saved-state
+hashes and722/618/1161/678 kills with zero automatic Ascends/Prisms. Native
+Comet normal/reduced and offline normal/legacy pass with original assertions.
+Older Ritual helper is explicit historical code only. Offline driver waits for
+the prior return to finish before observing a new failure's intro callback.
+Raw first failures and unchanged retries remain saved. Runtime/DOM and painted
+coordinates did not eliminate every observed native protocol timeout; no root
+cause claim. No workflow, deadline or numeric tolerance was waived.
+
+Signed candidate0.2.129/build43999391752 passed save upgrade, refund100, actual
+updater, retail Android12 launch and assets at earlier081f source; unpublished.
+It is not final delivery. New signed main build/public verification still needed.
+Self-review only; physical phone, exact WebView60 DOM, TalkBack and human pacing
+unobserved. Task/chat remains open, unarchived.
+
+Next: signed public build44048063909 is running at exact52fa (publish:true).
+All nine integrated workflows PASS, verified190 main +1 isolated scenarios.
+Verify actual version/package/cert, both saves/paid work/refund, updater/retail
+launch and anonymous APK/assets/feed. Inspect final installed screenshots;
+save final Task/PROJECT_STATE/evidence to GitHub with a docs-only commit after
+release. No permission prompts, agents, message tools or new chats. Keep
+human/device acceptance explicitly open. Main remains52fa until verification.
 

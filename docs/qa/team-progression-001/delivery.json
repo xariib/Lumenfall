@@ -1,0 +1,187 @@
+{
+  "status": "RELEASED; human/device acceptance open",
+  "utc": "2026-11-17T08:46:48.740Z",
+  "integration": {
+    "status": "PASS",
+    "utc": "2026-11-17T06:52:52.777Z",
+    "pr": "https://github.com/xariib/Lumenfall/pull/58",
+    "baseline": "ba8794065eae233ce49dd7c94b2796e9875c94c5",
+    "featureHead": "0f56d555b7114013d0fa1a8e54a1c0a3093168d7",
+    "integratedCommit": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1",
+    "review": "self-review only",
+    "gates": [
+      {
+        "workflow": "pre-merge-validation.yml",
+        "id": 44026327144,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026327144",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "comet-expansion-validation.yml",
+        "id": 44026327157,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026327157",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "forge-expansion-validation.yml",
+        "id": 44026326958,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026326958",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "lab-expansion-validation.yml",
+        "id": 44026327069,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026327069",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "shared-ui-validation.yml",
+        "id": 44026326957,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026326957",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "tree-focused-qa.yml",
+        "id": 44026326991,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026326991",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "permanent-progression-validation.yml",
+        "id": 44026327040,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026327040",
+        "conclusion": "success"
+      },
+      {
+        "workflow": "wisp-scroll-validation.yml",
+        "id": 44026326975,
+        "url": "https://github.com/xariib/Lumenfall/actions/runs/44026326975",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "release": {
+    "commit": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1",
+    "version": "0.2.130",
+    "versionCode": 1000130,
+    "tag": "android-1000130",
+    "url": "https://github.com/xariib/Lumenfall/releases/tag/android-1000130",
+    "sha256": "ef7572b5f94d8547a25ced5c2a5b806b26f7c016ad64874660d956130e346033",
+    "run": "https://github.com/xariib/Lumenfall/actions/runs/44048063909"
+  },
+  "sourceSha256": "3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80",
+  "integratedWorkflows": [
+    {
+      "id": 44034487772,
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 4,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034487772",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034490808,
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034490808",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034493488,
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034493488",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034495992,
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034495992",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034498467,
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034498467",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034501408,
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034501408",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034504446,
+      "path": ".github/workflows/permanent-progression-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034504446",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034507446,
+      "path": ".github/workflows/wisp-scroll-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 2,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034507446",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    },
+    {
+      "id": 44034510468,
+      "path": ".github/workflows/migration-focused-validation.yml",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44034510468",
+      "head": "52fae53d5c9615e92e65acd99e34aa8eacb6c2e1"
+    }
+  ],
+  "coverage": [
+    {
+      "name": "Lumenfall pre-merge validation",
+      "matches": [
+        "2026-11-17T08:07:44.6800145Z Behavioral QA coverage: main 190/191 cases; both groups are required.",
+        "2026-11-17T08:33:30.3144459Z Behavioral QA passed: 190 deterministic scenario(s)."
+      ]
+    },
+    {
+      "name": "Lumenfall isolated offline catch-up",
+      "matches": [
+        "2026-11-17T06:53:49.9341152Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-17T06:55:33.6507936Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ],
+  "review": "self-review only",
+  "physicalPhone": false,
+  "exactWebView60Dom": false,
+  "talkBack": false,
+  "humanPacing": false,
+  "archived": false
+}
