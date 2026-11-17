@@ -45,8 +45,8 @@ and original symbols/assets. Resolved only actual source-binding/status-history
 overlaps. No Support workflow changes; imported current Rift gates stay intact.
 
 Public baseline Android0.2.135/source0adb60eb is the finite Forge delivery.
-Main now has a separate Rift validation/release in progress: do not invalidate
-its exact-source publication. Recheck latest main before serial integration;
+Rift Android0.2.136/source12122 is now published; current main0823102c adds
+only preserved delivery documentation. Recheck latest main before serial integration;
 preserve newer code rather than overwriting it. PR61 owns separate upgrade UI.
 
 ## Acceptance and evidence
@@ -63,7 +63,8 @@ Current combined source: four8h independent one-second windows retain every
 accepted full-state hash and722/618/1161/678 kills; regenerated binding is in
 rift-combined-golden.json. Actual V8 6.0 whole-source Forge2530 checks PASS.
 Both ran sequentially with256MiB Node heaps to bound local memory use.
-Remaining exact-source checks are pending; older receipts do not prove this merge.
+Recast2012/four (paid11886/six, manual8h30466) and team1929/seven also PASS
+on this exact product. Full exact-head gates remain pending.
 
 Previous Forge-only combined3a223893 source: recast2012/four (paid11886/six,
 actual manual8h partition30466), team1929/seven, Forge9409/25, V8 Forge2530 and
@@ -75,6 +76,13 @@ Required Wisp mobile entry now also runs every existing12-profile Support UI
 case using production Lab actions/payment, original assertions/deadlines and
 runtime-error coverage. This supplies combined-source CI evidence when local
 browser resources are unavailable; no purchase/DOM assertion is bypassed.
+
+Required PR44104469940 attempt2 stopped at the original native damage-disclosure
+assertion (219checks), before Support UI. Same assertion is recorded on published
+Rift12122. Root cause remains unproven. Both touch helpers now require a presented
+screen frame, independently hit-test a visible44px target, and preserve native
+gestures, original behavioral assertions and15s CDP deadlines. Failure evidence
+is retained; complete CI replay is mandatory. No product change for this repair.
 
 Local near-zero RAM interrupted workers, and optional Windows browser runs
 reported startup/input/cleanup failures. Incomplete runs are not passes. The

@@ -5,7 +5,14 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const fresh=await ev('uiRegression.fresh()'),at=args.indexOf('--evidence'),evidence=at<0?null:path.resolve(args[at+1]);
  if(evidence)fs.mkdirSync(evidence,{recursive:true});
  async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=research]").click();clarityQA.select(0)');await ev('Promise.all(document.getElementById("tab-research").getAnimations().map(a=>a.finished)).then(()=>true)');}
- async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(40);const p=await ev('(()=>{var r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ async function touch(selector){
+  await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  const frame=await send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:false});
+  const hit=await ev('(()=>{var e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y);return{x,y,width:r.width,height:r.height,visible:r.top>=0&&r.bottom<=innerHeight+1&&r.left>=0&&r.right<=innerWidth+1,hit:!!h&&(h===e||e.contains(h))}})()');
+  if(evidence){fs.writeFileSync(path.join(evidence,'last-native-target.json'),JSON.stringify({selector,hit},null,2));fs.writeFileSync(path.join(evidence,'last-native-target.png'),Buffer.from(frame.data,'base64'));}
+  check(hit.visible&&hit.hit&&hit.width>=44&&hit.height>=44,'presented Support purchase target is visible, hittable and44px '+JSON.stringify(hit));
+  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:hit.x,y:hit.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(20);
+ }
  for(const width of [320,390,430])for(const scale of [100,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+scale+'%"');
   const s=JSON.parse(JSON.stringify(fresh));s.maxDepthEver=500;s.longStudyLevels.wispdamage=50;s.longStudyLevels.ultimateanalysis=5;s.questDay=new Date().toISOString().slice(0,10);

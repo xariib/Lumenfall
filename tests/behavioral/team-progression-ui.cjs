@@ -5,7 +5,17 @@ const fs=require('node:fs'),path=require('node:path');
 module.exports=async function({send,ev,ok,pause,out}){
  const user=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/team-progression-user-save.json'))),profiles=[];
  async function tab(name){await ev('document.querySelector("[data-tab='+name+']").click()');await ev('Promise.all(document.getElementById("tab-'+(name==='rift'?'battle':name)+'").getAnimations().map(a=>a.finished)).then(()=>true)');}
- async function touch(selector){await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"})');await pause(40);const r=await ev('(()=>{var r=document.querySelector('+JSON.stringify(selector)+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ async function touch(selector){
+  await send('Runtime.enable');await send('DOM.enable');
+  await ev('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center"});new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  // Confirm compositor presentation after viewport/text changes before native
+  // input. Keep the original gesture, behavior assertions and CDP deadline.
+  const frame=await send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:false});
+  const hit=await ev('(()=>{var e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y);return{x,y,width:r.width,height:r.height,viewport:innerWidth,font:parseFloat(getComputedStyle(document.documentElement).fontSize),reduced:matchMedia("(prefers-reduced-motion: reduce)").matches,visible:r.top>=0&&r.bottom<=innerHeight+1&&r.left>=0&&r.right<=innerWidth+1,hit:!!h&&(h===e||e.contains(h)),open:e.parentNode.open}})()');
+  fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'team-last-native-target.json'),JSON.stringify({selector,hit},null,2));fs.writeFileSync(path.join(out,'team-last-native-target.png'),Buffer.from(frame.data,'base64'));
+  ok(hit.visible&&hit.hit&&hit.width>=44&&hit.height>=44,'presented native target is visible, hittable and44px '+JSON.stringify({selector,hit}));
+  const r={x:hit.x,y:hit.y};await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pause(20);
+ }
  async function shot(name){const image=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(image.data,'base64'));}
  for(const width of [320,390,430])for(const scale of [100,200])for(const motion of ['reduce','no-preference']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
