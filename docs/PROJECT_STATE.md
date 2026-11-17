@@ -7,6 +7,13 @@ shortages and disabled unaffordable actions across the game. Candidate checks
 and full-cap Rift guidance fix are recorded in the task. CI/integration and
 signed Android delivery remain pending; this is not a released change.
 
+17 November: [Finite Forge](tasks/FORGE_YEARS_001.md) is under validation in
+[PR59](https://github.com/xariib/Lumenfall/pull/59). Candidate Tempering caps are
+375/325/315; Masterwork remains500 with attainable future prices. A mature
+reinvestment reference finishes in994productive days; this is a pacing model,
+not a fresh-account calendar guarantee. Local core, V8 and12-profile mobile
+checks pass. Integration, exact-head CI and Android delivery remain pending.
+
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests
@@ -46,42 +53,8 @@ scroll ranges and anonymous public APK/assets/feed verification pass.
 retries retained. Self-review only; physical-phone/exact WebView60/TalkBack/human
 acceptance remain open. This supersedes earlier presentation acceptance.
 
-14 November: [All improvements/PR53](tasks/ALL_UPDATES_RELEASE_20261114.md)
-released as [Android 0.2.119](https://github.com/xariib/Lumenfall/releases/tag/android-1000119),
-source `a3d125a5`. Includes PR50 Bond display
-cleanup plus the already accepted [simpler Lab](tasks/LAB_SIMPLE_001.md),
-[currency header](tasks/CURRENCY_HUD_001.md), [progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md),
-Rift themes and earlier progression/fixes. All 16 exact-source workflows, both full
-regressions and isolated offline jobs passed. Signed upgrade/updater retain both
-save slots and paid work; installed Bond/Deeds checks, retail Android 12 launch
-and anonymous public APK/assets/feed verification passed.
-[Evidence](qa/all-updates-release-20261114/README.md). Initial browser/retail
-inspection failures and unchanged passing retries are retained; causes unproven. Phone, exact
-WebView60 DOM, TalkBack and human acceptance remain open. Self-review only.
-
-14 November: [Simpler Lab/PR51](tasks/LAB_SIMPLE_001.md) first shipped0.2.117;
-PR49/52 and PR50 are included in0.2.119. That APK retained Rift Bond names;
-the new correction above removes them.
-
-14 November: [Progressive Deeds](tasks/DEEDS_PROGRESSIVE_001.md) merged through
-PR52; reopened by human correction: each series needs a live progress bar,
-retained cumulative total, existing next targets and increasing stage rewards.
-The correction is included through PR55/56 in Android 0.2.127. Combined
-CI/native/public evidence is linked above; physical/human acceptance remains open.
-
-14 November: [Currency header/PR49](tasks/CURRENCY_HUD_001.md) integrated
-at7f149b89. Human correction requires visible currency names; focused correction
-passes1,776 layout checks. Visible names are included through PR54/56 in
-Android 0.2.127; combined acceptance evidence is linked above. Phone review open.
-
-12 November: [Rift theme redesign](tasks/RIFT_THEME_REDESIGN_001.md) released as
-[Android 0.2.111](https://github.com/xariib/Lumenfall/releases/tag/android-1000111)
-through PR48 at `63c63b1a`: one scene and six stronger themes replace packs;
-original enemies fit their rings. All14 workflows,1,399 visual assertions and
-exact saved-state replay passed. Signed upgrade/updater retained both saves
-and paid work; retail launch/public bytes passed. [Full evidence](qa/rift-theme-redesign-001/README.md)
-retains the first native ANR and passing unchanged retry; cause is unproven.
-Physical-phone/WebView60/TalkBack/human acceptance and independent review are open.
+[Earlier delivery entries with later corrections](PROJECT_STATE_2026-11-17_HISTORY.md)
+retain the complete 12–14 November receipts and acceptance limitations.
 
 [Earlier delivery records through14 November](PROJECT_STATE_2026-11-14_HISTORY.md)
 preserve all prior release versions, hashes, receipts, first failures and known

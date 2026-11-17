@@ -188,3 +188,18 @@ workflow definitions remain authoritative. No missing requirements/permissions.
 Standing authorization applies; do not ask for approval. No new chats/messages.
 Physical phone/exact WebView60 DOM/TalkBack unverified; task/chat stay open and
 unarchived. Resume from current state, never restart or replace live product.
+
+### Main advanced during validation — 17 November,13:35UTC
+
+PR59 merged at `0adb60eb`; its finite Forge changes must be retained. A local
+merge into the feature is in progress. Product merged cleanly; shared AGENTS
+and status conflicts retain both features and main's complete history link.
+Combined source SHA256 `7943ca602debad41cc4ea65c9628aec01a63b7453dffd81669db732b6fe18327`.
+Original canonical generator reproduces all four accepted serialized endpoints;
+only source binding changed. Finite core385/four controls and separate paired
+one-second replay (230,400calls, every saved field equal) PASS. Combined upgrade
+DOM15438/six profiles PASS with clean exit after a retained startup/close failure.
+All32 relevant context checks PASS. Original f6a141e7 full CI passed190 main +1
+offline scenarios/all seven specialists, but cannot accept this newer merge.
+Next: finish combined checks, commit/push this merge, then new-head CI and
+exact-main signed delivery. Existing gestures/deadlines/gates remain unchanged.
