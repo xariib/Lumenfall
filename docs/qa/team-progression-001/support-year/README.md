@@ -1,3 +1,11 @@
+# Released year-earned Support correction
+
+Android0.2.139 is verified at sourceceb2463f83d49402e2702e987af89958790b16db. [Delivery](delivery.json), [integrated full-suite proof](integrated-full-suite.json), [PR proof](pr-full-suite.json), [visual review](visual-review.json) and [native/public receipt](android-release/public-verification.json) bind results to product SHA256fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059. Eight PR/nine integrated workflows PASS;190 main+1 isolated offline scenarios in each. Focused current-source tests,12 Support mobile profiles, signed archived158 upgrade, paid work/refund, actual updater, retail Android12 launch and anonymous APK/assets/feed PASS. Physical phone, exact WebView60 DOM, TalkBack and human pacing remain open. Self-review only.
+
+Android139 passed on unchanged attempt2; the first native Ascend-navigation failure is retained in [its disposition](android-attempt1/disposition.json). No source, test or deadline change was made; root cause remains unproven.
+
+The entries below are chronological; earlier pending states/older-source receipts describe their recorded checkpoints. Full requirements are retained in [pre-release checkpoint](pre-release-task-checkpoint.md) and the exact gzip snapshots.
+
 Android139 native attempt1 failed its installed Ascend navigation assertion after earlier Wisp/Rift checks passed. [Original disposition/artifacts](android-attempt1/disposition.json) and [raw workflow log](remote/job-134373040642.log.gz) are retained. Root cause is unproven; one unchanged retry is running, with no test/source/deadline edits. This is a failed attempt, not a pass.
 
 # Integrated Support release checkpoint

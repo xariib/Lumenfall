@@ -1,5 +1,5 @@
 {
-  "status": "FAIL retained; unchanged retry pending",
+  "status": "FAIL retained; unchanged attempt2 subsequently passed",
   "utc": "2026-11-17T21:21:46.245Z",
   "runId": 44177600711,
   "attempt": 1,
@@ -15,5 +15,14 @@
   "unknown": "Root cause unproven; native timing/input or app state cannot be established from captured prior-menu diagnostic alone",
   "action": "One unchanged rerun to distinguish transient failure; preserve assertions, deadlines, source, initial failure artifacts; investigate any recurrence",
   "files": "files.json",
-  "workflow": "workflow-attempt1.json"
+  "workflow": "workflow-attempt1.json",
+  "retry": {
+    "attempt": 2,
+    "job": 134378083194,
+    "status": "PASS",
+    "sourceChanged": false,
+    "testsChanged": false,
+    "deadlinesChanged": false,
+    "publicReceipt": "../android-release/public-verification.json"
+  }
 }

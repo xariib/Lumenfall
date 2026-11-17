@@ -1,0 +1,552 @@
+{
+  "status": "released; required human/device acceptance remains open",
+  "utc": "2026-11-17T21:31:52.663Z",
+  "pr": "https://github.com/xariib/Lumenfall/pull/62",
+  "featureHead": "f8663ccedbc313edcdfceee52785acef0f061ed5",
+  "integratedCommit": "ceb2463f83d49402e2702e987af89958790b16db",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "version": "0.2.139",
+  "versionCode": 1000139,
+  "apkSha256": "cd5ad9f74c45ac0c71482219603caf46889fa2e29c58579ab15af7a225e44bd9",
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000139",
+  "apk": "https://github.com/xariib/Lumenfall/releases/download/android-1000139/Lumenfall.apk",
+  "prGates": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "id": 44153968040,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968040",
+      "receipt": "remote/passed-44153968040.json"
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "id": 44153967935,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153967935",
+      "receipt": "remote/passed-44153967935.json"
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "id": 44153968034,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968034",
+      "receipt": "remote/passed-44153968034.json"
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "id": 44153968327,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968327",
+      "receipt": "remote/passed-44153968327.json"
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "id": 44153967939,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153967939",
+      "receipt": "remote/passed-44153967939.json"
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "id": 44153968394,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968394",
+      "receipt": "remote/passed-44153968394.json"
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "id": 44153968216,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968216",
+      "receipt": "remote/passed-44153968216.json"
+    },
+    {
+      "workflow": "wisp-scroll-validation.yml",
+      "id": 44153968167,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968167",
+      "receipt": "remote/passed-44153968167.json"
+    }
+  ],
+  "integratedGates": [
+    {
+      "workflow": "pre-merge-validation.yml",
+      "id": 44165420457,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165420457",
+      "receipt": "remote/passed-44165420457.json"
+    },
+    {
+      "workflow": "comet-expansion-validation.yml",
+      "id": 44165425607,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165425607",
+      "receipt": "remote/passed-44165425607.json"
+    },
+    {
+      "workflow": "forge-expansion-validation.yml",
+      "id": 44165431575,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165431575",
+      "receipt": "remote/passed-44165431575.json"
+    },
+    {
+      "workflow": "lab-expansion-validation.yml",
+      "id": 44165436353,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165436353",
+      "receipt": "remote/passed-44165436353.json"
+    },
+    {
+      "workflow": "shared-ui-validation.yml",
+      "id": 44165440634,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165440634",
+      "receipt": "remote/passed-44165440634.json"
+    },
+    {
+      "workflow": "tree-focused-qa.yml",
+      "id": 44165445195,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165445195",
+      "receipt": "remote/passed-44165445195.json"
+    },
+    {
+      "workflow": "permanent-progression-validation.yml",
+      "id": 44165450738,
+      "attempt": 2,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165450738",
+      "receipt": "remote/passed-44165450738.json"
+    },
+    {
+      "workflow": "wisp-scroll-validation.yml",
+      "id": 44165457116,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165457116",
+      "receipt": "remote/passed-44165457116.json"
+    },
+    {
+      "workflow": "migration-focused-validation.yml",
+      "id": 44165548176,
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44165548176",
+      "receipt": "remote/passed-44165548176.json"
+    }
+  ],
+  "fullSuite": {
+    "pr": {
+      "status": "PASS",
+      "utc": "2026-11-17T20:01:09.157Z",
+      "sha": "f8663ccedbc313edcdfceee52785acef0f061ed5",
+      "event": "pull_request",
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "gates": [
+        {
+          "workflow": "pre-merge-validation.yml",
+          "id": 44153968040,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968040",
+          "receipt": "remote/passed-44153968040.json"
+        },
+        {
+          "workflow": "comet-expansion-validation.yml",
+          "id": 44153967935,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153967935",
+          "receipt": "remote/passed-44153967935.json"
+        },
+        {
+          "workflow": "forge-expansion-validation.yml",
+          "id": 44153968034,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968034",
+          "receipt": "remote/passed-44153968034.json"
+        },
+        {
+          "workflow": "lab-expansion-validation.yml",
+          "id": 44153968327,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968327",
+          "receipt": "remote/passed-44153968327.json"
+        },
+        {
+          "workflow": "shared-ui-validation.yml",
+          "id": 44153967939,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153967939",
+          "receipt": "remote/passed-44153967939.json"
+        },
+        {
+          "workflow": "tree-focused-qa.yml",
+          "id": 44153968394,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968394",
+          "receipt": "remote/passed-44153968394.json"
+        },
+        {
+          "workflow": "permanent-progression-validation.yml",
+          "id": 44153968216,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968216",
+          "receipt": "remote/passed-44153968216.json"
+        },
+        {
+          "workflow": "wisp-scroll-validation.yml",
+          "id": 44153968167,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44153968167",
+          "receipt": "remote/passed-44153968167.json"
+        }
+      ],
+      "run": 44153968040,
+      "main": 190,
+      "isolatedOffline": 1,
+      "jobs": [
+        {
+          "group": "main",
+          "count": 190,
+          "id": 134289559224,
+          "log": "remote/job-134289559224.log.gz",
+          "rawSha256": "ebf397464425487058768fcfcf9feaa5140ac2b97899e63c9269d483cc4e841d"
+        },
+        {
+          "group": "offline",
+          "count": 1,
+          "id": 134289558750,
+          "log": "remote/job-134289558750.log.gz",
+          "rawSha256": "24ca0c14b11e4b7f583cbfda2a77852c1a91766b88e3a8f46a646e644750ba13"
+        }
+      ],
+      "mobile": {
+        "checks": 758,
+        "originalProfiles": 12,
+        "teamProfiles": 12,
+        "support": {
+          "checks": 265,
+          "profiles": 12
+        },
+        "browser": {
+          "executable": "/opt/google/chrome/google-chrome",
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Chrome/157.0.8103.50",
+            "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+            "jsVersion": "15.7.112.23"
+          }
+        }
+      }
+    },
+    "integrated": {
+      "status": "PASS",
+      "utc": "2026-11-17T21:13:33.287Z",
+      "sha": "ceb2463f83d49402e2702e987af89958790b16db",
+      "event": "workflow_dispatch",
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "gates": [
+        {
+          "workflow": "pre-merge-validation.yml",
+          "id": 44165420457,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165420457",
+          "receipt": "remote/passed-44165420457.json"
+        },
+        {
+          "workflow": "comet-expansion-validation.yml",
+          "id": 44165425607,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165425607",
+          "receipt": "remote/passed-44165425607.json"
+        },
+        {
+          "workflow": "forge-expansion-validation.yml",
+          "id": 44165431575,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165431575",
+          "receipt": "remote/passed-44165431575.json"
+        },
+        {
+          "workflow": "lab-expansion-validation.yml",
+          "id": 44165436353,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165436353",
+          "receipt": "remote/passed-44165436353.json"
+        },
+        {
+          "workflow": "shared-ui-validation.yml",
+          "id": 44165440634,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165440634",
+          "receipt": "remote/passed-44165440634.json"
+        },
+        {
+          "workflow": "tree-focused-qa.yml",
+          "id": 44165445195,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165445195",
+          "receipt": "remote/passed-44165445195.json"
+        },
+        {
+          "workflow": "permanent-progression-validation.yml",
+          "id": 44165450738,
+          "attempt": 2,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165450738",
+          "receipt": "remote/passed-44165450738.json"
+        },
+        {
+          "workflow": "wisp-scroll-validation.yml",
+          "id": 44165457116,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165457116",
+          "receipt": "remote/passed-44165457116.json"
+        },
+        {
+          "workflow": "migration-focused-validation.yml",
+          "id": 44165548176,
+          "attempt": 1,
+          "url": "https://github.com/xariib/Lumenfall/actions/runs/44165548176",
+          "receipt": "remote/passed-44165548176.json"
+        }
+      ],
+      "run": 44165420457,
+      "main": 190,
+      "isolatedOffline": 1,
+      "jobs": [
+        {
+          "group": "main",
+          "count": 190,
+          "id": 134330057056,
+          "log": "remote/job-134330057056.log.gz",
+          "rawSha256": "7aa186090d5e0f99063a9d231d6795111bf5ccefe10721cd8ad9a39f6f5d7062"
+        },
+        {
+          "group": "offline",
+          "count": 1,
+          "id": 134330056665,
+          "log": "remote/job-134330056665.log.gz",
+          "rawSha256": "c9e7d23fe7c6bc34737417bcc5a815e14a49571ff2586d616fd721fcaaf879f8"
+        }
+      ],
+      "mobile": {
+        "checks": 758,
+        "originalProfiles": 12,
+        "teamProfiles": 12,
+        "support": {
+          "checks": 265,
+          "profiles": 12
+        },
+        "browser": {
+          "executable": "/opt/google/chrome/google-chrome",
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Chrome/157.0.8103.50",
+            "revision": "@049750111b1e5c11565c792b2aeed5541f332bad",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+            "jsVersion": "15.7.112.23"
+          }
+        }
+      }
+    }
+  },
+  "local": {
+    "upgrade-combined-golden.json": {
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "status": "Independent one-second oracle completed"
+    },
+    "upgrade-combined-ci-calibration.json": {
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "status": "pass",
+      "checks": 3424,
+      "controls": 10
+    },
+    "upgrade-combined-v8.json": {
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "status": "pass",
+      "checks": 2530,
+      "node": "v8.3.0",
+      "v8": "6.0.286.52"
+    },
+    "upgrade-combined-recast.json": {
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "status": "PASS",
+      "checks": 2012,
+      "controls": 4
+    },
+    "upgrade-combined-team.json": {
+      "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+      "status": "PASS",
+      "checks": 1929,
+      "controls": 7
+    },
+    "calibrationControlScope": {
+      "currentSourceControls": 9,
+      "historicalEpochWitness": {
+        "version": "0.2.130",
+        "sourceSha256": "3f9123285f3377740e3017246fa7b0a5f8cbad60cabc9e477be9c9aefdeffa80"
+      },
+      "currentPositiveCases": 34
+    },
+    "paidResearch": {
+      "checks": 11886,
+      "controls": 6
+    },
+    "manualOffline": {
+      "checks": 30466,
+      "controls": 1
+    }
+  },
+  "visual": {
+    "status": "PASS visual inspection",
+    "utc": "2026-11-17T21:31:46.271Z",
+    "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+    "integratedCommit": "ceb2463f83d49402e2702e987af89958790b16db",
+    "version": "0.2.139",
+    "runId": 44177600711,
+    "browser": {
+      "evidence": "current-mobile/visual-review.json",
+      "files": [
+        {
+          "name": "roles-390-100.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/roles-390-100.png",
+          "bytes": 205620,
+          "sha256": "c5cd5bdae9f2fea509283d128498283ee524c0c4b8ee248840fc2ac3c77249f1",
+          "crc32": 2108910254
+        },
+        {
+          "name": "roles-390-200.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/roles-390-200.png",
+          "bytes": 212165,
+          "sha256": "73b4f7486a14ea9007f08dbd3be34fad99a0c3398e8f921f1408eaa15541c965",
+          "crc32": 929272996
+        },
+        {
+          "name": "support-endurance-390.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/support-duration/support-endurance-390.png",
+          "bytes": 238797,
+          "sha256": "5cfd24aa357c1a6532c45287fe5d7e25c3284203795a60baa06f9a9300048fe6",
+          "crc32": 118052763
+        },
+        {
+          "name": "tide-earned-duration-390.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/support-duration/tide-earned-duration-390.png",
+          "bytes": 214702,
+          "sha256": "4aa0b1c906baac1362e4aea96f868814b3364ccaed4eb83422747b5d4d1081b4",
+          "crc32": 1160599557
+        },
+        {
+          "name": "team-ascend-390.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/team-ascend-390.png",
+          "bytes": 210574,
+          "sha256": "caa5a9c50e367b0411c33f2beab21da4c46cc822ecc7fb52245a113a96563dcc",
+          "crc32": 2811534543
+        },
+        {
+          "name": "team-ember-390.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/team-ember-390.png",
+          "bytes": 211996,
+          "sha256": "a7852d35ac521c51e19761439c352ea38c61219eef147fb23051f6812ec307ab",
+          "crc32": 4271527387
+        },
+        {
+          "name": "team-rift-390.png",
+          "entry": "home/runner/work/Lumenfall/Lumenfall/validation-evidence/wisp-contribution-mobile/team-rift-390.png",
+          "bytes": 260542,
+          "sha256": "d722ca94112061f19b8b8bcbe888e662d941a5fd6bc16e00c024a78393ab6fb5",
+          "crc32": 861963041
+        }
+      ],
+      "observed": [
+        "Ember displays4.69B current DPS,3.61B base and Supportx1.3 consistently; unaffordable61.14BLumen is red; locked rarity explains its prerequisite without a price; maxed ability has gold border",
+        "Lab shows3s/13s early timing,5.4s/4.8s EnduranceVIII milestone and360minimum fastest research days; both missing prices red and actual purchase disabled",
+        "Tide earned-level8 card states5.4s buff and sufficient Charge requirement; existing Ultimate/module/gold states remain readable",
+        "Rift shows six individual DPS values with Ember strongest and Titan a minority; enemy/arena/layering and mode order preserved",
+        "Ascend is manual with+0 disabled untilclear280 afterrewarded279; reset/keep list and precise reward-calculation section visible",
+        "100%/200% text samples wrap and retain navigation; original native touch/keyboard/focus assertions remain passing in results.json"
+      ]
+    },
+    "native": {
+      "files": [
+        {
+          "file": "android-release/installed-wisp-card.png",
+          "bytes": 68629,
+          "sha256": "2b60525f9031c131be634b4bb300f7914d70d2903bbe24661d2ae20a7c3d3f48"
+        },
+        {
+          "file": "android-release/installed-rift-screen.png",
+          "bytes": 151333,
+          "sha256": "27eefa1cf0229fd414d9e0fe1a61805f8684baec758044476c8eb9fb39c1847a"
+        },
+        {
+          "file": "android-release/production-normal-launch-settled.png",
+          "bytes": 141467,
+          "sha256": "ff51885ce1bae087ec078a640076df0a07b66d7aea81e9d5b36d2d73c710e1bc"
+        }
+      ],
+      "observed": [
+        "Installed 320px Wisp card shows current625.3DPS, matching base625.3DPS and Supportx1 in distinct rows; Damage details collapsed and maxed Mythic rarity gold; header currencies and navigation fit",
+        "Installed Rift shows individual Ember431.2/s and Stone761.3/s, inactive Support indicator, retained enemy art and Farm-before-Push controls; aggregate Wisp damage includes ability output separately from passive row",
+        "Settled normal retail launch shows active Rift enemy, individual Wisp output, resource header and visible enabled navigation without loading cover"
+      ]
+    },
+    "review": "Assistant visual inspection and automated checks only; not independent review",
+    "limitations": [
+      "modern browser and Android12 emulator; no physical phone",
+      "exact WebView60 DOM",
+      "TalkBack",
+      "human long-term pacing/performance"
+    ]
+  },
+  "rule": {
+    "initialActiveSeconds": 3,
+    "initialBetweenCastStartsSeconds": 13,
+    "initialOffSeconds": 10,
+    "earlyRanks": "0–7:13s interval; duration3+0.3rank; downtime exceeds active duration",
+    "continuous": "EnduranceVIII opens4.8s minimum interval;5.4s duration needs sufficient natural Charge",
+    "minimumFastestDedicatedResearchDays": 360,
+    "calendarGuarantee": false
+  },
+  "native": {
+    "bothSaveSlotsRetained": true,
+    "paidWorkRetained": true,
+    "uidRetained": true,
+    "autoAscendRetirementCredit": 100,
+    "actualUpdater": true,
+    "retailAndroid12Launch": true,
+    "package": "com.lumenfall.app",
+    "stableSigning": true,
+    "anonymousPublicApkAndMetadata": true,
+    "upgradeBaseline": "archived signed0.1.158 and disposable older updater fixture; no observed physical-phone130 upgrade",
+    "attempts": {
+      "runId": 44177600711,
+      "passingAttempt": 2,
+      "firstAttemptFailure": "Installed native navigation activates ascend",
+      "firstAttemptEvidence": "android-attempt1/disposition.json",
+      "retryChanges": "none; source/tests/deadlines unchanged",
+      "rootCause": "unproven"
+    }
+  },
+  "baselinePublication": {
+    "version": "0.2.138",
+    "commit": "e6139c988a196e131696776784bdb15eec613f03",
+    "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000138",
+    "apkSha256": "bb4ba72a951a67e81f6a7946014cc0777027488d06f4d69a40988d460e92ecfe",
+    "evidence": "baseline-upgrade-release/public-verification.json"
+  },
+  "review": "Self-review/automated checks and assistant visual inspection only; not independent review",
+  "limitations": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human long-term pacing/performance"
+  ],
+  "archive": "owner task/chat remains open and unarchived",
+  "finalDocumentationChecks": {
+    "status": "PASS",
+    "node": "v24.22.3",
+    "tasks": 39,
+    "evidence": "final-delivery-context.json",
+    "sharedStartupBytes": 19136,
+    "largestStartupBytes": 32504,
+    "productDiffAfterRelease": "empty"
+  }
+}

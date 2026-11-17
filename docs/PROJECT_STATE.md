@@ -41,13 +41,14 @@ the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests
 within assigned Lumenfall work; missing requirements can still be clarified.
 
-17 November correction in progress: [TEAM_PROGRESSION_001](tasks/TEAM_PROGRESSION_001.md)
-is integrated for release:3s active/10s off; EnduranceVIII plus Charge after
-at least360 fastest dedicated research days can sustain. Sourcefbd58e91;
-checked featuref8663cce passes all8 PR workflows/190+1 scenarios and758 mobile
-checks. Current Forge/Rift/upgrade-state delivery stays. Exact-main validation
-and signed/native/public Support release are underway; preserve this source
-through publication. Paid work/saves stay; physical/human acceptance remains open.
+17 November: [Year-earned Support/PR62](tasks/TEAM_PROGRESSION_001.md)
+released as [Android0.2.139](https://github.com/xariib/Lumenfall/releases/tag/android-1000139),
+sourceceb2463f. Support3s active/10s off; EnduranceVIII plus Charge
+can sustain after at least360 fastest dedicated research days. Paid progress
+and concurrent updates stay. Eight PR/nine integrated gates,190+1 each,
+signed upgrade/updater/retail and anonymous APK checks PASS.
+[Evidence](qa/team-progression-001/support-year/delivery.json). Self-review only;
+phone/exact WebView60 DOM/TalkBack/human pacing and owner chat remain open.
 
 17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md),
 [Android0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130):

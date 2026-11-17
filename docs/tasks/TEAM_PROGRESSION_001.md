@@ -1,142 +1,72 @@
 # TEAM_PROGRESSION_001 — meaningful Wisp investment and manual progression
 
-Status: integrated; all8 exact-head PR and all9 exact-main workflows PASS.
-Android0.2.139 build44177600711 is running; signed/native/public delivery pending. Owner: this feature chat. No agents, other chats or
-message tools used. User explicitly requires finishing without permission prompts.
+Status: released as Android0.2.139; required human/device acceptance remains open.
+Owner: this feature chat. User explicitly requires finishing without permission
+prompts; no agents, new chats or message tools used.
 
-## Goal and requirements
+## Requirements and delivered behavior
 
-Original16November request: make Tide uptime difficult to earn; explain each
-Wisp's damage consistently in Wisps/Rift; make Support/utility investment useful
-and avoid a new Titan doing95% by default; replace rapid repeated Auto-Ascend
-with manual resets, first after clear15 and then above the last rewarded clear.
-Preserve the supplied schema6 save: Ember290, Stone245, Tide214, Gale179, Epic,
-Modules20, Charge10, Endurance0, record280/rewarded279,9045Ascends,331512Prisms,
-20Comets, Auto-Ascend owned/OFF. No actual user save/app was edited.
+Original request: meaningful investment in each Wisp, consistent current DPS in
+Wisps/Rift with separate base/Support/ability details, and manual forward-only
+Ascension. First reward needs clear15; subsequent reward needs a higher clear
+than the last rewarded clear. Auto-Ascend is retired with validated once-only
+100-Comet owner refund. Shared Wisp growth avoids automatic Titan dominance.
+The supplied schema6 save (Ember290/Stone245/Tide214/Gale179, Epic/Modules20,
+Charge10/Endurance0, record280/rewarded279,9045Ascends,331512Prisms/20Comets)
+is a regression fixture; no actual user save/app was edited.
 
-17November correction rejects a mere3s gap. Downtime must exceed active duration
-until very late upgrades; earning100% may take around a year.
-[Exact user text/decision](../decisions/2026-11-17-year-earned-support.md).
+17November correction: downtime must exceed active duration until very late
+earned upgrades;100% may take around a year. Tide/Aurora now start3s active
+with13s between cast starts (10s off). Endurance0–7 keeps13s, adding0.3s
+duration/rank. EnduranceVIII opens4.8s minimum interval; sufficient natural
+Charge sustains its5.4s buff. Eight unchanged paid ranks take at least360
+dedicated research days at continuous8x/all work reductions after unlock.
+This is a work bound, not an account-age or calendar guarantee. Prices/access/
+caps, currencies, paid levels/active/paused work, boosts/queues and existing
+cast/recast snapshots stay; future casts use the correction. Wisp/Lab/help copy
+and Support-hit fallback rates agree. [Exact correction/decision](../decisions/2026-11-17-year-earned-support.md).
+[Original team decision](../decisions/2026-11-16-manual-team-progression.md).
 
-Implemented rule: Tide/Aurora start3s active with13s between cast starts (10s off).
-Endurance0–7 keeps13s; duration grows0.3s/rank, so downtime>duration and even
-perfectly staggered two-source coverage<100%. EnduranceVIII opens4.8s minimum
-recast; sufficient natural Charge sustains its5.4s buff. Eight unchanged paid
-ranks require at least360 dedicated days at continuous8x/all work reductions
-after unlock. This is a research-work bound, not an account-age gate or calendar
-guarantee. Preserve prices/access/caps, completed/active/paused paid work, boosts,
-queues, currencies and existing cast/recast snapshots; new timing affects future
-casts. Wisp/Lab/encyclopedia text and Support-hit fallback estimates agree.
+## Integrated delivery and acceptance
 
-The other released0.2.130 changes stay: shared Wisp growth and modest relative
-strengths, matching current passive DPS with separate base/Support/ability
-readouts, manual forward-only Ascension, and validated once-only100-Comet refund
-for retired Auto-Ascend owners. [Earlier decision](../decisions/2026-11-16-manual-team-progression.md).
+[PR62](https://github.com/xariib/Lumenfall/pull/62) featuref8663ccedbc313edcdfceee52785acef0f061ed5 integrated as
+ceb2463f83d49402e2702e987af89958790b16db. Product SHA256:
+fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059. Preserves concurrent finite Forge/PR59 and
+Rift screen/PR60 and upgrade-state/PR61 tests/gates/assets. Only targeted Support product
+changes; no schema or native identity change. Original root checkout untouched.
 
-## Current source and concurrent integration
+Eight exact-head PR workflows and nine exact integrated workflows PASS. Both
+full suites prove190 main+1 isolated offline scenarios from source-bound raw
+logs. Mobile coverage includes12 original Wisp,12 team and12 Support profiles,
+real touch/keyboard, enlarged text/both motion modes, visible prices/disabled
+state and exact paid research behavior. [Delivery receipt](../qa/team-progression-001/support-year/delivery.json).
 
-Isolated C:/lf-team, branch fix/support-year-001, [PR62](https://github.com/xariib/Lumenfall/pull/62).
-Original root checkout and other worktrees remain untouched. Combined product
-SHA256:fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059.
-Includes maine6139c98: finite Forge/PR59, Rift screen/PR60 and upgrade states/PR61.
-Preserve gold caps, unlock instructions, independent red shortages/disabled
-unaffordable controls and original symbols/assets/flows. Current main native
-presentation helper and suppressed-touch causal control remain unchanged; Wisp
-entry also retains all12 Support profiles, with real payments and runtime checks.
-Only actual mobile-entry/source-binding conflicts required combination; no
-workflow edits. New main AGENTS upgrade-presentation rule is preserved.
+Current-source focused checks: recast2012/four controls; paid research11886/six;
+manual8h partition30466; team1929/seven; actual V8 6.0 complete-source Forge
+2530. Four independent8h one-second oracles retain full-state hashes and
+722/618/1161/678 kills. Other mandatory behavior/control results are preserved
+in exact-source workflow receipts. Earlierb955/3a receipts remain historical.
 
-Public baseline is verified Android0.2.138/sourcee6139c98 (UI/PR61). Preserve
-newer documentation atmain1c8ddffb; no product/test/script/workflow
-difference from checked featuref8663cce is introduced by integration. Eight
-exact-head PR workflows PASS:190 main+1 isolated offline;758 mobile checks
-with12 original/12 team/12 Support profiles (Support265).
-[Raw source-bound proof](../qa/team-progression-001/support-year/pr-full-suite.json).
-Current-source calibration3424/34 cases/ten controls also PASS; one epoch
-witness is explicitly immutable130, nine controls/current-positive cases use C.
-All9 exact integrated-main workflows PASS,190 main+1 isolated offline and758
-mobile checks. [Integrated proof](../qa/team-progression-001/support-year/integrated-full-suite.json).
-Android0.2.139 build44177600711 is running on the unchanged integrated commit;
-next verify signed/native/public release, inspect installed frames and save final evidence.
+[Android 0.2.139](https://github.com/xariib/Lumenfall/releases/tag/android-1000139), versionCode1000139, signed
+build44177600711; APK SHA256:cd5ad9f74c45ac0c71482219603caf46889fa2e29c58579ab15af7a225e44bd9. Package/certificate,
+both save slots/paid progression, once-only100-Comet credit from signed158
+baseline, actual updater, normal retail Android12 launch and packaged assets
+PASS. Anonymous latest/tag feeds, APK routes and public metadata match.
+Installed/mobile screenshots inspected. This does not establish a phone130 upgrade.
+Android139 passed on unchanged attempt2; attempt1 failed installed Ascend
+navigation. [Failure/disposition](../qa/team-progression-001/support-year/android-attempt1/disposition.json) is retained; root cause is unproven.
 
-[Exact pre-upgrade checkpoint](../qa/team-progression-001/support-year/pre-upgrade-merge-task.md) retains earlier requirements/evidence; gzip preserves its bytes.
+First failures and dispositions remain saved. Native test setup now confirms
+presented frames and hittable44px visible targets; whole-card actions may exceed
+viewport height at enlarged text. Original behavior/payment assertions and
+deadlines stay. Historical clock/epoch controls explicitly freeze verified130
+inputs; current-positive and manual-game paths remain separate. Optional local
+Windows full runs were incomplete, not passes; required full Linux CI passes.
+[QA history](../qa/team-progression-001/support-year/README.md).
 
-## Acceptance and evidence
-
-Require independent timing math and actual live/offline/unlimited-charge casts
-for ranks0–10; Charge boundary atVIII; real paid90/360-day queues/reload/recovery;
-paid snapshots retained; exact Wisp DPS/roster/manual-gate/refund preservation;
-mobile prices/disabled controls,>=44px targets, enlarged text and both motion
-modes; full source-bound PR/integrated gates and signed/native/public release.
-All original tolerances, deadlines and controls stay. Self-review is not
-independent review. [Evidence/history](../qa/team-progression-001/support-year/README.md).
-
-Previous productB (b2228100, pre-upgrade merge): four8h independent one-second windows retain every
-accepted full-state hash and722/618/1161/678 kills; regenerated binding is in
-rift-combined-golden.json. Actual V8 6.0 whole-source Forge2530 checks PASS.
-Both ran sequentially with256MiB Node heaps to bound local memory use. New
-combined source now reproduces all four references, passes V8 6.0 2530,
-recast2012/four (paid11886/six, manual8h30466), and team1929/seven.
-Native control and complete new-head CI remain required; these current-source
-receipts are upgrade-combined-*.json. All39 workflow context tasks also PASS.
-Recast2012/four (paid11886/six, manual8h30466) and team1929/seven also PASS
-on productB. Its Wisp/Support mobile step passed745 checks (12 original/12 team/12 Support,
-Support265). Full190 stopped on the obsolete9s forced-refresh fixture.
-These earlier receipts do not establish combined source acceptance.
-
-Previous Forge-only combined3a223893 source: recast2012/four (paid11886/six,
-actual manual8h partition30466), team1929/seven, Forge9409/25, V8 Forge2530 and
-finite385/four PASS locally. Exact-head CI confirms34 calibration cases/3424
-checks/ten controls; one original epoch control is explicitly immutable130, nine
-others use current code. All current-positive cases remain mandatory.
-
-Required Wisp mobile entry now also runs every existing12-profile Support UI
-case using production Lab actions/payment, original assertions/deadlines and
-runtime-error coverage. This supplies combined-source CI evidence when local
-browser resources are unavailable; no purchase/DOM assertion is bypassed.
-
-Required PR44104469940 attempt2 stopped at the original native damage-disclosure
-assertion (219checks), before Support UI. Same assertion is recorded on published
-Rift12122. Root cause remains unproven. Both touch helpers now require a presented
-screen frame, independently hit-test a visible44px target, and preserve native
-gestures, original behavioral assertions and15s CDP deadlines. Failure evidence
-is retained. New guard initially rejected the intentionally whole-card research
-action at200% text because its full rectangle exceeds viewport height. Corrected
-to require a visible44px intersection plus on-screen hit-tested center. Original
-paid start/payment/persistence assertions remain. Complete CI replay mandatory;
-no product change for this driver repair. The upgrade merge now retains main
-team helper exactly (same presented-screen/hit/44px guards, painted-frame wait,
-original40ms and deadlines), its12-profile path and suppressed-touch control.
-
-Local near-zero RAM interrupted workers, and optional Windows browser runs
-reported startup/input/cleanup failures. Incomplete runs are not passes. The
-source remains unchanged; remote exact-source acceptance is still required.
-First failures, independent reference updates and unchanged passing retries are
-preserved. Captured clock witnesses pin only verified130 recast inputs while
-testing current clock implementations/mutations; ordinary13s stress lanes and
-actual manual-game30466 partition checks remain separate and required.
-
-[Full original requirements/baselines/checkpoint](../qa/team-progression-001/support-year/pre-rift-merge-task.md)
-retains chronological details; its gzip preserves exact prior bytes.
-[Prior130 delivery](../qa/team-progression-001/support-year/prior-release-130-checkpoint.md)
-is historical. Sourceb955/3a receipts and prior APKs are not this combined pass.
-
-Full-run fixture correction: buff-timing attempted recast at9s after a0.5s
-cast, inside the approved13s interval. Keep original legacy/source isolation
-assertions across a legal14s cast with a20s independent legacy grant; add a
-blocked9s attempt asserting unchanged source/legacy/recast snapshots. Actual
-Edge complete-source targeted scenario PASS68, including unchanged integral/
-old-epoch causal control. [Failure/disposition](../qa/team-progression-001/support-year/full-suite-buff-refresh-disposition.json).
-New full PR/integrated suite still required; no failure is relabelled PASS.
-
-## Next action and limits
-
-Publish the coherent combined head; run all8 PR and9 integrated-main workflows,
-resolve failures without weakening checks, then build/publish signed Android.
-Verify actual package/version/certificate, both saves/paid work, updater, retail
-launch, packaged assets, anonymous versioned/latest APK/feed and installed frames.
-Save task/PROJECT_STATE/raw evidence in GitHub after delivery. Do not ask for
-permissions, create chats/agents or send messages to other chats.
-
-Physical phone, exact WebView60 DOM, TalkBack and human long-term pacing remain
-unobserved. Keep task/chat open and unarchived for those acceptance checks.
+Self-review/automated checks and assistant visual inspection only. Physical
+phone, exact WebView60 DOM, TalkBack and human long-term pacing/performance
+remain unobserved. Keep task/chat open and unarchived for required acceptance.
+[Full prior requirements/checkpoint](../qa/team-progression-001/support-year/pre-release-task-checkpoint.md).
+[Prior130 delivery](../qa/team-progression-001/support-year/prior-release-130-checkpoint.md).
+Next: assess human/device feedback against this exact released version.

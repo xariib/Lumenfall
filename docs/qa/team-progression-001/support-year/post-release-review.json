@@ -1,0 +1,35 @@
+{
+  "utc": "2026-11-17T21:32:04.952Z",
+  "review": "Self-review and assistant visual inspection only; no independent reviewer",
+  "status": "Release verified; required human/device acceptance open",
+  "integratedCommit": "ceb2463f83d49402e2702e987af89958790b16db",
+  "sourceSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "pr": 62,
+  "sourceReview": "source-review.json (pre-integration checkpoint; pending entries are historical)",
+  "prGates": 8,
+  "integratedGates": 9,
+  "fullSuite": {
+    "main": 190,
+    "isolatedOffline": 1,
+    "mobile": 758,
+    "supportProfiles": 12,
+    "supportChecks": 265
+  },
+  "build": {
+    "id": 44177600711,
+    "version": "0.2.139",
+    "passingAttempt": 2,
+    "firstFailureRetained": "android-attempt1/disposition.json",
+    "testSourceDeadlineChanges": false
+  },
+  "publicVerification": "android-release/public-verification.json",
+  "visualReview": "visual-review.json",
+  "productStability": "No product/test/script/workflow/mobile/font/branding changes after exact integrated release commit; final changes are documentation/evidence only",
+  "limitations": [
+    "physical phone",
+    "exact WebView60 DOM",
+    "TalkBack",
+    "human long-term pacing/performance"
+  ],
+  "archive": "Task and owner chat remain open and unarchived"
+}
