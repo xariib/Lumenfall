@@ -57,9 +57,12 @@ target; this user's new years target supersedes it for this feature.
 
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
-[PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `b87da914`.
-Latest source/test corrections pass local validation and are being published.
-No integration or APK yet; self-review only. Standing authorization applies.
+[PR59](https://github.com/xariib/Lumenfall/pull/59) merged tested head `2bdf4f03`
+as `0adb60eb36a3be15ce152d6ffe416d5996b039c7`. The complete integrated tree
+`cf13935c16dd2dfa9f870d64777aed3304391978` equals the tested feature tree.
+All eight required PR workflows PASS; full coverage is190main +1isolated offline.
+All nine exact integrated workflows are running. No APK yet; self-review only.
+Standing authorization applies. Human/device acceptance remains open.
 
 Implemented finite caps: Battle 375, Arcane 325, Harvest 315, Masterwork 500.
 Tempering's first 300 prices and Masterwork's first 50 are unchanged; marginal
@@ -127,9 +130,17 @@ Product/source binding unchanged. Actual platform cause remains unproven.
 `premerge-surface-attempt.log.gz` and `lab-boost-isolated-results.json.gz` retain
 the evidence. Main was rechecked atb075cfba; no integration/APK yet.
 
-Next: finish full mobile/CI checks, resolve any findings, publish the coherent
-checkpoint, integrate serially after all required gates pass, then run exact
-integrated checks and signed Android delivery. Keep this task open for missing
+Head2bdf4f03 passes all required Linux workflows, including the formerly stalled
+native Lab profiles and all190main/1isolated behavioral scenarios. Lab workflow
+attempt1 stopped at Browser.getVersion before loading the game (zero assertions);
+unchanged failed-job retry PASS. Original log is retained. PR reviews/threads
+were empty; main was stillb075cfba before the serialized merge. Nine exact-main
+manual runs were dispatched; `pr-runs.json`, `pr-jobs.json` and compressed job
+logs retain the completed PR proof. Gameplay/source binding remains unchanged.
+
+Next: complete nine exact integrated workflows, resolve any findings, build and
+publish the signed Android update, verify native/public receipts, then save the
+delivery checkpoint in GitHub. Keep this task open for missing
 acceptance; physical phone, exact WebView60 DOM, TalkBack and human pacing
 remain unobserved. Original baseline/evidence is preserved in the linked QA.
 

@@ -218,3 +218,19 @@ the original next-lock mutation still fails at its intended next3x assertion.
 checks cover each fresh page's readiness, requested text size and runtime errors.
 Product HTML and existing accepted offline outcomes are unchanged. New Linux CI
 is required; integration and Android release remain pending.
+
+## Tested integration
+
+All eight required workflows PASS at2bdf4f03, including every original native
+Lab profile, all190main behavioral scenarios and1isolated offline scenario.
+The separate Lab workflow initially failed at Browser.getVersion with zero
+assertions; its unchanged failed-job retry passes. Original startup log is
+retained in `lab-startup-attempt.log.gz`. `pr-runs.json`, `pr-jobs.json` and
+compressed full pre-merge job logs retain the exact-head outcomes and coverage.
+
+PR59 merged as0adb60eb36a3be15ce152d6ffe416d5996b039c7. Both complete Git trees
+arecf13935c16dd2dfa9f870d64777aed3304391978. Main was rechecked atb075cfba
+immediately before integration; no review submissions/threads were present.
+This is self-review plus automated validation, not independent review.
+Nine exact integrated manual workflows are running. APK/native/public delivery
+and unobserved human/device acceptance remain pending.
