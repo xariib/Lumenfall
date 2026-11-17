@@ -10,8 +10,16 @@ prevent landscape silhouettes from showing through the enemy arena. Original
 theme/species art, combat, prices, progression and saves are retained.
 
 Current HTML SHA256:
-e210529dca00e0e32c13a3910a14f79b5df8197685cd323802817cd55b6011a6.
-The field has its own SVG at z0, the original ring at z1 and enemy at z2.
+42ab3e344543b39ec938f82536f9e067b188f9c7995f4e1fede00637f081acad.
+Current candidate a8824283 has its own SVG field at z-1 inside isolated visuals,
+legacy Comet Trail at auto/0, original ring at z1 and enemy at z2. Earlier
+e210529d receipts below are historical, before the paid Trail correction.
+The focused current-source check passed666 checks and five causal controls.
+Signed Android133/run44077735744 passed all functional and screenshot checks.
+The test-only follow-up fc706870 retains identical product bytes, fixes the
+last stale hint expectation in wisp-formula-contract and runs it early in CI;
+that early scenario/matrix/controls passed. New full exact-commit gates run
+under44087287979 (PR) and44087341618 (prepared release validation).
 
 - `paired-replay.json`: four paired8h windows/115,200 one-second calls per
   source. Every saved state/reward matches released main. VM reference and
@@ -20,6 +28,9 @@ The field has its own SVG at z0, the original ring at z1 and enemy at z2.
 - `layer-only-proof.json`: every production JavaScript byte in the revised
   separate-SVG product matches the full paired replay's source. Its changes
   are confined to SVG/CSS layering; original browser endpoints stay unchanged.
+- `trail-layer-only-proof.json`: the current42ab3e34 source also retains every
+  production JavaScript byte from the paired replay. `source-review.json`
+  verifies all61 original SVG symbols, fonts, branding and native files.
 - `full-mobile-matrix.json`: first field candidate,558 checks,18 profiles and
   24,840 encounter/theme samples. Final separate-field receipt follows below.
 - `final-quick.json` and four `negative-*.json`: initial31 checks/four controls,
@@ -37,6 +48,25 @@ The field has its own SVG at z0, the original ring at z1 and enemy at z2.
   then found the fresh retail ring absent; retain that failure. Upgraded app
   screenshot has its ring. Cause unproven. This prompted separate SVG layering
   and a second settled retail screenshot; this first candidate is unpublished.
+- `android-second-attempt/`: unchanged0.2.132 initially failed live retail
+  accessibility; `android-candidate-132/` retains the passing unchanged-source
+  retry. Its z0 field still precedes the final Comet Trail correction.
+- `prepared-lab-first-failure.json` and `prepared-lab-second-failure.json`:
+  superseded e210 source had two different native-input failures. No assertion
+  or deadline was weakened. Current-source gates must pass independently.
+- `windows-contract-baseline-diagnostic.json`: the existing reduced-motion
+  dump-DOM probe rejects both baseline and candidate when global CSS reports
+  transition-property none with0.001ms duration. No charge CSS was changed;
+  this is an open, separate baseline harness finding.
+- `final-matrix/`:666 checks,18 profiles,24,840 encounter/theme samples and
+  five rejected controls on HTML42ab3e34. Actual screenshots of Rifts286–288
+  self-reviewed alongside the user's original JPEGs; all three enemies clear.
+- `formula-stale-hint-failure.json` and `ci/validation-a8824283.json`: both
+  a882 full suites completed with one stale assertion expecting the removed
+  objective. The test-only correction retains all numerical Wisp/boss checks
+  and verifies retained boss-trait text in the Encyclopedia. Final CI required.
+- `wisp-fc-first-failure/`: unchanged Linux causal control hit the existing
+  300ms setup-settling deadline; Windows passed. Same-source Linux retry passed.
 
 Local runtime: Node24.22.1/Chromium157. CI uses each workflow's pinned runtime.
 Physical phone, exact WebView60 DOM, TalkBack and human acceptance remain open.

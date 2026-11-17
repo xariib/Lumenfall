@@ -3,6 +3,26 @@
 17 November 2026. Owner: this feature chat. Status: in progress; final full CI
 pending. Self-review and automated checks only. No independent review claimed.
 
+Current follow-up: fc7068706ee42d8426bc92abbc5ad46f69372556, with unchanged
+HTML42ab3e34. Early PR CI now PASS for corrected Wisp formula/Encyclopedia
+assertions and the666-check Rift matrix/five controls. Full PR44087287979 and
+prepared full44087341618 remain running. Other prepared gates:44087347242
+Comet,44087351567 Forge,44087356067 Lab,44087361381 Shared,44087365716 Tree.
+These replace the failed a882 full gates below. No new Android candidate is
+needed for a test-only follow-up; final integrated publish build remains
+required. Signed133 source bytes equal current HTML/fonts/branding/native files.
+Do not integrate until exact follow-up commit gates pass. Main wasb075cfba;
+recheck main and merge-preview tree before any lease-checked integration.
+
+Integration checkpoint: main moved to0adb60eb36a3be15ce152d6ffe416d5996b039c7
+through PR59 (finite Forge and Lab presented-surface input fixes). Do not move
+main back to b075 or fc706870. Preserve the complete current Rift QA checkpoint,
+merge newer main, retain both concurrently created status-history snapshots
+under distinct paths, and resolve only actual overlaps. Rebind the combined
+HTML oracle only after paired preservation replays against the new main.
+Then run all required checks and signed Android acceptance on combined bytes.
+All existing source42ab/android133 evidence becomes pre-merge historical.
+
 ## Requirements and scope
 
 User: “Remove the bar with hints on the rift screen. Switch farm and push
