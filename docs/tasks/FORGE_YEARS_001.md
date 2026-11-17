@@ -58,7 +58,7 @@ target; this user's new years target supersedes it for this feature.
 Current product SHA256:
 `af692d7f75c9681a2f3f7118b1fa6cdc0b42311e1c780bb2a53138b45d2a168d`.
 [PR59](https://github.com/xariib/Lumenfall/pull/59); previous pushed head `532cbaa5`.
-Latest source/test corrections are being validated locally before the next push.
+Latest source/test corrections pass local validation and are being published.
 No integration or APK yet; self-review only. Standing authorization applies.
 
 Implemented finite caps: Battle 375, Arcane 325, Harvest 315, Masterwork 500.
@@ -91,11 +91,16 @@ no completed result; raw evidence retained, cause unproven. Workflow files
 remain unchanged; the existing required Forge entrypoint runs new checks.
 New mobile tests retain stationary scroll within the actual document range,
 same-upgrade focus, maxed semantics and historical bonuses; reload waits for
-its own navigation event. Local full mobile acceptance and new exact-head CI
-are still pending. No original gate, deadline or assertion is weakened.
+its own navigation event. Full mobile PASS: 32,484 checks across12 profiles,
+clean browser exit and visually self-reviewed maxed cards at1x/2x. New exact-head
+CI remains pending. No original gate, deadline or assertion is weakened.
 
 Next: finish full mobile/CI checks, resolve any findings, publish the coherent
 checkpoint, integrate serially after all required gates pass, then run exact
 integrated checks and signed Android delivery. Keep this task open for missing
 acceptance; physical phone, exact WebView60 DOM, TalkBack and human pacing
 remain unobserved. Original baseline/evidence is preserved in the linked QA.
+
+Unrelated finding for later copy maintenance: the encyclopedia's Modules &
+Ultimates paragraph still mentions the superseded1/1.5s Support durations.
+This feature changes only its Masterwork reference; Support mechanics stay.

@@ -1,5 +1,12 @@
 # Lumenfall — current delivery status
 
+17 November: [Finite Forge](tasks/FORGE_YEARS_001.md) is under validation in
+[PR59](https://github.com/xariib/Lumenfall/pull/59). Candidate Tempering caps are
+375/325/315; Masterwork remains500 with attainable future prices. A mature
+reinvestment reference finishes in994productive days; this is a pacing model,
+not a fresh-account calendar guarantee. Local core, V8 and12-profile mobile
+checks pass. Integration, exact-head CI and Android delivery remain pending.
+
 17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
 the user instruction, "Never ask for permissions again for Lumenfall project."
 Current entrypoints explicitly prohibit permission or renewed approval requests

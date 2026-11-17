@@ -126,3 +126,19 @@ older task29122bytes. Tree's Prism contract browser timed out after25seconds
 with no DOM output or completed assertions; its full relevant raw payload is
 retained in `first-tree-browser-failure.json.gz`. Cause unproven. No assertion,
 runtime tolerance, gate or deadline was weakened. New exact-head CI is required.
+
+Final local mobile: PASS 32,484 assertions across all12 width/text/motion profiles,
+including all old controls and final finite-rank Enter purchases, exact wallets,
+maxed bonus-only cards, retained above-cap effects, actual reload, no runtime
+errors and clean browser exit. Full `mobile-receipt.json.gz` and two representative
+PNGs retain exact-source evidence. Screenshots visually self-reviewed: native
+gold maxed cards, readable bonuses at1x/2x, shortage prices red; keyboard focus
+indicator retained. This is modern Chrome acceptance, not physical WebView60 DOM.
+
+Final local aggregate `local-checks.json.gz` records source/runtime-bound results;
+385 finite/four controls, original Forge9404/25 controls, workshop480/four plus
+its finite/forecast subchecks, Lab access538/four, whole-game318/three,
+permanent4225, slot55, early Wisp2400/five and actual V8 6.0 2524 PASS.
+Self-review found no unintended gameplay, save, asset, native or workflow change.
+The status history move retains the removed paragraphs verbatim. Signed build,
+integrated CI and human/device acceptance remain pending.
