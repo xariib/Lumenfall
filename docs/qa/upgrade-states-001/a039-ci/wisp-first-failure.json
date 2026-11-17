@@ -1,0 +1,16 @@
+{
+  "status": "FAIL retained; unchanged retry requested",
+  "featureHead": "a0394981c74d12149ed2c8a13aef1467fc12558a",
+  "sourceSha256": "5097d0c38b8f65441d640b3fb77b13644f3ffe107f45e93f814e4c7714c600fa",
+  "runId": 44106176817,
+  "jobId": 134119025766,
+  "checks": 1,
+  "error": "Wisp setup layout did not settle within300ms",
+  "cause": "unproven; before full functional cases; Windows counterpart134119025226 PASS",
+  "artifact": {
+    "id": 14337943305,
+    "sha256": "69ba44d3e55b9bc314e334cb568fbc5c6a9618b4aca39d41620484440b409b0e",
+    "shaAndExtractedLogCrcVerified": true
+  },
+  "response": "Retain original log; rerun without product, driver, assertion, setup limit or workflow edits."
+}
