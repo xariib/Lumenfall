@@ -1,6 +1,6 @@
 # FORGE_YEARS_001 — long-term Forge progression
 
-Status: implementation in progress; finite completion requirement confirmed.
+Status: released as Android 0.2.135; human/device and calendar-pacing acceptance open.
 Owner: this feature chat. No subagents, chat creation or message tools used.
 
 ## Original requirement, 17 November 2026
@@ -60,9 +60,16 @@ Current product SHA256:
 [PR59](https://github.com/xariib/Lumenfall/pull/59) merged tested head `2bdf4f03`
 as `0adb60eb36a3be15ce152d6ffe416d5996b039c7`. The complete integrated tree
 `cf13935c16dd2dfa9f870d64777aed3304391978` equals the tested feature tree.
-All eight required PR workflows PASS; full coverage is190main +1isolated offline.
-All nine exact integrated workflows are running. No APK yet; self-review only.
-Standing authorization applies. Human/device acceptance remains open.
+All eight required PR and nine exact integrated workflows PASS. Both full runs
+cover 190 main +1 isolated offline scenarios. Signed Android 0.2.135 is published:
+[release](https://github.com/xariib/Lumenfall/releases/tag/android-1000135),
+[APK](https://github.com/xariib/Lumenfall/releases/download/android-1000135/Lumenfall.apk).
+APK SHA256: `91214980a7997c03baf273211c6dbeb87456767aecb1b8b610c3d1b7716b351e`.
+Build44099434281 PASS: established package/signing, exact assets, signed save
+upgrade, actual updater and normal retail Android12 launch. Anonymous versioned/
+latest APK and public metadata bytes match the verified artifact. Self-review
+only; physical phone, exact WebView60 DOM, TalkBack and human/calendar pacing
+remain unverified. This task stays open; no archive action was taken.
 
 Implemented finite caps: Battle 375, Arcane 325, Harvest 315, Masterwork 500.
 Tempering's first 300 prices and Masterwork's first 50 are unchanged; marginal
@@ -161,11 +168,18 @@ dispatching signed Android publishing run44099434281 (run135). Build/native/
 public verification is pending. `integrated-jobs.json`, `integrated-runs.json`
 and compressed full job logs retain final exact-source CI evidence.
 
-Next: complete nine exact integrated workflows, resolve any findings, build and
-publish the signed Android update, verify native/public receipts, then save the
-delivery checkpoint in GitHub. Keep this task open for missing
-acceptance; physical phone, exact WebView60 DOM, TalkBack and human pacing
-remain unobserved. Original baseline/evidence is preserved in the linked QA.
+Final delivery evidence: [receipt](../qa/forge-years-001/delivery.json),
+[anonymous verification](../qa/forge-years-001/public/public-verification.json),
+full PR/integrated logs and compressed native receipts. Build artifact14334919523
+SHA256 is `8bd82fe48bd35af9ab22f7d2a443851dc04529be0dcd2338350a76f918fbd223`;
+downloaded bytes and every ZIP CRC were verified before comparing public assets.
+Retail launch screenshot visually self-reviewed. No independent human review.
+
+Next: collect physical-phone, exact WebView60 DOM, TalkBack and actual-account
+pacing acceptance, then reassess completion. The 994-day mature fixed-farm
+reference grants advanced progress and does not establish a new account's
+2–3-year calendar finish. Do not claim that as verified or archive this task.
+Original baseline, failed attempts and passing unchanged retries remain in QA.
 
 Unrelated finding for later copy maintenance: the encyclopedia's Modules &
 Ultimates paragraph still mentions the superseded1/1.5s Support durations.
