@@ -1,0 +1,19 @@
+{
+  "status": "Integrated; publication and duplicate PR acceptance pending",
+  "utc": "2026-11-17T14:16:23Z",
+  "pullRequest": "https://github.com/xariib/Lumenfall/pull/60",
+  "method": "Lease-checked fast-forward, force=false",
+  "expectedPreviousMain": "0adb60eb36a3be15ce152d6ffe416d5996b039c7",
+  "integratedCommit": "12122b805b4dd7ad28fef5f26dad94e8a5a8c3df",
+  "sourceSha256": "0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a",
+  "candidateAndMergePreviewTree": "5fff90d24b8ff41ffb86a70fea151d5632ab427a",
+  "requiredReleaseGateCount": 6,
+  "requiredReleaseGates": "All six latest workflow_dispatch gates passed on the identical SHA before integration. Their actual ref was fix/rift-screen-fixes-001.",
+  "fullBehavioralMain": "190 deterministic scenarios PASS, Chrome157.0.8103.78, Node24.19.0",
+  "isolatedOffline": "PASS in same required full workflow",
+  "previousMainPublication": "Run44099434281 Publish verified APK release succeeded before ref update; only job cleanup remained.",
+  "publishedBuildRun": 44101297138,
+  "publishedBuildRequested": true,
+  "remainingAcceptance": "Duplicate PR rerun must pass before completion; actual published APK/assets/identity/updater/retail/public feed must be verified. Physical phone/WebView60/TalkBack/human acceptance stays open.",
+  "review": "Self-review only"
+}

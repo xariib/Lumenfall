@@ -3,6 +3,20 @@
 17 November 2026. Owner: this feature chat. Status: in progress; final full CI
 pending. Self-review and automated checks only. No independent review claimed.
 
+INTEGRATED into main12122b805b4dd7ad28fef5f26dad94e8a5a8c3df by lease-checked
+fast-forward from0adb60eb, after all six required release-ci-gate workflows
+passed on that exact SHA. Prepared full44091457972 proves190 main scenarios
+plus isolated offline PASS; Chrome157.0.8103.78/Node24.19.0. Actual ref for the
+prepared dispatches was the feature branch; source/tree are identical now on
+main. Older main build44099434281 completed its publication before ref update.
+New publish=true build44101297138 targets integrated main12122b80. Keep main
+unchanged for the existing publisher guard; this chat's final docs stay on the
+QA branch until publication. PR rerun44091395146 passed its earlier failed
+touch step and is finishing remaining checks; it MUST pass before completion.
+Acceptance is not reduced: parallelize this duplicate run with the required
+published Android build, then verify exact public APK/assets/feed and preserve
+final status. No release is claimed yet. Physical/human acceptance stays open.
+
 CURRENT COMBINED SOURCE:0c374c2d103ca8bdad11ee035743d064771a576d7794599b527fcf4a21c1a60a.
 Merged newer main0adb60eb/PR59 without a product conflict. Finite Forge and
 Lab surface-synchronization/isolated-profile tests are retained exactly.
