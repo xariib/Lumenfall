@@ -1,6 +1,6 @@
 {
   "status": "in progress; CI retry pending",
-  "utc": "2026-11-17T12:09:40.552Z",
+  "utc": "2026-11-17T12:27:36.469Z",
   "featureBranch": "feature/upgrade-states-001",
   "featureHead": "be015365469d200aeb2bd2444318c3172d1d8df7",
   "productSha256": "84917eaf8409576346d3aa904ef6efa9d4253f8befa77ece5a7da3cae30de7c2",
@@ -12,7 +12,10 @@
     "unchangedRetryJob": 134019237033,
     "specialists": "all seven passed",
     "isolatedOffline": "passed",
-    "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures"
+    "failure": "native touch opens damage details at check319; cause unproven; same assertion has prior released-source intermittent failures",
+    "phase": "Attempt2 passed touch, currency suite and controls; final190 behavioral scenarios running",
+    "localWispOriginalRetry": "PASS467 unchanged",
+    "localUpgradeStates": "PASS15402/6 profiles plus3 controls"
   },
   "next": "Keep exact feature head unchanged; finish main CI retry and new upgrade-state suite; integrate only after all required checks pass, then dispatch integrated checks and signed Android delivery.",
   "authorization": "Standing scope authorization; no permission prompts. No new chats, subagents or messages. Evidence branch preserves pending results without restarting source CI.",

@@ -144,3 +144,44 @@ control-state presentation cannot append a second recruitment hint. Focused
 coverage asserts one instruction. Canonical full-state endpoints remain
 unchanged. Next: complete exact-head CI, integrate serially, run integrated
 checks, then signed Android delivery. No further source changes are planned.
+
+## Current continuation checkpoint — 17 November, 12:28 UTC
+
+Owner: this feature chat, one game-wide upgrade-presentation goal; no delegation.
+Original requirement/rule and preservation scope are above. Repository
+`xariib/Lumenfall`, baseline/main last checked `b075cfba`.
+Feature [PR61](https://github.com/xariib/Lumenfall/pull/61) stays at
+`be015365469d200aeb2bd2444318c3172d1d8df7`, product SHA84917 above.
+Local `C:/lf-upgrade-states` is now on `evidence/upgrade-states-001`, preserving
+new receipts without restarting the exact-source feature CI. Product bytes
+remain identical to the feature head; working-tree changes here are evidence.
+
+Implementation/self-review complete; integration and APK delivery pending.
+Current-source local Node24.22.1/Chrome headless157 checks:15,402 assertions/six
+320–430px,100/200% profiles; three gold/lock/red causal controls; original
+unmodified Wisp native467 checks/12 original +12 Team profiles; clean shutdowns.
+[Receipts](../qa/upgrade-states-001/current-source/upgrade-states.json),
+[native replay](../qa/upgrade-states-001/current-source/wisp-native.json).
+Four canonical offline full-state endpoints match main exactly. All30 required
+task-context checks pass; original32KiB limit unchanged. No price, cap, balance,
+schema or saved progression changes. Existing assertions/deadlines remain.
+
+Seven PR specialist workflows PASS. Pre-merge run44072682657 attempt1 stopped
+at existing native damage-details touch assertion, check319. Cause unproven;
+same failure has released-source history. Original failure/ZIP-verified context
+and local failed/passing replays are retained. Unchanged attempt2 job134019237033
+has passed that lane, currency/new upgrade suite and its controls; final190
+behavioral scenarios are running. Isolated offline job134019240150 PASS.
+[Detailed checkpoint](../qa/upgrade-states-001/continuation.json).
+
+Next: wait for complete required CI, recheck main/open overlap, merge onlyPR61
+at expected headbe015365. PR59 Forge caps andPR60 Rift screen are separate.
+Verify integrated source/tree, dispatch all six release-gate workflows plus
+permanent/Wisp/migration checks on exact main. After all pass, dispatch existing
+Android build with publish=true; verify signing/package, save upgrade/updater,
+retail launch and anonymous APK/assets/feed. Save final delivery/status on GitHub.
+Temporary authenticated API/dispatch helpers are under `C:/tmp/lf-*.cjs`;
+workflow definitions remain authoritative. No missing requirements/permissions.
+Standing authorization applies; do not ask for approval. No new chats/messages.
+Physical phone/exact WebView60 DOM/TalkBack unverified; task/chat stay open and
+unarchived. Resume from current state, never restart or replace live product.
