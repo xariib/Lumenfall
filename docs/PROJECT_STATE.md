@@ -1,5 +1,10 @@
 # Lumenfall — current delivery status
 
+17 November: [Standing authorization](tasks/STANDING_AUTHORIZATION_001.md) records
+the user instruction, "Never ask for permissions again for Lumenfall project."
+Current entrypoints explicitly prohibit permission or renewed approval requests
+within assigned Lumenfall work; missing requirements can still be clarified.
+
 17 November: [Team progression/PR58](tasks/TEAM_PROGRESSION_001.md) shipped as
 [Android 0.2.130](https://github.com/xariib/Lumenfall/releases/tag/android-1000130), source`52fae53d`.
 Manual higher-record Ascension replaces Auto-Ascend with once-only100-Comet
