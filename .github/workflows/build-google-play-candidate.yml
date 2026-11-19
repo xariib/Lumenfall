@@ -9,6 +9,9 @@ on:
       - 'scripts/ci/verify_apk_security.cjs'
       - 'scripts/ci/verify_apk_assets.cjs'
       - 'tests/tooling/google-play.cjs'
+      - 'index.html'
+      - 'fonts/**'
+      - 'branding/**'
       - 'mobile/**'
   workflow_dispatch: {}
 
@@ -35,6 +38,9 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
       - name: Check channel isolation and existing production protections
         run: |
           node scripts/codex/check_context.cjs --task docs/tasks/GOOGLE_PLAY_READINESS_001.md

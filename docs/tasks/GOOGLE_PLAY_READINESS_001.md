@@ -87,7 +87,12 @@ PR: [#63](https://github.com/xariib/Lumenfall/pull/63), initial source05134581
 matches local reviewed tree5d70070a (GitHub connector publication; local OAuth
 push lacks workflow scope). First candidate run44494228504 passed generation,
 branding and source/security tests, then failed because sdkmanager was absent
-from runner PATH. Add explicit Android SDK setup; retain the original failure.
+from runner PATH. Second run44494605683 then exposed setup-android v3's obsolete
+default `tools` package, which Google no longer serves. Explicitly request only
+platform-tools and keep SDK licenses out of log output. Both failures remain
+recorded; neither produced a native bundle. Permanent progression44494605751
+also failed at Browser.getVersion CDP timeout before any mobile checks, with
+unchanged game source hash; do not weaken that test. Latest reruns remain pending.
 
 Fresh anonymous0.2.139 download:5,164,025bytes, expected SHA256 and all15 exact
 game assets PASS. [Public receipt](../qa/google-play-readiness-001/public-apk-verification.json)
