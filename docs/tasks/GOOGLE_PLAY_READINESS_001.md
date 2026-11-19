@@ -18,7 +18,8 @@ Owner: this feature chat. Status: in progress; store/device acceptance pending.
   phone scan for0.2.95, not a verdict on the latest APK. The user now reports
   "Just that it's harmful" and has created a dedicated Gmail account. Actual
   warning string/screenshot, flagged APK identity and Console enrollment remain
-  unknown. A follow-up asks whether the flagged file is GitHub0.2.139.
+  unknown. The user subsequently confirmed the flagged version/source is
+  GitHub0.2.139; phone-side file hash was not independently measured.
 - Existing production APK disables debugging but is signed using the preserved
   `androiddebugkey` certificate. The native GitHub APK updater adds
   `REQUEST_INSTALL_PACKAGES`. Neither a Google Play channel nor AAB build exists.
@@ -82,8 +83,19 @@ configuration. Local Android SDK/adb not available; no local native build claime
 Self-review and automated checks only. Plugin search found no Play Console
 integration; no account enrollment or external app review was performed.
 
-Next: publish the branch/PR, inspect native candidate and required CI results,
+PR: [#63](https://github.com/xariib/Lumenfall/pull/63), initial source05134581
+matches local reviewed tree5d70070a (GitHub connector publication; local OAuth
+push lacks workflow scope). First candidate run44494228504 passed generation,
+branding and source/security tests, then failed because sdkmanager was absent
+from runner PATH. Add explicit Android SDK setup; retain the original failure.
+
+Fresh anonymous0.2.139 download:5,164,025bytes, expected SHA256 and all15 exact
+game assets PASS. [Public receipt](../qa/google-play-readiness-001/public-apk-verification.json)
+and [unsubmitted review draft](../qa/google-play-readiness-001/play-protect-review-draft.md)
+record the user's attribution without claiming an independent phone scan.
+
+Next: inspect the corrected native candidate and required CI results,
 save evidence and integrate only validated preparation. Account enrollment,
-actual flagged APK/warning, production signing/migration, privacy policy/listing,
+actual full warning/device details, production signing/migration, privacy policy/listing,
 Play upload/testing and device acceptance remain open. No store submission,
 appeal, new release certificate or APK publication yet. Keep this feature open.

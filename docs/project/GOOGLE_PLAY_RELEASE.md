@@ -8,10 +8,14 @@ device and Google's reason are unverified. No classification fix is claimed.
 ## Immediate Play Protect investigation
 
 Keep the exact flagged APK, source URL, SHA256 and warning screenshot together.
-The latest recorded GitHub release is0.2.139 (`1000139`), with SHA256
+The user confirms the warning concerns GitHub0.2.139; the phone file was not
+independently hashed. A fresh anonymous download of that release (`1000139`)
+matches all15 source assets,5,164,025bytes and SHA256
 `cd5ad9f74c45ac0c71482219603caf46889fa2e29c58579ab15af7a225e44bd9`.
-[Existing release evidence](../qa/team-progression-001/support-year/delivery.json)
-does not prove this is the user's flagged file. Static tests are not a malware
+[Existing release evidence](../qa/team-progression-001/support-year/delivery.json),
+[fresh verification](../qa/google-play-readiness-001/public-apk-verification.json)
+and an [unsubmitted review draft](../qa/google-play-readiness-001/play-protect-review-draft.md)
+are saved. Static tests are not a malware
 verdict, and changing a filename or signing key is not a demonstrated remedy.
 
 Follow [Google's warning guidance](https://developers.google.com/android/play-protect/warning-dev-guidance).
