@@ -14,7 +14,8 @@ function parseManifest(text) {
   assert(nodes.some(n=>n.name==='manifest'),'Missing binary manifest root');
   return nodes;
 }
-function inspect(nodes,config,entryNames) {
+function inspect(nodes,config,entryNames,channel='sideload') {
+  assert(['sideload','play'].includes(channel),'Unknown Android distribution channel');
   const problems=[],check=(condition,message)=>{if(!condition)problems.push(message);};
   const root=nodes.find(n=>n.name==='manifest'),app=nodes.filter(n=>n.name==='application');
   check(root?.attributes.package==='com.lumenfall.app','Unexpected package');
@@ -27,6 +28,12 @@ function inspect(nodes,config,entryNames) {
   const permissions=nodes.filter(n=>/^uses-permission(?:-sdk-?\d+)?$/.test(n.name)).map(n=>n.attributes['android:name']);
   check(permissions.length>0,'Permissions could not be read');
   for(const permission of permissions)check(allowedPermissions.has(permission),'Unexpected permission: '+permission);
+  if(channel==='play') {
+    check(!permissions.includes('android.permission.REQUEST_INSTALL_PACKAGES'),'Play must not request APK installation');
+    check(!nodes.some(n=>/UpdateFileProvider|\.updates$/.test(n.attributes['android:name']||'')||/\.updates$/.test(n.attributes['android:authorities']||'')),'APK updater provider in Play build');
+    const sdk=nodes.find(n=>n.name==='uses-sdk')?.attributes||{};
+    check(Number(sdk['android:targetSdkVersion'])>=36,'Play target SDK must be at least36');
+  }
   for(const node of nodes.filter(n=>['provider','service','receiver','activity','activity-alias'].includes(n.name))) {
     check(Object.hasOwn(node.attributes,'android:exported'),'Component export state must be explicit: '+node.attributes['android:name']);
     if(!node.attributes['android:exported'])continue;
@@ -43,13 +50,20 @@ function inspect(nodes,config,entryNames) {
   check(!entryNames.some(n=>/ReleaseProbe|(?:^|\/)androidTest\//.test(n)),'Native QA source packaged');
   return {status:problems.length?'FAIL':'PASS',problems,permissions:permissions.sort(),debuggable:!!attrs['android:debuggable'],googlePlayProtect:'NOT_TESTED',scope:'Static artifact configuration checks only; not a malware verdict'};
 }
-function verify(apk,aapt) {
+function verify(apk,aapt,channel='sideload') {
   const bytes=fs.readFileSync(apk),rows=verifyZip(bytes);
   const entries=rows.filter(r=>r.name==='assets/capacitor.config.json');assert.equal(entries.length,1,'Exactly one Capacitor config required');
   const row=entries[0],start=row.offset+30+bytes.readUInt16LE(row.offset+26)+bytes.readUInt16LE(row.offset+28),raw=bytes.subarray(start,start+row.compressed);
   const config=JSON.parse((row.method===8?zlib.inflateRawSync(raw):raw).toString());
   const manifest=cp.execFileSync(aapt,['dump','xmltree',apk,'AndroidManifest.xml'],{encoding:'utf8',timeout:30000,maxBuffer:4*1024*1024});
-  return {...inspect(parseManifest(manifest),config,rows.map(r=>r.name)),apkSha256:crypto.createHash('sha256').update(bytes).digest('hex')};
+  const result=inspect(parseManifest(manifest),config,rows.map(r=>r.name),channel);
+  if(channel==='play')for(const row of rows.filter(r=>/^classes\d*\.dex$/.test(r.name))) {
+    const start=row.offset+30+bytes.readUInt16LE(row.offset+26)+bytes.readUInt16LE(row.offset+28),raw=bytes.subarray(start,start+row.compressed);
+    const dex=row.method===8?zlib.inflateRawSync(raw):raw;
+    if(/AppUpdaterPlugin|UpdateFileProvider|REQUEST_INSTALL_PACKAGES/.test(dex.toString('latin1')))result.problems.push('APK installer code in Play DEX');
+  }
+  result.status=result.problems.length?'FAIL':'PASS';
+  return {...result,channel,apkSha256:crypto.createHash('sha256').update(bytes).digest('hex')};
 }
 module.exports={parseManifest,inspect,verify};
-if(require.main===module){const result=verify(process.argv[2],process.argv[3]);console.log(JSON.stringify(result,null,2));if(result.status!=='PASS')process.exitCode=1;}
+if(require.main===module){assert(process.argv.length<=5,'Usage: verify_apk_security.cjs APK AAPT [sideload|play]');const result=verify(process.argv[2],process.argv[3],process.argv[4]);console.log(JSON.stringify(result,null,2));if(result.status!=='PASS')process.exitCode=1;}
