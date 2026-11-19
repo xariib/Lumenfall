@@ -1,0 +1,120 @@
+name: Build Google Play candidate (unsigned)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-google-play-candidate.yml'
+      - 'scripts/ci/configure_android_play.cjs'
+      - 'scripts/ci/verify_apk_security.cjs'
+      - 'scripts/ci/verify_apk_assets.cjs'
+      - 'tests/tooling/google-play.cjs'
+      - 'index.html'
+      - 'fonts/**'
+      - 'branding/**'
+      - 'mobile/**'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumenfall-play-candidate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - name: Check channel isolation and existing production protections
+        run: |
+          node scripts/codex/check_context.cjs --task docs/tasks/GOOGLE_PLAY_READINESS_001.md
+          node tests/tooling/google-play.cjs
+          node tests/tooling/apk-security.cjs
+          node scripts/ci/validate_source.cjs
+      - name: Install pinned build dependencies
+        working-directory: mobile
+        run: npm ci --no-audit --no-fund
+      - name: Reject high and critical dependency advisories
+        run: |
+          mkdir -p play-evidence
+          npm audit --prefix mobile --audit-level=high --json > play-evidence/dependency-audit.json
+      - name: Stage unchanged game assets
+        run: |
+          mkdir -p mobile/www
+          cp index.html mobile/www/index.html
+          cp -r fonts branding mobile/www/
+      - name: Generate separate Android project without APK updater
+        working-directory: mobile
+        run: node ../scripts/ci/capacitor_cli.cjs add android
+      - name: Configure API36 Play candidate
+        run: |
+          node scripts/ci/configure_android_play.cjs
+          node scripts/ci/set_android_version.cjs
+        env:
+          # Validation-only identity; allocate a real continuing version before upload.
+          BUILD_NUMBER: '1'
+          EXPECTED_VERSION_NAME: '0.0.1'
+      - name: Generate Lumenfall launcher and splash assets
+        working-directory: mobile
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),sharp=require('sharp');
+          async function main(){
+            fs.mkdirSync('assets',{recursive:true});
+            const background={r:8,g:16,b:39,alpha:1};
+            for(const [name,size,markSize,transparent] of [['icon',1024,820,false],['icon-foreground',1024,610,true],['splash',2732,920,false]]){
+              const mark=await sharp('../branding/lumenfall-mark.svg').resize(markSize,markSize,{fit:'contain'}).png().toBuffer();
+              await sharp({create:{width:size,height:size,channels:4,background:transparent?{r:0,g:0,b:0,alpha:0}:background}}).composite([{input:mark,gravity:'center'}]).png().toFile('assets/'+name+'.png');
+            }
+            await sharp({create:{width:1024,height:1024,channels:4,background}}).png().toFile('assets/icon-background.png');
+          }
+          main().catch(error=>{console.error(error);process.exitCode=1;});
+          JS
+          npx --no-install capacitor-assets generate --android
+          node ../scripts/ci/capacitor_cli.cjs sync android
+      - name: Install required Android SDK
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Build unsigned bundle and matching inspection APK
+        working-directory: mobile/android
+        run: |
+          chmod +x gradlew
+          ./gradlew bundleRelease assembleRelease lintRelease --no-daemon
+      - name: Inspect Play APK and exact bundle assets
+        run: |
+          node scripts/ci/verify_apk_security.cjs mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk "$ANDROID_HOME/build-tools/35.0.0/aapt" play > play-evidence/security.json
+          node scripts/ci/verify_apk_assets.cjs mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk > play-evidence/apk-assets.json
+          node - <<'JS'
+          const fs=require('node:fs');
+          const {verify}=require('./scripts/ci/verify_apk_assets.cjs');
+          const {apkSha256,...report}=verify('mobile/android/app/build/outputs/bundle/release/app-release.aab',process.cwd(),'base/assets/');
+          fs.writeFileSync('play-evidence/bundle-assets.json',JSON.stringify({...report,bundleSha256:apkSha256,signing:'UNSIGNED',storeReady:false},null,2));
+          JS
+          git rev-parse HEAD > play-evidence/commit.txt
+          sha256sum mobile/android/app/build/outputs/bundle/release/app-release.aab > play-evidence/bundle-sha256.txt
+      - name: Preserve candidate and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-play-candidate-${{ github.run_id }}
+          path: |
+            mobile/android/app/build/outputs/bundle/release/app-release.aab
+            mobile/android/app/build/reports/lint-results-release.html
+            play-evidence/
+      # Deliberately no Play upload or GitHub APK publication. This artifact still
+      # requires real upload signing, a release version and store/device acceptance.
