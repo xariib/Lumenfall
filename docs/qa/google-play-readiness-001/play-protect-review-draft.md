@@ -22,7 +22,9 @@ Suggested factual text after completing the device/warning fields:
 - SHA256: `cd5ad9f74c45ac0c71482219603caf46889fa2e29c58579ab15af7a225e44bd9`.
 - Recorded signer SHA256:
   `A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21`.
-  This is the existing debug signing certificate; production debugging is disabled.
+  Fresh inspection: `CN=Lumenfall, O=Xarib Productions, C=DK`, RSA2048,
+  SHA256withRSA, valid25September2026–9February2054. Legacy "debug" file/alias
+  names do not make it an Android debug certificate. Production debugging is disabled.
 - [Published package identity](https://github.com/xariib/Lumenfall/releases/download/android-1000139/identity.txt).
 - [Published static security report](https://github.com/xariib/Lumenfall/releases/download/android-1000139/security.json).
 - Permissions: INTERNET, REQUEST_INSTALL_PACKAGES and the app's

@@ -20,8 +20,9 @@ Owner: this feature chat. Status: in progress; store/device acceptance pending.
   warning string/screenshot, flagged APK identity and Console enrollment remain
   unknown. The user subsequently confirmed the flagged version/source is
   GitHub0.2.139; phone-side file hash was not independently measured.
-- Existing production APK disables debugging but is signed using the preserved
-  `androiddebugkey` certificate. The native GitHub APK updater adds
+- Existing production APK disables debugging and its workflow uses legacy
+  `androiddebugkey` naming. Fresh public certificate inspection below supersedes
+  the first checkpoint's incorrect debug-certificate inference. The updater adds
   `REQUEST_INSTALL_PACKAGES`. Neither a Google Play channel nor AAB build exists.
 - Preserve package `com.lumenfall.app`, HTTPS localhost WebView origin, gameplay,
   both saves, balance, existing sideload signing and signed APK updater behavior.
@@ -32,7 +33,7 @@ Owner: this feature chat. Status: in progress; store/device acceptance pending.
 1. Document current Google requirements using primary sources and distinguish
    unfamiliar-app scanning from a harmful-app verdict.
 2. Prepare a separate Play candidate without the APK updater/installer permission,
-   with an Android App Bundle, current target SDK and non-debug upload signing.
+  with an Android App Bundle, current target SDK and verified store signing.
 3. Cover channel isolation and rejection of unsafe/misconfigured Play artifacts;
    retain existing APK security and CI gates. Verify packaged game assets.
 4. Record signing/account/privacy/listing/testing requirements and a save-safe
@@ -44,10 +45,15 @@ Owner: this feature chat. Status: in progress; store/device acceptance pending.
 ## Findings and decisions
 
 Google currently requires target API36 for new phone apps/updates. Its policy
-does not permit a game's self-updater using REQUEST_INSTALL_PACKAGES, and its
-signing documentation says Play rejects debug certificates. Build preparation
-will keep the existing APK channel intact; no signing rotation is authorized by
-an implementation assumption. New binding project rules: none.
+does not permit a game's self-updater using REQUEST_INSTALL_PACKAGES. The earlier
+claim that the existing signer is a debug certificate was wrong: alias/filename
+alone did not establish that. Fresh keytool inspection of the downloaded0.2.139
+APK shows `CN=Lumenfall, O=Xarib Productions, C=DK`, RSA2048/SHA256withRSA,
+valid25September2026–9February2054, matching the established fingerprint. The
+user has been told of the correction. Pursue Play App Signing with the existing
+key, subject to actual Console acceptance; do not assume a key rotation or save
+migration is necessary. Build preparation preserves the APK channel.
+New binding project rules: none.
 
 Primary sources, checked19 November2026:
 - [Play Protect warnings](https://developers.google.com/android/play-protect/warning-dev-guidance)
@@ -92,15 +98,28 @@ default `tools` package, which Google no longer serves. Explicitly request only
 platform-tools and keep SDK licenses out of log output. Both failures remain
 recorded; neither produced a native bundle. Permanent progression44494605751
 also failed at Browser.getVersion CDP timeout before any mobile checks, with
-unchanged game source hash; do not weaken that test. Latest reruns remain pending.
+unchanged game source hash; unchanged next run44495038525 passed.
+
+Candidate source9d2888b1, [run44495038956](https://github.com/xariib/Lumenfall/actions/runs/44495038956)
+PASS: actual API36 unsigned AAB/APK compilation, lintRelease, Play manifest and
+compiled-code guards, all15 exact APK/AAB game assets, dependency gate. Fresh
+artifact ZIP SHA256 matches55dbee91…d50cd27 and local AAB verification passes,
+bundle SHA25644123beee4883cbe0b2af7355ffb858d5878e8a57290a1ff8d01ea8fc2e8b578.
+[Durable artifact receipts](../qa/google-play-readiness-001/candidate-9d2888b1/bundle-assets.json)
+explicitly say unsigned/storeReady:false. This is not an installable release.
+Premerge44495038453 failed before game results: browser version timed out and
+the first wisp-formula-contract returned no completed QA result; isolated offline
+job passed. Source and test code are unchanged. Preserve and retry this gate;
+do not merge or claim a full suite PASS. Other latest PR workflows are recorded
+in the evidence snapshot; a fresh docs-only checkpoint triggers their next runs.
 
 Fresh anonymous0.2.139 download:5,164,025bytes, expected SHA256 and all15 exact
 game assets PASS. [Public receipt](../qa/google-play-readiness-001/public-apk-verification.json)
 and [unsubmitted review draft](../qa/google-play-readiness-001/play-protect-review-draft.md)
 record the user's attribution without claiming an independent phone scan.
 
-Next: inspect the corrected native candidate and required CI results,
-save evidence and integrate only validated preparation. Account enrollment,
-actual full warning/device details, production signing/migration, privacy policy/listing,
+Next: inspect latest PR CI and retry failed browser startup without changing
+acceptance, then integrate only validated preparation. Account enrollment,
+actual full warning/device details, existing-key Play signing enrollment, privacy policy/listing,
 Play upload/testing and device acceptance remain open. No store submission,
 appeal, new release certificate or APK publication yet. Keep this feature open.

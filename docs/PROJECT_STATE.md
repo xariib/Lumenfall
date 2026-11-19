@@ -1,5 +1,9 @@
 # Lumenfall — current delivery status
 
+19 November: [Play preparation/PR63](tasks/GOOGLE_PLAY_READINESS_001.md):
+unsigned API36 build/security/assets PASS. Harmful warning unresolved;
+Console/signing/device acceptance and premerge retry pending. No release.
+
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
 [Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),
 source e6139c98: all maxed upgrades gold, prerequisite locks explain unlocks

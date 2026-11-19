@@ -45,7 +45,7 @@ not publish, sign a release, exercise a Play install or certify Play Protect.
 Keep the full existing pre-merge gates. A successful candidate build alone is
 not acceptance of the channel on devices or approval by Google.
 
-## Account and signing blockers
+## Account and signing setup
 
 The user has created a dedicated Gmail account; Play Console enrollment is not
 confirmed. [Register in Play Console](https://support.google.com/googleplay/android-developer/answer/6112435?hl=en)
@@ -53,23 +53,28 @@ using that account, complete Google's account/identity/device verification and
 the one-time US$25 registration fee. No Play Console connection was found in
 the available plugin search; account state has not been inspected.
 
-The established APK certificate uses `androiddebugkey`; production debugging is
-disabled, but the **signing certificate** is still a debug certificate. Google
-[does not accept debug certificates](https://developer.android.com/studio/publish/app-signing)
-for publishing. A new upload key only authenticates uploads; Play's app-signing
-key signs installations. It does not by itself make those installations compatible
-with the existing key. Do not replace the existing keystore or assume Play can
-update the sideloaded app while preserving its sandbox.
+The build uses legacy names `Lumenfall-debug.keystore` and `androiddebugkey`.
+These names do **not** establish that its certificate is an Android debug
+certificate. Fresh `keytool -printcert -jarfile` inspection of the public APK
+shows `CN=Lumenfall, O=Xarib Productions, C=DK`, RSA2048/SHA256withRSA,
+valid25September2026–9February2054, matching the established SHA256 fingerprint.
+The first checkpoint incorrectly inferred a debug certificate from its alias;
+that finding is withdrawn. Production debugging is independently disabled.
 
-Before allocating a real Play version/signing identity, establish in Play Console
-whether an officially supported signing lineage/migration is available for this
-existing debug-signed package. Preserve `com.lumenfall.app`; do not change package
-or signing identity as a workaround. If seamless migration is unsupported,
-resolve the migration requirement with the user. The existing Copy Current Save /
-Restore Save feature can be tested as an explicit fallback, but is not yet an
-accepted migration and must not lead to uninstalling the current game or losing
-saves. Exercise primary/recovery data, paid progression, offline clocks and both
-old/new Android versions with the actual distribution certificates.
+Use [Play App Signing's existing-key import](https://developer.android.com/studio/publish/app-signing)
+to preserve the established signing identity; confirm the actual enrollment
+options and certificate acceptance in Play Console. Keep private material in
+the existing secure signing workflow and use Google's PEPK encryption procedure
+when the Console requests it. Do not let Google generate a different app-signing
+key as an unexamined default. A separate upload key can authenticate submissions
+without changing the key Google uses for installations.
+
+No certificate change or uninstall is needed as an implementation assumption.
+Test an actual Play-generated update over the existing APK, preserving primary/
+recovery data, paid progression and offline clocks. If Console enrollment cannot
+retain this identity, stop before selecting a different signing key and resolve
+the migration requirement with the user. The existing backup/restore feature
+remains protection, not authorization to uninstall or lose progress.
 
 ## Remaining acceptance and store material
 
