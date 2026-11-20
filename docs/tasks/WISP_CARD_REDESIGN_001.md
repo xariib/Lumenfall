@@ -95,7 +95,7 @@ minimums to44px fails the original44px geometry assertion at43.78px, cleanly.
 The original native-input guard control still fails its intended Space assertion.
 The required existing compact driver runs both positive matrix and these two
 causal controls after its unchanged original assertions; full local parent run
-is in progress, required CI must verify its receipt.
+PASS locally, including both causal controls; CI must verify its receipt.
 
 Guide/mobile889checks/72cases/12profiles PASS. Global Formation hints return to
 roster before focusing; no hint purchase or save mutation. The original one-second
@@ -120,7 +120,15 @@ five-Wisp migration, cold-save upgrade, updater and retail launch. It is the old
 Actual Dribbble images and mobile/Android screenshots visually self-reviewed;
 no copied artwork, independent human review or new binding rule.
 
-Next: publish touch/fixture fixes; exact-head nine workflows and190+1cases;
+Current36449119: eight workflows PASS, isolated offline PASS. Main pre-merge
+found a fixture lifecycle race: Animation.finished resolves before animationend
+restores saved tab scroll. A later screenshot observed Tide above the viewport.
+The driver now waits the next real frame before choosing native input coordinates;
+no retry, coordinate assertion, state check or deadline removed. Product unchanged.
+Browser startup timeouts in Tree/scroll/migration reran unchanged and passed;
+original failure receipts retained. Current local compact parent is PASS.
+
+Next: publish fixture lifecycle fix; exact-head nine workflows and190+1cases;
 merge PR65 with expected head; all nine on exact main; signed public APK/update;
 anonymous feed/byte verification and final GitHub status/evidence. Physical phone,
 exact WebView60 DOM, TalkBack, human design/pacing and Google harmful-app verdict

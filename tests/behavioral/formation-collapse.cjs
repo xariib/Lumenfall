@@ -47,7 +47,11 @@ async function run(){
   const observe=()=>ev("(()=>{var p=document.querySelector('.formation-help'),b=document.getElementById('formation-best-now-btn'),r=b.getBoundingClientRect(),content=document.getElementById('bond-card');return {flat:p.tagName==='SECTION'&&!p.querySelector('summary'),visible:content.checkVisibility(),focus:document.activeElement===b,same:b===originalToggle,fit:r.left>=0&&r.right<=innerWidth+1&&b.scrollWidth<=b.clientWidth+1,target:r.width>=44&&r.height>=44,text:content.innerHTML,removed:!document.getElementById('wisp-role-summary')&&!document.getElementById('formation-contribution-toggle')&&!document.getElementById('formation-contribution-panel'),boxed:p.classList.contains('card'),errors:roleErrors};})()");
   let o=await observe();ok(o.flat&&o.visible,'Bonds readable by default without a disclosure');ok(o.removed&&o.boxed,'Contribution removed and Bonds boxed');
   const key=async(name)=>{await send('Input.dispatchKeyEvent',{type:name==='Enter'?'keyDown':'rawKeyDown',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13,...(name==='Enter'?{text:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13});};
-  const activate=async(input)=>{await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');if(input==='touch'){
+  const activate=async(input)=>{
+   // Animation.finished resolves before animationend dispatch. Let the tab's
+   // existing saved-scroll restoration finish before choosing an input point.
+   await ev('new Promise(function(resolve){requestAnimationFrame(function(){resolve(true);});})');
+   await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');if(input==='touch'){
    // Present the scrolled surface before delivering a native gesture. Layout
    // coordinates alone can precede Chrome's composited hit-test surface.
    await send('Page.captureScreenshot',{format:'png'});

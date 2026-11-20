@@ -173,3 +173,16 @@ then signed public APK/update and anonymous feed/byte verification. Save final
 evidence/status in GitHub. Physical phone, exact WebView60 DOM, TalkBack, human
 design/pacing acceptance and Google harmful-app verdict remain unobserved.
 Do not archive or claim full external acceptance; no questions/renewed permission.
+
+## 20 November — final touch candidate and lifecycle observation
+
+Head36449119/productb244: all eight other workflows PASS, isolated offline PASS.
+Pre-merge stopped on formation-collapse native target y=-437.5, before delivery
+of touch. The fixture awaited Animation.finished, which resolves before the
+existing animationend saved-scroll restoration. Presenting the screen could
+therefore restore old scroll after scrollIntoView. Wait the next real frame
+before choosing the native coordinate; retain presented hit/44px assertion,
+actual touch, next-frame observation, exact state/focus and original deadlines.
+No production change. Local full compact parent42570/18 plus1182/12 and both
+causal controls PASS. Tree/scroll/migration had actual browser startup/context
+timeouts; unchanged failed-job reruns passed. Failure JSON/raw logs retained.
