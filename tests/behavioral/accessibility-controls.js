@@ -33,7 +33,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
 
   var poor=bridge.getState();poor.lumen=0;poor.shards=0;bridge.setState(poor);bridge.renderLayout();
   var purchase=q('[data-research="arcanecal"]');
-  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade ×5' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and exact selected quantity');
+  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and exact selected quantity');
   // Fund the selected bulk quote exactly; a huge wallet can round a small debit to zero.
   var rich=bridge.getState(),price=bridge.forge.plan('arcanecal').needed;
   rich.lumen=price.lumen;rich.shards=price.shard;bridge.setState(rich);bridge.refreshAffordability();
@@ -68,9 +68,9 @@ window.runP105ControlQa = function(bridge,ctx,assert){
         if(cue)cue.remove();
         assert(baseLabel.textContent===(id==='ember'?'Empower':'Recruit'),'Empower/Recruit wording retained');
         assert(!!cue===affordable&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains the live next-action cue');
-        assert(label.textContent===(affordable?'Next ·':'')+baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
+        assert(label.textContent===baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
         var name=button.getAttribute('aria-label');
-        assert(name.includes('Next ·')===affordable,'Empower accessible next cue matches availability');
+        assert(!name.includes('Next ·'),'Empower accessible next cue matches availability');
         assert(name.includes(baseLabel.textContent)&&name.includes(price.textContent.trim())&&name.includes(id==='ember'?'Ember Wisp':'Tide Sprite')&&name.includes('Lumen'),'Empower accessible identity/action/price/unit');
         assert(!/Need|Cannot afford|Insufficient resources/i.test(name),'Empower accessible action and price have no shortage copy');
         // This synchronous runner freezes panelIn at scale(.995). Layout CSS

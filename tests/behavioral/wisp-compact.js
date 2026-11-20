@@ -22,10 +22,10 @@ window.runWispCompactQa=function(){
     ok(!c.querySelector('.wisp-next-action')&&!c.querySelector('.ability-badge'),'no duplicated next-action panel or Ability badge');
     if(expected){
       ok(c.dataset.primaryAction===expected&&primary[0].hasAttribute('data-'+expected)&&!primary[0].disabled,'correct original purchase highlighted '+id+'/'+expected);
-      ok(primary[0].querySelector('.wisp-next-label').textContent==='Next ·','text cue accompanies color');
+      ok(!primary[0].querySelector('.wisp-next-label'),'affordable action keeps its original action name');
       var probe=document.createElement('span');probe.style.color='var(--lumen)';c.appendChild(probe);
       ok(getComputedStyle(primary[0]).borderTopColor===getComputedStyle(probe).color,'primary border survives chapter styles');probe.remove();
-      ok(primary[0].getAttribute('aria-label').includes(b.spirit(id).name)&&primary[0].getAttribute('aria-label').includes('Next'),'accessible next action identifies Wisp and intent');
+      ok(primary[0].getAttribute('aria-label').includes(b.spirit(id).name)&&!primary[0].getAttribute('aria-label').includes('Next ·'),'accessible next action identifies Wisp and intent');
     }
     observations.push({id:id,action:expected||null});
   }

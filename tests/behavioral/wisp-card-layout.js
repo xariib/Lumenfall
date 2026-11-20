@@ -5,7 +5,7 @@ window.runWispCardLayoutQa=function(baseline){
   var b=window.__wispQa,checks=0,observations=[];
   function ok(value,message){checks++;if(!value)throw Error(message);}
   function seed(id,stage){
-    var s=b.fresh();s.maxDepthEver=250;s.tutorialDone=true;s.activeParty=[id];
+    var s=b.fresh();s.maxDepthEver=250;s.longStudyLevels.wispascend=300;s.ascendCount=100;s.research.arcanecal=30;s.tutorialDone=true;s.activeParty=[id];
     s.spirits[id]=stage===0?1:100;s.heroRarity[id]=stage===2?5:0;
     s.wispModules[id]=stage===2?b.moduleCap():(stage===1?b.moduleCap()-1:0);s.wispUltimate[id]=stage===2;
     s.lumen=s.shards=s.sigils=stage===0?0:1e20;return s;
@@ -18,7 +18,7 @@ window.runWispCardLayoutQa=function(baseline){
     var before=JSON.stringify(b.get()),slots=JSON.stringify(b.slots());
     b.render();b.refresh();card=document.querySelector('[data-wisp-card="'+id+'"]');p=card.querySelector('[data-wisp-progression]');
     ok(JSON.stringify(b.get())===before&&JSON.stringify(b.slots())===slots,'render leaves full state and both save slots unchanged '+id+'/'+stage);
-    ok(baseline?p.tagName==='DETAILS':p.tagName!=='DETAILS'&&!p.querySelector('summary'),'upgrades remain directly reachable '+id+'/'+stage);
+    ok(baseline?p.tagName==='DETAILS':p.tagName==='DETAILS'&&p.open&&Array.from(p.querySelectorAll('button')).every(function(button){return button.getBoundingClientRect().height>=44;}),'upgrade controls remain directly reachable '+id+'/'+stage);
     ok(card.textContent.includes(b.spirit(id).abilityName),'ability retained '+id);
     ok(card.textContent.includes('Wisp Power')&&card.querySelector('.rarity-badge'),'power/rarity retained '+id);
     var readout=card.querySelector('[data-wisp-role]');
@@ -71,7 +71,8 @@ window.runWispCardLayoutQa=function(baseline){
       var raritySection=card.querySelector('.wisp-rarity-section'),abilitySection=card.querySelector('.wisp-ability-section');
       ok(raritySection&&abilitySection&&raritySection!==abilitySection&&(stage===2?raritySection.dataset.state==='maxed'&&!card.querySelector('[data-rarity]'):raritySection.contains(card.querySelector('[data-rarity]')))&&!abilitySection.querySelector('[data-rarity]'),'Rarity purchase is separate from ability upgrades '+id);
       ok(abilitySection.querySelector('[data-ability-current]').textContent===b.moduleEffect(id,savedLevel),'Current matches purchased upgrade level '+id);
-      ok(abilitySection.querySelector('[data-ability-next]').textContent===(savedLevel>=cap?'Maxed':b.moduleEffect(id,savedLevel+1)),'Next shows exact next level or Maxed without exceeding cap '+id);
+      if(savedLevel>=cap)ok(!abilitySection.querySelector('[data-ability-next]')&&!abilitySection.querySelector('.module-row .wisp-effect-arrow')&&!abilitySection.querySelector('.module-row').textContent.includes('Maxed'),'gold ability has no next arrow or Maxed text '+id);
+      else ok(abilitySection.querySelector('[data-ability-next]').textContent===b.moduleEffect(id,savedLevel+1),'Next shows exact next level '+id);
       ok(level&&level.textContent==='Lv. '+b.get().spirits[id]&&parseFloat(levelStyle.borderLeftWidth)>0&&levelStyle.backgroundColor!=='rgba(0, 0, 0, 0)','saved Wisp level in a little box');
       var button=card.querySelector('[data-module]');if(button)ok(getComputedStyle(button).flexDirection==='row','inline Module prices');
     }

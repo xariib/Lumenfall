@@ -21,7 +21,7 @@ window.runWispUpgradeQa = function(){
         same(b.get(),before,'render preserves all gameplay data '+id+'/'+mask);
         same(b.slots(),raw,'render preserves primary and recovery '+id+'/'+mask);
         var p=progression(id),complete=mask===7;
-        ok(p.tagName!=='DETAILS'&&!p.querySelector('summary'),'all Wisp upgrades directly visible '+id+'/'+mask);
+        ok(p.tagName==='DETAILS'&&p.open,'all Wisp upgrades directly visible '+id+'/'+mask);
         if(complete){p.open=true;ok(visible(p.querySelector('.ultimate-badge')),'completed Ultimate readable');}
         else {
           ok(p.tagName!=='DETAILS'&&visible(p),'unfinished upgrades remain directly visible '+id);

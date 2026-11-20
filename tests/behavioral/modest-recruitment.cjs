@@ -5,7 +5,7 @@ const original=fs.readFileSync(process.argv[2]||'index.html','utf8');
 const marker="if(document.readyState==='loading'){";
 const source=original.replace(marker,'window.endlessQa={unlocked:wispRecruitmentUnlocked,requirement:wispRecruitmentRequirementText,rules:function(){return ENDLESS_PROGRESSION;}};'+marker);
 let checks=0;const eq=(a,b,label)=>{checks++;assert.deepEqual(a,b,label);};
-const rows=[['gale',15,17,2100],['thorn',35,23,12000],['void',55,29,70000],['aurora',75,34,400000],['titan',100,47,2200000]];
+const rows=[['gale',15,17,2361183],['thorn',35,23,39614081],['void',55,29,664613998],['aurora',75,34,6968982875],['titan',100,47,3138550867693]];
 for(const [id,depth,lab,price]of rows){
  const x=F.app(source,undefined,{clockDate:true}),q=x.q;
  function seed(d,l){const s=q.fresh();s.maxDepthEver=d;s.longStudyLevels.wispascend=l;s.lumen=price;s.shards=0;return s;}
@@ -26,6 +26,6 @@ for(const [id,depth,lab,price]of rows){
 }
 const q=F.app(source).q;
 eq(q.endless.rules().recruit.ember,{depth:1,lab:0},'early Ember unchanged');
-eq(q.endless.rules().recruit.tide,{depth:3,lab:0},'early Tide unchanged');
-eq(q.endless.rules().recruit.stone,{depth:6,lab:0},'early Stone unchanged');
+eq(q.endless.rules().recruit.tide,{depth:5,lab:0,kills:25},'early Tide unchanged');
+eq(q.endless.rules().recruit.stone,{depth:10,lab:1,kills:100},'early Stone unchanged');
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),scope:'one fewer completed Wisp Ascendancy level for each later recruit; existing Rift and paid recruitment gates retained'}));

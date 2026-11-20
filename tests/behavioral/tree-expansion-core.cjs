@@ -18,7 +18,7 @@ const CATALOG = [
   ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
   ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
   ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
-  ['formationseat','Sixth Companion',75,1,[120]],
+  ['formationseat','Formation Limit',75,1,[120]],
   ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
   ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
   ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
@@ -87,7 +87,7 @@ function oldBreakdown(clear,benchmark,swift=10,clarity=0) {
 function catalogue(t,mutate) {
   const a=app(source),q=a.q;
   t.eq(q.defs().map(d=>d.id),OLD_IDS.concat(IDS),'original seven IDs and exact appended order');
-  t.eq(q.defs().filter(d=>!d.retired&&!d.retiredTo).map(d=>d.id),['echo','bonds','swift'].concat(IDS),'twenty active independent purchase types');
+  t.eq(q.defs().filter(d=>!d.retired&&!d.retiredTo).map(d=>d.id),['echo','bonds','swift'].concat(IDS.filter(id=>id!=='formationseat')),'nineteen active independent purchase types');
   t.eq(new Set(q.defs().map(d=>d.id)).size,24,'no duplicate saved ID');
   const end=useMutation(q,mutate);
   try {
@@ -102,6 +102,7 @@ function catalogue(t,mutate) {
         t.eq(q.get().nodes[d.id],raw,'raw paid level retained '+d.id+'/'+raw);
         const plan=q.plan(d.id);
         t.eq(q.get(),before,'quote is read-only '+d.id+'/'+raw);
+        if(d.id==='formationseat'){t.eq(plan.reason,'retired','sixth-slot purchase stays retired');t.eq(q.buy(d.id),false,'retired slot cannot be bought');t.eq(q.get().prisms,s.prisms+(raw?120:0),'original paid price refunded once');continue;}
         if(raw>=d.cap) {
           t.eq(plan.reason,'cap','cap gate '+d.id+'/'+raw);
           t.eq(q.buy(d.id),false,'cap buy rejected '+d.id+'/'+raw);
@@ -124,6 +125,7 @@ function catalogue(t,mutate) {
           t.eq(a.storage.get(P),a.storage.get(R),'recovery matches primary '+d.id);
         }
       }
+      if(d.id==='formationseat')continue;
       const s=lowWorld(q,d.unlock-1);q.set(s);const before=clone(q.get());
       t.eq(q.plan(d.id).reason,'locked','one Rift below unlock '+d.id);
       t.eq(q.buy(d.id),false,'locked handler '+d.id);t.eq(q.get(),before,'locked purchase is pure '+d.id);
@@ -140,7 +142,7 @@ function catalogue(t,mutate) {
 }
 
 function nodeFaults(t,mutate) {
-  for(const id of ['echo','bonds','swift'].concat(IDS)) for(const fault of ['primary','recovery']) {
+  for(const id of ['echo','bonds','swift'].concat(IDS.filter(id=>id!=='formationseat'))) for(const fault of ['primary','recovery']) {
     const a=app(source),q=a.q,s=world(q);q.set(s);t.eq(q.save(),true,'persist initial '+id);
     const before=clone(q.get()),p=a.storage.get(P),r=a.storage.get(R),cost=q.plan(id).cost;
     const end=useMutation(q,mutate);a.fail(fault==='primary',fault==='recovery');
@@ -291,7 +293,7 @@ function formation(t,mutate) {
   for(const raw of ranksFor('formationseat')) {
     const a=app(source),q=a.q,s=world(q);s.nodes.formationseat=raw;all.forEach(id=>s.spirits[id]=10);
     s.activeParty=all.slice(0,5);s.activeFormationPreset='push';s.formationPresets.push=all.slice(0,5);q.set(s);
-    const before=clone(q.get()),end=useMutation(q,mutate),capacity=5+effective('formationseat',raw);
+    const before=clone(q.get()),end=useMutation(q,mutate),capacity=5;
     try {
       t.eq(q.deed('fullparty'),true,'existing five-member Deed remains earned');
       t.eq(q.field('void'),capacity===6,'actual sixth Field button eligibility');
@@ -308,7 +310,7 @@ function formation(t,mutate) {
   for(const owned of [0,1]) for(const globalOwned of [0,1]) {
     const global=world(q);global.nodes.formationseat=globalOwned;global.nodes.invitations=globalOwned?3:0;q.set(global);
     const other=world(q);other.nodes.formationseat=owned;other.nodes.invitations=owned?3:0;
-    t.eq(q.capacity(other),5+owned,'Formation helper reads supplied snapshot');
+    t.eq(q.capacity(other),5,'Formation helper reads supplied snapshot');
     t.eq(q.unlock('titan',other),100-(owned?3:0),'recruitment helper reads supplied snapshot');
   }
 }
@@ -701,7 +703,7 @@ function run() {
   for(const [name,fn] of CASES) {const t=counter(name);fn(t);checks+=t.checks;records.push({name,checks:t.checks});}
   const negatives=[];
   if(process.argv.includes('--negative')) {
-    const effectCases={swiftcharter:charter,veteranrecruits:veteran,gentlegrowth:gentle,formationseat:formation,benchmentor:mentor,empowerbatch:batch,recruitreserve:reserve,invitations:invitations,frontier:frontierCases,stardust:dustCases,wallwisdom:wall};
+    const effectCases={swiftcharter:charter,veteranrecruits:veteran,gentlegrowth:gentle,benchmentor:mentor,empowerbatch:batch,recruitreserve:reserve,invitations:invitations,frontier:frontierCases,stardust:dustCases,wallwisdom:wall};
     for(const id of ['lumenmemory','rosterrecall','chargememory','supportmemory','phasememory','riftstep'])effectCases[id]=(t,m)=>transition(t,id,m);
     const specs=Object.entries(effectCases).map(([id,fn])=>['drop-'+id,fn,q=>q.disable(id)]).concat([
       ['wrong-price',catalogue,q=>q.corruptPrice()],['ignore-unlock',catalogue,q=>q.ignoreUnlock()],
@@ -718,7 +720,7 @@ function run() {
       negatives.push({name,status:'killed',checksBeforeFailure:t.checks,assertion:error.message});
     }
   }
-  return {status:'PASS',checks,cases:records,negativeCount:negatives.length,negative:negatives,activePurchaseTypes:20,newPurchaseTypes:17,priceOracle:'independent fixed integer Prism ladders; independent BigInt rational moderate Empower cases',scope:'Complete production game IIFE, original purchases/save/backup and manual/live/offline mutation paths. Tree supports single purchases only; no Tree bulk or queue acceptance. Long offline/numerical/mobile/actual V8 run in separate suites. Native Android integration untested.'};
+  return {status:'PASS',checks,cases:records,negativeCount:negatives.length,negative:negatives,activePurchaseTypes:19,newPurchaseTypes:16,priceOracle:'independent fixed integer Prism ladders; independent BigInt rational moderate Empower cases',scope:'Complete production game IIFE, original purchases/save/backup and manual/live/offline mutation paths. Tree supports single purchases only; no Tree bulk or queue acceptance. Long offline/numerical/mobile/actual V8 run in separate suites. Native Android integration untested.'};
 }
 try {
   const result=run();process.stdout.write(JSON.stringify({...result,sourceSha256:hash(source),harnessSha256:hash(fs.readFileSync(path.join(__dirname,'tree-expansion-harness.cjs'))),testSha256:hash(fs.readFileSync(__filename)),node:process.versions.node,v8:process.versions.v8},null,2)+'\n');

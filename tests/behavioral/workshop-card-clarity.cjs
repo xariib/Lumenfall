@@ -27,7 +27,7 @@ eq(q.get().lumen,0,'waiting replacement pays only the new Lumen price');eq(q.get
 q.get().lumen=q.get().shards=1e9;q.queue();ok(!q.get().activeStudies.some(a=>a.id==='guardmastery'),'old waiting research cannot restart in another free slot');
 q.set(waiting);ok(q.clearSlot(0),'Queue OFF clears a waiting slot');eq(q.get().studySlotProjects[0],null,'waiting assignment cleared');eq(q.get().studyQueue.guardmastery,false,'waiting queue disabled');eq(q.get().lumen,800,'clearing unpaid waiting work never spends Lumen');
 ok(q.save(),'cleared waiting slot saves');loaded=app(source,x.storage).q;eq(loaded.get().studySlotProjects[0],null,'waiting clear survives reload');eq(loaded.get().studyQueue.guardmastery,false,'waiting queue stays off after reload');
-const deeds=q.deeds(),extra=deeds.filter(a=>a.counter);eq(extra.length,49,'49 additional fixed milestones');eq(new Set(deeds.map(a=>a.id)).size,deeds.length,'all Deed identities unique');
+const deeds=q.deeds(),extra=deeds.filter(a=>a.counter);eq(extra.length,71,'69 fixed development milestones plus two initial continuing goals');eq(new Set(deeds.map(a=>a.id)).size,deeds.length,'all Deed identities unique');
 for(const [track,defs]of [['lab',q.projects()],['forge',q.forgeDefs()]]){
  // Count only the first 300 continuing ranks in this conservative proof.
  const purchasable=defs.filter(n=>!n.retiredTo&&!n.retired).reduce((sum,n)=>sum+(n.endless?300:n.levelCap),0);

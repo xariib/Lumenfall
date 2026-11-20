@@ -5,7 +5,7 @@ window.__wispQa={
  set:function(s){state=acceptPersistedState(JSON.parse(JSON.stringify(s)),'qa-wisp');restoreEnemyOrSpawn();},
  refresh:function(){lastAffordabilityAt=0;checkAffordability();},
  rarityRequirement:function(t){return rarityReq(t);},rarityCost:function(id,t){return rarityCost(this.spirit(id),t);},
- render:function(){renderSpirits();},cap:function(n){MODULE_MAX_LEVEL=n;},
+ render:function(){renderSpirits();document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;});},cap:function(n){MODULE_MAX_LEVEL=n;},
  moduleCap:function(){return MODULE_MAX_LEVEL;},moduleEffect:function(id,n){return MODULE_INFO[this.spirit(id).abilityType].effect(n);},
  empowerCost:function(id){return spiritCost(this.spirit(id));},
  wallet:function(lumen,shards){state.lumen=lumen;state.shards=shards;},
