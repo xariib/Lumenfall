@@ -28,11 +28,18 @@ for(const r of records.slice(1)){
   for(const key of ['totalKills','motes','sigils','depth','riftMode','farmDepth','farmReturnDepth','ascendCount','totalTaps','prisms','comets','lumen','shards'])eq(direct.state[key],r.state[key],'unchanged chronological endpoint '+key);
   for(const key of ['activeParty','spirits','research','longStudyLevels','achieved','dailyStats','studyBoosts'])eq(direct.state[key],r.state[key],'retained purchases and work '+key);
 }
-// The approved13s recast changes native addition order at rounding precision.
-// Independent one-second receipt: support-year/farm-one-second-release.json.
-// The prior6s receipt remains team-progression-001/farm-one-second.json:
-// 15859808.499977807 Lumen and4026523.0000089034 Shards.
-eq(direct.state.lumen,15859808.49997803,'ordered native Lumen wallet with current Support timing');
+// Keep the original Support/native-addition receipt under its original Wisp
+// prices, while the complete four-chunk comparison above uses current prices.
+// The requested later-Wisp investment changes automatic Empower expenditure;
+// it does not change the four-hour50400 kills or native Shard credit order.
+const investment='function wispInvestmentBase(sp){';
+eq(source.split(investment).length,2,'one explicit historical Wisp price input');
+const historical=app(source.replace(investment,investment+'return sp.baseCost;'),undefined,{clockDate:true,retainWrites:false});
+historical.q.set(fixture);historical.q.restoreEnemy();historical.q.advance(14400,{kind:'offline',clockStartMs:CLOCK,offlineWindowStartMs:CLOCK});
+eq(historical.q.get().lumen,15859808.49997803,'original-price ordered native Lumen wallet with current Support timing');
+eq(historical.q.get().shards,4026523.0000087842,'original-price ordered native Shard wallet with current Support timing');
+// Current-price one-second replay: wisp-gameplay-pacing-001/local/farm-current.json.
+eq(direct.state.lumen,11737479.4999781,'current-price ordered native Lumen wallet with current Support timing');
 eq(direct.state.shards,4026523.0000087842,'ordered native Shard wallet with current Support timing');
 eq(direct.summary.kills,50400,'original complete four-hour kill count');
 {
@@ -54,4 +61,4 @@ if(process.argv.includes('--negative')){
   const r=require('node:child_process').spawnSync(process.execPath,[__filename,file],{encoding:'utf8',env:{...process.env,FARM_RECAP_MUTANT:'1'},timeout:120000});
   checks++;assert(!r.error&&r.status===1&&r.stderr.includes('original four-hour summary lumen tolerance'),'old native-only recap must fail the original tolerance');
 }
-console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),records:records.map(r=>({chunk:r.chunk,...r.summary,lumen:r.state.lumen,shards:r.state.shards})),limits:'Original four-hour fixture and tolerances, unchanged native wallets; modern headless arithmetic is not Android acceptance.'}));
+console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),historicalPrices:{lumen:historical.q.get().lumen,shards:historical.q.get().shards},records:records.map(r=>({chunk:r.chunk,...r.summary,lumen:r.state.lumen,shards:r.state.shards})),limits:'Original four-hour fixture/tolerances with both original and current prices; modern headless arithmetic is not Android acceptance.'}));

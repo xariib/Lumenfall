@@ -94,7 +94,10 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
   // Actual generated purchase markup: shared inline icons stay proportional in both Lab and Ascend.
   ['spirits','ascend'].forEach(function(tab){
     q('[data-tab="'+tab+'"]').click();
-    assert(!document.querySelector('#tab-'+tab+' details.wisp-progression'),'upgrade progression has no disclosure');
+    if(tab==='spirits'){
+      var progressions=Array.from(document.querySelectorAll('#tab-spirits [data-wisp-progression]'));
+      assert(progressions.length>0&&progressions.every(function(p){return p.tagName==='DETAILS'&&p.open&&p.querySelector('summary[data-wisp-details]');}),'expanded compact upgrades remain reachable for icon/layout inspection');
+    }else assert(!document.querySelector('#tab-'+tab+' details.wisp-progression'),'Tree has no Wisp progression disclosure');
     var icons=Array.from(document.querySelectorAll('#tab-'+tab+' .cost-icon'));
     assert(icons.length>0,tab+' cost icons exist');
     icons.forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0 && r.width<=16 && r.height<=16,tab+' nested icon sizing');});

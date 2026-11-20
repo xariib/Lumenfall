@@ -18,7 +18,7 @@ const CATALOG = [
   ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
   ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
   ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
-  ['formationseat','Sixth Companion',75,1,[120]],
+  ['formationseat','Formation Limit',75,1,[120]],
   ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
   ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
   ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
@@ -30,7 +30,7 @@ function integerAmount(value){if(typeof value==='number')return BigInt(value);co
 const SPIRITS = [
   ['ember',1,10],['tide',3,60],['stone',6,360],['gale',9,2100],
   ['thorn',12,12000],['void',18,70000],['aurora',24,400000],['titan',32,2200000]
-].map(([id,unlock,base]) => ({id,unlock,base}));
+].map(([id]) => ({id,unlock:require('./wisp-gameplay-reference.cjs').recruitment[id][0],base:require('./wisp-gameplay-reference.cjs').bases[id]}));
 const LEGACY = {echo:{base:2,growth:1.4,cap:6},bonds:{base:2,growth:1.45,cap:20},swift:{base:3,growth:1.5}};
 const capFor = id => CATALOG.find(d => d.id === id).cap;
 const ranksFor = id => [...new Set([0,1,capFor(id),capFor(id)+1])];
@@ -87,7 +87,7 @@ function oldBreakdown(clear,benchmark,swift=10,clarity=0) {
 function catalogue(t,mutate) {
   const a=app(source),q=a.q;
   t.eq(q.defs().map(d=>d.id),OLD_IDS.concat(IDS),'original seven IDs and exact appended order');
-  t.eq(q.defs().filter(d=>!d.retired&&!d.retiredTo).map(d=>d.id),['echo','bonds','swift'].concat(IDS),'twenty active independent purchase types');
+  t.eq(q.defs().filter(d=>!d.retired&&!d.retiredTo).map(d=>d.id),['echo','bonds','swift'].concat(IDS.filter(id=>id!=='formationseat')),'nineteen active independent purchase types');
   t.eq(new Set(q.defs().map(d=>d.id)).size,24,'no duplicate saved ID');
   const end=useMutation(q,mutate);
   try {
@@ -102,6 +102,7 @@ function catalogue(t,mutate) {
         t.eq(q.get().nodes[d.id],raw,'raw paid level retained '+d.id+'/'+raw);
         const plan=q.plan(d.id);
         t.eq(q.get(),before,'quote is read-only '+d.id+'/'+raw);
+        if(d.id==='formationseat'){t.eq(plan.reason,'retired','sixth-slot purchase stays retired');t.eq(q.buy(d.id),false,'retired slot cannot be bought');t.eq(q.get().prisms,s.prisms+(raw?120:0),'original paid price refunded once');continue;}
         if(raw>=d.cap) {
           t.eq(plan.reason,'cap','cap gate '+d.id+'/'+raw);
           t.eq(q.buy(d.id),false,'cap buy rejected '+d.id+'/'+raw);
@@ -124,6 +125,7 @@ function catalogue(t,mutate) {
           t.eq(a.storage.get(P),a.storage.get(R),'recovery matches primary '+d.id);
         }
       }
+      if(d.id==='formationseat')continue;
       const s=lowWorld(q,d.unlock-1);q.set(s);const before=clone(q.get());
       t.eq(q.plan(d.id).reason,'locked','one Rift below unlock '+d.id);
       t.eq(q.buy(d.id),false,'locked handler '+d.id);t.eq(q.get(),before,'locked purchase is pure '+d.id);
@@ -140,7 +142,7 @@ function catalogue(t,mutate) {
 }
 
 function nodeFaults(t,mutate) {
-  for(const id of ['echo','bonds','swift'].concat(IDS)) for(const fault of ['primary','recovery']) {
+  for(const id of ['echo','bonds','swift'].concat(IDS.filter(id=>id!=='formationseat'))) for(const fault of ['primary','recovery']) {
     const a=app(source),q=a.q,s=world(q);q.set(s);t.eq(q.save(),true,'persist initial '+id);
     const before=clone(q.get()),p=a.storage.get(P),r=a.storage.get(R),cost=q.plan(id).cost;
     const end=useMutation(q,mutate);a.fail(fault==='primary',fault==='recovery');
@@ -238,7 +240,7 @@ function veteran(t,mutate) {
       t.eq(q.spiritPlan(id).levels,expected,'one paid recruitment grants starting levels');
       t.eq(q.buySpirit(id),true,'actual first recruitment');t.eq(q.get().spirits[id],expected,'Veteran recruit starts at promised level');
       t.eq(q.get().lumen,0,'only original recruitment price paid');t.eq(q.get().treeTrainingProgress,1,'bonus levels count as one paid action');
-      q.get().lumen=1e9;t.eq(q.buySpirit(id),true,'subsequent Empower');t.eq(q.get().spirits[id],expected+1,'subsequent paid action adds just one level');
+      q.get().lumen=q.spiritPlan(id).cost;t.eq(q.buySpirit(id),true,'subsequent Empower');t.eq(q.get().spirits[id],expected+1,'subsequent paid action adds just one level');
     } finally {end();}
   }
 }
@@ -291,7 +293,7 @@ function formation(t,mutate) {
   for(const raw of ranksFor('formationseat')) {
     const a=app(source),q=a.q,s=world(q);s.nodes.formationseat=raw;all.forEach(id=>s.spirits[id]=10);
     s.activeParty=all.slice(0,5);s.activeFormationPreset='push';s.formationPresets.push=all.slice(0,5);q.set(s);
-    const before=clone(q.get()),end=useMutation(q,mutate),capacity=5+effective('formationseat',raw);
+    const before=clone(q.get()),end=useMutation(q,mutate),capacity=5;
     try {
       t.eq(q.deed('fullparty'),true,'existing five-member Deed remains earned');
       t.eq(q.field('void'),capacity===6,'actual sixth Field button eligibility');
@@ -308,7 +310,7 @@ function formation(t,mutate) {
   for(const owned of [0,1]) for(const globalOwned of [0,1]) {
     const global=world(q);global.nodes.formationseat=globalOwned;global.nodes.invitations=globalOwned?3:0;q.set(global);
     const other=world(q);other.nodes.formationseat=owned;other.nodes.invitations=owned?3:0;
-    t.eq(q.capacity(other),5+owned,'Formation helper reads supplied snapshot');
+    t.eq(q.capacity(other),5,'Formation helper reads supplied snapshot');
     t.eq(q.unlock('titan',other),100-(owned?3:0),'recruitment helper reads supplied snapshot');
   }
 }
@@ -380,9 +382,9 @@ function reserve(t,mutate) {
 }
 
 function invitations(t,mutate) {
-  const gates={ember:[1,0],tide:[3,0],stone:[6,0],gale:[15,17],thorn:[35,23],void:[55,29],aurora:[75,34],titan:[100,47]};
+  const gates=require('./wisp-gameplay-reference.cjs').recruitment;
   for(const raw of ranksFor('invitations')) for(const sp of SPIRITS) {
-    const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,gates[sp.id][0]-effective('invitations',raw)));s.nodes.invitations=raw;s.spirits[sp.id]=0;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
+    const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,gates[sp.id][0]-effective('invitations',raw)));s.lumen=1e15;s.totalKills=gates[sp.id][2];s.nodes.invitations=raw;s.spirits[sp.id]=0;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
     const immutable=[q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],end=useMutation(q,mutate);
     try {
       const depth=Math.max(1,gates[sp.id][0]-effective('invitations',raw));
@@ -418,7 +420,7 @@ function transition(t,id,mutate) {
       if(id==='chargememory') {
         for(const sp of SPIRITS)t.near(q.get().heroResource[sp.id],before.heroResource[sp.id]*rank/5,'each actual charge retained '+sp.id);
         t.eq(q.get().spirits.titan,0,'dormant charge does not recruit its Wisp');
-        q.get().lumen=2200000;const charge=q.get().heroResource.titan;t.eq(q.buySpirit('titan'),true,'later dormant Wisp recruited');t.eq(q.get().heroResource.titan,charge,'recruitment does not erase stored charge');
+        q.get().lumen=3138550867693;const charge=q.get().heroResource.titan;t.eq(q.buySpirit('titan'),true,'later dormant Wisp recruited at its unlock-economy price');t.eq(q.get().heroResource.titan,charge,'recruitment does not erase stored charge');
       }
       if(id==='supportmemory') {
         t.eq(q.get().supportBuffs,rank?before.supportBuffs:null,'Support source snapshots retained exactly');
@@ -562,7 +564,7 @@ function paidAscends(t,mutate) {
     if(route!=='manual')s.depth=s.enemyDepth=50;
     q.set(s);const end=useMutation(q,mutate),ascends=[],stop=q.observeAscends(v=>ascends.push(v));
     try {
-      t.eq(q.get().activeStudies.length,7,'fixture really contains seven paid studies');t.eq(q.get().activeParty.length,6,'fixture really contains six Active members');
+      t.eq(q.get().activeStudies.length,7,'fixture really contains seven paid studies');t.eq(q.get().activeParty.length,5,'historical six-member selection is normalized tofive without deleting Wisps');
       if(route==='manual')t.eq(q.ascend(),true,'actual manual paid Ascend');
       else {
         t.eq(q.advance(0,{kind:route,clockStartMs:CLOCK}).ascends,0,'target boss must actually be cleared');
@@ -575,7 +577,7 @@ function paidAscends(t,mutate) {
       // Canonicalization immediately following automatic mutation must preserve
       // the same paid endpoint, rather than just a transient observer snapshot.
       for(const field of PAID_FIELDS)t.eq(q.get()[field],event.after[field],route+' canonical endpoint retains '+field);
-      t.eq(q.slots(),5,'paid Apparatus reaches the five-slot Lab cap after Tree Ascend');t.eq(q.capacity(),6,'paid Tree capacity survives Ascend');
+      t.eq(q.slots(),5,'paid Apparatus reaches the five-slot Lab cap after Tree Ascend');t.eq(q.capacity(),5,'Formation stays capped atfive after Ascend');
       q.save();const accepted=clone(q.get());t.eq(app(source,a.storage).q.get(),accepted,route+' actual cold load');
       const restore=app(source);restore.area.value=q.export();restore.q.restore();restore.drain();t.eq(restore.reloads(),1,route+' actual backup restore requests reload');
       t.eq(app(source,restore.storage).q.get(),accepted,route+' actual backup import retains all value');
@@ -701,7 +703,7 @@ function run() {
   for(const [name,fn] of CASES) {const t=counter(name);fn(t);checks+=t.checks;records.push({name,checks:t.checks});}
   const negatives=[];
   if(process.argv.includes('--negative')) {
-    const effectCases={swiftcharter:charter,veteranrecruits:veteran,gentlegrowth:gentle,formationseat:formation,benchmentor:mentor,empowerbatch:batch,recruitreserve:reserve,invitations:invitations,frontier:frontierCases,stardust:dustCases,wallwisdom:wall};
+    const effectCases={swiftcharter:charter,veteranrecruits:veteran,gentlegrowth:gentle,benchmentor:mentor,empowerbatch:batch,recruitreserve:reserve,invitations:invitations,frontier:frontierCases,stardust:dustCases,wallwisdom:wall};
     for(const id of ['lumenmemory','rosterrecall','chargememory','supportmemory','phasememory','riftstep'])effectCases[id]=(t,m)=>transition(t,id,m);
     const specs=Object.entries(effectCases).map(([id,fn])=>['drop-'+id,fn,q=>q.disable(id)]).concat([
       ['wrong-price',catalogue,q=>q.corruptPrice()],['ignore-unlock',catalogue,q=>q.ignoreUnlock()],
@@ -718,7 +720,7 @@ function run() {
       negatives.push({name,status:'killed',checksBeforeFailure:t.checks,assertion:error.message});
     }
   }
-  return {status:'PASS',checks,cases:records,negativeCount:negatives.length,negative:negatives,activePurchaseTypes:20,newPurchaseTypes:17,priceOracle:'independent fixed integer Prism ladders; independent BigInt rational moderate Empower cases',scope:'Complete production game IIFE, original purchases/save/backup and manual/live/offline mutation paths. Tree supports single purchases only; no Tree bulk or queue acceptance. Long offline/numerical/mobile/actual V8 run in separate suites. Native Android integration untested.'};
+  return {status:'PASS',checks,cases:records,negativeCount:negatives.length,negative:negatives,activePurchaseTypes:19,newPurchaseTypes:16,priceOracle:'independent fixed integer Prism ladders; independent BigInt rational moderate Empower cases',scope:'Complete production game IIFE, original purchases/save/backup and manual/live/offline mutation paths. Tree supports single purchases only; no Tree bulk or queue acceptance. Long offline/numerical/mobile/actual V8 run in separate suites. Native Android integration untested.'};
 }
 try {
   const result=run();process.stdout.write(JSON.stringify({...result,sourceSha256:hash(source),harnessSha256:hash(fs.readFileSync(path.join(__dirname,'tree-expansion-harness.cjs'))),testSha256:hash(fs.readFileSync(__filename)),node:process.versions.node,v8:process.versions.v8},null,2)+'\n');

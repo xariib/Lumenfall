@@ -32,7 +32,7 @@ for(const id of ids)for(const level of levels)for(let tier=0;tier<6;tier++){
  // Compare real cost paths including Tree discounts and Gentle Growth.
  for(const rank of [0,5]){
   const state=q.get();state.nodes.gentlegrowth=rank;state.nodes.bonds=20;q.set(state);p.set(oldState(state));
-  eq(q.empowerCost(id),p.empowerCost(id),'unchanged real Empower price '+id+'/'+level+'/'+rank);
+  eq(q.empowerCost(id),require('./wisp-gameplay-reference.cjs').empower(id,q.get().spirits[id],rank,20),'independent unlock-economy Empower price '+id+'/'+level+'/'+rank);
  }
  if(tier===0)prices.push({id,level,power:q.power(id),cost:q.empowerCost(id)});
 }

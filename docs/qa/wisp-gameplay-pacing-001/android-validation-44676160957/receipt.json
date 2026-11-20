@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "published": false,
+  "runId": 44676160957,
+  "attempt": 1,
+  "sourceCommit": "0aceaa1e5c05689a32c254b695a5e1223527554b",
+  "failure": "Installed game initialized and freshly saved both migration slots",
+  "phase": "cold restart at android-upgrade.cjs:487",
+  "observed": "The initial migration settled/validated before the cold call; this follows the recorded stack and sequential code. Native Wisp/Deeds/Rift checks preceding migration finished.",
+  "rootCause": "Unknown. No final cold-state probe was saved by this version of the test.",
+  "next": "One same-commit failed-job rerun with unchanged source, assertion and wait. If it repeats, add diagnostic evidence before choosing a repair.",
+  "limits": "Not a passing native validation or release. Keep original failure and do not claim the cold-start cause was established."
+}

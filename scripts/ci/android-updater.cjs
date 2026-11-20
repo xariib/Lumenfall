@@ -43,7 +43,13 @@ async function main(){
   assert.match(adb('get-serialno').trim(),/^emulator-/,'Never operate on a player device');
   const log=fs.openSync('release-evidence/updater-native-logcat.txt','w');nativeLogcat=cp.spawn('adb',['logcat','-v','threadtime'],{stdio:['ignore',log,log]});fs.closeSync(log);
   mark('fetch official release and install older-version fixture');
-  const official=await (await fetch('https://api.github.com/repos/xariib/Lumenfall/releases/latest')).json();
+  const officialResponse=await fetch('https://api.github.com/repos/xariib/Lumenfall/releases/latest');
+  const officialText=await officialResponse.text();let official;
+  try{official=JSON.parse(officialText);}catch{official={invalidJson:officialText};}
+  fs.writeFileSync('release-evidence/official-release-fetch.json',JSON.stringify({status:officialResponse.status,
+    remaining:officialResponse.headers.get('x-ratelimit-remaining'),reset:officialResponse.headers.get('x-ratelimit-reset'),
+    retryAfter:officialResponse.headers.get('retry-after'),body:official},null,2)+'\n');
+  assert.equal(officialResponse.status,200,'Official release metadata HTTP status; see official-release-fetch.json');
   assert.match(official.tag_name,/^android-\d+$/);const expected=Number(official.tag_name.substring(8));
   assert.match(adb('install','-r','-d','updater-probe.apk'),/Success/);
   adb('shell','appops','set',pkg,'REQUEST_INSTALL_PACKAGES','deny');

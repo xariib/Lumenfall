@@ -18,8 +18,8 @@ for(const [index,id]of ids.entries()){
  const sp=q.sp(id);
  for(let tier=0;tier<5;tier++){
   const s=seed(id);s.heroRarity[id]=tier;s.wispUltimate[id]=false;
-  boundaries(s,id,{level:levels[tier],depth:depths[tier],ascends:ascends[tier],lab:labs[tier]+Math.floor(index*tier/2),forge:forges[tier]},()=>b.rarity(sp),()=>b.buyRarity(sp),false);
-  const cost={lumen:lumenBase[index]*rarityMult[tier],shard:shards[tier]};eq(b.rarity(sp).cost,cost,id+' independent rarity price');ok(b.buyRarity(sp),id+' real rarity purchase');eq(q.get().heroRarity[id],tier+1,id+' exactly one rarity');eq(q.get().lumen,A.exactSub('1e400',cost.lumen),id+' exact rarity Lumen');eq(q.get().shards,A.exactSub('1e400',cost.shard),id+' exact rarity Shards');
+  boundaries(s,id,{level:levels[tier],depth:Math.max(depths[tier],index>=2?require('./wisp-gameplay-reference.cjs').recruitment[id][0]+10*(tier+1):0),ascends:ascends[tier],lab:Math.max(labs[tier]+Math.floor(index*tier/2),index>=2?require('./wisp-gameplay-reference.cjs').recruitment[id][1]+3*(tier+1):0),forge:forges[tier]},()=>b.rarity(sp),()=>b.buyRarity(sp),false);
+  const cost={lumen:require('./wisp-gameplay-reference.cjs').bases[id]*rarityMult[tier],shard:Math.ceil(shards[tier]*(require('./wisp-gameplay-reference.cjs').bases[id]/lumenBase[index]))};eq(b.rarity(sp).cost,cost,id+' independent rarity price');ok(b.buyRarity(sp),id+' real rarity purchase');eq(q.get().heroRarity[id],tier+1,id+' exactly one rarity');eq(q.get().lumen,A.exactSub('1e400',cost.lumen),id+' exact rarity Lumen');eq(q.get().shards,A.exactSub('1e400',cost.shard),id+' exact rarity Shards');
  }
  {
   const s=seed(id);s.wispUltimate[id]=false;

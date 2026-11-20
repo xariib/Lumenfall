@@ -81,6 +81,31 @@ async function verifyInstalledWispCard(page,report){
  }
  assert(welcome,'Mandatory synthetic offline recap must be shown before Wisp inspection');
  report.offlineRecapDismissed=!!welcome;
+ // Inspect compact defaults, then open each progression with native touch.
+ await page.evaluate("document.querySelector('[data-tab=spirits]').click()");
+ await page.evaluate("Promise.all(document.getElementById('tab-spirits').getAnimations().map(a=>a.finished)).then(()=>true)");
+ const compact=await page.evaluate("Array.from(document.querySelectorAll('[data-wisp-progression]')).map(p=>({id:p.dataset.wispProgression,closed:!p.open,height:p.closest('[data-wisp-card]').getBoundingClientRect().height}))");
+ assert(compact.length===8&&compact.every(p=>p.closed&&p.height<500),'All eight installed cards start compact');
+ const compactShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-compact.png',Buffer.from(compactShot.data,'base64'));
+ await page.evaluate(`(()=>{window.nativeWispDisclosureEvents=[];['pointerdown','pointerup','click','keydown'].forEach(type=>document.addEventListener(type,e=>{const summary=e.target.closest('summary');if(summary&&summary.hasAttribute('data-wisp-details'))nativeWispDisclosureEvents.push({type,trusted:e.isTrusted,target:'wisp-details:'+summary.dataset.wispDetails,x:e.clientX,y:e.clientY,connected:summary.isConnected});},true));})()`);
+ const disclosures=[];
+ for(const row of compact){
+   await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]').replace(/</g,'\\u003c')+').scrollIntoView({block:"center",behavior:"instant"})');
+   await page.command('Page.captureScreenshot',{format:'png'});
+   const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]')+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y),m=document.querySelector("main");return {x,y,width:r.width,height:r.height,hit:h?.closest("summary")===e,cover:h?.outerHTML.slice(0,200),scroll:m.scrollTop,maxScroll:m.scrollHeight-m.clientHeight,main:m.getBoundingClientRect().toJSON()};})()');
+   if(!point.hit||point.width<44||point.height<44){
+     fs.writeFileSync('release-evidence/installed-wisp-disclosure-hit-failure.json',JSON.stringify({id:row.id,point},null,2)+'\n');
+     const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));
+   }
+   assert(point.hit&&point.width>=44&&point.height>=44,'Native compact disclosure hittable '+row.id+': '+JSON.stringify(point));tap(point.x,point.y);
+   let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-progression="'+row.id+'"]')+').open');if(opened)break;await pause(50);}
+   const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify('wisp-details:'+row.id)+')');
+   disclosures.push({id:row.id,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');
+   if(!opened){const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));}
+   requireCenteredPointer(events,point,'wisp-details:'+row.id);
+   assert(opened,'Trusted native touch opens Wisp upgrades '+row.id);
+ }
+ report.installedCompactWisps={status:'PASS',defaults:compact,disclosures,nativeInput:true};
  // Inspect the shipped UI inside the installed APK's actual Android WebView.
  const ui=await page.evaluate(`(async()=>{
    const tab=document.querySelector('[data-tab="spirits"]');
@@ -98,7 +123,7 @@ async function verifyInstalledWispCard(page,report){
      const primary=Array.from(card.querySelectorAll('.wisp-action-primary'));
      const progression=card.querySelector('[data-wisp-progression]');
      const module=card.querySelector('[data-module]');
-     const rarityMaxed=installedSave.heroRarity[id]>=5;
+     const rarityMaxed=installedSave.heroRarity[id]>=5,moduleMaxed=installedSave.wispModules[id]>=20;
      const rarityComplete=rarityMaxed&&visible(card.querySelector('.wisp-rarity-section[data-state="maxed"]'))&&!card.querySelector('[data-rarity]');
      const boundary=card.getBoundingClientRect();
      const overflow=Array.from(card.querySelectorAll('*')).filter(e=>{
@@ -108,11 +133,11 @@ async function verifyInstalledWispCard(page,report){
      return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
-       unfinished:!!module&&!!progression&&progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),
-       upgradeVisible:visible(progression)&&progression.tagName!=='DETAILS'&&(
-         (rarityMaxed?rarityComplete:visible(card.querySelector('[data-rarity]')))&&visible(card.querySelector('[data-module]'))&&
+       unfinished:!!module&&!!progression&&progression.tagName==='DETAILS'&&progression.open,
+       upgradeVisible:visible(progression)&&progression.tagName==='DETAILS'&&progression.open&&(
+         (rarityMaxed?rarityComplete:visible(card.querySelector('[data-rarity]')))&&(moduleMaxed?visible(card.querySelector('.module-row[data-state="maxed"]')):visible(card.querySelector('[data-module]')))&&
          (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
-       rarityMaxed,rarityComplete,
+       rarityMaxed,rarityComplete,moduleMaxed,moduleGold:moduleMaxed&&getComputedStyle(card.querySelector('.module-row')).borderTopColor==='rgb(217, 180, 94)',moduleArrow:!!card.querySelector('.module-row .wisp-effect-arrow'),
        eligible:actions.some(button=>!button.disabled),
        primary:primary.map(button=>({disabled:button.disabled,cue:button.querySelector('.wisp-next-label')?.textContent||'',
          name:button.getAttribute('aria-label')||''})),
@@ -134,16 +159,22 @@ async function verifyInstalledWispCard(page,report){
  assert.equal(ui.count,8,'All eight Wisps render in installed WebView');
  for(const card of ui.observations){
    assert(card.visible&&card.fits&&card.identity,'Wisp identity/geometry: '+JSON.stringify(card));
-   assert(card.upgradeVisible&&card.currentEffect&&card.nextEffect,'Unfinished Wisp upgrades/effects: '+JSON.stringify(card));
+   assert(card.upgradeVisible&&card.currentEffect&&(card.moduleMaxed?!card.nextEffect&&card.moduleGold&&!card.moduleArrow:card.nextEffect),'Unfinished Wisp upgrades/effects: '+JSON.stringify(card));
    assert.equal(card.primary.length,card.eligible?1:0,'One original enabled next action, or none: '+card.id);
-   for(const action of card.primary)assert(!action.disabled&&action.cue==='Next ·'&&action.name.includes('Next ·')&&action.name.includes(card.name),'Live visible and accessible action: '+card.id);
+   for(const action of card.primary)assert(!action.disabled&&!action.cue&&!action.name.includes('Next ·')&&action.name.includes(card.name),'Live visible and accessible action: '+card.id);
  }
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
  assert(ember.rarityMaxed&&ember.rarityComplete,'Installed maxed Ember Rarity stays gold without a completed purchase button');
- // Unfinished upgrades are directly available. Preserve the actual Android
- // touch purchase below; there is no disclosure activation in the new UI.
- assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName!=='DETAILS'&&!p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed Wisp upgrades stay directly visible');
+ // All disclosures were opened with actual native touch. Retain the real
+ // purchase and focus assertions on the expanded original action below.
+ assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName==='DETAILS'&&p.open&&p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed compact Wisp disclosure opens its upgrades');
+ await page.evaluate(`document.querySelector('[data-ability-details=ember]').scrollIntoView({block:'center',behavior:'instant'})`);
+ await page.command('Page.captureScreenshot',{format:'png'});
+ const mechanicsPoint=await page.evaluate(`(()=>{const e=document.querySelector('[data-ability-details=ember]'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,hit:document.elementFromPoint(x,y)?.closest('summary')===e};})()`);
+ assert(mechanicsPoint.hit,'Installed ability explanation is reachable');tap(mechanicsPoint.x,mechanicsPoint.y);
+ let mechanicsOpen=false;for(let i=0;i<30;i++){mechanicsOpen=await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`);if(mechanicsOpen)break;await pause(50);}
+ assert(mechanicsOpen,'Native Android touch opens complete ability explanation');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
@@ -168,7 +199,9 @@ async function verifyInstalledWispCard(page,report){
  }
  assert.equal(purchase.level,target.before+1,'Trusted Android WebView touch buys exactly one Ability level');
  assert.equal(purchase.priceCount,2,'Next Ability price remains visible after native purchase');
- assert(purchase.focused&&purchase.name.includes('Next ·')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
+ assert(purchase.focused&&!purchase.name.includes('Next ·')&&purchase.name.includes('Upgrade Ability')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
+ assert(await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'Installed ability explanation remains open after actual upgrade refresh');
+ report.installedCompactWisps.mechanicsRetainedAfterPurchase=true;
  report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
@@ -339,11 +372,11 @@ async function verifyInstalledRiftLooks(page,report){
    const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));await pause(350);
  }
  await tap('nav.tabbar [data-tab="deeds"]');
- const deedKeys=['rift','strikes','fullparty','ascend','all','mythic','rest','autotap','labmaster','projects','allstudies','forge','firstultimate','modulemax','kills','lab','mastery'].sort();
+ const deedKeys=['rift','strikes','fullparty','ascend','all','mythic','rest','autotap','labmaster','projects','allstudies','forge','firstultimate','modulemax','kills','lab','mastery','roster','abilities','rarities','ultimates'].sort();
  const installedDeeds=await page.evaluate(`(()=>{const cards=Array.from(document.querySelectorAll('#ach-list [data-deed-series]')),bar=document.querySelector('[data-deed-bar="rift"]');return {keys:cards.map(c=>c.dataset.deedSeries).sort(),primaryCounters:document.querySelectorAll('#ach-list .info > [data-deed-progress]').length,bars:document.querySelectorAll('#ach-list [role="progressbar"]').length,riftBar:bar?{current:Number(bar.getAttribute('aria-valuenow')),target:Number(bar.getAttribute('aria-valuemax')),width:bar.firstElementChild.style.width}:null,checkboxes:document.querySelectorAll('#ach-list .dot').length,rift:document.querySelector('[data-deed-series="rift"]').dataset.deed,history:!!document.querySelector('[data-card-details-summary="deed-history-rift"]')};})()`);
  assert.deepEqual(installedDeeds.keys,deedKeys,'Installed APK has exactly one card for every Deed series');
- assert.equal(installedDeeds.primaryCounters,17,'Installed cards each expose one next-target counter');
- assert.equal(installedDeeds.bars,17,'Installed cards each expose one progress bar');assert.equal(installedDeeds.checkboxes,0,'Deed progress replaces checkbox markers');
+ assert.equal(installedDeeds.primaryCounters,21,'Installed cards each expose one next-target counter');
+ assert.equal(installedDeeds.bars,21,'Installed cards each expose one progress bar');assert.equal(installedDeeds.checkboxes,0,'Deed progress replaces checkbox markers');
  // The preceding disposable Farm fixture sets maxDepthEver30 and deliberately
  // retains the upgraded save's earned Rift1000 receipts. Observe that exact state.
  assert.deepEqual(installedDeeds.riftBar,{current:30,target:2500,width:'1.2%'},'Installed bar uses actual Rift30 while retained earned receipts select next2500');
@@ -413,6 +446,56 @@ async function verifyInstalledRiftLooks(page,report){
  assert(currencyNames.length===6&&currencyNames.every(e=>e.visible&&e.fits),'Installed header shows all six unclipped currency names');
  report.installedMenuScroll={status:'PASS',menus:rememberedMenus,currencyNames,nativeNavigation:true,syntheticFixture:true};
 }
+async function verifyInstalledFiveWispMigration(page,report){
+ // A separate disposable schema6 owner fixture exercises the new migration in
+ // the real installed APK. It never touches a connected player's device.
+ const seed=await page.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(primary)}))`);
+ assert(Number.isSafeInteger(seed.prisms)&&seed.prisms<Number.MAX_SAFE_INTEGER-120,'Synthetic refund wallet is exact');
+ const members=['ember','tide','stone','gale','thorn','void'];
+ members.forEach(id=>{if(!seed.spirits[id])seed.spirits[id]=1;});
+ seed.nodes.formationseat=1;delete seed.formationSeatRefund;
+ seed.activeParty=members.slice();seed.activeFormationPreset='push';seed.formationRebuild=null;
+ for(const name of ['push','farm','boss'])seed.formationPresets[name]=members.slice();
+ for(const key of ['empowerQueue','researchQueue','studyQueue'])for(const id of Object.keys(seed[key]))seed[key][id]=false;
+ const expectedPrisms=seed.prisms+120,expectedMembers=members.slice(0,5);
+ const script=`(()=>{const s=${JSON.stringify(seed)};s.lastSeen=Date.now();s.offlineClockHighWaterMs=s.lastSeen;const raw=JSON.stringify(s);localStorage.setItem(${JSON.stringify(primary)},raw);localStorage.setItem(${JSON.stringify(recovery)},raw);})()`;
+ const injection=await page.command('Page.addScriptToEvaluateOnNewDocument',{source:script});assert(injection.identifier);
+ await page.command('Page.reload');
+ async function settled(current,phase){
+   let slots,ready=false,lastProbe;
+   for(let i=0;i<80;i++){
+     let probe;
+     try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,now:Date.now(),visibility:document.visibilityState,focus:document.hasFocus(),documentReady:document.readyState,rootClass:document.documentElement&&document.documentElement.className,bodyClass:document.body&&document.body.className,overlays:Array.from(document.querySelectorAll('.overlay,#startup-intro')).map(e=>({id:e.id,display:getComputedStyle(e).display})),slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
+     catch(e){if(!/context.*(destroyed|not found)|Cannot find context/i.test(e.message))throw e;await pause(100);continue;}
+     lastProbe=probe;slots=probe.slots;
+     ready=probe.ready&&probe.documentReady==='complete'&&slots.every(s=>s&&s.formationSeatRefund?.paid===true&&s.lastSeen>=probe.started);
+     if(ready)break;
+     await pause(100);
+   }
+   fs.writeFileSync('release-evidence/installed-five-wisp-'+phase+'-probe.json',JSON.stringify({phase,ready,lastProbe},null,2)+'\n');
+   if(!ready){const shot=await current.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-five-wisp-'+phase+'-failure.png',Buffer.from(shot.data,'base64'));}
+   assert(ready,'Installed game initialized and freshly saved both migration slots ('+phase+')');
+   for(const s of slots){
+     assert.deepEqual(s.formationSeatRefund,{policy:'five-wisps-v1',total:120,paid:true},'Installed validated owner refund');
+     assert.equal(s.prisms,expectedPrisms,'Exactly120Prisms credited once in each installed save slot');
+     assert.deepEqual(s.activeParty,expectedMembers,'Installed Formation retains firstfive');
+     for(const ids of Object.values(s.formationPresets))assert.deepEqual(ids,expectedMembers,'Installed preset limited tofive');
+     for(const field of ['spirits','heroRarity','wispModules','wispUltimate','wispMastery','nodes','research'])assert.deepEqual(s[field],seed[field],'Installed migration retains all paid '+field);
+   }
+   return slots;
+ }
+ const first=await settled(page,'initial');await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+ // Match the established old-APK fixture's six-second storage settlement
+ // before force-stopping its process. A JS storage read is not a disk-flush
+ // acknowledgement. Keep every cold-state assertion and its wait unchanged.
+ await pause(6000);
+ page.close();adb('shell','am','force-stop',packageId);releaseProbe.launchForInspection();page=await connect();
+ const cold=await settled(page,'cold');
+ report.installedFiveWispMigration={status:'PASS',refund:120,activeCount:5,ownedRetained:true,coldRestart:true,refundPaidOnce:true,bothSaveSlots:true,syntheticFixture:true,
+   beforePrisms:seed.prisms,afterPrisms:cold[0].prisms,benched:members[5],retainedBenchedLevel:cold[0].spirits[members[5]]};
+ fs.writeFileSync('release-evidence/installed-five-wisp-migration.json',JSON.stringify({commit:report.commit,apkSha256:report.apkSha256,...report.installedFiveWispMigration,first:first.map(s=>({activeParty:s.activeParty,prisms:s.prisms,receipt:s.formationSeatRefund})),cold:cold.map(s=>({activeParty:s.activeParty,prisms:s.prisms,receipt:s.formationSeatRefund}))},null,2)+'\n');
+ return page;
+}
 async function main(){
  assert(!fs.existsSync('release-evidence/emulator-upgrade.json'),'Fresh emulator upgrade output required');
  console.log('Android upgrade QA: starting disposable emulator check');
@@ -428,7 +511,7 @@ async function main(){
  for(let i=0;i<90;i++){saved=await page.evaluate(`localStorage.getItem(${JSON.stringify(primary)})`);if(saved)break;await pause(1000);}assert(saved,'Old APK must create a real save');
  console.log('Android upgrade QA: real old save obtained; preparing pre-document fixture');
  const seed=JSON.parse(saved);Object.assign(seed,{lumen:1e12,shards:1e12,prisms:777,comets:222,motes:88,sigils:345,ascendCount:12,maxDepthEver:1000,lastSeen:Date.now(),autoAscendEnabled:false,autoEmpower:false});
- seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
+ seed.spirits.ember=33;seed.spirits.stone=22;seed.heroRarity.ember=5;seed.wispModules.ember=10;seed.wispModules.stone=20;seed.wispUltimate.ember=true;seed.nodes.swift=3;seed.research.arcanecal=4;
  // These are all four actual purchases in the archived158 SHOP. Meteor/Call
  // were introduced later; the old app correctly discards those unknown flags.
  const legacyPurchases=['comettrials','rifttrail','starfallcrest'];
@@ -463,7 +546,7 @@ async function main(){
  releaseProbe.launchForInspection();page=await connect();await pause(3000);
  const oldCold=await page.evaluate(`({origin:location.origin,sentinel:localStorage.getItem('migration-upgrade-probe'),save:JSON.parse(localStorage.getItem(${JSON.stringify(primary)})),recovery:JSON.parse(localStorage.getItem(${JSON.stringify(recovery)}))})`);
  assert.equal(oldCold.origin,report.beforeOrigin);assert.equal(oldCold.sentinel,sentinel,'Old APK fixture must survive its own cold restart before upgrade');assert(oldCold.save&&oldCold.recovery,'Old APK retains both baseline slots');assert.equal(oldCold.save.spirits.ember,33,'Old APK accepted the synthetic progression');assert.equal(oldCold.save.heroRarity.ember,5,'Old APK accepted the synthetic paid rarity');
- for(const slot of [oldCold.save,oldCold.recovery]){for(const id of ['autoascend',...legacyPurchases])assert.equal(slot.owned[id],true,'Actual old purchase present before update: '+id);assert.deepEqual(slot.cometCosmetics,seed.cometCosmetics);assert.deepEqual(slot.cometTrialMarks,seed.cometTrialMarks);}
+ for(const slot of [oldCold.save,oldCold.recovery]){assert.equal(slot.wispModules.stone,20,'Old APK accepted completed Stone ability');for(const id of ['autoascend',...legacyPurchases])assert.equal(slot.owned[id],true,'Actual old purchase present before update: '+id);assert.deepEqual(slot.cometCosmetics,seed.cometCosmetics);assert.deepEqual(slot.cometTrialMarks,seed.cometTrialMarks);}
  report.baselineColdRestartVerified=true;
  await pause(6000);page.close();adb('shell','am','force-stop',packageId);
  console.log('Android upgrade QA: synthetic old save verified after actual old-APK cold restart');
@@ -478,7 +561,7 @@ async function main(){
  assert.equal(observed.origin,report.beforeOrigin);assert.equal(observed.sentinel,sentinel);assert(observed.save&&observed.recovery,'Both save slots retained');
  for(const [slot,s] of Object.entries({primary:observed.save,recovery:observed.recovery})){
  for(const field of ['lumen','shards','prisms','comets','motes','sigils'])assert(s[field]>=seed[field],slot+': '+field+' retained');
- for(const [field,id] of [['spirits','ember'],['spirits','stone'],['heroRarity','ember'],['wispModules','ember'],['wispUltimate','ember'],['nodes','swift'],['research','arcanecal'],['longStudyLevels',study]])assert.equal(s[field][id],seed[field][id],field+'.'+id+' retained');
+ for(const [field,id] of [['spirits','ember'],['spirits','stone'],['heroRarity','ember'],['wispModules','ember'],['wispModules','stone'],['wispUltimate','ember'],['nodes','swift'],['research','arcanecal'],['longStudyLevels',study]])assert.equal(s[field][id],seed[field][id],field+'.'+id+' retained');
  const running=s.activeStudies.find(x=>x.id===study);assert(running,'Paid Study retained');assert.equal(running.speedMult,2);assert.equal(running.totalDurationSec,3600);assert(running.remainingSec>0&&running.remainingSec<=3500);
  assert.equal(s.owned.autoascend,true,'Historical paid Auto-Ascend identity retained');
  assert.deepEqual(s.autoAscendRefund,{policy:'autoascend-retired-v1',total:100,paid:true},'Actual signed upgrade settles Auto-Ascend retirement once');
@@ -493,7 +576,7 @@ async function main(){
  await verifyInstalledWispCard(page,report);
  page=await verifyInstalledMidgameFarmHint(page,report,observed.save);
  await verifyInstalledRiftNavigation(page,report);
- await verifyInstalledRiftLooks(page,report);page.close();
+ await verifyInstalledRiftLooks(page,report);page=await verifyInstalledFiveWispMigration(page,report);page.close();
  report.status='PASS';report.uidRetained=true;report.origin=observed.origin;report.bothSaveSlotsRetained=true;report.progressAndPaidStudyRetained=true;report.legacyCometEntitlementsRetained=true;report.legacyPurchaseCredit=350;report.autoAscendRetirementCredit=100;report.physicalDevice=false;
  fs.mkdirSync('release-evidence',{recursive:true});fs.writeFileSync('release-evidence/emulator-upgrade.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }

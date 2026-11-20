@@ -119,7 +119,6 @@ const specs=[
  ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
  ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
  ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
- ['formationseat','Sixth Companion',75,1,[120]],
  ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
  ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
  ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
@@ -363,7 +362,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   ok(await ev('JSON.stringify(prismQa.get())')===precisionBefore&&await ev('window.__treeWrites.length')===precisionWrites,'trusted unaffordable click changes neither state nor saves');
   await ev('prismQa.treeLumen(11);prismQa.treeRefresh()');const affordableRefresh=await empowerStatus();
   ok(!affordableRefresh.disabled&&affordableRefresh.state==='available'&&affordableRefresh.label==='Empower','ordinary exact wallet restores Empower label and action');
-  ok(affordableRefresh.primary&&affordableRefresh.nextLabel==='Next ·'&&affordableRefresh.fullLabel==='Next ·Empower','restored Empower retains the compact next-action cue');
+  ok(affordableRefresh.primary&&!affordableRefresh.nextLabel&&affordableRefresh.fullLabel==='Empower','restored Empower retains the compact next-action cue');
   await prepare(empower,false);await touchHere(empower);await frames();const precisionAfter=await ev('prismQa.get()');
   ok(precisionAfter.spirits.ember===2&&precisionAfter.lumen===0,'actual restored handler buys exactly one level for11');
   ok(await ev('window.__treeWrites.slice('+precisionWrites+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'restored actual Empower saves one primary/recovery pair');
@@ -372,48 +371,39 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const formation=copy(paid),firstFive=['ember','tide','stone','gale','thorn'];
   ['ember','tide','stone','gale','thorn','void','aurora','titan'].forEach(id=>formation.spirits[id]=10);
   formation.activeParty=firstFive.slice();formation.formationPresets={push:firstFive.slice(),farm:firstFive.slice(),boss:firstFive.slice()};formation.activeFormationPreset='push';formation.formationRebuild=null;
-  await install(formation,'spirits');ok(await ev('prismQa.treeCapacity()')===6,'paid sixth capacity');
+  formation.nodes.formationseat=1;
+  await install(formation,'spirits');ok(await ev('prismQa.treeCapacity()')===5,'retired sixth purchase never increases capacity');
+  const migratedFormation=await ev('prismQa.get()');ok(migratedFormation.prisms===formation.prisms+120,'one original120Prism slot refund');
   const field=sel('data-toggle','aurora');
-  const sixth=await formationInput('field-sixth',field,()=>key('Enter','Enter',13)),six=sixth.stateAfter;
-  same(six.activeParty,firstFive.concat('aurora'),'actual keyboard fields sixth');same(six.formationPresets.push,six.activeParty,'six-member autosaved intent');same(six.spirits,formation.spirits,'Field never recruits or empowers');
-  same(sixth.writeKeys,await ev('prismQa.keys()'),'sixth Field saves one actual primary/recovery pair');stableAction(sixth,'toggle','aurora','sixth Field',true);
-  ok(await ev("document.querySelector('#formation-presets').textContent.includes('6/6')"),'six of six visible');
-  ok(await ev("document.querySelector('#formation-capacity').textContent")==='6','Formation header agrees with paid six-slot capacity');
-  for(const name of ['push','farm','boss']){const count=six.formationPresets[name].length;ok(await ev('document.querySelector('+JSON.stringify('[data-formation-preset="'+name+'"]')+').textContent.includes('+JSON.stringify(count+'/6 Wisps')+')'),'each preset count agrees with saved members and six-slot capacity '+name);}
-  ok(await ev("document.querySelector('.formation-help .section-sub').textContent.includes('6 Wisps')"),'Formation guidance uses owned capacity');
-  const seventh=await formationInput('six-capacity-refusal',sel('data-toggle','void'),()=>touchHere(sel('data-toggle','void')));
-  same(seventh.stateAfter.activeParty,six.activeParty,'seventh member refused without changing six');same(seventh.stateAfter,seventh.stateBefore,'six-capacity refusal preserves entire synthetic state');same(seventh.writeKeys,[],'six-capacity refusal never writes a save');stableAction(seventh,'toggle','void','six-capacity refusal',true);
-  const bench=await formationInput('bench-sixth',field,()=>key(' ','Space',32));
-  ok(bench.stateAfter.activeParty.length===5,'keyboard benches sixth');same(bench.writeKeys,await ev('prismQa.keys()'),'Bench saves once');stableAction(bench,'toggle','aurora','bench sixth',true);
-  // The next touch uses the still-focused post-Bench control directly, without
-  // scrollIntoView or a focus repair between the two real actions.
-  const refield=await formationInput('re-field-sixth',field,()=>touchHere(field),false);
-  same(refield.stateAfter.activeParty,six.activeParty,'native touch restores sixth once');same(refield.writeKeys,await ev('prismQa.keys()'),'re-Field saves once');stableAction(refield,'toggle','aurora','re-field sixth',true);
-  const farm=await formationInput('preset-farm','[data-formation-preset="farm"]',()=>touchHere('[data-formation-preset="farm"]'));
-  ok(farm.stateAfter.activeParty.length===5,'real preset switches to five');same(farm.writeKeys,await ev('prismQa.keys()'),'Farm selection saves once');stableAction(farm,'preset','farm','Farm preset',true);
-  const push=await formationInput('preset-push','[data-formation-preset="push"]',()=>key('Enter','Enter',13));
-  same(push.stateAfter.activeParty,six.activeParty,'keyboard preset restores all six');same(push.writeKeys,await ev('prismQa.keys()'),'Push selection saves once');stableAction(push,'preset','push','Push preset',true);
+  const refusal=await formationInput('sixth-refusal',field,()=>key('Enter','Enter',13)),six=refusal.stateAfter;
+  same(six.activeParty,firstFive,'actual keyboard refuses sixth');same(refusal.stateAfter,refusal.stateBefore,'sixth refusal preserves every saved field');same(refusal.writeKeys,[],'refused sixth never writes');stableAction(refusal,'toggle','aurora','sixth refusal',true);
+  ok(await ev("document.querySelector('#formation-capacity').textContent")==='5','visible capacity isfive');
+  const benchField=sel('data-toggle',firstFive[4]);
+  const bench=await formationInput('bench-fifth',benchField,()=>key(' ','Space',32));ok(bench.stateAfter.activeParty.length===4,'native Space benches a member');
+  const refield=await formationInput('field-replacement',field,()=>touchHere(field));same(refield.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'native touch fields a replacement within five');
+  const farm=await formationInput('preset-farm','[data-formation-preset="farm"]',()=>touchHere('[data-formation-preset="farm"]'));same(farm.stateAfter.activeParty,firstFive,'native Farm preset preservesfive');
+  const push=await formationInput('preset-push','[data-formation-preset="push"]',()=>key('Enter','Enter',13));same(push.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'native Push restores five-member edited intent');
   const solo=copy(formation);solo.activeParty=['ember'];solo.formationPresets={push:['ember'],farm:['ember'],boss:['ember']};await install(solo,'spirits');
-  const lastWisp=await formationInput('last-wisp-refusal',sel('data-toggle','ember'),()=>key('Enter','Enter',13));
-  same(lastWisp.stateAfter.activeParty,['ember'],'actual last-Wisp Bench is refused');same(lastWisp.stateAfter,lastWisp.stateBefore,'last-Wisp refusal preserves entire synthetic state');same(lastWisp.writeKeys,[],'last-Wisp refusal never writes a save');stableAction(lastWisp,'toggle','ember','last-Wisp refusal',true);
+  const lastWisp=await formationInput('last-wisp-refusal',sel('data-toggle','ember'),()=>key('Enter','Enter',13));same(lastWisp.stateAfter,lastWisp.stateBefore,'last-Wisp refusal retains state');same(lastWisp.writeKeys,[],'last-Wisp refusal never writes');
   await install(push.stateAfter,'spirits');
-  for(const row of formationSamples){
-   for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation input preserves '+name+' '+row.id);
-   ok(row.input.some(e=>e.trusted&&e.type==='click'),'actual trusted Formation click '+row.id);ok(!row.runtimeErrorsBefore.length&&!row.runtimeErrorsAfter.length,'no runtime error during '+row.id);
-  }
   if(width===320&&scale===1&&motion==='no-preference'){
-   await viewportControl('formation',formation,'spirits',field,'toggle','aurora',async row=>{
-    same(row.stateBefore.activeParty,firstFive,'Formation control begins with five '+row.id);same(row.stateAfter.activeParty,firstFive.concat('aurora'),'actual control fields Aurora as sixth '+row.id);same(row.stateAfter.formationPresets.push,row.stateAfter.activeParty,'control autosaves six-member intent '+row.id);
+   const room=copy(formation);room.activeParty=firstFive.slice(0,4);room.formationPresets.push=room.activeParty.slice();
+   await viewportControl('formation',room,'spirits',field,'toggle','aurora',async row=>{
+    same(row.stateBefore.activeParty,firstFive.slice(0,4),'Formation control begins with four '+row.id);
+    same(row.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'actual control fields fifth '+row.id);
+    same(row.stateAfter.formationPresets.push,row.stateAfter.activeParty,'control autosaves five-member intent '+row.id);
     for(const name of ['farm','boss'])same(row.stateAfter.formationPresets[name],row.stateBefore.formationPresets[name],'control preserves other preset '+name+' '+row.id);
     for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation control preserves '+name+' '+row.id);
-    ok(row.slots.every(slot=>JSON.stringify(slot.state.activeParty)===JSON.stringify(firstFive.concat('aurora'))&&JSON.stringify(slot.state.formationPresets.push)===JSON.stringify(firstFive.concat('aurora'))&&slot.state.lumen===row.stateBefore.lumen&&slot.state.prisms===row.stateBefore.prisms),'both slots contain sixth member without an economic mutation '+row.id);
+    ok(row.slots.every(slot=>JSON.stringify(slot.state.activeParty)===JSON.stringify(firstFive.slice(0,4).concat('aurora'))&&JSON.stringify(slot.state.formationPresets.push)===JSON.stringify(slot.state.activeParty)&&slot.state.lumen===row.stateBefore.lumen&&slot.state.prisms===row.stateBefore.prisms),'both slots retain fifth without economic mutation '+row.id);
    });
+   await install(push.stateAfter,'spirits');
   }
+  for(const row of formationSamples){for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation input preserves '+name+' '+row.id);ok(row.input.some(e=>e.trusted&&e.type==='click'),'trusted Formation input '+row.id);ok(!row.runtimeErrorsBefore.length&&!row.runtimeErrorsAfter.length,'no Formation runtime errors');}
   await fit('#tab-spirits','six-member Formation');await prepare('[data-formation-preset="push"]',true);await shot('tree-six-'+width+'-'+scale+'-'+motion);
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.key===' '),'trusted touch Enter and Space evidence');
   await ev('prismQa.treeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready('paid-state-reload');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('spirits')");
   const cold=await ev('prismQa.get()');for(const field of ['nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','activeParty','formationPresets','activeFormationPreset','autoAscendEnabled','autoAscendTargetDepth'])same(cold[field],committed[field],'actual reload retains paid '+field);
-  ok(added.every(id=>cold.nodes[id]===1),'all seventeen actual new purchases survive reload');ok(cold.activeParty.length===6,'six-slot snapshot survives cold load');
+  ok(added.every(id=>cold.nodes[id]===1),'all seventeen actual new purchases survive reload');ok(cold.activeParty.length===5,'five-slot snapshot survives cold load');
   const zero=copy(formation);zero.nodes.formationseat=0;zero.activeParty=six.activeParty;zero.formationPresets.push=six.activeParty;await install(zero,'spirits');ok(await ev('prismQa.get().activeParty.length')===5&&await ev('prismQa.treeCapacity()')===5,'zero-new capacity remains five');
   await install(committed);const ax=await send('Accessibility.getFullAXTree');for(const r of specs)ok(ax.nodes.some(n=>!n.ignored&&n.name&&n.name.value.includes(r[1])),'named Tree row exposed to AX '+r[0]);
   ok((await ev('window.__prismErrors')).length===0,'no browser runtime errors');records.push({width,scale,motion,nativeAnimationFrames:true,catalog,samples,effectSamples,locks,inputSamples,formationSamples,dustSamples,unavailableEmpower,sixMembers:six.activeParty,legacyMigration:{seed:legacySeedObservation,schema:migrated.schemaVersion,prisms:migrated.prisms,comets:migrated.comets,nodes:migrated.nodes,newDefaultZero:added.length},input});

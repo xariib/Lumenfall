@@ -165,6 +165,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
  expected=copy(expected);
+ assert.equal(actual.savedLabMultiplier,1,label+' removed Forge quantity restores one');expected.savedLabMultiplier=1;
  const retiredAuto=(seed.owned||{}).autoascend===true?100:0;
  assert.deepEqual(actual.autoAscendRefund,{policy:'autoascend-retired-v1',total:retiredAuto,paid:true},label+' exactly once retired automation receipt');
  actual.comets-=retiredAuto;delete actual.autoAscendRefund;
@@ -326,10 +327,10 @@ assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*on.result.ascends+281
 assert.deepEqual({...oldRewardRun.b.get(),prisms:on.committed.prisms},on.committed,'only Prism balance differs under old reward policy');
 records.push({case:'Prism policy isolation',perAscend,newPrisms:on.committed.prisms-original.prisms,legacyPrisms:oldRewardRun.b.get().prisms-original.prisms});
 assert.equal(on.committed.lumen,onReference.state.lumen,'partial final run matches independent one-second balance');
-assert(on.result.earned>on.committed.lumen,'automatic paid Empower spends wallet Lumen without reducing reported earned total');
+assert.equal(on.committed.lumen,on.result.earned,'unfunded remembered Titan purchase leaves the full earned Lumen in the wallet');
 assert.deepEqual(on.committed.formationRebuild,original.formationRebuild,'unaffordable Boss reconstruction intent persists');
 assert.deepEqual(on.committed.empowerQueue,original.empowerQueue,'purchase intent preserved');
-assert.deepEqual(on.committed.activeParty,['titan','ember'],'without repeated resets the paid Titan is recruited into remembered formation');
+assert.deepEqual(on.committed.activeParty,['ember'],'unfunded remembered Titan grants no combat power before its new recruitment price is paid');
 const sync=app(original,source,28800);const syncResult=sync.b.apply();
 assert.deepEqual(syncResult,on.result,'same full summary across yielding/synchronous facade');
 assert.deepEqual(sync.b.get(),on.committed,'exact scheduler state across yielding/synchronous facade');
@@ -376,6 +377,14 @@ legacyBalanceSource=legacyPrismPolicy(legacyBalanceSource,correctedClockBaseline
 const originalArcane='unlockDepth:12, levelCap:20, effectPerLevel:0.03';
 assert.equal(legacyBalanceSource.split(originalArcane).length,2,'one explicit historical Arcane cap input');
 legacyBalanceSource=legacyBalanceSource.replace(originalArcane,'unlockDepth:12, levelCap:10, effectPerLevel:0.03');
+// Preserve the pre-feature price/reward inputs only in this frozen scheduler
+// comparison. Actual funded/unfunded current prices and new Deeds are exercised
+// above and in wisp-gameplay-pacing; archived bytes remain untouched.
+const investment='function wispInvestmentBase(sp){';assert.equal(legacyBalanceSource.split(investment).length,2);
+legacyBalanceSource=legacyBalanceSource.replace(investment,investment+'\n  return sp.baseCost; // Explicit historical investment price.');
+for(const key of ['roster','abilities','rarities','ultimates']){const re=new RegExp("^addDeedTrack\\('"+key+"'.*$",'m');assert(re.test(legacyBalanceSource));legacyBalanceSource=legacyBalanceSource.replace(re,'');}
+const continuing='function ensureContinuingDeeds(snapshot,readReceipts){';assert.equal(legacyBalanceSource.split(continuing).length,2);
+legacyBalanceSource=legacyBalanceSource.replace(continuing,continuing+'\n return; // Explicit historical Deed policy.');
 const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');
 assert.equal(legacyBalanceSource.split(legacyBondAnchor[0]).length,2,'one legacy Bond control anchor');

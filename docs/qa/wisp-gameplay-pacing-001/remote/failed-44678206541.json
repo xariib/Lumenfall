@@ -1,0 +1,21 @@
+{
+  "id": 44678206541,
+  "sha": "704079f6aa89aeba7433c9f4e65735176f631432",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44678206541",
+  "jobs": [
+    {
+      "id": 136095019083,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:01:13Z",
+      "completed": "2026-11-20T05:06:57Z",
+      "log": "job-136095019083.log.gz",
+      "rawSha256": "e475ccff13724ab362863809daa892c0ee20f5f3fe1be645e695a7343d3e48bc",
+      "summary": [
+        "2026-11-20T05:06:48.2493795Z AssertionError [ERR_ASSERTION]: Installed game initialized and freshly saved both migration slots (cold)"
+      ]
+    }
+  ]
+}

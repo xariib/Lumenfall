@@ -23,9 +23,30 @@ if(args.includes('--mutate-primary')){
   code=code.replace(from,'if(!button)return false;');
 }
 if(args.includes('--mutate-names')){
-  const from="  // Finalize cue names before render/refresh callers restore native focus.\n  presentControlStates(els['spirit-list']);";
+  // Removing the former Next prefix makes the final cue-only pass redundant.
+  // Mutate the actual Wisp name owner to retain a stale Next prefix after its
+  // visible removal, retaining the same accessibility regression assertion.
+  const from="if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);";
   if(code.split(from).length!==2)throw Error('unique accessible-name mutation site');
-  code=code.replace(from,'  // QA negative: accessible names remain stale at focus restoration.');
+  code=code.replace(from,"if(sp)name='Next ·'+name;"+from);
+}
+if(args.includes('--mutate-ability-disclosure')){
+  const from="openAbilityMechanics.indexOf(sp.id)!==-1";
+  if(code.split(from).length!==2)throw Error('unique ability disclosure state');
+  code=code.replace(from,'false');
+}
+if(args.includes('--mutate-disclosure-input')){
+  const from="if(els['spirit-list'].contains(summary))return;";
+  if(code.split(from).length!==2)throw Error('unique detached disclosure input repair');
+  code=code.replace(from,'return; // Detached summary activation repair removed.');
+  const guard='if(wispDisclosureInputPending){liveSpiritsDirty=true;return;}';
+  if(code.split(guard).length!==2)throw Error('unique native disclosure render guard');
+  code=code.replace(guard,'/* Native disclosure render guard removed. */');
+}
+if(args.includes('--mutate-summary-scroll')){
+  const from="'toggle','wisp-details','damage-details'";
+  if(code.split(from).length!==2)throw Error('unique outer disclosure scroll action');
+  code=code.replace(from,"'toggle','damage-details'");
 }
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
@@ -45,7 +66,7 @@ const pending=new Map(),records=[];
 function rejectPending(message){for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error(message));}pending.clear();}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP timeout '+method));},15000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
-async function key(key){const keys={Enter:13,Tab:9};await send('Input.dispatchKeyEvent',{type:'keyDown',key,code:key,windowsVirtualKeyCode:keys[key],...(key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code:key,windowsVirtualKeyCode:keys[key]});}
+async function key(key){const keys={Enter:13,Tab:9,' ':32},code=key===' '?'Space':key;await send('Input.dispatchKeyEvent',{type:'keyDown',key,code,windowsVirtualKeyCode:keys[key],...(key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code,windowsVirtualKeyCode:keys[key]});}
 async function run(){
   const chrome=option('--chrome',process.env.LUMENFALL_QA_CDP_CHROME||'/usr/bin/chromium');
   profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-wisp-'));
@@ -109,7 +130,41 @@ async function run(){
         await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await new Promise(r=>setTimeout(r,40));
       }
       assert(await evaluate('__wispQa.get().wispModules.ember===1&&__wispQa.get().lumen===__wispNativeExpected.lumen&&__wispQa.get().shards===__wispNativeExpected.shard'),'native '+input+' spends exactly once through the original highlighted control');
-      if(keepEnabled)assert(await evaluate(`document.activeElement===document.querySelector('[data-module=ember]')&&document.activeElement.classList.contains('wisp-action-primary')&&__wispFocusNames.length>0&&__wispFocusNames.every(e=>e.module==='ember'&&e.name.includes('Next ·')&&e.name.includes('Ember Wisp'))`),'native '+input+' restores focus with the current Next accessible name immediately');
+      if(keepEnabled)assert(await evaluate(`document.activeElement===document.querySelector('[data-module=ember]')&&document.activeElement.classList.contains('wisp-action-primary')&&__wispFocusNames.length>0&&__wispFocusNames.every(e=>e.module==='ember'&&!e.name.includes('Next ·')&&e.name.includes('Upgrade Ability')&&e.name.includes('Ember Wisp'))`),'native '+input+' restores focus with the current Next accessible name immediately');
+    }
+    if(compact)for(const input of ['keyboard','touch']){
+      await evaluate(`(()=>{const b=__wispQa;b.set(b.fresh());b.render();const e=document.querySelector('[data-ability-details=ember]');e.parentElement.open=false;e.scrollIntoView({block:'center'});if(${JSON.stringify(input)}==='keyboard')e.focus({preventScroll:true});else document.activeElement.blur();})()`);
+      if(input==='keyboard')await key('Enter');else{
+        const p=await evaluate(`(()=>{const r=document.querySelector('[data-ability-details=ember]').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+        await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      }
+      await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
+      assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'native '+input+' opens ability mechanics');
+      await evaluate(`window.__mechanicsBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots()),scroll:document.querySelector('main').scrollTop};__wispQa.render();__wispQa.refresh();__wispQa.render();`);
+      assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open&&document.activeElement===document.querySelector('[data-ability-details=ember]')&&Math.abs(document.querySelector('main').scrollTop-__mechanicsBefore.scroll)<=1`),'ability mechanics stays open with focus and exact viewport through live renders');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===__mechanicsBefore.state&&JSON.stringify(__wispQa.slots())===__mechanicsBefore.slots`),'reading ability mechanics preserves state and both save slots');
+      await key('Enter');await evaluate('new Promise(resolve=>setTimeout(resolve,0))');await evaluate('__wispQa.render()');
+      assert(await evaluate(`!document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'closed ability mechanics stays closed through refresh');
+    }
+    if(compact&&fontPercent===100&&motion==='no-preference'){
+      // Old WebViews may ignore focus({preventScroll:true}). A live render must
+      // not scroll back to an off-screen summary while inspecting another Wisp.
+      await evaluate(`(()=>{const s=__wispQa.fresh();Object.keys(s.spirits).forEach(id=>s.spirits[id]=1);__wispQa.set(s);document.activeElement.blur();__wispQa.renderCompact();document.querySelector('[data-wisp-progression=ember]').open=true;window.__normalSummaryFocus=HTMLElement.prototype.focus;HTMLElement.prototype.focus=function(){return __normalSummaryFocus.call(this)};document.querySelector('[data-wisp-details=ember]').focus();document.querySelector('[data-wisp-details=tide]').scrollIntoView({block:'center'});window.__summaryScrollBefore={top:document.querySelector('main').scrollTop,state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};__wispQa.renderLive();})()`);
+      assert(await evaluate(`(()=>{const e=document.querySelector('[data-wisp-details=tide]'),r=e.getBoundingClientRect();return Math.abs(document.querySelector('main').scrollTop-__summaryScrollBefore.top)<=1&&document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('summary')===e;})()`),'live render preserves visible next Wisp when focused summary is off-screen and preventScroll is ignored');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===__summaryScrollBefore.state&&JSON.stringify(__wispQa.slots())===__summaryScrollBefore.slots`),'legacy-focus scroll restoration changes no game state or saves');
+      await evaluate('HTMLElement.prototype.focus=__normalSummaryFocus;document.activeElement.blur()');
+      await evaluate(`if(!window.__summaryReplayBound){window.__summaryReplayBound=true;['pointerdown','click','keydown'].forEach(type=>document.addEventListener(type,e=>{if(window.__summaryReplayType===type&&e.target.closest('summary')){window.__summaryReplayType=null;window.__summaryReplayRequested=true;__wispQa.renderLive();window.__summaryReplayDetached=!e.target.isConnected;}},true));}`);
+      for(const attribute of ['wisp-details','damage-details','ability-details'])for(const input of ['touch-start','touch-click','Enter',' ']){
+        const selector='[data-'+attribute+'=ember]';
+        await evaluate(`(()=>{__wispQa.set(__wispQa.fresh());__wispQa.render();const e=document.querySelector(${JSON.stringify(selector)});e.parentElement.open=false;e.scrollIntoView({block:'center'});e.focus({preventScroll:true});window.__summaryReplayDetached=false;window.__summaryReplayRequested=false;window.__summaryReplayType=${JSON.stringify(input==='touch-start'?'pointerdown':input==='touch-click'?'click':'keydown')};window.__summaryReplayBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};})()`);
+        if(input.indexOf('touch')===0){
+          const p=await evaluate(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+          await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+        }else await key(input);
+        await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
+        assert(await evaluate(`__summaryReplayRequested&&!__summaryReplayDetached&&document.querySelector(${JSON.stringify(selector)}).parentElement.open&&document.activeElement===document.querySelector(${JSON.stringify(selector)})`),'native disclosure input survives input-time render exactly once: '+attribute+'/'+input);
+        assert(await evaluate(`JSON.stringify(__wispQa.get())===__summaryReplayBefore.state&&JSON.stringify(__wispQa.slots())===__summaryReplayBefore.slots`),'disclosure activation changes no game state or save');
+      }
     }
     let summary;
     if(args.includes('--baseline')){
@@ -125,10 +180,33 @@ async function run(){
     await evaluate(`(()=>{const b=window.__wispQa,s=b.fresh(),cost=b.moduleCost('ember',19);s.maxDepthEver=101;s.spirits.ember=1;s.heroRarity.ember=5;s.wispModules.ember=19;s.wispUltimate.ember=true;s.lumen=cost.lumen;s.shards=cost.shard;b.set(s);b.render();const e=document.querySelector('[data-module=ember]');e.scrollIntoView({block:'center'});e.focus();})()`);
     await key('Enter');assert(await evaluate('__wispQa.get().wispModules.ember===20&&document.activeElement.matches("[data-wisp-card=ember]")'),'native final purchase focuses same Wisp card');
     await evaluate('window.__wispNativeFinal=JSON.stringify(__wispQa.get());__wispQa.render()');assert(await evaluate('document.activeElement.matches("[data-wisp-card=ember]")'),'completed action focus survives refresh');
-    await key('Enter');await key('Space');assert(await evaluate('JSON.stringify(__wispQa.get())===__wispNativeFinal&&document.querySelector("[data-wisp-progression=ember]").tagName!=="DETAILS"'),'repeated native input cannot collapse or spend');
+    await key('Enter');await key('Space');assert(await evaluate('JSON.stringify(__wispQa.get())===__wispNativeFinal&&document.querySelector("[data-wisp-progression=ember]").open'),'repeated native input cannot collapse or spend');
     summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','same-card native keyboard focus is visible');
     }
-    records.push({width,large,...(compact?{fontPercent}:{}),motion,fonts,result,geometry,summary});
+    let compactDefault;
+    if(compact){
+      await evaluate(`(()=>{const b=__wispQa,s=b.fresh();s.savedLabMultiplier=100;b.set(s);document.activeElement.blur();document.querySelectorAll('[data-wisp-damage] details,[data-wisp-ability-mechanics]').forEach(e=>e.open=false);b.renderCompact();b.prepare();b.present();})()`);
+      compactDefault=await evaluate(`(()=>{const c=document.querySelector('[data-wisp-card=ember]'),p=c.querySelector('[data-wisp-progression]'),s=p.querySelector('summary');return {height:c.getBoundingClientRect().height,closed:!p.open,summaryHeight:s.getBoundingClientRect().height,state:JSON.stringify(__wispQa.get()),saves:JSON.stringify(__wispQa.slots())};})()`);
+      assert(compactDefault.closed&&compactDefault.summaryHeight>=44&&compactDefault.height<(large?700:430),'compact default card is closed and fits useful mobile space: '+JSON.stringify({height:compactDefault.height,closed:compactDefault.closed,summaryHeight:compactDefault.summaryHeight}));
+      if(evidence&&motion==='no-preference'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'default-'+width+'-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
+      const point=await evaluate(`(()=>{const e=document.querySelector('[data-wisp-details=ember]');e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+      await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      assert(await evaluate(`document.querySelector('[data-wisp-progression=ember]').open`),'native touch opens compact upgrades');
+      await evaluate(`document.querySelector('[data-wisp-details=ember]').focus({preventScroll:true})`);await key('Enter');
+      assert(await evaluate(`!document.querySelector('[data-wisp-progression=ember]').open`),'native keyboard folds compact upgrades');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===${JSON.stringify(compactDefault.state)}&&JSON.stringify(__wispQa.slots())===${JSON.stringify(compactDefault.saves)}`),'disclosure touch/keyboard preserves full state and both saves');
+      await evaluate(`document.querySelector('[data-tab=forge]').click()`);
+      assert(await evaluate(`!document.querySelector('#tab-forge [data-mult]')&&__wispQa.get().savedLabMultiplier===1`),'Forge has no multiplier and resets old quantities toone');
+      await evaluate(`document.querySelector('[data-tab=deeds]').click();document.querySelector('[data-tab=deeds]').classList.add('has-attention')`);
+      const dot=await evaluate(`(()=>{const b=document.querySelector('[data-tab=deeds]'),r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+      await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[dot]});
+      assert(await evaluate(`(()=>{const b=document.querySelector('[data-tab=deeds]'),d=getComputedStyle(b,'::before');return Number(d.zIndex)>0&&d.opacity==='1'&&d.pointerEvents==='none';})()`),'notification stays above the pressed icon without intercepting input');
+      if(evidence&&width===390&&fontPercent===100&&motion==='no-preference'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'deeds-pressed-dot.png'),Buffer.from(shot.data,'base64'));}
+      await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      await evaluate(`document.querySelector('[data-tab=spirits]').click()`);
+      delete compactDefault.state;delete compactDefault.saves;
+    }
+    records.push({width,large,...(compact?{fontPercent}:{}),motion,fonts,result,geometry,summary,compactDefault});
   }
   return {status:'pass',source,sourceSha256,browser:browserIdentity,records};
 }

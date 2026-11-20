@@ -1,0 +1,21 @@
+{
+  "id": 44679153882,
+  "sha": "d98c72109b2b60c1d4eaae7fe3335b94d4d25cd4",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44679153882",
+  "jobs": [
+    {
+      "id": 136098122745,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:09:48Z",
+      "completed": "2026-11-20T05:15:17Z",
+      "log": "job-136098122745.log.gz",
+      "rawSha256": "7365dac1c00260b1548bc41b6b79e7b2842aefaa9dd14d1627a188d1f69a2816",
+      "summary": [
+        "2026-11-20T05:15:08.2315381Z fetch official release and install older-version fixture: AssertionError [ERR_ASSERTION]: The \"string\" argument must be of type string. Received type undefined (undefined)"
+      ]
+    }
+  ]
+}

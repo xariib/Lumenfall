@@ -4,7 +4,7 @@ const expectSaveClock=require('./save-clock-contract.cjs');
  * handlers, storage, reload and restore. Simulation intervals are paused only
  * in the throwaway browser page; chronology is checked by the existing suite.
  * node tests/behavioral/loadout-memory.cjs [--source index.html] [--vm-only]
- * [--negative old-purchase|lost-ownership|old-init-gate|no-immediate-save]
+ * [--negative old-purchase|lost-ownership|restored-quantity|wrong-default]
  */
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const vm=require('node:vm'),http=require('node:http'),assert=require('node:assert/strict');
@@ -18,8 +18,8 @@ const negative=option('--negative','');
 const mutations={
   'old-purchase':['function buyShopItem(item){',"function buyShopItem(item){\n  if(item && item.id==='rememberbulk'){state.comets-=item.cost;return;}"],
   'lost-ownership':['if(legacy[id]===true || owned[id]===true) out.legacyCometPurchases[id]=true;',"if(id!=='rememberbulk' && (legacy[id]===true || owned[id]===true)) out.legacyCometPurchases[id]=true;"],
-  'old-init-gate':['  labMultiplier = state.savedLabMultiplier;','  if(state.owned.rememberbulk) labMultiplier = state.savedLabMultiplier;'],
-  'no-immediate-save':['      state.savedLabMultiplier = labMultiplier;\n      saveState();','      state.savedLabMultiplier = labMultiplier;']
+  'restored-quantity':['  out.savedLabMultiplier = 1;','  out.savedLabMultiplier = allowedMultipliers.indexOf(source.savedLabMultiplier)!==-1 ? source.savedLabMultiplier : 1;'],
+  'wrong-default':['  out.savedLabMultiplier = 1;','  out.savedLabMultiplier = 5;']
 };
 if(negative){assert(mutations[negative],'known negative');const [from,to]=mutations[negative];assert(html.includes(from),'mutation anchor');html=html.replace(from,to);}
 const marker="if(document.readyState==='loading'){",script=html.match(/<script>\s*([\s\S]*?)<\/script>/)[1];
@@ -47,7 +47,7 @@ function contracts(){
       const input=JSON.parse(JSON.stringify(seed));if(legacy)delete input.schemaVersion;
       const inputBefore=JSON.parse(JSON.stringify(input));
       const out=canonical(input),paid=owned===true;
-      ok(out.savedLabMultiplier===multiplier,'all valid choices, any ownership/schema');
+      ok(out.savedLabMultiplier===1,'all historical quantities normalize toone with any ownership/schema');
       ok(out.comets===125,'removal never changes the existing wallet');
       ok(!!out.legacyCometPurchases.rememberbulk===paid,'historical ownership preserved');
       same(canonical(out),out,'canonical transition idempotent');
@@ -134,22 +134,19 @@ async function browserContracts(){
     ok(!assetRequests.some(r=>r.status!==200),'selected artifact has all requested fonts/branding');
     await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(large?'160%':'100%')}`);
     const seed=await evaluate('__f25.fresh()');seed.savedLabMultiplier=25;await evaluate(`__f25.seed(${JSON.stringify(seed)},null)`);await reload();
-    ok(await evaluate('__f25.mult()===25&&!__f25.get().legacyCometPurchases.rememberbulk'),'cold start restores unowned 25x');
+    ok(await evaluate('__f25.mult()===1&&!__f25.get().legacyCometPurchases.rememberbulk'),'cold start resets old unowned25x toone');
     await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(large?'160%':'100%')}`);
     await click('[data-tab="workshop"]');await click('[data-tab="forge"]');
     const geometry=await evaluate(`Array.from(document.querySelectorAll('[data-mult]')).map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {value:el.dataset.mult,width:r.width,height:r.height,left:r.left,right:r.right,color:s.color,background:s.backgroundColor};})`);
     for(const g of geometry)ok(g.width>=43.99&&g.height>=43.99&&g.left>=0&&g.right<=width,'bulk geometry '+width+' '+JSON.stringify(g));
-    for(const [i,value] of [1,5,10,25,50,100,'max'].entries()){
-      const beforeChoice=await evaluate('__f25.get()');
-      await click(`[data-mult="${value}"]`,i%2===0);
-      const afterChoice=await evaluate('__f25.get()');beforeChoice.savedLabMultiplier=value;expectSaveClock(beforeChoice,afterChoice);
-      same(afterChoice,beforeChoice,'choice changes only preference and save timestamp');
-      ok(await evaluate(`__f25.mult()===${JSON.stringify(value)}&&__f25.get().savedLabMultiplier===${JSON.stringify(value)}&&JSON.parse(localStorage.getItem('lumenfall_save_v2')).savedLabMultiplier===${JSON.stringify(value)}&&JSON.parse(localStorage.getItem('lumenfall_save_recovery_v1')).savedLabMultiplier===${JSON.stringify(value)}`),'choice immediately written to both slots');
-      ok(await evaluate(`document.querySelector('[data-mult="${value}"]').getAttribute('aria-pressed')==='true'`),'selected state accessible');
-      if(i%2===0)ok(await evaluate(`document.activeElement.dataset.mult===${JSON.stringify(String(value))}&&getComputedStyle(document.activeElement).outlineWidth!=='0px'`),'keyboard focus retained with outline');
-      await click('[data-tab="research"]');await click('[data-tab="battle"]');await click('[data-tab="workshop"]');await click('[data-tab="forge"]');
-      ok(await evaluate(`__f25.mult()===${JSON.stringify(value)}`),'choice survives screen changes');await reload();
-      ok(await evaluate(`__f25.mult()===${JSON.stringify(value)}`),'choice survives actual reload');
+    ok(geometry.length===0,'No Forge quantity controls remain');
+    for(const value of [1,5,10,25,50,100,'max']){
+      const before=await evaluate('__f25.get()');before.savedLabMultiplier=value;await restore(before);
+      ok(await evaluate('__f25.mult()===1&&__f25.get().savedLabMultiplier===1'),'old backup quantity resets toone');
+      const after=await evaluate('__f25.get()');before.savedLabMultiplier=1;expectSaveClock(before,after);same(after,before,'restore changes only removed quantity and save timestamp');
+      await click('[data-tab="workshop"]');await click('[data-tab="research"]');await click('[data-tab="battle"]');await click('[data-tab="workshop"]');await click('[data-tab="forge"]');await reload();
+      ok(await evaluate('__f25.mult()===1&&__f25.get().savedLabMultiplier===1'),'one quantity survives actual cold reload');
+      ok(await evaluate('["lumenfall_save_v2","lumenfall_save_recovery_v1"].every(k=>JSON.parse(localStorage.getItem(k)).savedLabMultiplier===1)'),'both save slots retain one quantity');
       await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(large?'160%':'100%')}`);await click('[data-tab="workshop"]');await click('[data-tab="forge"]');
     }
     const contrast=await evaluate(`(()=>{
@@ -170,9 +167,9 @@ async function browserContracts(){
     // production entry points without any compensation or new wallet credit.
     const legacy=await evaluate('__f25.fresh()');delete legacy.schemaVersion;legacy.owned.rememberbulk=true;legacy.savedLabMultiplier='max';legacy.comets=125;
     await evaluate(`__f25.seed('invalid-json',${JSON.stringify(legacy)})`);await reload();
-    ok(await evaluate(`__f25.get().comets===125&&__f25.get().legacyCometPurchases.rememberbulk&&__f25.mult()==='max'`),'legacy recovery preserves wallet and ownership without a gate');
+    ok(await evaluate(`__f25.get().comets===125&&__f25.get().legacyCometPurchases.rememberbulk&&__f25.mult()===1`),'legacy recovery preserves wallet and ownership without a gate');
     await reload();ok(await evaluate('__f25.get().comets===125'),'recovery reload preserves wallet');
-    for(let n=0;n<2;n++){await restore(legacy);ok(await evaluate('__f25.get().comets===125&&__f25.mult()===\'max\''),'restore replaces the full wallet snapshot');}
+    for(let n=0;n<2;n++){await restore(legacy);ok(await evaluate('__f25.get().comets===125&&__f25.mult()===1'),'restore replaces the full wallet snapshot');}
     await click('[data-tab="deeds"]');ok(await evaluate(`!document.querySelector('[data-shop="rememberbulk"]')&&!document.querySelector('#shop-list').textContent.includes('Loadout Memory')`),'retired purchase and name absent');
     const spent=await evaluate('__f25.get()');spent.comets=100;await restore(spent);
     ok(await evaluate('__f25.get().comets===100'),'restoring spent wallet never adds compensation');

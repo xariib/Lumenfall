@@ -27,7 +27,7 @@ eq(q.get().lumen,0,'waiting replacement pays only the new Lumen price');eq(q.get
 q.get().lumen=q.get().shards=1e9;q.queue();ok(!q.get().activeStudies.some(a=>a.id==='guardmastery'),'old waiting research cannot restart in another free slot');
 q.set(waiting);ok(q.clearSlot(0),'Queue OFF clears a waiting slot');eq(q.get().studySlotProjects[0],null,'waiting assignment cleared');eq(q.get().studyQueue.guardmastery,false,'waiting queue disabled');eq(q.get().lumen,800,'clearing unpaid waiting work never spends Lumen');
 ok(q.save(),'cleared waiting slot saves');loaded=app(source,x.storage).q;eq(loaded.get().studySlotProjects[0],null,'waiting clear survives reload');eq(loaded.get().studyQueue.guardmastery,false,'waiting queue stays off after reload');
-const deeds=q.deeds(),extra=deeds.filter(a=>a.counter);eq(extra.length,49,'49 additional fixed milestones');eq(new Set(deeds.map(a=>a.id)).size,deeds.length,'all Deed identities unique');
+const deeds=q.deeds(),extra=deeds.filter(a=>a.counter);eq(extra.length,71,'69 fixed development milestones plus two initial continuing goals');eq(new Set(deeds.map(a=>a.id)).size,deeds.length,'all Deed identities unique');
 for(const [track,defs]of [['lab',q.projects()],['forge',q.forgeDefs()]]){
  // Count only the first 300 continuing ranks in this conservative proof.
  const purchasable=defs.filter(n=>!n.retiredTo&&!n.retired).reduce((sum,n)=>sum+(n.endless?300:n.levelCap),0);
@@ -57,4 +57,7 @@ for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
 }
 const progressiveDeeds=require('./deeds-progressive.cjs').run(source);
 const nativeRecapPrecondition=require('./native-recap-precondition.cjs').verify(source);
+// The new progression/migration contract runs in this existing required gate.
+const wispGameplay=JSON.parse(require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'wisp-gameplay-pacing.cjs'),process.argv[2]||'index.html','--negative'],{encoding:'utf8'}));
+eq(wispGameplay.status,'PASS','earned Wisp progression and five-slot migration');
 console.log(JSON.stringify({status:'pass',checks,progressiveDeeds,nativeRecapPrecondition,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));

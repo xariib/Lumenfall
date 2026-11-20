@@ -162,6 +162,7 @@ window.runP207LayoutQa = async function(b,ctx,assert){
 // PERSIST-01: use historical unlocks, with no powered intended member or Ember.
 window.p207Contradictory = function(b){
   var s=b.freshStateSnapshot();s.maxDepthEver=101;
+  ['tide','stone','void'].forEach(function(id){s.recruitmentEntitlements[id]=true;});
   s.formationRebuild={members:['tide','stone'],preset:''};
   s.spirits.ember=0;s.spirits.gale=1;s.activeParty=['gale'];
   s.lumen=12345;s.shards=456;s.heroResource.gale=37;

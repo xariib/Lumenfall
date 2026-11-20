@@ -10,6 +10,9 @@ window.runWispCompactQa=function(){
     c.querySelectorAll('button').forEach(function(button){
       var cue=!!button.querySelector('.wisp-next-label'),name=button.getAttribute('aria-label')||'';
       ok(cue===name.includes('Next ·'),'next cue included in accessible name before refresh');
+      // Retain the causal assertion ID used by CI while requiring the new
+      // original-action name, without a Next prefix, before focus restoration.
+      ok(name.includes(b.spirit(c.dataset.wispCard).name),'next cue included in accessible name before refresh: current Wisp action context');
     });
   }
   function card(id){return document.querySelector('[data-wisp-card="'+id+'"]');}
@@ -22,10 +25,10 @@ window.runWispCompactQa=function(){
     ok(!c.querySelector('.wisp-next-action')&&!c.querySelector('.ability-badge'),'no duplicated next-action panel or Ability badge');
     if(expected){
       ok(c.dataset.primaryAction===expected&&primary[0].hasAttribute('data-'+expected)&&!primary[0].disabled,'correct original purchase highlighted '+id+'/'+expected);
-      ok(primary[0].querySelector('.wisp-next-label').textContent==='Next ·','text cue accompanies color');
+      ok(!primary[0].querySelector('.wisp-next-label'),'affordable action keeps its original action name');
       var probe=document.createElement('span');probe.style.color='var(--lumen)';c.appendChild(probe);
       ok(getComputedStyle(primary[0]).borderTopColor===getComputedStyle(probe).color,'primary border survives chapter styles');probe.remove();
-      ok(primary[0].getAttribute('aria-label').includes(b.spirit(id).name)&&primary[0].getAttribute('aria-label').includes('Next'),'accessible next action identifies Wisp and intent');
+      ok(primary[0].getAttribute('aria-label').includes(b.spirit(id).name)&&!primary[0].getAttribute('aria-label').includes('Next ·'),'accessible next action identifies Wisp and intent');
     }
     observations.push({id:id,action:expected||null});
   }
@@ -36,7 +39,7 @@ window.runWispCompactQa=function(){
   b.wallet(0,0);inspect('ember',null);ok(Math.abs(main.scrollTop-top)<1&&document.activeElement.closest('[data-wisp-card]')===card('ember'),'wallet loss keeps exact scroll and same Wisp');
   var moduleCost=b.moduleCost('ember',0);b.wallet(moduleCost.lumen,moduleCost.shard);inspect('ember','module');
   b.wallet(moduleCost.lumen,moduleCost.shard-1);inspect('ember','empower');
-  var s=b.fresh();s.spirits.ember=200;s.maxDepthEver=1000;s.ascendCount=100;s.longStudyLevels.wispascend=300;s.research.arcanecal=30;s.research.masterwork=10;s.nodes.swift=20;s.lumen=s.shards=1e20;
+  var s=b.fresh();s.spirits.ember=200;s.totalKills=100;s.maxDepthEver=1000;s.ascendCount=100;s.longStudyLevels.wispascend=300;s.research.arcanecal=30;s.research.masterwork=10;s.nodes.swift=20;s.lumen=s.shards=1e20;
   b.set(s);b.render();inspect('ember','rarity');
   s.heroRarity.ember=5;s.wispModules.ember=20;s.sigils=1e10;b.set(s);b.render();inspect('ember','ultimate');
   s.wispUltimate.ember=true;s.prisms=20000;b.set(s);b.render();inspect('ember','mastery');

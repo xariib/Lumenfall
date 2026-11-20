@@ -25,7 +25,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   assert(document.activeElement===queueFocus&&queueFocus.getClientRects().length&&queueFocus.getAttribute('aria-pressed')==='false','queue toggle retains visible focus and exposes repeat OFF');
   bridge.renderLayout();assert(document.activeElement===q('[data-study-queue="'+studyId+'"]'),'queue toggle focus survives live refresh');
   q('[data-tab="forge"]').click();
-  press('[data-mult="5"]',function(){return true;});
+  assert(!q('#tab-forge [data-mult]')&&bridge.getState().savedLabMultiplier===1,'Forge quantity selector removed');
   q('[data-tab="ascend"]').click();
   assert(!q('[data-autoascend-toggle]') && !bridge.getState().autoAscendEnabled,'retired automation control is absent and disabled');
   q('[data-tab="spirits"]').click();
@@ -33,11 +33,11 @@ window.runP105ControlQa = function(bridge,ctx,assert){
 
   var poor=bridge.getState();poor.lumen=0;poor.shards=0;bridge.setState(poor);bridge.renderLayout();
   var purchase=q('[data-research="arcanecal"]');
-  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade ×5' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and exact selected quantity');
+  assert(purchase.disabled && purchase.dataset.state==='unaffordable' && purchase.querySelector('.label').textContent==='Upgrade' && !/Need|Cannot afford/i.test(purchase.textContent+' '+purchase.getAttribute('aria-label')),'silent resource shortage retains native disabled and exact selected quantity');
   // Fund the selected bulk quote exactly; a huge wallet can round a small debit to zero.
   var rich=bridge.getState(),price=bridge.forge.plan('arcanecal').needed;
   rich.lumen=price.lumen;rich.shards=price.shard;bridge.setState(rich);bridge.refreshAffordability();
-  var affordabilityFunding={multiplier:q('#tab-forge [data-mult].active').dataset.mult,price:price,wallet:{lumen:rich.lumen,shards:rich.shards}};
+  var affordabilityFunding={multiplier:1,price:price,wallet:{lumen:rich.lumen,shards:rich.shards}};
   assert(!purchase.disabled && purchase.dataset.state==='available' && !/Need/.test(purchase.textContent),'live affordability clears stale reason');
   bridge.setState(poor);bridge.refreshAffordability();
   assert(purchase.disabled && purchase.dataset.state==='unaffordable','live affordability restores shortage state');
@@ -47,7 +47,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   q('[data-tab="spirits"]').click();
   [1,95].forEach(function(level){
     ['ember','tide'].forEach(function(id){
-      var compact=bridge.freshStateSnapshot();compact.maxDepthEver=101;
+      var compact=bridge.freshStateSnapshot();compact.maxDepthEver=101;compact.totalKills=25;
       compact.spirits[id]=id==='ember'?level:0;
       compact.nodes.bonds=id==='tide'&&level===95?20:0;
       bridge.setState(compact);var cost=bridge.formationTest.cost(id);
@@ -67,10 +67,10 @@ window.runP105ControlQa = function(bridge,ctx,assert){
         var baseLabel=label.cloneNode(true),cue=baseLabel.querySelector('.wisp-next-label');
         if(cue)cue.remove();
         assert(baseLabel.textContent===(id==='ember'?'Empower':'Recruit'),'Empower/Recruit wording retained');
-        assert(!!cue===affordable&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains the live next-action cue');
-        assert(label.textContent===(affordable?'Next ·':'')+baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
+        assert(!cue&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains its action border without a Next prefix');
+        assert(label.textContent===baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
         var name=button.getAttribute('aria-label');
-        assert(name.includes('Next ·')===affordable,'Empower accessible next cue matches availability');
+        assert(!name.includes('Next ·'),'Empower accessible next cue matches availability');
         assert(name.includes(baseLabel.textContent)&&name.includes(price.textContent.trim())&&name.includes(id==='ember'?'Ember Wisp':'Tide Sprite')&&name.includes('Lumen'),'Empower accessible identity/action/price/unit');
         assert(!/Need|Cannot afford|Insufficient resources/i.test(name),'Empower accessible action and price have no shortage copy');
         // This synchronous runner freezes panelIn at scale(.995). Layout CSS
@@ -93,8 +93,9 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   function luminance(rgb){var c=rgb.map(function(n){n/=255;return n<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4);});return .2126*c[0]+.7152*c[1]+.0722*c[2];}
   q('[data-tab="research"]').click();
   var contrastResults={};
-  [['forge','.mult-btn.active'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
+  [['forge','[data-queue="arcanecal"]'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
     q('[data-tab="'+entry[0]+'"]').click();
+    if(entry[0]==='forge'&&!bridge.getState().researchQueue.arcanecal)q(entry[1]).click();
     if(entry[0]==='research'){
       var editor=q('[data-study-speed-open]');if(editor.getAttribute('aria-expanded')!=='true')editor.click();
       var selected=q('[data-study-speed-target]');assert(selected,'selected speed fixture exists');assert(Number(selected.value)===[1.5,2,3,4,5,6,7,8].indexOf(bridge.getState().studySpeedTargets[selected.dataset.studySpeedTarget]),'selected target retained');

@@ -27,12 +27,16 @@ const painted=()=>ev('new Promise(function(resolve){requestAnimationFrame(functi
 // settle; otherwise two CDP reads can straddle different animation frames.
 // Keep the existing 300ms setup ceiling and one-pixel assertions.
 async function settledSetup(label){layoutSettlements.push({label,...await ev(`new Promise(function(resolve,reject){
- var started=performance.now(),previous=null,stable=0,frames=0,ended=false;
- var deadline=setTimeout(function(){ended=true;reject(Error('Wisp setup layout did not settle within 300ms'));},300);
+ // Resolve pending setup style/layout synchronously before observing its
+ // animation. Keep the same300ms ceiling and three stable painted frames.
+ document.querySelector('[data-empower=stone]').getBoundingClientRect();
+ var started=performance.now(),previous=null,stable=0,frames=0,ended=false,trace=[];
+ var deadline=setTimeout(function(){ended=true;reject(Error('Wisp setup layout did not settle within 300ms '+JSON.stringify(trace)));},300);
  function frame(){if(ended)return;try{
   var main=document.querySelector('main'),rect=document.querySelector('[data-empower=stone]').getBoundingClientRect();
   var geometry=JSON.stringify([main.scrollTop,main.scrollHeight,rect.top,rect.height]);frames++;
   var animating=document.querySelector('#tab-spirits').getAnimations().some(function(a){return a.playState==='running'||a.playState==='paused';});
+  trace.push({at:performance.now()-started,geometry:geometry,animating:animating});
   stable=!animating&&geometry===previous?stable+1:0;previous=geometry;
   if(stable>=2){ended=true;clearTimeout(deadline);resolve({frames:frames,elapsedMs:performance.now()-started});}
   else requestAnimationFrame(frame);
@@ -48,6 +52,11 @@ async function run(){
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});for(const n of [3,4])browser.stdio[n].on('error',()=>{});
  const version=await send('Browser.getVersion',{},null);const target=await send('Target.createTarget',{url:'about:blank'},null);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},null)).sessionId;await send('Page.enable');await send('Emulation.setTouchEmulationEnabled',{enabled:true});await send('Page.navigate',{url:'http://127.0.0.1:'+server.address().port+'/index.html'});
  let ready=false;for(let i=0;i<200;i++){try{ready=await ev('!!window.uiRegression && uiRegression.ready()');}catch{}if(ready)break;await pause(25);}check(ready,'actual application ready');await ev('document.fonts.ready');await ev('if(window.startupIntroFinish)startupIntroFinish()');await ev('document.getElementById("startup-skip").click()');await pause(500);
+ // Initialize the tab before the purchase/focus matrix. Its first entrance is
+ // exercised separately by wisp-scroll-setup's real paused-animation race and
+ // both removed-wait controls. Keep every300ms settlement, one-pixel assertion
+ // and the caller's90-second overall deadline unchanged.
+ await ev('uiRegression.setupEmpower(false);Promise.all(document.getElementById("tab-spirits").getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');
  for(const width of (args.includes('--debug-repeat')?[320]:[320,390,430]))for(const scale of (args.includes('--debug-repeat')?[2]:[1,2]))for(const motion of (args.includes('--debug-repeat')?['no-preference']:['no-preference','reduce'])){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});await ev('document.documentElement.style.fontSize="'+16*scale+'px"');
   // A deterministic layout perturbation isolates the game's compensation
@@ -94,7 +103,7 @@ async function run(){
    const before=await snapshot();if(input==='touch')await touch();else await key();const after=await snapshot();records.push({action:kind,width,scale,motion,input,beforeScroll:before.scroll,afterScroll:after.scroll,card:after.card});
    check(Math.abs(after.scroll-before.scroll)<=1,kind+' purchase keeps scroll');check(after.card==='stone',kind+' purchase keeps card focus');
    const expected=structuredClone(before.state);expectSaveClock(expected,after.state);expected.lumen-=config.cost.lumen||0;expected.shards-=config.cost.shard||0;expected.sigils-=config.cost.sigil||0;
-   if(config.action==='module')expected.wispModules.stone++;else if(config.action==='ultimate'){expected.wispUltimate.stone=true;expected.achieved.firstultimate=true;expected.comets+=45;}else{expected.heroRarity.stone++;expected.achieved.mythic=true;expected.comets+=40;}
+   if(config.action==='module')expected.wispModules.stone++;else if(config.action==='ultimate'){expected.wispUltimate.stone=true;expected.achieved.firstultimate=true;expected.comets+=45;}else{expected.heroRarity.stone++;expected.achieved.mythic=true;expected.comets+=40;expected.achieved.endless_rarities_5=true;expected.comets+=10;}
    assert.deepEqual(after.state,expected,kind+' preserves exact rewards, paid value and save fields');
    for(let i=0;i<3;i++){await ev('uiRegression.render();uiRegression.refresh()');const refreshed=await snapshot();check(refreshed.card==='stone',kind+' rendering keeps card focus');check(Math.abs(refreshed.scroll-before.scroll)<=1,kind+' rendering keeps scroll');assert.deepEqual(refreshed.state,after.state);}
    await touch();await key();await key();const denied=await snapshot();check(denied.card==='stone',kind+' repeated input keeps card');check(Math.abs(denied.scroll-before.scroll)<=1,kind+' repeated input keeps scroll');assert.deepEqual(denied.state,after.state,kind+' repeated input cannot spend or change save');check(denied.open===after.open,kind+' repeated Enter never toggles perfected-card disclosure');
@@ -110,7 +119,7 @@ async function run(){
    const after=await snapshot();records.push({width,scale,motion,input,mode,beforeScroll:before.scroll,afterScroll:after.scroll,card:after.card});
    check(Math.abs(after.scroll-before.scroll)<=1,'Rarity Up keeps exact scroll '+JSON.stringify(records.at(-1)));check(after.card==='stone','Rarity Up keeps focus in same Wisp card');check(after.disabled===(mode!=='affordable'),'next availability correct');
    check(after.state.heroRarity.stone===config.tier+1,'exactly one rarity tier');check(after.state.lumen===before.state.lumen-config.cost.lumen,'exact unchanged Lumen cost');check(after.state.shards===before.state.shards-config.cost.shard,'exact unchanged Shard cost');check(await ev('uiRegression.power()')>config.power,'rarity power still increases');
-   const expected=JSON.parse(JSON.stringify(before.state));expected.lumen-=config.cost.lumen;expected.shards-=config.cost.shard;expected.heroRarity.stone++;if(mode==="capped"){expected.achieved.mythic=true;expected.comets+=40;}check(after.state.lastSeen>=before.state.lastSeen,"purchase updates save timestamp");expectSaveClock(expected,after.state);assert.deepEqual(after.state,expected,'all other rewards, paid value and save fields preserved');
+   const expected=JSON.parse(JSON.stringify(before.state));expected.lumen-=config.cost.lumen;expected.shards-=config.cost.shard;expected.heroRarity.stone++;if(mode==="capped"){expected.achieved.mythic=true;expected.comets+=40;expected.achieved.endless_rarities_5=true;expected.comets+=10;}check(after.state.lastSeen>=before.state.lastSeen,"purchase updates save timestamp");expectSaveClock(expected,after.state);assert.deepEqual(after.state,expected,'all other rewards, paid value and save fields preserved');
    for(let i=0;i<3;i++){await ev('uiRegression.render();uiRegression.refresh()');const repeat=await snapshot();check(Math.abs(repeat.scroll-before.scroll)<=1,'periodic rendering preserves exact scroll');check(repeat.card==='stone','periodic rendering preserves same card focus');assert.deepEqual(repeat.state,after.state);}
    if(mode!=='affordable'){if(mode!=='capped')await touchRarity();await key();await key();const denied=await snapshot();assert.deepEqual(denied.state,after.state,'repeat input spends nothing on fallback');check(denied.card==='stone','repeat unavailable input retains card');check(Math.abs(denied.scroll-before.scroll)<=1,'repeat unavailable input retains scroll');}else{check(after.rarity==='stone','affordable focus stays on Rarity Up');if(input==='touch')await touchRarity();else await key();const bought=await snapshot();check(bought.state.heroRarity.stone===2,'repeat input buys only selected rarity');check(bought.card==='stone','repeat affordable input retains card');check(Math.abs(bought.scroll-before.scroll)<=1,'repeat affordable input retains scroll '+JSON.stringify({before:before.scroll,after:bought.scroll}));
     const rich=await snapshot();await ev('uiRegression.wallet(0,0)');const poor=await snapshot();check(poor.card==='stone','wallet loss retains card focus');check(Math.abs(poor.scroll-rich.scroll)<=1,'wallet loss retains scroll');await ev('uiRegression.render()');check((await snapshot()).card==='stone','render after wallet loss retains card');}

@@ -2,7 +2,7 @@
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app}=require('./forge-expansion-harness.cjs');
 const source=fs.readFileSync(process.argv[2]||'index.html','utf8'),{q}=app(source);
-const bases={ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
+const bases=require('./wisp-gameplay-reference.cjs').bases;
 let checks=0;const state=q.get();
 // Deliberately restart and jump the cursor, change discounts/ranks, and exceed
 // the quote-cache capacity. Expected prices use an independent BigInt fraction.

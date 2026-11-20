@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "records": [
+    {
+      "selector": "[data-wisp-details=ember]",
+      "open": true,
+      "events": [
+        {
+          "type": "pointerdown",
+          "tag": "SUMMARY",
+          "outer": "<summary data-wisp-details=\"ember\">Upgrades</summary>",
+          "connected": true
+        },
+        {
+          "type": "pointerup",
+          "tag": "SUMMARY",
+          "outer": "<summary data-wisp-details=\"ember\">Upgrades</summary>",
+          "connected": true
+        },
+        {
+          "type": "click",
+          "tag": "SUMMARY",
+          "outer": "<summary data-wisp-details=\"ember\">Upgrades</summary>",
+          "connected": false
+        }
+      ]
+    },
+    {
+      "selector": "[data-ability-details=ember]",
+      "open": true,
+      "events": [
+        {
+          "type": "pointerdown",
+          "tag": "SUMMARY",
+          "outer": "<summary data-ability-details=\"ember\">How it works</summary>",
+          "connected": true
+        },
+        {
+          "type": "pointerup",
+          "tag": "SUMMARY",
+          "outer": "<summary data-ability-details=\"ember\">How it works</summary>",
+          "connected": true
+        },
+        {
+          "type": "click",
+          "tag": "SUMMARY",
+          "outer": "<summary data-ability-details=\"ember\">How it works</summary>",
+          "connected": false
+        }
+      ]
+    }
+  ]
+}

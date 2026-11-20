@@ -125,10 +125,10 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     ok(q('#bond-summary').textContent==='No Formation Bond active.','Ascension neutral actual Formation');
     var rebuilt=b.getState();
     // Independent level-zero prices for this fresh, Bonds-0 fixture. All eight
-    // sum to 2,684,530; a 3,000,000 wallet funds any chosen five and every debit
+    // total below4trillion; a100trillion wallet funds any chosen five and every debit
     // remains an exactly represented integer, unlike the former 1e20 wallet.
-    var recruitPrices={ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
-    rebuilt.lumen=3000000;b.setState(rebuilt);
+    var recruitPrices={ember:10,tide:60,stone:360,gale:2361183,thorn:39614081,void:664613998,aurora:6968982875,titan:3138550867693};
+    rebuilt.lumen=100000000000000;b.setState(rebuilt);
     worst.ids.forEach(id=>{if(!b.getState().spirits[id]){
       var before=b.getState(),price=recruitPrices[id];b.formationTest.buy(id);var after=b.getState();
       ok(after.spirits[id]===1&&after.lumen===before.lumen-price&&before.lumen-after.lumen===price,'reconstruction recruits one paid level with the exact independent debit: '+id);

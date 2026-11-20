@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "productSha256": "39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4",
+  "node": "v24.22.1",
+  "suites": [
+    {
+      "name": "endless-requirement-boundaries",
+      "code": 0,
+      "status": "PASS",
+      "checks": 2546
+    },
+    {
+      "name": "endless-clock-activation",
+      "code": 0,
+      "status": "PASS",
+      "checks": 444
+    },
+    {
+      "name": "endless-cycle-boundaries",
+      "code": 0,
+      "status": "PASS",
+      "checks": 136
+    },
+    {
+      "name": "endless-cycle-batch",
+      "code": 0,
+      "status": "PASS",
+      "checks": 94
+    },
+    {
+      "name": "endless-cycle-persistence",
+      "code": 0,
+      "status": "PASS",
+      "checks": 24
+    },
+    {
+      "name": "endless-automation-persistence",
+      "code": 0,
+      "status": "PASS",
+      "checks": 29
+    },
+    {
+      "name": "endless-cycle-automation",
+      "code": 0,
+      "status": "PASS",
+      "checks": 112
+    },
+    {
+      "name": "endless-cycle-resource-replay",
+      "code": 0,
+      "status": "PASS",
+      "checks": 87
+    },
+    {
+      "name": "endless-automation-transitions",
+      "code": 0,
+      "status": "PASS",
+      "checks": 6
+    },
+    {
+      "name": "endless-cycle-split",
+      "code": 0,
+      "status": "PASS",
+      "checks": 1146
+    },
+    {
+      "name": "endless-cycle-native-wallets",
+      "code": 0,
+      "status": "PASS",
+      "checks": 108
+    },
+    {
+      "name": "endless-cycle-overflow",
+      "code": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "endless-cycle-split-cold",
+      "code": 0,
+      "status": "PASS",
+      "checks": 1146
+    },
+    {
+      "name": "endless-cycle-controls",
+      "code": 0,
+      "status": "PASS"
+    }
+  ],
+  "qualification": "Local required-engine suites; exact integrated-main CI remains mandatory."
+}

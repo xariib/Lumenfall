@@ -26,7 +26,7 @@ let checks=0;const eq=(x,y,m)=>{checks++;assert.deepEqual(x,y,m);},ok=(x,m)=>{ch
 const near=(x,y,m)=>{checks++;assert(Math.abs(x-y)<=Math.max(1,Math.abs(y))*1e-12,m);};
 function game(){const x=app(source);return {x,q:x.q,b:x.q.endless};}
 {
- const {q,b}=game(),s=q.fresh();s.maxDepthEver=32;s.lumen=1e9;q.set(s);
+ const {q,b}=game(),s=q.fresh();s.maxDepthEver=32;s.totalKills=100;s.longStudyLevels.wispascend=1;s.lumen=1e9;q.set(s);
  const forge=q.defs().find(node=>node.id==='masterwork');eq({depth:forge.unlockDepth,lumen:forge.lumenBase,shard:forge.shardBase,lumenGrowth:forge.lumenGrowth,shardGrowth:forge.shardGrowth,cap:forge.levelCap}, {depth:expected.forgeDepth,lumen:expected.forgeLumen,shard:expected.forgeShards,lumenGrowth:1.35,shardGrowth:1.35,cap:500},'finite long-tail Forge catalog contract');
  for(const id of ['ember','tide','stone'])ok(b.unlocked(q.sp(id)),'early team available '+id);
  for(const id of ['gale','thorn','void','aurora','titan'])eq(b.unlocked(q.sp(id)),false,'Rift32 is not whole roster '+id);
@@ -51,8 +51,8 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
 }
 {
  const {q,b}=game(),s=q.fresh();s.maxDepthEver=200;s.longStudyLevels.wispascend=30;q.set(s);const sp=q.sp('void');
- eq(q.empowerCost('void'),70000,'independent recruitment base');eq(b.rarityPrice(sp,0).lumen,560000,'independent rarity base');eq(b.ultimatePlan(sp).cost,expected.voidUltimate,'independent Ultimate table');
- b.recruitmentPrice('void',700000);eq(q.empowerCost('void'),700000,'recruitment table changes its own quote');eq(b.rarityPrice(sp,0).lumen,560000,'recruitment price cannot reprice rarity');eq(b.ultimatePlan(sp).cost,expected.voidUltimate,'recruitment price cannot reprice Ultimate');
+ eq(q.empowerCost('void'),664613998,'independent recruitment base');eq(b.rarityPrice(sp,0).lumen,5316911984,'independent rarity base');eq(b.ultimatePlan(sp).cost,expected.voidUltimate,'independent Ultimate table');
+ b.recruitmentPrice('void',7000000000);eq(q.empowerCost('void'),7000000000,'recruitment table changes its own quote');eq(b.rarityPrice(sp,0).lumen,5316911984,'recruitment price cannot reprice rarity');eq(b.ultimatePlan(sp).cost,expected.voidUltimate,'recruitment price cannot reprice Ultimate');
 }
 {
  const {q,b,s}=late();q.set(s);const sp=q.sp('ember');ok(b.rarityPlan(sp).affordable,'Mythic full requirements');
@@ -122,8 +122,8 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
 }
 // Ability purchases use the same atomic boundary as other Wisp development.
 function exactInteger(value){if(typeof value==='number')return BigInt(value);const p=/^(\d+)e(\d+)$/.exec(value);assert(p,'canonical integer amount');return BigInt(p[1])*10n**BigInt(p[2]);}
-for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2100],['thorn',12000],['void',70000],['aurora',400000],['titan',2200000]]){
- const {x,q,b}=game(),s=q.fresh();s.maxDepthEver=250;s.spirits[id]=1;s.lumen=s.shards='1e400';s.activeStudies=[{id:'guardmastery',remainingSec:70,totalDurationSec:150,speedMult:4}];q.set(s);q.save();
+for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2361183],['thorn',39614081],['void',664613998],['aurora',6968982875],['titan',3138550867693]]){
+ const {x,q,b}=game(),s=q.fresh();s.maxDepthEver=250;s.longStudyLevels.wispascend=100;s.spirits[id]=1;s.lumen=s.shards='1e400';s.activeStudies=[{id:'guardmastery',remainingSec:70,totalDurationSec:150,speedMult:4}];q.set(s);q.save();
  const before=clone(q.get()),disk=Array.from(x.storage);x.fail(true,false);
  eq(b.module(q.sp(id)),false,'failed primary ability purchase '+id);eq(q.get(),before,'failed ability rolls back wallet and rank '+id);eq(Array.from(x.storage),disk,'failed ability leaves both save slots '+id);x.fail(false,false);
  ok(b.module(q.sp(id)),'real ability purchase '+id);eq(q.get().wispModules[id],1,'one ability level '+id);

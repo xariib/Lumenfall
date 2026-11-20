@@ -5,7 +5,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
  const fresh=await ev('uiRegression.fresh()'),keys=Object.keys(tracks).concat(singles);
  async function install(s){await ev('uiRegression.set('+JSON.stringify(s)+');document.querySelector("[data-tab=deeds]").click()');await ev('Promise.all(document.getElementById("tab-deeds").getAnimations().map(a=>a.finished)).then(()=>true)');}
  function seed(){return {...JSON.parse(JSON.stringify(fresh)),questDay:new Date().toISOString().slice(0,10)};}
- async function exactCards(){check(await ev('Array.from(document.querySelectorAll("[data-deed-series]")).map(e=>e.dataset.deedSeries).sort().join(",")')===keys.slice().sort().join(','),'each distinct Deed series has exactly one card');check(await ev('document.querySelectorAll("#ach-list [role=progressbar]").length===17&&!document.querySelector("#ach-list .dot")'),'every Deed has one progress bar instead of a checkbox marker');}
+ async function exactCards(){check(await ev('Array.from(document.querySelectorAll("[data-deed-series]")).map(e=>e.dataset.deedSeries).sort().join(",")')===keys.slice().sort().join(','),'each distinct Deed series has exactly one card');check(await ev('document.querySelectorAll("#ach-list [role=progressbar]").length===21&&!document.querySelector("#ach-list .dot")'),'every Deed has one progress bar instead of a checkbox marker');}
  const rift=seed();rift.maxDepthEver=9;await install(rift);
  check(await ev('document.querySelector("[data-deed-bar=rift]").getAttribute("aria-valuenow")==="9"&&document.querySelector("[data-deed-bar=rift]").getAttribute("aria-valuemax")==="10"'),'Rift bar starts with the existing9/10 goal');
  rift.maxDepthEver=10;await install(rift);await ev('clarityQA.check();clarityQA.render()');await exactCards();
@@ -32,7 +32,7 @@ module.exports=async function({send,ev,pause,check,records,args}){
   const s=seed();ids.slice(0,n).forEach(id=>s.achieved[id]=true);await install(s);await exactCards();
   const selector=JSON.stringify('[data-deed-series="'+key+'"]');
   const result=await ev('(()=>{var c=document.querySelector('+selector+');return {id:c.dataset.deed,state:c.dataset.state,history:Array.from(c.querySelectorAll("[data-deed-history]")).map(e=>e.dataset.deedHistory),progress:c.querySelectorAll(".info > [data-deed-progress]").length,reward:c.querySelector(".reward").textContent}})()');
-  const next=ids[Math.min(n,ids.length-1)];check(result.id===next&&result.state===(n===ids.length?'completed':'available'),'next target and completion for '+key+'/'+n);
+  const continuing=n===ids.length&&['rift','strikes'].includes(key);const next=continuing?'continuing_'+key+'_1':ids[Math.min(n,ids.length-1)];check(result.id===next&&result.state===(n===ids.length&&!continuing?'completed':'available'),'next target and completion for '+key+'/'+n);
   check(result.progress===1,'one primary progress counter for '+key+'/'+n);
   check(await ev('(()=>{var c=document.querySelector('+selector+'),p=c.querySelector(".info > [data-deed-progress]"),b=c.querySelector("[data-deed-bar]");return c.querySelectorAll("[data-deed-bar]").length===1&&Number(b.getAttribute("aria-valuenow"))>=0&&Number(b.getAttribute("aria-valuenow"))<=Number(b.getAttribute("aria-valuemax"))&&b.clientWidth>0&&b.clientHeight>=6;})()'),'one valid visible bar at every '+key+' milestone');
   check(result.history.length===0,'completed milestones are absent from every card '+key+'/'+n);

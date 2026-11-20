@@ -1,0 +1,34 @@
+{
+  "id": 44661412591,
+  "sha": "a4f4cfa5036438644c0b043a5f289e6bc1e67523",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44661412591",
+  "jobs": [
+    {
+      "id": 136040273635,
+      "name": "Wisp scroll (windows-latest)",
+      "conclusion": "success",
+      "started": "2026-11-20T02:31:34Z",
+      "completed": "2026-11-20T02:33:42Z",
+      "log": "job-136040273635.log.gz",
+      "rawSha256": "cf6123c1c97727d7db94e9481614dfd9d1d361ec46cd0dac1932d2a5ec48e6ad",
+      "summary": [
+        "2026-11-20T02:32:33.8875867Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"11170c9c24e8be77bb74ac21183747498f67f8f8c3252ee56afa5d663b25e51d\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":437.375,\"layoutTop\":1224.375},\"after\":{\"top\":437.375,\"layoutTop\":1134.375,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":437.375,\"layoutTop\":1224.375},\"after\":{\"top\":437.375,\"layoutTop\":1134.375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":434.34375,\"layoutTop\":1815.34375},\"after\":{\"top\":434.34375,\"layoutTop\":1725.34375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":434.34375,\"layoutTop\":1815.34375},\"after\":{\"top\":434.34375,\"layoutTop\":1725.34375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":423,\"layoutTop\":1164},\"after\":{\"top\":423,\"layoutTop\":1074,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":423,\"layoutTop\":1164},\"after\":{\"top\":423,\"layoutTop\":1074,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":420.140625,\"layoutTop\":1662.140625},\"after\":{\"top\":420.140625,\"layoutTop\":1572.140625,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":420.140625,\"layoutTop\":1662.140625},\"after\":{\"top\":420.140625,\"layoutTop\":1572.140625,\"card\":\"stone\"}},{\"width\":430,\"scale\":1,\"moti",
+        "2026-11-20T02:32:33.9163405Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r"
+      ]
+    },
+    {
+      "id": 136040273839,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "conclusion": "failure",
+      "started": "2026-11-20T02:31:34Z",
+      "completed": "2026-11-20T02:32:27Z",
+      "log": "job-136040273839.log.gz",
+      "rawSha256": "2cff5f6ed0fe07539bea1f05f2b2862c5fcec0fca0b16b1248b8be853aa47c2b",
+      "summary": [
+        "2026-11-20T02:32:25.1408975Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      ]
+    }
+  ]
+}

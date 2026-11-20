@@ -67,7 +67,10 @@ window.runCheaperRefundContracts=function(){
   b.set(compatible);var quoteWork=b.quoteWork(100);
   ok(quoteWork.quoteCopies===0,'large legacy price quotes never clone the refund ledger');
   ok(quoteWork.purchaseCopies===1,'payment materializes its ledger once');
-  ok(quoteWork.unchanged&&quoteWork.quotes===2000,'all current Tree quotes preserve state');
+  ok(quoteWork.unchanged,'all current Tree quotes preserve state');
+  // Sixth Companion is retired; all nineteen purchasable Tree paths still
+  // receive the original one hundred read-only quotes each.
+  ok(quoteWork.quotes===1900,'all nineteen current Tree paths are quoted one hundred times');
   records.push({kind:'large-ledger-quotes',raw:2000,result:quoteWork});
   var originalPrices=JSON.stringify(compatible.feedbackMigration.receipts['node.bonds'].amounts.prisms);
   ok(JSON.stringify(b.canonical(compatible).feedbackMigration.receipts['node.bonds'].amounts.prisms)===originalPrices,'legacy-engine receipt prices preserved without a second refund');

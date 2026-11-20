@@ -1,0 +1,63 @@
+{
+  "id": 44679160270,
+  "sha": "d98c72109b2b60c1d4eaae7fe3335b94d4d25cd4",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44679160270",
+  "jobs": [
+    {
+      "id": 136105632508,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:30:28Z",
+      "completed": "2026-11-20T05:48:18Z",
+      "log": "job-136105632508.log.gz",
+      "rawSha256": "1ad84786a3bda7f3e282b828775d2a2bb1068857b5cd73d990c1c533af28b7c4",
+      "summary": [
+        "2026-11-20T05:34:18.0254770Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:42883/index.html:14665:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:42883/index.html:14673:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"689ca6affc1b8f03a7f4327aaf436a52def0bbf5477c87ea0d5a2e376c5c3ced\",\"mutant\":true}",
+        "2026-11-20T05:35:11.6806748Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:35:35.4123415Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:36:30.5379519Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T05:39:58.0632331Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:40:06.0507729Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:40:14.2478341Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:40:14.2584551Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-20T05:44:01.5845730Z SyntaxError: Unexpected token '='",
+        "2026-11-20T05:45:10.9325577Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:37.6858488Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:40.0385928Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:42.6279020Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:45.3987105Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:48.8158805Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:49.9193207Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:51.0546698Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:52.9175793Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:45:54.9072300Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:46:37.8255677Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:46:56.1137319Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-ui\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 66.6, \"last\": 234 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 592.5, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 66.6, \"last\": 234 }, \"errors\": 0 }, \"cold\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": false, \"offlinePending\": false, \"resumeFlowBusy\": false }, \"kills\": 385524, \"ascends\": 15142, \"lastSeen\": 20524752",
+        "2026-11-20T05:46:56.1150928Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:14.3553098Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-legacy-dom\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 5, \"maxGap\": 83.4, \"last\": 231.6 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 592.5, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"legacy dialog background without color-mix/alpha hex\", \"paint\": { \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"backgroundImage\": \"radial-gradient(at 100% 0%, rgba(57, 49, 75, 0.533), rgba(0, 0, 0, 0) 65%), linear-gradient(145deg, rgb(27, 41, 65), rgb(17, 26, 44))\" } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"fr",
+        "2026-11-20T05:47:14.3566982Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:15.4329398Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:33.7227973Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:38.7103625Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:43.6824614Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:47:48.7805928Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:48:07.1819532Z {\"status\":\"FAIL\",\"checks\":9,\"error\":\"AssertionError [ERR_ASSERTION]: locked recruit explains Lab requirement\\n    at check (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/endless-mobile.cjs:24:30)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/endless-mobile.cjs:59:23)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/endless-mobile.cjs:121:34\"}"
+      ]
+    },
+    {
+      "id": 136105635311,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T05:10:15Z",
+      "completed": "2026-11-20T05:12:04Z",
+      "log": "job-136105635311.log.gz",
+      "rawSha256": "1ab0e8686192108806f743ce7fa9b06e5824bc86be6fdda7ba46686e3de112d2",
+      "summary": [
+        "2026-11-20T05:10:48.0414002Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T05:11:59.8471241Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

@@ -22,7 +22,8 @@ const PRICES = {
   empowerbatch: [15,28,46,70], wallwisdom: [12,22,36,54],
   invitations: [4,9,16], recruitreserve: [8,16,28,44,64]
 };
-const BASE_COST = {ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
+const BASE_COST = require('./wisp-gameplay-reference.cjs').bases;
+const HISTORICAL_BASE_COST={ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
 const IDS = Object.keys(BASE_COST);
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 function checks() {
@@ -183,7 +184,7 @@ function gentlePrices(source,a) {
     const s=seed(q);s.nodes.gentlegrowth=rank;s.nodes.bonds=bonds;
     // Ember0 alone is an invalid empty-roster seed and would normalize to1.
     s.spirits.tide=1;s.activeParty=['tide'];q.set(s);
-    a.eq(q.sp(id).baseCost,BASE_COST[id],'historical Wisp base cost '+id);
+    a.eq(q.sp(id).baseCost,HISTORICAL_BASE_COST[id],'historical Wisp identity base stays unchanged '+id);
     for(const level of levels) {
       const actual=q.spiritCost(id,level),expected=gentleExpected(BASE_COST[id],level,rank,bonds);
       const label=id+'/'+level+'/G'+rank+'/B'+bonds;
@@ -208,13 +209,13 @@ function gentlePrices(source,a) {
     }
     if(id==='titan' && bonds===0)records.push({id,rank,bonds,firstOversizedLevel:level,lastSafeQuote:gentleExpected(BASE_COST[id],level-1,rank,bonds)});
   }
-  const old=seed(q);old.spirits.titan=100;old.nodes.gentlegrowth=0;q.set(old);
-  a.eq(q.spiritCost('titan'),446958323302,'preserve witnessed original Titan100 Number price, including historical one-unit rounding');
+  const old=seed(q);old.spirits.titan=26;old.nodes.gentlegrowth=0;q.set(old);
+  a.eq(q.spiritCost('titan'),75295444661999,'independent repriced Titan26 ordinary growth');
   const paid=clone(q.get());paid.nodes.gentlegrowth=5;q.set(paid);
-  a.eq(q.spiritCost('titan'),15002561973,'new Titan100/G5 exact rational price');
+  a.eq(q.spiritCost('titan'),71963787818548,'repriced Titan26/G5 exact rational price');
   gentleCase(source,a);
   return {exactRows,legacyRows,fallbackRows,edgeRecords:records,
-    historicalTitan100:446958323302,newTitan100Rank5:15002561973};
+    supersededHistoricalTitan100:446958323302,currentTitan26:75295444661999,currentTitan26Rank5:71963787818548};
 }
 
 function rewardCase(source,a,mutation) {
@@ -347,7 +348,7 @@ const TRANSITION_PROFILES = [
   {id:'mid-rebuild',fixture:'mid-game',record:75,cleared:50,seconds:120,
     ranks:{lumenmemory:3,veteranrecruits:2,rosterrecall:2,chargememory:3,phasememory:1,riftstep:2,frontier:2,stardust:2,invitations:2}},
   {id:'mature-memory',fixture:'mature-high-power',record:120,cleared:119,seconds:300,
-    ranks:{lumenmemory:5,veteranrecruits:5,rosterrecall:4,chargememory:5,supportmemory:1,phasememory:1,riftstep:5,frontier:5,stardust:5,formationseat:1}}
+    ranks:{lumenmemory:5,veteranrecruits:5,rosterrecall:4,chargememory:5,supportmemory:1,phasememory:1,riftstep:5,frontier:5,stardust:5}}
 ];
 function transitionProfile(source,a,config,mutation) {
   const x=app(source),q=x.q,initial=fixture(q,config.fixture);

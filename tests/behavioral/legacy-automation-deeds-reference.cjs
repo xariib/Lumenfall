@@ -18,5 +18,15 @@ module.exports=function legacyAutomationDeeds(html){
     assert.strictEqual(html.split(rewardAnchor).length,2,'one explicit historical Deed reward anchor');
     html=html.replace(rewardAnchor,'var DEED_TRACK_REWARD_FLOORS={rift:5,ascend:5,forge:5,rest:5};');
   }
+  //20 November adds roster/development rewards and unbounded Strike/Rift
+  // continuations. This helper is explicitly the pre-feature counterfactual;
+  // current grants, migration and parity are covered by wisp-gameplay-pacing.
+  for(const key of ['roster','abilities','rarities','ultimates']){
+    const expression=new RegExp("^addDeedTrack\\('"+key+"'.*$",'m');
+    assert(expression.test(html),'one new-track historical exclusion '+key);html=html.replace(expression,'');
+  }
+  const continuing='function ensureContinuingDeeds(snapshot,readReceipts){';
+  assert.strictEqual(html.split(continuing).length,2,'one continuing catalog policy');
+  html=html.replace(continuing,continuing+'\n  return; // Explicit historical reward policy only.');
   return html;
 };

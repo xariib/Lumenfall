@@ -1,0 +1,38 @@
+{
+  "node": "v24.22.1",
+  "utc": "2026-11-20T02:31:19.402Z",
+  "sourceSha256": "11170c9c24e8be77bb74ac21183747498f67f8f8c3252ee56afa5d663b25e51d",
+  "records": [
+    {
+      "name": "pacing-final2.json",
+      "status": "PASS",
+      "checks": 415
+    },
+    {
+      "name": "deeds-final2.json",
+      "status": "pass",
+      "checks": 495
+    },
+    {
+      "name": "parity-long-optimized2.txt.gz",
+      "sha256": "1143a7c2ed49e81bcfd91286769093e472a839a5a4816190ea7b1bc5a5f31dcb"
+    },
+    {
+      "name": "simultaneous-final.txt.gz",
+      "sha256": "c046c1960f77d1f7f6dd96cd84fdf1b360e5fcde53b06e7a100899d2a2cbc426"
+    },
+    {
+      "name": "endgame-final.txt.gz",
+      "sha256": "dfbfed862c0dd62d44b2f210380c6195ddd88531b7126b8aa9c70cccd70a939d"
+    },
+    {
+      "name": "feedback-final.txt.gz",
+      "sha256": "04c1d3419ac4903d3f581aff28277db8d95b3bdbd13628f0e72eb2279439b083"
+    },
+    {
+      "name": "feedback-reduced-final.txt.gz",
+      "sha256": "8d7f9bf3b474a947865118483f5bdfb5673fea9d2fdd4230f67b55b63dc45727"
+    }
+  ],
+  "limits": "The intermediate 88-case ordinary-browser sweep found seven failures. Four were exact old-fixture expectations (two feedback variants, chronology funding and Deed totals), fixed and rechecked. The four-hour performance failure now passes its unchanged five-second bound. Windows medium-Farm and cold Prism transports did not produce a completed DOM within the unchanged budget; medium-Farm reproduces on c18e6189 baseline too. Required Linux CI remains mandatory. Logs identify their individual source hashes; no integrated/native Android claim."
+}

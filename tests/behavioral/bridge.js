@@ -292,7 +292,7 @@ window.__lumenfallQaBridge = {
     nodes: function(){return JSON.parse(JSON.stringify(RESEARCH));},
     plan: function(id,n){return getResearchBuyPlan(RESEARCH.find(function(x){return x.id===id;}),n);},
     preview: function(id,n){return researchPreview(RESEARCH.find(function(x){return x.id===id;}),n);},
-    buy: function(id,n){labMultiplier=n;buyResearch(RESEARCH.find(function(x){return x.id===id;}));},
+    buy: function(id,n){var old=labMultiplier;labMultiplier=n===undefined?1:n;try{return buyResearch(RESEARCH.find(function(x){return x.id===id;}));}finally{labMultiplier=old;}},
     queue: function(){return autoLabQueueTick();},
     cost: function(id,k,n){return researchCostForLevels(RESEARCH.find(function(x){return x.id===id;}),k,n);},
     canonical: function(s){return acceptPersistedState(s,'forge-qa');},
@@ -560,7 +560,7 @@ window.__lumenfallQaBridge = {
     try { saveState(); } finally { reloadInProgress=true; }
   },
   refreshAffordability: function(){ lastAffordabilityAt=0; checkAffordability(); },
-  renderLayout: function(){ renderAll(); updateBattleFast(); },
+  renderLayout: function(){ renderAll(); document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;}); updateBattleFast(); },
   toast: function(message){ showToast(message); },
   getState: function(){ return JSON.parse(JSON.stringify(state)); },
   settledLiveMs: function(){ return liveClockMemo.state===state ? liveClockMemo.epochMs : 0; },

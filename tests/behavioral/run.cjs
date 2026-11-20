@@ -205,7 +205,7 @@ function mutateSource(source, scenario) {
     assert(start >= 0 && at > start && save > at);
     source = source.slice(0, save) + '      saveState();\n' + source.slice(save);
   }
-  if (scenario === 'self-test-forge-ui-bulk') for (const rule of ['  #tab-forge .mult-row{gap:4px;}\n', '  #tab-forge .mult-btn{min-width:44px;min-height:44px;}\n']) replaceOnce(rule, '');
+  if (scenario === 'self-test-forge-ui-bulk') replaceOnce('  var multHtml = \'<div class="section-sub"','  var multHtml = \'<button data-mult="5">5x</button><div class="section-sub"');
   const prismMutations = {
     'tree': ["var tree = nodeLevel('swift');", "var tree = 0;"],
     'lab': ["var lab = longStudyLevel('prismstudy');", "var lab = 0;"],

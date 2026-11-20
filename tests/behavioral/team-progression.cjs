@@ -28,7 +28,7 @@ function verify(html){
  eq(q.get().comets,120,'supplied save receives exactly100 retired Comets');
  eq(q.get().autoAscendRefund,{policy:'autoascend-retired-v1',total:100,paid:true},'durable owner refund receipt');
  for(const key of ['lumen','shards','prisms','motes','sigils','depth','maxDepthEver','farmDepth','farmReturnDepth','spirits','heroRarity','heroResource','wispModules','wispUltimate','wispMastery','recruitmentEntitlements','empowerQueue','activeParty','formationPresets','nodes','research','researchQueue','activeStudies','pausedStudies','studyBoosts','studyBoostQueue','studySlotProjects','supportBuffs','supportRecastUntil','ascendRewardedDepth','ascendCount','totalKills','totalTaps','dailyStats','questIds','questClaimed','lastSeen','offlineClockHighWaterMs','feedbackMigration','refundCredits','owned'])
-   eq(q.get()[key],user[key],'supplied save preserves '+key);
+   eq(q.get()[key],key==='prisms'?user.prisms+120:user[key],'supplied save preserves '+key+' with original sixth-slot refund');
  for(const key of ['longStudyLevels','studyQueue','studySpeedTargets','studyBoostHours'])for(const id of Object.keys(user[key]))eq(q.get()[key][id],user[key][id],'supplied study preference '+key+'/'+id);
  const accepted=clone(q.get());q.save();q.load();eq(q.get(),accepted,'cold owner reload never refunds twice');
  eq(q.decode(q.export()),accepted,'every migrated field survives backup round trip');
@@ -80,15 +80,16 @@ function verify(html){
    if(id==='gale'||id==='thorn')near(q.resourcePower(id),q.sp(id).basePower*level*(1+.01*(level-1))*rarity[3],'independent original utility-resource curve '+id+'/'+level);
   }
   if(level>=100){for(const id of ['tide','gale','aurora'])ok(powers[id]/total>.08,'Support and utility retain material direct damage '+id+'/'+level);ok(powers.titan/total<.2,'Titan cannot dominate equal development');shares.push({level,shares:Object.fromEntries(Object.keys(powers).map(id=>[id,powers[id]/total]))});}
-  if(level>=100)for(const ids of [['ember','tide','stone','gale','titan'],['ember','tide','stone','gale','void','titan']]){
-   const team=clone(q.get());team.nodes.formationseat=ids.length===6?1:0;team.activeParty=ids;q.set(team);eq(q.get().activeParty,ids,'actual legal formation capacity '+ids.length);
+  if(level>=100)for(const ids of [['ember','tide','stone','gale','titan'],['ember','tide','stone','void','titan']]){
+   const team=clone(q.get());// Preserve the original paid-node/refund receipt while testing legal five-Wisp teams.
+   team.activeParty=ids;q.set(team);eq(q.get().activeParty,ids,'actual legal formation capacity '+ids.length);
    const sum=ids.reduce((n,id)=>n+q.chip(id),0),titanShare=q.chip('titan')/sum;near(sum,t.idle(),'legal formation DPS equals actual passive combat');
    ok(titanShare<(ids.length===5?.3:.25),'Titan cannot take over an equally developed legal party '+ids.length+'/'+level);
-   for(const id of ['tide','gale'])ok(q.chip(id)/sum>.1,'Support/utility remain material in legal party '+id+'/'+ids.length+'/'+level);
+   for(const id of ids.filter(id=>['tide','gale'].includes(id)))ok(q.chip(id)/sum>.1,'Support/utility remain material in legal party '+id+'/'+ids.length+'/'+level);
    legalPartyShares.push({level,members:ids,titanShare});
   }
  }
- const recruitWorld=world(html),future=clone(user);future.longStudyLevels.wispascend=47;future.activeStudies=[];future.pausedStudies=[];for(const id of Object.keys(future.studyQueue))future.studyQueue[id]=false;
+ const recruitWorld=world(html),future=clone(user);future.longStudyLevels.wispascend=47;future.lumen=1e15;future.activeStudies=[];future.pausedStudies=[];for(const id of Object.keys(future.studyQueue))future.studyQueue[id]=false;
  recruitWorld.q.set(future);const recruitmentBefore=clone(recruitWorld.q.get()),recruitPrice=recruitWorld.q.empowerCost('titan');
  ok(recruitWorld.q.empower('titan'),'actual future Titan recruitment pays its original quote');eq(recruitWorld.q.get().lumen,recruitmentBefore.lumen-recruitPrice,'future recruitment debits Lumen exactly');if(!recruitWorld.q.get().activeParty.includes('titan'))ok(recruitWorld.t.field('titan'),'new recruit fields through actual handler');ok(recruitWorld.q.get().activeParty.includes('titan'),'new recruit is actually active');
  const recruitedTotal=recruitWorld.q.get().activeParty.reduce((n,id)=>n+recruitWorld.q.chip(id),0),recruitShare=recruitWorld.q.chip('titan')/recruitedTotal;

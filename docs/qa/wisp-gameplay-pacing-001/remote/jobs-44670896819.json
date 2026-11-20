@@ -1,0 +1,358 @@
+[
+  {
+    "id": 136071334094,
+    "run_id": 44670896819,
+    "workflow_name": "Build Android APK",
+    "head_branch": "feature/wisp-gameplay-pacing-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44670896819",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfrnvIzg",
+    "head_sha": "3a9f01403443f7376e3508192104607052667636",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136071334094",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44670896819/job/136071334094",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-20T03:55:02Z",
+    "started_at": "2026-11-20T03:55:05Z",
+    "completed_at": "2026-11-20T04:02:31Z",
+    "name": "build-apk",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T03:55:06Z",
+        "completed_at": "2026-11-20T03:55:10Z"
+      },
+      {
+        "name": "Checkout",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T03:55:10Z",
+        "completed_at": "2026-11-20T03:55:41Z"
+      },
+      {
+        "name": "Require integrated validation before publishing",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 3,
+        "started_at": "2026-11-20T03:55:41Z",
+        "completed_at": "2026-11-20T03:55:41Z"
+      },
+      {
+        "name": "Set up Node.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T03:55:41Z",
+        "completed_at": "2026-11-20T03:55:46Z"
+      },
+      {
+        "name": "Set up Java",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-20T03:55:46Z",
+        "completed_at": "2026-11-20T03:55:46Z"
+      },
+      {
+        "name": "Set up Gradle",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T03:55:46Z",
+        "completed_at": "2026-11-20T03:55:55Z"
+      },
+      {
+        "name": "Verify Android SDK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-20T03:55:55Z",
+        "completed_at": "2026-11-20T03:55:55Z"
+      },
+      {
+        "name": "Restore and verify stable Android signing key",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-20T03:55:55Z",
+        "completed_at": "2026-11-20T03:55:56Z"
+      },
+      {
+        "name": "Install Capacitor dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-20T03:55:56Z",
+        "completed_at": "2026-11-20T03:55:58Z"
+      },
+      {
+        "name": "Reject high and critical dependency advisories",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-20T03:55:58Z",
+        "completed_at": "2026-11-20T03:55:59Z"
+      },
+      {
+        "name": "Validate game source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-20T03:55:59Z",
+        "completed_at": "2026-11-20T03:55:59Z"
+      },
+      {
+        "name": "Stage Android web assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T03:55:59Z",
+        "completed_at": "2026-11-20T03:55:59Z"
+      },
+      {
+        "name": "Browser runtime smoke test",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T03:55:59Z",
+        "completed_at": "2026-11-20T03:56:15Z"
+      },
+      {
+        "name": "Generate Android project",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-20T03:56:15Z",
+        "completed_at": "2026-11-20T03:56:15Z"
+      },
+      {
+        "name": "Configure production build and separate native test runner",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-20T03:56:15Z",
+        "completed_at": "2026-11-20T03:56:15Z"
+      },
+      {
+        "name": "Install native signed APK updater",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-20T03:56:15Z",
+        "completed_at": "2026-11-20T03:56:18Z"
+      },
+      {
+        "name": "Compute continuing Android version",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-11-20T03:56:18Z",
+        "completed_at": "2026-11-20T03:56:21Z"
+      },
+      {
+        "name": "Set Android app version",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-11-20T03:56:21Z",
+        "completed_at": "2026-11-20T03:56:21Z"
+      },
+      {
+        "name": "Stage Android icon and splash sources",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-11-20T03:56:21Z",
+        "completed_at": "2026-11-20T03:56:22Z"
+      },
+      {
+        "name": "Generate Android icons and splash",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-11-20T03:56:22Z",
+        "completed_at": "2026-11-20T03:56:24Z"
+      },
+      {
+        "name": "Sync Capacitor",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-11-20T03:56:24Z",
+        "completed_at": "2026-11-20T03:56:24Z"
+      },
+      {
+        "name": "Build APK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-11-20T03:56:24Z",
+        "completed_at": "2026-11-20T03:56:54Z"
+      },
+      {
+        "name": "Prepare APK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-11-20T03:56:54Z",
+        "completed_at": "2026-11-20T03:56:54Z"
+      },
+      {
+        "name": "Verify final APK identity",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-20T03:56:54Z",
+        "completed_at": "2026-11-20T03:56:55Z"
+      },
+      {
+        "name": "Verify exact packaged production assets and origin",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-20T03:56:55Z",
+        "completed_at": "2026-11-20T03:56:56Z"
+      },
+      {
+        "name": "Enable emulator hardware acceleration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-20T03:56:56Z",
+        "completed_at": "2026-11-20T03:56:56Z"
+      },
+      {
+        "name": "Build disposable older-version updater fixture",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-20T03:56:56Z",
+        "completed_at": "2026-11-20T03:57:12Z"
+      },
+      {
+        "name": "Free native build memory before emulator acceptance",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-20T03:57:12Z",
+        "completed_at": "2026-11-20T03:57:12Z"
+      },
+      {
+        "name": "In-place signed APK and save upgrade on emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-20T03:57:12Z",
+        "completed_at": "2026-11-20T04:01:00Z"
+      },
+      {
+        "name": "Require completed upgrade receipt for this exact APK",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-11-20T04:01:00Z",
+        "completed_at": "2026-11-20T04:01:00Z"
+      },
+      {
+        "name": "Verify normal production launch on a retail Android image",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-20T04:01:00Z",
+        "completed_at": "2026-11-20T04:02:23Z"
+      },
+      {
+        "name": "Preserve failed native upgrade diagnostics",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 32,
+        "started_at": "2026-11-20T04:02:23Z",
+        "completed_at": "2026-11-20T04:02:23Z"
+      },
+      {
+        "name": "Upload failed native upgrade diagnostics",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 33,
+        "started_at": "2026-11-20T04:02:23Z",
+        "completed_at": "2026-11-20T04:02:23Z"
+      },
+      {
+        "name": "Preserve verified build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34,
+        "started_at": "2026-11-20T04:02:23Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Publish verified APK release",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 35,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Remove temporary signing copy",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Post Set up Gradle",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 69,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Post Set up Java",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 70,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Post Set up Node.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 71,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:26Z"
+      },
+      {
+        "name": "Post Checkout",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 72,
+        "started_at": "2026-11-20T04:02:26Z",
+        "completed_at": "2026-11-20T04:02:27Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 73,
+        "started_at": "2026-11-20T04:02:27Z",
+        "completed_at": "2026-11-20T04:02:27Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136071334094",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004262,
+    "runner_name": "GitHub Actions 1000004262",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]

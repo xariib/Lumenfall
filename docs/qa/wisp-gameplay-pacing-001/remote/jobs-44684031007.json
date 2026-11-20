@@ -1,0 +1,554 @@
+[
+  {
+    "id": 136113971537,
+    "run_id": 44684031007,
+    "workflow_name": "Pre-merge validation",
+    "head_branch": "feature/wisp-gameplay-pacing-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44684031007",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfsQZhUQ",
+    "head_sha": "68e0fda62a7d8059f3995cd920e86b6ecb4a50bc",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136113971537",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44684031007/job/136113971537",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-20T05:53:37Z",
+    "started_at": "2026-11-20T05:53:40Z",
+    "completed_at": "2026-11-20T05:56:30Z",
+    "name": "Lumenfall isolated offline catch-up",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T05:53:41Z",
+        "completed_at": "2026-11-20T05:53:41Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T05:53:41Z",
+        "completed_at": "2026-11-20T05:54:05Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T05:54:05Z",
+        "completed_at": "2026-11-20T05:54:09Z"
+      },
+      {
+        "name": "Stage exact product and assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T05:54:09Z",
+        "completed_at": "2026-11-20T05:54:09Z"
+      },
+      {
+        "name": "Original offline regression with unchanged assertions and deadline",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-20T05:54:09Z",
+        "completed_at": "2026-11-20T05:56:28Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T05:56:28Z",
+        "completed_at": "2026-11-20T05:56:29Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-20T05:56:29Z",
+        "completed_at": "2026-11-20T05:56:29Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T05:56:29Z",
+        "completed_at": "2026-11-20T05:56:29Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T05:56:29Z",
+        "completed_at": "2026-11-20T05:56:29Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136113971537",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004331,
+    "runner_name": "GitHub Actions 1000004331",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 136113971862,
+    "run_id": 44684031007,
+    "workflow_name": "Pre-merge validation",
+    "head_branch": "feature/wisp-gameplay-pacing-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44684031007",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfsQZilg",
+    "head_sha": "68e0fda62a7d8059f3995cd920e86b6ecb4a50bc",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136113971862",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44684031007/job/136113971862",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-20T05:53:38Z",
+    "started_at": "2026-11-20T05:53:40Z",
+    "completed_at": "2026-11-20T06:20:38Z",
+    "name": "Lumenfall pre-merge validation",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T05:53:41Z",
+        "completed_at": "2026-11-20T05:53:41Z"
+      },
+      {
+        "name": "Checkout",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T05:53:41Z",
+        "completed_at": "2026-11-20T05:54:05Z"
+      },
+      {
+        "name": "Set up Node.js",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T05:54:05Z",
+        "completed_at": "2026-11-20T05:54:09Z"
+      },
+      {
+        "name": "Rift hint removal, mode order and enemy visibility",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T05:54:09Z",
+        "completed_at": "2026-11-20T05:55:44Z"
+      },
+      {
+        "name": "Paid Lab work and player action chronology",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-20T05:55:44Z",
+        "completed_at": "2026-11-20T05:55:55Z"
+      },
+      {
+        "name": "Stationary purchases and rejected transaction rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T05:55:55Z",
+        "completed_at": "2026-11-20T05:57:13Z"
+      },
+      {
+        "name": "Continuing Forge investments and earned Lab access",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-20T05:57:13Z",
+        "completed_at": "2026-11-20T05:57:45Z"
+      },
+      {
+        "name": "Production Android security regression checks",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-20T05:57:45Z",
+        "completed_at": "2026-11-20T05:57:46Z"
+      },
+      {
+        "name": "Paid boosts, clock replay and capped automation regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-20T05:57:46Z",
+        "completed_at": "2026-11-20T05:57:58Z"
+      },
+      {
+        "name": "In-app signed update policy and controller",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-20T05:57:58Z",
+        "completed_at": "2026-11-20T05:58:04Z"
+      },
+      {
+        "name": "Complete game audit and stationary Auto-Empower targets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-20T05:58:04Z",
+        "completed_at": "2026-11-20T05:58:36Z"
+      },
+      {
+        "name": "Native Lab Begin focus boundaries",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T05:58:36Z",
+        "completed_at": "2026-11-20T05:59:33Z"
+      },
+      {
+        "name": "Slot-first Lab, concise cards and expanded Deeds",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T05:59:33Z",
+        "completed_at": "2026-11-20T06:00:40Z"
+      },
+      {
+        "name": "Simple Lab timer and direct research selection",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-20T06:00:40Z",
+        "completed_at": "2026-11-20T06:03:45Z"
+      },
+      {
+        "name": "Lab queue continuity and Speed Up modal",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-20T06:03:45Z",
+        "completed_at": "2026-11-20T06:04:38Z"
+      },
+      {
+        "name": "Editable next boost and independent Speed Up queue",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-20T06:04:38Z",
+        "completed_at": "2026-11-20T06:08:11Z"
+      },
+      {
+        "name": "APK identity verifier self-test",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-11-20T06:08:11Z",
+        "completed_at": "2026-11-20T06:08:11Z"
+      },
+      {
+        "name": "Readable offline recap and expanded Lab results",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-11-20T06:08:11Z",
+        "completed_at": "2026-11-20T06:08:17Z"
+      },
+      {
+        "name": "Stable Auto Ascend summaries and unchanged committed rewards",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-11-20T06:08:17Z",
+        "completed_at": "2026-11-20T06:08:40Z"
+      },
+      {
+        "name": "Exponential Rift progression and explicit Farm intent",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-11-20T06:08:40Z",
+        "completed_at": "2026-11-20T06:09:04Z"
+      },
+      {
+        "name": "Forge workshop long-term progression",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-11-20T06:09:04Z",
+        "completed_at": "2026-11-20T06:09:34Z"
+      },
+      {
+        "name": "Long Lab pacing and basic Wisp research",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-11-20T06:09:34Z",
+        "completed_at": "2026-11-20T06:09:54Z"
+      },
+      {
+        "name": "Repository migration version and historical-baseline controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-11-20T06:09:54Z",
+        "completed_at": "2026-11-20T06:09:54Z"
+      },
+      {
+        "name": "Node tooling regression checks",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-11-20T06:09:54Z",
+        "completed_at": "2026-11-20T06:09:56Z"
+      },
+      {
+        "name": "Validate game source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-20T06:09:56Z",
+        "completed_at": "2026-11-20T06:09:56Z"
+      },
+      {
+        "name": "Verify existing independent offline reference binding",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-20T06:09:56Z",
+        "completed_at": "2026-11-20T06:09:56Z"
+      },
+      {
+        "name": "Stage web assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-20T06:09:56Z",
+        "completed_at": "2026-11-20T06:09:56Z"
+      },
+      {
+        "name": "Phone feedback startup and input acceptance",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-11-20T06:09:56Z",
+        "completed_at": "2026-11-20T06:10:23Z"
+      },
+      {
+        "name": "Existing settled-screen UI acceptance after actual startup",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-11-20T06:10:23Z",
+        "completed_at": "2026-11-20T06:14:03Z"
+      },
+      {
+        "name": "Existing Rift layout after hint removal",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-11-20T06:14:03Z",
+        "completed_at": "2026-11-20T06:14:32Z"
+      },
+      {
+        "name": "Endless progression amounts, gates, persistence and chronology",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-20T06:14:32Z",
+        "completed_at": "2026-11-20T06:15:43Z"
+      },
+      {
+        "name": "Endless automation clock and repeated Ascend regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-11-20T06:15:43Z",
+        "completed_at": "2026-11-20T06:18:49Z"
+      },
+      {
+        "name": "Rift replacement acceptance through former guidance entrypoint",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-20T06:18:49Z",
+        "completed_at": "2026-11-20T06:20:02Z"
+      },
+      {
+        "name": "Preserve early Guidance readability evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34,
+        "started_at": "2026-11-20T06:20:02Z",
+        "completed_at": "2026-11-20T06:20:03Z"
+      },
+      {
+        "name": "Rift cosmetics selection, persistence and mobile acceptance",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35,
+        "started_at": "2026-11-20T06:20:03Z",
+        "completed_at": "2026-11-20T06:20:13Z"
+      },
+      {
+        "name": "Exact Prism earning numerical and causal regression",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36,
+        "started_at": "2026-11-20T06:20:13Z",
+        "completed_at": "2026-11-20T06:20:18Z"
+      },
+      {
+        "name": "Tree caps original-value refunds and current collection",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 37,
+        "started_at": "2026-11-20T06:20:18Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Swift cap, original Shard value and reachable Forge Deeds",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 38,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Wisp contribution readability and unchanged gameplay",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 39,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Compact Wisp cards, live next action and original purchase preservation",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 40,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Development currency UI and retained-value acceptance",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 41,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Read Ascend alerts and stationary daily quest claims",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 42,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Cheaper Recruitment cap and refund regression",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 43,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Independent exact Prism funding oracle",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 44,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Cheaper Recruitment defect controls",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 45,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Behavioral harness negative self-test",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 46,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Stateful behavioral regression suite",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 47,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Install runtime error guard in staged copy",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 48,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Browser runtime smoke test",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 49,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:24Z"
+      },
+      {
+        "name": "Preserve full regression evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50,
+        "started_at": "2026-11-20T06:20:24Z",
+        "completed_at": "2026-11-20T06:20:37Z"
+      },
+      {
+        "name": "Post Set up Node.js",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 99,
+        "started_at": "2026-11-20T06:20:37Z",
+        "completed_at": "2026-11-20T06:20:37Z"
+      },
+      {
+        "name": "Post Checkout",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 100,
+        "started_at": "2026-11-20T06:20:37Z",
+        "completed_at": "2026-11-20T06:20:37Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 101,
+        "started_at": "2026-11-20T06:20:37Z",
+        "completed_at": "2026-11-20T06:20:37Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136113971862",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004332,
+    "runner_name": "GitHub Actions 1000004332",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]

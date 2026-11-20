@@ -1,0 +1,21 @@
+{
+  "id": 44664790331,
+  "sha": "3af385a9ec1dfcb4fac5e0223f859d3f8af5f783",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44664790331",
+  "jobs": [
+    {
+      "id": 136051336244,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T03:01:04Z",
+      "completed": "2026-11-20T03:05:06Z",
+      "log": "job-136051336244.log.gz",
+      "rawSha256": "504d2e2646f86a7be457782a628cc1b6a352428cf2ae29d2ee900a38b1db8f05",
+      "summary": [
+        "2026-11-20T03:05:00.9141743Z AssertionError [ERR_ASSERTION]: Trusted native touch opens Wisp upgrades tide"
+      ]
+    }
+  ]
+}

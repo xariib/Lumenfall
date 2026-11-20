@@ -52,7 +52,8 @@ window.runCheaperRecruitmentContracts=function(){
     install(raw);b.spirits().forEach(function(sp){
       (sp.id==='ember'?[1,2,10,50]:[0,1,2,10,50]).forEach(function(owned){
         var s=cheaperRecruitmentSeed(raw);s.spirits[sp.id]=owned;b.set(s);
-        var expected=Math.round(sp.baseCost*Math.pow(1.13,owned)*(1-Math.min(.6,raw*.03)));
+        var bases={ember:10,tide:60,stone:360,gale:2361183,thorn:39614081,void:664613998,aurora:6968982875,titan:3138550867693};
+        var expected=Math.round(bases[sp.id]*Math.pow(1.13,owned)*(1-Math.min(.6,raw*.03)));
         ok(b.recruitCost(sp.id)===expected,'unchanged rounded cost '+sp.id+'/'+owned+'/'+raw);
       });
     });

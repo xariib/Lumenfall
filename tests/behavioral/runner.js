@@ -1184,6 +1184,9 @@
         }
 
         case 'chronology-simultaneous-order': {
+          // Fund the current Gale price in this synthetic simultaneous-spend
+          // witness; retain the shared historical fixture bytes unchanged.
+          var simultaneousSeed=state();simultaneousSeed.lumen=50000000;bridge.setState(simultaneousSeed);
           var simultaneousDirect = bridge.simulateTimeline(7,'offline',PARITY_CLOCK_MS);
           var researchAtBoundary = firstTimelineEvent(simultaneousDirect,'research');
           var completionAtBoundary = firstTimelineEvent(simultaneousDirect,'studyComplete');
@@ -2004,7 +2007,7 @@
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert(progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),'Wisp upgrades remain directly visible');
+          assert(progression.tagName==='DETAILS'&&progression.open&&progression.querySelector('summary'),'expanded compact Wisp upgrades remain reachable');
           var selectedCard=progression.closest('[data-wisp-card]'),action=selectedCard.querySelector('button:not(:disabled)'),actionKey=action&&Array.from(action.attributes).find(function(a){return a.name.indexOf('data-')===0&&a.name!=='data-state';});
           assert(action&&actionKey,'representative visible card control');action.focus();bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
@@ -2247,7 +2250,7 @@
           assert(emberCurve.module[19].pacing>10,'Module 20 must carry a materially stronger late-investment multiplier');
           assert(emberCurve.module[19].lumen>emberCurve.module[9].lumen*100,'Module endgame investment must widen materially versus the mid curve');
 
-          assert(rosterTotals.rarity.shard===emberCurve.rarityTotal.shard*8,'full-roster Rarity Shard commitment must equal eight complete Wisp paths');
+          assert(rosterTotals.rarity.shard>emberCurve.rarityTotal.shard*8,'later-recruit rarity prices exceed eight early-game paths');
           assert(rosterTotals.module.shard>voidCurve.moduleTotal.shard*30,'full-roster Module commitment must be substantially longer than one representative Active Wisp');
           assert(titanCurve.moduleTotal.shard>voidCurve.moduleTotal.shard*30,'late-roster Titan Module path must remain a deliberate specialization choice');
 
@@ -2298,7 +2301,7 @@
           assert(economy.retirementCometTotal===350&&economy.retiredEntitlements.every(function(v){return v===true;}),'actual migration preserves all three retired entitlements and their 350-Comet compensation');
           assert(economy.deedCometTotal===683,'original23 one-time Deeds must total 683 Comets');
           assert(economy.eventDeedCometTotal===50,'the four original event Deeds separately total 50 Comets');
-          assert(economy.longtailDeedCount===49&&economy.longtailDeedCometTotal===2640&&economy.newDeedCometTotal===2690,'49 long-term Deeds use the approved increasing rewards without changing original event payouts');
+          assert(economy.longtailDeedCount===71&&economy.longtailDeedCometTotal===3230&&economy.newDeedCometTotal===3280,'69 fixed development goals and two continuing goals preserve original event payouts');
           assert(economy.questRefreshCost>=economy.maxQuestCometReward,'Daily Quest Refresh must never be cheaper than the richest Comet quest reward');
           assert(economy.sigilResonanceCost===25 && economy.sigilResonanceRunLimit===3,'Sigil Resonance must remain fixed at 25 Sigils and 3 uses per Ascension run');
 

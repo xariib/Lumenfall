@@ -35,6 +35,8 @@ function complete(x){let result,error,calls=0;x.b.apply((r,e)=>{result=r;error=e
 function near(a,b,label){assert(Math.abs(a-b)<1e-7,label+': '+a+' vs '+b);}
 const seed=fixture(),reference=engine(seed,30),sync=reference.b.apply();
 assert.equal(sync.kills,3000,'independent damage/HP kill ledger');
+assert.equal(reference.b.get().recruitmentEntitlements.tide,true,'new defeat requirement records earned access before any save');
+assert.equal(reference.b.get().recruitmentEntitlements.stone,false,'defeats alone cannot bypass the Wisp Ascendancy requirement');
 assert.equal(sync.studySpeedPurchases,0);assert.equal(sync.studyMotesSpent,0);
 near(reference.b.get().activeStudies[0].remainingSec,230,'20s prepaid3x then10s base after expiry');
 for(const budget of [1,2,31,256]){

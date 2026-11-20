@@ -5,7 +5,7 @@ module.exports=function(ctx){
  var rows=[['astralcore',250,750],['astralecho',500,1250],['astralconvergence',1000,2000]],prices=0,refunds=0,faults=0;
  function seed(q){var s=q.fresh();s.maxDepthEver=5000;s.comets=100000;s.questDay=q.day();return s;}
  scenario('permanent-catalog-and-all-exact-prices',function(){
-  var q=world().q;eq(q.schema(),6,'current schema6');eq(q.shopDefs().map(function(r){return r.id;}),['astralcore','astralecho','astralconvergence'],'only permanent Astral catalogue');eq(q.achievementDefs().length,76,'all historical reward identities retained');
+  var q=world().q;eq(q.schema(),6,'current schema6');eq(q.shopDefs().map(function(r){return r.id;}),['astralcore','astralecho','astralconvergence'],'only permanent Astral catalogue');eq(q.achievementDefs().length,98,'historical rewards retained with20 development and two initial continuing goals');
   rows.forEach(function(row){for(var rank=0;rank<10;rank++){
    var a=world(),q=a.q,s=seed(q),price=Math.ceil(row[2]*Math.pow(1.2,rank));s.astralUpgrades[row[0]]=rank;s.comets=price-1;q.set(s);q.save(CLOCK);var before=clone(q.get()),raw=Array.from(a.storage);
    eq(q.buyPlan(row[0]).cost,price,'independent exact rank price');eq(q.buy(row[0]),false,'one-short refused');eq(q.get(),before,'one-short retains paid state');eq(Array.from(a.storage),raw,'one-short has no writes');

@@ -10,24 +10,30 @@ const tracks={
  forge:['labqueue',...[100,200,300,400,500,600].map(n=>'endless_forge_'+n)],
  lab:[50,100,250,500,1000,2000].map(n=>'endless_lab_'+n),
  mastery:[10,25,50,100,250,500,1000,5000,10000].map(n=>'endless_mastery_'+n),
- kills:[10000,100000,1000000,10000000,100000000,1000000000].map(n=>'endless_kills_'+n)
+ kills:[10000,100000,1000000,10000000,100000000,1000000000].map(n=>'endless_kills_'+n),
+ roster:[2,3,4,5,6,7,8].map(n=>'endless_roster_'+n),
+ abilities:[10,25,50,100,160].map(n=>'endless_abilities_'+n),
+ rarities:[5,10,20,30,40].map(n=>'endless_rarities_'+n),
+ ultimates:[2,4,8].map(n=>'endless_ultimates_'+n)
 };
 const singles=['fullparty','all','mythic','autotap','labmaster','allstudies','firstultimate','modulemax'];
 const rewards={rift:[5,10,20,50,100,105,110,115,120,125,130,135,140],strikes:[3,8,20],ascend:[10,25,50,55,60,65,70,75,80,85,90],rest:[15,20,25,30,35,40,45],projects:[15,50],forge:[40,45,50,55,60,65,70],lab:[10,15,20,25,30,35],mastery:[10,15,20,25,30,35,40,45,50],kills:[10,15,20,25,30,35]};
 function run(source){
  let checks=0;const eq=(a,b,m)=>{checks++;assert.deepEqual(a,b,m);},ok=(v,m)=>{checks++;assert(v,m);};
  const x=app(source),q=x.q;
+ const continuing=a=>a.id.startsWith('continuing_');
+ function series(snapshot){return q.deedSeries(snapshot).map(row=>({...row,milestones:row.milestones.filter(a=>!continuing(a)),earned:row.earned.filter(a=>!continuing(a))}));}
  for(const [key,ids]of Object.entries({...tracks,...Object.fromEntries(singles.map(id=>[id,[id]]))})){
-  const s=q.fresh();eq(q.deedSeries(s).find(r=>r.key===key).milestones.map(a=>a.id),ids,key+' exact complete series');
+  const s=q.fresh();eq(series(s).find(r=>r.key===key).milestones.map(a=>a.id),ids,key+' exact fixed series prefix');
   for(let n=0;n<=ids.length;n++){
    s.achieved={};ids.slice(0,n).forEach(id=>s.achieved[id]=true);const before=clone(s),row=q.deedSeries(s).find(r=>r.key===key);
-   eq(row.next.id,ids[Math.min(n,ids.length-1)],key+' advances at milestone '+n);
+   eq(row.next.id,n===ids.length&&['rift','strikes'].includes(key)?'continuing_'+key+'_1':ids[Math.min(n,ids.length-1)],key+' advances at milestone '+n);
    eq(row.earned.map(a=>a.id),ids.slice(0,n),key+' keeps every earned identity');eq(s,before,'selection never mutates state');
   }
   s.achieved={};s.achieved[ids.at(-1)]=true;eq(q.deedSeries(s).find(r=>r.key===key).next.id,ids[0],'out-of-order legacy flags cannot hide an unearned earlier reward');
  }
- const rows=q.deedSeries(q.fresh()),ids=rows.flatMap(r=>r.milestones.map(a=>a.id));
- eq(rows.length,17,'one card for nine series and eight distinct single-goal challenges');eq(ids.length,72,'all active identities covered');eq(new Set(ids).size,72,'each active identity appears once');
+ const rows=series(q.fresh()),ids=rows.flatMap(r=>r.milestones.map(a=>a.id));
+ eq(rows.length,21,'thirteen series and eight distinct single-goal challenges');eq(ids.length,92,'all fixed active identities covered');eq(new Set(ids).size,92,'each fixed active identity appears once');
  for(const [key,expected]of Object.entries(rewards)){
   const actual=rows.find(r=>r.key===key).milestones.map(a=>a.reward);
   eq(actual,expected,key+' accepted increasing reward schedule');
@@ -43,7 +49,7 @@ function run(source){
    fixture.comets=0;q.set(fixture);q.achievements();eq(q.get().comets,rewards[key][i],'actual isolated payout matches increasing '+a.id);q.achievements();eq(q.get().comets,rewards[key][i],'actual '+a.id+' payout cannot repeat');
   }
  }
- eq(rows.flatMap(r=>r.milestones).reduce((n,a)=>n+a.reward,0),3323,'approved increasing active reward pool');eq(q.deeds().reduce((n,a)=>n+a.reward,0),3373,'originals and event rewards plus approved higher later stages');
+ eq(rows.flatMap(r=>r.milestones).reduce((n,a)=>n+a.reward,0),3743,'approved fixed active reward prefix');eq(q.deeds().filter(a=>!continuing(a)).reduce((n,a)=>n+a.reward,0),3793,'fixed prefix plus original event rewards; continuing rewards are uncapped');
  // A real grant skips all reached Rift thresholds, with no repeated payments.
  const s=q.fresh();s.maxDepthEver=1000;q.set(s);const before=q.get().comets,expected=q.deeds().filter(a=>a.check(q.get())).reduce((n,a)=>n+a.reward,0);
  q.achievements();eq(q.get().comets-before,expected,'all reached milestones pay exactly once');eq(q.deedSeries(q.get()).find(r=>r.key==='rift').next.id,'endless_rift_2500','catch-up advances straight to next unmet Rift');
@@ -55,7 +61,7 @@ function run(source){
  const resumed=app(source,x.storage).q;eq(resumed.get().comets,123,'settled legacy receipt gets no retroactive duplicate');eq(resumed.get().achieved.endless_rift_500,true,'legacy completion is retained');
  const due=q.fresh();due.achieved.endless_rift_500=true;due.cometClaims.deeds.endless_rift_500=true;due.comets=0;q.set(due);ok(q.save(),'old pending boolean claim remains valid');
  eq(q.get().comets,105,'unpaid stage receives current increased reward once');eq(q.get().cometClaims.deeds,{},'increased pending claim settles');ok(q.save(),'settled increased reward saves');eq(q.get().comets,105,'save cannot pay higher reward twice');
- return {checks,series:17,activeIdentities:72,fixedRewards:3373};
+ return {checks,series:21,fixedActiveIdentities:92,fixedPrefixRewards:3793,continuingSeries:2};
 }
 module.exports={run,tracks,singles};
 if(require.main===module){const source=fs.readFileSync(process.argv[2]||'index.html','utf8');console.log(JSON.stringify({status:'pass',sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),...run(source)}));}
