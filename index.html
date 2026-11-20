@@ -10169,6 +10169,23 @@ function renderSpirits(keepScroll){
       btn.focus({preventScroll:true});main.scrollTop=top;main.scrollLeft=left;
     });
   });
+  // Input-time simulation may replace a summary before its native activation.
+  // Complete that one activation on the same current disclosure, without
+  // changing simulation ordering or allowing a detached default action.
+  els['spirit-list'].querySelectorAll('summary[data-wisp-details],summary[data-damage-details],summary[data-ability-details]').forEach(function(summary){
+    function restoreDisclosureInput(e){
+      if(els['spirit-list'].contains(summary))return;
+      var key=['wisp-details','damage-details','ability-details'].find(function(key){return summary.hasAttribute('data-'+key);});
+      var current=key&&els['spirit-list'].querySelector('[data-'+key+'="'+summary.getAttribute('data-'+key)+'"]');
+      if(!current)return;
+      e.preventDefault();
+      var main=document.querySelector('main'),top=main.scrollTop,left=main.scrollLeft;
+      current.parentNode.open=!current.parentNode.open;
+      current.focus({preventScroll:true});main.scrollTop=top;main.scrollLeft=left;
+    }
+    summary.addEventListener('click',restoreDisclosureInput);
+    summary.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')restoreDisclosureInput(e);});
+  });
   els['spirit-list'].querySelectorAll('[data-empower]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var sp = SPIRITS.find(function(s){ return s.id===btn.getAttribute('data-empower'); });

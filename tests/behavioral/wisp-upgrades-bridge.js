@@ -6,6 +6,7 @@ window.__wispQa={
  refresh:function(){lastAffordabilityAt=0;checkAffordability();},
  rarityRequirement:function(t){return rarityReq(t);},rarityCost:function(id,t){return rarityCost(this.spirit(id),t);},
  render:function(){renderSpirits();document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;});},cap:function(n){MODULE_MAX_LEVEL=n;},
+ renderLive:function(){renderSpirits();},
  renderCompact:function(){document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=false;});renderSpirits();},
  moduleCap:function(){return MODULE_MAX_LEVEL;},moduleEffect:function(id,n){return MODULE_INFO[this.spirit(id).abilityType].effect(n);},
  empowerCost:function(id){return spiritCost(this.spirit(id));},

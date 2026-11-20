@@ -35,6 +35,11 @@ if(args.includes('--mutate-ability-disclosure')){
   if(code.split(from).length!==2)throw Error('unique ability disclosure state');
   code=code.replace(from,'false');
 }
+if(args.includes('--mutate-disclosure-input')){
+  const from="if(els['spirit-list'].contains(summary))return;";
+  if(code.split(from).length!==2)throw Error('unique detached disclosure input repair');
+  code=code.replace(from,'return; // Detached summary activation repair removed.');
+}
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
@@ -53,7 +58,7 @@ const pending=new Map(),records=[];
 function rejectPending(message){for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error(message));}pending.clear();}
 function send(method,params={},sid=session){return new Promise((resolve,reject)=>{const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(Error('CDP timeout '+method));},15000);pending.set(id,{resolve,reject,timer});browser.stdio[3].write(JSON.stringify({id,method,params,...(sid?{sessionId:sid}:{})})+'\0');});}
 async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
-async function key(key){const keys={Enter:13,Tab:9};await send('Input.dispatchKeyEvent',{type:'keyDown',key,code:key,windowsVirtualKeyCode:keys[key],...(key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code:key,windowsVirtualKeyCode:keys[key]});}
+async function key(key){const keys={Enter:13,Tab:9,' ':32},code=key===' '?'Space':key;await send('Input.dispatchKeyEvent',{type:'keyDown',key,code,windowsVirtualKeyCode:keys[key],...(key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key,code,windowsVirtualKeyCode:keys[key]});}
 async function run(){
   const chrome=option('--chrome',process.env.LUMENFALL_QA_CDP_CHROME||'/usr/bin/chromium');
   profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-wisp-'));
@@ -132,6 +137,19 @@ async function run(){
       await key('Enter');await evaluate('__wispQa.render()');
       assert(await evaluate(`!document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'closed ability mechanics stays closed through refresh');
     }
+    if(compact&&fontPercent===100&&motion==='no-preference'){
+      await evaluate(`if(!window.__summaryReplayBound){window.__summaryReplayBound=true;['click','keydown'].forEach(type=>document.addEventListener(type,e=>{if(window.__summaryReplayType===type&&e.target.closest('summary')){window.__summaryReplayType=null;__wispQa.renderLive();window.__summaryReplayDetached=!e.target.isConnected;}},true));}`);
+      for(const attribute of ['wisp-details','damage-details','ability-details'])for(const input of ['touch','Enter',' ']){
+        const selector='[data-'+attribute+'=ember]';
+        await evaluate(`(()=>{__wispQa.set(__wispQa.fresh());__wispQa.render();const e=document.querySelector(${JSON.stringify(selector)});e.parentElement.open=false;e.scrollIntoView({block:'center'});e.focus({preventScroll:true});window.__summaryReplayDetached=false;window.__summaryReplayType=${JSON.stringify(input==='touch'?'click':'keydown')};window.__summaryReplayBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};})()`);
+        if(input==='touch'){
+          const p=await evaluate(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+          await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+        }else await key(input);
+        assert(await evaluate(`__summaryReplayDetached&&document.querySelector(${JSON.stringify(selector)}).parentElement.open&&document.activeElement===document.querySelector(${JSON.stringify(selector)})`),'native disclosure input survives input-time render exactly once: '+attribute+'/'+input);
+        assert(await evaluate(`JSON.stringify(__wispQa.get())===__summaryReplayBefore.state&&JSON.stringify(__wispQa.slots())===__summaryReplayBefore.slots`),'disclosure activation changes no game state or save');
+      }
+    }
     let summary;
     if(args.includes('--baseline')){
     // Real keyboard activation of the completed disclosure and native focus.
@@ -151,9 +169,9 @@ async function run(){
     }
     let compactDefault;
     if(compact){
-      await evaluate(`(()=>{const b=__wispQa,s=b.fresh();s.savedLabMultiplier=100;b.set(s);b.renderCompact();b.prepare();b.present();})()`);
+      await evaluate(`(()=>{const b=__wispQa,s=b.fresh();s.savedLabMultiplier=100;b.set(s);document.activeElement.blur();document.querySelectorAll('[data-wisp-damage] details,[data-wisp-ability-mechanics]').forEach(e=>e.open=false);b.renderCompact();b.prepare();b.present();})()`);
       compactDefault=await evaluate(`(()=>{const c=document.querySelector('[data-wisp-card=ember]'),p=c.querySelector('[data-wisp-progression]'),s=p.querySelector('summary');return {height:c.getBoundingClientRect().height,closed:!p.open,summaryHeight:s.getBoundingClientRect().height,state:JSON.stringify(__wispQa.get()),saves:JSON.stringify(__wispQa.slots())};})()`);
-      assert(compactDefault.closed&&compactDefault.summaryHeight>=44&&compactDefault.height<(large?700:430),'compact default card is closed and fits useful mobile space');
+      assert(compactDefault.closed&&compactDefault.summaryHeight>=44&&compactDefault.height<(large?700:430),'compact default card is closed and fits useful mobile space: '+JSON.stringify({height:compactDefault.height,closed:compactDefault.closed,summaryHeight:compactDefault.summaryHeight}));
       if(evidence&&motion==='no-preference'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'default-'+width+'-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
       const point=await evaluate(`(()=>{const e=document.querySelector('[data-wisp-details=ember]');e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
       await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});

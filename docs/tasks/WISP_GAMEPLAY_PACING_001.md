@@ -147,3 +147,24 @@ bytes and all assets; save receipts, project state and final status in GitHub.
 Keep task/chat open for physical phone, WebView60 DOM, TalkBack, human pacing
 and Google's actual verdict. Preserve separate Play preparation PR63. Temporary
 test outputs remain uncommitted after automatic cleanup review rejection.
+
+04:01CET: review fix published at3af385a9ec1dfcb4fac5e0223f859d3f8af5f783;
+thread resolved after18-profile native-input pass and causal failure proof.
+Non-publishing Android validation run44664790331 launched at that head with
+publish=false to expose installed migration/UI issues while CI runs. It cannot
+update the public feed. Signed public release still requires integrated-main
+gates and a separate publish=true build. No public update has been published.
+
+04:16CET: candidate44664790331 failed on native Tide disclosure activation after
+old/new signed save preservation passed. No APK published. Reproduced lost
+activation when input-time rendering detaches a summary during its click.
+Repaired that one activation on the same current Wisp disclosure (also Enter/
+Space) without changing simulation ordering, state or save behavior. All18
+mobile profiles PASS, including forced refreshes for progression/damage/ability
+summaries at320/390/430px; removing repair fails the exact native-input assertion.
+Core415 plus5controls and source checks PASS. Native QA now records trusted,
+calibrated disclosure events and failure screenshots. Failure evidence saved in
+[private validation](../qa/wisp-gameplay-pacing-001/android-validation-44664790331/).
+Current product SHA256e64a6999258d038e4a187827c03f4d882dc458bea322f152d4a652ec278eb6ac.
+Publish repair, repeat non-public native validation and exact-source CI, then
+integrate/main gates/public release. Keep public feed unchanged until checks pass.

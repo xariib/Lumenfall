@@ -87,6 +87,7 @@ async function verifyInstalledWispCard(page,report){
  const compact=await page.evaluate("Array.from(document.querySelectorAll('[data-wisp-progression]')).map(p=>({id:p.dataset.wispProgression,closed:!p.open,height:p.closest('[data-wisp-card]').getBoundingClientRect().height}))");
  assert(compact.length===8&&compact.every(p=>p.closed&&p.height<500),'All eight installed cards start compact');
  const compactShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-compact.png',Buffer.from(compactShot.data,'base64'));
+ await page.evaluate(`(()=>{window.nativeWispDisclosureEvents=[];['pointerdown','pointerup','click','keydown'].forEach(type=>document.addEventListener(type,e=>{const summary=e.target.closest('summary');if(summary&&summary.hasAttribute('data-wisp-details'))nativeWispDisclosureEvents.push({type,trusted:e.isTrusted,target:'wisp-details:'+summary.dataset.wispDetails,x:e.clientX,y:e.clientY,connected:summary.isConnected});},true));})()`);
  const disclosures=[];
  for(const row of compact){
    await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]').replace(/</g,'\\u003c')+').scrollIntoView({block:"center",behavior:"instant"})');
@@ -94,7 +95,11 @@ async function verifyInstalledWispCard(page,report){
    const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]')+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("summary")===e};})()');
    assert(point.hit&&point.width>=44&&point.height>=44,'Native compact disclosure hittable '+row.id);tap(point.x,point.y);
    let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-progression="'+row.id+'"]')+').open');if(opened)break;await pause(50);}
-   assert(opened,'Trusted native touch opens Wisp upgrades '+row.id);disclosures.push({id:row.id,point,opened});
+   const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify('wisp-details:'+row.id)+')');
+   disclosures.push({id:row.id,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');
+   if(!opened){const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));}
+   requireCenteredPointer(events,point,'wisp-details:'+row.id);
+   assert(opened,'Trusted native touch opens Wisp upgrades '+row.id);
  }
  report.installedCompactWisps={status:'PASS',defaults:compact,disclosures,nativeInput:true};
  // Inspect the shipped UI inside the installed APK's actual Android WebView.
