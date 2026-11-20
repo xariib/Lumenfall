@@ -6,7 +6,7 @@ const file=process.argv[2]||'index.html',raw=fs.readFileSync(file,'utf8');
 let product=raw;
 if(process.env.FULL_GAME_AUDIT_MUTANT){
   const changes={
-    recruitment:["affordable:recruited&&funded","affordable:funded"],
+    recruitment:["eligible:eligible,affordable:eligible&&funded,reason:!recruited?'recruit':!eligible?'requirements':funded?'available':'funds'","eligible:eligible,affordable:funded,reason:!recruited?'recruit':!eligible?'requirements':funded?'available':'funds'"],
     canonical:["if(SPIRITS.indexOf(sp)===-1)return {affordable:false,reason:'invalid'};\n  var level=moduleLevel(sp.id);","if(!sp)return {affordable:false,reason:'invalid'};\n  var level=moduleLevel(sp.id);"],
     quest:["  if(!forgeCommitPaidMutation(function(){\n    state.questClaimed[id] = true;\n    state.comets=creditAmount(state.comets,q.reward.comets||0);\n    if(q.reward.prisms) state.prisms=creditAmount(state.prisms,q.reward.prisms);\n  }))return false;","  state.questClaimed[id]=true;state.comets=creditAmount(state.comets,q.reward.comets||0);if(q.reward.prisms)state.prisms=creditAmount(state.prisms,q.reward.prisms);"]
   };

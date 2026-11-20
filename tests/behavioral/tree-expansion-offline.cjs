@@ -96,7 +96,7 @@ function supportDeadlines(source,a) {
 }
 
 const LONG_RANKS={lumenmemory:5,veteranrecruits:5,rosterrecall:4,chargememory:3,supportmemory:1,phasememory:1,
-  riftstep:5,frontier:3,stardust:3,gentlegrowth:5,formationseat:1,benchmentor:3,empowerbatch:2,wallwisdom:2,invitations:3,recruitreserve:5};
+  riftstep:5,frontier:3,stardust:3,gentlegrowth:5,benchmentor:3,empowerbatch:2,wallwisdom:2,invitations:3,recruitreserve:5};
 function longSeed(source,a) {
   const x=app(source),q=x.q,s=fixture(q,'parity-auto-ascend');
   s.maxDepthEver=130;s.autoAscendEnabled=false;q.set(s);
@@ -107,7 +107,7 @@ function longSeed(source,a) {
   initial.heroResource.ember=55;initial.heroResource.tide=20;initial.heroResource.aurora=45;
   initial.nodes.swift=6;initial.lastSeen=CLOCK;
   for(const id of IDS)initial.empowerQueue[id]=initial.activeParty.includes(id);
-  q.set(initial);a.eq(q.get().activeParty.length,6,'8h seed really fields all six paid Formation slots');
+  q.set(initial);a.eq(q.get().activeParty.length,5,'8h seed respects five Active slots and retains all paid Wisps');
   a.eq(q.get().longStudyLevels.riftattune,7,'8h fixture retains all seven paid historical offline-efficiency levels');
   a.near(q.offlineRate(),1.7,2e-15,'8h actual historical offline rate1.7 remains intact');
   return {state:clone(q.get()),paid};
@@ -244,10 +244,10 @@ function wallCase(source,a,rank,mutation) {
 function sixPartyBounds(source,a) {
   const rows=[];
   for(const [id,party,auto,ordinal] of [
-    ['supports-first',['tide','aurora','ember','stone','gale','thorn'],true,0],
-    ['supports-last',['ember','stone','gale','thorn','tide','aurora'],true,4],
-    ['no-auto',['tide','ember','aurora','void','stone','thorn'],false,0],
-    ['large-ordinal',['aurora','tide','titan','void','ember','gale'],true,1e30]
+    ['supports-first',['tide','aurora','ember','stone','gale'],true,0],
+    ['supports-last',['ember','stone','gale','tide','aurora'],true,4],
+    ['no-auto',['tide','ember','aurora','void','stone'],false,0],
+    ['large-ordinal',['aurora','tide','titan','void','ember'],true,1e30]
   ]){
     const x=app(source),q=x.q,s=fixedState(q,{party,auto,ordinal,swift:30,phase:[17,83,39,61,5,47]});
     s.nodes.formationseat=1;s.nodes.chargememory=5;s.nodes.phasememory=1;

@@ -7115,7 +7115,8 @@ function nodeCost(node){
  * resource commitment. The five upgrade tiers are explicit rather than hidden
  * behind one exponential so players can see the real price in the existing UI.
  *
- * Module levels 1-5 keep the previous curve exactly. From level 6 onward an
+ * Early-Wisp Module levels 1-5 keep the previous curve. Later recruits use
+ * their unlock-economy investment base. From level 6 onward an
  * additional 1.18x late-growth factor applies per level, preserving useful
  * early Modules while making the final third a serious permanent investment.
  * The cap remains 20 and every level keeps the existing +5% role-specific gain.
@@ -10739,7 +10740,7 @@ function renderAscendSummary(){
 
 function renderNodes(){
   var nodeViewport=captureControlViewport(els['node-list']);
-  var html = '<div class="section-sub">20 Tree paths: Ascend rewards, new beginnings, recruitment and automation.</div>',legacyHtml='';
+  var html = '<div class="section-sub">19 Tree paths: Ascend rewards, new beginnings, recruitment and automation.</div>',legacyHtml='';
   NODES.forEach(function(node){
     if(node.retired) return;
     if(node.retiredTo){
@@ -11021,7 +11022,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Push', meta:'Rift mode', desc:'Climb toward new Rifts and bosses. Your saved Push point is preserved if you switch to Farm.'},
   {name:'Rift Regions', meta:'World progression', desc:'The Rift changes region every 25 levels, moving through the Starlit Verge, Ashen Canopy, Glass Wastes, Drowned Observatory, Void Basilica and Crown of Night before deeper echoes begin.'},
   {name:'Farm', meta:'Rift mode', desc:'Repeat the highest non-boss Rift cleared in your current run for resources. Push returns to your saved progression Rift with a fresh enemy; it does not preserve that enemy’s partially depleted HP.'},
-  {name:'Formation & Presets', meta:'Wisp selection', desc:'Choose up to five Active Wisps; Sixth Companion in the Tree raises this to six. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save your chosen lineups, but do not switch automatically when Rift mode changes. After Ascend, remembered members return as they are recruited again.'},
+  {name:'Formation & Presets', meta:'Wisp selection', desc:'Choose up to five Active Wisps. All eight Wisps can be recruited, with reserves kept on the bench. The retired Sixth Companion purchase returns its original 120 Prisms once. Only recruited Active Wisps fight and activate Bonds. Push, Farm and Boss presets save chosen lineups but do not switch automatically with Rift mode. After Ascend, remembered members return as they are recruited again.'},
   {name:'Wisp Power', meta:'Combat stat', desc:'All Wisps gain the same development curve after level 70, with modest Wisp-specific strength. Early base strength is bounded at 26. Level, Rarity and permanent Mastery set each Wisp’s Power. It feeds passive damage and damaging abilities. Utility resource rewards retain their original level curve and paid factors, shown per cast. Power does not strengthen Support buffs; their base strength comes from the ability and Ultimate, with Amplifier Trim adding a separate bonus.'},
   {name:'Passive Wisp Damage', meta:'Combat rule', desc:'Active Wisp Power is multiplied by passive-only permanent upgrades, applicable damage Bonds and active Support buffs. Modules and Ultimates do not increase passive damage.'},
   {name:'Ability Charge', meta:'Automatic combat', desc:'Recruited Active Wisps fill their resource bars automatically. At 100 charge, an eligible ability fires without a manual ability button. Charge Rate speeds the natural fill up to its cap; some Forge upgrades grant extra charge. Support still has a minimum interval between its own casts, even with extra charge.'},

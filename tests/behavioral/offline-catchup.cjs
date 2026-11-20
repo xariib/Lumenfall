@@ -326,7 +326,7 @@ assert.equal(oldRewardRun.b.get().prisms-original.prisms,6*on.result.ascends+281
 assert.deepEqual({...oldRewardRun.b.get(),prisms:on.committed.prisms},on.committed,'only Prism balance differs under old reward policy');
 records.push({case:'Prism policy isolation',perAscend,newPrisms:on.committed.prisms-original.prisms,legacyPrisms:oldRewardRun.b.get().prisms-original.prisms});
 assert.equal(on.committed.lumen,onReference.state.lumen,'partial final run matches independent one-second balance');
-assert.equal(on.result.empowers,0,'current late-recruit price correctly blocks unfunded remembered Titan purchases');
+assert.equal(on.committed.lumen,on.result.earned,'unfunded remembered Titan purchase leaves the full earned Lumen in the wallet');
 assert.deepEqual(on.committed.formationRebuild,original.formationRebuild,'unaffordable Boss reconstruction intent persists');
 assert.deepEqual(on.committed.empowerQueue,original.empowerQueue,'purchase intent preserved');
 assert.deepEqual(on.committed.activeParty,['ember'],'unfunded remembered Titan grants no combat power before its new recruitment price is paid');

@@ -2,6 +2,11 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {app,clone}=require('./forge-expansion-harness.cjs');
 const seed=JSON.parse(fs.readFileSync(path.join(__dirname,'../../docs/qa/offline-autoascend-2026-10-07/device_backup.json')));
+// Current Titan recruitment costs3.138trillion. Fund this synthetic clock
+// witness with100trillion so it still crosses Push/Farm/Push under current
+// prices. The original zero-wallet device fixture remains byte-for-byte intact
+// and is independently covered by offline-catchup's unfunded reconstruction.
+seed.lumen=100000000000000;
 function verify(html){
  let checks=0;const records=[];
  function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}

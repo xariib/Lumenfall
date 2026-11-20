@@ -23,9 +23,12 @@ if(args.includes('--mutate-primary')){
   code=code.replace(from,'if(!button)return false;');
 }
 if(args.includes('--mutate-names')){
-  const from="  // Finalize cue names before render/refresh callers restore native focus.\n  presentControlStates(els['spirit-list']);";
+  // Removing the former Next prefix makes the final cue-only pass redundant.
+  // Mutate the actual Wisp name owner to retain a stale Next prefix after its
+  // visible removal, retaining the same accessibility regression assertion.
+  const from="if(btn.getAttribute('aria-label')!==name) btn.setAttribute('aria-label',name);";
   if(code.split(from).length!==2)throw Error('unique accessible-name mutation site');
-  code=code.replace(from,'  // QA negative: accessible names remain stale at focus restoration.');
+  code=code.replace(from,"if(sp)name='Next ·'+name;"+from);
 }
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}

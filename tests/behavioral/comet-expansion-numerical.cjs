@@ -25,8 +25,9 @@ const ENDLESS_DEEDS = Object.entries({
   kills:[10000,100000,1000000,10000000,100000000,1000000000],
   lab:[50,100,250,500,1000,2000],forge:[100,200,300,400,500,600],
   mastery:[10,25,50,100,250,500,1000,5000,10000],
-  rest:[24,72,168,720,2160,8760]
-}).flatMap(([track,targets])=>targets.map((target,i)=>['endless_'+track+'_'+target,({rift:105,ascend:55,forge:45,rest:20}[track]||10)+5*i]));
+  rest:[24,72,168,720,2160,8760],roster:[2,3,4,5,6,7,8],
+  abilities:[10,25,50,100,160],rarities:[5,10,20,30,40],ultimates:[2,4,8]
+}).flatMap(([track,targets])=>targets.map((target,i)=>['endless_'+track+'_'+target,({rift:105,ascend:55,forge:45,rest:20}[track]||10)+5*i])).concat([['continuing_strikes_1',25],['continuing_rift_1',145]]);
 const RETIRED = [['comettrials',140], ['rifttrail',50], ['starfallcrest',160]];
 const CATALOG = [
   {id:'autoascend',cap:1,prices:[100],deeds:[]},
