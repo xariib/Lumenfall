@@ -109,3 +109,19 @@ Do not push this local branch to feature/restart CI. Once full CI passes, merge
 PR64 expected9e5, run all9 exact-main gates, publish native APK and verifypublic.
 QA docs can integrate at final checkpoint after release; all actualcode is in9e5.
 Latest public139; private147 PASS; next public build number must be read fromrun.
+
+08:50CET: PR64 is merged; exact main8efc0befe366fc0a684352466c4e9b9c1d745b1a.
+All eight other integrated workflows PASS; raw receipts/logs saved in remote.
+Only premerge44694394498 remains. Its isolated offline PASS and main job has
+passed progression/automation/Rift/Tree refunds/compact Wisp tests, now currency
+UI step41 with no reported failure. Full190-case main suite follows later.
+Monitor process session59173 runs validation-evidence/watch-integrated.cjs and
+prints every45seconds; exits on all9success or any failure. Its current durable
+file is remote/integrated-monitor.json. Continue with write_stdin45000ms; outer
+functions.exec pragma yield50000 avoids extra exec wait cells. No local browser
+tests remain; only this read-only monitor. Never push QA history to main until
+public source8ef gates/build/public-byte verification complete. Actualcode in
+this QA branch equals8ef; later changes are docs/evidence only. No public update
+yet (139); private147 full native PASS. On all9success, delivery.cjs build8ef true
+then inspect exact signed build/native/updater/retail and anonymous releasefeed.
+Google/physical acceptance remains pending; do not archive or claim clearance.

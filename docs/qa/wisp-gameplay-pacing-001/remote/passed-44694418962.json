@@ -1,0 +1,46 @@
+{
+  "id": 44694418962,
+  "sha": "8efc0befe366fc0a684352466c4e9b9c1d745b1a",
+  "event": "workflow_dispatch",
+  "conclusion": "success",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44694418962",
+  "jobs": [
+    {
+      "id": 136147646879,
+      "name": "focused (rift-status-stacking-mobile)",
+      "conclusion": "success",
+      "started": "2026-11-20T07:21:58Z",
+      "completed": "2026-11-20T07:24:18Z",
+      "log": "job-136147646879.log.gz",
+      "rawSha256": "770c438cd280fc23b998b6d9469b37e834cd6d966c2948d37a030ac70702148b",
+      "summary": [
+        "2026-11-20T07:24:15.3094671Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136147647039,
+      "name": "focused (wisp-card-simplicity)",
+      "conclusion": "success",
+      "started": "2026-11-20T07:21:58Z",
+      "completed": "2026-11-20T07:23:05Z",
+      "log": "job-136147647039.log.gz",
+      "rawSha256": "7943e34dfc8dd1c0b59243cfecea828332a04849f4100fbd72af3a69ea02717d",
+      "summary": [
+        "2026-11-20T07:23:01.9672653Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136147647249,
+      "name": "focused (offline-catchup-core)",
+      "conclusion": "success",
+      "started": "2026-11-20T07:21:59Z",
+      "completed": "2026-11-20T07:25:13Z",
+      "log": "job-136147647249.log.gz",
+      "rawSha256": "a231a28e183ffcaa392f948b5797a60cc6d86a05540ad01421d2311781bc5313",
+      "summary": [
+        "2026-11-20T07:25:08.5313693Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-core\", \"sourceSha256\": \"39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4\", \"originalTestSha256\": \"a5bdff59d6225a06ac6070994c6e3a237da29764789e26399a40dc0c55663e4e\", \"wallMs\": 133878.58959400002, \"execution\": \"All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged\", \"records\": [ { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"Prism policy isolation\", \"perAscend\": 0, \"newPrisms\": 6963, \"legacyPrisms\": 6963 }, { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 31, \"batches\": 2016, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear20\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"OFF\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear21\", \"seconds\": 259200, \"batch\": 256, \"batches\": 367, \"kills\": 538, \"ascends\": 0, \"iterations\": 94178, \"earned\": 370815583.19999826 }, { \"case\": \"ON Clear21\", \"seconds\": 345600, \"batch\": 256, \"batches\": 367, \"kills\": 524, \"ascends\": 0, \"iterations\": 94177, \"earned\": 360073965.5999986 }, { \"case\": \"ON Clear21\", \"seconds\": 43200, \"batch\": 256",
+        "2026-11-20T07:25:08.5331309Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}
