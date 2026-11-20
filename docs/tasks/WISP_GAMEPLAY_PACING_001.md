@@ -162,3 +162,10 @@ Publish reference/evidence checkpoint and repeat latest PR gates, then main
 integration/gates/public release as above. Product remains identical to native
 PASS3a9f0140; no additional product fix or private build is needed for this test
 reference correction. Task/chat remains open; public update not published yet.
+
+05:24CET: run44673561972 failed before gameplay checks because the new shared
+PROJECT_STATE paragraph pushed another task over32KiB. Shortened only this new
+entry; preserve other task requirements and the limit. Check every workflow task
+context before publishing this docs-only correction. Product/golden unchanged.
+Local actual-browser offline return/resume/cancel/save-retry/day-rollover PASS
+with refreshed378/320/321/323 reference. Full local main scenarios are running.
