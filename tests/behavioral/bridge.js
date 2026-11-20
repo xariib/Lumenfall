@@ -560,7 +560,9 @@ window.__lumenfallQaBridge = {
     try { saveState(); } finally { reloadInProgress=true; }
   },
   refreshAffordability: function(){ lastAffordabilityAt=0; checkAffordability(); },
-  renderLayout: function(){ renderAll(); document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;}); updateBattleFast(); },
+  renderLayout: function(){ renderAll(); updateBattleFast(); },
+  openWisp: openWispManagement,
+  closeWisp: closeWispManagement,
   toast: function(message){ showToast(message); },
   getState: function(){ return JSON.parse(JSON.stringify(state)); },
   settledLiveMs: function(){ return liveClockMemo.state===state ? liveClockMemo.epochMs : 0; },

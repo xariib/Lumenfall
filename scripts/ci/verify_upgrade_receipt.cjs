@@ -11,6 +11,11 @@ function verify(file,apk,version){
  assert.equal(m.afterPrisms,m.beforePrisms+120,'Exactly one installed refund');assert(m.retainedBenchedLevel>0,'Sixth Wisp retained on bench');
  assert.equal(r.installedCompactWisps?.status,'PASS');assert.equal(r.installedCompactWisps.nativeInput,true);
  assert.equal(r.installedCompactWisps.mechanicsRetainedAfterPurchase,true,'Installed ability explanation survives real purchase');
+ assert.equal(r.installedCompactWisps.navigation,'flat management','Installed flat navigation required');
+ const visits=r.installedCompactWisps.disclosures;
+ for(const id of ['ember','tide','stone','gale','thorn','aurora','void','titan'])for(const back of [false,true]){
+   assert(visits?.some(v=>v.id===id&&v.back===back&&v.opened&&v.point.hit&&v.point.width>=44&&v.point.height>=44),'Installed native Manage/Back '+id+'/'+back);
+ }
  return r;
 }
 module.exports={verify};

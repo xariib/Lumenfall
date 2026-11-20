@@ -1,0 +1,145 @@
+{
+  "status": "PASS",
+  "baseline": "c18e6189bbbbdef60bbd75a250e451433dfa1dbe",
+  "baselineSha256": "fbd58e91db6390bc05a2c09d12378974104c320d3f0a3f5297c860b119496059",
+  "sourceSha256": "8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8",
+  "oracle": "Independent one-second advance calls, fixed whole-window start",
+  "node": "v24.22.1",
+  "originalBrowser": [
+    {
+      "kills": 722,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "64e8c2f094b285f1fd94c544dbf3b03e4606bff05c8f3f654607256e8302dff4"
+    },
+    {
+      "kills": 618,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "11dd6e018aa74b09df5f0820cc755af0311c7d3d324395d68a13d731c73cf80d"
+    },
+    {
+      "kills": 1161,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "370ee16cfa76e041fe7aa4d6c01080be26346cc7e3d4482247c407351ade7e05"
+    },
+    {
+      "kills": 678,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "3b79639f33bf4af0bd5c54894754d86d6a3ac96959b3be93ac2ccbf7b661100e"
+    }
+  ],
+  "originalVm": [
+    {
+      "kills": 722,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "f3faeaeccbdfb221c27a8fb5fa46628fd6fe5150f70877d4b43dffab8e92eb20"
+    },
+    {
+      "kills": 618,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "478eb6fd09478564871a656b373e15356c995bded7d9fd2232aea81bfeda301d"
+    },
+    {
+      "kills": 1161,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "27ff8fc585663dcf51fe4025604d525b5020d16970051a11c10a20f6a30899c7"
+    },
+    {
+      "kills": 678,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "c7ed9632cb6720d8417a9bee0ae9729d7a7f02891a42a530699d1e9b9fb84003"
+    }
+  ],
+  "current": [
+    {
+      "kills": 378,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "2e918dc746db71bc00bc0f10660be46571415539856d9490542eee3fc78b56dd"
+    },
+    {
+      "kills": 320,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "60d6545170cd9da238605f60a07cfc0de9dedcf5a719b7aa97895f873fa3ec33"
+    },
+    {
+      "kills": 321,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "75a65fdc594af70866128d5f40c09bbb3fe49f9bf32580448c51335bdcabf6b5"
+    },
+    {
+      "kills": 323,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "cb3b74883efe52d53b501d885de7a9c853941f0ed6cd6a5553e94cca35a6cb53"
+    }
+  ],
+  "whole": [
+    {
+      "kills": 378,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "91bbd472da19a238dcfa61279ca9c4d149398b7ea4a6cdad56aac4297e8db34a"
+    },
+    {
+      "kills": 320,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "60d6545170cd9da238605f60a07cfc0de9dedcf5a719b7aa97895f873fa3ec33"
+    },
+    {
+      "kills": 321,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "75a65fdc594af70866128d5f40c09bbb3fe49f9bf32580448c51335bdcabf6b5"
+    },
+    {
+      "kills": 323,
+      "ascends": 0,
+      "prisms": 0,
+      "stateSha256": "cb3b74883efe52d53b501d885de7a9c853941f0ed6cd6a5553e94cca35a6cb53"
+    }
+  ],
+  "allOtherSavedFieldsExact": true,
+  "hpRoundoff": [
+    {
+      "phase": 0,
+      "whole": 524260.46411788627,
+      "oneSecond": 524260.46411788615,
+      "difference": 1.1641532182693481e-10,
+      "tolerance": 2.3281841526573922e-10
+    },
+    {
+      "phase": 1,
+      "whole": 524260.46411788615,
+      "oneSecond": 524260.46411788615,
+      "difference": 0,
+      "tolerance": 2.3281841526573916e-10
+    },
+    {
+      "phase": 2,
+      "whole": 591880.013607552,
+      "oneSecond": 591880.013607552,
+      "difference": 0,
+      "tolerance": 2.628475275690221e-10
+    },
+    {
+      "phase": 3,
+      "whole": 180716.24037423907,
+      "oneSecond": 180716.24037423907,
+      "difference": 0,
+      "tolerance": 8.025413239486981e-11
+    }
+  ],
+  "originalFixtureSha256": "2aedccffee1ddbc4da0db8b1c8a312df89ae22b5a1da6bbf8f386d1f60f296bc",
+  "limits": "Independent caller windows in the Node VM; one HP endpoint differs by1.17e-10 within two rounding units. Actual browser/native acceptance is separate."
+}

@@ -2161,7 +2161,7 @@
   #tab-spirits .hero-card .hero-id .name{font-size:1rem;line-height:1.25;overflow-wrap:break-word;}
   #tab-spirits .hero-card .hero-stats{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:6px 0 0;}
   #tab-spirits .hero-card .hero-stats .mono{flex-basis:100%;font-size:.75rem;line-height:1.4;}
-  #tab-spirits .hero-card .class-tag{font-size:.625rem;margin-top:3px;}
+  #tab-spirits .hero-card .class-tag{font-size:.625rem;margin-top:3px;white-space:normal;overflow-wrap:break-word;word-break:break-word;overflow-wrap:anywhere;}
   #tab-spirits .hero-card .active-toggle{min-width:44px;min-height:44px;padding:6px;font-size:.6875rem;}
   #tab-spirits .wisp-card-actions{display:flex;gap:8px;align-items:stretch;}
   #tab-spirits .wisp-card-actions .wisp-empower-action{flex:1;min-width:0;min-height:44px;margin:0;font-size:.75rem;}
@@ -10035,10 +10035,10 @@ function captureWispActionView(){
 function restoreWispActionView(view){
   if(!view) return;
   var button=els['spirit-list'].querySelector('[data-'+view.action+'="'+view.id+'"]');
-  var target=button && !button.disabled ? button : els['spirit-list'].querySelector('[data-wisp-details="'+view.id+'"]');
-  // A fully perfected card uses a collapsible summary. Its fallback must not
-  // toggle that section on repeated Enter, so focus the card itself instead.
-  if(!target || !target.getClientRects().length || (target.tagName==='SUMMARY' && view.action!=='wisp-details' && view.action!=='damage-details' && view.action!=='ability-details')){
+  var target=button && !button.disabled ? button : null;
+  // A completed or unaffordable action keeps focus on its card. Repeated
+  // Enter must not navigate into Manage or activate another purchase.
+  if(!target || !target.getClientRects().length){
     target=els['spirit-list'].querySelector('[data-wisp-card="'+view.id+'"]');
     if(target) target.tabIndex=-1;
   }
@@ -10135,13 +10135,14 @@ function arrangeWispCards(){
     var rarity=card.querySelector('.wisp-rarity-info');
     if(rarity){var title=document.createElement('h3');title.className='wisp-section-title';title.textContent='Rarity';rarity.insertBefore(title,rarity.firstChild);}
     var head=card.querySelector('.hero-top'),identity=head.querySelector('.hero-id'),stats=card.querySelector('.hero-stats');
-    if(stats){var dps=stats.querySelector('[data-wisp-current-dps]');if(dps)stats.appendChild(dps);identity.appendChild(stats);}
+    if(stats){var dps=stats.querySelector('[data-wisp-current-dps]');if(dps)stats.appendChild(dps);if(!managing)identity.appendChild(stats);}
     if(!managing){identity.querySelector('.name').textContent=sp.shortName;identity.querySelector('.class-tag').textContent=sp.role;}
     var actions=document.createElement('div');actions.className='wisp-card-actions';
     var empower=card.querySelector('[data-empower]');if(empower)actions.appendChild(empower);
     var manage=document.createElement('button');manage.type='button';manage.className='mini-btn wisp-manage';manage.dataset.wispDetails=id;manage.textContent='Manage';manage.hidden=managing;manage.setAttribute('aria-label','Manage '+sp.name);manage.setAttribute('aria-controls',management.id);
     manage.addEventListener('click',function(){openWispManagement(id);});actions.appendChild(manage);
-    ['[data-empower-queue]','.wisp-progression','.wisp-role-readout','.wisp-damage-summary'].forEach(function(selector){var el=card.querySelector(selector);if(el)management.appendChild(el);});
+    ['.wisp-progression','.wisp-role-readout','.wisp-damage-summary'].forEach(function(selector){var el=card.querySelector(selector);if(el)management.appendChild(el);});
+    var auto=card.querySelector('[data-empower-queue]');if(auto&&!managing)management.insertBefore(auto,management.firstChild);
     card.appendChild(actions);card.appendChild(management);
   });
 }

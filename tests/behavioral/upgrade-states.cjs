@@ -14,7 +14,8 @@ window.upgradeQa={
  seed:function(){var s=freshState();s.totalKills=100;s.maxDepthEver=100000;s.ascendCount=10000;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=['ember'];
   SPIRITS.forEach(function(n){s.spirits[n.id]=1000;s.heroRarity[n.id]=5;s.wispModules[n.id]=20;s.wispUltimate[n.id]=true;s.empowerQueue[n.id]=false;});
   LONG_STUDIES.forEach(function(n){s.longStudyLevels[n.id]=n.levelCap||250;});RESEARCH.forEach(function(n){s.research[n.id]=n.levelCap||300;});NODES.forEach(function(n){s.nodes[n.id]=n.levelCap||100;});return s;},
- set:function(s,tab){state=acceptPersistedState(s);selectedStudySlot=0;renderAll();activateTab(tab);document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;});},
+ set:function(s,tab){state=acceptPersistedState(s);selectedStudySlot=0;renderAll();activateTab(tab);},
+ open:function(id){if(managedWispId!==id)openWispManagement(id);},
  patch:function(s){Object.keys(s).forEach(function(k){state[k]=s[k];});lastAffordabilityAt=0;checkAffordability();},
  get:function(){return JSON.stringify(state);},saves:function(){return JSON.stringify([localStorage.getItem(SAVE_KEY),localStorage.getItem(RECOVERY_SAVE_KEY)]);},
  ready:function(){if(startupIntroFinish)startupIntroFinish();document.querySelectorAll('.overlay,#startup-intro').forEach(function(e){e.style.display='none';});document.querySelector('.shell').inert=false;},
@@ -31,7 +32,7 @@ function send(method,params={},sid=session){return new Promise((resolve,reject)=
 async function ev(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;}
 async function install(s,tab){await ev('upgradeQa.set('+JSON.stringify(s)+','+JSON.stringify(tab)+');upgradeQa.ready()');await ev('Promise.all(document.getElementById("tab-'+tab+'").getAnimations().map(a=>a.finished)).then(()=>true)');}
 async function observe(selector){return ev('('+function(selector){
- const e=document.querySelector(selector);if(!e)throw Error('Missing upgrade '+selector);const css=getComputedStyle(e);
+ var e=document.querySelector(selector);if(!e)throw Error('Missing upgrade '+selector);var card=e.closest('[data-wisp-card]');if(card){upgradeQa.open(card.dataset.wispCard);e=document.querySelector(selector);}const css=getComputedStyle(e);
  const probe=document.createElement('span');probe.style.color='var(--danger)';document.body.appendChild(probe);const red=getComputedStyle(probe).color;probe.remove();
  const rect=e.getBoundingClientRect();
  return {text:e.textContent,disabled:e.disabled,state:e.dataset.state,width:rect.width,height:rect.height,direction:css.flexDirection,wrap:css.flexWrap,border:css.borderTopWidth+' '+css.borderTopColor,prices:Array.from(e.querySelectorAll('[data-price-currency]')).map(p=>({kind:p.dataset.priceCurrency,amount:Number(p.dataset.priceAmount),red:getComputedStyle(p).color===red})),gold:css.borderTopColor==='rgb(217, 180, 94)'&&parseFloat(css.borderTopWidth)>=2,overflow:e.scrollWidth>e.clientWidth+1};

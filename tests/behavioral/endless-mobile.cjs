@@ -7,7 +7,7 @@ const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'i
 const calibrated=!process.argv.includes('--initial-proposal'),dailyCalibration=calibrated&&!process.argv.includes('--prior-ak'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=dailyCalibration?(process.argv.includes('--focus-f')?92:84):calibrated?32:30;
 assert(!dailyCalibration||calibrated,'daily calibration uses the measured investment table');
 const source=fs.readFileSync(file,'utf8'),marker="if(document.readyState==='loading'){";
-const bridge=`window.endlessUi={
+const bridge=`window.endlessUi={open:openWispManagement,
  fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},
  set:function(s){state=acceptPersistedState(s);restoreEnemyOrSpawn();renderAll();activateTab('spirits');},
  ready:function(){return !!state&&!!els['spirit-list'];},
@@ -47,7 +47,7 @@ async function run(){
     if('${mode}'==='huge'){s.wispMastery.ember=10000;s.maxDepthEver=250200;s.longStudyLevels.wispascend=${2000+labBase};s.research.masterwork=2001;s.nodes.swift=1010;s.lumen='1e400';s.shards='1e400';s.prisms='1e400';s.sigils='1e400';}
     if('${mode}'==='guide'||'${mode}'==='guide-lab'){Object.keys(s.spirits).forEach(id=>{s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});s.maxDepthEver=20000;s.longStudyLevels.wispascend=200;s.research.masterwork=200;s.nodes.swift=100;s.prisms=1e6;s.sigils=1e8;}
     if('${mode}'==='guide-lab'){s.wispMastery.ember=495;s.longStudyLevels.wispascend=190;s.longStudyLevels.catalysis=0;s.motes=1e6;s.activeStudies=[{id:'wispascend',remainingSec:864000,totalDurationSec:864000,speedMult:1}];}
-    endlessUi.set(s);document.querySelector('[data-wisp-progression=ember]').open=true;document.querySelector('[data-wisp-card=ember]').scrollIntoView({block:'start'});})()`);
+    endlessUi.set(s);endlessUi.open('ember');document.querySelector('[data-wisp-card=ember]').scrollIntoView({block:'start'});})()`);
    await pause(80);
    // Measure the settled target, after the existing panelIn scale animation.
    await ev('Promise.all(document.getAnimations().filter(a=>Number.isFinite(a.effect.getTiming().iterations)).map(a=>a.finished.catch(()=>{})))');

@@ -64,9 +64,7 @@ if shipping the app change. Self-review is not independent human review.
 ## Current checkpoint
 
 Research completed; three primary images inspected. Baseline checkout and PR63
-overlap checked. No product edits yet. Next: implement the flat card/management
-interaction, preview actual mobile layouts, preserve all transactions and
-navigation, then validate and deliver within this scope. Physical phone,
+overlap checked. Implementation and checks are described below. Physical phone,
 TalkBack, exact WebView60 DOM and human design acceptance remain unobserved.
 No new binding project rule is proposed.
 
@@ -86,3 +84,46 @@ Next: reconcile existing tests from disclosures to explicit Manage navigation
 without dropping purchase/persistence/cap/focus checks; source-bound offline
 reference and required CI/native/integration/APK delivery remain pending.
 Current local candidate is not delivery; public remains0.2.148.
+
+20 November11:01 checkpoint: final product8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8.
+The focused matrix1152checks/12profiles passes on these bytes, as does the old
+compact suite42570checks/18profiles. The native navigation guard control fails
+the intended Space input-time-refresh assertion with clean teardown. Source
+syntax/IDs and636-function/core preservation pass. The independent one-second
+offline replay reproduces all four historical VM windows, agrees with original
+browser rewards, and verifies current whole-window save endpoints against four
+independent8h replays; every non-HP field exact and HP within original two-ULP
+bound. Rebound only current golden source digest; historical fixtures unchanged.
+
+Existing tests now explicitly visit each Wisp with Manage rather than assigning
+details.open. Kept original prices, caps, native transactions, exact full-state/
+both-slot, focus, one-pixel scroll,44px, color/contrast, runtime-error and timing
+checks. Role/formation tests pass758/433checks across12profiles; Resonate passes
+12profiles. Those three receipts were663d0898 before the final focus fix; final
+integrated CI must rerun them. Native purchase/scroll suite3277checks passes on
+8927afb9. Original embedded four layout cases and corrected p2-02b-wisp-hierarchy,
+bond-text-contract and wisp-upgrade-display pass. An initial invocation used an
+unknown scenario name; corrected names pass, no scenario removed. Old tests
+found actual role clipping, Auto-Empower/header movement and disabled Empower
+fallback navigation: fixed in product, preserving checks. No deadline relaxed.
+
+Android acceptance now uses real centered trusted Manage/Back touches for all
+eight Wisps, records selected visible upgrade geometry/effects, then natively
+reopens Ember and performs the original real Ability purchase. Explanation is
+static and must remain visible after purchase. Receipt guard requires all eight
+native visits and returns; tooling positive/missing-visit controls pass.
+Installed APK verification is pending, not inferred from browser results.
+
+Changed areas: targeted index.html presentation; existing behavioral navigation
+fixtures; new focused matrix/core preservation evidence; current offline binding;
+Android navigation acceptance/receipt guard and its tooling controls; existing
+existing required compact Wisp driver adds positive matrix and causal navigation negative control.
+Shared fixtures hash3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2
+unchanged. Full product diff self-reviewed; no independent human review claimed.
+Next: publish checkpoint, PR and required CI; fix any failures, integrate exact
+head, rerun integrated gates, deliver signed APK/update and retain limitations.
+
+The local OAuth credential lacks workflow scope; an attempted workflow edit
+was rejected on push. Kept the workflow byte-identical and attached the focused
+positive/negative checks to its existing compact-card driver instead. No gate
+was bypassed; the unpublished local commit was amended before publication.

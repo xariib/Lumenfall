@@ -1,14 +1,19 @@
 {
   "status": "fail",
-  "sourceSha256": "a2471a85cb73eb9ecb85b13c80918d96d4ffa4cf314ac5fda7a19c5319fe1350",
+  "sourceSha256": "f52d6f7cb143bb834c52354fac8778435e729a99f4a1c44efa49c73df34a8b13",
   "node": "v24.22.1",
   "browser": "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe",
   "profiles": [],
-  "error": "AssertionError [ERR_ASSERTION]: native navigation survives input-time refresh Space\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:36:27)\n    at run (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:95:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:117:6",
+  "error": "AssertionError [ERR_ASSERTION]: native navigation survives input-time refresh Space\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-10056.cjs:37:27)\n    at run (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-10056.cjs:99:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-10056.cjs:121:6",
   "input": [
     {
       "type": "click",
       "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\">Manage</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button type=\"button\" class=\"mini-btn\" data-wisp-back=\"ember\" data-state=\"available\" aria-label=\"Back to Wisps\">← Wisps</button>",
       "trusted": true
     },
     {
@@ -29,7 +34,7 @@
     {
       "type": "keydown",
       "key": " ",
-      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\" data-wisp-action-focus=\"wisp-ba",
+      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\">Manage</button>",
       "trusted": true
     },
     {
@@ -43,6 +48,6 @@
     "code": 0,
     "signal": null
   },
-  "checks": 38,
+  "checks": 41,
   "stderr": ""
 }

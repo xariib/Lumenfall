@@ -18,7 +18,7 @@ window.runWispCardLayoutQa=function(baseline){
     var before=JSON.stringify(b.get()),slots=JSON.stringify(b.slots());
     b.render();b.refresh();card=document.querySelector('[data-wisp-card="'+id+'"]');p=card.querySelector('[data-wisp-progression]');
     ok(JSON.stringify(b.get())===before&&JSON.stringify(b.slots())===slots,'render leaves full state and both save slots unchanged '+id+'/'+stage);
-    ok(baseline?p.tagName==='DETAILS':p.tagName==='DETAILS'&&p.open&&Array.from(p.querySelectorAll('button')).every(function(button){return button.getBoundingClientRect().height>=44;}),'upgrade controls remain directly reachable '+id+'/'+stage);
+    ok(baseline?p.tagName==='DETAILS':p.tagName==='SECTION'&&!p.closest('.wisp-management').hidden&&Array.from(p.querySelectorAll('button')).every(function(button){return button.getBoundingClientRect().height>=44;}),'upgrade controls remain directly reachable '+id+'/'+stage);
     ok(card.textContent.includes(b.spirit(id).abilityName),'ability retained '+id);
     ok(card.textContent.includes('Wisp Power')&&card.querySelector('.rarity-badge'),'power/rarity retained '+id);
     var readout=card.querySelector('[data-wisp-role]');

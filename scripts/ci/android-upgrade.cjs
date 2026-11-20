@@ -81,39 +81,36 @@ async function verifyInstalledWispCard(page,report){
  }
  assert(welcome,'Mandatory synthetic offline recap must be shown before Wisp inspection');
  report.offlineRecapDismissed=!!welcome;
- // Inspect compact defaults, then open each progression with native touch.
+ // Inspect the compact roster and every flat management surface using actual
+ // Android touches. Each visit returns through Back before the next Wisp.
  await page.evaluate("document.querySelector('[data-tab=spirits]').click()");
  await page.evaluate("Promise.all(document.getElementById('tab-spirits').getAnimations().map(a=>a.finished)).then(()=>true)");
- const compact=await page.evaluate("Array.from(document.querySelectorAll('[data-wisp-progression]')).map(p=>({id:p.dataset.wispProgression,closed:!p.open,height:p.closest('[data-wisp-card]').getBoundingClientRect().height}))");
- assert(compact.length===8&&compact.every(p=>p.closed&&p.height<500),'All eight installed cards start compact');
+ const compact=await page.evaluate("Array.from(document.querySelectorAll('[data-wisp-card]')).map(c=>({id:c.dataset.wispCard,closed:c.querySelector('.wisp-management')?.hidden,height:c.getBoundingClientRect().height}))");
+ assert(compact.length===8&&compact.every(p=>p.closed&&p.height<250),'All eight installed cards start compact');
+ assert(await page.evaluate('!document.querySelector("#tab-spirits details,#tab-spirits summary")'),'Installed Wisp tab has no expanding menus');
  const compactShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-compact.png',Buffer.from(compactShot.data,'base64'));
- await page.evaluate(`(()=>{window.nativeWispDisclosureEvents=[];['pointerdown','pointerup','click','keydown'].forEach(type=>document.addEventListener(type,e=>{const summary=e.target.closest('summary');if(summary&&summary.hasAttribute('data-wisp-details'))nativeWispDisclosureEvents.push({type,trusted:e.isTrusted,target:'wisp-details:'+summary.dataset.wispDetails,x:e.clientX,y:e.clientY,connected:summary.isConnected});},true));})()`);
- const disclosures=[];
- for(const row of compact){
-   await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]').replace(/</g,'\\u003c')+').scrollIntoView({block:"center",behavior:"instant"})');
+ await page.evaluate("(()=>{window.nativeWispDisclosureEvents=[];['pointerdown','pointerup','click','keydown'].forEach(type=>document.addEventListener(type,e=>{const b=e.target.closest('[data-wisp-details],[data-wisp-back]');if(b)nativeWispDisclosureEvents.push({type,trusted:e.isTrusted,target:(b.hasAttribute('data-wisp-back')?'wisp-back:':'wisp-details:')+(b.dataset.wispBack||b.dataset.wispDetails),x:e.clientX,y:e.clientY,connected:b.isConnected});},true));})()");
+ const disclosures=[],observations=[];
+ async function nativeNavigate(id,back){
+   const selector='[data-wisp-'+(back?'back':'details')+'="'+id+'"]',eventTarget=(back?'wisp-back:':'wisp-details:')+id;
+   await page.evaluate('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center",behavior:"instant"});nativeWispDisclosureEvents.length=0');
    await page.command('Page.captureScreenshot',{format:'png'});
-   const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]')+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y),m=document.querySelector("main");return {x,y,width:r.width,height:r.height,hit:h?.closest("summary")===e,cover:h?.outerHTML.slice(0,200),scroll:m.scrollTop,maxScroll:m.scrollHeight-m.clientHeight,main:m.getBoundingClientRect().toJSON()};})()');
-   if(!point.hit||point.width<44||point.height<44){
-     fs.writeFileSync('release-evidence/installed-wisp-disclosure-hit-failure.json',JSON.stringify({id:row.id,point},null,2)+'\n');
-     const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));
-   }
-   assert(point.hit&&point.width>=44&&point.height>=44,'Native compact disclosure hittable '+row.id+': '+JSON.stringify(point));tap(point.x,point.y);
-   let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-progression="'+row.id+'"]')+').open');if(opened)break;await pause(50);}
-   const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify('wisp-details:'+row.id)+')');
-   disclosures.push({id:row.id,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');
-   if(!opened){const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));}
-   requireCenteredPointer(events,point,'wisp-details:'+row.id);
-   assert(opened,'Trusted native touch opens Wisp upgrades '+row.id);
+   const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("button")===e};})()');
+   assert(point.hit&&point.width>=44&&point.height>=44,'Native Wisp navigation hittable '+eventTarget+': '+JSON.stringify(point));tap(point.x,point.y);
+   let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-card="'+id+'"] .wisp-management')+').hidden==='+back);if(opened)break;await pause(50);}
+   const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify(eventTarget)+')');
+   disclosures.push({id,back,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');
+   requireCenteredPointer(events,point,eventTarget);assert(opened,'Trusted Android touch navigates '+eventTarget);
  }
- report.installedCompactWisps={status:'PASS',defaults:compact,disclosures,nativeInput:true};
- // Inspect the shipped UI inside the installed APK's actual Android WebView.
- const ui=await page.evaluate(`(async()=>{
+ for(const row of compact){
+   await nativeNavigate(row.id,false);
+const measured=await page.evaluate(`(async()=>{
    const tab=document.querySelector('[data-tab="spirits"]');
    if(!tab)return {error:'Wisp tab missing'};
    tab.click();
    await new Promise(resolve=>setTimeout(resolve,500));
    const panel=document.getElementById('tab-spirits');
-   const cards=panel&&Array.from(panel.querySelectorAll('[data-wisp-card]'));
+   const cards=panel&&Array.from(panel.querySelectorAll('[data-wisp-card]')).filter(c=>!c.hidden);
    if(!cards||!cards.length)return {error:'Wisp cards missing after tab activation'};
    const visible=e=>!!e&&e.getBoundingClientRect().width>0&&e.getBoundingClientRect().height>0;
    const installedSave=JSON.parse(localStorage.getItem('lumenfall_save_v2'));
@@ -133,8 +130,8 @@ async function verifyInstalledWispCard(page,report){
      return {id,name,visible:visible(card),fits:overflow.length===0&&boundary.left>=-1&&boundary.right<=innerWidth+1,
        width:{client:card.clientWidth,scroll:card.scrollWidth,right:Math.round(boundary.right)},overflow,
        identity:card.textContent.includes('Wisp Power')&&!!card.querySelector('.rarity-badge')&&!!card.querySelector('[data-wisp-role]'),
-       unfinished:!!module&&!!progression&&progression.tagName==='DETAILS'&&progression.open,
-       upgradeVisible:visible(progression)&&progression.tagName==='DETAILS'&&progression.open&&(
+       unfinished:!!module&&!!progression&&progression.tagName==='SECTION'&&!card.querySelector('.wisp-management').hidden,
+       upgradeVisible:visible(progression)&&progression.tagName==='SECTION'&&!card.querySelector('.wisp-management').hidden&&(
          (rarityMaxed?rarityComplete:visible(card.querySelector('[data-rarity]')))&&(moduleMaxed?visible(card.querySelector('.module-row[data-state="maxed"]')):visible(card.querySelector('[data-module]')))&&
          (visible(card.querySelector('[data-ultimate]'))||visible(card.querySelector('.ultimate-badge')))),
        rarityMaxed,rarityComplete,moduleMaxed,moduleGold:moduleMaxed&&getComputedStyle(card.querySelector('.module-row')).borderTopColor==='rgb(217, 180, 94)',moduleArrow:!!card.querySelector('.module-row .wisp-effect-arrow'),
@@ -145,14 +142,18 @@ async function verifyInstalledWispCard(page,report){
        currentEffect:!!card.querySelector('[data-ability-current]'),
        nextEffect:!!card.querySelector('[data-ability-next]')};
    });
-   cards[0].scrollIntoView({block:'start',behavior:'instant'});
+
    return {viewport:innerWidth,viewportFit:document.documentElement.scrollWidth<=innerWidth+1,tabVisible:visible(panel),count:cards.length,observations};
  })()`);
- fs.mkdirSync('release-evidence',{recursive:true});
+   assert(!measured.error,measured.error);assert(measured.tabVisible&&measured.viewportFit,'Installed selected management fits');
+   assert.equal(measured.count,1,'Exactly one Wisp visible in management');observations.push(...measured.observations);
+   await nativeNavigate(row.id,true);
+ }
+ report.installedCompactWisps={status:'PASS',defaults:compact,disclosures,nativeInput:true,navigation:'flat management'};
+ const ui={viewport:await page.evaluate('innerWidth'),viewportFit:await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),tabVisible:true,count:observations.length,observations};
  fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\n');
- const screenshot=await page.command('Page.captureScreenshot',{format:'png'});
- assert(screenshot.data,'Installed Wisp screenshot captured');
- fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
+ await nativeNavigate('ember',false);
+ const screenshot=await page.command('Page.captureScreenshot',{format:'png'});assert(screenshot.data,'Installed Wisp screenshot captured');fs.writeFileSync('release-evidence/installed-wisp-card.png',Buffer.from(screenshot.data,'base64'));
  assert(!ui.error,ui.error);
  assert(ui.viewport>=320&&ui.viewport<=500,'Expected mobile Android WebView width: '+ui.viewport);
  assert(ui.tabVisible&&ui.viewportFit,'Wisp tab visible without horizontal page scroll in installed WebView');
@@ -166,15 +167,8 @@ async function verifyInstalledWispCard(page,report){
  const ember=ui.observations.find(card=>card.id==='ember');
  assert(ember&&ember.unfinished&&ember.modulePrices===2,'Installed Ember keeps both Ability prices and unfinished progress');
  assert(ember.rarityMaxed&&ember.rarityComplete,'Installed maxed Ember Rarity stays gold without a completed purchase button');
- // All disclosures were opened with actual native touch. Retain the real
- // purchase and focus assertions on the expanded original action below.
- assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName==='DETAILS'&&p.open&&p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed compact Wisp disclosure opens its upgrades');
- await page.evaluate(`document.querySelector('[data-ability-details=ember]').scrollIntoView({block:'center',behavior:'instant'})`);
- await page.command('Page.captureScreenshot',{format:'png'});
- const mechanicsPoint=await page.evaluate(`(()=>{const e=document.querySelector('[data-ability-details=ember]'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,hit:document.elementFromPoint(x,y)?.closest('summary')===e};})()`);
- assert(mechanicsPoint.hit,'Installed ability explanation is reachable');tap(mechanicsPoint.x,mechanicsPoint.y);
- let mechanicsOpen=false;for(let i=0;i<30;i++){mechanicsOpen=await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`);if(mechanicsOpen)break;await pause(50);}
- assert(mechanicsOpen,'Native Android touch opens complete ability explanation');
+
+ assert(await page.evaluate("(()=>{const e=document.querySelector('[data-wisp-ability-mechanics=ember]');e.scrollIntoView({block:'center',behavior:'instant'});return e.getClientRects().length>0&&!e.hidden&&e.textContent.trim().length>0;})()"),'Complete ability explanation visible in flat management');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
@@ -200,7 +194,7 @@ async function verifyInstalledWispCard(page,report){
  assert.equal(purchase.level,target.before+1,'Trusted Android WebView touch buys exactly one Ability level');
  assert.equal(purchase.priceCount,2,'Next Ability price remains visible after native purchase');
  assert(purchase.focused&&!purchase.name.includes('Next ·')&&purchase.name.includes('Upgrade Ability')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
- assert(await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'Installed ability explanation remains open after actual upgrade refresh');
+ assert(await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').getClientRects().length>0`),'Installed flat ability explanation remains visible after actual upgrade refresh');
  report.installedCompactWisps.mechanicsRetainedAfterPurchase=true;
  report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};

@@ -32,7 +32,7 @@ window.runBondTextQa=function(b,assert){
   document.querySelector('[data-tab="spirits"]').click();
   wisps.forEach(function(sp){
     var desc=sp.description;
-    var card=document.querySelector('[data-wisp-card="'+sp.id+'"]');card.querySelector('[data-wisp-progression]').open=true;
+    b.openWisp(sp.id);var card=document.querySelector('[data-wisp-card="'+sp.id+'"]');
     var row=card.querySelector('.ability-desc');
     var upgradeEffect=document.querySelector('[data-wisp-card="'+sp.id+'"] .module-effect');
     var encyclopedia=document.querySelector('[data-ency-wisp="'+sp.id+'"] .ency-desc');
