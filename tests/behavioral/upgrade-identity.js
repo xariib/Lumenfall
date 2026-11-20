@@ -76,8 +76,9 @@ window.runUpgradeIdentityQa=async function(b,ctx,assert,parity,summaryParity){
     ok(f.nodes().filter(function(n){return !n.retiredTo&&n.id!=='masterwork'&&enhancements.indexOf(n.id)===-1;}).length===20,'twenty retained independently purchasable Forge tracks');
     same(f.nodes().filter(function(n){return enhancements.indexOf(n.id)!==-1&&!n.retiredTo;}).map(function(n){return n.id;}),enhancements,'three additive independently purchasable Forge enhancements');
     ok(f.nodes().filter(function(n){return n.id==='masterwork'&&!n.retiredTo;}).length===1,'one new repeatable Masterwork track');
-    ok(u.nodes().filter(function(n){return !n.retiredTo&&!n.retired;}).length===20,'twenty independently purchasable Tree tracks');
-    return {checks:checks,closedTracks:10,activeTracks:61,exactOldFactors:true,currenciesUnchanged:true,idempotent:true,freshDeeds:true};
+    ok(u.nodes().filter(function(n){return !n.retiredTo&&!n.retired;}).length===19,'nineteen independently purchasable Tree tracks');
+    var retiredBefore=b.getState();u.buyNode('formationseat');same(b.getState(),retiredBefore,'retired sixth slot cannot spend or lift capacity');
+    return {checks:checks,closedTracks:11,activeTracks:60,exactOldFactors:true,currenciesUnchanged:true,idempotent:true,freshDeeds:true};
   }
   if(ctx.scenario==='upgrade-identity-farm-clock'){
     var s=JSON.parse(JSON.stringify(ctx.fixtures['parity-medium-farm'].save)),clocks=[2000000000000,2000000000371];

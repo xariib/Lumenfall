@@ -7800,6 +7800,7 @@ function checkAutoAscend(){
 // Achievements
 // ---------------------------------------------------------------
 function applyAchievementChecks(){
+  synchronizeRecruitmentEntitlements(state);
   ensureContinuingDeeds(state,false);
   var changed = [];
   ACHIEVEMENTS.forEach(function(a){

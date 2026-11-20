@@ -82,7 +82,7 @@ async function bounded(promise,ms){let timer;try{return await Promise.race([prom
 async function ready(){for(let i=0;i<150;i++){if(await evaluate('!!window.resonateQa && resonateQa.initialized()')){await evaluate('(async function(){var startup=window.__resonateStartup;if(!startup.completed){var skip=document.getElementById("startup-skip");if(skip&&typeof skip.onclick==="function")skip.click();}await startup.promise;if(document.documentElement.classList.contains("startup-pending"))throw Error("real startup must release cover before Resonate fixture");resonateQa.ready();})()');return;}await pause(20);}throw Error('page not ready');}
 async function fresh(){await evaluate('resonateQa.set(resonateQa.seed());resonateQa.ready();resonateQa.open("ember")');}
 async function shot(name){if(!evidence)return;const r=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(evidence,{recursive:true});fs.writeFileSync(path.join(evidence,name+'.png'),Buffer.from(r.data,'base64'));}
-async function key(key){const spec=key==='Space'?{key:' ',code:'Space',windowsVirtualKeyCode:32}:{key:'Enter',code:'Enter',windowsVirtualKeyCode:13};await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec});}
+async function key(key){const spec=key==='Space'?{key:' ',code:'Space',windowsVirtualKeyCode:32}:{key:'Enter',code:'Enter',windowsVirtualKeyCode:13};await send('Input.dispatchKeyEvent',{type:'keyDown',...spec,...(key==='Enter'?{text:'\r',unmodifiedText:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec});}
 async function run(){
  assert(chrome,'Chromium is required');
  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
@@ -171,12 +171,15 @@ async function run(){
  })()`);
  await evaluate('resonateQa.set(resonateQa.seedMaxed());resonateQa.save()');
  await send('Page.reload');await pause(200);await ready();
+ assert(await evaluate(`(()=>{var d=document.querySelector('[data-wisp-progression="ember"]');return d.tagName==='DETAILS'&&!d.open&&!!d.getClientRects().length;})()`),'maxed base upgrades start in the compact disclosure');
+ await evaluate(`document.querySelector('[data-wisp-details="ember"]').scrollIntoView({block:'center'});document.querySelector('[data-wisp-details="ember"]').focus()`);
+ await key('Enter');await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
  const folding=await evaluate(`(function(){
   var d=document.querySelector('[data-wisp-progression="ember"]');
-  if(d.tagName==='DETAILS'||!d.getClientRects().length)throw Error('maxed base upgrades remain directly visible');
+  if(d.tagName!=='DETAILS'||!d.open||!d.getClientRects().length)throw Error('native keyboard opens maxed base upgrades');
   resonateQa.open('ember');resonateQa.button('ember').focus();resonateQa.render();
   d=document.querySelector('[data-wisp-progression="ember"]');
-  if(d.tagName==='DETAILS'||document.activeElement!==resonateQa.button('ember'))throw Error('direct upgrade focus preservation');
+  if(!d.open||document.activeElement!==resonateQa.button('ember'))throw Error('expanded upgrade focus preservation');
   if(!resonateQa.use('ember')||resonateQa.get().sigils!==75||resonateQa.get().heroResource.ember!==100)throw Error('Resonate in maxed Wisp');
   return {maxedInitiallyFolded:true,openFocusPreserved:true,refill:true};
  })()`);

@@ -7,7 +7,8 @@ const mutants={
  sixth:['function treeFormationCapacity(snapshot){return 5;}','function treeFormationCapacity(snapshot){return 6;}'],
  repeatRefund:['if(!out.formationSeatRefund.paid){','if(true){'],
  abilityGate:["return rule.lab ? [wispRequirement('depth'","return false ? [wispRequirement('depth'"],
- repeatDeed:['if(!state.achieved[a.id] && a.check(state)){','if(a.check(state)){']
+ repeatDeed:['if(!state.achieved[a.id] && a.check(state)){','if(a.check(state)){'],
+ earnedAccess:['function applyAchievementChecks(){\n  synchronizeRecruitmentEntitlements(state);','function applyAchievementChecks(){']
 };
 if(process.env.WISP_GAMEPLAY_MUTANT){const pair=mutants[process.env.WISP_GAMEPLAY_MUTANT];assert(pair);assert.equal(original.split(pair[0]).length,2);original=original.replace(pair[0],pair[1]);}
 const marker="if(document.readyState==='loading'){";
@@ -21,6 +22,11 @@ const x=F.app(source),q=x.q,b=q.endless;
 const anchors={ember:10,tide:60,stone:360,gale:2361183,thorn:39614081,void:664613998,aurora:6968982875,titan:3138550867693};
 const gates={ember:[1,0,0],tide:[5,0,25],stone:[10,1,100],gale:[15,17,0],thorn:[35,23,0],void:[55,29,0],aurora:[75,34,0],titan:[100,47,0]};
 eq(q.fresh().activeParty,['ember'],'one starting Wisp');eq(Object.values(q.fresh().spirits).reduce((a,b)=>a+b),1,'exactly Ember level1');
+{
+ const s=q.fresh();s.maxDepthEver=5;s.totalKills=24;q.set(s);b.check();eq(q.get().recruitmentEntitlements.tide,false,'one defeat below earned access');
+ q.get().totalKills=25;b.check();eq(q.get().recruitmentEntitlements.tide,true,'earned access is recorded at the authoritative reward check');
+ ok(q.save(),'earned access saves');q.load();eq(q.get().recruitmentEntitlements.tide,true,'earned access survives cold load');
+}
 for(const [id,[depth,lab,kills]]of Object.entries(gates)){
  const sp=q.sp(id),s=q.fresh();s.maxDepthEver=depth;s.longStudyLevels.wispascend=lab;s.totalKills=kills;s.lumen=anchors[id];q.set(s);
  eq(b.recruit(sp),true,'earned access '+id);eq(b.base(sp),anchors[id],'independent unlock-economy anchor '+id);

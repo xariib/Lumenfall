@@ -169,3 +169,22 @@ entry; preserve other task requirements and the limit. Check every workflow task
 context before publishing this docs-only correction. Product/golden unchanged.
 Local actual-browser offline return/resume/cancel/save-retry/day-rollover PASS
 with refreshed378/320/321/323 reference. Full local main scenarios are running.
+
+05:41CET: local full sweep exposed old flat-card/20Tree/Void70000 assumptions;
+reconciled compact disclosure with native Enter,19active Tree paths/retired
+purchase rejection, and exact Void664613998 manual/automatic debits. Browser
+rawKeyDown omitted Enter's character event; complete native Enter now opens the
+summary once. Resonate full input/persistence and exact purchase tests PASS.
+Found/fixed real earned-access regression: synchronous offline endpoint lacked
+Tide's earned flag while saved chunked replay had it. Synchronize earned access
+at authoritative reward checks; original batch1/2/31/256 rollback/save test PASS,
+new25kill/Cold-load causal control PASS. Core419/6controls, syntax and refreshed
+four8h one-second reference PASS. ProductSHA25639199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4.
+Ordinary88browser cases finish with only previously baseline-reproduced Windows
+medium-Farm no-completed-QA failure. Full local sweep remains intermediate:12h
+VM hit unchanged300s under concurrent load;12hUI lacked mobile/www staging,
+then all9UI records PASS after staging correctly. Linux full gate remains
+mandatory. Saved partial failure log, focused repairs and explicit limitations.
+Publish repair; repeat latest CI and private Android acceptance, then integrate/
+exact-main gates/public APK. Prior nativePASS is for older3a9product, not this
+new byte hash. Keep task open and do not publish before all release gates pass.

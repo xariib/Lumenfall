@@ -1,37 +1,7 @@
 {
   "sha": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38",
-  "observedAt": "2026-11-20T04:21:41.785Z",
+  "observedAt": "2026-11-20T04:25:11.239Z",
   "runs": [
-    {
-      "id": 44673561972,
-      "path": ".github/workflows/pre-merge-validation.yml",
-      "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
-      "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561972",
-      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
-    },
-    {
-      "id": 44673563000,
-      "path": ".github/workflows/lab-expansion-validation.yml",
-      "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
-      "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673563000",
-      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
-    },
-    {
-      "id": 44673561913,
-      "path": ".github/workflows/tree-focused-qa.yml",
-      "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
-      "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561913",
-      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
-    },
     {
       "id": 44673562681,
       "path": ".github/workflows/forge-expansion-validation.yml",
@@ -83,13 +53,33 @@
       "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
     },
     {
-      "id": 44673561787,
-      "path": ".github/workflows/comet-expansion-validation.yml",
+      "id": 44673563000,
+      "path": ".github/workflows/lab-expansion-validation.yml",
       "event": "pull_request",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempt": 1,
-      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561787",
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673563000",
+      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
+    },
+    {
+      "id": 44673561972,
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561972",
+      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
+    },
+    {
+      "id": 44673561913,
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561913",
       "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
     },
     {
@@ -100,6 +90,16 @@
       "conclusion": "skipped",
       "attempt": 1,
       "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561788",
+      "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
+    },
+    {
+      "id": 44673561787,
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/44673561787",
       "head": "d68957d4375fd7d5a285d6938e074dc9fdb2ef38"
     }
   ]

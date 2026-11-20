@@ -123,11 +123,11 @@ test('Single Star sees recruit, toggle, preset and reconstruction without changi
     if(action==='recruit'){
       s.spirits.void=0;
       assert(Object.values(s.nodes).every(level=>level===0),'manual recruitment has zero Tree ownership');
-      assert.equal(a.b.recruitCost('void'),70000,'independent original Void recruitment price');
+      assert.equal(a.b.recruitCost('void'),664613998,'independent current Void recruitment price');
       const funded=exactInteger(s.lumen);
       assert.equal(a.b.recruit('void'),true,'large-wallet manual recruitment succeeds');
       s=a.b.get(); // A committed staged purchase installs the canonical state.
-      assert.equal(funded-exactInteger(s.lumen),70000n,'independent exact large-wallet manual Lumen debit');
+      assert.equal(funded-exactInteger(s.lumen),664613998n,'independent exact large-wallet manual Lumen debit');
       assert.equal(s.spirits.void,1,'manual payment recruits exactly one original level');
     }
     if(action==='toggle')a.b.toggle('void');
@@ -144,17 +144,17 @@ test('Auto-Empower reconstruction latches Single Star failure at the purchase bo
   Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);s.empowerQueue.void=true;
   s.spirits.void=0;s.formationRebuild={members:['ember','void'],preset:''};
   assert(Object.values(s.nodes).every(level=>level===0),'automatic recruitment has zero Tree ownership');
-  assert.equal(a.b.recruitCost('void'),70000,'independent automatic Void recruitment price');
+  assert.equal(a.b.recruitCost('void'),664613998,'independent automatic Void recruitment price');
   const funded=exactInteger(s.lumen);
   assert(a.b.autoEmpower());s=a.b.get();
-  assert.equal(funded-exactInteger(s.lumen),70000n,'independent exact large-wallet automatic Lumen debit');
+  assert.equal(funded-exactInteger(s.lumen),664613998n,'independent exact large-wallet automatic Lumen debit');
   assert.deepEqual(s.activeParty,['ember','void']);
   assert.equal(s.cometTrial.reason,'party');assert.equal(s.spirits.void,1);
   clear(a);assert.equal(a.b.get().cometTrialResult.outcome,'failed');
 });
 test('exact-wallet manual and automatic recruits debit to zero and retain Trial latch',()=>{
   for(const automatic of [false,true]){
-    const a=trial('single'),s=a.b.get();s.spirits.void=0;s.lumen=70000;
+    const a=trial('single'),s=a.b.get();s.spirits.void=0;s.lumen=664613998;
     if(automatic){s.achieved.labmaster=true;Object.keys(s.empowerQueue).forEach(id=>s.empowerQueue[id]=false);s.empowerQueue.void=true;s.formationRebuild={members:['ember','void'],preset:''};}
     assert(automatic?a.b.autoEmpower():a.b.recruit('void'));
     assert.equal(a.b.get().lumen,0);assert.equal(a.b.get().spirits.void,1);assert.equal(a.b.get().cometTrial.reason,'party');
