@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-20T06:36:34.228Z",
+  "node": "v24.22.1",
+  "featureHead": "9e5b862071df1ec91fcf809b1de47d61aa1c11b0",
+  "sourceSha256": "39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4",
+  "rows": [
+    {
+      "name": "collection-price",
+      "status": 0,
+      "elapsedMs": 65615
+    },
+    {
+      "name": "affordability",
+      "status": 0,
+      "elapsedMs": 385406
+    },
+    {
+      "name": "attention-quest",
+      "status": 0,
+      "elapsedMs": 53347
+    },
+    {
+      "name": "ordinary-cheaper",
+      "status": 0,
+      "elapsedMs": 41209
+    },
+    {
+      "name": "payment-oracle",
+      "status": 0,
+      "elapsedMs": 3049
+    }
+  ],
+  "paymentControls": 17,
+  "controlAssertions": "exact existing workflow expected messages, status FAIL, browser exit0, pending0"
+}

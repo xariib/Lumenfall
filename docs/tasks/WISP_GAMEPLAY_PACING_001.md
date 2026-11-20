@@ -162,3 +162,12 @@ Full refund/browser47groups PASS; mutation controls running. Product/Android
 unchanged39199dfe/6fe. Preserve failure; publish test-only correction and repeat
 full PR CI, then integrate/all9main/public native release.
 All17 refund defect controls PASS with intended behavioral assertion failures.
+
+07:37CET: current PR head9e5b862071df1ec91fcf809b1de47d61aa1c11b0 frozen.
+Remaining collection/currency UI, affordability with all existing controls/native
+checks, notification/quest focus, standard recruitment/refund browser and exact
+payment oracle PASS. All17 ordinary payment defect controls also PASS with
+workflow's exact expected assertions and clean teardown. Saved local/remaining-ui.
+Evidence-only follow-up stays on QA ref; do not restart PR. All product/native
+code matches private147. If PR passes, merge64 and run all9 at that main merge;
+late QA docs may integrate after public verification because no code differs.

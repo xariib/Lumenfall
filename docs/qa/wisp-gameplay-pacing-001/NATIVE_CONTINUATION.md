@@ -87,3 +87,12 @@ refund/clock assertions. Full refund/browser47groups PASS;17mutants running.
 Test-only correction must advance PR64 and restart CI. Product/Android remain
 39199dfe/6fe, matching full private147. All other PR68 lanes PASS. No public APK.
 All17 refund negative controls PASS; correct intended behavioral assertions.
+
+07:37CET: freeze actual remote PR head9e5b862071df1ec91fcf809b1de47d61aa1c11b0.
+Current main run44687653542; isolated offline PASS. Seven focused PR workflows
+all PASS except sharedUI still running. All five remaining local UI/payment
+suites and17 ordinary payment controls PASS; local/remaining-ui retains exact
+workflow expected assertions/clean teardown. This docs/evidence follow-up is
+QA-branch-only. No product/Android change beyond private147 code. After all PR
+passes, merge64 at expected9e5, dispatchall9 exact merge-main gates, publish and
+verify APK/feed. Late QA docs can integrate after release; they contain no code.
