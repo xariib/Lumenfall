@@ -186,3 +186,33 @@ actual touch, next-frame observation, exact state/focus and original deadlines.
 No production change. Local full compact parent42570/18 plus1182/12 and both
 causal controls PASS. Tree/scroll/migration had actual browser startup/context
 timeouts; unchanged failed-job reruns passed. Failure JSON/raw logs retained.
+
+## 20 November — integrated candidate
+
+2978e56f2141bf92458c21c98f01ecc5593c68dd passes all nine workflows. Main
+pre-merge44738645092 passes all190 planned main cases/220profile executions;
+separate isolated offline1 PASS. Original startup failures and unchanged reruns
+retained. Self-review and empty PR review threads checked; no independent review.
+PR65 merged at c455dbf3d4ad03942fb5c593562e561ecb80387b. Its tree matches
+tested candidate exactly. All nine workflows dispatched on that exact main.
+Public remains148 pending integrated validation and final Android release.
+
+## 20 November — verified public150
+
+All nine exact-main workflows at c455dbf3 PASS, including190 main cases/220
+profile executions and isolated offline1. Build44755733048 published150/1000150,
+APK bc18ef4bcc3e640818412ac1a69a24ec53fccfa507c02727573231e6b35123b0. Native all8 Manage/Back,176px
+roster, actual Ability10→11 buy, both saves/UID/cold progress, five-Wisp migration
+refund120 once, real updater/system-approved install/Open and retail launch PASS.
+Anonymous latest/tag APK, update feed, metadata and all14 assets match tested
+bytes. Final screenshots self-reviewed. Physical/Google/exactWebView60/TalkBack/
+human design/pacing remain unobserved; security verdict NOT_TESTED. Keep open.
+No new binding rules, unrelated product changes, other-checkout edits or archive.
+
+Final context sweep:38 workflow task contexts plus this feature PASS; broader
+143-file sweep136PASS/seven unchanged historical failures (links/budgets).
+Baseline/current receipts retained; no introduced failure. Shorter shared status
+also brings Upgrade States under budget. Optional sweep helper first asserted
+all history files pass, then treated an improved context as a difference; both
+helper assertions were corrected by comparing new failures explicitly. No
+product/gate changed. Final documentation commit is source-identical to150.

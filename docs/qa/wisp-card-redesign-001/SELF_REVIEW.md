@@ -32,7 +32,13 @@ This is self-review, not independent human review.
 - Workflow definitions are byte-identical to148. A rejected workflow-scope push
   was reverted before publication; focused checks use the existing compact gate.
 
-Pending: exact-head CI, integration, integrated CI, final signed APK/public update
-and final Android receipts. Private149 is earlier-source evidence only.
+Candidate2978e56f and integrationc455dbf3 pass all nine workflows; integrated
+190 main cases/220profile executions plus isolated offline1 PASS. Their trees
+match exactly. PR65 merged with expected head and no outstanding review threads.
+Final signed public150/build44755733048 passes Android12/WebView91 native
+all8 Manage/Back, real Ability purchase, save upgrade, updater and retail launch.
+Final compact/management/retail screenshots visually reviewed. Anonymous feed,
+APK bytes and public metadata match exactly; all14 packaged assets verified.
+Private149 is earlier-source evidence only, superseded by150.
 Physical phone, exact WebView60 DOM, TalkBack, human design/pacing acceptance and
 Google Play Protect verdict remain unobserved. No archive/completion claim.

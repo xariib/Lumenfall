@@ -1,0 +1,47 @@
+{
+  "id": 44738691905,
+  "sha": "2978e56f2141bf92458c21c98f01ecc5593c68dd",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44738691905",
+  "jobs": [
+    {
+      "id": 136296501700,
+      "name": "focused (wisp-card-simplicity)",
+      "conclusion": "success",
+      "started": "2026-11-20T12:47:16Z",
+      "completed": "2026-11-20T12:48:18Z",
+      "log": "job-136296501700.log.gz",
+      "rawSha256": "d4e5c142e86caf1fed8b1dbef5a5588a131ae09681e1657b046295fb0f5ab855",
+      "summary": [
+        "2026-11-20T12:48:15.1931042Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136296502038,
+      "name": "focused (offline-catchup-core)",
+      "conclusion": "success",
+      "started": "2026-11-20T12:47:17Z",
+      "completed": "2026-11-20T12:50:15Z",
+      "log": "job-136296502038.log.gz",
+      "rawSha256": "ff0a801d16d009338fd8240b0604a34d991b520b6589c9e71607d59b49a3c8b3",
+      "summary": [
+        "2026-11-20T12:50:11.2145722Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-core\", \"sourceSha256\": \"b24494d6f4a4833c83922467e141454174efb9cbe4866e8d9e5ef7ebc45c805e\", \"originalTestSha256\": \"a5bdff59d6225a06ac6070994c6e3a237da29764789e26399a40dc0c55663e4e\", \"wallMs\": 142310.21402800002, \"execution\": \"All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged\", \"records\": [ { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"Prism policy isolation\", \"perAscend\": 0, \"newPrisms\": 6963, \"legacyPrisms\": 6963 }, { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 31, \"batches\": 2016, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear20\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"OFF\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear21\", \"seconds\": 259200, \"batch\": 256, \"batches\": 367, \"kills\": 538, \"ascends\": 0, \"iterations\": 94178, \"earned\": 370815583.19999826 }, { \"case\": \"ON Clear21\", \"seconds\": 345600, \"batch\": 256, \"batches\": 367, \"kills\": 524, \"ascends\": 0, \"iterations\": 94177, \"earned\": 360073965.5999986 }, { \"case\": \"ON Clear21\", \"seconds\": 43200, \"batch\": 256",
+        "2026-11-20T12:50:11.2157131Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136296502204,
+      "name": "focused (rift-status-stacking-mobile)",
+      "conclusion": "failure",
+      "started": "2026-11-20T12:47:17Z",
+      "completed": "2026-11-20T12:48:29Z",
+      "log": "job-136296502204.log.gz",
+      "rawSha256": "5f633b3f6c9d34fef48ae13506ae9ad749ee879c4a9f12662443470949fb9841",
+      "summary": [
+        "2026-11-20T12:48:26.9011271Z   process: { \"exitcode\": 1, \"timed_out\": false, \"stderr\": \"Forge UI teardown failed: Error: graceful browser termination: {\\\"pendingBeforeClose\\\":0,\\\"events\\\":[{\\\"event\\\":\\\"browser-close\\\",\\\"code\\\":null,\\\"signal\\\":\\\"SIGKILL\\\",\\\"pending\\\":0},{\\\"event\\\":\\\"profile-removed\\\",\\\"browserClosed\\\":true}],\\\"closeRequest\\\":\\\"CDP timeout Browser.close [2478:2507:1120/124809.383864:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2507:1120/124809.856903:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2507:1120/124810.637465:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.904451:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.904491:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.904501:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse serve",
+        "2026-11-20T12:48:26.9035508Z   detail: { \"status\": \"fail\", \"scenario\": \"rift-status-stacking-mobile\", \"message\": \"CDP timeout Target.createBrowserContext \", \"records\": [], \"teardown\": { \"message\": \"graceful browser termination: {\\\"pendingBeforeClose\\\":0,\\\"events\\\":[{\\\"event\\\":\\\"browser-close\\\",\\\"code\\\":null,\\\"signal\\\":\\\"SIGKILL\\\",\\\"pending\\\":0},{\\\"event\\\":\\\"profile-removed\\\",\\\"browserClosed\\\":true}],\\\"closeRequest\\\":\\\"CDP timeout Browser.close [2478:2507:1120/124809.383864:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2507:1120/124809.856903:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2507:1120/124810.637465:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.904451:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.904491:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\\\\\"tcp\\\\\\\" and on UNIX \\\\\\\"unix\\\\\\\")\\\\n[2478:2511:1120/124811.9045"
+      ]
+    }
+  ]
+}

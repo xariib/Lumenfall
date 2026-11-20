@@ -1,6 +1,6 @@
 # WISP_CARD_REDESIGN_001 — character cards without nested expanders
 
-Status: in progress. Owner: this chat; no delegation or new chats.
+Status: published0.2.150; external acceptance pending. Owner: this chat.
 
 ## User correction — 20 November 2026
 
@@ -61,75 +61,63 @@ source-bound offline reference, run relevant existing checks/required CI,
 review the complete diff, and follow integrated Android/update delivery checks
 if shipping the app change. Self-review is not independent human review.
 
-## Current checkpoint — continuous touch targets
+## Delivered — 20 November 2026
 
-Implementation complete; validation and public delivery remain in progress.
-Main remains f998d308/public0.2.148. Worktree C:/lf-wisp-cards, PR65,
-branch feature/wisp-card-redesign-001. No other checkout or PR63 changed.
-Current product SHA256
+Status: integrated and published0.2.150; physical-device/Google/human acceptance
+remains open. No archive or independent-review claim. No new binding rule.
+
+[PR65](https://github.com/xariib/Lumenfall/pull/65) merged at
+c455dbf3d4ad03942fb5c593562e561ecb80387b from2978e56f2141bf92458c21c98f01ecc5593c68dd.
+The integrated tree exactly matches the tested candidate. Final product SHA256
 b24494d6f4a4833c83922467e141454174efb9cbe4866e8d9e5ef7ebc45c805e.
+No gameplay, balance, save schema, original artwork, Android product code or
+workflow definition changed. Other checkouts and Google Play PR63 untouched.
 
-Prior candidate e0265be2/09a523bc passed eight workflows and all targeted
-pre-merge steps. The full main group executed all190planned cases/220profile
-executions:187unique cases passed, three failed; isolated offline case passed.
-Failures/fixes:
-- formation-collapse: native Field input raced the composited scroll surface.
-  The driver now presents the surface, asserts native hit/44px geometry, then
-  delivers real touch and observes its next frame. Original state/focus/purity
-  assertions and90s/15s limits remain. All457checks/12profiles PASS locally.
-  Failure output now includes valid JSON alongside stderr rather than hiding
-  the actual assertion behind an empty-driver-JSON message.
-- p2-02a-core-qol: the fixture entered Manage for an individual queue, then
-  measured hidden global controls. It now returns with actual closeWisp before
-  the original roster geometry checks; the full original case PASS locally.
-- formation-autosave-native: Field/Bench44px shrank below44px during panelIn.
-  Scoped Wisp controls now use45px, retaining44px through scale(.995). Original
-  native autosave acceptance PASS. Roster cards remain about176px vs288–292px
-  before redesign. No touch threshold, purchase assertion or scenario weakened.
+Roster cards are176px at320px normal text, versus288–292px before. Original
+portraits lead short name/role/level/rarity/DPS, Field/Bench, Empower/Recruit and
+Manage. One selected Wisp gets a flat management screen; Back/Escape restores
+roster/focus/exact scroll. All Wisp-tab details/summary expanders are removed.
+Ability explanations and all existing rarity/ability/Ultimate/Mastery/Resonate,
+Auto-Empower, Formation, damage information and purchases remain reachable.
+Gold completed states, missing-resource red, disabled prices and native input
+remain. Scoped45px controls retain44px through the existing entrance animation.
 
-Current focused matrix1182checks/12profiles PASS (320/390/430px,100/200percent,
-both motion preferences): all8 Manage/Back routes, actual purchases, exact state/
-both slots/back offsets, all text/controls fit, ability gold and hint deep links.
-A real paused entrance is measured at frame zero. Reverting only Field/Bench
-minimums to44px fails the original44px geometry assertion at43.78px, cleanly.
-The original native-input guard control still fails its intended Space assertion.
-The required existing compact driver runs both positive matrix and these two
-causal controls after its unchanged original assertions; full local parent run
-PASS locally, including both causal controls; CI must verify its receipt.
-
-Guide/mobile889checks/72cases/12profiles PASS. Global Formation hints return to
-roster before focusing; no hint purchase or save mutation. The original one-second
-reference was regenerated: four historical plus four current8h windows, current
-whole-window comparison, all non-HP fields exact and HP within unchanged two-ULP
-bound.636 protected functions/catalogs/core unchanged from148;8 presentation
-functions and3 view helpers differ. Shared fixtures SHA256
+Both candidate and exact integrated main pass all nine workflows. Main acceptance
+is190 unique cases/220profile executions plus1 separate isolated offline case.
+[Integrated workflow IDs/logs](../qa/wisp-card-redesign-001/integrated-validation.json),
+[actual main coverage](../qa/wisp-card-redesign-001/local/integrated-main-coverage.json).
+Local compact42570checks/18profiles plus redesign1182/12 and two causal controls
+PASS. Formation457/12, guidance889/72cases/12profiles PASS. All636 protected
+functions and catalogs match148; independent four historical and four current
+one-second8h windows plus whole-window reference PASS. Shared fixtures SHA256
 3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2 unchanged.
+Local Node24.22.1/Brave158, CI Node24.19.0 (Tree20), Android build Node22.
 
-Earlier actual issues (role wrapping, live header/Auto-Empower movement,
-disabled Empower fallback, completed Rarity border, global hint visibility) are
-fixed. Wisp native driver uses established automation/shared-memory flags and
-Runtime/DOM initialization; original15s/90s/300ms limits remain. No workflow,
-Android product code/signing, save schema, balance, catalog or asset changed.
+[Android0.2.150](https://github.com/xariib/Lumenfall/releases/tag/android-1000150),
+versionCode1000150, build44755733048, integrated sourcec455dbf3. APK SHA256
+bc18ef4bcc3e640818412ac1a69a24ec53fccfa507c02727573231e6b35123b0.
+Stable package com.lumenfall.app, https://localhost and established certificate
+A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21.
+Native Android12/WebView91 all8 Manage/Back routes, actual Ability10→11 purchase,
+visible prices/effects,176px cards, UID/both save slots/paid progress/cold restart,
+five-Wisp migration/refund120 once, updater system-approved install/Open and normal
+retail user-image launch PASS. Static security/dependency gates PASS; final APK
+is not debuggable and exposes no WebView debugger/test instrumentation.
+Anonymous latest/tag APK bytes, all14 packaged assets, feed and public metadata
+match the tested build. [Public receipt](../qa/wisp-card-redesign-001/android-release/public-verification.json).
 
-Private149 build44715402119 passes native all8 Manage/Back and Ability purchase,
-five-Wisp migration, cold-save upgrade, updater and retail launch. It is the old
-7fe93b01/8927afb9 candidate, not final release acceptance; public remains148.
-[Private identity](../qa/wisp-card-redesign-001/private-149/identity.txt),
-[current preservation](../qa/wisp-card-redesign-001/local/preservation.json),
-[chronological development/failure history](../qa/wisp-card-redesign-001/DEVELOPMENT_HISTORY.md).
-Actual Dribbble images and mobile/Android screenshots visually self-reviewed;
-no copied artwork, independent human review or new binding rule.
+[Development/failure history](../qa/wisp-card-redesign-001/DEVELOPMENT_HISTORY.md)
+retains original regressions and startup timeouts. Observed role clipping, moving
+controls, disabled-action navigation, completed border, hint visibility and
+entrance target issues were fixed. Native test coordinates now wait for the tab's
+actual animationend scroll restoration; original assertions/deadlines remain.
+Browser startup/context timeouts reran unchanged; failures were not accepted as
+causal controls. Private149 is earlier-source evidence only, superseded by150.
+[Self-review](../qa/wisp-card-redesign-001/SELF_REVIEW.md),
+[evidence index](../qa/wisp-card-redesign-001/README.md).
 
-Current36449119: eight workflows PASS, isolated offline PASS. Main pre-merge
-found a fixture lifecycle race: Animation.finished resolves before animationend
-restores saved tab scroll. A later screenshot observed Tide above the viewport.
-The driver now waits the next real frame before choosing native input coordinates;
-no retry, coordinate assertion, state check or deadline removed. Product unchanged.
-Browser startup timeouts in Tree/scroll/migration reran unchanged and passed;
-original failure receipts retained. Current local compact parent is PASS.
-
-Next: publish fixture lifecycle fix; exact-head nine workflows and190+1cases;
-merge PR65 with expected head; all nine on exact main; signed public APK/update;
-anonymous feed/byte verification and final GitHub status/evidence. Physical phone,
-exact WebView60 DOM, TalkBack, human design/pacing and Google harmful-app verdict
-remain unobserved. Keep open; do not archive or ask renewed permission.
+Next external acceptance: actual phone install/update and Google Play Protect
+verdict, exact WebView60 DOM/TalkBack, user design preference and real pacing.
+Google classification remains NOT_TESTED; signing/security/retail checks do not
+prove the reported harmful-app warning cleared. No store/account/review action
+or security-warning bypass. Keep task/chat open; no questions or renewed permission.

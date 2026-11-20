@@ -1,8 +1,7 @@
 # Lumenfall — current delivery status
 
-20 November: [Wisp development/PR64](tasks/WISP_GAMEPLAY_PACING_001.md)
-shipped Android0.2.148. Nine gates,190+1 cases/native/update/public checks PASS.
-Phone, pacing and Google warning acceptance remain open.
+20 November: [Wisp cards/PR65](tasks/WISP_CARD_REDESIGN_001.md) shipped0.2.150.
+Nine gates/190+1/native/update/public PASS; phone/Google acceptance open.
 
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
 [Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),
