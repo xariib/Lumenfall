@@ -92,8 +92,12 @@ async function verifyInstalledWispCard(page,report){
  for(const row of compact){
    await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]').replace(/</g,'\\u003c')+').scrollIntoView({block:"center",behavior:"instant"})');
    await page.command('Page.captureScreenshot',{format:'png'});
-   const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]')+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("summary")===e};})()');
-   assert(point.hit&&point.width>=44&&point.height>=44,'Native compact disclosure hittable '+row.id);tap(point.x,point.y);
+   const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify('[data-wisp-details="'+row.id+'"]')+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,h=document.elementFromPoint(x,y),m=document.querySelector("main");return {x,y,width:r.width,height:r.height,hit:h?.closest("summary")===e,cover:h?.outerHTML.slice(0,200),scroll:m.scrollTop,maxScroll:m.scrollHeight-m.clientHeight,main:m.getBoundingClientRect().toJSON()};})()');
+   if(!point.hit||point.width<44||point.height<44){
+     fs.writeFileSync('release-evidence/installed-wisp-disclosure-hit-failure.json',JSON.stringify({id:row.id,point},null,2)+'\n');
+     const failed=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-disclosure-failure.png',Buffer.from(failed.data,'base64'));
+   }
+   assert(point.hit&&point.width>=44&&point.height>=44,'Native compact disclosure hittable '+row.id+': '+JSON.stringify(point));tap(point.x,point.y);
    let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-progression="'+row.id+'"]')+').open');if(opened)break;await pause(50);}
    const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify('wisp-details:'+row.id)+')');
    disclosures.push({id:row.id,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');

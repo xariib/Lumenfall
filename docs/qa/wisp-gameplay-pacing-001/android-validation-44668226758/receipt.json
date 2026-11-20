@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "published": false,
+  "runId": 44668226758,
+  "sourceCommit": "c69c3126316182247ec01f720247ae6bbbb63ab5",
+  "failure": "Native compact disclosure hittable titan",
+  "finding": "First seven trusted gestures opened their controls with targets retained. Titan failed its pre-tap hit test. Reproduced a focus scroll jump when preventScroll is ignored: retain the outer summary in the existing exact-scroll action restoration. The next validation also records failed hit geometry and its screenshot.",
+  "repairSourceSha256": "d8f5f17f1eb130bcf286d2bc14846327dcb75c4429b428b5af39fd20b6162121",
+  "limits": "Private validation only; not a public release or completed native acceptance."
+}

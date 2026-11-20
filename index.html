@@ -9965,7 +9965,7 @@ function renderWispRoles(){
 }
 // Purchases can disable their own control. Keep the same Wisp and exact scroll
 // instead of moving focus and the viewport to another enabled action.
-var WISP_ACTION_KEYS=['empower','rarity','module','ultimate','mastery','sigil-resonate','empower-queue','toggle','damage-details','ability-details'];
+var WISP_ACTION_KEYS=['empower','rarity','module','ultimate','mastery','sigil-resonate','empower-queue','toggle','wisp-details','damage-details','ability-details'];
 function wispActionLayoutTop(el){
   // Layout offsets exclude the temporary transforms used by reward pulses.
   var top=0;
@@ -9994,7 +9994,7 @@ function restoreWispActionView(view){
   var target=button && !button.disabled ? button : els['spirit-list'].querySelector('[data-wisp-details="'+view.id+'"]');
   // A fully perfected card uses a collapsible summary. Its fallback must not
   // toggle that section on repeated Enter, so focus the card itself instead.
-  if(!target || (target.tagName==='SUMMARY' && view.action!=='damage-details' && view.action!=='ability-details')){
+  if(!target || (target.tagName==='SUMMARY' && view.action!=='wisp-details' && view.action!=='damage-details' && view.action!=='ability-details')){
     target=els['spirit-list'].querySelector('[data-wisp-card="'+view.id+'"]');
     if(target) target.tabIndex=-1;
   }

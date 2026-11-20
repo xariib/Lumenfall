@@ -179,3 +179,16 @@ target, single activation, state and saves. Removing protection fails the
 native-input assertion. Source 3ac505d788570088c5f351bb174923ad53ff57644218b8dd26a2fb5b7b62c177.
 Publish the repair and launch third private validation, then exact-source CI.
 Failure evidence: [second native run](../qa/wisp-gameplay-pacing-001/android-validation-44666715234/).
+
+04:55CET: private run44668226758 opened seven cards with retained trusted input;
+Titan failed its pre-tap hit test. Legacy focus replay reproduced off-screen
+scroll movement when preventScroll is ignored. Outer summaries now use existing
+exact-scroll restoration. Eight-card replay and18mobile profiles PASS; removing
+repair fails its specific scroll assertion. Failed native geometry/screenshots
+are now recorded. Product SHA256d8f5f17f1eb130bcf286d2bc14846327dcb75c4429b428b5af39fd20b6162121.
+Premerge44668234962 exposed an old-price4h wallet constant. Retained that exact
+historical-price receipt AND all current-price chunk comparisons; current native
+wallet11737479.4999781, old15859808.49997803, both Shards4026523.0000087842.
+14783checks/negative control PASS, original shared fixture bytes unchanged.
+Core415/5controls and syntax PASS. Publish repair, repeat private native build
+and latest-source/main gates before public release. No public APK published yet.

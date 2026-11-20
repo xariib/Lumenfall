@@ -43,6 +43,11 @@ if(args.includes('--mutate-disclosure-input')){
   if(code.split(guard).length!==2)throw Error('unique native disclosure render guard');
   code=code.replace(guard,'/* Native disclosure render guard removed. */');
 }
+if(args.includes('--mutate-summary-scroll')){
+  const from="'toggle','wisp-details','damage-details'";
+  if(code.split(from).length!==2)throw Error('unique outer disclosure scroll action');
+  code=code.replace(from,"'toggle','damage-details'");
+}
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
@@ -142,6 +147,12 @@ async function run(){
       assert(await evaluate(`!document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'closed ability mechanics stays closed through refresh');
     }
     if(compact&&fontPercent===100&&motion==='no-preference'){
+      // Old WebViews may ignore focus({preventScroll:true}). A live render must
+      // not scroll back to an off-screen summary while inspecting another Wisp.
+      await evaluate(`(()=>{const s=__wispQa.fresh();Object.keys(s.spirits).forEach(id=>s.spirits[id]=1);__wispQa.set(s);document.activeElement.blur();__wispQa.renderCompact();document.querySelector('[data-wisp-progression=ember]').open=true;window.__normalSummaryFocus=HTMLElement.prototype.focus;HTMLElement.prototype.focus=function(){return __normalSummaryFocus.call(this)};document.querySelector('[data-wisp-details=ember]').focus();document.querySelector('[data-wisp-details=tide]').scrollIntoView({block:'center'});window.__summaryScrollBefore={top:document.querySelector('main').scrollTop,state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};__wispQa.renderLive();})()`);
+      assert(await evaluate(`(()=>{const e=document.querySelector('[data-wisp-details=tide]'),r=e.getBoundingClientRect();return Math.abs(document.querySelector('main').scrollTop-__summaryScrollBefore.top)<=1&&document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('summary')===e;})()`),'live render preserves visible next Wisp when focused summary is off-screen and preventScroll is ignored');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===__summaryScrollBefore.state&&JSON.stringify(__wispQa.slots())===__summaryScrollBefore.slots`),'legacy-focus scroll restoration changes no game state or saves');
+      await evaluate('HTMLElement.prototype.focus=__normalSummaryFocus;document.activeElement.blur()');
       await evaluate(`if(!window.__summaryReplayBound){window.__summaryReplayBound=true;['pointerdown','click','keydown'].forEach(type=>document.addEventListener(type,e=>{if(window.__summaryReplayType===type&&e.target.closest('summary')){window.__summaryReplayType=null;window.__summaryReplayRequested=true;__wispQa.renderLive();window.__summaryReplayDetached=!e.target.isConnected;}},true));}`);
       for(const attribute of ['wisp-details','damage-details','ability-details'])for(const input of ['touch-start','touch-click','Enter',' ']){
         const selector='[data-'+attribute+'=ember]';
