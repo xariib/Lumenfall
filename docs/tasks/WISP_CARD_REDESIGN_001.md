@@ -150,3 +150,21 @@ Independent four historical/four current one-second windows and whole-window
 comparison regenerated PASS for4ccf;636 protected functions/core still exact.
 Earlier failed runs/receipts retained. Next: push repaired acceptance fixtures and
 gold border, complete exact-head CI, integrate, exact-main9gates/public APK.
+
+20 November11:23: all updated shared-UI checks pass at4898b539/4ccf543f.
+Tree rerun passes unchanged after an Input.dispatchTouchEvent deadline in its
+twelfth profile; full core/price/migration checks had passed. The Lab clarity
+native slot selection failed once, then passes unchanged on rerun. No Lab code,
+timing, assertion or fixture was changed for that result. Wisp Linux had two
+pre-app Browser.getVersion timeouts and one Runtime.evaluate timeout after3233
+checks; Windows passed. Retain all attempts, rather than treating them as passes.
+Aligned only the Wisp test driver with established automation/shared-memory flags
+and Runtime/DOM agent initialization from CODEX_START; captured browser stderr.
+Kept15s CDP/90s scenario/300ms setup deadlines and one-pixel/full-state assertions.
+Updated driver passes3277checks and setup race positive61checks/two causal
+negative controls; original anchor/focus/periodic controls still fail as intended.
+Product remains4ccf543f; independent reference/core proof need no rebinding.
+Private149 evidence saved under ../qa/wisp-card-redesign-001/private-149/; it is
+7fe93b01/8927afb9, before the gold-border-only fix, not final release acceptance.
+Next: publish driver fix and finish all exact-head/integrated checks and public
+APK. Current PR test completion and physical/Google verdict remain open.
