@@ -2166,6 +2166,7 @@
           workshopButton.click();
           assert(labButton.getBoundingClientRect().height>=44 && labButton.getBoundingClientRect().width>=44,'Lab access must retain a practical touch target');
           document.querySelector('[data-tab="spirits"]').click();
+          bridge.closeWisp();
           document.getElementById('tab-spirits').getAnimations().forEach(function(animation){animation.finish();});
           Array.from(document.querySelectorAll('[data-formation-preset],[data-save-formation],[data-empower-all]')).forEach(function(control){
             assert(control.getBoundingClientRect().height>=44,'Formation and global automation controls must retain practical touch targets');

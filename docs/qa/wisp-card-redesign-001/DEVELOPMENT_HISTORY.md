@@ -121,3 +121,55 @@ Product f35113b0f2e194288cc02d63ae0e8bd87ca29191a19c491f7e27b7be30fdf193.
 Independent historical/current one-second windows, whole-window comparison and
 636-function preservation regenerated PASS. Next: exact-head CI, integration,
 exact-main validation and signed public release/update; no public change yet.
+
+
+## Before continuous touch-target correction
+
+## Current checkpoint — 20 November12:16
+
+Implementation complete; required validation/delivery still in progress. Main
+remains f998d308/public0.2.148. Worktree C:/lf-wisp-cards, branch
+feature/wisp-card-redesign-001, PR65. No other checkout or PR63 changed.
+Prior candidate b9346225 passed eight workflows; pre-merge reached
+Endless mobile guidance and found its test reading roster help while management
+was open. The test now installs navigation fixtures on the roster, enters Manage
+explicitly for upgrade inspection/native purchases, and returns for guide checks.
+All889checks/72cases/12profiles pass, retaining prices, gates, actual keyboard
+spend, focus, text fit and exact complete-state/both-save purity.
+
+Also fixed a real route: a global Formation hint from an existing Wisp manager
+now returns to the roster before focusing its target. Focused regression proves
+the Formation target is visible and both saves/state stay exact. Quick53checks
+PASS; original input guard control fails its intended Space assertion, cleanly.
+Full current matrix1176checks/12profiles PASS. No threshold/deadline or
+required scenario removed. Product SHA256
+09a523bcbeb816e33f1552e80f5926c6b124ff1b513bd75940290f1c96ffc6a0.
+Independent four historical and four current one-second8h replays plus current
+whole-window comparison regenerated PASS.636 protected functions/catalogs/core
+remain unchanged from148;8 presentation functions and3 helpers differ.
+
+The roster remains175px at320px normal text; preset minimum45px retains44px
+through its scale(.995) entrance. All Wisp expanders are removed. Existing
+purchase/cap/prerequisite/red/gold/persistence/accessibility assertions remain.
+Earlier actual issues (role wrapping, live header/Auto-Empower movement,
+disabled Empower fallback and completed Rarity border) were fixed in product.
+Wisp native driver uses established automation/shared-memory flags and explicit
+Runtime/DOM agents, with stderr diagnostics; original15s/90s/300ms limits kept.
+Windows/Linux scroll and all causal controls pass. Shared fixture SHA256
+3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2 unchanged.
+
+Private signed Android149 build44715402119 passes native Manage/Back for all8,
+real Ability purchase, five-Wisp migration, cold save upgrade, updater and retail
+launch. It is7fe93b01/8927afb9 before the later border/preset/hint fixes, not final
+acceptance or a public release. [Private evidence](../qa/wisp-card-redesign-001/private-149/identity.txt).
+[Local evidence](../qa/wisp-card-redesign-001/local/preservation.json),
+[CI chronology and failure history](../qa/wisp-card-redesign-001/DEVELOPMENT_HISTORY.md).
+Actual Dribbble images and mobile/Android screenshots were visually self-reviewed;
+no copied reference artwork, independent human review or new binding rule.
+
+Next: publish current fixture/hint fix, complete exact-head nine workflows and
+190+1 cases, integrate PR65 with expected head, dispatch all nine on exact main,
+then signed public APK/update and anonymous feed/byte verification. Save final
+evidence/status in GitHub. Physical phone, exact WebView60 DOM, TalkBack, human
+design/pacing acceptance and Google harmful-app verdict remain unobserved.
+Do not archive or claim full external acceptance; no questions/renewed permission.

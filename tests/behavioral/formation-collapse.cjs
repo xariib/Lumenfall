@@ -24,7 +24,7 @@ async function run(){
  await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
  const chrome=process.env.LUMENFALL_QA_CDP_CHROME||['google-chrome','google-chrome-stable','chromium','chromium-browser'].find(c=>{try{execFileSync('which',[c],{stdio:'pipe'});return true;}catch{return false;}});assert(chrome,'actual Chromium required');
  const executable=require('../../scripts/lib/browser.cjs').resolveBrowser(chrome),identity={executable:fs.realpathSync(executable)};
- profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-formation-collapse-'));browser=spawn(chrome,['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+ profile=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-formation-collapse-'));browser=spawn(chrome,['--headless=new','--enable-automation','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-pipe','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
  browser.stderr.on('data',b=>stderr=(stderr+b).slice(-4000));browser.on('error',e=>{for(const p of pending.values())p.reject(e);});
  browser.on('close',()=>{closed=true;for(const p of pending.values()){clearTimeout(p.timer);p.reject(Error('browser closed'));}pending.clear();});
  browser.stdio[4].on('data',b=>{buffer+=b;let end;while((end=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,end);buffer=buffer.slice(end+1);if(!raw)continue;const m=JSON.parse(raw),p=pending.get(m.id);if(p){pending.delete(m.id);clearTimeout(p.timer);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}}});
@@ -47,7 +47,15 @@ async function run(){
   const observe=()=>ev("(()=>{var p=document.querySelector('.formation-help'),b=document.getElementById('formation-best-now-btn'),r=b.getBoundingClientRect(),content=document.getElementById('bond-card');return {flat:p.tagName==='SECTION'&&!p.querySelector('summary'),visible:content.checkVisibility(),focus:document.activeElement===b,same:b===originalToggle,fit:r.left>=0&&r.right<=innerWidth+1&&b.scrollWidth<=b.clientWidth+1,target:r.width>=44&&r.height>=44,text:content.innerHTML,removed:!document.getElementById('wisp-role-summary')&&!document.getElementById('formation-contribution-toggle')&&!document.getElementById('formation-contribution-panel'),boxed:p.classList.contains('card'),errors:roleErrors};})()");
   let o=await observe();ok(o.flat&&o.visible,'Bonds readable by default without a disclosure');ok(o.removed&&o.boxed,'Contribution removed and Bonds boxed');
   const key=async(name)=>{await send('Input.dispatchKeyEvent',{type:name==='Enter'?'keyDown':'rawKeyDown',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13,...(name==='Enter'?{text:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13});};
-  const activate=async(input)=>{await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');if(input==='touch'){const r=await ev('(()=>{var r=document.querySelector("[data-toggle=tide]").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()');await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}else await key(input);};
+  const activate=async(input)=>{await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');if(input==='touch'){
+   // Present the scrolled surface before delivering a native gesture. Layout
+   // coordinates alone can precede Chrome's composited hit-test surface.
+   await send('Page.captureScreenshot',{format:'png'});
+   const r=await ev('(()=>{var e=document.querySelector("[data-toggle=tide]"),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("button")===e};})()');
+   ok(r.hit&&r.width>=44&&r.height>=44,'native Tide target is presented and44px '+JSON.stringify(r));
+   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   await ev('new Promise(function(resolve){requestAnimationFrame(function(){resolve(true);});})');
+  }else await key(input);};
   for(const input of ['Enter','Space','touch']){
    const previousSummary=(await observe()).text;
    await activate(input);
@@ -69,7 +77,7 @@ async function run(){
  }
  fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'pass',checks,sourceSha256,browser:identity,profiles:records,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'pass',checks,profiles:records.length,sourceSha256,browser:identity}));
 }
-function reportFailure(e){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);process.exitCode=1;}
+function reportFailure(e){fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',checks,sourceSha256,error:String(e.stack),stderr},null,2));console.error(e);console.log(JSON.stringify({status:'fail',checks,sourceSha256,error:String(e.stack)}));process.exitCode=1;}
 run().catch(reportFailure).finally(async()=>{
  if(browser&&!closed){
   const completion=new Promise(resolve=>browser.once('close',(code,signal)=>resolve({code,signal})));

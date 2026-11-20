@@ -9,6 +9,11 @@ if(process.argv.includes('--mutate-navigation-input')){
  const read="source=fs.readFileSync(sourcePath,'utf8');";assert.equal(driver.split(read).length,2);
  driver=driver.replace(read,"source=fs.readFileSync(sourcePath,'utf8').replace("+JSON.stringify(input)+",'/* navigation guard removed */');");
 }
+if(process.argv.includes('--mutate-touch-buffer')){
+ const input='min-width:45px;min-height:45px;padding:6px;font-size:.6875rem;';assert.equal(fs.readFileSync(source,'utf8').split(input).length,2);
+ const read="source=fs.readFileSync(sourcePath,'utf8');";assert.equal(driver.split(read).length,2);
+ driver=driver.replace(read,"source=fs.readFileSync(sourcePath,'utf8').replace("+JSON.stringify(input)+","+JSON.stringify(input.replaceAll('45px','44px'))+");");
+}
 const marker='breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}';assert.equal(driver.split(marker).length,2);
 driver=driver.replace(marker,`wispIds:SPIRITS.map(function(sp){return sp.id;}),wispRender:renderSpirits,
  wispAdvice:function(id,action){openPowerAdvice({tab:'spirits',selector:'[data-'+action+'="'+id+'"]'});},
@@ -29,6 +34,10 @@ const body=String.raw`
   const roster=await ev('('+function(){var cards=Array.from(document.querySelectorAll('[data-wisp-card]'));return {cards:cards.map(function(c){var r=c.getBoundingClientRect();return {id:c.dataset.wispCard,height:r.height,managementHidden:c.querySelector('.wisp-management').hidden,details:c.querySelectorAll('details,summary').length,portrait:c.querySelector('.wisp-portrait').getBoundingClientRect().width};}),fits:document.documentElement.scrollWidth<=innerWidth+1};}.toString()+')()');
   await point('[data-wisp-details="ember"]');if(motion==='no-preference')await shot('roster-'+width+'-'+scale);
   ok(roster.fits,'roster fits '+width+'/'+scale);ok(roster.cards.length===8,'all eight identities');
+  if(motion==='no-preference'){
+   const targets=await ev('(()=>{var p=document.getElementById("tab-spirits");p.style.animation="none";void p.offsetHeight;p.style.animation="";var a=p.getAnimations().find(function(a){return a.animationName==="panelIn";});if(!a)throw Error("real Wisp entrance animation exists");a.pause();a.currentTime=0;var sizes=Array.from(p.querySelectorAll("button")).map(function(e){var r=e.getBoundingClientRect();return {width:r.width,height:r.height,action:e.outerHTML.slice(0,110)};}).filter(function(r){return r.height>0;});a.finish();return sizes;})()');
+   ok(targets.length>0&&targets.every(r=>r.width>=44&&r.height>=44),'Wisp controls stay44px through entrance animation '+JSON.stringify(targets.filter(r=>r.width<44||r.height<44)));
+  }
   ok(await ev('document.querySelectorAll("#tab-spirits details,#tab-spirits summary").length')===0,'no expanding menus in Wisp tab');
   ok(await ev('document.querySelector("[data-wisp-details=ember]").getAttribute("aria-label")')==='Manage Ember Wisp','Manage names its Wisp for accessibility');
   for(const c of roster.cards){ok(c.managementHidden&&c.details===0,'no card accordions or exposed upgrade wall '+c.id);ok(c.portrait>=60,'character portrait leads '+c.id);if(scale===1)ok(c.height<=210,'materially shorter default card '+c.id+' '+c.height);}

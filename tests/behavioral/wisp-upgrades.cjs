@@ -218,15 +218,15 @@ async function run(){
     try{
       const {spawnSync}=require('node:child_process'),base=evidence||fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-flat-gate-'));
       const env={...process.env};if(option('--chrome',null))env.LUMENFALL_QA_CDP_CHROME=option('--chrome');
-      for(const negative of [false,true]){
-        const dir=path.join(base,'flat-navigation',negative?'control':'current');
-        const command=[path.join(__dirname,'wisp-card-redesign.cjs'),source,dir,...(negative?['--quick','--mutate-navigation-input']:[])];
+      for(const variant of ['current','input','touch']){
+        const negative=variant!=='current',dir=path.join(base,'flat-navigation',variant==='input'?'control':variant);
+        const command=[path.join(__dirname,'wisp-card-redesign.cjs'),source,dir,...(negative?['--quick',variant==='input'?'--mutate-navigation-input':'--mutate-touch-buffer']:[])];
         const run=spawnSync(process.execPath,command,{env,encoding:'utf8',maxBuffer:32*1024*1024});
         const receipt=JSON.parse(fs.readFileSync(path.join(dir,'receipt.json')));assert(!receipt.teardown,'flat navigation clean teardown');
-        if(negative){assert(run.status===1&&receipt.status==='fail'&&/native navigation survives input-time refresh Space/.test(receipt.error),'navigation defect fails its causal assertion');assert(receipt.sourceSha256!==sourceSha256,'negative source differs');}
+        if(negative){const expected=variant==='input'?/native navigation survives input-time refresh Space/:/Wisp controls stay44px through entrance animation/;assert(run.status===1&&receipt.status==='fail'&&expected.test(receipt.error),'navigation/touch defect fails its causal assertion');assert(receipt.sourceSha256!==sourceSha256,'negative source differs');}
         else assert(run.status===0&&receipt.status==='pass'&&receipt.profiles.length===12&&receipt.sourceSha256===sourceSha256,'flat navigation12-profile acceptance: '+receipt.error);
       }
-      result.flatNavigation={status:'pass',profiles:12,negativeControl:'Space input-time render'};
+      result.flatNavigation={status:'pass',profiles:12,negativeControls:['Space input-time render','44px during entrance']};
     }catch(error){result.status='fail';result.message=error.stack;}
   }
   if(evidence){fs.mkdirSync(evidence,{recursive:true});fs.writeFileSync(path.join(evidence,'wisp-upgrades-result.json'),JSON.stringify(result,null,2)+'\n');}
