@@ -79,3 +79,11 @@ original fixture changes. PR head68e0fda62a7d8059f3995cd920e86b6ecb4a50bc remain
 unchanged while all CI runs. This follow-up is docs/evidence only on the QA ref;
 do not restart PR CI for it. On passing PR CI merge expected68, incorporate QA
 docs as needed, then all9 exact-main gates/public signed build/anonymous proof.
+
+07:24CET: PR68 full main gate failed at old cheaper-refund-development quote
+count:20 purchasable paths assumed; current19 after Sixth Companion retirement.
+Correct exact1900 quotes, split unchanged-state assertion; preserve all copying/
+refund/clock assertions. Full refund/browser47groups PASS;17mutants running.
+Test-only correction must advance PR64 and restart CI. Product/Android remain
+39199dfe/6fe, matching full private147. All other PR68 lanes PASS. No public APK.
+All17 refund negative controls PASS; correct intended behavioral assertions.

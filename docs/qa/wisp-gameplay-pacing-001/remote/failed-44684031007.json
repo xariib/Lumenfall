@@ -1,0 +1,63 @@
+{
+  "id": 44684031007,
+  "sha": "68e0fda62a7d8059f3995cd920e86b6ecb4a50bc",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44684031007",
+  "jobs": [
+    {
+      "id": 136113971537,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T05:53:40Z",
+      "completed": "2026-11-20T05:56:30Z",
+      "log": "job-136113971537.log.gz",
+      "rawSha256": "aa4fda10224b615fa6caedef1329f41b20a5fe306674ac431acb54f582706000",
+      "summary": [
+        "2026-11-20T05:54:11.5335949Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T05:56:28.5261060Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136113971862,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:53:40Z",
+      "completed": "2026-11-20T06:20:38Z",
+      "log": "job-136113971862.log.gz",
+      "rawSha256": "c631fa2a953b6f4e10535e5762f058f98e98cdd82d2dac99e4315ce8be1ae41e",
+      "summary": [
+        "2026-11-20T05:59:33.4407375Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:00:40.8965739Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T06:04:22.7298380Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:04:30.9662896Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:04:38.2182765Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:04:38.2349482Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-20T06:09:55.3105976Z SyntaxError: Unexpected token '='",
+        "2026-11-20T06:11:11.3052862Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:11:41.7347145Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:11:45.4369990Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:11:49.4344400Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:11:53.5706144Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:11:58.6361743Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:12:00.3100523Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:12:01.9937369Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:12:04.7889821Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:12:07.8078353Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:12:53.7667847Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:13:19.6450545Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-ui\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 83.39999999999998, \"last\": 361 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 592.5, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 83.39999999999998, \"last\": 361 }, \"errors\": 0 }, \"cold\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": false, \"offlinePending\": false, \"resumeFlowBusy\": false }, \"kills\": 385524, \"ascends\": 1",
+        "2026-11-20T06:13:19.6476641Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:13:44.2901715Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-legacy-dom\", \"records\": [ { \"case\": \"initial cold observation\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"heartbeat\": { \"frames\": 6, \"maxGap\": 100.00000000000003, \"last\": 347.2 }, \"errors\": 0 } }, { \"case\": \"return panel legacy positioning/input\", \"returnGeometry\": { \"overlay\": { \"x\": 0, \"y\": 0, \"width\": 390, \"height\": 844 }, \"button\": { \"x\": 47, \"y\": 592.5, \"width\": 296, \"height\": 44 }, \"viewport\": { \"width\": 390, \"height\": 844 }, \"hit\": true } }, { \"case\": \"legacy dialog background without color-mix/alpha hex\", \"paint\": { \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"backgroundImage\": \"radial-gradient(at 100% 0%, rgba(57, 49, 75, 0.533), rgba(0, 0, 0, 0) 65%), linear-gradient(145deg, rgb(27, 41, 65), rgb(17, 26, 44))\" } }, { \"case\": \"cold8h\", \"before\": { \"flags\": { \"resetInProgress\": false, \"resetBootPending\": false, \"reloadInProgress\": false, \"offlineBusy\": true, \"offlinePending\": true, \"resumeFlowBusy\": true }, \"kills\": 385146, \"ascends\": 15142, \"lastSeen\": 2052446400000, \"offline\": 897320.3319999998, \"primaryKills\": 385146, \"primaryLastSeen\": 2052446400000, \"recoveryMatches\": false, \"hea",
+        "2026-11-20T06:13:44.2917206Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:13:45.8685526Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:14:10.3563291Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:14:17.6987546Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:14:25.1458282Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:14:32.9050628Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T06:20:18.4097486Z {\"status\":\"PASS\",\"checks\":200,\"sourceSha256\":\"39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4\",\"records\":[{\"raw\":0,\"wallet\":17,\"value\":\"17\"},{\"raw\":20,\"wallet\":17,\"value\":\"17\"},{\"raw\":21,\"wallet\":17,\"value\":\"3393\"},{\"raw\":40,\"wallet\":17,\"value\":\"12655555\"},{\"raw\":95,\"wallet\":0,\"value\":\"9501183244965278\"},{\"raw\":2000,\"wallet\":0,\"value\":\"500418951316048158193558700143585896833605262831485877999842321611526573775281870302573379758550006238969394527881719283051161946576567823089220960225753486005741194369422897159073249021666404619638978110281171266906751723011624121829828047465900438677935455221877375127808226088941272999190619580534643397160\"},{\"raw\":21,\"wallet\":1e+30,\"value\":\"1000000000000000019884624842032\"}],\"scope\":\"current twenty-path Tree, exact restitution, paid Studies, Forge ownership, cold load, backup, transactional storage failures and F26 coexistence; native acceptance separate\"}",
+        "2026-11-20T06:20:22.4984649Z {\"status\":\"PASS\",\"sourceSha256\":\"39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4\",\"checks\":622,\"records\":[{\"raw\":0,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":5,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":6,\"wallet\":17,\"bonds\":0,\"total\":\"17\",\"creditEntries\":0},{\"raw\":7,\"wallet\":17,\"bonds\":0,\"total\":\"33\",\"creditEntries\":0},{\"raw\":10,\"wallet\":17,\"bonds\":21,\"total\":\"3503\",\"creditEntries\":0},{\"raw\":95,\"wallet\":0,\"bonds\":40,\"total\":\"381182898585695\",\"creditEntries\":0},{\"raw\":2000,\"wallet\":0,\"bonds\":2000,\"total\":\"500418951316048248359259143653257427704520915174220620846883637219407899119006556520838354479689090677357342012369317099560156326442675676130854467602599141993713117534622650218426389825356917442087587709690091692033347198318871629159963139589581309573294292137977671743966661487529024757903887558981399300640\",\"creditEntries\":3715},{\"raw\":2100,\"wallet\":0,\"bonds\":0,\"total\":\"36969615064988623589546261493193773023062879891788863797188853546802815946586656691785735357153331322601888634767964027566503488120225610700355898842160253576222901959466171158637687612638060932728861853527923708313574602394317186610647479455968451044886549686351133777954892931694504782202759143546773354488\",\"creditEntries\":1996},{\"raw\":1e+300,\"wallet\":0,\"bonds\":0,\"total\":\"545593533174429112660680659083780728936790541299067481987023091744666711373531269789706239693500133011524053940817719665274192256578199479997005078714987885",
+        "2026-11-20T06:20:24.3556807Z Error: Error: all current Tree quotes preserve state"
+      ]
+    }
+  ]
+}

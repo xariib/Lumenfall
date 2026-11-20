@@ -152,3 +152,13 @@ cannot be established from signing/security/retail launch. Separate Google Play
 PR63 remains open/untouched. Keep feature/chat open for remaining acceptance.
 Automatic cleanup review rejected temporary local-output removal; retained
 untracked files, no retry through another tool. No questions or new permissions.
+
+07:24CET: PR68 premerge44684031007 passed progression/recruitment and all
+automation clocks, then failed an obsolete quote count in cheaper-refund-
+development.js:2000 assumed20 live Tree paths; retiring Sixth Companion leaves19.
+Split state preservation from the exact1900 quote-count assertion; retain100
+quotes per current path, zero quote copies and one materialized payment copy.
+Full refund/browser47groups PASS; mutation controls running. Product/Android
+unchanged39199dfe/6fe. Preserve failure; publish test-only correction and repeat
+full PR CI, then integrate/all9main/public native release.
+All17 refund defect controls PASS with intended behavioral assertion failures.
