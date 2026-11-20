@@ -9525,6 +9525,9 @@ function openPowerAdvice(goal){
     target=document.querySelector(goal.selector);
   }
   var targetWisp=target.closest('[data-wisp-card]');
+  if(managedWispId && !targetWisp && target.closest('#tab-spirits')){
+    closeWispManagement();target=document.querySelector(goal.selector);
+  }
   if(targetWisp && (managedWispId || target.closest('.wisp-management'))){
     var targetSpirit=SPIRITS.find(function(sp){return sp.id===targetWisp.dataset.wispCard;});
     if(targetSpirit && wispRecruitmentUnlocked(targetSpirit))openWispManagement(targetSpirit.id);
