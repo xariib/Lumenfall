@@ -1,0 +1,44 @@
+{
+  "id": 44679160270,
+  "sha": "d98c72109b2b60c1d4eaae7fe3335b94d4d25cd4",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44679160270",
+  "jobs": [
+    {
+      "id": 136098296992,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:10:15Z",
+      "completed": "2026-11-20T05:26:53Z",
+      "log": "job-136098296992.log.gz",
+      "rawSha256": "1a2ab8f313d2bc4de35258895de20c212b5e3a2f4d19a41ff2676d78572be73c",
+      "summary": [
+        "2026-11-20T05:10:55.5948419Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:13:48.4388188Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-20T05:14:21.4645152Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-20T05:14:32.3754615Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:38487/index.html:14665:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:38487/index.html:14673:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"689ca6affc1b8f03a7f4327aaf436a52def0bbf5477c87ea0d5a2e376c5c3ced\",\"mutant\":true}",
+        "2026-11-20T05:15:40.8214085Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:16:09.8494703Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:17:17.4548511Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T05:20:59.8060610Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:21:07.6907186Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:21:14.8714095Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T05:21:14.8861426Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m"
+      ]
+    },
+    {
+      "id": 136098297298,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T05:10:15Z",
+      "completed": "2026-11-20T05:12:04Z",
+      "log": "job-136098297298.log.gz",
+      "rawSha256": "1ab0e8686192108806f743ce7fa9b06e5824bc86be6fdda7ba46686e3de112d2",
+      "summary": [
+        "2026-11-20T05:10:48.0414002Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T05:11:59.8471241Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

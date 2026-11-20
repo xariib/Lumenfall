@@ -1,0 +1,23 @@
+{
+  "id": 44680838036,
+  "sha": "6fe576fb68c51204fde77100f61379f76b95b768",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44680838036",
+  "jobs": [
+    {
+      "id": 136103583501,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:24:44Z",
+      "completed": "2026-11-20T05:27:58Z",
+      "log": "job-136103583501.log.gz",
+      "rawSha256": "43553a8cb4a889e6ceca7cb6862d1bf332dd3ce5c0b985c8d3e82bfff10cc57e",
+      "summary": [
+        "2026-11-20T05:27:53.6201821Z adb: failed to run abb_exec. Error: device offline",
+        "2026-11-20T05:27:53.6235740Z Error: Command failed: adb install archive/android/cheaper-bonds-cap-001/Lumenfall-0.1.158.apk",
+        "2026-11-20T05:27:53.6236629Z adb: failed to run abb_exec. Error: device offline"
+      ]
+    }
+  ]
+}
