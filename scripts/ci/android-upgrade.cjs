@@ -468,7 +468,7 @@ async function verifyInstalledFiveWispMigration(page,report){
      try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,now:Date.now(),visibility:document.visibilityState,focus:document.hasFocus(),documentReady:document.readyState,rootClass:document.documentElement.className,bodyClass:document.body&&document.body.className,overlays:Array.from(document.querySelectorAll('.overlay,#startup-intro')).map(e=>({id:e.id,display:getComputedStyle(e).display})),slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
      catch(e){if(!/context.*(destroyed|not found)|Cannot find context/i.test(e.message))throw e;await pause(100);continue;}
      lastProbe=probe;slots=probe.slots;
-     ready=probe.ready&&slots.every(s=>s&&s.formationSeatRefund?.paid===true&&s.lastSeen>=probe.started);
+     ready=probe.ready&&probe.documentReady==='complete'&&slots.every(s=>s&&s.formationSeatRefund?.paid===true&&s.lastSeen>=probe.started);
      if(ready)break;
      await pause(100);
    }
@@ -485,6 +485,10 @@ async function verifyInstalledFiveWispMigration(page,report){
    return slots;
  }
  const first=await settled(page,'initial');await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+ // Match the established old-APK fixture's six-second storage settlement
+ // before force-stopping its process. A JS storage read is not a disk-flush
+ // acknowledgement. Keep every cold-state assertion and its wait unchanged.
+ await pause(6000);
  page.close();adb('shell','am','force-stop',packageId);releaseProbe.launchForInspection();page=await connect();
  const cold=await settled(page,'cold');
  report.installedFiveWispMigration={status:'PASS',refund:120,activeCount:5,ownedRetained:true,coldRestart:true,refundPaidOnce:true,bothSaveSlots:true,syntheticFixture:true,

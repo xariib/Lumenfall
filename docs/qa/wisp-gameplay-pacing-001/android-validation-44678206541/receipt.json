@@ -1,0 +1,29 @@
+{
+  "status": "FAIL",
+  "published": false,
+  "runId": 44678206541,
+  "sourceCommit": "704079f6aa89aeba7433c9f4e65735176f631432",
+  "productSha256": "39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4",
+  "observed": {
+    "initial": {
+      "complete": false,
+      "prisms": 897,
+      "slotNode": 1,
+      "active": 5,
+      "receiptPaid": true
+    },
+    "cold": {
+      "documentComplete": true,
+      "visible": true,
+      "focused": true,
+      "freshSave": true,
+      "prisms": 777,
+      "slotNode": 0,
+      "active": 2,
+      "receiptAbsent": true
+    }
+  },
+  "finding": "Cold boot restored the complete earlier synthetic fixture, not a duplicate refund or a readiness-only delay. New fixture was force-stopped immediately after in-memory storage observation; existing baseline fixture waits6000ms before the same stop.",
+  "repairToVerify": "Require complete document; use the existing6000ms storage-settlement interval before forcing stop. Keep original80x100ms readiness wait and every cold-slot/progress/refund assertion. Preserve the failed no-settlement probes as controls.",
+  "qualification": "Storage durability timing is an inference from the reverted fixture and test setup. The next native run must prove the corrected setup; no passing release is claimed."
+}

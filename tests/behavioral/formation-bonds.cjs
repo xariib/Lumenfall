@@ -58,7 +58,8 @@ function checks(html=source){const a=app(html),b=a.b,records=[];function test(na
   let s=seed(b,['ember']);s.formationPresets={push:['ember'],farm:['gale'],boss:['stone']};b.set(s);b.preset('farm');b.toggle('thorn');assert.deepEqual(b.get().formationPresets,{push:['ember'],farm:['gale','thorn'],boss:['stone']});b.toggle('gale');const last=copy(b.get());b.toggle('thorn');assert.deepEqual(b.get(),last,'last chosen member remains');
   s=seed(b,['ember']);s.formationPresets.farm=[];b.set(s);b.preset('farm');assert.deepEqual(b.get().activeParty,['ember']);assert.deepEqual(b.normalize(b.get()).formationPresets.farm,[]);assert.deepEqual(b.get().formationRebuild,{members:[],preset:'farm'});assert.deepEqual(b.bonds(),[],'empty intent grants no Bond');
   s=seed(b,['ember']);s.formationPresets.boss=['tide','stone','gale','thorn','void'];for(const id of s.formationPresets.boss)s.spirits[id]=0;b.set(s);b.preset('boss');const before=copy(b.get());b.toggle('aurora');assert.deepEqual(b.get(),before);assert.deepEqual(b.bonds(),[]);
-  s=b.get();s.lumen=60;b.set(s);b.recruit('tide');assert.equal(b.get().lumen,0);assert.equal(b.get().spirits.tide,1);assert.deepEqual(b.get().activeParty,['tide']);assert.deepEqual(b.bonds(),[]);
+  s=b.get();s.lumen=60;s.totalKills=25; // Earn Tide's current defeat requirement in this synthetic reconstruction.
+  b.set(s);b.recruit('tide');assert.equal(b.get().lumen,0);assert.equal(b.get().spirits.tide,1);assert.deepEqual(b.get().activeParty,['tide']);assert.deepEqual(b.bonds(),[]);
  });
  test('legacy value preservation, idempotence, primary/recovery/backup and repeated Ascend',()=>{
   let s=seed(b,['ember','tide','stone','gale','void']);s.lumen=12345;s.shards=456;s.motes=17;s.sigils=50;s.wispModules.ember=12;s.heroRarity.ember=5;s.wispUltimate.ember=true;s.schemaVersion=2;s.owned.comettrials=true;b.set(s);

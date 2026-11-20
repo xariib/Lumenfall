@@ -177,3 +177,18 @@ Google verdict. Google classification explicitly NOT_TESTED; no promise of a
 cleared warning. Separate Play PR63 remains open/untouched. Temporary local
 test outputs remain after automatic cleanup review rejection; do not retry
 recursive deletion. No questions, permission requests, new chats or delegation.
+
+06:09CET: diagnostic run44678206541 proves first migration897Prisms/node1/
+fiveActive/paid receipt, then cold app visible/focused/complete/fresh-saved but
+reverted to entire earlier777Prism/node0/twoActive fixture. This is data rollback,
+not a readiness-only delay. New injected fixture omitted the existing baseline's
+6000ms storage-settlement interval before force-stop. Require complete document
+and use that established interval; preserve80x100ms cold wait/all assertions.
+[Probe/control](../qa/wisp-gameplay-pacing-001/android-validation-44678206541/receipt.json).
+Cause is inferred storage settlement; corrected native run still required.
+Full local sweep found one final old fixture: Tide reconstruction lacked its
+new25kill requirement. Fund only that synthetic prerequisite; Formation8cases/
+6negative controls PASS. Linux Wisp704 layout settle expired300ms after11checks;
+same-product Windows PASS, old0ace both platforms PASS. Failure saved; unchanged
+same-SHA failed-job rerun. Publish setup/Formation correction and repeat private
+native/current CI. Game/golden bytes remain39199dfe; public still0.2.139.
