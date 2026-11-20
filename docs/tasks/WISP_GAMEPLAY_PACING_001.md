@@ -84,107 +84,96 @@ this intentionally supersedes earlier always-expanded card acceptance. Damage
 overview moves inside its existing details. Navigation notification gains its
 own foreground stacking position, including while its icon is pressed.
 
-## Validation and live continuation — 20 November03:54CET
+## Validation and continuation — 20 November06:00CET
 
-Local Node24.22.1: core415 plus5causal mutants, Deeds495, requirement boundaries
-2546, team1924, early curve2400, full audit318 plus3controls, Comet12776 and
-1075489 numerical cases, Tree12215price/14074economy, Forge480 PASS. Full
-offline18records PASS; manual8h30498 checks with1s/cold60s partitions and an
-independent60.125s fractional Farm clock control PASS. Old quantity VM439 and
-browser1033/6profiles, cap20 native576/12profiles, permanent506/18profiles,
-clarity1432/18profiles, compact42678/18profiles, expanded12600/12profiles and
-scroll3277 PASS on their individually identified intermediate bytes. Do not
-treat intermediate receipts as integrated/native APK acceptance.
+Product source39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4,
+feature head0aceaa1e5c05689a32c254b695a5e1223527554b before the diagnostic/test
+checkpoint. Mainc18e6189/public APK0.2.139; no merge or public update yet.
 
-Ordinary-browser sweep88cases exposed old Deed totals, Tide unlock feedback,
-and unfunded Gale chronology expectations. Corrected exact expectations; both
-feedback modes, chronology, endgame, R3 reload, Bond copy and historical Formation
-persistence PASS. Keep shared fixtures.json byte-for-byte at SHA256
-3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2; the50m Gale
-funding is local to its current-price chronology case. The frozen scheduler
-counterfactual restores only old investment/new-Deed inputs; actual-current
-one-second/whole/split/rollback checks remain. No hash pin, archive or deadline
-was weakened. The4h simulation passes its original5s bound after avoiding
-redundant continuing-catalog scans; lower-counter paid frontiers and cold
-restoration have40 focused assertions. Windows medium-Farm CDP timeout also
-reproduces on originalc18; required Linux gates remain mandatory.
+Current source: core419 with6causal controls PASS, including earned access at
+25kills/cold load. Fixed a real sync/chunk offline entitlement difference by
+synchronizing access at authoritative reward checks. Original Lab batch1/2/31/
+256, rollback/retry/recovery/long-tail checks PASS with full endpoint equality.
+Resonate full native input/contrast/counter/backup/Ascend tests PASS. Complete
+native Enter includes its character event; rawKeyDown alone did not activate a
+summary. Exact manual/automatic Void664613998 quotes/debits and retired Tree
+purchase rejection PASS; original fixture bytes and assertions retained.
 
-Earlier PR passes/failures are source-labelled in [local](../qa/wisp-gameplay-pacing-001/local/)
-and [remote](../qa/wisp-gameplay-pacing-001/remote/). Cold Browser.getVersion
-failures occurred before checks; unchanged-source reruns passed. Original fixture
-edit was restored byte-for-byte. No failed result is a waiver.
+Four independent one-second8h windows reproduce released VM hashes/browser
+reward totals first, then compute new-price378/320/321/323kills. Current bulk
+and independent caller wallets/timers/all other fields match exactly. One HP
+endpoint differs1.164e-10 within two rounding units, stricter than existing HP
+tolerance; other three endpoints exact. Refreshed golden binds actual39199dfe
+product. Original vectors retained in history and
+[earned reference](../qa/wisp-gameplay-pacing-001/local/offline-reference-earned.json).
+Actual browser cold8h/resume/repeat/cancel/save-retry/day-rollover PASS.
+
+Earlier source-labelled targeted passes: Deeds495, requirement2546, Team1924,
+early2400, fullAudit318/3controls, Comet12776/1075489numerical, Tree12215/14074,
+Forge480, offline18records, manual8h30498 with fractional Farm-clock control,
+quantity VM439/browser1033, cap20native576, permanent506, clarity1432,
+compact42678/18profiles, expanded12600/12profiles and scroll3277. Intermediate
+receipts are not exact-main/native acceptance. Later CI covers current source.
+[Local evidence](../qa/wisp-gameplay-pacing-001/local/),
+[remote evidence](../qa/wisp-gameplay-pacing-001/remote/).
+
+Ordinary88browser scenarios on39199dfe finish with only Windows medium-Farm
+no-completed-QA failure, previously reproduced on unchanged released baseline.
+Full local main sweep is intermediate, with obsolete flat-card/20Tree/Void70000
+expectations reconciled and the earned-access regression fixed.12hVM exceeded
+unchanged300s under concurrent Windows load; exact-source Linux gate is still
+required.12hUI initially lacked generated mobile/www staging; correctly staged
+rerun PASS9records. Layout tests still demanded no disclosure: now inspect real
+expanded compact details and retain all cost-icon/viewport checks; dense5PASS,
+fresh/boss/accessibility also5each PASS (20 total). No deadline/gate weakened.
+
+Shared PROJECT_STATE feature entry is short because an earlier799-byte entry
+overflowed other workflow task budgets. All39workflow contexts PASS with the
+unchanged32KiB limit. Shared fixtures.json remains byte-for-byte SHA256
+3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2. Historical
+counterfactuals explicitly restore old price/Deed inputs; current-price parity
+and actual payments remain required. Original archives untouched.
+
 Automated [ability disclosure finding](https://github.com/xariib/Lumenfall/pull/64#discussion_r4637885600)
-was repaired and resolved; this and the final diff review are automated/self-review,
-not independent human review. Installed native checks are now executed below.
+resolved through per-Wisp open/focus preservation and causal controls. Native
+attempts44664790331/44666715234 found detached input targets; guard only markup
+replacement through native input, settle all simulation, release on end/cancel/
+blur/hide.44668226758 opened7cards, Titan pre-tap hit failed; legacy-focus replay
+reproduced scroll movement when preventScroll is ignored. Existing exact-scroll
+action restoration now covers outer summaries.18profiles/eight-card replay PASS,
+removing repairs fails exact assertions. Initial failures remain in QA.
 
-05:08CET checkpoint: candidate3a9f01403443f7376e3508192104607052667636,
-product SHA256d8f5f17f1eb130bcf286d2bc14846327dcb75c4429b428b5af39fd20b6162121.
-Automated ability-disclosure finding repaired; review thread resolved. Native
-private attempts44664790331/44666715234 exposed detached click/gesture targets;
-44668226758 opened seven cards but Titan failed its pre-tap hit test. Preserved
-all failure evidence in the corresponding android-validation directories.
-Guard only markup replacement through native activation while settling every
-simulation event; release after input/cancel/blur/hide. Reuse exact-scroll action
-restoration for outer summaries when old WebViews ignore preventScroll.
-18mobile profiles and eight-card legacy-focus replay PASS; removing protection
-fails exact input/scroll assertions. Core415/5controls and source syntax PASS.
-Premerge44668234962 also found an old-price4h wallet constant. Keep its original
-price endpoint15859808.49997803 AND current-price11737479.4999781, with identical
-Shard4026523.0000087842, unchanged fixture bytes/tolerances and full chunk/state
-comparison.14783checks/negative control PASS; no production timing change.
+Private build44670896819/version1000143 (older3a9f0140, d8f5f17f product) PASS
+both saves/paid work/UID/origin, eight native disclosures, ability explanation
+after purchase,288–292px cards,120Prism migration once/firstfive/presets/owned
+sixth/cold restart, native updater install/Open and retail Android launch.
+[Prior private receipt](../qa/wisp-gameplay-pacing-001/android-private-validation/receipt.json).
+This is not native proof for the later39199dfe earned-access change.
 
-Private signed validation44670896819 (version1000143, publish=false) PASS:
-both saves/paid work/UID/origin retained, all eight trusted Wisp disclosures,
-ability explanation retained after actual purchase, cards288–292px at320px,
-120Prism refund exactly once, firstfive active/presets, sixth owned on bench,
-cold restart, native updater install/Open and retail Android launch.
-[Private receipt](../qa/wisp-gameplay-pacing-001/android-private-validation/receipt.json).
-Google verdict explicitly NOT_TESTED. Public APK/feed still0.2.139.
-Comet/Lab/Forge/Tree/sharedUI/permanent/Wisp-scroll PR lanes at3a9f0140 PASS;
-premerge44670894354 remains running, isolated offline PASS. Self-review recorded
-in QA; no independent human review. PR63 still open at a50cc488, mainc18e6189.
-Next: finish full PR gate, merge64 at expectedhead, run all nine exact integrated
-main gates, publish signed APK then verify anonymous assets/feed and save final
-task/PROJECT_STATE/evidence in GitHub. Do not archive while required physical/
-Google acceptance remains unknown. No new questions or permission requests.
+Current private build44676160957/version1000144 at0ace failed twice on cold
+restart: Installed game initialized and freshly saved both migration slots.
+Stack at android-upgrade.cjs:487 proves initial migration settled/validated
+before cold launch, but final cold slots/readiness were not recorded. Cause is
+unknown; do not call it fixed or a confirmed emulator fault. Both same-source
+attempts retained, assertion/wait unchanged. Add per-phase last probe (both
+slots, navigation time, visibility/focus/startup/overlays) and failure screenshot
+before choosing a repair. New diagnostics do not extend waits or bypass checks.
+[First failure](../qa/wisp-gameplay-pacing-001/android-validation-44676160957/receipt.json).
 
-05:18CET: full PR run44670894354 failed only the independent-reference source
-binding after preceding checks passed. Replayed all four released one-second
-windows against original VM hashes and browser reward totals; then independently
-recomputed current-price four8h windows. Current kills378/320/321/323, no resets
-or Prism changes. Full-window outcomes/all other saved fields exactly match;
-phase0 enemy HP differs1.164e-10, within two native rounding units (stricter than
-the existing HP tolerance); phases1–3 exact. Original browser/VM vectors retained
-in the receipt/history, fixtures untouched. Fresh reference binds actual product
-bytes; no gate/deadline weakened. [Replay receipt](../qa/wisp-gameplay-pacing-001/local/offline-reference.json)
-and tests/behavioral/wisp-gameplay-offline-reference.cjs record the method.
-Publish reference/evidence checkpoint and repeat latest PR gates, then main
-integration/gates/public release as above. Product remains identical to native
-PASS3a9f0140; no additional product fix or private build is needed for this test
-reference correction. Task/chat remains open; public update not published yet.
+PR lanes at0ace: Comet/Lab/Tree/Forge/sharedUI/Wisp-scroll/permanent PASS;
+permanent first Browser.getVersion timeout before checks is retained alongside
+unchanged-SHA rerun PASS. Premerge44676151137 still running; isolated offline
+PASS. New layout assertions/native diagnostic need publishing and current-head
+gates. Self-review/automated checks only; no independent human review.
 
-05:24CET: run44673561972 failed before gameplay checks because the new shared
-PROJECT_STATE paragraph pushed another task over32KiB. Shortened only this new
-entry; preserve other task requirements and the limit. Check every workflow task
-context before publishing this docs-only correction. Product/golden unchanged.
-Local actual-browser offline return/resume/cancel/save-retry/day-rollover PASS
-with refreshed378/320/321/323 reference. Full local main scenarios are running.
-
-05:41CET: local full sweep exposed old flat-card/20Tree/Void70000 assumptions;
-reconciled compact disclosure with native Enter,19active Tree paths/retired
-purchase rejection, and exact Void664613998 manual/automatic debits. Browser
-rawKeyDown omitted Enter's character event; complete native Enter now opens the
-summary once. Resonate full input/persistence and exact purchase tests PASS.
-Found/fixed real earned-access regression: synchronous offline endpoint lacked
-Tide's earned flag while saved chunked replay had it. Synchronize earned access
-at authoritative reward checks; original batch1/2/31/256 rollback/save test PASS,
-new25kill/Cold-load causal control PASS. Core419/6controls, syntax and refreshed
-four8h one-second reference PASS. ProductSHA25639199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4.
-Ordinary88browser cases finish with only previously baseline-reproduced Windows
-medium-Farm no-completed-QA failure. Full local sweep remains intermediate:12h
-VM hit unchanged300s under concurrent load;12hUI lacked mobile/www staging,
-then all9UI records PASS after staging correctly. Linux full gate remains
-mandatory. Saved partial failure log, focused repairs and explicit limitations.
-Publish repair; repeat latest CI and private Android acceptance, then integrate/
-exact-main gates/public APK. Prior nativePASS is for older3a9product, not this
-new byte hash. Keep task open and do not publish before all release gates pass.
+Next: finish targeted layout check, publish diagnostic/test checkpoint, rerun
+private build to capture cold failure evidence, repair actual cause if needed,
+finish current PR gates, merge64 at expectedhead, run all nine exact integrated
+main gates, then signed public APK/actual updater/retail/anonymous assets+feed.
+Save final task/PROJECT_STATE/evidence in GitHub. Product remains39199dfe;
+diagnostic/layout-test edits do not require regenerating its reference.
+Keep task/chat open for physical phone/WebView60 DOM/TalkBack/human pacing and
+Google verdict. Google classification explicitly NOT_TESTED; no promise of a
+cleared warning. Separate Play PR63 remains open/untouched. Temporary local
+test outputs remain after automatic cleanup review rejection; do not retry
+recursive deletion. No questions, permission requests, new chats or delegation.

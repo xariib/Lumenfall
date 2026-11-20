@@ -461,18 +461,20 @@ async function verifyInstalledFiveWispMigration(page,report){
  const script=`(()=>{const s=${JSON.stringify(seed)};s.lastSeen=Date.now();s.offlineClockHighWaterMs=s.lastSeen;const raw=JSON.stringify(s);localStorage.setItem(${JSON.stringify(primary)},raw);localStorage.setItem(${JSON.stringify(recovery)},raw);})()`;
  const injection=await page.command('Page.addScriptToEvaluateOnNewDocument',{source:script});assert(injection.identifier);
  await page.command('Page.reload');
- async function settled(current){
-   let slots,ready=false;
+ async function settled(current,phase){
+   let slots,ready=false,lastProbe;
    for(let i=0;i<80;i++){
      let probe;
-     try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
+     try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,now:Date.now(),visibility:document.visibilityState,focus:document.hasFocus(),documentReady:document.readyState,rootClass:document.documentElement.className,bodyClass:document.body&&document.body.className,overlays:Array.from(document.querySelectorAll('.overlay,#startup-intro')).map(e=>({id:e.id,display:getComputedStyle(e).display})),slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
      catch(e){if(!/context.*(destroyed|not found)|Cannot find context/i.test(e.message))throw e;await pause(100);continue;}
-     slots=probe.slots;
+     lastProbe=probe;slots=probe.slots;
      ready=probe.ready&&slots.every(s=>s&&s.formationSeatRefund?.paid===true&&s.lastSeen>=probe.started);
      if(ready)break;
      await pause(100);
    }
-   assert(ready,'Installed game initialized and freshly saved both migration slots');
+   fs.writeFileSync('release-evidence/installed-five-wisp-'+phase+'-probe.json',JSON.stringify({phase,ready,lastProbe},null,2)+'\n');
+   if(!ready){const shot=await current.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-five-wisp-'+phase+'-failure.png',Buffer.from(shot.data,'base64'));}
+   assert(ready,'Installed game initialized and freshly saved both migration slots ('+phase+')');
    for(const s of slots){
      assert.deepEqual(s.formationSeatRefund,{policy:'five-wisps-v1',total:120,paid:true},'Installed validated owner refund');
      assert.equal(s.prisms,expectedPrisms,'Exactly120Prisms credited once in each installed save slot');
@@ -482,9 +484,9 @@ async function verifyInstalledFiveWispMigration(page,report){
    }
    return slots;
  }
- const first=await settled(page);await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+ const first=await settled(page,'initial');await page.command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
  page.close();adb('shell','am','force-stop',packageId);releaseProbe.launchForInspection();page=await connect();
- const cold=await settled(page);
+ const cold=await settled(page,'cold');
  report.installedFiveWispMigration={status:'PASS',refund:120,activeCount:5,ownedRetained:true,coldRestart:true,refundPaidOnce:true,bothSaveSlots:true,syntheticFixture:true,
    beforePrisms:seed.prisms,afterPrisms:cold[0].prisms,benched:members[5],retainedBenchedLevel:cold[0].spirits[members[5]]};
  fs.writeFileSync('release-evidence/installed-five-wisp-migration.json',JSON.stringify({commit:report.commit,apkSha256:report.apkSha256,...report.installedFiveWispMigration,first:first.map(s=>({activeParty:s.activeParty,prisms:s.prisms,receipt:s.formationSeatRefund})),cold:cold.map(s=>({activeParty:s.activeParty,prisms:s.prisms,receipt:s.formationSeatRefund}))},null,2)+'\n');
