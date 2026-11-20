@@ -1,8 +1,8 @@
 # Lumenfall — current delivery status
 
-20 November: [Wisp development/PR64](tasks/WISP_GAMEPLAY_PACING_001.md) is
-in progress. Private native validation PASS; integration/public update pending.
-Latest public0.2.139. Google harmful warning remains unverified.
+20 November: [Wisp development/PR64](tasks/WISP_GAMEPLAY_PACING_001.md)
+shipped Android0.2.148. Nine gates,190+1 cases/native/update/public checks PASS.
+Phone, pacing and Google warning acceptance remain open.
 
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
 [Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),

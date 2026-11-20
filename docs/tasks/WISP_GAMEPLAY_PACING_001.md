@@ -1,6 +1,6 @@
 # WISP_GAMEPLAY_PACING_001 — earned roster growth and compact upgrades
 
-Status: integrated, release/device acceptance pending. Owner: this feature chat.
+Status: integrated and published0.2.148; device/Google acceptance pending. Owner: this feature chat.
 
 ## Original request — 20 November 2026
 
@@ -84,95 +84,91 @@ this intentionally supersedes earlier always-expanded card acceptance. Damage
 overview moves inside its existing details. Navigation notification gains its
 own foreground stacking position, including while its icon is pressed.
 
-## Current validation and delivery checkpoint — 20 November 2026
+## Integrated release and verification — 20 November 2026
 
-Product SHA25639199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4.
-PR64 merged at8efc0befe366fc0a684352466c4e9b9c1d745b1a on20 November08:21CET.
-All eight PR workflows PASS at9e5b8620, including190 main plus1 isolated offline
-scenarios. Main's game/tests/Android/workflow files equal that candidate.
-All nine exact-main workflows PASS, including190 main plus1 isolated offline.
-Latest public APK0.2.139; signed public0.2.148 build44701460304 is running.
-Task-owned QA branch holds evidence follow-ups; keep main fixed during its
-gate/build window. Worktree C:/lf-gameplay. No delegation or new chats.
+[PR64](https://github.com/xariib/Lumenfall/pull/64) merged at
+8efc0befe366fc0a684352466c4e9b9c1d745b1a. Its code/tests/Android/workflow tree
+matches passing candidate9e5b862071df1ec91fcf809b1de47d61aa1c11b0. Late QA
+follow-ups and this final checkpoint change docs/evidence only.
 
-Current local passes include419 core checks/six causal controls, exact Lab
-offline batch1/2/31/256 with rollback/retry/recovery, full native Resonate input,
-20 mobile layout profiles,889 endless mobile checks/72cases/12profiles,
-758 Wisp contribution checks/12profiles,200 recruitment integration checks,
-622 original Echo-refund checks,22 Swift records and14 remaining engine suites
-including14 negative controls. All original fixtures.json bytes are retained:
-SHA2563f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2.
+[Android0.2.148](https://github.com/xariib/Lumenfall/releases/tag/android-1000148)
+is published as versionCode1000148, build44701460304. Both versioned and latest
+anonymous APK downloads match SHA25643dad564b189ff700448499bff41d5b0f72a3286beea6a4627ae2e79bdaf1e65
+(5166638bytes). Packaged index.html binds SHA256
+39199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4; all assets
+match source. Package com.lumenfall.app and established signing identity stay.
+Latest-release metadata and its APK/commit/hash/security/upgrade/updater receipts
+match the actual tested artifact, making the release available to in-game updates.
+[Delivery summary](../qa/wisp-gameplay-pacing-001/delivery.json),
+[anonymous public proof](../qa/wisp-gameplay-pacing-001/android-release/public-verification.json).
 
-Four independent one-second8h windows first reproduce historical VM hashes and
-browser reward totals, then compute current378/320/321/323kills. Bulk endpoints
-match all state fields exactly except one HP delta1.164e-10 within two native
-rounding units; other three endpoints exact. Current golden binds product39199dfe.
-Historical vectors/archives remain unchanged. Farm4h preserves the original
-price endpoint15859808.49997803 and current11737479.4999781, identical Shards,
-all chunk partitions/tolerances and negative control. Actual browser offline
-return/resume/cancel/save-retry/day-rollover PASS. Full Windows discovery sweep
-is not release acceptance: medium-Farm no-completed-QA also reproduces on the
-released baseline;12h VM exceeded unchanged300s under concurrent local load.
-Exact-source Linux PR and integrated-main190+1 suites now PASS; local Windows
-limits remain recorded as development evidence, not release acceptance.
+All eight PR workflows PASS at9e5b8620. All nine workflow_dispatch validations
+PASS on exact integrated8efc0bef, including190 main plus1 isolated offline
+scenario in both PR and integrated runs. Integrated premerge44694394498;
+[all nine run references/log receipts](../qa/wisp-gameplay-pacing-001/integrated-validation.json).
+CI uses Node24.19.0; Android build uses Node22; local checks used Node24.22.1.
+No assertion, deadline, gate or historical archive was weakened to pass.
 
-Private signed Android147/run44680838036 attempt2 PASS at6fe576fb; its product
-and Android code equal integrated main. APK SHA256fc8ebb7ef4ca05a6509f3e5063fd799c9c9cb17a41d01a641745a95bd563d755.
-Package com.lumenfall.app, established signer, both saves/paid work/UID/origin,
-native eight-card disclosures/explanations after purchase,288–292px compact
-cards at320px, five Active/bench ownership/refund120 once through cold restart,
-official+candidate actual updater install/Open and normal retail launch PASS.
-This private build is not public delivery or Google/physical-device acceptance.
-[APK-bound receipt](../qa/wisp-gameplay-pacing-001/android-private-current/receipt.json).
+Final signed APK acceptance PASS: both save slots/paid Studies/progression/UID/
+origin, native eight-card touch controls, explanation retained after purchase,
+default288–292px cards at320px, original120Prisms refunded once, five Active,
+owned sixth retained on Bench and cold restart. Actual official/candidate updater
+install/Open and normal non-debuggable retail Android launch PASS.
+[Installed upgrade](../qa/wisp-gameplay-pacing-001/android-release/emulator-upgrade.json),
+[updater](../qa/wisp-gameplay-pacing-001/android-release/in-app-updater.json),
+[retail launch](../qa/wisp-gameplay-pacing-001/android-release/production-runtime.json).
+Final screenshots were visually self-reviewed; receipts use synthetic saves,
+not the user's physical phone. Private147 passed earlier on identical product/
+Android QA code; final148 independently passed on the exact public artifact.
 
-Review fixes: preserve ability explanation state/focus through live renders;
-preserve summary input targets through trusted gestures while simulation fully
-settles; restore exact scroll when old WebViews ignore preventScroll. Causal
-removal controls fail. Fixed actual sync/chunk offline earned-access divergence
-by synchronizing recruitment entitlements at authoritative reward checks.
-Automated review thread resolved; full self-review recorded, no independent
-human review. Android QA cold-fixture rollback was reproduced with phase probes
-and repaired with the baseline's existing6000ms storage-settlement interval;
-all assertions/cold wait retained. Null-safe navigation diagnostic and HTTP
-metadata evidence added. Earlier failures/unchanged retries are preserved.
+Focused passes include419 core/six causal controls; exact Lab batches1/2/31/256
+and rollback/retry/recovery;20 layout profiles;889 mobile progression checks/
+72cases/12profiles;758 Wisp contribution checks;200 recruitment integration;
+622 Echo-refund checks;22 Swift records;14 remaining engine suites/14 controls;
+full collection/affordability/native UI, notification/focus, payment oracle and
+both sets of17 payment/refund defect controls. Full refund browser47groups PASS.
+[Local receipts](../qa/wisp-gameplay-pacing-001/local/),
+[CI receipts](../qa/wisp-gameplay-pacing-001/remote/).
 
-[Full earlier chronology](../qa/wisp-gameplay-pacing-001/PRE_INTEGRATION_HISTORY.md),
-[continuation/run references](../qa/wisp-gameplay-pacing-001/NATIVE_CONTINUATION.md),
-[self-review](../qa/wisp-gameplay-pacing-001/self-review.json),
-[local evidence](../qa/wisp-gameplay-pacing-001/local/),
-[remote evidence](../qa/wisp-gameplay-pacing-001/remote/).
-All39 workflow startup contexts pass the unchanged32KiB limit. Shared status
-entry must remain short: other task contexts have only43bytes remaining.
+Four independent one-second8h replays first reproduce historical VM hashes and
+browser reward totals, then compute current378/320/321/323kills. Every current
+state field matches bulk exactly except one HP difference1.164e-10 within two
+native rounding units; other three endpoints exact. Original vectors retained.
+Farm4h preserves original-price15859808.49997803 and current11737479.4999781
+Lumen endpoints, identical Shards and original chunk/tolerance/negative checks.
+Shared fixtures.json is byte-for-byte SHA256
+3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2.
+Earlier Windows medium-Farm no-completed-QA also reproduced on the released
+baseline;12h VM exceeded unchanged300s under concurrent local load. Both exact
+Linux PR/integrated190+1 suites now pass. Discovery logs remain labelled.
 
-Next: finish public signed0.2.148 build44701460304 at integrated8ef;
-verify native/update/retail receipts and publication,
-anonymous latest/tag APK bytes and in-game feed. Save final task/shared status
-and release evidence in GitHub. Do not move main during its gate/build window.
-Main premerge run44694394498; other exact-head run IDs are saved in remote/status-8efc0bef.json.
-Late QA follow-ups contain docs/evidence only and can integrate after publication.
+Changed files: targeted index.html gates/prices/refund/Deeds/compact UI changes;
+three scripts/ci Android acceptance/receipt diagnostics; focused new gameplay/
+offline-reference tests and existing tests reconciled with intentional prices,
+five-slot retirement and disclosures; task/shared status and QA receipts.
+No Android product code or workflow changed; separate Play PR63 is untouched.
 
-Physical phone/exact WebView60 DOM/TalkBack/human long-term pacing remain
-unobserved. Google Play Protect classification is NOT_TESTED; warning clearance
-cannot be established from signing/security/retail launch. Separate Google Play
-PR63 remains open/untouched. Keep feature/chat open for remaining acceptance.
-Automatic cleanup review rejected temporary local-output removal; retained
-untracked files, no retry through another tool. No questions or new permissions.
+Self-review resolved the automated disclosure-state finding, native detached
+input/legacy-focus movement, and actual earned-access sync/chunk divergence.
+Cold injected-save rollback was reproduced with phase probes; restored the
+baseline's existing6000ms pre-stop settlement, preserving all cold assertions
+and waits. Null-safe root/HTTP diagnostics retain earlier failure evidence.
+Corrected an obsolete20-live-Tree quote count to19 after Sixth Companion
+retirement:100 quotes/path, unchanged state/zero ledger copies/one payment copy
+still required. All controls then fail their exact intended behavioral assertions.
+[Review](../qa/wisp-gameplay-pacing-001/self-review.json),
+[earlier development history](../qa/wisp-gameplay-pacing-001/PRE_INTEGRATION_HISTORY.md),
+[native/integration chronology](../qa/wisp-gameplay-pacing-001/NATIVE_CONTINUATION.md).
 
-07:24CET: PR68 premerge44684031007 passed progression/recruitment and all
-automation clocks, then failed an obsolete quote count in cheaper-refund-
-development.js:2000 assumed20 live Tree paths; retiring Sixth Companion leaves19.
-Split state preservation from the exact1900 quote-count assertion; retain100
-quotes per current path, zero quote copies and one materialized payment copy.
-Full refund/browser47groups PASS; mutation controls running. Product/Android
-unchanged39199dfe/6fe. Preserve failure; publish test-only correction and repeat
-full PR CI, then integrate/all9main/public native release.
-All17 refund defect controls PASS with intended behavioral assertion failures.
+## Remaining acceptance and next action
 
-07:37CET: current PR head9e5b862071df1ec91fcf809b1de47d61aa1c11b0 frozen.
-Remaining collection/currency UI, affordability with all existing controls/native
-checks, notification/quest focus, standard recruitment/refund browser and exact
-payment oracle PASS. All17 ordinary payment defect controls also PASS with
-workflow's exact expected assertions and clean teardown. Saved local/remaining-ui.
-Evidence-only follow-up stays on QA ref; do not restart PR. All product/native
-code matches private147. If PR passes, merge64 and run all9 at that main merge;
-late QA docs may integrate after public verification because no code differs.
+Keep this feature/chat open. Physical phone, exact WebView60 DOM, TalkBack and
+human long-term pacing remain unobserved. Google Play Protect classification is
+NOT_TESTED: signing/security/retail launch do not prove the harmful-app warning
+is cleared. No Google store/review/account action was taken; PR63 stays separate.
+Next: save actual device/pacing/Google installation evidence when available and
+resolve any observed issue before claiming full completion or archiving.
+
+Automatic cleanup review rejected temporary local-output removal; those files
+remain untracked. No retry through another deletion tool. No new binding project
+rule, permission request, question, chat, delegation or unrelated release.
