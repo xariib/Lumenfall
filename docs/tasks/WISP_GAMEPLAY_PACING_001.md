@@ -157,6 +157,15 @@ Medium-Farm20s CDP timeout reproduces on originalc18 baseline; required Linux
 deadline stays unchanged. Latest product hash11170c9c24e8be77bb74ac21183747498f67f8f8c3252ee56afa5d663b25e51d.
 Save optimized receipts in local QA; rerun all CI before integration/build.
 
+03:40CET: a4 CI passed Tree, Comet, Lab, Wisp(Win/Linux rerun), permanent,
+isolated offline and focused migration. Wisp first Linux attempt failed before
+checks at Browser.getVersion; saved failed/pass receipts; no deadline changed.
+Shared standalone gate caught the changed frozen fixture hash. Restored
+fixtures.json exactly to3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2;
+the50m Gale funding is now explicitly local to chronology-simultaneous-order.
+That original ordering test and upgraded receipt tooling PASS after correction.
+No hash pin or archive was weakened. Rerun exact candidate gates before merge.
+
 Android acceptance now requires actual native touches opening all eight compact
 cards, a preserved completed Stone20 ability with gold/no arrow/next, and a
 separate installed schema6 six-member owner fixture. The latter must retain

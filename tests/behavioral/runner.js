@@ -1184,6 +1184,9 @@
         }
 
         case 'chronology-simultaneous-order': {
+          // Fund the current Gale price in this synthetic simultaneous-spend
+          // witness; retain the shared historical fixture bytes unchanged.
+          var simultaneousSeed=state();simultaneousSeed.lumen=50000000;bridge.setState(simultaneousSeed);
           var simultaneousDirect = bridge.simulateTimeline(7,'offline',PARITY_CLOCK_MS);
           var researchAtBoundary = firstTimelineEvent(simultaneousDirect,'research');
           var completionAtBoundary = firstTimelineEvent(simultaneousDirect,'studyComplete');
