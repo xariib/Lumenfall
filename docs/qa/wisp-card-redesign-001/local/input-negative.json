@@ -1,0 +1,48 @@
+{
+  "status": "fail",
+  "sourceSha256": "a2471a85cb73eb9ecb85b13c80918d96d4ffa4cf314ac5fda7a19c5319fe1350",
+  "node": "v24.22.1",
+  "browser": "C:/Users/xarib/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe",
+  "profiles": [],
+  "error": "AssertionError [ERR_ASSERTION]: native navigation survives input-time refresh Space\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:36:27)\n    at run (C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:95:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.wisp-redesign-4076.cjs:117:6",
+  "input": [
+    {
+      "type": "click",
+      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\">Manage</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button type=\"button\" class=\"mini-btn\" data-wisp-back=\"ember\" data-state=\"available\" aria-label=\"Back to Wisps\">← Wisps</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\">Manage</button>",
+      "trusted": true
+    },
+    {
+      "type": "click",
+      "target": "<button type=\"button\" class=\"mini-btn\" data-wisp-back=\"ember\" data-state=\"available\" aria-label=\"Back to Wisps\">← Wisps</button>",
+      "trusted": true
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\" data-wisp-action-focus=\"wisp-ba",
+      "trusted": true
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "target": "<button type=\"button\" class=\"mini-btn wisp-manage\" data-wisp-details=\"ember\" aria-label=\"Manage Ember Wisp\" aria-controls=\"wisp-management-ember\" data-state=\"available\">Manage</button>",
+      "trusted": true
+    }
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "checks": 38,
+  "stderr": ""
+}
