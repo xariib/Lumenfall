@@ -96,3 +96,16 @@ workflow expected assertions/clean teardown. This docs/evidence follow-up is
 QA-branch-only. No product/Android change beyond private147 code. After all PR
 passes, merge64 at expected9e5, dispatchall9 exact merge-main gates, publish and
 verify APK/feed. Late QA docs can integrate after release; they contain no code.
+
+08:03CET: all seven focused PR9e5 workflows PASS; fullpremerge44687653542
+passed every preceding step, including corrected Tree quote/full refund controls,
+compact Wisp matrix, currency UI, notifications and all ordinary payment controls.
+It is now running the complete stateful behavioral suite (step47); isolated
+offline already PASS. No reported failure at this checkpoint. Main stillc18.
+Review thread remains resolved; PR63 stilla50cc488/open/untouched. All local
+helpers have completed PASS; no local test process remains. Remote feature stays
+9e5b862071df1ec91fcf809b1de47d61aa1c11b0; local is ahead ONLY on QA docs.
+Do not push this local branch to feature/restart CI. Once full CI passes, merge
+PR64 expected9e5, run all9 exact-main gates, publish native APK and verifypublic.
+QA docs can integrate at final checkpoint after release; all actualcode is in9e5.
+Latest public139; private147 PASS; next public build number must be read fromrun.
