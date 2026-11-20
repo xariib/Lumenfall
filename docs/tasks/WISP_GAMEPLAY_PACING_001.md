@@ -193,4 +193,4 @@ same-product Windows PASS, old0ace both platforms PASS. Failure saved; unchanged
 same-SHA failed-job rerun. Publish setup/Formation correction and repeat private
 native/current CI. Game/golden bytes remain39199dfe; public still0.2.139.
 
-06:24CET: [native QA continuation](../qa/wisp-gameplay-pacing-001/NATIVE_CONTINUATION.md) records cold PASS, metadata/diagnostic failures and the task-owned QA branch. PR head stays d98 during its CI.
+06:53CET: [current validation checkpoint](../qa/wisp-gameplay-pacing-001/NATIVE_CONTINUATION.md) records native147 PASS and corrected mobile requirements. Publish QA follow-ups into PR64 for full validation.

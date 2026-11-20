@@ -65,3 +65,5 @@ still running; isolated offline PASS. Once it passes, merge64 at expected d98,
 incorporate QA guards from this branch into main, run all9 exact-main gates,
 then publish signed APK and verify anonymous public metadata/APK bytes/feed.
 Do not push this QA branch history into the still-open PR and restart its CI.
+
+06:53CET: d98 premerge attempt2 passed the previously failing Lab CDP step, then stopped at endless-mobile old text: Unlocks at Rift100. Actual UI shows Requires Rift100 plus Wisp Ascendancy Lv47. Updated the assertion to require BOTH gates, aria-disabled and absent price; all889 checks/72cases/12profiles PASS. Product unchanged39199dfe. This requires updating PR64 now; the earlier instruction to freeze its d98 head is superseded. Publish the verified native-QA follow-ups/evidence and this test correction together to the feature and QA refs, rerun full PR CI. No additional private APK is needed for a text-assertion-only change: Android code equals full nativePASS6fe. Remaining mandatory engine suites are running locally to expose stale expectations earlier. No public release yet.
