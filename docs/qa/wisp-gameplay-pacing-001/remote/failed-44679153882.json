@@ -1,0 +1,21 @@
+{
+  "id": 44679153882,
+  "sha": "d98c72109b2b60c1d4eaae7fe3335b94d4d25cd4",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44679153882",
+  "jobs": [
+    {
+      "id": 136100732114,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T05:16:51Z",
+      "completed": "2026-11-20T05:22:36Z",
+      "log": "job-136100732114.log.gz",
+      "rawSha256": "503354dafb1e5ea3a47cb54c537d4a2e0b7739afee7a4ac28ad7fc7b4b2d60c5",
+      "summary": [
+        "2026-11-20T05:22:30.5804046Z AssertionError [ERR_ASSERTION]: {\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":242,\"scriptId\":\"125\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"125\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":242}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"TypeError\",\"description\":\"TypeError: Cannot read property 'className' of null\\n    at <anonymous>:1:243\",\"objectId\":\"5631201494305061418.4.2\"}}"
+      ]
+    }
+  ]
+}

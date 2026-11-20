@@ -465,7 +465,7 @@ async function verifyInstalledFiveWispMigration(page,report){
    let slots,ready=false,lastProbe;
    for(let i=0;i<80;i++){
      let probe;
-     try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,now:Date.now(),visibility:document.visibilityState,focus:document.hasFocus(),documentReady:document.readyState,rootClass:document.documentElement.className,bodyClass:document.body&&document.body.className,overlays:Array.from(document.querySelectorAll('.overlay,#startup-intro')).map(e=>({id:e.id,display:getComputedStyle(e).display})),slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
+     try{probe=await current.evaluate(`({ready:!!document.querySelector('[data-wisp-card]'),started:performance.timing.navigationStart,now:Date.now(),visibility:document.visibilityState,focus:document.hasFocus(),documentReady:document.readyState,rootClass:document.documentElement&&document.documentElement.className,bodyClass:document.body&&document.body.className,overlays:Array.from(document.querySelectorAll('.overlay,#startup-intro')).map(e=>({id:e.id,display:getComputedStyle(e).display})),slots:[${JSON.stringify(primary)},${JSON.stringify(recovery)}].map(k=>JSON.parse(localStorage.getItem(k)))})`);}
      catch(e){if(!/context.*(destroyed|not found)|Cannot find context/i.test(e.message))throw e;await pause(100);continue;}
      lastProbe=probe;slots=probe.slots;
      ready=probe.ready&&probe.documentReady==='complete'&&slots.every(s=>s&&s.formationSeatRefund?.paid===true&&s.lastSeen>=probe.started);

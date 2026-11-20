@@ -192,3 +192,5 @@ new25kill requirement. Fund only that synthetic prerequisite; Formation8cases/
 same-product Windows PASS, old0ace both platforms PASS. Failure saved; unchanged
 same-SHA failed-job rerun. Publish setup/Formation correction and repeat private
 native/current CI. Game/golden bytes remain39199dfe; public still0.2.139.
+
+06:24CET: [native QA continuation](../qa/wisp-gameplay-pacing-001/NATIVE_CONTINUATION.md) records cold PASS, metadata/diagnostic failures and the task-owned QA branch. PR head stays d98 during its CI.
