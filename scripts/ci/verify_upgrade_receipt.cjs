@@ -10,6 +10,7 @@ function verify(file,apk,version){
  for(const flag of ['ownedRetained','coldRestart','refundPaidOnce','bothSaveSlots'])assert.equal(m[flag],true,'Installed migration '+flag);
  assert.equal(m.afterPrisms,m.beforePrisms+120,'Exactly one installed refund');assert(m.retainedBenchedLevel>0,'Sixth Wisp retained on bench');
  assert.equal(r.installedCompactWisps?.status,'PASS');assert.equal(r.installedCompactWisps.nativeInput,true);
+ assert.equal(r.installedCompactWisps.mechanicsRetainedAfterPurchase,true,'Installed ability explanation survives real purchase');
  return r;
 }
 module.exports={verify};

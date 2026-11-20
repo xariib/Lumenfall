@@ -30,6 +30,11 @@ if(args.includes('--mutate-names')){
   if(code.split(from).length!==2)throw Error('unique accessible-name mutation site');
   code=code.replace(from,"if(sp)name='Next ·'+name;"+from);
 }
+if(args.includes('--mutate-ability-disclosure')){
+  const from="openAbilityMechanics.indexOf(sp.id)!==-1";
+  if(code.split(from).length!==2)throw Error('unique ability disclosure state');
+  code=code.replace(from,'false');
+}
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
 assert(code.split(marker).length===2,'one game closure for test bridge');
@@ -113,6 +118,19 @@ async function run(){
       }
       assert(await evaluate('__wispQa.get().wispModules.ember===1&&__wispQa.get().lumen===__wispNativeExpected.lumen&&__wispQa.get().shards===__wispNativeExpected.shard'),'native '+input+' spends exactly once through the original highlighted control');
       if(keepEnabled)assert(await evaluate(`document.activeElement===document.querySelector('[data-module=ember]')&&document.activeElement.classList.contains('wisp-action-primary')&&__wispFocusNames.length>0&&__wispFocusNames.every(e=>e.module==='ember'&&!e.name.includes('Next ·')&&e.name.includes('Upgrade Ability')&&e.name.includes('Ember Wisp'))`),'native '+input+' restores focus with the current Next accessible name immediately');
+    }
+    if(compact)for(const input of ['keyboard','touch']){
+      await evaluate(`(()=>{const b=__wispQa;b.set(b.fresh());b.render();const e=document.querySelector('[data-ability-details=ember]');e.parentElement.open=false;e.scrollIntoView({block:'center'});if(${JSON.stringify(input)}==='keyboard')e.focus({preventScroll:true});else document.activeElement.blur();})()`);
+      if(input==='keyboard')await key('Enter');else{
+        const p=await evaluate(`(()=>{const r=document.querySelector('[data-ability-details=ember]').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+        await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      }
+      assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'native '+input+' opens ability mechanics');
+      await evaluate(`window.__mechanicsBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots()),scroll:document.querySelector('main').scrollTop};__wispQa.render();__wispQa.refresh();__wispQa.render();`);
+      assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open&&document.activeElement===document.querySelector('[data-ability-details=ember]')&&Math.abs(document.querySelector('main').scrollTop-__mechanicsBefore.scroll)<=1`),'ability mechanics stays open with focus and exact viewport through live renders');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===__mechanicsBefore.state&&JSON.stringify(__wispQa.slots())===__mechanicsBefore.slots`),'reading ability mechanics preserves state and both save slots');
+      await key('Enter');await evaluate('__wispQa.render()');
+      assert(await evaluate(`!document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'closed ability mechanics stays closed through refresh');
     }
     let summary;
     if(args.includes('--baseline')){

@@ -84,98 +84,66 @@ this intentionally supersedes earlier always-expanded card acceptance. Damage
 overview moves inside its existing details. Navigation notification gains its
 own foreground stacking position, including while its icon is pressed.
 
-Baseline Node24.22.1: recruitment83, Deeds415, team1929 and task context PASS.
-Current focused core353, Deeds495 and40rarity/eightUltimate/56Mastery requirement
-boundaries2546 PASS. Intermediate expanded-card mobile check PASS across12profiles
-before the final compact disclosure change; screenshots inspected and showed
-cards still too tall, prompting that change. Do not treat that result as final.
-Existing finite Forge, Forge/Lab, permanent progression, exploit checks PASS on
-intermediate bytes. Original failures preserved in local validation-evidence:
-older six-slot/old-price/fixed-Deed/UI assertions now require exact updated
-expectations for intentional requirements; these are not waived.
+## Validation and live continuation — 20 November03:54CET
 
-Checkpoint20 November02:56CET: PR64 is draft, last pushed47d3e7ce. Local
-Node24.22.1 core375 plus5causal mutants PASS; requirement2546, Deeds495,
-team1924, early curve2400, full audit318 plus3controls, Comet12776 and
-1075489 numerical cases, Tree12215price/14074economy, Forge480 PASS.
-Compact18profiles/42678checks and upgrade-state15348checks PASS on earlier
-candidate bytes; full Wisp scroll3277 and expanded upgrades12600/12profiles
-PASS on47d3 product bytes. Clarity1432checks/18profiles PASS. Corrected startup
-goal to Rift5/25kills after finding its remaining Rift3 text during self-review.
+Local Node24.22.1: core415 plus5causal mutants, Deeds495, requirement boundaries
+2546, team1924, early curve2400, full audit318 plus3controls, Comet12776 and
+1075489 numerical cases, Tree12215price/14074economy, Forge480 PASS. Full
+offline18records PASS; manual8h30498 checks with1s/cold60s partitions and an
+independent60.125s fractional Farm clock control PASS. Old quantity VM439 and
+browser1033/6profiles, cap20 native576/12profiles, permanent506/18profiles,
+clarity1432/18profiles, compact42678/18profiles, expanded12600/12profiles and
+scroll3277 PASS on their individually identified intermediate bytes. Do not
+treat intermediate receipts as integrated/native APK acceptance.
 
-PR47d3 CI: Comet, Lab and shared UI PASS. Failed evidence in this task's
-[remote directory](../qa/wisp-gameplay-pacing-001/remote/). Failures exposed
-remaining old assumptions: fixed76/17Deeds, expanded cards, Forge quantity5,
-new rarity milestone10Comets, retired Tree path count and frozen old-price
-offline oracle. Corrected exact expectations; actual-current checks retained.
-The frozen scheduler counterfactual restores only old investment/new-Deed
-inputs; current-price full one-second/whole/split/rollback checks remain.
-Manual offline clock fixture funded100trillion to retain real Push/Farm/Push;
-the original unfunded wallet remains covered by the full offline suite. The
-updated8h manual check30498 PASS, including1s and cold60s partitions. Its old
-negative no longer failed under changed prices; added an independent60.125s
-Push-to-Farm fractional timer witness (250/375ms), cold persistence and causal
-clock removal control, all PASS. Permanent UI506/18profiles PASS.
+Ordinary-browser sweep88cases exposed old Deed totals, Tide unlock feedback,
+and unfunded Gale chronology expectations. Corrected exact expectations; both
+feedback modes, chronology, endgame, R3 reload, Bond copy and historical Formation
+persistence PASS. Keep shared fixtures.json byte-for-byte at SHA256
+3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2; the50m Gale
+funding is local to its current-price chronology case. The frozen scheduler
+counterfactual restores only old investment/new-Deed inputs; actual-current
+one-second/whole/split/rollback checks remain. No hash pin, archive or deadline
+was weakened. The4h simulation passes its original5s bound after avoiding
+redundant continuing-catalog scans; lower-counter paid frontiers and cold
+restoration have40 focused assertions. Windows medium-Farm CDP timeout also
+reproduces on originalc18; required Linux gates remain mandatory.
 
-PR198394e3: Wisp scroll, permanent progression, Lab and Comet PASS. Main lane
-advanced to old Forge-cap multiplier selector; frozen offline comparison only
-differs in deliberately removed saved quantity (assert1 and normalize reference).
-Tree V8 PASS; one original Prism browser case timed out at unchanged25s with
-no QA result, while its three persistence cases and five causal controls PASS;
-retain evidence and rerun without a timeout waiver. Self-review found additional
-old Forge selector expectations in original browser matrices; adapted player
-actions toone-level UI and retained all seven internal batch quantities/caps/
-debits. Old quantity restore coverage now requires1, both slots, unchanged paid
-ownership/wallets, actual reload/backup and absence of quantity controls. Native
-Formation viewport failure controls retained using an actual fourth-to-fifth
-Field action under the new limit. No independent reviewer was used.
+PR64 ready, branch feature/wisp-gameplay-pacing-001. Pre-review CI head
+ca2b97f20300e596c73b5b9aed9ad9323814b900; main remainsc18e6189. That candidate
+passes Tree, Comet, Lab, permanent, Wisp(Win/Linux same-head rerun) and isolated
+offline. Main, Forge and shared-UI lanes are running. Two cold Linux Wisp runs
+failed at Browser.getVersion before any check; failed/pass receipts preserved.
+Shared standalone caught an accidental frozen-fixture edit; it was restored,
+then the source-identity step passed. Older run failures remain evidence, not
+waivers. Current receipts: [local](../qa/wisp-gameplay-pacing-001/local/),
+[remote](../qa/wisp-gameplay-pacing-001/remote/).
 
-Local final-product hash135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432:
-complete offline18records PASS (557s locally; unchanged300s CI gate PASS onfc7),
-old quantity VM439/browser1033 across6profiles PASS, cap20 native576/12profiles
-PASS, Forge native queue/purchase/focus/scroll PASS. Original browser Deed
-effects, Bond descriptions, R3 reload and contradictory Formation persistence
-PASS using existing CDP-pipe transport and original25s deadline. Tests for
-historical rebuilds explicitly seed already-earned access; current gates are
-tested separately. Updated expanded ability-description oracle to require
-short100-charge explanation plus complete unchanged mechanics disclosure.
-Local receipts and compressed browser logs are in
-[local evidence](../qa/wisp-gameplay-pacing-001/local/); Linux integrated and
-installed APK results remain pending. fc7 Tree/Comet/Lab/Wisp/permanent CI PASS;
-Forge and main lanes still running. No merge/build/publication yet.
+Automated GitHub review ofca2 found P2: How it works closed on live Wisp renders
+([finding](https://github.com/xariib/Lumenfall/pull/64#discussion_r4637885600)).
+Fixed per-Wisp open state and summary focus/viewport using existing action-view
+restoration. Current product SHA256
+0144ada613e5538e95eca655bdcf19318cf1134544e04159432ed34fe3295d58.
+All18compact profiles PASS with native keyboard/touch opening, repeated actual
+renders/affordability, open/focus/viewport retention, state/both-slot purity and
+closed-state retention. Removing open-state restoration fails the exact new
+assertion. This checkpoint accompanies the review fix; resolve that thread and
+restart exact-source gates after publishing it. This is automated review plus
+self-review, not human review.
 
-Checkpoint03:31CET: ordinary-browser sweep88cases found four stale expectation
-failures (feedback variants count twice, simultaneous Gale funding and Deed
-totals), plus4h performance and two transport failures. Corrected actual Tide
-feedback boundary5/25defeats and funded simultaneous Gale50m while preserving
-its same-timestamp order assertion. Both feedback modes, chronology and endgame
-checks PASS. Continuing catalog now scans receipt identities once and skips
-unchanged runtime frontiers; its first pass already registers the next goal.
-Removed duplicate post-grant scan. Strict4h performance<5s PASS; added40checks
-for lower-counter paid receipts/next goal/cold load: core415 plus5controls PASS.
-Medium-Farm20s CDP timeout reproduces on originalc18 baseline; required Linux
-deadline stays unchanged. Latest product hash11170c9c24e8be77bb74ac21183747498f67f8f8c3252ee56afa5d663b25e51d.
-Save optimized receipts in local QA; rerun all CI before integration/build.
+Android QA now requires native input opening all eight compact cards, retained
+Stone20 gold/no-next ability, and an actual ability explanation surviving a real
+purchase refresh. A separate installed schema6 six-member owner fixture must
+retain paid progress, cap active/presets5, refund120Prisms once in both slots,
+then cold-launch and freshly save without repeating it. Receipt guard rejects
+missing/wrong proof; tooling PASS. These installed checks are implemented, not
+yet executed. Package/signer/origin remain established. Public verifier helper
+is prepared locally. No merge/build/publication yet; latest public APK0.2.139.
 
-03:40CET: a4 CI passed Tree, Comet, Lab, Wisp(Win/Linux rerun), permanent,
-isolated offline and focused migration. Wisp first Linux attempt failed before
-checks at Browser.getVersion; saved failed/pass receipts; no deadline changed.
-Shared standalone gate caught the changed frozen fixture hash. Restored
-fixtures.json exactly to3f7ca9f5c74034cd42ac242385f62d94776feb5e26e98be7f7059baadaeae8f2;
-the50m Gale funding is now explicitly local to chronology-simultaneous-order.
-That original ordering test and upgraded receipt tooling PASS after correction.
-No hash pin or archive was weakened. Rerun exact candidate gates before merge.
-
-Android acceptance now requires actual native touches opening all eight compact
-cards, a preserved completed Stone20 ability with gold/no arrow/next, and a
-separate installed schema6 six-member owner fixture. The latter must retain
-all paid progress, cap active/presets5, credit120Prisms once in both save slots,
-then cold-launch and freshly save with no second refund. Receipt validator
-rejects missing/wrong migration proof. These native checks are implemented,
-not yet executed. No APK built/published and main not integrated yet.
-
-Next: pass remaining local/PR gates, finish complete self-review, integrate64,
-run exact-main required/extra gates, then build signed APK, verify real installed
-upgrade/updater/retail launch and anonymous public feed/assets. Save durable
-receipts and final checkpoint. Physical phone/TalkBack/human pacing and Google's
-device verdict remain unknown; keep task/chat open until required acceptance.
+Next: finish review fix/current-source CI, self-review final diff, integrate64,
+run all required/extra exact-main gates, then signed APK and actual emulator
+upgrade/updater/retail launch. Verify anonymous latest/tag feeds, public APK
+bytes and all assets; save receipts, project state and final status in GitHub.
+Keep task/chat open for physical phone, WebView60 DOM, TalkBack, human pacing
+and Google's actual verdict. Preserve separate Play preparation PR63. Temporary
+test outputs remain uncommitted after automatic cleanup review rejection.

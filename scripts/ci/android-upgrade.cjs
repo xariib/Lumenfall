@@ -160,6 +160,12 @@ async function verifyInstalledWispCard(page,report){
  // All disclosures were opened with actual native touch. Retain the real
  // purchase and focus assertions on the expanded original action below.
  assert(await page.evaluate(`(()=>{const p=document.querySelector('[data-wisp-progression="ember"]');return p&&p.tagName==='DETAILS'&&p.open&&p.querySelector('summary')&&p.getClientRects().length>0;})()`),'Installed compact Wisp disclosure opens its upgrades');
+ await page.evaluate(`document.querySelector('[data-ability-details=ember]').scrollIntoView({block:'center',behavior:'instant'})`);
+ await page.command('Page.captureScreenshot',{format:'png'});
+ const mechanicsPoint=await page.evaluate(`(()=>{const e=document.querySelector('[data-ability-details=ember]'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,hit:document.elementFromPoint(x,y)?.closest('summary')===e};})()`);
+ assert(mechanicsPoint.hit,'Installed ability explanation is reachable');tap(mechanicsPoint.x,mechanicsPoint.y);
+ let mechanicsOpen=false;for(let i=0;i<30;i++){mechanicsOpen=await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`);if(mechanicsOpen)break;await pause(50);}
+ assert(mechanicsOpen,'Native Android touch opens complete ability explanation');
  const target=await page.evaluate(`(()=>{
    const button=document.querySelector('[data-wisp-card="ember"] .wisp-action-primary[data-module="ember"]');
    if(!button)return {error:'Funded Ember Ability is not the highlighted original action'};
@@ -185,6 +191,8 @@ async function verifyInstalledWispCard(page,report){
  assert.equal(purchase.level,target.before+1,'Trusted Android WebView touch buys exactly one Ability level');
  assert.equal(purchase.priceCount,2,'Next Ability price remains visible after native purchase');
  assert(purchase.focused&&!purchase.name.includes('Next ·')&&purchase.name.includes('Upgrade Ability')&&purchase.name.includes('Ember Wisp'),'Native purchase restores focus with fresh accessible action');
+ assert(await page.evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'Installed ability explanation remains open after actual upgrade refresh');
+ report.installedCompactWisps.mechanicsRetainedAfterPurchase=true;
  report.installedWispTouch={status:'PASS',fromLevel:target.before,toLevel:purchase.level,focusedName:purchase.name};
  report.installedWispCard={status:'PASS',...ui,screenshot:'release-evidence/installed-wisp-card.png'};
  console.log('Android installed Wisp UI acceptance: '+JSON.stringify(report.installedWispCard));
