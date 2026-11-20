@@ -94,6 +94,36 @@ intermediate bytes. Original failures preserved in local validation-evidence:
 older six-slot/old-price/fixed-Deed/UI assertions now require exact updated
 expectations for intentional requirements; these are not waived.
 
-Next: finish compact/native-input acceptance, update and pass affected original
-regression oracles/controls, run exact-source PR/integrated gates, then signed
-Android/public delivery. No APK built/published yet. Keep task/chat open.
+Checkpoint20 November02:56CET: PR64 is draft, last pushed47d3e7ce. Local
+Node24.22.1 core375 plus5causal mutants PASS; requirement2546, Deeds495,
+team1924, early curve2400, full audit318 plus3controls, Comet12776 and
+1075489 numerical cases, Tree12215price/14074economy, Forge480 PASS.
+Compact18profiles/42678checks and upgrade-state15348checks PASS on earlier
+candidate bytes; full Wisp scroll3277 and expanded upgrades12600/12profiles
+PASS on47d3 product bytes. Clarity1432checks/18profiles PASS. Corrected startup
+goal to Rift5/25kills after finding its remaining Rift3 text during self-review.
+
+PR47d3 CI: Comet, Lab and shared UI PASS. Failed evidence in this task's
+[remote directory](../qa/wisp-gameplay-pacing-001/remote/). Failures exposed
+remaining old assumptions: fixed76/17Deeds, expanded cards, Forge quantity5,
+new rarity milestone10Comets, retired Tree path count and frozen old-price
+offline oracle. Corrected exact expectations; actual-current checks retained.
+The frozen scheduler counterfactual restores only old investment/new-Deed
+inputs; current-price full one-second/whole/split/rollback checks remain.
+Manual offline clock fixture funded100trillion to retain real Push/Farm/Push;
+unfunded original wallet also retained as a second complete clock witness.
+Long simulations and updated permanent UI are currently running locally.
+
+Android acceptance now requires actual native touches opening all eight compact
+cards, a preserved completed Stone20 ability with gold/no arrow/next, and a
+separate installed schema6 six-member owner fixture. The latter must retain
+all paid progress, cap active/presets5, credit120Prisms once in both save slots,
+then cold-launch and freshly save with no second refund. Receipt validator
+rejects missing/wrong migration proof. These native checks are implemented,
+not yet executed. No APK built/published and main not integrated yet.
+
+Next: pass remaining local/PR gates, finish complete self-review, integrate64,
+run exact-main required/extra gates, then build signed APK, verify real installed
+upgrade/updater/retail launch and anonymous public feed/assets. Save durable
+receipts and final checkpoint. Physical phone/TalkBack/human pacing and Google's
+device verdict remain unknown; keep task/chat open until required acceptance.

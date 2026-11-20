@@ -64,14 +64,14 @@ window.runWispUpgradeQa = function(){
     var after=b.get();p=progression('ember');
     ok(after.heroRarity.ember===5 && after.wispModules.ember===20 && after.wispUltimate.ember,'last '+action+' completes existing purchase');
     ok(after.lumen===before.lumen-(cost.lumen||0) && after.shards===before.shards-(cost.shard||0) && after.sigils===before.sigils-(cost.sigil||0),'existing deterministic '+action+' debit');
-    ok(p.tagName!=='DETAILS'&&visible(p),'last purchase preserves visible progression');
+    ok((p.tagName==='DETAILS'&&p.open)&&visible(p),'last purchase preserves visible progression');
     // WISP_RARITY_SCROLL_001 deliberately keeps completed actions on a
     // noninteractive same-card fallback so repeated Enter cannot fold the card.
     var card=p.closest('[data-wisp-card]');
     ok(document.activeElement===card && card.tabIndex===-1 && card.getAttribute('data-wisp-action-focus')===action,
       'last '+action+' purchase focus stays on noninteractive same Wisp card: '+document.activeElement.outerHTML);
     var frozen=b.get(),slots=b.slots();p.open=false;b.render();
-    ok(progression('ember').tagName!=='DETAILS'&&visible(progression('ember')),'passive render cannot collapse upgrades');
+    ok((progression('ember').tagName==='DETAILS'&&progression('ember').open)&&visible(progression('ember')),'passive render cannot collapse upgrades');
     same(b.get(),frozen,'fold preserves state');same(b.slots(),slots,'fold does not save');
   });
   s=seed('ember',4,20,false,true);s.spirits.ember=b.rarityRequirement(4);b.set(s);b.render();
@@ -80,17 +80,17 @@ window.runWispUpgradeQa = function(){
   var afterRarity=b.get();p=progression('ember');
   ok(afterRarity.heroRarity.ember===5 && !afterRarity.wispUltimate.ember,'final Rarity purchase retains unowned Ultimate');
   ok(afterRarity.lumen===beforeRarity.lumen-rarityPrice.lumen && afterRarity.shards===beforeRarity.shards-rarityPrice.shard,'existing deterministic final Rarity debit');
-  ok(p.tagName!=='DETAILS' && visible(p.querySelector('[data-ultimate]')) && !p.querySelector('[data-ultimate]').disabled,'reaching Mythic still exposes the unfinished Ultimate');
+  ok((p.tagName==='DETAILS'&&p.open) && visible(p.querySelector('[data-ultimate]')) && !p.querySelector('[data-ultimate]').disabled,'reaching Mythic still exposes the unfinished Ultimate');
   p.querySelector('[data-ultimate]').focus();p.querySelector('[data-ultimate]').click();
-  ok(progression('ember').tagName!=='DETAILS'&&visible(progression('ember')),'Rarity then Ultimate leaves unfinished Empower and Mastery visible');
+  ok((progression('ember').tagName==='DETAILS'&&progression('ember').open)&&visible(progression('ember')),'Rarity then Ultimate leaves unfinished Empower and Mastery visible');
   // Old data has no new schema/ownership rewrite on any persistence path.
   ['canonical','recovery','backup'].forEach(function(route){
     [false,true].forEach(function(complete){
       s=seed('ember',5,complete?20:19,true,false);b.set(s);b.save();
       var before=b.get();b.roundTrip(route);b.render();
       var after=b.get();['spirits','heroRarity','wispModules','wispUltimate','lumen','shards','sigils','schemaVersion'].forEach(function(key){same(after[key],before[key],route+' preserves '+key);});
-      ok(progression('ember').tagName!=='DETAILS',route+' retains direct upgrades');
-      if(complete){s.wispModules.ember=19;b.set(s);b.render();ok(progression('ember').tagName!=='DETAILS'&&visible(progression('ember').querySelector('[data-module]')),'restored unfinished Module remains directly reachable');}
+      ok((progression('ember').tagName==='DETAILS'&&progression('ember').open),route+' retains direct upgrades');
+      if(complete){s.wispModules.ember=19;b.set(s);b.render();ok((progression('ember').tagName==='DETAILS'&&progression('ember').open)&&visible(progression('ember').querySelector('[data-module]')),'restored unfinished Module remains directly reachable');}
     });
   });
   var maxed=seed('ember',5,20,true,true);maxed.spirits.ember=10000;maxed.wispMastery.ember=2000;b.set(maxed);b.render();var gold=q('[data-wisp-card=ember]');ok(gold.classList.contains('wisp-fully-maxed')&&!gold.querySelector('[data-empower],[data-module],[data-rarity],[data-ultimate],[data-mastery]'),'only fully maxed Wisp becomes gold without upgrade actions');

@@ -6,6 +6,10 @@ function verify(file,apk,version){
  assert.equal(r.package,'com.lumenfall.app');assert.equal(r.origin,'https://localhost');assert.equal(r.physicalDevice,false);
  assert(r.beforeUid&&r.beforeUid===r.afterUid,'Same actual Android UID');assert(r.candidateVersionCode>r.baselineVersionCode,'Actual version increases');assert.equal(r.candidateVersionCode,Number(version));
  assert.equal(r.apkSha256,crypto.createHash('sha256').update(fs.readFileSync(apk)).digest('hex'),'Receipt identifies exact APK');
+ const m=r.installedFiveWispMigration;assert(m,'Installed five-Wisp migration required');assert.equal(m.status,'PASS');assert.equal(m.refund,120);assert.equal(m.activeCount,5);
+ for(const flag of ['ownedRetained','coldRestart','refundPaidOnce','bothSaveSlots'])assert.equal(m[flag],true,'Installed migration '+flag);
+ assert.equal(m.afterPrisms,m.beforePrisms+120,'Exactly one installed refund');assert(m.retainedBenchedLevel>0,'Sixth Wisp retained on bench');
+ assert.equal(r.installedCompactWisps?.status,'PASS');assert.equal(r.installedCompactWisps.nativeInput,true);
  return r;
 }
 module.exports={verify};

@@ -7,7 +7,8 @@ const seed=JSON.parse(fs.readFileSync(path.join(__dirname,'../../docs/qa/offline
 // prices. The original zero-wallet device fixture remains byte-for-byte intact
 // and is independently covered by offline-catchup's unfunded reconstruction.
 seed.lumen=100000000000000;
-function verify(html){
+function verify(html,fixture=seed,requireRetry=true){
+ const seed=fixture;
  let checks=0;const records=[];
  function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}
  function compare(a,b,p){
@@ -36,12 +37,12 @@ function verify(html){
   w.clock(seed.lastSeen+28800000);w.q.save();const state=clone(w.q.get());records.push({chunk,cold,retreats,retries,kills:state.totalKills-initial.totalKills,taps:state.totalTaps-initial.totalTaps});return state;
  }
  const whole=run(28800,false),seconds=run(1,false),cold=run(60,true);
- checks++;assert(records.every(r=>r.retreats>0&&r.retries>0),'each partition actually crosses Push/Farm/Push');
+ checks++;assert(records.every(r=>r.retreats>0&&(!requireRetry||r.retries>0)),'each partition crosses the required real mode transitions');
  compare(whole,seconds,'whole/seconds');compare(whole,cold,'whole/cold');return {checks,records};
 }
-function run(html,negative){const result={status:'PASS',sourceSha256:crypto.createHash('sha256').update(html).digest('hex'),...verify(html),controls:[]};
+function run(html,negative){const unfunded={...seed,lumen:0};const result={status:'PASS',sourceSha256:crypto.createHash('sha256').update(html).digest('hex'),...verify(html),unfundedClock:verify(html,unfunded,false),controls:[]};
  if(negative){const a='if(binaryClock){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));';assert.equal(html.split(a).length,2);let caught;
-  try{verify(html.replace(a,"if(binaryClock&&state.riftMode==='push'){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));"));}catch(e){caught=e.message;}
+  try{const mutant=html.replace(a,"if(binaryClock&&state.riftMode==='push'){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));");verify(mutant);verify(mutant,unfunded,false);}catch(e){caught=e.message;}
   assert(caught,'dropping the exact clock in Farm must fail complete partition parity');result.controls.push({name:'farm-clock-rebase',caught});
  }
  return result;
