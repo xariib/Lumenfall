@@ -109,86 +109,56 @@ redundant continuing-catalog scans; lower-counter paid frontiers and cold
 restoration have40 focused assertions. Windows medium-Farm CDP timeout also
 reproduces on originalc18; required Linux gates remain mandatory.
 
-PR64 ready, branch feature/wisp-gameplay-pacing-001. Pre-review CI head
-ca2b97f20300e596c73b5b9aed9ad9323814b900; main remainsc18e6189. That candidate
-passes Tree, Comet, Lab, permanent, Wisp(Win/Linux same-head rerun) and isolated
-offline. Main, Forge and shared-UI lanes are running. Two cold Linux Wisp runs
-failed at Browser.getVersion before any check; failed/pass receipts preserved.
-Shared standalone caught an accidental frozen-fixture edit; it was restored,
-then the source-identity step passed. Older run failures remain evidence, not
-waivers. Current receipts: [local](../qa/wisp-gameplay-pacing-001/local/),
-[remote](../qa/wisp-gameplay-pacing-001/remote/).
+Earlier PR passes/failures are source-labelled in [local](../qa/wisp-gameplay-pacing-001/local/)
+and [remote](../qa/wisp-gameplay-pacing-001/remote/). Cold Browser.getVersion
+failures occurred before checks; unchanged-source reruns passed. Original fixture
+edit was restored byte-for-byte. No failed result is a waiver.
+Automated [ability disclosure finding](https://github.com/xariib/Lumenfall/pull/64#discussion_r4637885600)
+was repaired and resolved; this and the final diff review are automated/self-review,
+not independent human review. Installed native checks are now executed below.
 
-Automated GitHub review ofca2 found P2: How it works closed on live Wisp renders
-([finding](https://github.com/xariib/Lumenfall/pull/64#discussion_r4637885600)).
-Fixed per-Wisp open state and summary focus/viewport using existing action-view
-restoration. Current product SHA256
-0144ada613e5538e95eca655bdcf19318cf1134544e04159432ed34fe3295d58.
-All18compact profiles PASS with native keyboard/touch opening, repeated actual
-renders/affordability, open/focus/viewport retention, state/both-slot purity and
-closed-state retention. Removing open-state restoration fails the exact new
-assertion. This checkpoint accompanies the review fix; resolve that thread and
-restart exact-source gates after publishing it. This is automated review plus
-self-review, not human review.
+05:08CET checkpoint: candidate3a9f01403443f7376e3508192104607052667636,
+product SHA256d8f5f17f1eb130bcf286d2bc14846327dcb75c4429b428b5af39fd20b6162121.
+Automated ability-disclosure finding repaired; review thread resolved. Native
+private attempts44664790331/44666715234 exposed detached click/gesture targets;
+44668226758 opened seven cards but Titan failed its pre-tap hit test. Preserved
+all failure evidence in the corresponding android-validation directories.
+Guard only markup replacement through native activation while settling every
+simulation event; release after input/cancel/blur/hide. Reuse exact-scroll action
+restoration for outer summaries when old WebViews ignore preventScroll.
+18mobile profiles and eight-card legacy-focus replay PASS; removing protection
+fails exact input/scroll assertions. Core415/5controls and source syntax PASS.
+Premerge44668234962 also found an old-price4h wallet constant. Keep its original
+price endpoint15859808.49997803 AND current-price11737479.4999781, with identical
+Shard4026523.0000087842, unchanged fixture bytes/tolerances and full chunk/state
+comparison.14783checks/negative control PASS; no production timing change.
 
-Android QA now requires native input opening all eight compact cards, retained
-Stone20 gold/no-next ability, and an actual ability explanation surviving a real
-purchase refresh. A separate installed schema6 six-member owner fixture must
-retain paid progress, cap active/presets5, refund120Prisms once in both slots,
-then cold-launch and freshly save without repeating it. Receipt guard rejects
-missing/wrong proof; tooling PASS. These installed checks are implemented, not
-yet executed. Package/signer/origin remain established. Public verifier helper
-is prepared locally. No merge/build/publication yet; latest public APK0.2.139.
+Private signed validation44670896819 (version1000143, publish=false) PASS:
+both saves/paid work/UID/origin retained, all eight trusted Wisp disclosures,
+ability explanation retained after actual purchase, cards288–292px at320px,
+120Prism refund exactly once, firstfive active/presets, sixth owned on bench,
+cold restart, native updater install/Open and retail Android launch.
+[Private receipt](../qa/wisp-gameplay-pacing-001/android-private-validation/receipt.json).
+Google verdict explicitly NOT_TESTED. Public APK/feed still0.2.139.
+Comet/Lab/Forge/Tree/sharedUI/permanent/Wisp-scroll PR lanes at3a9f0140 PASS;
+premerge44670894354 remains running, isolated offline PASS. Self-review recorded
+in QA; no independent human review. PR63 still open at a50cc488, mainc18e6189.
+Next: finish full PR gate, merge64 at expectedhead, run all nine exact integrated
+main gates, publish signed APK then verify anonymous assets/feed and save final
+task/PROJECT_STATE/evidence in GitHub. Do not archive while required physical/
+Google acceptance remains unknown. No new questions or permission requests.
 
-Next: finish review fix/current-source CI, self-review final diff, integrate64,
-run all required/extra exact-main gates, then signed APK and actual emulator
-upgrade/updater/retail launch. Verify anonymous latest/tag feeds, public APK
-bytes and all assets; save receipts, project state and final status in GitHub.
-Keep task/chat open for physical phone, WebView60 DOM, TalkBack, human pacing
-and Google's actual verdict. Preserve separate Play preparation PR63. Temporary
-test outputs remain uncommitted after automatic cleanup review rejection.
-
-04:01CET: review fix published at3af385a9ec1dfcb4fac5e0223f859d3f8af5f783;
-thread resolved after18-profile native-input pass and causal failure proof.
-Non-publishing Android validation run44664790331 launched at that head with
-publish=false to expose installed migration/UI issues while CI runs. It cannot
-update the public feed. Signed public release still requires integrated-main
-gates and a separate publish=true build. No public update has been published.
-
-04:16CET: candidate44664790331 failed on native Tide disclosure activation after
-old/new signed save preservation passed. No APK published. Reproduced lost
-activation when input-time rendering detaches a summary during its click.
-Repaired that one activation on the same current Wisp disclosure (also Enter/
-Space) without changing simulation ordering, state or save behavior. All18
-mobile profiles PASS, including forced refreshes for progression/damage/ability
-summaries at320/390/430px; removing repair fails the exact native-input assertion.
-Core415 plus5controls and source checks PASS. Native QA now records trusted,
-calibrated disclosure events and failure screenshots. Failure evidence saved in
-[private validation](../qa/wisp-gameplay-pacing-001/android-validation-44664790331/).
-Current product SHA256e64a6999258d038e4a187827c03f4d882dc458bea322f152d4a652ec278eb6ac.
-Publish repair, repeat non-public native validation and exact-source CI, then
-integrate/main gates/public release. Keep public feed unchanged until checks pass.
-
-04:30CET: second private validation44666715234 retained saves but traced Tide's
-trusted pointerdown at its exact center, detached target, and missing click.
-Now hold Wisp markup replacement through disclosure activation while settling
-all combat/purchases; release the UI guard after the event, on cancel/blur/hide.
-No simulation events are skipped. Input guards plus same-disclosure fallback
-PASS18mobile profiles; forced pointer-down/click/Enter/Space cases preserve
-target, single activation, state and saves. Removing protection fails the
-native-input assertion. Source 3ac505d788570088c5f351bb174923ad53ff57644218b8dd26a2fb5b7b62c177.
-Publish the repair and launch third private validation, then exact-source CI.
-Failure evidence: [second native run](../qa/wisp-gameplay-pacing-001/android-validation-44666715234/).
-
-04:55CET: private run44668226758 opened seven cards with retained trusted input;
-Titan failed its pre-tap hit test. Legacy focus replay reproduced off-screen
-scroll movement when preventScroll is ignored. Outer summaries now use existing
-exact-scroll restoration. Eight-card replay and18mobile profiles PASS; removing
-repair fails its specific scroll assertion. Failed native geometry/screenshots
-are now recorded. Product SHA256d8f5f17f1eb130bcf286d2bc14846327dcb75c4429b428b5af39fd20b6162121.
-Premerge44668234962 exposed an old-price4h wallet constant. Retained that exact
-historical-price receipt AND all current-price chunk comparisons; current native
-wallet11737479.4999781, old15859808.49997803, both Shards4026523.0000087842.
-14783checks/negative control PASS, original shared fixture bytes unchanged.
-Core415/5controls and syntax PASS. Publish repair, repeat private native build
-and latest-source/main gates before public release. No public APK published yet.
+05:18CET: full PR run44670894354 failed only the independent-reference source
+binding after preceding checks passed. Replayed all four released one-second
+windows against original VM hashes and browser reward totals; then independently
+recomputed current-price four8h windows. Current kills378/320/321/323, no resets
+or Prism changes. Full-window outcomes/all other saved fields exactly match;
+phase0 enemy HP differs1.164e-10, within two native rounding units (stricter than
+the existing HP tolerance); phases1–3 exact. Original browser/VM vectors retained
+in the receipt/history, fixtures untouched. Fresh reference binds actual product
+bytes; no gate/deadline weakened. [Replay receipt](../qa/wisp-gameplay-pacing-001/local/offline-reference.json)
+and tests/behavioral/wisp-gameplay-offline-reference.cjs record the method.
+Publish reference/evidence checkpoint and repeat latest PR gates, then main
+integration/gates/public release as above. Product remains identical to native
+PASS3a9f0140; no additional product fix or private build is needed for this test
+reference correction. Task/chat remains open; public update not published yet.

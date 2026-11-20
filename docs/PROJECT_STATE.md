@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+20 November: [Wisp development/PR64](tasks/WISP_GAMEPLAY_PACING_001.md) is in
+progress: staged recruitment/development prices, five Active slots with one-time
+120Prism sixth-slot refund, continuing Strike/Rift Deeds and compact Wisp cards.
+Private signed build44670896819 PASS for native saves/input/migration/updater/
+retail launch; productd8f5f17f matches candidate3a9f0140. Full premerge caught a
+stale offline-reference binding, now refreshed through independent one-second
+windows with original vectors retained. Latest PR gates, integration, exact-main
+gates and public APK/feed still pending; latest public remains0.2.139. Google
+harmful classification NOT_TESTED. Separate Play PR63 remains untouched. Physical
+phone/WebView60/TalkBack/human pacing acceptance stays open; self-review only.
+
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
 [Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),
 source e6139c98: all maxed upgrades gold, prerequisite locks explain unlocks

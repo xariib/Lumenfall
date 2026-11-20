@@ -1,0 +1,47 @@
+{
+  "id": 44670894354,
+  "sha": "3a9f01403443f7376e3508192104607052667636",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44670894354",
+  "jobs": [
+    {
+      "id": 136071323242,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T03:55:03Z",
+      "completed": "2026-11-20T04:11:43Z",
+      "log": "job-136071323242.log.gz",
+      "rawSha256": "d1a8348a8ce71f62db2ac42e4f9fd59d40e762bde20824147bb84fe3533026d9",
+      "summary": [
+        "2026-11-20T03:55:50.2371488Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T03:58:41.1095819Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-20T03:59:14.3559937Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-20T03:59:25.3310864Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:39063/index.html:14664:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:39063/index.html:14672:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"6d31aa4d9020bfeafbad74d4d3c8f2bfccdd42ff084c83bf291ed4c028a697d9\",\"mutant\":true}",
+        "2026-11-20T04:00:33.3371692Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T04:01:01.6887006Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T04:02:10.3651621Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T04:05:55.4132562Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T04:06:03.3615058Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T04:06:11.4209372Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T04:06:11.4382019Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-20T04:11:25.4569101Z SyntaxError: Unexpected token '='",
+        "2026-11-20T04:11:26.9827906Z   throw new AssertionError(obj);",
+        "2026-11-20T04:11:26.9828764Z AssertionError [ERR_ASSERTION]: Regenerate independent one-second windows after product changes"
+      ]
+    },
+    {
+      "id": 136071323487,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T03:55:03Z",
+      "completed": "2026-11-20T03:57:52Z",
+      "log": "job-136071323487.log.gz",
+      "rawSha256": "eacc93771ad41be57aa2be5e890c4ea498eafcb7c3691a3b0b1bc2a22c11977d",
+      "summary": [
+        "2026-11-20T03:55:33.0185042Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T03:57:48.0067952Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}
