@@ -51,3 +51,17 @@ remote feature/wisp-gameplay-pacing-001 while d98 PR CI is being reused. After
 d98 passes, merge64 with expected head=d98, then incorporate the QA follow-up
 and run all9 exact-main gates before the public signed build. Main is stillc18;
 latest public remains0.2.139. No archive or Google-warning-clearance claim.
+
+06:40CET: QA private44680838036 attempt2 PASS on code6fe576fb/version1000147.
+Local APK-bound receipt guard and exact packaged source-assets PASS; upgrade,
+both migration slots/cold refund120 once, native compact/input/explanation,
+official+candidate updater install/Open and retail normal launch all PASS.
+Official metadata response200,56requests remaining, latest tag1000139. This does
+not establish the cause of the earlier missing-tag response. Native first
+attempt adb-offline failure remains saved. Evidence: android-private-current/.
+Current local QA follow-ups after6fe are docs/evidence only; code is identical.
+PR64 remains d98 with every lane except full premerge PASS. Full rerun44679160270
+still running; isolated offline PASS. Once it passes, merge64 at expected d98,
+incorporate QA guards from this branch into main, run all9 exact-main gates,
+then publish signed APK and verify anonymous public metadata/APK bytes/feed.
+Do not push this QA branch history into the still-open PR and restart its CI.
