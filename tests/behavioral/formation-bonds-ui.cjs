@@ -43,7 +43,7 @@ async function run(){
   const rows=await evaluate(`Array.from(document.querySelectorAll('#bond-card .bond-row')).map(e=>({name:e.querySelector('.bond-name').textContent,partners:e.querySelector('.bond-req').textContent,effect:e.querySelector('.bond-effect').textContent,width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right,scroll:e.scrollWidth,client:e.clientWidth}))`);
   assert(rows.length===8&&rows.every(r=>r.partners.includes(' + ')&&r.right<=width+.5&&r.scroll<=r.client+1),'all eight full partner rows fit '+JSON.stringify(rows));
   const controls=await evaluate(`Array.from(document.querySelectorAll('[data-formation-preset]')).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {w:r.width,h:r.height,right:r.right,color:s.color,background:s.backgroundColor};})`);
-  assert(controls.length===3&&controls.every(c=>c.w>=44&&c.h>=44&&c.right<=width+.5),'named preset controls fit and >=44px');assert(controls.every(c=>contrast(c.color,c.background)>=4.5),'preset text contrast');
+  assert(controls.length===3&&controls.every(c=>c.w>=44&&c.h>=44&&c.right<=width+.5),'named preset controls fit and >=44px '+JSON.stringify({width,textScale,motion,controls}));assert(controls.every(c=>contrast(c.color,c.background)>=4.5),'preset text contrast');
   // Establish actual keyboard modality before asserting a keyboard focus ring.
   await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
   await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});

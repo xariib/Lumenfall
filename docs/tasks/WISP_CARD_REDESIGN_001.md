@@ -168,3 +168,15 @@ Private149 evidence saved under ../qa/wisp-card-redesign-001/private-149/; it is
 7fe93b01/8927afb9, before the gold-border-only fix, not final release acceptance.
 Next: publish driver fix and finish all exact-head/integrated checks and public
 APK. Current PR test completion and physical/Google verdict remain open.
+
+20 November11:49: e7098985 passes eight workflows on the first attempt,
+including both Wisp OS jobs and shared UI. Pre-merge reaches settled-screen
+formation-bonds-mobile, where compact preset44px becomes43.77997px during the
+existing scale(.995) entrance animation at430px/normal text. Reproduced locally
+with the unchanged44px assertion; kept diagnostic geometry in its message.
+Raised only preset minimum to45px; no measurement wait/threshold was changed.
+The original native12-profile scenario now passes; roster cards remain175px.
+Product f35113b0f2e194288cc02d63ae0e8bd87ca29191a19c491f7e27b7be30fdf193.
+Independent historical/current one-second windows, whole-window comparison and
+636-function preservation regenerated PASS. Next: exact-head CI, integration,
+exact-main validation and signed public release/update; no public change yet.
