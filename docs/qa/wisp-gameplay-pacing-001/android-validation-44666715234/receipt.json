@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "published": false,
+  "runId": 44666715234,
+  "sourceCommit": "f38400e6345fdb3a2e2936e10abd887abe086f62",
+  "failure": "Trusted native click reaches wisp-details:tide",
+  "finding": "Trusted pointerdown reached Tide at the calibrated CSS center; target was detached during input-time settlement and no summary click arrived. Preserve the DOM through the native gesture while settling all simulation events, then resume dirty rendering after activation.",
+  "repairSourceSha256": "3ac505d788570088c5f351bb174923ad53ff57644218b8dd26a2fb5b7b62c177",
+  "limits": "Failed private validation, not a release or complete native acceptance."
+}

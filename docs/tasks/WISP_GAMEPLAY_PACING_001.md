@@ -168,3 +168,14 @@ calibrated disclosure events and failure screenshots. Failure evidence saved in
 Current product SHA256e64a6999258d038e4a187827c03f4d882dc458bea322f152d4a652ec278eb6ac.
 Publish repair, repeat non-public native validation and exact-source CI, then
 integrate/main gates/public release. Keep public feed unchanged until checks pass.
+
+04:30CET: second private validation44666715234 retained saves but traced Tide's
+trusted pointerdown at its exact center, detached target, and missing click.
+Now hold Wisp markup replacement through disclosure activation while settling
+all combat/purchases; release the UI guard after the event, on cancel/blur/hide.
+No simulation events are skipped. Input guards plus same-disclosure fallback
+PASS18mobile profiles; forced pointer-down/click/Enter/Space cases preserve
+target, single activation, state and saves. Removing protection fails the
+native-input assertion. Source 3ac505d788570088c5f351bb174923ad53ff57644218b8dd26a2fb5b7b62c177.
+Publish the repair and launch third private validation, then exact-source CI.
+Failure evidence: [second native run](../qa/wisp-gameplay-pacing-001/android-validation-44666715234/).

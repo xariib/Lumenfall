@@ -10053,8 +10053,22 @@ function highlightWispActions(){
   // Finalize cue names before render/refresh callers restore native focus.
   presentControlStates(els['spirit-list']);
 }
-var liveSpiritsDirty=false,lastLiveSpiritsAt=-Infinity;
+var liveSpiritsDirty=false,lastLiveSpiritsAt=-Infinity,wispDisclosureInputPending=false,wispDisclosureInputTimer=null;
+function beginWispDisclosureInput(){
+  if(wispDisclosureInputTimer!==null)clearTimeout(wispDisclosureInputTimer);
+  wispDisclosureInputTimer=null;wispDisclosureInputPending=true;
+}
+function releaseWispDisclosureInput(){
+  if(wispDisclosureInputTimer!==null)clearTimeout(wispDisclosureInputTimer);
+  wispDisclosureInputTimer=null;wispDisclosureInputPending=false;
+}
+function endWispDisclosureInput(){
+  if(!wispDisclosureInputPending)return;
+  if(wispDisclosureInputTimer!==null)clearTimeout(wispDisclosureInputTimer);
+  wispDisclosureInputTimer=setTimeout(releaseWispDisclosureInput,0);
+}
 function renderSpirits(keepScroll){
+  if(wispDisclosureInputPending){liveSpiritsDirty=true;return;}
   liveSpiritsDirty=false;lastLiveSpiritsAt=Date.now();
   var actionView=captureWispActionView();
   // Manual purchases retain the original scroll; passive refreshes compensate
@@ -14577,14 +14591,21 @@ function init(){
     document.addEventListener(type,function(e){
       var recoveryInput = e.target.closest && (e.target.closest('#settings-overlay') || e.target.closest('#settings-btn'));
       var introInput = e.target.closest && e.target.closest('#startup-intro');
+      var disclosureInput=e.target.closest&&e.target.closest('summary[data-wisp-details],summary[data-damage-details],summary[data-ability-details]');
+      if(e.isTrusted&&disclosureInput&&els['spirit-list'].contains(disclosureInput)&&
+          (type==='pointerdown'||type==='click'||type==='keydown'&&(e.key==='Enter'||e.key===' ')))beginWispDisclosureInput();
       // Settle against the pre-input state before pricing or changing queues.
-      if(!introInput && e.isTrusted && !flushLiveProgress(false,true)){e.preventDefault();e.stopImmediatePropagation();return;}
+      if(!introInput && e.isTrusted && !flushLiveProgress(false,true)){endWispDisclosureInput();e.preventDefault();e.stopImmediatePropagation();return;}
       if(!introInput && (offlineCatchup || (offlinePending && !recoveryInput))){
+        endWispDisclosureInput();
         e.preventDefault();
         e.stopImmediatePropagation();
       }
     },true);
   });
+  ['pointerup','pointercancel','keyup','click'].forEach(function(type){document.addEventListener(type,endWispDisclosureInput);});
+  window.addEventListener('blur',releaseWispDisclosureInput);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)releaseWispDisclosureInput();});
   if(isNewGame){
     playStartupIntro(function(){
       document.documentElement.classList.remove('startup-pending');

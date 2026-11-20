@@ -39,6 +39,9 @@ if(args.includes('--mutate-disclosure-input')){
   const from="if(els['spirit-list'].contains(summary))return;";
   if(code.split(from).length!==2)throw Error('unique detached disclosure input repair');
   code=code.replace(from,'return; // Detached summary activation repair removed.');
+  const guard='if(wispDisclosureInputPending){liveSpiritsDirty=true;return;}';
+  if(code.split(guard).length!==2)throw Error('unique native disclosure render guard');
+  code=code.replace(guard,'/* Native disclosure render guard removed. */');
 }
 const sourceSha256=require('node:crypto').createHash('sha256').update(code).digest('hex'),marker='\n})();\n</script>\n<script>\nif(window.Capacitor';
 function assert(v,m){if(!v)throw Error(m);}
@@ -130,23 +133,25 @@ async function run(){
         const p=await evaluate(`(()=>{const r=document.querySelector('[data-ability-details=ember]').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
         await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
       }
+      await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
       assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'native '+input+' opens ability mechanics');
       await evaluate(`window.__mechanicsBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots()),scroll:document.querySelector('main').scrollTop};__wispQa.render();__wispQa.refresh();__wispQa.render();`);
       assert(await evaluate(`document.querySelector('[data-wisp-ability-mechanics=ember]').open&&document.activeElement===document.querySelector('[data-ability-details=ember]')&&Math.abs(document.querySelector('main').scrollTop-__mechanicsBefore.scroll)<=1`),'ability mechanics stays open with focus and exact viewport through live renders');
       assert(await evaluate(`JSON.stringify(__wispQa.get())===__mechanicsBefore.state&&JSON.stringify(__wispQa.slots())===__mechanicsBefore.slots`),'reading ability mechanics preserves state and both save slots');
-      await key('Enter');await evaluate('__wispQa.render()');
+      await key('Enter');await evaluate('new Promise(resolve=>setTimeout(resolve,0))');await evaluate('__wispQa.render()');
       assert(await evaluate(`!document.querySelector('[data-wisp-ability-mechanics=ember]').open`),'closed ability mechanics stays closed through refresh');
     }
     if(compact&&fontPercent===100&&motion==='no-preference'){
-      await evaluate(`if(!window.__summaryReplayBound){window.__summaryReplayBound=true;['click','keydown'].forEach(type=>document.addEventListener(type,e=>{if(window.__summaryReplayType===type&&e.target.closest('summary')){window.__summaryReplayType=null;__wispQa.renderLive();window.__summaryReplayDetached=!e.target.isConnected;}},true));}`);
-      for(const attribute of ['wisp-details','damage-details','ability-details'])for(const input of ['touch','Enter',' ']){
+      await evaluate(`if(!window.__summaryReplayBound){window.__summaryReplayBound=true;['pointerdown','click','keydown'].forEach(type=>document.addEventListener(type,e=>{if(window.__summaryReplayType===type&&e.target.closest('summary')){window.__summaryReplayType=null;window.__summaryReplayRequested=true;__wispQa.renderLive();window.__summaryReplayDetached=!e.target.isConnected;}},true));}`);
+      for(const attribute of ['wisp-details','damage-details','ability-details'])for(const input of ['touch-start','touch-click','Enter',' ']){
         const selector='[data-'+attribute+'=ember]';
-        await evaluate(`(()=>{__wispQa.set(__wispQa.fresh());__wispQa.render();const e=document.querySelector(${JSON.stringify(selector)});e.parentElement.open=false;e.scrollIntoView({block:'center'});e.focus({preventScroll:true});window.__summaryReplayDetached=false;window.__summaryReplayType=${JSON.stringify(input==='touch'?'click':'keydown')};window.__summaryReplayBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};})()`);
-        if(input==='touch'){
+        await evaluate(`(()=>{__wispQa.set(__wispQa.fresh());__wispQa.render();const e=document.querySelector(${JSON.stringify(selector)});e.parentElement.open=false;e.scrollIntoView({block:'center'});e.focus({preventScroll:true});window.__summaryReplayDetached=false;window.__summaryReplayRequested=false;window.__summaryReplayType=${JSON.stringify(input==='touch-start'?'pointerdown':input==='touch-click'?'click':'keydown')};window.__summaryReplayBefore={state:JSON.stringify(__wispQa.get()),slots:JSON.stringify(__wispQa.slots())};})()`);
+        if(input.indexOf('touch')===0){
           const p=await evaluate(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
           await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
         }else await key(input);
-        assert(await evaluate(`__summaryReplayDetached&&document.querySelector(${JSON.stringify(selector)}).parentElement.open&&document.activeElement===document.querySelector(${JSON.stringify(selector)})`),'native disclosure input survives input-time render exactly once: '+attribute+'/'+input);
+        await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
+        assert(await evaluate(`__summaryReplayRequested&&!__summaryReplayDetached&&document.querySelector(${JSON.stringify(selector)}).parentElement.open&&document.activeElement===document.querySelector(${JSON.stringify(selector)})`),'native disclosure input survives input-time render exactly once: '+attribute+'/'+input);
         assert(await evaluate(`JSON.stringify(__wispQa.get())===__summaryReplayBefore.state&&JSON.stringify(__wispQa.slots())===__summaryReplayBefore.slots`),'disclosure activation changes no game state or save');
       }
     }

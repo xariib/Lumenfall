@@ -1,0 +1,21 @@
+{
+  "id": 44666715234,
+  "sha": "f38400e6345fdb3a2e2936e10abd887abe086f62",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44666715234",
+  "jobs": [
+    {
+      "id": 136057670004,
+      "name": "build-apk",
+      "conclusion": "failure",
+      "started": "2026-11-20T03:17:34Z",
+      "completed": "2026-11-20T03:22:36Z",
+      "log": "job-136057670004.log.gz",
+      "rawSha256": "6d8d5b0bed377ba4d85abf30c2ad527e10b0481a1d65f2ddeb61f74ad22db65d",
+      "summary": [
+        "2026-11-20T03:22:30.0228425Z AssertionError [ERR_ASSERTION]: Trusted native click reaches wisp-details:tide"
+      ]
+    }
+  ]
+}
