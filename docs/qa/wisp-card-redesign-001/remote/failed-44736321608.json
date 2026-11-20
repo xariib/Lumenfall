@@ -1,0 +1,46 @@
+{
+  "id": 44736321608,
+  "sha": "364491194be44c060528713cc040b3a35d981050",
+  "event": "workflow_dispatch",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44736321608",
+  "jobs": [
+    {
+      "id": 136288517433,
+      "name": "focused (offline-catchup-core)",
+      "conclusion": "success",
+      "started": "2026-11-20T12:30:23Z",
+      "completed": "2026-11-20T12:33:12Z",
+      "log": "job-136288517433.log.gz",
+      "rawSha256": "a32dbaf813bb2e39d3f60c1ab77f83d2f6e6fd878236057183bb98160a583e67",
+      "summary": [
+        "2026-11-20T12:33:08.4876638Z   detail: { \"status\": \"pass\", \"scenario\": \"offline-catchup-core\", \"sourceSha256\": \"b24494d6f4a4833c83922467e141454174efb9cbe4866e8d9e5ef7ebc45c805e\", \"originalTestSha256\": \"a5bdff59d6225a06ac6070994c6e3a237da29764789e26399a40dc0c55663e4e\", \"wallMs\": 133027.91211900002, \"execution\": \"All original source/18 records; five independent groups, at most four workers; original overall deadline unchanged\", \"records\": [ { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"Prism policy isolation\", \"perAscend\": 0, \"newPrisms\": 6963, \"legacyPrisms\": 6963 }, { \"case\": \"ON Clear21\", \"seconds\": 28800, \"batch\": 31, \"batches\": 2016, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear20\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"OFF\", \"seconds\": 28800, \"batch\": 256, \"batches\": 244, \"kills\": 378, \"ascends\": 0, \"iterations\": 62498, \"earned\": 248054239.2000013 }, { \"case\": \"ON Clear21\", \"seconds\": 259200, \"batch\": 256, \"batches\": 367, \"kills\": 538, \"ascends\": 0, \"iterations\": 94178, \"earned\": 370815583.19999826 }, { \"case\": \"ON Clear21\", \"seconds\": 345600, \"batch\": 256, \"batches\": 367, \"kills\": 524, \"ascends\": 0, \"iterations\": 94177, \"earned\": 360073965.5999986 }, { \"case\": \"ON Clear21\", \"seconds\": 43200, \"batch\": 256",
+        "2026-11-20T12:33:08.4894152Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 136288517999,
+      "name": "focused (rift-status-stacking-mobile)",
+      "conclusion": "failure",
+      "started": "2026-11-20T12:30:23Z",
+      "completed": "2026-11-20T12:31:29Z",
+      "log": "job-136288517999.log.gz",
+      "rawSha256": "69140587c7c92fe0356999afa7f244b17864f840884514290f9d61623bc4ad51",
+      "summary": [
+        "2026-11-20T12:31:25.4256411Z   detail: { \"status\": \"fail\", \"scenario\": \"rift-status-stacking-mobile\", \"message\": \"CDP timeout Target.createBrowserContext [2490:2517:1120/123114.108292:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2517:1120/123114.326407:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2517:1120/123114.675513:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2521:1120/123115.292102:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2521:1120/123115.292141:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2521:1120/123115.292155:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2490:2517:1120/123117.096103:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp"
+      ]
+    },
+    {
+      "id": 136288518046,
+      "name": "focused (wisp-card-simplicity)",
+      "conclusion": "success",
+      "started": "2026-11-20T12:30:23Z",
+      "completed": "2026-11-20T12:31:21Z",
+      "log": "job-136288518046.log.gz",
+      "rawSha256": "8732a40573ee44dfc3a470a650baa12fa8f76cd5666a0d574e4d86c8935e302a",
+      "summary": [
+        "2026-11-20T12:31:17.5693378Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1515 @@
+{
+  "source": {
+    "source_sha256": "4ccf543feabfa1a927138af59b8bb0d17b5fda456ad02c7fd797c4ad473ad7a3",
+    "instrumented_sha256": "2f9c9facd8953fdbcac7a0c31a31d45685af4a126165e3a04612f2ef57734a54"
+  },
+  "status": "fail",
+  "scenario": "formation-bonds-mobile",
+  "message": "named preset controls fit and >=44px {\"width\":430,\"textScale\":1,\"motion\":\"no-preference\",\"controls\":[{\"w\":121.38999938964844,\"h\":43.77996826171875,\"right\":148.3349952697754,\"color\":\"rgb(240, 239, 251)\",\"background\":\"color(srgb 0.188863 0.17898 0.224471)\"},{\"w\":121.3900146484375,\"h\":43.77996826171875,\"right\":275.69500732421875,\"color\":\"rgb(240, 239, 251)\",\"background\":\"rgb(22, 25, 51)\"},{\"w\":121.3900146484375,\"h\":43.77996826171875,\"right\":403.05499267578125,\"color\":\"rgb(240, 239, 251)\",\"background\":\"rgb(22, 25, 51)\"}]}",
+  "records": [
+    {
+      "width": 320,
+      "textScale": 1,
+      "motion": "no-preference",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        }
+      ],
+      "controls": [
+        {
+          "w": 86.8914794921875,
+          "h": 56.7149658203125,
+          "right": 110.57648086547852,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 86.90703582763672,
+          "h": 56.7149658203125,
+          "right": 203.45352172851562,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 86.8914794921875,
+          "h": 56.7149658203125,
+          "right": 296.31500244140625,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 3,
+        "color": "rgb(240, 239, 251)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 320,
+      "textScale": 1,
+      "motion": "reduce",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        }
+      ],
+      "controls": [
+        {
+          "w": 87.328125,
+          "h": 57,
+          "right": 110.328125,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 87.34375,
+          "h": 57,
+          "right": 203.671875,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 87.328125,
+          "h": 57,
+          "right": 297,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 2,
+        "color": "rgb(189, 155, 239)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 320,
+      "textScale": 2,
+      "motion": "no-preference",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 242.78001403808594,
+          "right": 281.3900146484375,
+          "scroll": 242,
+          "client": 242
+        }
+      ],
+      "controls": [
+        {
+          "w": 86.94529724121094,
+          "h": 128.43450927734375,
+          "right": 110.54587173461914,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 86.96085357666016,
+          "h": 128.43450927734375,
+          "right": 203.4804229736328,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 86.94528198242188,
+          "h": 128.43450927734375,
+          "right": 296.3994140625,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 3,
+        "color": "rgb(240, 239, 251)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 320,
+      "textScale": 2,
+      "motion": "reduce",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 244,
+          "right": 282,
+          "scroll": 242,
+          "client": 242
+        }
+      ],
+      "controls": [
+        {
+          "w": 87.328125,
+          "h": 129,
+          "right": 110.328125,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 87.34375,
+          "h": 129,
+          "right": 203.671875,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 87.328125,
+          "h": 129,
+          "right": 297,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 3,
+        "color": "rgb(240, 239, 251)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 390,
+      "textScale": 1,
+      "motion": "no-preference",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        }
+      ],
+      "controls": [
+        {
+          "w": 108.11297607421875,
+          "h": 56.7149658203125,
+          "right": 134.95798110961914,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 108.12850952148438,
+          "h": 56.7149658203125,
+          "right": 249.05648803710938,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 108.12850952148438,
+          "h": 56.7149658203125,
+          "right": 363.1549987792969,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 2,
+        "color": "rgb(189, 155, 239)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 390,
+      "textScale": 1,
+      "motion": "reduce",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        }
+      ],
+      "controls": [
+        {
+          "w": 108.65625,
+          "h": 57,
+          "right": 134.65625,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 108.671875,
+          "h": 57,
+          "right": 249.328125,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 108.671875,
+          "h": 57,
+          "right": 364,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 2,
+        "color": "rgb(189, 155, 239)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 390,
+      "textScale": 2,
+      "motion": "no-preference",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 306.46002197265625,
+          "right": 348.2300262451172,
+          "scroll": 306,
+          "client": 306
+        }
+      ],
+      "controls": [
+        {
+          "w": 108.11297607421875,
+          "h": 128.35501098632812,
+          "right": 134.95798110961914,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 108.12850952148438,
+          "h": 128.35501098632812,
+          "right": 249.05648803710938,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 108.12850952148438,
+          "h": 128.35501098632812,
+          "right": 363.1549987792969,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 3,
+        "color": "rgb(240, 239, 251)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "0.1s"
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "width": 390,
+      "textScale": 2,
+      "motion": "reduce",
+      "rows": [
+        {
+          "name": "Starcaller Bond · Push · Best now",
+          "partners": "Ember Wisp + Voidling",
+          "effect": "+18% passive & ability damage",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Dawnpriest Bond · Farm",
+          "partners": "Tide Sprite + Aurora Seer",
+          "effect": "+25% Lumen, Shards & Motes",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Duskguard Bond · Boss",
+          "partners": "Stoneheart Golem + Starforged Titan",
+          "effect": "+35% passive & ability damage vs Bosses",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Pathfinder Bond · Push / Farm · Best now",
+          "partners": "Gale Dancer + Thornback",
+          "effect": "+20% passive & ability damage vs non-Bosses",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Kindling Bond · Push · Best now",
+          "partners": "Ember Wisp + Tide Sprite",
+          "effect": "+25% Guardian Tap damage",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Vanguard Bond · Boss",
+          "partners": "Ember Wisp + Stoneheart Golem",
+          "effect": "20% less Boss regeneration",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Quarry Bond · Farm",
+          "partners": "Stoneheart Golem + Gale Dancer",
+          "effect": "+20% Shards from Gale abilities",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        },
+        {
+          "name": "Harvest Bond · Farm",
+          "partners": "Thornback + Aurora Seer",
+          "effect": "+20% Lumen from Thorn abilities",
+          "width": 308,
+          "right": 349,
+          "scroll": 306,
+          "client": 306
+        }
+      ],
+      "controls": [
+        {
+          "w": 108.65625,
+          "h": 129,
+          "right": 134.65625,
+          "color": "rgb(240, 239, 251)",
+          "background": "color(srgb 0.188863 0.17898 0.224471)"
+        },
+        {
+          "w": 108.671875,
+          "h": 129,
+          "right": 249.328125,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        },
+        {
+          "w": 108.671875,
+          "h": 129,
+          "right": 364,
+          "color": "rgb(240, 239, 251)",
+          "background": "rgb(22, 25, 51)"
+        }
+      ],
+      "focus": {
+        "width": 3,
+        "color": "rgb(240, 239, 251)",
+        "bg": "rgb(22, 25, 51)"
+      },
+      "overlap": {
+        "ids": [
+          "tide",
+          "aurora",
+          "ember",
+          "stone",
+          "gale"
+        ],
+        "bonds": [
+          "dawnpriest",
+          "kindling",
+          "vanguard",
+          "quarry"
+        ],
+        "marks": [
+          {
+            "id": "tide",
+            "marks": [
+              "dawnpriest",
+              "kindling"
+            ],
+            "label": "Tide Sprite — Dawnpriest Bond, Kindling Bond"
+          },
+          {
+            "id": "aurora",
+            "marks": [
+              "dawnpriest"
+            ],
+            "label": "Aurora Seer — Dawnpriest Bond"
+          },
+          {
+            "id": "ember",
+            "marks": [
+              "kindling",
+              "vanguard"
+            ],
+            "label": "Ember Wisp — Kindling Bond, Vanguard Bond"
+          },
+          {
+            "id": "stone",
+            "marks": [
+              "vanguard",
+              "quarry"
+            ],
+            "label": "Stoneheart Golem — Vanguard Bond, Quarry Bond"
+          },
+          {
+            "id": "gale",
+            "marks": [
+              "quarry"
+            ],
+            "label": "Gale Dancer — Quarry Bond"
+          }
+        ],
+        "effects": [],
+        "unchanged": true,
+        "charge": [
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          },
+          {
+            "text": "0% charged; 6 seconds to next ability",
+            "transition": "1e-06s"
+          }
+        ],
+        "errors": []
+      }
+    }
+  ],
+  "teardown": {
+    "browser": {
+      "code": 0,
+      "signal": null
+    },
+    "pending": 0,
+    "profileRemoved": true
+  }
+}

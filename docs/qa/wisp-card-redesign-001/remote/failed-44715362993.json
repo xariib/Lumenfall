@@ -1,0 +1,35 @@
+{
+  "id": 44715362993,
+  "sha": "7fe93b0125ad1b23a65a0648ed3afc27730d90e3",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44715362993",
+  "jobs": [
+    {
+      "id": 136217274347,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T09:59:38Z",
+      "completed": "2026-11-20T10:01:39Z",
+      "log": "job-136217274347.log.gz",
+      "rawSha256": "8700f05e000dc8088f6228ad863210e7bedf0062cfef975e03d7a3d2a447c6ce",
+      "summary": [
+        "2026-11-20T10:00:19.9761544Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:01:29.3112172Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: visible queue button empower\\n    at check (http://127.0.0.1:36249/index.html:14736:34)\\n    at click (http://127.0.0.1:36249/index.html:14752:63)\\n    at http://127.0.0.1:36249/index.html:14753:52\\n    at Array.forEach (<anonymous>)\\n    at runActionChronology (http://127.0.0.1:36249/index.html:14751:99)\",\"runtimeErrors\":[],\"sourceSha256\":\"8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8\",\"mutant\":null}"
+      ]
+    },
+    {
+      "id": 136217274515,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T09:59:38Z",
+      "completed": "2026-11-20T10:01:39Z",
+      "log": "job-136217274515.log.gz",
+      "rawSha256": "367d2cdad046def822f48aa1b087b18e759abcd6295532f438bce84af01e8e41",
+      "summary": [
+        "2026-11-20T10:00:15.5308893Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T10:01:36.1870483Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

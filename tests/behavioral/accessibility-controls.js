@@ -5,6 +5,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   document.querySelectorAll('.overlay,#startup-intro').forEach(function(el){el.style.display='none';});
   bridge.setState(ctx.fixtures['accessibility-mixed-states'].save);bridge.renderLayout();
   function press(selector,expected){
+    if(selector.indexOf('[data-empower-queue=')===0)bridge.openWisp(selector.indexOf('tide')!==-1?'tide':'ember');
     var el=q(selector);el.focus();el.click();
     assert(q(selector).getAttribute('aria-pressed')===String(expected()),selector+' actual state matches aria-pressed');
     assert(document.activeElement===q(selector),selector+' retains focus through render');
@@ -45,6 +46,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   // Empower/Recruit retain action, price and native disabled; currency shortage
   // copy is absent from both visible and accessible names (NAV-001 v4).
   q('[data-tab="spirits"]').click();
+  bridge.closeWisp();
   [1,95].forEach(function(level){
     ['ember','tide'].forEach(function(id){
       var compact=bridge.freshStateSnapshot();compact.maxDepthEver=101;compact.totalKills=25;

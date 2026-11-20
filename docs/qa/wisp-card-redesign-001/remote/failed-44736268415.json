@@ -1,0 +1,47 @@
+{
+  "id": 44736268415,
+  "sha": "364491194be44c060528713cc040b3a35d981050",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44736268415",
+  "jobs": [
+    {
+      "id": 136288345013,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T12:30:02Z",
+      "completed": "2026-11-20T12:44:39Z",
+      "log": "job-136288345013.log.gz",
+      "rawSha256": "84592c256a4de661cf082532aa238745ee36509cad10bea5f5305212aba8ef62",
+      "summary": [
+        "2026-11-20T12:30:58.2101575Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:33:26.2742020Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-20T12:33:50.0283537Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-20T12:33:58.3615565Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:45503/index.html:14741:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:45503/index.html:14749:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"cd9e03fbbf48672a98e32a10ad851c7658c55e6b22eec708db077f76e4cdd617\",\"mutant\":true}",
+        "2026-11-20T12:34:51.9733599Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:35:15.7307100Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:36:10.9360915Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T12:39:38.5026376Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:39:46.7114096Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:39:54.9834007Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T12:39:54.9939317Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-20T12:43:41.4516079Z SyntaxError: Unexpected token '='",
+        "2026-11-20T12:44:25.9001165Z   process: { \"exitcode\": 1, \"timed_out\": false, \"stderr\": \"AssertionError [ERR_ASSERTION]: native Tide target is presented and44px {\\\"x\\\":341.5,\\\"y\\\":-437.5,\\\"width\\\":45,\\\"height\\\":45,\\\"hit\\\":false}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:22:27)\\n    at activate (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:55:4)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:69:4) {\\n  generatedMessage: false,\\n  code: 'ERR_ASSERTION',\\n  actual: false,\\n  expected: true,\\n  operator: '==',\\n  diff: 'simple'\\n}\\n\" }",
+        "2026-11-20T12:44:25.9005911Z   detail: { \"status\": \"fail\", \"checks\": 222, \"sourceSha256\": \"b24494d6f4a4833c83922467e141454174efb9cbe4866e8d9e5ef7ebc45c805e\", \"error\": \"AssertionError [ERR_ASSERTION]: native Tide target is presented and44px {\\\"x\\\":341.5,\\\"y\\\":-437.5,\\\"width\\\":45,\\\"height\\\":45,\\\"hit\\\":false}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:22:27)\\n    at activate (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:55:4)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/formation-collapse.cjs:69:4)\" }"
+      ]
+    },
+    {
+      "id": 136288345327,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T12:30:02Z",
+      "completed": "2026-11-20T12:32:50Z",
+      "log": "job-136288345327.log.gz",
+      "rawSha256": "57a34292789f10ecac5263f17c9225352dd29e1902a4d48d870e49ff488b3e7d",
+      "summary": [
+        "2026-11-20T12:30:47.8582291Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T12:32:45.7567170Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

@@ -22,11 +22,11 @@ const WISPS=[
 const REVERSIONS=[
  {id:'brand-spacing',code:'brand-glyph-intersects-settings',
   from:'  @media(max-width:360px){.hud .brand{letter-spacing:.04em;}}\n',to:''},
- // Break the active compact-card wrapping guards; the older inverse is now
- // masked by these scoped rules. Keep the same measured glyph/toggle assertion.
+ // Move Field/Bench into the actual portrait-grid identity. Keep the original
+ // measured glyph/toggle intersection assertion on the current card design.
  {id:'wisp-header',code:'wisp-glyph-intersects-toggle',
-  from:'  #tab-spirits .hero-card .hero-top{display:flex;flex-wrap:wrap;gap:8px;}\n  #tab-spirits .hero-card .hero-top .wisp-portrait{width:44px;height:44px;padding:2px;}\n  #tab-spirits .hero-card .hero-id{flex:1;min-width:min-content;overflow-wrap:normal;}\n',
-  to:'  #tab-spirits .hero-card .hero-top{display:flex;flex-wrap:nowrap;gap:8px;}\n  #tab-spirits .hero-card .hero-top .wisp-portrait{width:44px;height:44px;padding:2px;}\n  #tab-spirits .hero-card .hero-id{flex:1;min-width:0;overflow-wrap:normal;}\n'},
+  from:'  #tab-spirits .hero-card .hero-top{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;margin:0 0 10px;}\n',
+  to:'  #tab-spirits .hero-card .hero-top{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;margin:0 0 10px;}\n  #tab-spirits .hero-card .active-toggle{position:absolute;left:100px;top:12px;}\n'},
  {id:'toast-leading',code:'toast-adjacent-glyph-lines-intersect',
   from:'    line-height:1.4;border-radius:12px;\n',
   to:'    line-height:16px;border-radius:12px;\n'}
@@ -178,6 +178,7 @@ function sharedDOM(kind,selector){
   out.card=element(card);out.header=element(card.querySelector('.hero-top'));
   out.identity=element(card.querySelector('.hero-id'));out.name=text(card.querySelector('.hero-id .name'));
   out.classTag=text(card.querySelector('.hero-id .class-tag'));
+  out.manageName=card.querySelector('[data-wisp-details]').getAttribute('aria-label');
   out.clippingOwners={name:clippingOwners(card.querySelector('.hero-id .name')),classTag:clippingOwners(card.querySelector('.hero-id .class-tag'))};
   out.portrait=element(card.querySelector('.hero-top .wisp-portrait'));
   out.button=text(card.querySelector('[data-toggle="'+selector+'"]'));
@@ -326,7 +327,7 @@ async function sharedScenario(){
   geometry(d.brand.glyphs.every(g=>g.rect.left>=-.5&&g.rect.right<=width+.5&&contains(d.context.layout['.hud-title-row'],g.rect)),'brand-glyph-outside-header',d);
  }
  function wisp(d,spec){
-  fontFacts(d);ok(d.name.text===spec[1]&&d.classTag.text===spec[2],'original complete Wisp identity '+spec[0]);
+  fontFacts(d);ok(d.name.text===spec[0][0].toUpperCase()+spec[0].slice(1)&&d.classTag.text===spec[2].split(' · ')[1]&&d.manageName==='Manage '+spec[1],'compact Wisp identity and full accessible Manage name '+spec[0]);
   ok(d.name.glyphs.length>0&&d.classTag.glyphs.length>0,'nonempty actual Wisp glyphs '+spec[0]);
   ok(d.button.text===(WISPS.findIndex(x=>x[0]===spec[0])<5?'Bench':'Field'),'original Field/Bench label '+spec[0]);
   ok(d.button.rect.width>=44&&d.button.rect.height>=44,'Wisp native 44px control '+spec[0]);

@@ -1,0 +1,302 @@
+[
+  {
+    "id": 136288517433,
+    "run_id": 44736321608,
+    "workflow_name": "Migration focused regressions",
+    "head_branch": "feature/wisp-card-redesign-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44736321608",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfu229OQ",
+    "head_sha": "364491194be44c060528713cc040b3a35d981050",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136288517433",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44736321608/job/136288517433",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-20T12:30:20Z",
+    "started_at": "2026-11-20T12:30:23Z",
+    "completed_at": "2026-11-20T12:33:12Z",
+    "name": "focused (offline-catchup-core)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T12:30:23Z",
+        "completed_at": "2026-11-20T12:30:24Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T12:30:24Z",
+        "completed_at": "2026-11-20T12:30:48Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T12:30:48Z",
+        "completed_at": "2026-11-20T12:30:53Z"
+      },
+      {
+        "name": "Stage exact product and assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T12:30:53Z",
+        "completed_at": "2026-11-20T12:30:53Z"
+      },
+      {
+        "name": "Run unchanged scenario deadline and assertions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-20T12:30:53Z",
+        "completed_at": "2026-11-20T12:33:08Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T12:33:08Z",
+        "completed_at": "2026-11-20T12:33:09Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-20T12:33:09Z",
+        "completed_at": "2026-11-20T12:33:09Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T12:33:09Z",
+        "completed_at": "2026-11-20T12:33:09Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T12:33:09Z",
+        "completed_at": "2026-11-20T12:33:10Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136288517433",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004451,
+    "runner_name": "GitHub Actions 1000004451",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 136288517999,
+    "run_id": 44736321608,
+    "workflow_name": "Migration focused regressions",
+    "head_branch": "feature/wisp-card-redesign-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44736321608",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfu22_bw",
+    "head_sha": "364491194be44c060528713cc040b3a35d981050",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136288517999",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44736321608/job/136288517999",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-20T12:30:20Z",
+    "started_at": "2026-11-20T12:30:23Z",
+    "completed_at": "2026-11-20T12:31:29Z",
+    "name": "focused (rift-status-stacking-mobile)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T12:30:24Z",
+        "completed_at": "2026-11-20T12:30:25Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T12:30:25Z",
+        "completed_at": "2026-11-20T12:30:56Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T12:30:56Z",
+        "completed_at": "2026-11-20T12:31:01Z"
+      },
+      {
+        "name": "Stage exact product and assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T12:31:01Z",
+        "completed_at": "2026-11-20T12:31:01Z"
+      },
+      {
+        "name": "Run unchanged scenario deadline and assertions",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 5,
+        "started_at": "2026-11-20T12:31:01Z",
+        "completed_at": "2026-11-20T12:31:25Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T12:31:25Z",
+        "completed_at": "2026-11-20T12:31:26Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 11,
+        "started_at": "2026-11-20T12:31:26Z",
+        "completed_at": "2026-11-20T12:31:26Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T12:31:26Z",
+        "completed_at": "2026-11-20T12:31:27Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T12:31:27Z",
+        "completed_at": "2026-11-20T12:31:27Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136288517999",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004452,
+    "runner_name": "GitHub Actions 1000004452",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 136288518046,
+    "run_id": 44736321608,
+    "workflow_name": "Migration focused regressions",
+    "head_branch": "feature/wisp-card-redesign-001",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44736321608",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAfu22_ng",
+    "head_sha": "364491194be44c060528713cc040b3a35d981050",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136288518046",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44736321608/job/136288518046",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-20T12:30:20Z",
+    "started_at": "2026-11-20T12:30:23Z",
+    "completed_at": "2026-11-20T12:31:21Z",
+    "name": "focused (wisp-card-simplicity)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T12:30:24Z",
+        "completed_at": "2026-11-20T12:30:24Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T12:30:24Z",
+        "completed_at": "2026-11-20T12:30:46Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T12:30:46Z",
+        "completed_at": "2026-11-20T12:30:55Z"
+      },
+      {
+        "name": "Stage exact product and assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-20T12:30:55Z",
+        "completed_at": "2026-11-20T12:30:55Z"
+      },
+      {
+        "name": "Run unchanged scenario deadline and assertions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-20T12:30:55Z",
+        "completed_at": "2026-11-20T12:31:17Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-20T12:31:17Z",
+        "completed_at": "2026-11-20T12:31:19Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-20T12:31:19Z",
+        "completed_at": "2026-11-20T12:31:19Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-20T12:31:19Z",
+        "completed_at": "2026-11-20T12:31:19Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-20T12:31:19Z",
+        "completed_at": "2026-11-20T12:31:19Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136288518046",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004453,
+    "runner_name": "GitHub Actions 1000004453",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]

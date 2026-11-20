@@ -1,0 +1,56 @@
+{
+  "id": 44718861777,
+  "sha": "e7098985d11fbcc77195924b94ab6bbf3fec30d9",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44718861777",
+  "jobs": [
+    {
+      "id": 136229372567,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-20T10:24:19Z",
+      "completed": "2026-11-20T10:43:05Z",
+      "log": "job-136229372567.log.gz",
+      "rawSha256": "3a0ae76462579c8c451f49954eafa7ab8348acc23ea96effaee8bbb82ace1f14",
+      "summary": [
+        "2026-11-20T10:24:47.8577552Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:27:36.6277768Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-20T10:28:08.8234213Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-20T10:28:19.6417548Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:42643/index.html:14736:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:42643/index.html:14744:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"5bebc8db25c7b0447502599b71f028e6854643fcf91c04d5292d73cf797fd66b\",\"mutant\":true}",
+        "2026-11-20T10:29:22.6369230Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:29:50.0580491Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:30:57.2541179Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-20T10:34:39.8761695Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:34:48.1306439Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:34:55.5325666Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:34:55.5494067Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-20T10:40:13.3896971Z SyntaxError: Unexpected token '='",
+        "2026-11-20T10:41:28.3110070Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:41:51.3067499Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:41:55.1000360Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:41:59.1380061Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:02.6947806Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:08.1732974Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:09.8906481Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:11.5916904Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:14.4623469Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:17.5740193Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-20T10:42:52.3792227Z   detail: { \"status\": \"fail\", \"scenario\": \"formation-bonds-mobile\", \"message\": \"named preset controls fit and >=44px\", \"records\": [ { \"width\": 320, \"textScale\": 1, \"motion\": \"no-preference\", \"rows\": [ { \"name\": \"Starcaller Bond · Push · Best now\", \"partners\": \"Ember Wisp + Voidling\", \"effect\": \"+18% passive & ability damage\", \"width\": 242.78001403808594, \"right\": 281.3900146484375, \"scroll\": 242, \"client\": 242 }, { \"name\": \"Dawnpriest Bond · Farm\", \"partners\": \"Tide Sprite + Aurora Seer\", \"effect\": \"+25% Lumen, Shards & Motes\", \"width\": 242.78001403808594, \"right\": 281.3900146484375, \"scroll\": 242, \"client\": 242 }, { \"name\": \"Duskguard Bond · Boss\", \"partners\": \"Stoneheart Golem + Starforged Titan\", \"effect\": \"+35% passive & ability damage vs Bosses\", \"width\": 242.78001403808594, \"right\": 281.3900146484375, \"scroll\": 242, \"client\": 242 }, { \"name\": \"Pathfinder Bond · Push / Farm · Best now\", \"partners\": \"Gale Dancer + Thornback\", \"effect\": \"+20% passive & ability damage vs non-Bosses\", \"width\": 242.78001403808594, \"right\": 281.3900146484375, \"scroll\": 242, \"client\": 242 }, { \"name\": \"Kindling Bond · Push · Best now\", \"partners\": \"Ember Wisp + Tide Sprite\", \"effect\": \"+25% Guardian Tap damage\", \"width\": 242.78001403808594, \"right\": 281.3900146484375, \"scroll\": 242, \"client\": 242 }, { \"name\": \"Vanguard Bond · Boss\", \"partners\": \"Ember Wisp + Stoneheart Golem\", \"effect\": \"20% less Boss regeneration\", \"width\": 242.78001403808594, \"right\": 281.39001464"
+      ]
+    },
+    {
+      "id": 136229372936,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-20T10:24:20Z",
+      "completed": "2026-11-20T10:26:20Z",
+      "log": "job-136229372936.log.gz",
+      "rawSha256": "5930c96a07adeb7ce90b7edc413cdcd8b35cc1882e20893116c40e2ae67992f2",
+      "summary": [
+        "2026-11-20T10:25:04.5000273Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-20T10:26:15.1076131Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    }
+  ]
+}

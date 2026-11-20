@@ -67,7 +67,7 @@ window.runP207FormationQa = function(b,ctx,assert,parity){
   s=b.freshStateSnapshot();s.lumen=1e12;b.setState(s);before=get();t.buy('titan');same(get().spirits,before.spirits,'manual locked recruitment rejected');ok(get().lumen===before.lumen,'locked purchase costs nothing');
   // Real UI controls remain reachable for pending members.
   s=ascend(['tide','stone'],'boss');b.renderLayout();b.resetFeedback();document.querySelector('[data-tab="spirits"]').click();
-  var card=document.querySelector('[data-wisp-card="tide"]'),button=card.querySelector('[data-empower-queue="tide"]');
+  b.openWisp('tide');var card=document.querySelector('[data-wisp-card="tide"]'),button=card.querySelector('[data-empower-queue="tide"]');
   ok(card.textContent.includes('Pending') && card.textContent.includes('No power or Bonds'),'pending card explicit zero benefits');ok(button && !button.disabled,'pending Auto-Empower reachable');button.click();ok(get().empowerQueue.tide===false,'pending control turns OFF');
   ok(document.getElementById('formation-presets').textContent.includes('temporary startup support'),'temporary Ember labelled');
   ok(document.getElementById('formation-presets').textContent.includes('Auto-Empower OFF'),'pending OFF labelled');
@@ -142,6 +142,7 @@ window.runP207LayoutQa = async function(b,ctx,assert){
   var root=q('#formation-presets');root.scrollIntoView({block:'start'});
   assert(root.textContent.includes('temporary startup support'),'startup support explained');
   ['void','tide','stone','gale','thorn'].forEach(function(id){
+    b.openWisp(id);
     var card=q('[data-wisp-card="'+id+'"]'),button=card.querySelector('[data-empower-queue]');
     assert(!card.classList.contains('active-wisp'),'pending card not shown active');
     assert(card.textContent.includes('No power or Bonds'),'pending contribution explicit');

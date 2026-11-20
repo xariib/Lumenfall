@@ -8,7 +8,7 @@ const source=fs.readFileSync(sourcePath,'utf8'),baseline=process.argv.includes('
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 const marker='breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}';
 assert.equal(driver.split(marker).length,2);
-driver=driver.replace(marker,`upgradeIds:SPIRITS.map(function(sp){return sp.id;}),
+driver=driver.replace(marker,`upgradeIds:SPIRITS.map(function(sp){return sp.id;}),upgradeOpen:openWispManagement,
  upgradeSeed:function(id,action){var s=freshState();s.maxDepthEver=250;s.ascendCount=100;s.longStudyLevels.wispascend=250;s.research.arcanecal=10;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=[id];
  SPIRITS.forEach(function(sp){s.spirits[sp.id]=100;s.heroRarity[sp.id]=5;s.wispModules[sp.id]=20;s.wispUltimate[sp.id]=true;s.empowerQueue[sp.id]=false;s.heroResource[sp.id]=0;});
  s.lumen=0;s.shards=0;s.sigils=0;s.sigilResonanceUses=0;
@@ -25,7 +25,7 @@ driver=driver.slice(0,start)+String.raw`
   for(const id of await ev('prismQa.upgradeIds'))for(const action of ['empower','rarity','module','ultimate','sigil-resonate']){
    await ev('prismQa.set(prismQa.upgradeSeed('+JSON.stringify(id)+','+JSON.stringify(action)+'));prismQa.ready();prismQa.tab("spirits")');
    await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');
-   await ev('document.querySelector('+JSON.stringify('[data-wisp-progression="'+id+'"]')+').open=true');
+   await ev('prismQa.upgradeOpen('+JSON.stringify(id)+')');
    const selector='[data-'+action+'="'+id+'"]',prices=await ev('prismQa.upgradePrices('+JSON.stringify(id)+','+JSON.stringify(action)+')');
    const enough={};for(const [kind,amount] of Object.entries(prices))enough[walletKeys[kind]]=amount;
    async function observe(values,label,initial=false){

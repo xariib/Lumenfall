@@ -96,7 +96,15 @@ window.runRiftLayoutQa = async function(bridge, ctx, assert){
     q('[data-tab="'+tab+'"]').click();
     if(tab==='spirits'){
       var progressions=Array.from(document.querySelectorAll('#tab-spirits [data-wisp-progression]'));
-      assert(progressions.length>0&&progressions.every(function(p){return p.tagName==='DETAILS'&&p.open&&p.querySelector('summary[data-wisp-details]');}),'expanded compact upgrades remain reachable for icon/layout inspection');
+      assert(progressions.length>0,'all Wisp upgrades remain reachable');
+      var total=0;
+      progressions.forEach(function(p){
+        var id=p.dataset.wispProgression;bridge.openWisp(id);
+        p=q('[data-wisp-progression="'+id+'"]');
+        assert(p.tagName==='SECTION'&&p.getClientRects().length&&!p.querySelector('summary'),'flat Wisp upgrades visible for icon/layout inspection');
+        Array.from(p.closest('[data-wisp-card]').querySelectorAll('.cost-icon')).forEach(function(el){var r=el.getBoundingClientRect();assert(r.width>0&&r.width<=16&&r.height<=16,'spirits nested icon sizing');total++;});
+      });
+      assert(total>0,'spirits cost icons exist');bridge.closeWisp();return;
     }else assert(!document.querySelector('#tab-'+tab+' details.wisp-progression'),'Tree has no Wisp progression disclosure');
     var icons=Array.from(document.querySelectorAll('#tab-'+tab+' .cost-icon'));
     assert(icons.length>0,tab+' cost icons exist');

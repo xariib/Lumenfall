@@ -2000,14 +2000,14 @@
             if(empower && secondary) assert(!!(empower.compareDocumentPosition(secondary)&Node.DOCUMENT_POSITION_FOLLOWING),'Empower must precede secondary progression in reading order');
           });
           var help=document.querySelector('.formation-help');
-          assert(help && !help.open && help.querySelector('#bond-card'),'Bonds remain available through native disclosure');
-          help.open=true;bridge.renderLayout();
-          assert(help.open,'refresh must retain Formation guidance disclosure state');
-          help.open=false;
+          assert(help && help.tagName==='SECTION' && !help.querySelector('summary') && help.querySelector('#bond-card'),'Bonds remain available as flat guidance');
+          bridge.renderLayout();
+          assert(help.getClientRects().length,'refresh retains Formation guidance');
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert(progression.tagName==='DETAILS'&&progression.open&&progression.querySelector('summary'),'expanded compact Wisp upgrades remain reachable');
+          bridge.openWisp(inspectId);progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
+          assert(progression.tagName==='SECTION'&&progression.getClientRects().length&&!progression.querySelector('summary'),'flat Wisp upgrades remain reachable');
           var selectedCard=progression.closest('[data-wisp-card]'),action=selectedCard.querySelector('button:not(:disabled)'),actionKey=action&&Array.from(action.attributes).find(function(a){return a.name.indexOf('data-')===0&&a.name!=='data-state';});
           assert(action&&actionKey,'representative visible card control');action.focus();bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');
@@ -2137,7 +2137,7 @@
           assert(document.querySelector('[data-empower-all]').getAttribute('aria-pressed')==='true','global ON state must match aria-pressed');
           document.querySelector('[data-empower-all]').click();
           assert(wispIds.every(function(id){return state().empowerQueue[id]===false;}),'Auto-Empower All OFF must disable every applicable recruited Wisp');
-          document.querySelector('[data-empower-queue="ember"]').click();
+          bridge.openWisp('ember');document.querySelector('[data-empower-queue="ember"]').click();
           assert(state().empowerQueue.ember===true && state().empowerQueue.tide===false,'individual Auto-Empower toggle must still work after global actions');
           assert(document.querySelector('[data-empower-all]').getAttribute('aria-pressed')==='mixed','individual change after global OFF must return the global state to mixed');
 
@@ -2166,6 +2166,7 @@
           workshopButton.click();
           assert(labButton.getBoundingClientRect().height>=44 && labButton.getBoundingClientRect().width>=44,'Lab access must retain a practical touch target');
           document.querySelector('[data-tab="spirits"]').click();
+          bridge.closeWisp();
           document.getElementById('tab-spirits').getAnimations().forEach(function(animation){animation.finish();});
           Array.from(document.querySelectorAll('[data-formation-preset],[data-save-formation],[data-empower-all]')).forEach(function(control){
             assert(control.getBoundingClientRect().height>=44,'Formation and global automation controls must retain practical touch targets');

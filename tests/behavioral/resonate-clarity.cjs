@@ -41,7 +41,7 @@ window.resonateQa={
   document.querySelectorAll('.overlay,#startup-intro').forEach(function(el){el.style.display='none';});
   document.querySelector('.shell').inert=false;isNewGame=false;
   clearTimeout(showToast._t);els['toast'].classList.remove('show');activateTab('spirits');},
- open:function(id){var el=document.querySelector('[data-wisp-progression="'+id+'"]');el.open=true;},
+ open:function(id){if(managedWispId!==id)openWispManagement(id);},
  button:function(id){return document.querySelector('[data-sigil-resonate="'+id+'"]');},
  help:function(id){return document.getElementById('sigil-resonance-help-'+id);}
 };`;
@@ -171,15 +171,15 @@ async function run(){
  })()`);
  await evaluate('resonateQa.set(resonateQa.seedMaxed());resonateQa.save()');
  await send('Page.reload');await pause(200);await ready();
- assert(await evaluate(`(()=>{var d=document.querySelector('[data-wisp-progression="ember"]');return d.tagName==='DETAILS'&&!d.open&&!!d.getClientRects().length;})()`),'maxed base upgrades start in the compact disclosure');
+ assert(await evaluate(`(()=>{var d=document.querySelector('[data-wisp-progression="ember"]');return d.tagName==='SECTION'&&d.closest('.wisp-management').hidden&&!!document.querySelector('[data-wisp-details=ember]').getClientRects().length;})()`),'maxed base upgrades start behind a named Manage action');
  await evaluate(`document.querySelector('[data-wisp-details="ember"]').scrollIntoView({block:'center'});document.querySelector('[data-wisp-details="ember"]').focus()`);
  await key('Enter');await evaluate('new Promise(resolve=>setTimeout(resolve,0))');
  const folding=await evaluate(`(function(){
   var d=document.querySelector('[data-wisp-progression="ember"]');
-  if(d.tagName!=='DETAILS'||!d.open||!d.getClientRects().length)throw Error('native keyboard opens maxed base upgrades');
+  if(d.tagName!=='SECTION'||d.closest('.wisp-management').hidden||!d.getClientRects().length)throw Error('native keyboard opens maxed base upgrades');
   resonateQa.open('ember');resonateQa.button('ember').focus();resonateQa.render();
   d=document.querySelector('[data-wisp-progression="ember"]');
-  if(!d.open||document.activeElement!==resonateQa.button('ember'))throw Error('expanded upgrade focus preservation');
+  if(d.closest('.wisp-management').hidden||document.activeElement!==resonateQa.button('ember'))throw Error('focused upgrade preservation');
   if(!resonateQa.use('ember')||resonateQa.get().sigils!==75||resonateQa.get().heroResource.ember!==100)throw Error('Resonate in maxed Wisp');
   return {maxedInitiallyFolded:true,openFocusPreserved:true,refill:true};
  })()`);

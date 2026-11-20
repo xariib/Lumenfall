@@ -1,0 +1,35 @@
+{
+  "id": 44736268502,
+  "sha": "364491194be44c060528713cc040b3a35d981050",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44736268502",
+  "jobs": [
+    {
+      "id": 136288346004,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "conclusion": "failure",
+      "started": "2026-11-20T12:30:02Z",
+      "completed": "2026-11-20T12:31:25Z",
+      "log": "job-136288346004.log.gz",
+      "rawSha256": "816821e0d43553150c6555976ee85c32541eafdf169877d51e9adf3ee8d2b6da",
+      "summary": [
+        "2026-11-20T12:31:21.8951943Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      ]
+    },
+    {
+      "id": 136288346260,
+      "name": "Wisp scroll (windows-latest)",
+      "conclusion": "failure",
+      "started": "2026-11-20T12:30:02Z",
+      "completed": "2026-11-20T12:31:46Z",
+      "log": "job-136288346260.log.gz",
+      "rawSha256": "0ba30e2dcc4cb42035bf4fade8310b413ff84ee285204443f65b07e2444864b1",
+      "summary": [
+        "2026-11-20T12:31:00.4452265Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"b24494d6f4a4833c83922467e141454174efb9cbe4866e8d9e5ef7ebc45c805e\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.484375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.",
+        "2026-11-20T12:31:00.4707616Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r",
+        "2026-11-20T12:31:42.9146784Z AssertionError [ERR_ASSERTION]: Error: CDP deadline Page.navigate\r"
+      ]
+    }
+  ]
+}
