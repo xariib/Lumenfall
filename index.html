@@ -4727,13 +4727,17 @@ var CONTINUING_DEEDS={
   strikes:{base:10000,reward:20,label:'Strike',unit:'strikes',counter:function(s){return s.totalTaps;},registered:0},
   rift:{base:1000000,reward:140,label:'Reach Rift',unit:'Rifts reached',counter:function(s){return s.maxDepthEver;},registered:0}
 };
-function ensureContinuingDeeds(snapshot){
+function ensureContinuingDeeds(snapshot,readReceipts){
+  var lastByTrack={strikes:0,rift:0},receiptPattern=/^continuing_(strikes|rift)_([1-9][0-9]*)$/;
+  if(readReceipts!==false)Object.keys(snapshot.achieved||{}).forEach(function(id){
+    var match=receiptPattern.exec(id);
+    if(match){var stage=Number(match[2]);if(Number.isSafeInteger(stage)&&stage<=100000)lastByTrack[match[1]]=Math.max(lastByTrack[match[1]],stage);}
+  });
   Object.keys(CONTINUING_DEEDS).forEach(function(key){
-    var rule=CONTINUING_DEEDS[key],current=rule.counter(snapshot),last=0;
-    Object.keys(snapshot.achieved||{}).forEach(function(id){
-      var match=new RegExp('^continuing_'+key+'_([1-9][0-9]*)$').exec(id);
-      if(match){var stage=Number(match[1]);if(Number.isSafeInteger(stage)&&stage<=100000)last=Math.max(last,stage);}
-    });
+    var rule=CONTINUING_DEEDS[key],current=rule.counter(snapshot),last=lastByTrack[key];
+    // Runtime state has already loaded every receipt during normalization.
+    // Between doubling boundaries, its reached and next goals already exist.
+    if(readReceipts===false&&rule.registered&&Amount.lt(current,rule.nextTarget))return;
     // Materializing one goal beyond the highest receipt also handles old saves
     // whose lifetime counter is below their already-earned goal.
     var required=Math.max(last+1,Math.floor((Amount.log10(Amount.max(1,current))-Math.log10(rule.base))/Math.log10(2))+1,1);
@@ -4745,7 +4749,7 @@ function ensureContinuingDeeds(snapshot){
       var goal={id:id,name:rule.label+' '+formatGroupedNumber(target)+(key==='strikes'?' times':''),
         reward:rule.reward+5*stage,track:key,target:target,unit:rule.unit,counter:rule.counter};
       goal.check=(function(count,value){return function(s){return Amount.ge(count(s),value);};})(rule.counter,target);
-      ACHIEVEMENTS.push(goal);COMET_DEED_ORDER.push(id);COMET_DEED_REWARDS[id]=goal.reward;rule.registered=stage;
+      ACHIEVEMENTS.push(goal);COMET_DEED_ORDER.push(id);COMET_DEED_REWARDS[id]=goal.reward;rule.registered=stage;rule.nextTarget=target;
     }
   });
 }
@@ -7796,7 +7800,7 @@ function checkAutoAscend(){
 // Achievements
 // ---------------------------------------------------------------
 function applyAchievementChecks(){
-  ensureContinuingDeeds(state);
+  ensureContinuingDeeds(state,false);
   var changed = [];
   ACHIEVEMENTS.forEach(function(a){
     if(!state.achieved[a.id] && a.check(state)){
@@ -7804,7 +7808,6 @@ function applyAchievementChecks(){
       changed.push(a);
     }
   });
-  ensureContinuingDeeds(state);
   return changed;
 }
 function checkAchievements(){

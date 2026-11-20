@@ -383,7 +383,7 @@ legacyBalanceSource=legacyBalanceSource.replace(originalArcane,'unlockDepth:12, 
 const investment='function wispInvestmentBase(sp){';assert.equal(legacyBalanceSource.split(investment).length,2);
 legacyBalanceSource=legacyBalanceSource.replace(investment,investment+'\n  return sp.baseCost; // Explicit historical investment price.');
 for(const key of ['roster','abilities','rarities','ultimates']){const re=new RegExp("^addDeedTrack\\('"+key+"'.*$",'m');assert(re.test(legacyBalanceSource));legacyBalanceSource=legacyBalanceSource.replace(re,'');}
-const continuing='function ensureContinuingDeeds(snapshot){';assert.equal(legacyBalanceSource.split(continuing).length,2);
+const continuing='function ensureContinuingDeeds(snapshot,readReceipts){';assert.equal(legacyBalanceSource.split(continuing).length,2);
 legacyBalanceSource=legacyBalanceSource.replace(continuing,continuing+'\n return; // Explicit historical Deed policy.');
 const legacyBondAnchor=legacyBalanceSource.match(/function bondActive\(bondId(?:,ids)?\)\{/);
 assert(legacyBondAnchor,'legacy Bond control function');

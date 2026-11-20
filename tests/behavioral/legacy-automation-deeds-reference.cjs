@@ -25,7 +25,7 @@ module.exports=function legacyAutomationDeeds(html){
     const expression=new RegExp("^addDeedTrack\\('"+key+"'.*$",'m');
     assert(expression.test(html),'one new-track historical exclusion '+key);html=html.replace(expression,'');
   }
-  const continuing='function ensureContinuingDeeds(snapshot){';
+  const continuing='function ensureContinuingDeeds(snapshot,readReceipts){';
   assert.strictEqual(html.split(continuing).length,2,'one continuing catalog policy');
   html=html.replace(continuing,continuing+'\n  return; // Explicit historical reward policy only.');
   return html;

@@ -10,12 +10,12 @@ window.runP206FeedbackQa = function(bridge,ctx,assert){
     s.depth=depth;s.enemyDepth=depth;s.maxDepthEver=depth;
     s.enemyMaxHp=bridge.enemyHpFor(depth);s.enemyHp=0.0001;
     s.riftMode=mode||'push';s.farmDepth=depth;s.enemyIsLuminous=false;
-    s.spirits.ember=20;s.activeParty=['ember'];
+    s.spirits.ember=20;s.activeParty=['ember'];s.totalKills=24;
     if(mode==='farm'){s.maxDepthEver=depth+1;s.farmReturnDepth=depth+1;}
     bridge.setState(s);bridge.renderLayout();
   }
   function banner(){return document.querySelector('.rift-milestone');}
-  var cases=[[10,'BOSS DEFEATED'],[25,'NEW REGION'],[2,'WISP AWAKENED'],[9,'BOSS RIFT'],[15,'ASCENSION READY']];
+  var cases=[[10,'BOSS DEFEATED'],[25,'NEW REGION'],[4,'WISP AWAKENED'],[9,'BOSS RIFT'],[15,'ASCENSION READY']];
   cases.forEach(function(item){
     bridge.resetFeedback();seed(item[0]);
     var input=bridge.getState();
@@ -33,7 +33,7 @@ window.runP206FeedbackQa = function(bridge,ctx,assert){
       assert(!!document.querySelector('.vfx-boss-death'),'committed boss defeat emits existing effect');
     }
   });
-  bridge.resetFeedback();seed(2);bridge.feedbackTick(true);
+  bridge.resetFeedback();seed(4);bridge.feedbackTick(true);
   var first=banner();
   [5,9,10,25].forEach(function(depth){seed(depth);bridge.advanceTime(100);bridge.feedbackTick(true);});
   assert(banner()===first && document.querySelectorAll('.rift-milestone').length===1,'rapid ticks retain one banner without replacement spam');
@@ -58,7 +58,7 @@ window.runP206FeedbackQa = function(bridge,ctx,assert){
   document.querySelector('[data-tab="battle"]').click();
   assert(!banner(),'off-tab progression has no delayed banner');
   seed(26);bridge.feedbackTick(true);assert(!banner(),'returning to Rift does not replay off-tab milestone');
-  bridge.resetFeedback();seed(2);bridge.feedbackTick(true);
+  bridge.resetFeedback();seed(4);bridge.feedbackTick(true);
   ctx.setHidden(true);document.dispatchEvent(new Event('visibilitychange'));
   assert(!banner(),'hiding removes interrupted feedback');
   seed(25);var hiddenBefore=JSON.stringify(bridge.getState());bridge.feedbackTick(true);

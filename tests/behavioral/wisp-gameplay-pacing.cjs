@@ -80,6 +80,11 @@ for(const [key,base,reward,field]of [['strikes',10000,20,'totalTaps'],['rift',10
   eq(row.next.reward,reward+5*stage,'reward rises with stage');const before=d.get().comets;d.get()[field]=target;d.achievements();eq(d.get().comets,before+reward+5*stage,'exact boundary pays once');
   row=d.deedSeries(d.get()).find(r=>r.key===key);eq(row.next.id,'continuing_'+key+'_'+(stage+1),'always has a further target');ok(A.gt(row.next.target,target),'next target increases');
   const endpoint=F.clone(d.get());d.achievements();eq(d.get(),endpoint,'continued grant idempotent');ok(d.save(),'continuous receipt saves');const loaded=L.app(original,z.storage).q;loaded.achievements();eq(loaded.get(),endpoint,'cold continuing reward never repeats');
+  const lower=F.clone(endpoint);lower[field]=key==='rift'?1:0;d.set(lower);d.achievements();
+  eq(d.get().comets,endpoint.comets,'lower counter preserves paid continuing receipts');
+  eq(d.deedSeries(d.get()).find(r=>r.key===key).next.id,'continuing_'+key+'_'+(stage+1),'cached catalog retains the next goal after a lower counter');
+  ok(d.save(),'lower-counter receipts save');const lowerCold=L.app(original,z.storage).q;lowerCold.achievements();
+  eq(lowerCold.deedSeries(lowerCold.get()).find(r=>r.key===key).next.id,'continuing_'+key+'_'+(stage+1),'cold catalog restores receipt frontier independently of its counter');
  }
 }
 const rows=d.deedSeries(d.fresh());for(const key of ['roster','abilities','rarities','ultimates'])ok(rows.some(r=>r.key===key),'new Deed series '+key);

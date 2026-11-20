@@ -2298,7 +2298,7 @@
           assert(economy.retirementCometTotal===350&&economy.retiredEntitlements.every(function(v){return v===true;}),'actual migration preserves all three retired entitlements and their 350-Comet compensation');
           assert(economy.deedCometTotal===683,'original23 one-time Deeds must total 683 Comets');
           assert(economy.eventDeedCometTotal===50,'the four original event Deeds separately total 50 Comets');
-          assert(economy.longtailDeedCount===49&&economy.longtailDeedCometTotal===2640&&economy.newDeedCometTotal===2690,'49 long-term Deeds use the approved increasing rewards without changing original event payouts');
+          assert(economy.longtailDeedCount===71&&economy.longtailDeedCometTotal===3230&&economy.newDeedCometTotal===3280,'69 fixed development goals and two continuing goals preserve original event payouts');
           assert(economy.questRefreshCost>=economy.maxQuestCometReward,'Daily Quest Refresh must never be cheaper than the richest Comet quest reward');
           assert(economy.sigilResonanceCost===25 && economy.sigilResonanceRunLimit===3,'Sigil Resonance must remain fixed at 25 Sigils and 3 uses per Ascension run');
 

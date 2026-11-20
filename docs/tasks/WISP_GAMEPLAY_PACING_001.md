@@ -144,6 +144,19 @@ Local receipts and compressed browser logs are in
 installed APK results remain pending. fc7 Tree/Comet/Lab/Wisp/permanent CI PASS;
 Forge and main lanes still running. No merge/build/publication yet.
 
+Checkpoint03:31CET: ordinary-browser sweep88cases found four stale expectation
+failures (feedback variants count twice, simultaneous Gale funding and Deed
+totals), plus4h performance and two transport failures. Corrected actual Tide
+feedback boundary5/25defeats and funded simultaneous Gale50m while preserving
+its same-timestamp order assertion. Both feedback modes, chronology and endgame
+checks PASS. Continuing catalog now scans receipt identities once and skips
+unchanged runtime frontiers; its first pass already registers the next goal.
+Removed duplicate post-grant scan. Strict4h performance<5s PASS; added40checks
+for lower-counter paid receipts/next goal/cold load: core415 plus5controls PASS.
+Medium-Farm20s CDP timeout reproduces on originalc18 baseline; required Linux
+deadline stays unchanged. Latest product hash11170c9c24e8be77bb74ac21183747498f67f8f8c3252ee56afa5d663b25e51d.
+Save optimized receipts in local QA; rerun all CI before integration/build.
+
 Android acceptance now requires actual native touches opening all eight compact
 cards, a preserved completed Stone20 ability with gold/no arrow/next, and a
 separate installed schema6 six-member owner fixture. The latter must retain
