@@ -1,6 +1,6 @@
 # WISP_GAMEPLAY_PACING_001 — earned roster growth and compact upgrades
 
-Status: in progress. Owner: this feature chat; no delegation or new chats.
+Status: integrated, release/device acceptance pending. Owner: this feature chat.
 
 ## Original request — 20 November 2026
 
@@ -87,10 +87,12 @@ own foreground stacking position, including while its icon is pressed.
 ## Current validation and delivery checkpoint — 20 November 2026
 
 Product SHA25639199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4.
-PR64 head68e0fda62a7d8059f3995cd920e86b6ecb4a50bc; main stillc18e6189.
-Latest public APK0.2.139; feature is not yet merged or publicly delivered.
-Task-owned QA branch holds docs/evidence follow-ups while PR CI runs; do not
-advance the feature PR for evidence alone. Worktree C:/lf-gameplay. No delegation.
+PR64 merged at8efc0befe366fc0a684352466c4e9b9c1d745b1a on20 November08:21CET.
+All eight PR workflows PASS at9e5b8620, including190 main plus1 isolated offline
+scenarios. Main's game/tests/Android/workflow files equal that candidate.
+Latest public APK0.2.139; public delivery pending all nine exact-main workflows.
+Task-owned QA branch holds evidence follow-ups; keep main fixed during its
+gate/build window. Worktree C:/lf-gameplay. No delegation or new chats.
 
 Current local passes include419 core checks/six causal controls, exact Lab
 offline batch1/2/31/256 with rollback/retry/recovery, full native Resonate input,
@@ -113,7 +115,7 @@ released baseline;12h VM exceeded unchanged300s under concurrent local load.
 Mandatory exact integrated-source Linux gates remain required.
 
 Private signed Android147/run44680838036 attempt2 PASS at6fe576fb; its product
-and Android code equal PR68. APK SHA256fc8ebb7ef4ca05a6509f3e5063fd799c9c9cb17a41d01a641745a95bd563d755.
+and Android code equal integrated main. APK SHA256fc8ebb7ef4ca05a6509f3e5063fd799c9c9cb17a41d01a641745a95bd563d755.
 Package com.lumenfall.app, established signer, both saves/paid work/UID/origin,
 native eight-card disclosures/explanations after purchase,288–292px compact
 cards at320px, five Active/bench ownership/refund120 once through cold restart,
@@ -140,11 +142,12 @@ metadata evidence added. Earlier failures/unchanged retries are preserved.
 All39 workflow startup contexts pass the unchanged32KiB limit. Shared status
 entry must remain short: other task contexts have only43bytes remaining.
 
-Next: finish PR68 CI; merge64 at expected head after checking main/PR63 overlap;
-integrate QA evidence follow-ups; run all nine exact integrated-main workflows;
+Next: finish all nine workflows dispatched on integrated8efc0befe366fc0a684352466c4e9b9c1d745b1a;
 publish signed APK only after all pass; verify native/update/retail receipts,
 anonymous latest/tag APK bytes and in-game feed. Save final task/shared status
 and release evidence in GitHub. Do not move main during its gate/build window.
+Main premerge run44694394498; other exact-head run IDs are saved in remote/status-8efc0bef.json.
+Late QA follow-ups contain docs/evidence only and can integrate after publication.
 
 Physical phone/exact WebView60 DOM/TalkBack/human long-term pacing remain
 unobserved. Google Play Protect classification is NOT_TESTED; warning clearance
