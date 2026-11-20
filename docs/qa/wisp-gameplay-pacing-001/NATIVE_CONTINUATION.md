@@ -67,3 +67,15 @@ then publish signed APK and verify anonymous public metadata/APK bytes/feed.
 Do not push this QA branch history into the still-open PR and restart its CI.
 
 06:53CET: d98 premerge attempt2 passed the previously failing Lab CDP step, then stopped at endless-mobile old text: Unlocks at Rift100. Actual UI shows Requires Rift100 plus Wisp Ascendancy Lv47. Updated the assertion to require BOTH gates, aria-disabled and absent price; all889 checks/72cases/12profiles PASS. Product unchanged39199dfe. This requires updating PR64 now; the earlier instruction to freeze its d98 head is superseded. Publish the verified native-QA follow-ups/evidence and this test correction together to the feature and QA refs, rerun full PR CI. No additional private APK is needed for a text-assertion-only change: Android code equals full nativePASS6fe. Remaining mandatory engine suites are running locally to expose stale expectations earlier. No public release yet.
+
+06:59CET: all14 remaining engine suites PASS, including the complete14-control
+negative suite; local source39199dfe, Node24.22.1. Cold-frame/split, boundaries,
+resource/native-wallet replay, wide overflow and automation ownership included.
+Recruitment integration200, original Echo refund622 and Swift22records PASS;
+Wisp contribution758/12profiles PASS. Saved raw compressed receipts in local/.
+Tests rewrote two generic tracked diagnostic files; copied current evidence into
+this task and restored those tracked originals exactly from HEAD. No archive or
+original fixture changes. PR head68e0fda62a7d8059f3995cd920e86b6ecb4a50bc remains
+unchanged while all CI runs. This follow-up is docs/evidence only on the QA ref;
+do not restart PR CI for it. On passing PR CI merge expected68, incorporate QA
+docs as needed, then all9 exact-main gates/public signed build/anonymous proof.
