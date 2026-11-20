@@ -128,7 +128,30 @@ async function run(){
     await key('Enter');await key('Space');assert(await evaluate('JSON.stringify(__wispQa.get())===__wispNativeFinal&&document.querySelector("[data-wisp-progression=ember]").open'),'repeated native input cannot collapse or spend');
     summary=await evaluate(`(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),c=getComputedStyle(e);return {w:r.width,h:r.height,outline:c.outlineStyle,color:c.color};})()`);assert(summary.w>=44&&summary.h>=44&&summary.outline!=='none','same-card native keyboard focus is visible');
     }
-    records.push({width,large,...(compact?{fontPercent}:{}),motion,fonts,result,geometry,summary});
+    let compactDefault;
+    if(compact){
+      await evaluate(`(()=>{const b=__wispQa,s=b.fresh();s.savedLabMultiplier=100;b.set(s);b.renderCompact();b.prepare();b.present();})()`);
+      compactDefault=await evaluate(`(()=>{const c=document.querySelector('[data-wisp-card=ember]'),p=c.querySelector('[data-wisp-progression]'),s=p.querySelector('summary');return {height:c.getBoundingClientRect().height,closed:!p.open,summaryHeight:s.getBoundingClientRect().height,state:JSON.stringify(__wispQa.get()),saves:JSON.stringify(__wispQa.slots())};})()`);
+      assert(compactDefault.closed&&compactDefault.summaryHeight>=44&&compactDefault.height<(large?700:430),'compact default card is closed and fits useful mobile space');
+      if(evidence&&motion==='no-preference'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'default-'+width+'-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
+      const point=await evaluate(`(()=>{const e=document.querySelector('[data-wisp-details=ember]');e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+      await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      assert(await evaluate(`document.querySelector('[data-wisp-progression=ember]').open`),'native touch opens compact upgrades');
+      await evaluate(`document.querySelector('[data-wisp-details=ember]').focus({preventScroll:true})`);await key('Enter');
+      assert(await evaluate(`!document.querySelector('[data-wisp-progression=ember]').open`),'native keyboard folds compact upgrades');
+      assert(await evaluate(`JSON.stringify(__wispQa.get())===${JSON.stringify(compactDefault.state)}&&JSON.stringify(__wispQa.slots())===${JSON.stringify(compactDefault.saves)}`),'disclosure touch/keyboard preserves full state and both saves');
+      await evaluate(`document.querySelector('[data-tab=forge]').click()`);
+      assert(await evaluate(`!document.querySelector('#tab-forge [data-mult]')&&__wispQa.get().savedLabMultiplier===1`),'Forge has no multiplier and resets old quantities toone');
+      await evaluate(`document.querySelector('[data-tab=deeds]').click();document.querySelector('[data-tab=deeds]').classList.add('has-attention')`);
+      const dot=await evaluate(`(()=>{const b=document.querySelector('[data-tab=deeds]'),r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+      await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[dot]});
+      assert(await evaluate(`(()=>{const b=document.querySelector('[data-tab=deeds]'),d=getComputedStyle(b,'::before');return Number(d.zIndex)>0&&d.opacity==='1'&&d.pointerEvents==='none';})()`),'notification stays above the pressed icon without intercepting input');
+      if(evidence&&width===390&&fontPercent===100&&motion==='no-preference'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(evidence,'deeds-pressed-dot.png'),Buffer.from(shot.data,'base64'));}
+      await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      await evaluate(`document.querySelector('[data-tab=spirits]').click()`);
+      delete compactDefault.state;delete compactDefault.saves;
+    }
+    records.push({width,large,...(compact?{fontPercent}:{}),motion,fonts,result,geometry,summary,compactDefault});
   }
   return {status:'pass',source,sourceSha256,browser:browserIdentity,records};
 }

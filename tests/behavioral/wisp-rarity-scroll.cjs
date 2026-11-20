@@ -27,12 +27,16 @@ const painted=()=>ev('new Promise(function(resolve){requestAnimationFrame(functi
 // settle; otherwise two CDP reads can straddle different animation frames.
 // Keep the existing 300ms setup ceiling and one-pixel assertions.
 async function settledSetup(label){layoutSettlements.push({label,...await ev(`new Promise(function(resolve,reject){
- var started=performance.now(),previous=null,stable=0,frames=0,ended=false;
- var deadline=setTimeout(function(){ended=true;reject(Error('Wisp setup layout did not settle within 300ms'));},300);
+ // Resolve pending setup style/layout synchronously before observing its
+ // animation. Keep the same300ms ceiling and three stable painted frames.
+ document.querySelector('[data-empower=stone]').getBoundingClientRect();
+ var started=performance.now(),previous=null,stable=0,frames=0,ended=false,trace=[];
+ var deadline=setTimeout(function(){ended=true;reject(Error('Wisp setup layout did not settle within 300ms '+JSON.stringify(trace)));},300);
  function frame(){if(ended)return;try{
   var main=document.querySelector('main'),rect=document.querySelector('[data-empower=stone]').getBoundingClientRect();
   var geometry=JSON.stringify([main.scrollTop,main.scrollHeight,rect.top,rect.height]);frames++;
   var animating=document.querySelector('#tab-spirits').getAnimations().some(function(a){return a.playState==='running'||a.playState==='paused';});
+  trace.push({at:performance.now()-started,geometry:geometry,animating:animating});
   stable=!animating&&geometry===previous?stable+1:0;previous=geometry;
   if(stable>=2){ended=true;clearTimeout(deadline);resolve({frames:frames,elapsedMs:performance.now()-started});}
   else requestAnimationFrame(frame);

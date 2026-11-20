@@ -78,7 +78,7 @@ function runCore(source,options={}){
     eq(s.owned.meteor,false,'Meteor unowned');eq(s.owned.starcall,false,'Call unowned');
     eq(q.shopDefs().map(r=>r.id),q.schema()>=6?['astralcore','astralecho','astralconvergence']:CATALOG.map(r=>r.id),'exact current permanent catalog');
     eq(q.achievementDefs().slice(0,27).map(a=>[a.id,a.reward]),OLD_DEEDS.concat(NEW_DEEDS),'all23 old rewards/order plus four fixed rewards retained in original order');
-    eq(q.achievementDefs().length,76,'49 additional long-tail milestones are appended');
+    eq(q.achievementDefs().length,98,'original76 identities plus20 development milestones and two initial continuing goals');
     eq(OLD_DEEDS.reduce((n,r)=>n+r[1],0),683,'old pool');eq(NEW_DEEDS.reduce((n,r)=>n+r[1],0),50,'new pool');
     eq(CATALOG.reduce((n,r)=>n+r.prices.reduce((a,b)=>a+b,0),0),1380,'whole catalog');
     eq(CLAIMS.length,30,'bounded known identities');eq(CLAIMS.reduce((n,r)=>n+r[1],0),1083,'bounded family amount');

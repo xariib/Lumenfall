@@ -1,7 +1,16 @@
 'use strict';
 const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const F=require('./forge-expansion-harness.cjs'),L=require('./lab-expansion-harness.cjs'),A=require('../../scripts/lib/game-amount.cjs');
-const original=fs.readFileSync(process.argv[2]||'index.html','utf8'),marker="if(document.readyState==='loading'){";
+let original=fs.readFileSync(process.argv[2]||'index.html','utf8');
+const mutants={
+ cheap:['return lab>1 ? Math.max(sp.baseCost,Math.round(800*Math.pow(1.6,lab))) : sp.baseCost;','return sp.baseCost;'],
+ sixth:['function treeFormationCapacity(snapshot){return 5;}','function treeFormationCapacity(snapshot){return 6;}'],
+ repeatRefund:['if(!out.formationSeatRefund.paid){','if(true){'],
+ abilityGate:["return rule.lab ? [wispRequirement('depth'","return false ? [wispRequirement('depth'"],
+ repeatDeed:['if(!state.achieved[a.id] && a.check(state)){','if(a.check(state)){']
+};
+if(process.env.WISP_GAMEPLAY_MUTANT){const pair=mutants[process.env.WISP_GAMEPLAY_MUTANT];assert(pair);assert.equal(original.split(pair[0]).length,2);original=original.replace(pair[0],pair[1]);}
+const marker="if(document.readyState==='loading'){";
 const source=original.replace(marker,`window.endlessQa={recruit:wispRecruitmentUnlocked,capacity:treeFormationCapacity,
  modulePlan:getWispModulePlan,module:buyModule,rarityPlan:getWispRarityPlan,rarity:buyRarity,
  rarityCost:rarityCost,moduleCost:moduleCost,base:wispInvestmentBase,tree:getNodeBuyPlan,
@@ -74,4 +83,25 @@ for(const [key,base,reward,field]of [['strikes',10000,20,'totalTaps'],['rift',10
  }
 }
 const rows=d.deedSeries(d.fresh());for(const key of ['roster','abilities','rarities','ultimates'])ok(rows.some(r=>r.key===key),'new Deed series '+key);
-console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),anchors,gates}));
+// Current-price automation and continuing Deeds share one chronological owner.
+// Compare actual offline catch-up with120 one-second foreground segments.
+{
+ const whole=F.app(original),parts=F.app(original),s=whole.q.fresh();s.lastSeen=F.CLOCK;s.questDay=whole.q.day();
+ s.maxDepthEver=100;s.depth=s.enemyDepth=s.farmDepth=39;s.farmReturnDepth=100;s.riftMode='farm';s.nodes.echo=6;
+ s.lumen=100000000;s.shards=100000;s.spirits.ember=80;s.totalTaps=19990;s.achieved.autotap=s.achieved.labmaster=true;
+ s.longStudyLevels.wispascend=23;s.recruitmentEntitlements.thorn=true;s.nodes.recruitreserve=5;
+ s.formationPresets.push=['ember','thorn'];s.formationRebuild={members:['ember','thorn'],preset:'push'};
+ s.activeStudies=[{id:'guardmastery',slot:0,remainingSec:200,totalDurationSec:200,speedMult:1}];
+ whole.q.set(s);parts.q.set(s);whole.q.restoreEnemy();parts.q.restoreEnemy();
+ whole.q.advance(120,{kind:'offline',clockStartMs:F.CLOCK,offlineWindowStartMs:F.CLOCK});
+ for(let i=0;i<120;i++)parts.q.advance(1,{kind:'live',clockStartMs:F.CLOCK+i*1000,offlineWindowStartMs:F.CLOCK});
+ for(const key of ['spirits','lumen','shards','sigils','comets','achieved','cometClaims','activeParty','formationPresets','wispModules','heroRarity','wispUltimate','activeStudies','pausedStudies','studyBoosts','nodes','research','totalTaps','totalKills'])eq(whole.q.get()[key],parts.q.get()[key],'new-price offline/foreground endpoint '+key);
+ ok(whole.q.get().spirits.thorn>0,'funded current-price automation really recruits Thorn');ok(whole.q.get().lumen<s.lumen,'actual automation spends paid Lumen');
+ eq(whole.q.get().achieved.continuing_strikes_1,true,'offline Strikes crosses continuing milestone once');
+}
+const controls=[];
+if(process.argv.includes('--negative'))for(const name of Object.keys(mutants)){
+ const result=require('node:child_process').spawnSync(process.execPath,[__filename,process.argv[2]||'index.html'],{encoding:'utf8',env:{...process.env,WISP_GAMEPLAY_MUTANT:name}});
+ assert.equal(result.status,1,'causal control fails '+name);assert.match(result.stderr,/AssertionError/,'control reaches real assertion '+name);controls.push({name,status:'caught'});
+}
+console.log(JSON.stringify({status:'PASS',checks,controls,sourceSha256:crypto.createHash('sha256').update(original).digest('hex'),anchors,gates}));

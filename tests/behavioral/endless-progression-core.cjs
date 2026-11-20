@@ -122,8 +122,8 @@ function late(){const {x,q,b}=game(),s=q.fresh();s.spirits.ember=140;s.maxDepthE
 }
 // Ability purchases use the same atomic boundary as other Wisp development.
 function exactInteger(value){if(typeof value==='number')return BigInt(value);const p=/^(\d+)e(\d+)$/.exec(value);assert(p,'canonical integer amount');return BigInt(p[1])*10n**BigInt(p[2]);}
-for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2100],['thorn',12000],['void',70000],['aurora',400000],['titan',2200000]]){
- const {x,q,b}=game(),s=q.fresh();s.maxDepthEver=250;s.spirits[id]=1;s.lumen=s.shards='1e400';s.activeStudies=[{id:'guardmastery',remainingSec:70,totalDurationSec:150,speedMult:4}];q.set(s);q.save();
+for(const [id,base]of [['ember',10],['tide',60],['stone',360],['gale',2361183],['thorn',39614081],['void',664613998],['aurora',6968982875],['titan',3138550867693]]){
+ const {x,q,b}=game(),s=q.fresh();s.maxDepthEver=250;s.longStudyLevels.wispascend=100;s.spirits[id]=1;s.lumen=s.shards='1e400';s.activeStudies=[{id:'guardmastery',remainingSec:70,totalDurationSec:150,speedMult:4}];q.set(s);q.save();
  const before=clone(q.get()),disk=Array.from(x.storage);x.fail(true,false);
  eq(b.module(q.sp(id)),false,'failed primary ability purchase '+id);eq(q.get(),before,'failed ability rolls back wallet and rank '+id);eq(Array.from(x.storage),disk,'failed ability leaves both save slots '+id);x.fail(false,false);
  ok(b.module(q.sp(id)),'real ability purchase '+id);eq(q.get().wispModules[id],1,'one ability level '+id);

@@ -10,6 +10,9 @@ window.runWispCompactQa=function(){
     c.querySelectorAll('button').forEach(function(button){
       var cue=!!button.querySelector('.wisp-next-label'),name=button.getAttribute('aria-label')||'';
       ok(cue===name.includes('Next ·'),'next cue included in accessible name before refresh');
+      // Retain the causal assertion ID used by CI while requiring the new
+      // original-action name, without a Next prefix, before focus restoration.
+      ok(name.includes(b.spirit(c.dataset.wispCard).name),'next cue included in accessible name before refresh: current Wisp action context');
     });
   }
   function card(id){return document.querySelector('[data-wisp-card="'+id+'"]');}
@@ -36,7 +39,7 @@ window.runWispCompactQa=function(){
   b.wallet(0,0);inspect('ember',null);ok(Math.abs(main.scrollTop-top)<1&&document.activeElement.closest('[data-wisp-card]')===card('ember'),'wallet loss keeps exact scroll and same Wisp');
   var moduleCost=b.moduleCost('ember',0);b.wallet(moduleCost.lumen,moduleCost.shard);inspect('ember','module');
   b.wallet(moduleCost.lumen,moduleCost.shard-1);inspect('ember','empower');
-  var s=b.fresh();s.spirits.ember=200;s.maxDepthEver=1000;s.ascendCount=100;s.longStudyLevels.wispascend=300;s.research.arcanecal=30;s.research.masterwork=10;s.nodes.swift=20;s.lumen=s.shards=1e20;
+  var s=b.fresh();s.spirits.ember=200;s.totalKills=100;s.maxDepthEver=1000;s.ascendCount=100;s.longStudyLevels.wispascend=300;s.research.arcanecal=30;s.research.masterwork=10;s.nodes.swift=20;s.lumen=s.shards=1e20;
   b.set(s);b.render();inspect('ember','rarity');
   s.heroRarity.ember=5;s.wispModules.ember=20;s.sigils=1e10;b.set(s);b.render();inspect('ember','ultimate');
   s.wispUltimate.ember=true;s.prisms=20000;b.set(s);b.render();inspect('ember','mastery');

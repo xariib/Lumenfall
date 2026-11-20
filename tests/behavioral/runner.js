@@ -2247,7 +2247,7 @@
           assert(emberCurve.module[19].pacing>10,'Module 20 must carry a materially stronger late-investment multiplier');
           assert(emberCurve.module[19].lumen>emberCurve.module[9].lumen*100,'Module endgame investment must widen materially versus the mid curve');
 
-          assert(rosterTotals.rarity.shard===emberCurve.rarityTotal.shard*8,'full-roster Rarity Shard commitment must equal eight complete Wisp paths');
+          assert(rosterTotals.rarity.shard>emberCurve.rarityTotal.shard*8,'later-recruit rarity prices exceed eight early-game paths');
           assert(rosterTotals.module.shard>voidCurve.moduleTotal.shard*30,'full-roster Module commitment must be substantially longer than one representative Active Wisp');
           assert(titanCurve.moduleTotal.shard>voidCurve.moduleTotal.shard*30,'late-roster Titan Module path must remain a deliberate specialization choice');
 

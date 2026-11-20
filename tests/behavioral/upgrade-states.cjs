@@ -11,10 +11,10 @@ if(process.argv.includes('--mutate-lock'))source=source.replace('if(!plan.eligib
 if(process.argv.includes('--mutate-red'))source=source.replace("Amount.valid(amount) && missing ? 'var(--danger)'", "Amount.valid(amount) && false ? 'var(--danger)'");
 const bridge=String.raw`
 window.upgradeQa={
- seed:function(){var s=freshState();s.maxDepthEver=100000;s.ascendCount=10000;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=['ember'];
+ seed:function(){var s=freshState();s.totalKills=100;s.maxDepthEver=100000;s.ascendCount=10000;s.questDay=todayStr();s.lastSeen=Date.now();s.activeParty=['ember'];
   SPIRITS.forEach(function(n){s.spirits[n.id]=1000;s.heroRarity[n.id]=5;s.wispModules[n.id]=20;s.wispUltimate[n.id]=true;s.empowerQueue[n.id]=false;});
   LONG_STUDIES.forEach(function(n){s.longStudyLevels[n.id]=n.levelCap||250;});RESEARCH.forEach(function(n){s.research[n.id]=n.levelCap||300;});NODES.forEach(function(n){s.nodes[n.id]=n.levelCap||100;});return s;},
- set:function(s,tab){state=acceptPersistedState(s);selectedStudySlot=0;renderAll();activateTab(tab);},
+ set:function(s,tab){state=acceptPersistedState(s);selectedStudySlot=0;renderAll();activateTab(tab);document.querySelectorAll('[data-wisp-progression]').forEach(function(p){p.open=true;});},
  patch:function(s){Object.keys(s).forEach(function(k){state[k]=s[k];});lastAffordabilityAt=0;checkAffordability();},
  get:function(){return JSON.stringify(state);},saves:function(){return JSON.stringify([localStorage.getItem(SAVE_KEY),localStorage.getItem(RECOVERY_SAVE_KEY)]);},
  ready:function(){if(startupIntroFinish)startupIntroFinish();document.querySelectorAll('.overlay,#startup-intro').forEach(function(e){e.style.display='none';});document.querySelector('.shell').inert=false;},

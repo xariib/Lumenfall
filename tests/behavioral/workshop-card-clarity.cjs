@@ -57,4 +57,7 @@ for(const depth of [1,14,15,25,39,40,59,60,90])for(const apparatus of [0,1,2]){
 }
 const progressiveDeeds=require('./deeds-progressive.cjs').run(source);
 const nativeRecapPrecondition=require('./native-recap-precondition.cjs').verify(source);
+// The new progression/migration contract runs in this existing required gate.
+const wispGameplay=JSON.parse(require('node:child_process').execFileSync(process.execPath,[require('node:path').join(__dirname,'wisp-gameplay-pacing.cjs'),process.argv[2]||'index.html','--negative'],{encoding:'utf8'}));
+eq(wispGameplay.status,'PASS','earned Wisp progression and five-slot migration');
 console.log(JSON.stringify({status:'pass',checks,progressiveDeeds,nativeRecapPrecondition,sourceSha256:crypto.createHash('sha256').update(source).digest('hex')}));
