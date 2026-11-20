@@ -125,3 +125,14 @@ this QA branch equals8ef; later changes are docs/evidence only. No public update
 yet (139); private147 full native PASS. On all9success, delivery.cjs build8ef true
 then inspect exact signed build/native/updater/retail and anonymous releasefeed.
 Google/physical acceptance remains pending; do not archive or claim clearance.
+
+09:19CET: ALL9 integrated8ef workflows PASS, including exact190main+1offline.
+Native public build44701460304 is running on exactmain8ef, version0.2.148/code
+1000148. Latest PUBLIC remains139 until this build fully passes/publishes.
+Integrated-validation.json saves9 exactrun refs and rawgz receipts. Prior
+monitor59173 exited0; no running validation monitor now. Next inspect buildjob
+steps, repairactualfailure ifany (preserve failures); only full native/updater/
+retail PASS maypublish. Then verify-release.cjs44701460304 8ef... asserts actual
+artifact/source/APK/signer and anonymous release bytes/feed. Finaldocs-only
+main integration comes AFTERpublicverified; main muststay8ef duringbuild.
+Local QA HEAD descendants contain docs/evidence only; no code delta from8ef.

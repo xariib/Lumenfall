@@ -90,7 +90,8 @@ Product SHA25639199dfe5160773e0fb1300878b4119183a7a6e071871135699982b284759bd4.
 PR64 merged at8efc0befe366fc0a684352466c4e9b9c1d745b1a on20 November08:21CET.
 All eight PR workflows PASS at9e5b8620, including190 main plus1 isolated offline
 scenarios. Main's game/tests/Android/workflow files equal that candidate.
-Latest public APK0.2.139; public delivery pending all nine exact-main workflows.
+All nine exact-main workflows PASS, including190 main plus1 isolated offline.
+Latest public APK0.2.139; signed public0.2.148 build44701460304 is running.
 Task-owned QA branch holds evidence follow-ups; keep main fixed during its
 gate/build window. Worktree C:/lf-gameplay. No delegation or new chats.
 
@@ -112,7 +113,8 @@ all chunk partitions/tolerances and negative control. Actual browser offline
 return/resume/cancel/save-retry/day-rollover PASS. Full Windows discovery sweep
 is not release acceptance: medium-Farm no-completed-QA also reproduces on the
 released baseline;12h VM exceeded unchanged300s under concurrent local load.
-Mandatory exact integrated-source Linux gates remain required.
+Exact-source Linux PR and integrated-main190+1 suites now PASS; local Windows
+limits remain recorded as development evidence, not release acceptance.
 
 Private signed Android147/run44680838036 attempt2 PASS at6fe576fb; its product
 and Android code equal integrated main. APK SHA256fc8ebb7ef4ca05a6509f3e5063fd799c9c9cb17a41d01a641745a95bd563d755.
@@ -142,8 +144,8 @@ metadata evidence added. Earlier failures/unchanged retries are preserved.
 All39 workflow startup contexts pass the unchanged32KiB limit. Shared status
 entry must remain short: other task contexts have only43bytes remaining.
 
-Next: finish all nine workflows dispatched on integrated8efc0befe366fc0a684352466c4e9b9c1d745b1a;
-publish signed APK only after all pass; verify native/update/retail receipts,
+Next: finish public signed0.2.148 build44701460304 at integrated8ef;
+verify native/update/retail receipts and publication,
 anonymous latest/tag APK bytes and in-game feed. Save final task/shared status
 and release evidence in GitHub. Do not move main during its gate/build window.
 Main premerge run44694394498; other exact-head run IDs are saved in remote/status-8efc0bef.json.

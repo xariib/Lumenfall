@@ -1,0 +1,334 @@
+[
+  {
+    "id": 136170597804,
+    "run_id": 44701460304,
+    "workflow_name": "Build Android APK",
+    "head_branch": "main",
+    "run_url": "https://api.github.com/repos/xariib/Lumenfall/actions/runs/44701460304",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVI5pCM8AAAAftGZtrA",
+    "head_sha": "8efc0befe366fc0a684352466c4e9b9c1d745b1a",
+    "url": "https://api.github.com/repos/xariib/Lumenfall/actions/jobs/136170597804",
+    "html_url": "https://github.com/xariib/Lumenfall/actions/runs/44701460304/job/136170597804",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-11-20T08:18:17Z",
+    "started_at": "2026-11-20T08:18:19Z",
+    "completed_at": null,
+    "name": "build-apk",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-20T08:18:20Z",
+        "completed_at": "2026-11-20T08:18:23Z"
+      },
+      {
+        "name": "Checkout",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-20T08:18:23Z",
+        "completed_at": "2026-11-20T08:18:45Z"
+      },
+      {
+        "name": "Require integrated validation before publishing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-20T08:18:45Z",
+        "completed_at": "2026-11-20T08:18:48Z"
+      },
+      {
+        "name": "Set up Node.js",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 4,
+        "started_at": "2026-11-20T08:18:48Z",
+        "completed_at": null
+      },
+      {
+        "name": "Set up Java",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Set up Gradle",
+        "status": "pending",
+        "conclusion": null,
+        "number": 6,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Verify Android SDK",
+        "status": "pending",
+        "conclusion": null,
+        "number": 7,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Restore and verify stable Android signing key",
+        "status": "pending",
+        "conclusion": null,
+        "number": 8,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Install Capacitor dependencies",
+        "status": "pending",
+        "conclusion": null,
+        "number": 9,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Reject high and critical dependency advisories",
+        "status": "pending",
+        "conclusion": null,
+        "number": 10,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Validate game source",
+        "status": "pending",
+        "conclusion": null,
+        "number": 11,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Stage Android web assets",
+        "status": "pending",
+        "conclusion": null,
+        "number": 12,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Browser runtime smoke test",
+        "status": "pending",
+        "conclusion": null,
+        "number": 13,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Generate Android project",
+        "status": "pending",
+        "conclusion": null,
+        "number": 14,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Configure production build and separate native test runner",
+        "status": "pending",
+        "conclusion": null,
+        "number": 15,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Install native signed APK updater",
+        "status": "pending",
+        "conclusion": null,
+        "number": 16,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Compute continuing Android version",
+        "status": "pending",
+        "conclusion": null,
+        "number": 17,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Set Android app version",
+        "status": "pending",
+        "conclusion": null,
+        "number": 18,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Stage Android icon and splash sources",
+        "status": "pending",
+        "conclusion": null,
+        "number": 19,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Generate Android icons and splash",
+        "status": "pending",
+        "conclusion": null,
+        "number": 20,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Sync Capacitor",
+        "status": "pending",
+        "conclusion": null,
+        "number": 21,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Build APK",
+        "status": "pending",
+        "conclusion": null,
+        "number": 22,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Prepare APK",
+        "status": "pending",
+        "conclusion": null,
+        "number": 23,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Verify final APK identity",
+        "status": "pending",
+        "conclusion": null,
+        "number": 24,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Verify exact packaged production assets and origin",
+        "status": "pending",
+        "conclusion": null,
+        "number": 25,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Enable emulator hardware acceleration",
+        "status": "pending",
+        "conclusion": null,
+        "number": 26,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Build disposable older-version updater fixture",
+        "status": "pending",
+        "conclusion": null,
+        "number": 27,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Free native build memory before emulator acceptance",
+        "status": "pending",
+        "conclusion": null,
+        "number": 28,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "In-place signed APK and save upgrade on emulator",
+        "status": "pending",
+        "conclusion": null,
+        "number": 29,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Require completed upgrade receipt for this exact APK",
+        "status": "pending",
+        "conclusion": null,
+        "number": 30,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Verify normal production launch on a retail Android image",
+        "status": "pending",
+        "conclusion": null,
+        "number": 31,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Preserve failed native upgrade diagnostics",
+        "status": "pending",
+        "conclusion": null,
+        "number": 32,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Upload failed native upgrade diagnostics",
+        "status": "pending",
+        "conclusion": null,
+        "number": 33,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Preserve verified build",
+        "status": "pending",
+        "conclusion": null,
+        "number": 34,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Publish verified APK release",
+        "status": "pending",
+        "conclusion": null,
+        "number": 35,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Remove temporary signing copy",
+        "status": "pending",
+        "conclusion": null,
+        "number": 36,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Set up Node.js",
+        "status": "pending",
+        "conclusion": null,
+        "number": 71,
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "name": "Post Checkout",
+        "status": "pending",
+        "conclusion": null,
+        "number": 72,
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/xariib/Lumenfall/check-runs/136170597804",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000004364,
+    "runner_name": "GitHub Actions 1000004364",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]
