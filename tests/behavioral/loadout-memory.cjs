@@ -144,7 +144,7 @@ async function browserContracts(){
       const before=await evaluate('__f25.get()');before.savedLabMultiplier=value;await restore(before);
       ok(await evaluate('__f25.mult()===1&&__f25.get().savedLabMultiplier===1'),'old backup quantity resets toone');
       const after=await evaluate('__f25.get()');before.savedLabMultiplier=1;expectSaveClock(before,after);same(after,before,'restore changes only removed quantity and save timestamp');
-      await click('[data-tab="research"]');await click('[data-tab="battle"]');await click('[data-tab="workshop"]');await click('[data-tab="forge"]');await reload();
+      await click('[data-tab="workshop"]');await click('[data-tab="research"]');await click('[data-tab="battle"]');await click('[data-tab="workshop"]');await click('[data-tab="forge"]');await reload();
       ok(await evaluate('__f25.mult()===1&&__f25.get().savedLabMultiplier===1'),'one quantity survives actual cold reload');
       ok(await evaluate('["lumenfall_save_v2","lumenfall_save_recovery_v1"].every(k=>JSON.parse(localStorage.getItem(k)).savedLabMultiplier===1)'),'both save slots retain one quantity');
       await evaluate(`document.documentElement.style.fontSize=${JSON.stringify(large?'160%':'100%')}`);await click('[data-tab="workshop"]');await click('[data-tab="forge"]');

@@ -1,0 +1,70 @@
+{
+  "node": "v24.22.1",
+  "utc": "2026-11-20T02:21:22.537Z",
+  "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+  "receipts": [
+    {
+      "file": "pacing-final.json",
+      "status": "PASS",
+      "checks": 375,
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "sha256": "fcf105e42667ebbcee698816747caa62381d79e565f231f1b7d7121aa492a50f"
+    },
+    {
+      "file": "manual-current2.json",
+      "status": "PASS",
+      "checks": 30498,
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "sha256": "a64d299ec987be37119dd0f6ee63b10bfca4203bdf0f60bd0403f0eaf7997cea"
+    },
+    {
+      "file": "offline-current2.json",
+      "status": "pass",
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "wallMs": 557357.0155,
+      "sha256": "7c83b412d7a963f5fc34e331aaba0f775eb0c293cf44e3c0e8f00e1b0d3cead8"
+    },
+    {
+      "file": "memory-current-browser2.json",
+      "status": "pass",
+      "checks": 1033,
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "sha256": "8774d66d1ac177c9a7148724d02af4d8aa88dbc49c3ea76a95c2c4d58b4d69b3"
+    },
+    {
+      "file": "forge-caps-current.json",
+      "status": "pass",
+      "checks": 576,
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "sha256": "3799ddd153854b67e1693428d04e6eb35bc07ce57fc0a1b29635b98fa529d2a4"
+    },
+    {
+      "file": "permanent-current3.json",
+      "status": "pass",
+      "checks": 506,
+      "sourceSha256": "135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432",
+      "sha256": "c8a873aa75187f173baa2dbd986f3ad36168a4f63ff81ae00e83e85063c1cfbb"
+    },
+    {
+      "file": "forge-ui-current.txt.gz",
+      "rawSha256": "c10e4dec26f5550af970ff304c20df5592d966fe8da87d2f1d39994811610708"
+    },
+    {
+      "file": "upgrade-deeds-current.txt.gz",
+      "rawSha256": "cb2ada8d86555a1772ca71da5779f5aa3ad8c7638d7ab98a76d21fd38e6aa9de"
+    },
+    {
+      "file": "bond-text-current.txt.gz",
+      "rawSha256": "37479f3f523f353dbeaaf6741fd0624e96c5f6b2a3306d3b971a2ec29fd74cba"
+    },
+    {
+      "file": "r3-save-current.txt.gz",
+      "rawSha256": "ed27cea5671836e21ab10141e30b9f56a9f616d7aa1064488c20cf99201a6294"
+    },
+    {
+      "file": "p207-current.txt.gz",
+      "rawSha256": "5f59d8c33958662ad20606851f738682b3b7974487559acc97a9ec38c01be1f5"
+    }
+  ],
+  "limits": "Local Node24.22.1/Brave checks; intermediate source is identified in each receipt. Windows dump-dom stalls, so ordinary browser assertions use the existing supported CDP-pipe transport with unchanged 25-second deadline. Required exact-source Linux CI and installed Android acceptance remain separate."
+}

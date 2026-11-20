@@ -141,7 +141,7 @@ window.checkR3Reload = function(b,ctx,assert,expected){
     assert(JSON.stringify(s[key])===JSON.stringify(expected[key]),'real reload preserves '+key+' '+JSON.stringify({actual:s[key],expected:expected[key]}));
   });
   document.querySelector('[data-tab="forge"]').click();
-  assert(document.querySelector('[data-mult="5"]').getAttribute('aria-pressed')==='true','remembered bulk restores in Forge');
+  assert(!document.querySelector('#tab-forge [data-mult]')&&s.savedLabMultiplier===1,'removed quantity stays atone after real reload');
   document.querySelector('[data-tab="research"]').click();
   var badge=document.querySelector('#lab-capacity-badge'),free=b.riftStatus.slots()-s.activeStudies.length;
   assert(badge.hidden===!b.riftStatus.canStartStudy()&&badge.textContent===String(free),'affordable capacity badge restores from actual loaded Study state');

@@ -130,6 +130,20 @@ ownership/wallets, actual reload/backup and absence of quantity controls. Native
 Formation viewport failure controls retained using an actual fourth-to-fifth
 Field action under the new limit. No independent reviewer was used.
 
+Local final-product hash135cdd24acfebb7bf5a08c378ee58e7f5aa34c09a3b54f9bbdc3e3bd1ec3d432:
+complete offline18records PASS (557s locally; unchanged300s CI gate PASS onfc7),
+old quantity VM439/browser1033 across6profiles PASS, cap20 native576/12profiles
+PASS, Forge native queue/purchase/focus/scroll PASS. Original browser Deed
+effects, Bond descriptions, R3 reload and contradictory Formation persistence
+PASS using existing CDP-pipe transport and original25s deadline. Tests for
+historical rebuilds explicitly seed already-earned access; current gates are
+tested separately. Updated expanded ability-description oracle to require
+short100-charge explanation plus complete unchanged mechanics disclosure.
+Local receipts and compressed browser logs are in
+[local evidence](../qa/wisp-gameplay-pacing-001/local/); Linux integrated and
+installed APK results remain pending. fc7 Tree/Comet/Lab/Wisp/permanent CI PASS;
+Forge and main lanes still running. No merge/build/publication yet.
+
 Android acceptance now requires actual native touches opening all eight compact
 cards, a preserved completed Stone20 ability with gold/no arrow/next, and a
 separate installed schema6 six-member owner fixture. The latter must retain

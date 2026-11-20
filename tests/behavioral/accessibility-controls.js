@@ -47,7 +47,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   q('[data-tab="spirits"]').click();
   [1,95].forEach(function(level){
     ['ember','tide'].forEach(function(id){
-      var compact=bridge.freshStateSnapshot();compact.maxDepthEver=101;
+      var compact=bridge.freshStateSnapshot();compact.maxDepthEver=101;compact.totalKills=25;
       compact.spirits[id]=id==='ember'?level:0;
       compact.nodes.bonds=id==='tide'&&level===95?20:0;
       bridge.setState(compact);var cost=bridge.formationTest.cost(id);
@@ -93,8 +93,9 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   function luminance(rgb){var c=rgb.map(function(n){n/=255;return n<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4);});return .2126*c[0]+.7152*c[1]+.0722*c[2];}
   q('[data-tab="research"]').click();
   var contrastResults={};
-  [['forge','.mult-btn.active'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
+  [['forge','[data-queue="arcanecal"]'],['research','.study-level'],['research','.study-boost-start']].forEach(function(entry){
     q('[data-tab="'+entry[0]+'"]').click();
+    if(entry[0]==='forge'&&!bridge.getState().researchQueue.arcanecal)q(entry[1]).click();
     if(entry[0]==='research'){
       var editor=q('[data-study-speed-open]');if(editor.getAttribute('aria-expanded')!=='true')editor.click();
       var selected=q('[data-study-speed-target]');assert(selected,'selected speed fixture exists');assert(Number(selected.value)===[1.5,2,3,4,5,6,7,8].indexOf(bridge.getState().studySpeedTargets[selected.dataset.studySpeedTarget]),'selected target retained');
