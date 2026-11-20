@@ -2004,7 +2004,7 @@
           var progression=document.querySelector('.wisp-progression');
           var inspectId=progression.dataset.wispProgression;
           var complete=state().heroRarity[inspectId]>=5 && state().wispModules[inspectId]>=20 && state().wispUltimate[inspectId];
-          assert(progression.tagName!=='DETAILS'&&!progression.querySelector('summary'),'Wisp upgrades remain directly visible');
+          assert(progression.tagName==='DETAILS'&&progression.open&&progression.querySelector('summary'),'expanded compact Wisp upgrades remain reachable');
           var selectedCard=progression.closest('[data-wisp-card]'),action=selectedCard.querySelector('button:not(:disabled)'),actionKey=action&&Array.from(action.attributes).find(function(a){return a.name.indexOf('data-')===0&&a.name!=='data-state';});
           assert(action&&actionKey,'representative visible card control');action.focus();bridge.renderLayout();
           progression=document.querySelector('[data-wisp-progression="'+inspectId+'"]');

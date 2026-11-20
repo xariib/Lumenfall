@@ -111,8 +111,24 @@ offline oracle. Corrected exact expectations; actual-current checks retained.
 The frozen scheduler counterfactual restores only old investment/new-Deed
 inputs; current-price full one-second/whole/split/rollback checks remain.
 Manual offline clock fixture funded100trillion to retain real Push/Farm/Push;
-unfunded original wallet also retained as a second complete clock witness.
-Long simulations and updated permanent UI are currently running locally.
+the original unfunded wallet remains covered by the full offline suite. The
+updated8h manual check30498 PASS, including1s and cold60s partitions. Its old
+negative no longer failed under changed prices; added an independent60.125s
+Push-to-Farm fractional timer witness (250/375ms), cold persistence and causal
+clock removal control, all PASS. Permanent UI506/18profiles PASS.
+
+PR198394e3: Wisp scroll, permanent progression, Lab and Comet PASS. Main lane
+advanced to old Forge-cap multiplier selector; frozen offline comparison only
+differs in deliberately removed saved quantity (assert1 and normalize reference).
+Tree V8 PASS; one original Prism browser case timed out at unchanged25s with
+no QA result, while its three persistence cases and five causal controls PASS;
+retain evidence and rerun without a timeout waiver. Self-review found additional
+old Forge selector expectations in original browser matrices; adapted player
+actions toone-level UI and retained all seven internal batch quantities/caps/
+debits. Old quantity restore coverage now requires1, both slots, unchanged paid
+ownership/wallets, actual reload/backup and absence of quantity controls. Native
+Formation viewport failure controls retained using an actual fourth-to-fifth
+Field action under the new limit. No independent reviewer was used.
 
 Android acceptance now requires actual native touches opening all eight compact
 cards, a preserved completed Stone20 ability with gold/no arrow/next, and a

@@ -386,6 +386,18 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const solo=copy(formation);solo.activeParty=['ember'];solo.formationPresets={push:['ember'],farm:['ember'],boss:['ember']};await install(solo,'spirits');
   const lastWisp=await formationInput('last-wisp-refusal',sel('data-toggle','ember'),()=>key('Enter','Enter',13));same(lastWisp.stateAfter,lastWisp.stateBefore,'last-Wisp refusal retains state');same(lastWisp.writeKeys,[],'last-Wisp refusal never writes');
   await install(push.stateAfter,'spirits');
+  if(width===320&&scale===1&&motion==='no-preference'){
+   const room=copy(formation);room.activeParty=firstFive.slice(0,4);room.formationPresets.push=room.activeParty.slice();
+   await viewportControl('formation',room,'spirits',field,'toggle','aurora',async row=>{
+    same(row.stateBefore.activeParty,firstFive.slice(0,4),'Formation control begins with four '+row.id);
+    same(row.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'actual control fields fifth '+row.id);
+    same(row.stateAfter.formationPresets.push,row.stateAfter.activeParty,'control autosaves five-member intent '+row.id);
+    for(const name of ['farm','boss'])same(row.stateAfter.formationPresets[name],row.stateBefore.formationPresets[name],'control preserves other preset '+name+' '+row.id);
+    for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation control preserves '+name+' '+row.id);
+    ok(row.slots.every(slot=>JSON.stringify(slot.state.activeParty)===JSON.stringify(firstFive.slice(0,4).concat('aurora'))&&JSON.stringify(slot.state.formationPresets.push)===JSON.stringify(slot.state.activeParty)&&slot.state.lumen===row.stateBefore.lumen&&slot.state.prisms===row.stateBefore.prisms),'both slots retain fifth without economic mutation '+row.id);
+   });
+   await install(push.stateAfter,'spirits');
+  }
   for(const row of formationSamples){for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation input preserves '+name+' '+row.id);ok(row.input.some(e=>e.trusted&&e.type==='click'),'trusted Formation input '+row.id);ok(!row.runtimeErrorsBefore.length&&!row.runtimeErrorsAfter.length,'no Formation runtime errors');}
   await fit('#tab-spirits','six-member Formation');await prepare('[data-formation-preset="push"]',true);await shot('tree-six-'+width+'-'+scale+'-'+motion);
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.key===' '),'trusted touch Enter and Space evidence');

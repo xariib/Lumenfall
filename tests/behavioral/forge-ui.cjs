@@ -76,10 +76,7 @@ async function run(){
    await evaluate(`forgeUi.preparePurchase(${level})`);await advance();const before=await evaluate('forgeUi.purchaseBefore()');await shot(name+'-purchase-'+level+'-before');await key('Space');
    const immediate=await evaluate(`forgeUi.checkPurchase(${JSON.stringify(before)})`);await advance();const after=await evaluate(`forgeUi.checkPurchase(${JSON.stringify(before)})`);await shot(name+'-purchase-'+level+'-after');purchases.push({before,immediate,after});
   }
-  // Each bulk value uses a real input, with selected-state and preview checks.
-  const bulkStates=[];
-  for(const value of ['1','5','10','25','50','100','max']){const s='[data-mult="'+value+'"]';await evaluate(`forgeUi.prepare(${JSON.stringify(s)},true)`);await key('Space');await advance();bulkStates.push(await evaluate(`forgeUi.checkBulkChoice(${JSON.stringify(value)})`));}
-  await evaluate(`forgeUi.prepare('[data-mult="5"]',false);document.activeElement.blur()`);await touch('[data-mult="5"]');await advance();assert(await evaluate(`document.querySelector('[data-mult="5"]').getAttribute("aria-pressed")`)==="true","native touch bulk choice");
+  const bulkStates=[await evaluate('forgeUi.checkBulk()')];
   await evaluate('forgeUi.affordability()');await advance();const affordability=await evaluate('forgeUi.checkAffordability()');
   // Native navigation across remaining Rift controls; no shared focus-helper modification.
   await evaluate('forgeUi.prepare(\'[data-tab="forge"]\',true)');await key('ArrowRight');assert(await evaluate('document.activeElement.dataset.tab')==='research','Forge -> Lab keyboard focus');

@@ -7,8 +7,7 @@ const seed=JSON.parse(fs.readFileSync(path.join(__dirname,'../../docs/qa/offline
 // prices. The original zero-wallet device fixture remains byte-for-byte intact
 // and is independently covered by offline-catchup's unfunded reconstruction.
 seed.lumen=100000000000000;
-function verify(html,fixture=seed,requireRetry=true){
- const seed=fixture;
+function verify(html){
  let checks=0;const records=[];
  function eq(a,b,m){checks++;assert.deepEqual(a,b,m);}
  function compare(a,b,p){
@@ -37,13 +36,24 @@ function verify(html,fixture=seed,requireRetry=true){
   w.clock(seed.lastSeen+28800000);w.q.save();const state=clone(w.q.get());records.push({chunk,cold,retreats,retries,kills:state.totalKills-initial.totalKills,taps:state.totalTaps-initial.totalTaps});return state;
  }
  const whole=run(28800,false),seconds=run(1,false),cold=run(60,true);
- checks++;assert(records.every(r=>r.retreats>0&&(!requireRetry||r.retries>0)),'each partition crosses the required real mode transitions');
+ checks++;assert(records.every(r=>r.retreats>0&&r.retries>0),'each partition actually crosses Push/Farm/Push');
  compare(whole,seconds,'whole/seconds');compare(whole,cold,'whole/cold');return {checks,records};
 }
-function run(html,negative){const unfunded={...seed,lumen:0};const result={status:'PASS',sourceSha256:crypto.createHash('sha256').update(html).digest('hex'),...verify(html),unfundedClock:verify(html,unfunded,false),controls:[]};
+function fractionalFarmClock(html){
+ const w=app(html,undefined,{clockDate:true,retainWrites:false}),s=w.q.fresh(),at=2000000000000;
+ s.achieved.autotap=s.achieved.labmaster=true;s.research.charge=10;s.nodes.wallwisdom=4;
+ s.depth=s.enemyDepth=s.maxDepthEver=100;s.enemyHp=s.enemyMaxHp=1e30;s._autoTapAccum=125;s._autoEmpowerAccum=250;
+ w.q.set(s);const summary=w.q.advance(60.125,{kind:'offline',clockStartMs:at});
+ assert.equal(summary.retreats,1,'fractional clock witness actually retreats');assert.equal(w.q.get().riftMode,'farm');
+ assert.deepEqual(w.q.get().canonicalAutomationClock,{_autoTapAccum:{base:0,elapsed:'25e-2',last:250},_autoEmpowerAccum:{base:0,elapsed:'375e-3',last:375}},'Farm keeps the independently calculated exact fractional timer owners');
+ assert.equal(w.q.get()._autoTapAccum,250);assert.equal(w.q.get()._autoEmpowerAccum,375);
+ w.clock(at+60125);w.q.save();const saved=clone(w.q.get());w.q.load();assert.deepEqual(w.q.get(),saved,'fractional Farm clock retains every saved bit on reload');
+ return {checks:6,seconds:60.125,retreats:1,exactSavedPhases:[250,375],cold:true};
+}
+function run(html,negative){const result={status:'PASS',sourceSha256:crypto.createHash('sha256').update(html).digest('hex'),...verify(html),fractionalFarmClock:fractionalFarmClock(html),controls:[]};
  if(negative){const a='if(binaryClock){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));';assert.equal(html.split(a).length,2);let caught;
-  try{const mutant=html.replace(a,"if(binaryClock&&state.riftMode==='push'){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));");verify(mutant);verify(mutant,unfunded,false);}catch(e){caught=e.message;}
-  assert(caught,'dropping the exact clock in Farm must fail complete partition parity');result.controls.push({name:'farm-clock-rebase',caught});
+  try{fractionalFarmClock(html.replace(a,"if(binaryClock&&state.riftMode==='push'){\n      canonicalAutomationAdvance(binaryClock,binaryClock.project(stepSec));"));}catch(e){caught=e.message;}
+  assert(caught,'dropping the exact clock in Farm must fail exact saved fractional ownership');result.controls.push({name:'farm-clock-rebase',caught});
  }
  return result;
 }

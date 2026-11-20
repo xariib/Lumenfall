@@ -165,6 +165,7 @@ function baselineState(actual,expected,seed,label,currentSummary,oldSummary,seco
  // Remove only those verified defaults before the unchanged full historical oracle.
  actual=copy(actual);
  expected=copy(expected);
+ assert.equal(actual.savedLabMultiplier,1,label+' removed Forge quantity restores one');expected.savedLabMultiplier=1;
  const retiredAuto=(seed.owned||{}).autoascend===true?100:0;
  assert.deepEqual(actual.autoAscendRefund,{policy:'autoascend-retired-v1',total:retiredAuto,paid:true},label+' exactly once retired automation receipt');
  actual.comets-=retiredAuto;delete actual.autoAscendRefund;

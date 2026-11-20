@@ -25,7 +25,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   assert(document.activeElement===queueFocus&&queueFocus.getClientRects().length&&queueFocus.getAttribute('aria-pressed')==='false','queue toggle retains visible focus and exposes repeat OFF');
   bridge.renderLayout();assert(document.activeElement===q('[data-study-queue="'+studyId+'"]'),'queue toggle focus survives live refresh');
   q('[data-tab="forge"]').click();
-  press('[data-mult="5"]',function(){return true;});
+  assert(!q('#tab-forge [data-mult]')&&bridge.getState().savedLabMultiplier===1,'Forge quantity selector removed');
   q('[data-tab="ascend"]').click();
   assert(!q('[data-autoascend-toggle]') && !bridge.getState().autoAscendEnabled,'retired automation control is absent and disabled');
   q('[data-tab="spirits"]').click();
@@ -37,7 +37,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
   // Fund the selected bulk quote exactly; a huge wallet can round a small debit to zero.
   var rich=bridge.getState(),price=bridge.forge.plan('arcanecal').needed;
   rich.lumen=price.lumen;rich.shards=price.shard;bridge.setState(rich);bridge.refreshAffordability();
-  var affordabilityFunding={multiplier:q('#tab-forge [data-mult].active').dataset.mult,price:price,wallet:{lumen:rich.lumen,shards:rich.shards}};
+  var affordabilityFunding={multiplier:1,price:price,wallet:{lumen:rich.lumen,shards:rich.shards}};
   assert(!purchase.disabled && purchase.dataset.state==='available' && !/Need/.test(purchase.textContent),'live affordability clears stale reason');
   bridge.setState(poor);bridge.refreshAffordability();
   assert(purchase.disabled && purchase.dataset.state==='unaffordable','live affordability restores shortage state');
@@ -67,7 +67,7 @@ window.runP105ControlQa = function(bridge,ctx,assert){
         var baseLabel=label.cloneNode(true),cue=baseLabel.querySelector('.wisp-next-label');
         if(cue)cue.remove();
         assert(baseLabel.textContent===(id==='ember'?'Empower':'Recruit'),'Empower/Recruit wording retained');
-        assert(!!cue===affordable&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains the live next-action cue');
+        assert(!cue&&button.classList.contains('wisp-action-primary')===affordable,'funded Empower/Recruit retains its action border without a Next prefix');
         assert(label.textContent===baseLabel.textContent,'full Empower/Recruit label retains exact cue and action');
         var name=button.getAttribute('aria-label');
         assert(!name.includes('Next ·'),'Empower accessible next cue matches availability');

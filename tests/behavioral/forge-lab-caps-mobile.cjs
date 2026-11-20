@@ -30,7 +30,7 @@ driver=driver.slice(0,start)+String.raw`
   }.toString()+')('+JSON.stringify(selector)+')');ok(!measured.bad.length&&!measured.overflow,'full large-text price/effect fit '+JSON.stringify({width,scale,selector,measured}));return measured.text;}
   for(const [id,tab,field] of [['arcanecal','forge','research'],['conduction','forge','research'],['bossledger','research','longStudyLevels'],['luminousdistill','research','longStudyLevels']]){
     const s=JSON.parse(JSON.stringify(seed));s[field][id]=19;await install(s,tab);
-    if(tab==='forge')await ev("document.querySelector('[data-mult=\"1\"]').click()");
+    if(tab==='forge')ok(await ev('!document.querySelector("#tab-forge [data-mult]")'),'Forge has no quantity selector');
     else await ev('document.querySelector("[data-study-slot]").click()');
     const card=tab==='forge'?'[data-forge-card="'+id+'"]':'[data-study-card="'+id+'"]',button=tab==='forge'?'[data-research="'+id+'"]':'[data-study="'+id+'"]';
     const text=await fit(card);ok(text.includes(tab==='forge'?'Level 19 / 20':'Lv. 19 / 20'),'chosen cap visible '+id);

@@ -68,31 +68,17 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   b.setState(seed);b.renderLayout();go('forge');
   catalogue.upgrades.forEach(function(id){ok(!b.getState().researchQueue[id],'upgrade Queue defaults OFF '+id);});
   catalogue.projects.forEach(function(id){ok(!b.getState().studyQueue[id],'project Queue defaults OFF '+id);});
-  // Every existing bulk option keeps its authoritative plan and cost.
-  ['1','5','10','25','50','100','max'].forEach(function(mult){
-    b.setState(seed);b.renderLayout();go('forge');
-    q('[data-mult="'+mult+'"]').click();
-    ok(q('[data-mult="'+mult+'"]').getAttribute('aria-pressed')==='true','bulk selected '+mult);
-    var plan=b.r3.plan('charge'),prior=b.getState();q('[data-research="charge"]').click();var after=b.getState();
-    ok(after.research.charge===prior.research.charge+plan.buyCount,'exact bulk levels '+mult);
-    if(plan.affordable){
-      ok(after.lumen===prior.lumen-plan.cost.lumen && after.shards===prior.shards-plan.cost.shard,'exact bulk debit '+mult);
-    } else {
-      ok(q('[data-research="charge"]').disabled,'unaffordable bulk stays disabled '+mult);
-      same(after,prior,'unaffordable bulk cannot change state '+mult);
-    }
-    same(after.activeStudies,prior.activeStudies,'direct upgrade never creates timed project');
+  ok(!q('#tab-forge [data-mult]')&&b.getState().savedLabMultiplier===1,'Forge has one purchase quantity');
+  [1,5,10,25,50,100,'max'].forEach(function(mult){
+    b.setState(seed);b.renderLayout();go('forge');var plan=b.forge.plan('charge',mult),prior=b.getState();b.forge.buy('charge',mult);var after=b.getState();
+    ok(after.research.charge===prior.research.charge+plan.buyCount,'internal batch exact levels '+mult);
+    if(plan.affordable)ok(after.lumen===prior.lumen-plan.cost.lumen&&after.shards===prior.shards-plan.cost.shard,'internal batch exact debit '+mult);else same(after,prior,'unaffordable internal batch retains whole state');
+    same(after.activeStudies,prior.activeStudies,'Forge purchase never creates a timed project');
   });
-  ['50','100'].forEach(function(mult){
+  [50,100].forEach(function(mult){
     var funded=JSON.parse(JSON.stringify(seed)),remaining=Math.max(0,10-funded.research.charge),exact=b.forge.cost('charge',funded.research.charge,remaining);funded.lumen=exact.lumen;funded.shards=exact.shard;
-    b.setState(funded);b.renderLayout();go('forge');q('[data-mult="'+mult+'"]').click();
-    var plan=b.r3.plan('charge'),prior=b.getState();
-    ok(!plan.affordable && plan.buyCount===0 && plan.reason==='quantity','fixed quantity exceeding remaining cap refuses '+mult);
-    q('[data-research="charge"]').click();var after=b.getState();
-    same(after,prior,'oversized fixed quantity changes no balances, levels or paid history '+mult);
-    q('[data-mult="max"]').click();plan=b.r3.plan('charge');ok(plan.affordable&&plan.buyCount===remaining,'Max alone quotes the cap remainder');
-    q('[data-research="charge"]').click();after=b.getState();
-    ok(after.research.charge===prior.research.charge+remaining&&after.lumen===prior.lumen-exact.lumen&&after.shards===prior.shards-exact.shard,'Max buys exact remainder and debits original total');
+    b.setState(funded);var plan=b.forge.plan('charge',mult),prior=b.getState();ok(!plan.affordable&&plan.buyCount===0&&plan.reason==='quantity','internal oversized quantity refuses');b.forge.buy('charge',mult);same(b.getState(),prior,'oversized quantity retains all balances');
+    plan=b.forge.plan('charge','max');ok(plan.affordable&&plan.buyCount===remaining,'internal Max quotes cap remainder');b.forge.buy('charge','max');var after=b.getState();ok(after.research.charge===10&&after.lumen===0&&after.shards===0,'internal Max exact debit');
   });
   b.setState(seed);b.renderLayout();go('forge');
   ['charge','arcanecal','conduction','luminoustracking'].concat(addedForge).forEach(function(id){
@@ -137,12 +123,12 @@ window.runR3DestinationsQa = function(b,ctx,assert){
     try{shortcut();}catch(e){caught=/R3 Lab navigation must open Lab/.test(e.message);}finally{restore();}
     ok(caught,'causal negative control catches wrong Lab destination');shortcut();
   }
-  return {checks:checks,mainDestinations:5,workshopSections:2,bulkOptions:7,exactState:true,liveTickEquality:true,negativeControl:true};
+  return {checks:checks,mainDestinations:5,workshopSections:2,bulkOptions:0,internalQuantities:7,exactState:true,liveTickEquality:true,negativeControl:true};
 };
 window.prepareR3Reload = function(b,ctx,assert){
   var s=window.seedR3(b,ctx);s.owned.rememberbulk=true;
   b.setState(s);b.renderLayout();
-  document.querySelector('[data-tab="forge"]').click();document.querySelector('[data-mult="5"]').click();
+  document.querySelector('[data-tab="forge"]').click();assert(!document.querySelector('#tab-forge [data-mult]'),'Forge quantity selector removed');
   document.querySelector('[data-research="charge"]').click();
   document.querySelector('[data-tab="research"]').click();document.querySelector('[data-study-slot]').click();document.querySelector('[data-study="guardmastery"]').click();
   document.querySelector('[data-study-speed-open]').click();window.selectLabSpeed('guardmastery',2);document.querySelector('[data-speed-study="guardmastery"][data-speed="2"]').click();
