@@ -127,3 +127,26 @@ The local OAuth credential lacks workflow scope; an attempted workflow edit
 was rejected on push. Kept the workflow byte-identical and attached the focused
 positive/negative checks to its existing compact-card driver instead. No gate
 was bypassed; the unpublished local commit was amended before publication.
+
+20 November11:09: PR65 at7fe93b01. Private signed build44715402119 passes all
+Android upgrade/updater/retail/native checks; no public release from this run.
+PR Windows/Linux scroll, Lab, Comet, Tree, migration and isolated offline pass.
+Pre-merge stopped at a chronology setup that had not entered Manage; permanent
+UI lacked closeWisp in its secondary bridge; shared glyph gate still expected
+full roster names and mutated superseded CSS. Fixed setups, kept assertions,
+and proved new grid collision control fails its intended glyph intersection.
+Shared layout6985checks/12profiles and all three causal CSS controls pass at8927.
+Permanent506checks/18profiles and chronology pass after setup repair; pending
+formation layout, accessibility control and reconstruction cases pass as well.
+
+Serial affordability26832checks/12profiles and original red/stale-Resonate
+controls pass at8927. The first parallel local attempt reached its unchanged
+240s deadline without receipt; the serial rerun resolved it. Upgrade-state checks
+found a real CSS specificity regression: the new first-section divider override
+removed completed Rarity's top gold border. Restricted it to non-completed
+sections; all15348upgrade-state checks/6profiles pass on final product
+4ccf543feabfa1a927138af59b8bb0d17b5fda456ad02c7fd797c4ad473ad7a3.
+Independent four historical/four current one-second windows and whole-window
+comparison regenerated PASS for4ccf;636 protected functions/core still exact.
+Earlier failed runs/receipts retained. Next: push repaired acceptance fixtures and
+gold border, complete exact-head CI, integrate, exact-main9gates/public APK.

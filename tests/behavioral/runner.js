@@ -2137,7 +2137,7 @@
           assert(document.querySelector('[data-empower-all]').getAttribute('aria-pressed')==='true','global ON state must match aria-pressed');
           document.querySelector('[data-empower-all]').click();
           assert(wispIds.every(function(id){return state().empowerQueue[id]===false;}),'Auto-Empower All OFF must disable every applicable recruited Wisp');
-          document.querySelector('[data-empower-queue="ember"]').click();
+          bridge.openWisp('ember');document.querySelector('[data-empower-queue="ember"]').click();
           assert(state().empowerQueue.ember===true && state().empowerQueue.tide===false,'individual Auto-Empower toggle must still work after global actions');
           assert(document.querySelector('[data-empower-all]').getAttribute('aria-pressed')==='mixed','individual change after global OFF must return the global state to mixed');
 

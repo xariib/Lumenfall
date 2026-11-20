@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "identity": {
+    "testSha256": "1fc82ac82ac6bdc0a30146c9130f398ce6e9c4a6f1c45b148ba4dc0be0bfc42e",
+    "transportSha256": "62480ea3a22833fca0f42fdfcf139ba6b50b5de364fd6d0cd10b66ecc682d06c",
+    "referenceSha256": "22989249e0454e0272649159314bf5168e0e0eb6bbb483412162091212f56588",
+    "sourceSha256": "8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8"
+  },
+  "driverSha256": "25c50f9b5abc476ee0d227b2a7074ab7529337e27d672ff4c0fe2fd0f8e0e1ae",
+  "results": [
+    {
+      "id": "normal",
+      "accepted": true,
+      "exitCode": 0,
+      "sourceSha256": "8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8",
+      "driverSha256": "25c50f9b5abc476ee0d227b2a7074ab7529337e27d672ff4c0fe2fd0f8e0e1ae",
+      "checks": 6985,
+      "profiles": 12,
+      "expectedGeometryCode": null,
+      "actualGeometryCode": null,
+      "error": null,
+      "receipt": "normal\\receipt.json",
+      "receiptSha256": "68d34c5e471991403bf2b96d54ca8755352f3551260e28f11c390c06e11c1b84",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/158.0.8127.42",
+        "revision": "@bd6d26d1bced03c17a98baa86d2cd3425d543d1",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+        "jsVersion": "15.8.62.31"
+      }
+    },
+    {
+      "id": "brand-spacing",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "a7891cd4348505b7598c49fc183a5cec541b55d2df5521c4e8c102d7e58e6d05",
+      "driverSha256": "25c50f9b5abc476ee0d227b2a7074ab7529337e27d672ff4c0fe2fd0f8e0e1ae",
+      "checks": 1176,
+      "profiles": 2,
+      "expectedGeometryCode": "brand-glyph-intersects-settings",
+      "actualGeometryCode": "brand-glyph-intersects-settings",
+      "error": "AssertionError [ERR_ASSERTION]: brand-glyph-intersects-settings\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:40:27)\n    at geometry (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:113:7)\n    at brand (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:197:3)\n    at sharedScenario (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:243:89)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:104:3)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:301:6",
+      "receipt": "brand-spacing\\receipt.json",
+      "receiptSha256": "7a6281c23e503f253cd7c470205d0b3a789a0000dcbaa7837a9ae4c50cb0cdfa",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/158.0.8127.42",
+        "revision": "@bd6d26d1bced03c17a98baa86d2cd3425d543d1",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+        "jsVersion": "15.8.62.31"
+      }
+    },
+    {
+      "id": "wisp-header",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "fcd640d367f3669432c33e05f35252d1edc88ced9dec946d7c0c13e2abd4ecfc",
+      "driverSha256": "25c50f9b5abc476ee0d227b2a7074ab7529337e27d672ff4c0fe2fd0f8e0e1ae",
+      "checks": 112,
+      "profiles": 0,
+      "expectedGeometryCode": "wisp-glyph-intersects-toggle",
+      "actualGeometryCode": "wisp-glyph-intersects-toggle",
+      "error": "AssertionError [ERR_ASSERTION]: wisp-glyph-intersects-toggle\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:40:27)\n    at geometry (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:113:7)\n    at wisp (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:207:3)\n    at sharedScenario (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:273:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:104:3)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:301:6",
+      "receipt": "wisp-header\\receipt.json",
+      "receiptSha256": "da5fd7462f816206d4769e9ee995e66b0e3004178aff47961ca41cccceae926f",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/158.0.8127.42",
+        "revision": "@bd6d26d1bced03c17a98baa86d2cd3425d543d1",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+        "jsVersion": "15.8.62.31"
+      }
+    },
+    {
+      "id": "toast-leading",
+      "accepted": true,
+      "exitCode": 1,
+      "sourceSha256": "66a08e48a90755bd3968da6436eb7ed9bb10af056c37d6524eb8e8dd2edf9738",
+      "driverSha256": "25c50f9b5abc476ee0d227b2a7074ab7529337e27d672ff4c0fe2fd0f8e0e1ae",
+      "checks": 1699,
+      "profiles": 2,
+      "expectedGeometryCode": "toast-adjacent-glyph-lines-intersect",
+      "actualGeometryCode": "toast-adjacent-glyph-lines-intersect",
+      "error": "AssertionError [ERR_ASSERTION]: toast-adjacent-glyph-lines-intersect\n    at ok (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:40:27)\n    at geometry (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:113:7)\n    at toast (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:231:36)\n    at sharedScenario (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:290:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async run (C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:104:3)\n    at async C:\\lf-wisp-cards\\tests\\behavioral\\.shared-layout-15648.cjs:301:6",
+      "receipt": "toast-leading\\receipt.json",
+      "receiptSha256": "ae8e0519be401df3e1265f37020147db40ec36c155c3ae6d39495962994e6d64",
+      "browserVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/158.0.8127.42",
+        "revision": "@bd6d26d1bced03c17a98baa86d2cd3425d543d1",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+        "jsVersion": "15.8.62.31"
+      }
+    }
+  ],
+  "expectedProfiles": 12,
+  "expectedNegativeControls": 3,
+  "nativeAndroid": "untested"
+}

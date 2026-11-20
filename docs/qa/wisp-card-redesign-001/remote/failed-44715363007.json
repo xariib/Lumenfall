@@ -1,0 +1,21 @@
+{
+  "id": 44715363007,
+  "sha": "7fe93b0125ad1b23a65a0648ed3afc27730d90e3",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44715363007",
+  "jobs": [
+    {
+      "id": 136217274455,
+      "name": "focused",
+      "conclusion": "failure",
+      "started": "2026-11-20T09:59:38Z",
+      "completed": "2026-11-20T10:00:47Z",
+      "log": "job-136217274455.log.gz",
+      "rawSha256": "65bdf57db7f06743975f2eb6e57e13a2d7446b7fb55eb1981e8b4d78cb020c47",
+      "summary": [
+        "2026-11-20T10:00:45.0021108Z {\"status\":\"fail\",\"sourceSha256\":\"8927afb9dac6104e54d57863cb7c4ea66e06439e67e39f850cebee4b36e988f8\",\"mutation\":null,\"checks\":1,\"profiles\":[],\"error\":\"Error: TypeError: uiRegression.closeWisp is not a function\\n    at <anonymous>:1:14\\n    at ev (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:29:148)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async install (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/permanent-progression-ui.cjs:8:28)\\n    at async module.exports (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/permanent-progression-ui.cjs:14:3)\\n    at async run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:63:2)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:71:34\",\"stderr\":\"[2587:2614:1120/100038.733464:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2587:2614:1120/100038.864730:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2587:2614:1120/100038.981404:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2587:2618:1120/100039."
+      ]
+    }
+  ]
+}
