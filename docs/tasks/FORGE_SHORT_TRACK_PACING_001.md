@@ -70,3 +70,67 @@ against both active early play and established farming profiles before shipping.
 The exact timing for individual tracks is still open. Keep the two-to-three-year
 whole-Forge benchmark and add a distinct check for when short tracks run out.
 Audit only. No product or APK change, and no independent review.
+
+## Rift 300 follow-up, 22 November 2026
+
+> Do a simulation to rift 300 and see how much could be maxed out
+
+Measure the Forge at first arrival and after actually beating the Rift 300 boss.
+Use the same public Android0.2.150 engine, with real spending, combat and Lab
+work. Run two fresh campaigns and a separate late-push comparison. The latter
+starts at Rift 180 with five level-230 Mythic Wisps with ability level 15,
+50 Ascends and strong completed Labs, including Wisp Ascendancy 100 and
+Lumen/Shard Labs 50. It begins with zero Lumen, Shards and Forge ranks. The
+starting power is granted for the comparison, so this run does not measure the
+calendar time or resources to develop that account.
+
+The developed account actually beat Rift 300. It finished the twentieth short
+track at Rift 235, reached Rift 300 about 7.36 minutes into this late push, and
+cleared it at 7.78 minutes. The four longer tracks were still incomplete.
+
+| Forge track | Entering Rift 300 | After farming Rift 299 for 8 hours | Full cap |
+| --- | ---: | ---: | ---: |
+| Short tracks | 20 of 20 maxed | 20 of 20 maxed | 145 total ranks |
+| Masterwork Tempering | 24 | 25 | 500 |
+| Battle Tempering | 49 | 102 | 375 |
+| Arcane Tempering | 39 | 53 | 325 |
+| Harvest Tempering | 34 | 34 | 315 |
+
+The follow-up farm run spent in Forge catalog order with the shared wallet, so
+its ranks are one allocation. Masterwork rank 25 exhausts the available ranks
+at Rift 300. The next rank requires Rift 320. The developed account owned 291 of
+1,660 total Forge ranks at first arrival, or 17.5%, despite having maxed 20 of 24
+tracks. It owned 359 ranks after the additional farm window. The depth rules
+permit a sufficiently funded account to finish 23 of 24 tracks at this record.
+Masterwork's 25 accessible ranks prevent full Forge completion at Rift 300,
+regardless of currency. A replay reproduced the same developed-account wallet,
+levels and purchases at each captured milestone and after farming.
+
+Both fresh campaigns hit the 720-hour time bound with 20 tracks maxed. They
+started with only Ember. Their recorded advancement and purchases follow the
+stated strategies and time budget.
+
+| Fresh strategy | Swift Recovery maxed | Arcane Calibration maxed | All 20 short tracks maxed | Highest Rift after 30 simulated days |
+| --- | ---: | ---: | --- | ---: |
+| Forge first | 2.34h | 20.92h | 41.54h, Rift 150 | 190 |
+| Boss focus | 2.80h | 34.55h | 60.79h, Rift 160 | 210 |
+
+The first campaign spent 672 of 720 hours farming with Wisp Ascendancy 19 at its
+endpoint. The second spent 668 hours farming and finished with Wisp Ascendancy
+33. Each generated one manual tap per simulated second throughout, since
+neither earned Auto-Tap. These runs confirm the short-track completion but give
+no fresh-account completion time for Rift 300. No gameplay or APK change.
+
+Reproduce the developed run with `node scripts/qa/forge-rift-300-campaign.cjs
+index.html 24 developed.json developed`, or the fresh runs with the same driver,
+`720` hours and the `forge` or `boss` strategy. The former prioritizes short
+purchases and leaves Lab speed at 1×. The latter invests more of the wallet in
+long Forge upgrades, buys eligible Lab boosts, prioritizes critical Labs, and
+continues manual tapping during boss fights. Both simulate continuous active
+play and therefore represent aggressive play schedules.
+
+Source-bound receipts for the [developed late push](../qa/forge-short-track-pacing-001/rift-300-developed.json),
+[Forge-first fresh campaign](../qa/forge-short-track-pacing-001/rift-300-fresh-forge.json)
+and [boss-focused fresh campaign](../qa/forge-short-track-pacing-001/rift-300-fresh-boss.json).
+The Forge-first receipt predates removal of an ineffective one-hour boost probe
+(the game only sells 8, 12 and 24 hours). The run never paid for any boost.
