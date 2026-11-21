@@ -16,6 +16,9 @@ function verify(file,apk,version){
  for(const id of ['ember','tide','stone','gale','thorn','aurora','void','titan'])for(const back of [false,true]){
    assert(visits?.some(v=>v.id===id&&v.back===back&&v.opened&&v.point.hit&&v.point.width>=44&&v.point.height>=44),'Installed native Manage/Back '+id+'/'+back);
  }
+ const back=r.installedAndroidBack;assert.equal(back?.status,'PASS');
+ assert.equal(back.systemBack.roster,true);assert.equal(back.systemBack.focused,'ember');
+ assert.equal(back.gameSelection,'none');assert.equal(back.backupSelection,'text');
  return r;
 }
 module.exports={verify};

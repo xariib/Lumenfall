@@ -106,7 +106,7 @@ function catalogueCases(html, a) {
     for (const start of [0, d.cap - 1]) for (const requested of [1, 5, 10, 25, 50, 100, 'max']) {
       const intended = Math.min(d.cap - start, requested === 'max' ? d.cap : requested);
       for (const funded of [1, intended]) {
-        const s = seed(q); s.research[d.id] = start;
+        const s = seed(q); s.maxDepthEver = 1100; s.research[d.id] = start;
         const cost = exactCost(d, start, funded); s.lumen = cost.lumen; s.shards = cost.shard; q.set(s);
         const before = clone(q.get()), plan = q.plan(d.id, requested), preview = q.preview(d.id, requested);
         const bought=requested==='max'?funded:requested<=d.cap-start&&funded===requested?requested:0;
@@ -152,6 +152,51 @@ function catalogueCases(html, a) {
   }
   a.eq(priceCases, 598, 'entire approved finite price domain covered');
   return {priceCases, purchases};
+}
+
+function progressionBandCases(html, a) {
+  const x = app(html), q = x.q;
+  const finalRifts = {charge:140,arcanecal:450,conduction:550,luminoustracking:320,cauterize:275,
+    fracturekey:340,guardianseal:365,spillway:425,sustainedchannel:500,tapconduit:310,
+    guardiancadence:350,relay:400,resonantedge:480,victorycharge:520,amplifiertrim:600,
+    dualchannel:650,overflowconduit:750,resonancecells:500,resonancecascade:900,resonancereclaim:1100};
+  for (const [id, depth] of Object.entries(finalRifts)) {
+    const s = seed(q), cap = q.node(id).levelCap, level = cap - 1;
+    const price = q.cost(id, level, 1);
+    Object.assign(s, {maxDepthEver:depth - 1, lumen:price.lumen, shards:price.shard});
+    s.research[id] = level;
+    s.researchQueue[id] = true;
+    q.set(s);
+    const before = clone(q.get()), locked = q.plan(id, 1);
+    a.eq(locked.requiredDepth, depth, 'final Rift is visible '+id);
+    a.eq(locked.reason, 'locked', 'funded final rank is still gated '+id);
+    a.eq(q.buy(id, 1), false, 'manual cannot bypass final Rift '+id);
+    a.eq(q.buy(id, 'max'), false, 'maximum request cannot bypass final Rift '+id);
+    a.eq(q.queue(), false, 'queue cannot bypass final Rift '+id);
+    a.eq(q.get(), before, 'locked transactions preserve paid progress and funds '+id);
+    s.maxDepthEver = depth;
+    q.set(s);
+    a.eq(q.plan(id, 1).cost, price, 'opens for original price '+id);
+    a.eq(q.queue(), true, 'actual queue can buy at assigned Rift '+id);
+    a.eq(q.get().research[id], cap, 'final rank reaches original cap '+id);
+    a.eq([q.get().lumen, q.get().shards], [0,0], 'exact two-wallet debit '+id);
+    s.maxDepthEver = 1;
+    s.research[id] = cap;
+    q.set(s);
+    q.save();
+    a.eq(app(html, x.storage).q.get().research[id], cap, 'old paid ranks survive cold reload '+id);
+    a.eq(q.plan(id, 1).reason, 'maxed', 'paid historical levels remain complete '+id);
+  }
+  const funded = seed(q);
+  funded.maxDepthEver = 300;
+  funded.lumen = funded.shards = '1e30';
+  q.set(funded);
+  a.eq(Object.keys(finalRifts).filter(id => q.plan(id, 'max').buyCount===q.node(id).levelCap).sort(),
+    ['cauterize','charge'], 'only two short tracks can finish even with unlimited currency at Rift 300');
+  funded.maxDepthEver = 15;
+  funded.depth = funded.enemyDepth = 1;
+  q.set(funded);
+  a.eq(q.plan('arcanecal', 'max').buyCount, 10, 'all existing Wisp prerequisite ranks remain available');
 }
 
 // Each row is independently exercised by a real production event. Negative
@@ -287,7 +332,7 @@ function manualTransactionCases(html, a) {
     let count = 0;
     for (let n = 2; n <= d.cap - level; n++) if (payable(exactCost(d, level, n))) count = n;
     if (!count) continue;
-    const x = app(html), q = x.q, s = seed(q); s.lumen = s.shards = wallet; s.research[d.id] = level; q.set(s);
+    const x = app(html), q = x.q, s = seed(q); s.maxDepthEver = 1100; s.lumen = s.shards = wallet; s.research[d.id] = level; q.set(s);
     count=d.cap-level;
     a.eq(q.plan(d.id, 'max').buyCount, count, 'large exact balances fund every affordable bulk level ' + d.id + '/' + level);
     const cost = exactCost(d, level, count); q.buy(d.id, 'max');
@@ -298,7 +343,7 @@ function manualTransactionCases(html, a) {
 }
 
 function queueCases(html, a) {
-  const x = app(html), q = x.q, s = seed(q); IDS.forEach(id => {s.researchQueue[id] = true;}); q.set(s); q.save();
+  const x = app(html), q = x.q, s = seed(q); s.maxDepthEver = 1100; IDS.forEach(id => {s.researchQueue[id] = true;}); q.set(s); q.save();
   const expected = clone(q.get());
   function referencePass() {
     for (let guard = 0; guard < 20; guard++) {
@@ -666,6 +711,9 @@ function negativeCases(html) {
   reject('unsafe-counter-normal-cadence-average',()=>unsafeCounterCases(html,assertions(),true),'HUD recognizes stagnant cadence ordinal');
   reject('revived-automatic-unsafe-run',()=>unsafeRunCase(html.replace('return false; // Automatic Ascension is retired, including imported ON states.','return true;'),assertions(),'support-live'),'unsafe combat must await manual Ascend');
   reject('unsafe-repeat-reset',()=>unsafeRepeatCase(html.replace('return clearedProgressionRift()>=nextAscendClearedRift();','return clearedProgressionRift()>=15;'),assertions()),'unsafe previously rewarded clear cannot reset');
+  const bands='var bands=FORGE_RIFT_BANDS[node.id];';
+  assert.equal(html.split(bands).length,2,'one Forge band gate');
+  reject('forge-rift-band-bypassed',()=>progressionBandCases(html.replace(bands,'var bands=null;'),assertions()),'final Rift is visible');
   return killed;
 }
 
@@ -673,6 +721,7 @@ function verify(html,options={}) {
   const a=assertions(),sections={},counts={};
   const all={
     catalogue:()=>Object.assign(counts,catalogueCases(html,a)),
+    progressionBands:()=>progressionBandCases(html,a),
     effects:()=>IDS.forEach(id=>effectCase(id,app(html),a)),
     manual:()=>manualTransactionCases(html,a),
     queue:()=>queueCases(html,a),

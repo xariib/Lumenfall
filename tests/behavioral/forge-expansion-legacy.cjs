@@ -60,7 +60,7 @@ specs.forEach(function(d){
  eq([q.node(id).unlockDepth,q.node(id).levelCap],[unlock,cap],'independent unlock/cap '+id);
  [[0,1,d[3],d[4]],[cap-1,1,d[5],d[6]],[0,cap,d[7],d[8]]].forEach(function(c){
   var expected={lumen:c[2],shard:c[3]};eq(q.cost(id,c[0],c[1]),expected,'exact rational example '+id+'/'+c[0]+'/'+c[1]);priceCases+=2;
-  var s=seed(q);s.research[id]=c[0];s.lumen=c[2];s.shards=c[3];q.set(s);
+  var s=seed(q);s.maxDepthEver=1100;s.research[id]=c[0];s.lumen=c[2];s.shards=c[3];q.set(s);
   var before=clone(q.get()),preview=q.preview(id,c[1]);eq(preview.plan.cost,expected,'quoted exact price');eq(q.get(),before,'preview pure');
   eq(q.buy(id,c[1]),true,'actual paid purchase '+id);purchaseCases++;
   eq(q.get().research[id],c[0]+c[1],'actual level count');eq([q.get().lumen,q.get().shards],[0,0],'exact two-wallet debit');

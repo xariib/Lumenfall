@@ -97,7 +97,7 @@ test('corrupted matching refund proofs cannot exceed the issued original value',
 });
 test('paid current Forge route reaches both original Deeds; history, rewards and unlocks stay sticky',()=>{
   const {app:forgeApp}=require('./forge-expansion-harness.cjs'),q=forgeApp(html).q;
-  const s=q.fresh();s.lastSeen=2000000000000;s.questDay=q.day();s.maxDepthEver=101;s.lumen=1e15;s.shards=1e15;
+  const s=q.fresh();s.lastSeen=2000000000000;s.questDay=q.day();s.maxDepthEver=1100;s.lumen=1e15;s.shards=1e15;
   q.set(s);let paid=0;
   for(const node of q.defs().filter(n=>!n.retiredTo)){
     const cap=node.levelCap;
@@ -123,7 +123,7 @@ test('paid current Forge route reaches both original Deeds; history, rewards and
 test('fixed quantities buy exactly or refuse; Max alone takes the affordable remainder',()=>{
   const b=app().b;let cases=0;
   for(const level of [0,8,9,10,11])for(const requested of [1,5,10,25,50,100,'max',0,-1,1.5,'10'])for(const funded of [true,false]){
-    const s=seed(b,level);s.shards=funded?1e12:Math.ceil(30*Math.pow(1.55,level));b.set(s);
+    const s=seed(b,level);s.maxDepthEver=140;s.shards=funded?1e12:Math.ceil(30*Math.pow(1.55,level));b.set(s);
     // Migration compensation is money already owned; test budgets independently.
     b.get().shards=s.shards;if(b.get().swiftRecoveryRefund)b.get().swiftRecoveryRefund.remainingShardsHex='0';
     const valid=Number.isInteger(requested)&&requested>0,remaining=Math.max(0,10-level);
@@ -137,10 +137,10 @@ test('fixed quantities buy exactly or refuse; Max alone takes the affordable rem
     if(!expected)assert.deepEqual(b.get(),before,'refused batch changes no currency, progression or paid history');
     assert.equal(b.get().dailyStats.research||0,(before.dailyStats.research||0)+expected);assert.equal(b.get().enemyHp,before.enemyHp);cases++;
   }
-  assert.equal(cases,110);const s=seed(b,9);s.shards=0;b.set(s);assert.equal(b.plan('max').reason,'unaffordable');
+  assert.equal(cases,110);const s=seed(b,9);s.maxDepthEver=140;s.shards=0;b.set(s);assert.equal(b.plan('max').reason,'unaffordable');
 });
 test('queue stops at cap and retains ON intent without spending or incrementing counters',()=>{
-  const b=app().b;for(const level of [8,9,10,11,100]){const s=seed(b,level);s.shards=1e10;s.researchQueue.charge=true;b.set(s);const before=balance(b);b.queue();assert.equal(b.get().research.charge,Math.max(level,10));assert(b.get().researchQueue.charge);const after=copy(b.get());b.queue();assert.deepEqual(b.get(),after);assert(balance(b)<=before);}
+  const b=app().b;for(const level of [8,9,10,11,100]){const s=seed(b,level);s.maxDepthEver=140;s.shards=1e10;s.researchQueue.charge=true;b.set(s);const before=balance(b);b.queue();assert.equal(b.get().research.charge,Math.max(level,10));assert(b.get().researchQueue.charge);const after=copy(b.get());b.queue();assert.deepEqual(b.get(),after);assert(balance(b)<=before);}
 });
 test('raw history, Deeds, queues and paid work retained; original single-price compensation',()=>{
   const b=app().b;for(const level of [10,11,12,20,78,100,1000,1e300]){
@@ -213,7 +213,7 @@ test('actual casts before/exact/after floor, immediate-ready semantics, purchase
     for(const offset of [-0.0001,0,0.0001]){b.set(s);const r=b.advance(cycle+offset,{kind:'live',clockStartMs:s.lastSeen,captureTimeline:true});const casts=r.timeline.filter(e=>e.type==='ability');assert.equal(casts.length,offset<0?0:1);if(casts.length)close(casts[0].elapsedSec,cycle,'actual cast chronology');}
     b.set(s);b.get().heroResource.ember=100;assert.equal(b.next(),0);b.advance(0,{kind:'live',clockStartMs:s.lastSeen});
   }
-  const s=seed(b,9);s.shards=1e10;s.heroResource.ember=75;b.set(s);b.buy(1);assert.equal(b.get().heroResource.ember,75);close(b.next(),(10/3)*0.25,'no retroactive charge');
+  const s=seed(b,9);s.maxDepthEver=140;s.shards=1e10;s.heroResource.ember=75;b.set(s);b.buy(1);assert.equal(b.get().research.charge,10,'final rank was paid');assert.equal(b.get().heroResource.ember,75);close(b.next(),(10/3)*0.25,'no retroactive charge');
 });
 test('whole/split live/offline charge and cast chronology match at legacy overlevels',()=>{
   const b=app().b;for(const level of [10,100]){const s=seed(b,level);s.spirits.tide=1;s.activeParty=['ember','tide'];s.achieved.autotap=true;b.set(s);

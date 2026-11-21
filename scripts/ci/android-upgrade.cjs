@@ -91,16 +91,19 @@ async function verifyInstalledWispCard(page,report){
  const compactShot=await page.command('Page.captureScreenshot',{format:'png'});fs.writeFileSync('release-evidence/installed-wisp-compact.png',Buffer.from(compactShot.data,'base64'));
  await page.evaluate("(()=>{window.nativeWispDisclosureEvents=[];['pointerdown','pointerup','click','keydown'].forEach(type=>document.addEventListener(type,e=>{const b=e.target.closest('[data-wisp-details],[data-wisp-back]');if(b)nativeWispDisclosureEvents.push({type,trusted:e.isTrusted,target:(b.hasAttribute('data-wisp-back')?'wisp-back:':'wisp-details:')+(b.dataset.wispBack||b.dataset.wispDetails),x:e.clientX,y:e.clientY,connected:b.isConnected});},true));})()");
  const disclosures=[],observations=[];
- async function nativeNavigate(id,back){
+ async function nativeNavigate(id,back,record=true){
    const selector='[data-wisp-'+(back?'back':'details')+'="'+id+'"]',eventTarget=(back?'wisp-back:':'wisp-details:')+id;
    await page.evaluate('document.querySelector('+JSON.stringify(selector)+').scrollIntoView({block:"center",behavior:"instant"});nativeWispDisclosureEvents.length=0');
    await page.command('Page.captureScreenshot',{format:'png'});
    const point=await page.evaluate('(()=>{const e=document.querySelector('+JSON.stringify(selector)+'),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return{x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("button")===e};})()');
-   assert(point.hit&&point.width>=44&&point.height>=44,'Native Wisp navigation hittable '+eventTarget+': '+JSON.stringify(point));tap(point.x,point.y);
+   assert(point.hit&&point.width>=44&&point.height>=44,'Native Wisp navigation hittable '+eventTarget+': '+JSON.stringify(point));
+   const offset=await page.evaluate('document.querySelector("main").scrollTop');
+   tap(point.x,point.y);
    let opened=false;for(let i=0;i<30;i++){opened=await page.evaluate('document.querySelector('+JSON.stringify('[data-wisp-card="'+id+'"] .wisp-management')+').hidden==='+back);if(opened)break;await pause(50);}
    const events=await page.evaluate('nativeWispDisclosureEvents.filter(e=>e.target==='+JSON.stringify(eventTarget)+')');
-   disclosures.push({id,back,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');
+   if(record){disclosures.push({id,back,point,opened,events});fs.writeFileSync('release-evidence/installed-wisp-disclosure-input.json',JSON.stringify(disclosures,null,2)+'\n');}
    requireCenteredPointer(events,point,eventTarget);assert(opened,'Trusted Android touch navigates '+eventTarget);
+   return offset;
  }
  for(const row of compact){
    await nativeNavigate(row.id,false);
@@ -150,6 +153,31 @@ const measured=await page.evaluate(`(async()=>{
    await nativeNavigate(row.id,true);
  }
  report.installedCompactWisps={status:'PASS',defaults:compact,disclosures,nativeInput:true,navigation:'flat management'};
+ // Android dispatches both the system button and completed edge gesture as Back.
+ const rosterBackOffset=await nativeNavigate('ember',false,false);
+ adb('shell','input','keyevent','KEYCODE_BACK');
+ let back;
+ for(let i=0;i<40;i++){
+   back=await page.evaluate(`({roster:!document.getElementById('tab-spirits').classList.contains('wisp-manager-open'),
+     top:document.querySelector('main').scrollTop,
+     focused:document.activeElement.getAttribute('data-wisp-details')})`);
+   if(back.roster)break;
+   await pause(50);
+ }
+ assert(back.roster&&Math.abs(back.top-rosterBackOffset)<=2&&back.focused==='ember','System Back returns to the focused Wisp without leaving the app: '+JSON.stringify(back));
+ const selection=await page.evaluate(`(()=>{
+   const label=document.querySelector('[data-wisp-card=ember] .name');
+   label.scrollIntoView({block:'center'});
+   const rect=label.getBoundingClientRect();
+   const selectable=e=>(getComputedStyle(e).webkitUserSelect||getComputedStyle(e).userSelect);
+   return {x:rect.left+rect.width/2,y:rect.top+rect.height/2,game:selectable(label),backup:selectable(document.getElementById('save-backup-code'))};
+ })()`);
+ assert.equal(selection.game,'none');assert.equal(selection.backup,'text');
+ await page.command('Page.captureScreenshot',{format:'png'});
+ const held=nativePoint(transform,selection);
+ adb('shell','input','swipe',String(held.x),String(held.y),String(held.x),String(held.y),'1000');
+ assert.equal(await page.evaluate('String(window.getSelection())'),'','Native long press does not select game text');
+ report.installedAndroidBack={status:'PASS',systemBack:back,gameSelection:selection.game,backupSelection:selection.backup};
  const ui={viewport:await page.evaluate('innerWidth'),viewportFit:await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),tabVisible:true,count:observations.length,observations};
  fs.writeFileSync('release-evidence/installed-wisp-diagnostic.json',JSON.stringify(ui,null,2)+'\n');
  await nativeNavigate('ember',false);

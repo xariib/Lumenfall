@@ -225,7 +225,6 @@ if (developed && milestones[301]) {
   const masterwork = q.plan('masterwork', 1);
   assert.equal(masterwork.limit, 25);
   result.availableRankLimits = Object.fromEntries(tracks.map(node => [node.id, q.plan(node.id, 1).limit]));
-  assert.equal(tracks.filter(node => result.availableRankLimits[node.id] >= node.levelCap).length, 23);
   assert(b.selectFarm(299));
   const start = CLOCK + elapsed * 1000;
   const seconds = 8 * 3600;

@@ -29,7 +29,15 @@ driver=driver.slice(0,start)+String.raw`
     return {bad,overflow:root.scrollWidth>root.clientWidth+1,text:root.textContent};
   }.toString()+')('+JSON.stringify(selector)+')');ok(!measured.bad.length&&!measured.overflow,'full large-text price/effect fit '+JSON.stringify({width,scale,selector,measured}));return measured.text;}
   for(const [id,tab,field] of [['arcanecal','forge','research'],['conduction','forge','research'],['bossledger','research','longStudyLevels'],['luminousdistill','research','longStudyLevels']]){
-    const s=JSON.parse(JSON.stringify(seed));s[field][id]=19;await install(s,tab);
+    const s=JSON.parse(JSON.stringify(seed));s[field][id]=19;
+    if(tab==='forge'){
+      const depth=id==='arcanecal'?450:550;
+      s.maxDepthEver=depth-1;await install(s,tab);
+      const locked=await ev('(()=>{const card=document.querySelector("[data-forge-card='+id+']"),buy=card.querySelector("[data-research]");return buy.disabled&&buy.textContent.includes("Unlocks at Rift '+depth+'")&&!card.querySelector("[data-price-currency]");})()');
+      ok(locked,'funded last rank shows the Rift requirement without a price');
+      s.maxDepthEver=depth;
+    }
+    await install(s,tab);
     if(tab==='forge')ok(await ev('!document.querySelector("#tab-forge [data-mult]")'),'Forge has no quantity selector');
     else await ev('document.querySelector("[data-study-slot]").click()');
     const card=tab==='forge'?'[data-forge-card="'+id+'"]':'[data-study-card="'+id+'"]',button=tab==='forge'?'[data-research="'+id+'"]':'[data-study="'+id+'"]';

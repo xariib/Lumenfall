@@ -93,7 +93,7 @@ window.runWispUpgradeQa = function(){
       if(complete){s.wispModules.ember=19;b.set(s);b.render();ok((progression('ember').tagName==='SECTION'&&!progression('ember').closest('.wisp-management').hidden)&&visible(progression('ember').querySelector('[data-module]')),'restored unfinished Module remains directly reachable');}
     });
   });
-  var maxed=seed('ember',5,20,true,true);maxed.spirits.ember=10000;maxed.wispMastery.ember=2000;b.set(maxed);b.render();var gold=q('[data-wisp-card=ember]');ok(gold.classList.contains('wisp-fully-maxed')&&!gold.querySelector('[data-empower],[data-module],[data-rarity],[data-ultimate],[data-mastery]'),'only fully maxed Wisp becomes gold without upgrade actions');
+  var maxed=seed('ember',5,20,true,true);maxed.spirits.ember=10000;maxed.wispMastery.ember=2000;b.set(maxed);b.render();var gold=q('[data-wisp-card=ember]');ok(!gold.classList.contains('wisp-fully-maxed')&&!gold.querySelector('[data-module],[data-rarity],[data-ultimate]')&&gold.querySelector('[data-mastery]').textContent.includes('Unlocks at Rift'),'bounded upgrades finish while Mastery remains a future goal');
   b.set(seed('ember',0,0,false,false));b.render();progression('ember').open=true;
   return {checks:checks,fixtures:fixtures,paths:['canonical','recovery','backup'],finalPurchases:['module','ultimate','rarity'],noGameplayMigration:true};
 };
