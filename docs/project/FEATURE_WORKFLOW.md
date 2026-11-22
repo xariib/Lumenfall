@@ -12,7 +12,8 @@ focused workflow.
 
 ## Start and protect the baseline
 
-1. Read root `AGENTS.md`, bootstrap, `../PROJECT_STATE.md` and the feature task.
+1. Start with root `AGENTS.md` and the feature task. Consult
+   [project status](../PROJECT_STATE.md) when delivery or overlap needs context.
    Check the checkout, relevant current main/PR and actual overlapping work.
    Use an isolated branch/worktree when features run concurrently. Coordinate
    overlapping files/shared status and serialize main integration.
@@ -45,11 +46,13 @@ stable references; copy expiring artifacts before they become the only source.
 Use [the handoff template](../HANDOFF_TEMPLATE.md) when continuing elsewhere.
 TXT/ZIP packages are optional for requested phone/offline use.
 
-When context becomes uncertain, reread the checkpoint and affected code before
-editing. Resume the same feature from its recorded branch/version; do not expand
-scope, guess missing requirements or repeat completed work. Continue in the same
-chat when possible; a replacement chat requires the user's request. Record known
-limitations and the next action if required acceptance is blocked.
+For a same-task follow-up, apply the new instruction to the current state.
+When resuming after a handoff or when context becomes uncertain, reread the
+checkpoint and relevant code before editing. Resume from the recorded branch and
+version. Stay within scope, clarify missing requirements and avoid repeating
+completed work. Continue in the same chat when possible. A replacement chat
+requires the user's request. Record limitations and the next action if required
+acceptance is blocked.
 
 ## Completion before archiving
 

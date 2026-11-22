@@ -7,12 +7,12 @@ Filer i samme række er kandidater; indlæs kun det, som den konkrete opgave kr�
 | --- | --- | --- |
 | Arbejdsregler og læserækkefølge | `../AGENTS.md` | Opstart |
 | Optional technical guidance | `CHAT_OWNERSHIP.md` → relevant files in `agents/` | Only when needed; no role assignment |
-| Current snapshot, active features and overlap | `PROJECT_STATE.md` | Startup; verify relevant live state |
+| Current delivery snapshot and overlap | `PROJECT_STATE.md` | When delivery or overlap matters. Verify relevant live state. |
 | Én feature pr. chat og afslutning før arkivering | `project/FEATURE_WORKFLOW.md` | Ny feature og afslutning |
 | Ny ChatGPT-konto, startprompt og uafhængig backup | `project/ACCOUNT_RECOVERY.md` | Kontoskift eller recovery |
 | Brugerens workflowkrav fra 7. oktober | `tasks/WORKFLOW_CONTINUITY_001.md` | Regler og dokumentationsaccept |
 | Feature ownership and game-preservation safeguards | `tasks/FEATURE_CHAT_WORKFLOW_001.md`, `decisions/2026-10-07-feature-chat-workflow.md` | Current workflow decision; supersedes permanent role/writer gates |
-| Codex environment and commands | `project/CODEX_START.md`, `../PROJECT_BOOTSTRAP.txt` | New repo session; task selects the next action |
+| Codex environment and commands | `project/CODEX_START.md` | When setting up the environment or selecting checks |
 | Nyeste B2-runtimekandidat, fulde originals og beviser | `handoffs/02_08/2026-10-07/START_HER.txt` → `Source_Index.txt`, `SUMMARY/identity.json` | Nyt scoped kandidat-review; ikke produkt-main |
 | Alle 96 kandidatfiler og præcis gendannelse | `handoffs/02_08/2026-10-07/SOURCE_SNAPSHOT_MANIFEST.json`, `../scripts/recovery/restore_candidate.cjs` | Review uden netadgang/ekstern ZIP |
 | Core-review og 45 originale TXT/ZIP-filer | `handoffs/01_06/2026-10-07/SOURCE_INDEX.md` | Core-proveniens; tidligere BLOCKED gælder gamle bytes |

@@ -11,11 +11,12 @@ const RECOVERY = path.join(ROOT, 'docs/recovery/2026-10-07');
 const CORE = path.join(ROOT, 'docs/handoffs/01_06/2026-10-07');
 const GAMEPLAY = path.join(ROOT, 'docs/handoffs/02_08/2026-10-07');
 const ARCHIVE = path.join(ROOT, 'archive/02_08-b2-runtime-2026-10-07');
-const STARTUP = ['AGENTS.md', 'PROJECT_BOOTSTRAP.txt', 'docs/PROJECT_STATE.md'];
+const STARTUP = ['AGENTS.md'];
+const OVERVIEW = ['PROJECT_BOOTSTRAP.txt', 'docs/PROJECT_STATE.md'];
 const GUIDANCE = ['docs/CHAT_OWNERSHIP.md', 'docs/agents/00_LEAD.md', 'docs/agents/01_CORE.md',
   'docs/agents/02_GAMEPLAY.md', 'docs/agents/03_VISUALS.md', 'docs/agents/04_QA.md'];
 const WORKFLOW = ['docs/project/FEATURE_WORKFLOW.md', 'docs/project/ACCOUNT_RECOVERY.md', 'docs/HANDOFF_TEMPLATE.md'];
-const REQUIRED = [...STARTUP, ...GUIDANCE, ...WORKFLOW, 'PROJECT_INSTRUCTIONS.txt', 'docs/CONTEXT_INDEX.md', 'docs/project/CODEX_START.md',
+const REQUIRED = [...STARTUP, ...OVERVIEW, ...GUIDANCE, ...WORKFLOW, 'PROJECT_INSTRUCTIONS.txt', 'docs/CONTEXT_INDEX.md', 'docs/project/CODEX_START.md',
   'docs/project/KNOWN_ISSUES.md', 'docs/decisions/2026-10-07-codex-project-ready.md',
   'docs/project/SAVE_OFFLINE_AUTOASCEND_DIAGNOSE_2026-10-07.txt', 'scripts/codex/setup.sh', 'scripts/recovery/restore_candidate.cjs',
   'docs/recovery/2026-10-07/SOURCE_INDEX.txt', 'docs/handoffs/01_06/2026-10-07/SOURCE_INDEX.md',
@@ -34,7 +35,7 @@ function checkStartup(task) {
   const required = [...REQUIRED, ...tasks];
   for (const name of required) if (!fs.existsSync(path.join(ROOT, name)) || !fs.statSync(path.join(ROOT, name)).isFile()) throw Error('Missing entrypoint: ' + name);
   let links = 0;
-  for (const name of [...STARTUP, ...tasks, ...GUIDANCE, ...WORKFLOW, 'README.md', 'docs/CONTEXT_INDEX.md', 'docs/project/CODEX_START.md', 'docs/project/KNOWN_ISSUES.md']) {
+  for (const name of [...STARTUP, ...OVERVIEW, ...tasks, ...GUIDANCE, ...WORKFLOW, 'README.md', 'docs/CONTEXT_INDEX.md', 'docs/project/CODEX_START.md', 'docs/project/KNOWN_ISSUES.md']) {
     const file = path.join(ROOT, name), text = fs.readFileSync(file, 'utf8');
     for (const match of text.matchAll(/\]\(([^)]+)\)/g)) {
       if (/^(?:https?:|mailto:|#)/.test(match[1])) continue;
