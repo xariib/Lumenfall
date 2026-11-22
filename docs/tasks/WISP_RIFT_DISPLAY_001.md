@@ -65,3 +65,11 @@ main Wisps button to label the roster directly. The corrected fixture checks
 both Wisp subtab relationships, retaining the existing destination, focus,
 and persistence assertions. `r3-destinations` passed locally. Product bytes
 are identical to the locally validated final layout.
+
+[Next pre-merge run](https://github.com/xariib/Lumenfall/actions/runs/45057913082)
+passed the R3 check and isolated catch-up, then reached the independent offline
+source-binding gate. The existing paired replay driver ran each version for
+four eight-hour windows in one-second steps. The 230,400 one-second calls
+produced equal rewards and identical complete saved states, and all four state
+hashes matched the canonical reference. Only the golden source SHA changed.
+[Replay receipt](../qa/wisp-rift-display-001/independent-offline-replay.json).
