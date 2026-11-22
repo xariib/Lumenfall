@@ -44,6 +44,8 @@ The fresh [Forge-first](../qa/forge-progress-and-android-back-001/fresh-forge-72
 and [boss-focused](../qa/forge-progress-and-android-back-001/fresh-boss-72h.json)
 replays each reach Rift 160 in 72 simulated hours and max only Swift Recovery.
 Their first completion is at 16.89 and 21.61 hours respectively.
+The [30-day boss replay](../qa/forge-progress-and-android-back-001/fresh-boss-720h.json)
+reaches the old replay's Rift 210 record and still maxes only Swift Recovery.
 The mature reinvestment model still completes the entire Forge at productive
 day 994. It grants a mature record, Wisps and Labs. Its result is a calibration
 estimate with no fresh-account calendar guarantee.
@@ -102,5 +104,20 @@ anchor for Sigil Cartography. The mutation now targets the same boss payout
 after it calls the extracted base quote, and the income assertion still
 rejects percentage instead of flat bonuses. All 21 controls and 901 endless
 mobile checks passed locally.
+
+Exact candidate `1eeccf71` kept the same HTML SHA. Its isolated offline job
+passed. The first Linux Wisp-scroll run timed out awaiting Chrome touch
+dispatch after 2,831 assertions. Both platforms passed the same-commit retry.
+A local Brave trace saw an intermittent post-restore touch before Settings was
+ready on both baseline and candidate. The backup test now waits for the
+reloaded document and rendered Rift before its next trusted touch. All 12
+profiles pass locally. The early-confirmation control still fails at the
+intended wallet/save assertion. Android native backup and upgrade acceptance
+passed independently.
+
+The local full run also exposed the old Luminous Tracking level 9/10 purchase
+fixture without a sufficient record. Both mobile motion profiles pass with the
+Rift 320 record and the same exact debit, focus fallback and cap checks. The
+Forge boundary tests separately exercise both sides of the new unlock.
 Next run the corrected candidate gates, integrate, validate on main and verify
 the signed public APK and in-app updater.
