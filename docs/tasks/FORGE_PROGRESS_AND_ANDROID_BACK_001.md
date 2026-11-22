@@ -40,6 +40,10 @@ opens at Rift 450. All existing prices, caps and paid effects remain intact.
 Stored ranks remain valid even if a later rank purchase is gated. The
 [Rift 300 replay](../qa/forge-progress-and-android-back-001/rift-300.json)
 clears the boss and maxes only Swift Recovery and Cauterize, versus 20 previously.
+The fresh [Forge-first](../qa/forge-progress-and-android-back-001/fresh-forge-72h.json)
+and [boss-focused](../qa/forge-progress-and-android-back-001/fresh-boss-72h.json)
+replays each reach Rift 160 in 72 simulated hours and max only Swift Recovery.
+Their first completion is at 16.89 and 21.61 hours respectively.
 The mature reinvestment model still completes the entire Forge at productive
 day 994. It grants a mature record, Wisps and Labs. Its result is a calibration
 estimate with no fresh-account calendar guarantee.
@@ -51,6 +55,11 @@ Power. The required Lab, Tree and Forge ranks plateau at their own caps so the
 supporting systems do not block future Mastery after completion. No save schema
 change. Existing ranks above 2000 retain their effect. Core tests prove funded
 purchases beyond rank 2000 and cold reload.
+In the [seeded full-Forge combat replay](../qa/forge-progress-and-android-back-001/late-mastery.json),
+Ember buys rank 2001 at Rift 50,200 and gains 10% own Power. Over 120 offline
+seconds the record reaches 51,575, versus 51,570 from the same state before
+buying the rank. The fixture grants developed Wisps, completed research and
+currency to exercise the late purchase and combat path.
 
 Android's lifecycle-aware Back callback invokes the same Wisp return route as
 the in-game button. A Back outside that route falls through to the original
@@ -79,6 +88,14 @@ Candidate CI at `1409ff67` exposed two stale browser fixtures. The Forge test
 now asserts the visible Rift lock and unavailable purchase after the first
 rank where the next rank is gated. The exact-funded Swift cap fixture now
 uses the required Rift 140 record and retains its debit and remainder checks.
-The targeted Lab-queue scenario passed locally. Product source is unchanged.
-Next run the candidate gates, then integrate, repeat validation on main and
-verify the signed public APK and in-app updater.
+On `a1af8808` the targeted Lab-queue scenario and full Forge browser suite
+passed locally (32,712 Forge checks). That candidate's Lab timing runner
+timed out opening Chrome before its first assertion. A same-commit retry
+passed. Eight candidate workflows and the isolated offline job passed. The full
+pre-merge job found a Wisp fixture that expected the initial Mastery label after
+the affordability refresh. Its local replacement verifies the actual disabled
+Rift 50,200 requirement at record 50,199 and both prices on the enabled
+purchase at record 50,200. The bounded upgrade controls still disappear.
+The targeted Wisp display scenario passed. Product source is unchanged.
+Next run the corrected candidate gates, integrate, validate on main and verify
+the signed public APK and in-app updater.
