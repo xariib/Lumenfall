@@ -75,8 +75,19 @@ This feature relies on that separate PR for its integrated context gate.
 The full 24-hour fresh campaign from this feature's first candidate matched
 every recorded effect of 0.2.153, including Rift 140, 11 manual Ascends,
 and 114 paid Forge actions. A [private Android build](https://github.com/xariib/Lumenfall/actions/runs/45076961913)
-started against the first candidate.
+passed on the first candidate. A [revised signed candidate](https://github.com/xariib/Lumenfall/actions/runs/45077952935)
+passed the in-place upgrade, both saves, paid studies, updater and retail
+launch. The packaged game matches the repaired source hash. Attempt 1 hit
+HTTP 403 fetching release metadata. Attempt 2 passed.
 
-Next: verify required PR workflows with PR #68 integrated, then integrate
-this feature and pass the main-commit checks. Signed release and final
-Android acceptance are pending.
+PR #68 reached main at `582ddaa7`. The combined feature tree passes the
+startup budget and isolated offline catch-up. Its first pre-merge attempt
+reached the Workshop and milestone boss replay, then stopped at a guidance
+fixture that used the old Mastery prices. The fixture now exercises the same
+exact and one-unit-short boundaries using the current quote. All 191 checks,
+including negative controls, pass on the candidate and the baseline. Game
+source and signed APK bytes are unaffected by the fixture correction.
+
+Next: finish the corrected PR workflows, then integrate this feature and
+pass the main-commit checks. Public release and final Android acceptance
+are pending.
