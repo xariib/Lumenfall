@@ -143,12 +143,15 @@ function studyTail() {
   const work = q.endless.duration(node, 499);
   assert.equal(work, 864000, 'the full ten-day base work is retained');
   if (historical) return {last, work};
-  q.get().lumen = last.lumen;
+  const scale = 10n ** 12n;
+  const dust = '23299999999999999e-12';
+  q.get().lumen = String(BigInt(last.lumen) * scale + 23299999999999999n) + 'e-12';
   q.get().shards = last.shard;
   assert(q.endless.startStudy(node), 'the displayed high-rank costs fund the actual study');
-  assert.equal(q.get().lumen, 0);
+  assert.equal(q.get().lumen, dust, 'debit retains the exact fractional balance');
   assert.equal(q.get().shards, 0);
   q.load();
+  assert.equal(q.get().lumen, dust, 'the fractional balance survives cold load');
   assert.equal(q.get().activeStudies[0].remainingSec, work);
   assert.equal(q.get().longStudyLevels.motestudy, 499);
   const start = CLOCK + (work - hour) * 1000;

@@ -80,10 +80,10 @@ function createGameAmount(){
     // Callers may mutate their parts; never expose the memoized object.
     return {d:p.d,e:p.e,s:p.s};
   }
-  function encode(p){
+  function encode(p,preservePrecision){
     p=clean(p);if(p.d==='0')return 0;
     var text=(p.s<0?'-':'')+p.d+'e'+p.e,n=Number(text);
-    return Number.isFinite(n)&&Math.abs(n)<=SAFE?n:text;
+    return Number.isFinite(n)&&Math.abs(n)<=SAFE&&(!preservePrecision||compareParts(parts(n),p)===0)?n:text;
   }
   function wide(value){return typeof value==='string'&&/^-?\d+e-?\d+$/.test(value);}
   function valid(value){if(typeof value==='number')return Number.isFinite(value);if(!wide(value))return false;try{parts(value);return true;}catch(e){return false;}}
@@ -107,18 +107,18 @@ function createGameAmount(){
     if(!wide(a)&&!wide(b)&&Number.isFinite(a+b))return a+b;
     return exactAdd(a,b);
   }
-  function exactAdd(a,b){
-    var x=parts(a),y=parts(b);if(x.d==='0')return encode(y);if(y.d==='0')return encode(x);var e=Math.min(x.e,y.e);
+  function exactAdd(a,b,preservePrecision){
+    var x=parts(a),y=parts(b);if(x.d==='0')return encode(y,preservePrecision);if(y.d==='0')return encode(x,preservePrecision);var e=Math.min(x.e,y.e);
     var xd=x.d+'0'.repeat(x.e-e),yd=y.d+'0'.repeat(y.e-e);
     var d,s=x.s;
     if(x.s===y.s)d=digitAdd(xd,yd);
     else if(xd.length>yd.length||(xd.length===yd.length&&xd>=yd))d=digitSub(xd,yd);
     else{d=digitSub(yd,xd);s=y.s;}
-    return encode({d:d,e:e,s:s});
+    return encode({d:d,e:e,s:s},preservePrecision);
   }
-  function neg(a){if(!wide(a))return -a;var p=parts(a);p.s=-p.s;return encode(p);}
+  function neg(a,preservePrecision){if(!wide(a))return -a;var p=parts(a);p.s=-p.s;return encode(p,preservePrecision);}
   function sub(a,b){if(!wide(a)&&!wide(b)&&Number.isFinite(a-b))return a-b;return add(a,neg(b));}
-  function exactSub(a,b){return exactAdd(a,neg(b));}
+  function exactSub(a,b,preservePrecision){return exactAdd(a,neg(b,preservePrecision),preservePrecision);}
   function mul(a,b){
     if((wide(a)&&b===0)||(wide(b)&&a===0))return 0;
     if(!wide(a)&&!wide(b)&&Number.isFinite(a*b))return a*b;
@@ -194,7 +194,7 @@ function createGameAmount(){
   function min(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.min.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)<=0?a:b;},Infinity);}
   function max(){var values=Array.prototype.slice.call(arguments);if(!values.some(wide))return Math.max.apply(Math,values);return values.reduce(function(a,b){return cmp(a,b)>=0?a:b;},-Infinity);}
   function text(a){var p=parts(a),e=p.d.length-1+p.e;return (p.s<0?'-':'')+p.d.charAt(0)+(p.d.length>1?'.'+p.d.slice(1,4):'')+'e'+e;}
-  function normalize(a){return encode(parts(a));}
+  function normalize(a,preservePrecision){return encode(parts(a),preservePrecision);}
   function abs(a){if(!wide(a))return Math.abs(a);var p=parts(a);p.s=1;return encode(p);}
   function physical(a){
     if(!wide(a))return a;var p=parts(a);if(p.d.length<=16)return a;

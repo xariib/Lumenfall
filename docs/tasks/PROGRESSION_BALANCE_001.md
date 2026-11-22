@@ -48,5 +48,35 @@ Play readiness PR #63. This feature uses an isolated worktree at
   credentials refused an optional workflow-file edit because they lack the
   OAuth workflow scope. The existing CI workflow is sufficient.
 
-Next: review the final diff, open the candidate PR and check all required PR
-workflows before integration. Signed release and Android acceptance are pending.
+## Integration checkpoint
+
+[PR #69](https://github.com/xariib/Lumenfall/pull/69) opened at `982ff526`.
+The first [Lab run](https://github.com/xariib/Lumenfall/actions/runs/45076908821)
+found a funded foundation study rejected in the new price range. Exact debit
+previously converted the small fractional remainder back
+to a rounded Number. Payment verification rejected the result. Currency
+debits, subsequent credits, and cold-loaded wallets now keep canonical
+decimal storage when the Number conversion would lose value. The focused
+purchase exercises the actual displayed cost and retains the exact
+fractional remainder. The existing Farm stress corpus passes all 2,484
+valid profiles with zero unavailable funded purchases.
+The repaired source SHA-256 is
+`f6496a778013fc290b91f7dc2713464fe4a2e0fd734afb88561853770421b6c4`.
+The Workshop totals, matched boss pacing, earned Mastery purchases, and four
+canonical offline endpoints still match the earlier balance candidate.
+The Wisp Chromium suite passed all 901 checks again.
+
+The first [main PR workflow](https://github.com/xariib/Lumenfall/actions/runs/45076908912)
+failed the existing `EXPLOIT_BALANCE_HUNT_001` context check. The same 32 KiB
+failure reproduces on untouched main `42c9cdf5`. [PR #68](https://github.com/xariib/Lumenfall/pull/68)
+contains the user-authorized startup correction and passes this check.
+This feature relies on that separate PR for its integrated context gate.
+
+The full 24-hour fresh campaign from this feature's first candidate matched
+every recorded effect of 0.2.153, including Rift 140, 11 manual Ascends,
+and 114 paid Forge actions. A [private Android build](https://github.com/xariib/Lumenfall/actions/runs/45076961913)
+started against the first candidate.
+
+Next: verify required PR workflows with PR #68 integrated, then integrate
+this feature and pass the main-commit checks. Signed release and final
+Android acceptance are pending.

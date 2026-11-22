@@ -36,8 +36,10 @@ and starting investment levels. Player choices and reserves can change the time.
   Sigils gained in the test, with a zero starting wallet. At matched
   development the bought rank increased the 120-second endpoint by two Rifts.
 - Luminous Sense Lv. 500 falls from about 5.69e69 to 1.07e22 Shards
-  before discounts. It still takes 10 days of base work. A paid start,
-  cold load, and completion at the exact remaining work were exercised.
+  before discounts. It still takes 10 days of base work. The exact debit
+  keeps a small fractional remainder through purchase and cold load.
+  All 2,484 valid cases in the existing Farm-to-Lab boundary
+  corpus passed.
 - At Rift 10,001, a seeded account with Ember Mastery 388 and Wisp Ascendancy
   Lv. 176 finished all 24 Forge and all 24 Lab tracks on day **1,020**.
   The policy extrapolated actual Farm income to 12 productive hours per
