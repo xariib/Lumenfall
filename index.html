@@ -2283,10 +2283,10 @@
   nav.tabbar button:active .nav-art{filter:brightness(1.15);}
   nav.tabbar .lab-capacity-badge{top:2px;right:calc(50% - 28px);z-index:2;}
   .workshop-head[hidden],#wisp-sections[hidden]{display:none;}
-  .workshop-head,#wisp-sections{margin:0 0 14px;}
+  .workshop-head{margin:0 0 14px;}
   .workshop-title{font-family:'Cinzel',serif;font-size:18px;font-weight:600;margin:0 0 10px;color:#f9ebd7;}
   .workshop-tabs,#wisp-sections{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:4px;border:1px solid #42516b;border-radius:13px;background:#0e192b;}
-  #wisp-sections{position:sticky;top:0;z-index:2;}
+  #wisp-sections{flex:none;margin:12px 12px 0;}
   .workshop-btn,.wisp-section-btn{position:relative;min-height:44px;border:1px solid transparent;border-radius:9px;background:transparent;color:#bdc7da;display:flex;align-items:center;justify-content:center;gap:7px;font:700 13px 'Manrope',sans-serif;cursor:pointer;}
   .wisp-section-btn{min-width:0;padding:5px 8px;font-size:.8125rem;}
   .wisp-section-btn[aria-selected="true"]{color:#e4d8ff;border-color:#7762a1;background:#2c2345;}
@@ -3068,6 +3068,10 @@
 </nav>
   </div>
 
+<div id="wisp-sections" role="tablist" aria-label="Wisps sections" hidden>
+  <button class="wisp-section-btn" id="nav-wisp-roster" data-wisp-tab="spirits" role="tab" aria-selected="true" aria-controls="tab-spirits" type="button">Roster</button>
+  <button class="wisp-section-btn" id="nav-formation" data-wisp-tab="formation" role="tab" aria-selected="false" aria-controls="tab-formation" type="button" tabindex="-1">Formation &amp; Bonds</button>
+</div>
   <main>
 <div class="workshop-head" id="workshop-head" hidden>
 <h2 class="workshop-title">Workshop</h2>
@@ -3075,10 +3079,6 @@
 <button class="workshop-btn" id="nav-forge" data-tab="forge" role="tab" aria-selected="true" aria-controls="tab-forge" type="button"><svg class="nav-art" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 3 7 1 5 5-4 4-5-5-3-1ZM12 13l7 8 3-3-8-7M3 21h8"/></svg><span>Forge</span></button>
 <button class="workshop-btn" id="nav-research" data-tab="research" role="tab" aria-selected="false" aria-controls="tab-research" type="button" tabindex="-1"><svg class="nav-art" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6M10 2v7L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3L14 9V2M7 16h10M11 13h.01M14 19h.01"/></svg><span>Lab</span><span class="lab-capacity-badge" id="workshop-lab-badge" aria-hidden="true" hidden></span></button>
 </div></div>
-<div id="wisp-sections" role="tablist" aria-label="Wisps sections" hidden>
-  <button class="wisp-section-btn" id="nav-wisp-roster" data-wisp-tab="spirits" role="tab" aria-selected="true" aria-controls="tab-spirits" type="button">Roster</button>
-  <button class="wisp-section-btn" id="nav-formation" data-wisp-tab="formation" role="tab" aria-selected="false" aria-controls="tab-formation" type="button" tabindex="-1">Formation &amp; Bonds</button>
-</div>
     <section class="tab-panel active" id="tab-battle">
       <div class="card stage">
         <div class="rift-landscape rift-backdrop" data-scene="rift" aria-hidden="true">

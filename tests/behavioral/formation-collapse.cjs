@@ -56,6 +56,7 @@ async function run(){
   };
   await touch('#nav-formation');
   ok(await ev('document.querySelector("main").scrollTop===0&&document.querySelector("#formation-presets").checkVisibility()&&!document.querySelector("#spirit-list").checkVisibility()'),'one tap opens Formation and presets without scrolling through the roster');
+  ok(await ev('document.querySelector("#wisp-sections").getBoundingClientRect().bottom<=document.querySelector("main").getBoundingClientRect().top'),'tab strip reserves space above Formation controls');
   let o=await observe();ok(o.flat&&o.visible,'Bonds readable by default without a disclosure');ok(o.removed&&o.boxed,'Contribution removed and Bonds boxed');
   await ev('document.getElementById("nav-formation").focus()');
   await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'ArrowLeft',code:'ArrowLeft',windowsVirtualKeyCode:37});
@@ -85,7 +86,7 @@ async function run(){
    await activate(input);ok(await ev('roleQa.get().activeParty.includes("tide")&&document.querySelector("[data-toggle=tide]").getAttribute("aria-pressed")==="true"'),'native '+input+' fields once');
    await showFormation();await ev('roleQa.render();roleQa.readout()');o=await observe();ok(o.flat&&o.visible&&o.same&&o.focus,'formation renders preserve guide/focus');ok(o.errors.length===0,'no browser runtime errors');
   }
-  await ev('originalToggle.scrollIntoView({block:"start"})');
+  await ev('document.querySelector("main").scrollTop=0');
   if(width===390&&motion==='reduce'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'flat-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
   for(let repeat=0;repeat<2;repeat++){const start=await ev('originalToggle.focus();roleQa.markDirty();window.roleRunIntervals=true;roleQa.lastRender()');await pause(1200);await ev('window.roleRunIntervals=false');const observed=await observe();ok(await ev('roleQa.lastRender()')>start,'actual live interval refreshed dirty Formation guidance');ok(observed.flat&&observed.visible&&observed.same&&observed.focus,'live interval preserves guide and focus');}
   records.push({width,fontPercent,motion,nativeInputs:['Enter','Space','touch']});

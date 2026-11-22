@@ -39,3 +39,15 @@ and the paired offline check passed 30,498 checks on the initial UI candidate.
 
 Next: finish exact-head browser and CI checks, integrate, and verify the
 signed Android build and updater. Physical device acceptance remains open.
+
+On the initial [PR67](https://github.com/xariib/Lumenfall/pull/67) candidate
+`db35d667`, Rift status, Wisp formulas, menu navigation and Wisp hierarchy
+passed through the Chromium CDP runner. Formation passed 505 checks on 12
+profiles, Wisp management passed 1,182 checks on 12 profiles, and the native
+Bonds suite passed. Concurrent Windows Chrome shutdown produced valid PASS
+DOM with a nonzero teardown exit on three suites. Serial retries passed.
+
+Screenshot review found the sticky tab strip could cover a control positioned
+at the top of a scrolled panel. The final layout reserves space above the
+scrolling content. Native touch and accessibility coverage now asserts this
+separation. Final-source checks and Android delivery are pending.
