@@ -97,5 +97,10 @@ the affordability refresh. Its local replacement verifies the actual disabled
 Rift 50,200 requirement at record 50,199 and both prices on the enabled
 purchase at record 50,200. The bounded upgrade controls still disappear.
 The targeted Wisp display scenario passed. Product source is unchanged.
+Ahead of the full run, the local endless controls caught a stale mutation
+anchor for Sigil Cartography. The mutation now targets the same boss payout
+after it calls the extracted base quote, and the income assertion still
+rejects percentage instead of flat bonuses. All 21 controls and 901 endless
+mobile checks passed locally.
 Next run the corrected candidate gates, integrate, validate on main and verify
 the signed public APK and in-app updater.
