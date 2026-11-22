@@ -110,3 +110,8 @@ pre-import Git objects unavailable404 remain a limitation. [Known issues](projec
 Historical19 October2026 [product audit](tasks/PRODUCT_BASELINE_AUDIT_001.md)
 describes Android0.2.14. Its findings and recommendations require reassessment
 against current main before implementation; this sync does not start those tasks.
+
+## Agent workflow
+
+[Codex startup and continuation](tasks/CODEX_STARTUP_001.md) records the shorter
+startup path, the measured context reduction and the verification status.

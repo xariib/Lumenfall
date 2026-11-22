@@ -1,9 +1,10 @@
 # Start Lumenfall i Codex
 
 Start from current `main` or the feature's branch in `xariib/Lumenfall`.
-Read root `AGENTS.md`, `PROJECT_BOOTSTRAP.txt`, `docs/PROJECT_STATE.md` and
-the current feature task. The user assigns scope; one owner chat handles all
-affected disciplines under [the feature workflow](FEATURE_WORKFLOW.md).
+Read root `AGENTS.md` and the current feature task. The user assigns scope,
+and one owner chat handles all affected work under
+[the feature workflow](FEATURE_WORKFLOW.md). Consult
+[project status](../PROJECT_STATE.md) for delivery or overlap.
 Use isolated branches/worktrees for concurrent features and coordinate actual
 overlap/integration. Technical guidance is optional, with no default Lead role.
 Find sources through [CONTEXT_INDEX.md](../CONTEXT_INDEX.md). Record short task
@@ -64,8 +65,11 @@ node tests/tooling/run.cjs
 ```
 
 Use your actual feature task path with `--task` to check its existence, local
-links and the 32 KiB shared-plus-task startup budget. The plain command checks
-shared documents only and explicitly reports that the feature task was not checked.
+links and the 32 KiB startup budget for `AGENTS.md` plus the selected task.
+The checker also validates shared reference entrypoints and links. Running it
+without `--task` checks shared files and reports that the task was omitted.
+This repository check measures file bytes. Codex has its own instruction-discovery
+limit, and the model's conversation context also includes messages and tool results.
 
 Ved produktændringer følges relevante eksisterende gates i
 `.github/workflows/pre-merge-validation.yml`. Staging og adfærdssuite:
