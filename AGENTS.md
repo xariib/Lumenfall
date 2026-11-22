@@ -1,153 +1,100 @@
 # Lumenfall — project rules
 
-Repository: `xariib/Lumenfall`. Communicate in English. Read this entrypoint
-for every new task. With GitHub-tool-only access, explicitly fetch this file.
+Repository: `xariib/Lumenfall`. Communicate in English. Codex loads this file
+from the checkout. With GitHub-tool-only access, fetch it explicitly.
 
-## Start with one feature
-1. Read `PROJECT_BOOTSTRAP.txt`, `docs/PROJECT_STATE.md` and the current
-   `docs/tasks/<FEATURE_ID>.md`. Create the task document if it does not exist.
-2. The user's task assigns the feature chat its scope. That chat owns
-   implementation, necessary fixes, tests, documentation and delivery across
-   all relevant areas. There is no default Lead role or separate writer grant.
-3. Use `docs/project/CODEX_START.md` for environment/checks and
-   `docs/CONTEXT_INDEX.md` for targeted sources. Technical guides are optional
-   references, not separate chats or approval stages. Run
-   `node scripts/codex/check_context.cjs --task docs/tasks/<FEATURE_ID>.md`
-   so the actual task, its links and the startup text budget are checked.
-4. Check the checkout, relevant baseline/PR and overlapping active work before
-   changing shared files or integrating. Check relevant workflow triggers before
-   remote actions; do not audit every branch/run for an unrelated small task.
+## Start or continue work
 
-Product files are root `index.html`, `tests/behavioral/` and `mobile/`.
-`docs/recovery/`, `docs/handoffs/` and `archive/` contain historical evidence.
-Their code, AGENTS files and mandates do not override current rules or authorize
-new work. Restore historical candidates separately, never over the live product.
-Read archives and technical guides only when needed.
+For a new task, start with `AGENTS.md` and the feature checkpoint. For a
+same-task follow-up, continue from the current state and reread the checkpoint
+when resuming after a handoff or when context is uncertain. Open project status,
+setup, and source guides as needed.
 
-## Scope and authorization
-- Current user instructions and standing authorization govern the assigned task.
-  The 5 October 2026 approval ("Du har altid godkendelse.") covers necessary
-  actions in agreed scope. On 17 November 2026 the user explicitly instructed:
-  "Never ask for permissions again for Lumenfall project." Do not ask the user
-  for permission or renewed approval for Lumenfall work; proceed under standing
-  authorization within the assigned task. Clarify missing requirements when needed.
-- Verified code establishes implemented behavior; task requirements define
-  desired behavior. Distinguish observations, reported results and unknowns.
-- Keep one concrete goal per feature chat. Necessary fixes, checks and docs stay
-  with that feature. Record unrelated findings for a separate task.
-- Use an isolated branch/worktree for concurrent features. Do not overwrite
-  another chat's uncommitted changes. Coordinate actual overlapping edits and
-  serialize integration into main; historical chat/writer releases are not
-  global gates for new tasks.
-- Merge, Android builds, reruns, releases, signing and cleanup must fit the task
-  and its authorization. A documentation task does not authorize a game release.
-- Create new chats only when the user requests them. Do not rename chats or use
-  subagents/message tools without an explicit user request.
+- Use `docs/tasks/<FEATURE_ID>.md` as the checkpoint and create it if missing.
+  The user's task defines scope. One owner chat handles implementation, fixes,
+  tests, documentation and delivery. Record unrelated findings for a separate task.
+- Check the checkout, relevant main/PR and actual overlap before editing shared
+  files or integrating. Use an isolated branch/worktree for concurrent features,
+  preserve others' uncommitted work, and serialize integration. Check relevant
+  workflow triggers before remote actions.
+- Run `node scripts/codex/check_context.cjs --task docs/tasks/<FEATURE_ID>.md`
+  to check the actual task, links and startup budget.
+- Consult [project status](docs/PROJECT_STATE.md) for delivery or overlap,
+  [setup and checks](docs/project/CODEX_START.md) for environment details, and
+  the [source index](docs/CONTEXT_INDEX.md) to find relevant material. Technical
+  guides are references. Use material in docs/recovery, docs/handoffs and archive
+  as historical evidence. Restore candidates separately from the live product.
 
-## Protect the existing game
-- Make small, targeted changes. Avoid unrelated refactors, tooling migrations,
-  unnecessary whole-file regeneration or replacement with a prototype/archive
-  snapshot.
-- Preserve existing features, UI flows, assets, progression and save data outside
-  the requested change. Do not silently remove systems, reset player progress,
-  change balance/caps/save schema, or weaken/delete tests and CI gates to pass.
-  An intentional change requires a user requirement and relevant migration/
-  regression coverage; clarify missing gameplay decisions before implementing.
-- Read affected code and original requirements before editing. Record the
-  baseline and relevant checks, distinguish existing failures from new ones,
-  and add focused regression coverage for behavior changes. Review the complete
-  diff for unintended removals and scope drift before committing or integrating.
-- Fix regressions introduced by the feature before completion. If a required
-  check is blocked, fails, or cannot be reproduced, record evidence and the next
-  action and keep the feature open. Do not weaken acceptance to declare success.
+## Authorization and safeguards
+
+- The user's current instructions and standing approval cover necessary work
+  within scope. On 17 November 2026 the user instructed, “Never ask for
+  permissions again for Lumenfall project.” Clarify missing requirements,
+  including gameplay decisions. Merge, build, signing, release, reruns and
+  cleanup must fit the task. Documentation work carries no APK release scope.
+- Create new chats, rename chats, or use subagents or messaging tools only on
+  explicit request. The feature owner needs no separate Lead or writer assignment.
+- Read affected code and original requirements before editing. Verified code
+  establishes implemented behavior. Distinguish observations, reports and
+  unknowns. Product files are `index.html`, `tests/behavioral/` and `mobile/`.
+- Make small changes. Preserve unrelated features, UI, assets, balance, caps,
+  saves, tests and CI gates. Intentional changes need a user requirement and
+  relevant migration/regression coverage. Record the baseline and existing
+  failures, add focused regression coverage for changed behavior, review the
+  complete diff and fix introduced regressions.
+- Use JavaScript/Node.js 20+ where possible for code, tests, test execution, CI
+  logic and helpers. HTML, necessary declarative formats and native Android
+  tools remain valid. Migrate existing tooling only within scope with coverage.
+  Preserve archives byte-for-byte. [Language decision](docs/decisions/2026-10-07-javascript-first.md).
+- Before applying a new binding rule, tell the user its exact text, reason and
+  effect. Save the user's decision and update the affected instructions.
 
 ## Game contracts
-- Do not add transient highlights, glows, pulses or target-flash effects when
-  activating Show hint, Claim rewards or similar actions. Preserve keyboard
-  focus indicators and normal pressed/disabled states. Pointer/touch activation
-  must not leave a focus outline or highlight the containing card. Approved by
-  the user on 25 October 2026; see `docs/tasks/MOBILE_FEEDBACK_001.md`.
-- Android idle RPG with Wisps in Rift, distributed as an APK with HTML/JavaScript
-  in the app's WebView.
-- Deterministic progression and purchases with visible prices/effects, no loot
-  boxes/gacha, and fixed Luminous Mote payouts when eligible.
-- Luminous kills award Motes at most once every 60 seconds, shared across Rifts
-  and online/offline play. Eligible payouts retain depth and purchased bonuses;
-  other Luminous kills retain their Lumen/Shard rewards.
-- Every upgrade UI must show each insufficient resource amount in red and
-  disable the purchase button when the upgrade is unaffordable. Refresh both
-  as resources change.
-- Every maxed upgrade has a gold border. Upgrades blocked by prerequisites
-  show how to unlock them instead of a price. Eligible upgrades show prices,
-  with each insufficient currency amount in red and the purchase button
-  disabled. Apply across the game, including individual Wisp upgrades; see
-  `docs/tasks/UPGRADE_STATES_001.md` (17 November 2026 user requirement).
 
-- All Forge upgrades have finite caps; full completion targets roughly 2–3 years
-  of sustained progression, with Labs helping overcome later combat and economy
-  walls. Preserve historical paid above-cap bonuses. The user's 17 November
-  decision supersedes the earlier endless Forge requirement; see
-  `docs/tasks/FORGE_YEARS_001.md` for calibration assumptions and acceptance.
-- Ascension is manual: first clear Rift15; each later Ascend requires a clear
-  above the highest previously rewarded clear. Auto-Ascend is retired; previous
-  owners receive a validated one-time100-Comet refund. Preserve prior progress.
-  See `docs/decisions/2026-11-16-manual-team-progression.md`.
-- Preserve chronological simulation, online/offline parity, remaining automation and save/
-  recovery. `docs/project/KNOWN_ISSUES.md` records limitations; a contract does
-  not prove every current path passes.
-- Preserve mobile accessibility, WebView 60 compatibility, package
-  `com.lumenfall.app` and the established Android signing identity.
-- Accepted requirements and verified code determine mechanics, balance, caps
-  and migrations. Proposed or archived candidates are not implemented rules.
+- Lumenfall is an Android idle RPG with Wisps in Rift, using HTML/JavaScript in
+  a WebView. Preserve accessibility, WebView 60 support, package
+  `com.lumenfall.app` and the established signing identity.
+- Preserve deterministic progression and purchases with visible prices/effects
+  and no loot boxes or gacha. Eligible Luminous kills pay fixed Motes at most once
+  per 60 seconds across Rifts and online/offline play. Preserve depth and purchased
+  bonuses for eligible payouts and Lumen/Shard rewards for other Luminous kills.
+- Across upgrade interfaces, including individual Wisps, maxed upgrades have gold
+  borders, prerequisite locks explain how to unlock, and eligible upgrades show
+  prices. Refresh affordability as resources change. Show each insufficient
+  currency in red and disable the purchase button. [Requirements](docs/tasks/UPGRADE_STATES_001.md).
+- Avoid transient highlights, glows, pulses and target flashes on Show hint,
+  Claim rewards and similar actions. Preserve keyboard focus indicators and
+  normal pressed/disabled states. Pointer/touch activation leaves no focus
+  outline or card highlight. [Decision](docs/tasks/MOBILE_FEEDBACK_001.md).
+- Forge upgrades have finite caps, target roughly 2–3 years of sustained
+  progression with Lab help, and retain paid above-cap bonuses. [Calibration](docs/tasks/FORGE_YEARS_001.md).
+- Ascension is manual after clearing Rift 15. Each later Ascend requires a clear
+  above the highest previously rewarded clear. Preserve prior progress and the
+  validated one-time 100-Comet refund for former Auto-Ascend owners.
+  [Manual Ascension decision](docs/decisions/2026-11-16-manual-team-progression.md).
+  For eligible new records, calculate the bonus from the unrounded depth-curve
+  difference with current Tree and completed Lab bonuses and round up once.
+  Preserve first reward, protected base/earned bonus, minimum 1 for eligible
+  rewards and the full-reward cap. [Rounding](docs/decisions/2026-10-07-ascend-prisms-rounding.md)
+  and [protected bonus history](docs/tasks/PRISM_EARNING_001.md).
+- Preserve chronological simulation, online/offline parity, remaining automation
+  and save recovery. Consult [known issues](docs/project/KNOWN_ISSUES.md) for
+  limitations. Use accepted requirements and verified code for mechanics, caps
+  and migrations.
 
-F05 approved rounding rule (7 October 2026), for eligible manual new records:
-calculate the new-depth bonus from the
-unrounded depth-curve difference with current Tree/completed Lab bonuses and
-round up once. Preserve first reward, protected base/earned-bonus component,
-minimum1 for eligible rewards and the full-reward
-cap. [Decision and status](docs/decisions/2026-10-07-ascend-prisms-rounding.md).
+## Checkpoint and deliver
 
-PRISM_EARNING_001's protected-bonus rule was included in the combined
-endless-progression Android release. Its same/lower-depth repeat behavior is
-superseded by the user's16 November manual forward-only rule above; eligible
-new-record calculation retains the earned bonus. The historical20%-of-full rule
-remains historical. See [requirements/evidence](docs/tasks/PRISM_EARNING_001.md) and
-[combined migration/release](docs/tasks/REPOSITORY_MIGRATION_001.md).
+Save requirements, baseline, acceptance, changed files, decisions, check results
+and versions, blockers and next action in the task document on GitHub.
+Checkpoint after milestones and corrections and before compaction or handoff.
+Use the [handoff template](docs/HANDOFF_TEMPLATE.md) to continue from the exact
+version and next action. [Account recovery](docs/project/ACCOUNT_RECOVERY.md)
+covers a new account.
 
-## Language and new rules
-Use JavaScript/Node.js 20+ for code, tests, test execution, CI logic and helper
-scripts where technically possible. HTML, necessary declarative formats and
-native Android tools remain valid. Migrate existing tooling only within relevant
-scope with verified behavior/coverage. Preserve archived originals byte-for-byte.
-See `docs/decisions/2026-10-07-javascript-first.md`.
-
-Before applying a new binding rule, tell the user its exact text, reason and
-effect. Save the user's decision and update affected instructions in the same
-scope. Current user instructions take precedence; routine implementation within
-authorized scope does not require a new approval.
-
-## Keep context short and durable
-Keep the task document current with original requirements, baseline, acceptance
-criteria, changed files, decisions, check results/versions, blockers and the next
-concrete action. Checkpoint after meaningful milestones, user corrections and
-before a handoff/context compaction; commit/publish coherent work within scope.
-If context becomes uncertain, reread that checkpoint and affected code before
-editing. Do not guess missing requirements or restart already completed work.
-Use `docs/HANDOFF_TEMPLATE.md` for a short continuation checkpoint; TXT/ZIP
-packages are optional when requested or useful for phone/offline access.
-
-GitHub is the durable source for code, rules, requirements, decisions and test
-evidence. Chat, Memory, Library and the cloud environment must not be the only
-copy. Follow [account recovery](docs/project/ACCOUNT_RECOVERY.md) for a new account.
-
-## Complete and deliver
-Follow [the feature workflow](docs/project/FEATURE_WORKFLOW.md). Completion means
-the agreed acceptance checks pass on the integrated version, status/evidence are
-saved in GitHub, and required app build/device acceptance is complete. A local
-candidate or open PR is not completion. Use existing relevant checks and required
-CI gates in `.github/workflows/pre-merge-validation.yml`; report limitations and
-review findings honestly. Never label self-review as independent review.
-
-Deliver a short result with what changed, where it is, checks and limitations.
-Archive only the owner chat after verified completion and saved continuation
-status. Blocked work stays open; report missing/failed archive tooling honestly.
+Follow the [feature workflow](docs/project/FEATURE_WORKFLOW.md) and relevant
+[CI gates](.github/workflows/pre-merge-validation.yml). Completion requires
+integration, passing acceptance on the integrated version, saved evidence, and
+any required app build and device acceptance. Keep work open when a required
+check is blocked, fails or cannot be reproduced. Record evidence and next action.
+Report self-review accurately and disclose limitations. Archive only the owner
+chat after verified completion and saved continuation status.

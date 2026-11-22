@@ -28,9 +28,9 @@ kan ikke genskabe chatbeskeder eller filer, der aldrig blev gemt der.
 
 ```text
 Continue Lumenfall from xariib/Lumenfall, current main or the feature branch.
-Read AGENTS.md, PROJECT_BOOTSTRAP.txt, docs/PROJECT_STATE.md and the current
-docs/tasks/<FEATURE_ID>.md. You own this feature across implementation, fixes,
-tests, documentation and delivery; there is no default Lead or writer ceremony.
+Read AGENTS.md and the current docs/tasks/<FEATURE_ID>.md. You own this feature
+across implementation, fixes, tests, documentation and delivery. Consult
+PROJECT_STATE.md for delivery or overlap and use the sources linked in AGENTS.md.
 Use docs/project/CODEX_START.md; run node scripts/codex/check_context.cjs
 --task docs/tasks/<FEATURE_ID>.md to validate this actual task and startup budget.
 Check the relevant baseline/PR and actual overlapping work. Use an isolated

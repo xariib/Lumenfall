@@ -114,7 +114,10 @@ async function run() {
     assert.throws(() => checkStartup(path.relative(ROOT, link)), /under docs\/tasks/);
     fs.writeFileSync(featureTask, '# Broken checkpoint\n\n[Missing original](missing.md)\n');
     assert.throws(() => checkStartup(taskName), /Missing link/);
-    fs.writeFileSync(featureTask, '# Oversized checkpoint\n' + 'x'.repeat(32768));
+    const availableTaskBytes = 32768 - fs.statSync(path.join(ROOT, 'AGENTS.md')).size;
+    fs.writeFileSync(featureTask, 'x'.repeat(availableTaskBytes));
+    assert.doesNotThrow(() => checkStartup(taskName));
+    fs.appendFileSync(featureTask, 'x');
     assert.throws(() => checkStartup(taskName), /startup exceeds 32 KiB/);
     console.log('PASS feature checkpoints: real task links/budget and missing, misplaced, traversal/symlink, broken-link and oversized task rejection');
     fs.writeFileSync(path.join(safe, 'index.html'), 'served');
