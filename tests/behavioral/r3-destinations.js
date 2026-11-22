@@ -31,10 +31,15 @@ window.runR3DestinationsQa = function(b,ctx,assert){
     btn.focus();btn.click();
     var panel=q('.tab-panel.active');
     var controlIds=btn.getAttribute('aria-controls').split(' ');
-    ok(controlIds.indexOf(panel.id)!==-1 && panel.getAttribute('aria-labelledby')===(btn.dataset.tab==='workshop'?'nav-'+panel.id.slice(4):btn.id),'navigation aria relation '+btn.dataset.tab);
+    var labelId=btn.id;
+    if(btn.dataset.tab==='workshop')labelId='nav-'+panel.id.slice(4);
+    if(btn.dataset.tab==='spirits')labelId='nav-wisp-roster';
+    ok(controlIds.indexOf(panel.id)!==-1 && panel.getAttribute('aria-labelledby')===labelId,'navigation aria relation '+btn.dataset.tab);
     ok(document.activeElement===btn && btn.getAttribute('aria-current')==='page','selected destination retains focus');
     ok(document.querySelectorAll('nav.tabbar [aria-current="page"]').length===1,'one selected destination');
   });
+  go('spirits');q('#nav-formation').click();
+  ok(nav[0].getAttribute('aria-controls').split(' ').includes('tab-formation')&&q('#tab-formation').classList.contains('active')&&q('#tab-formation').getAttribute('aria-labelledby')==='nav-formation','main Wisps destination owns the labelled Formation subtab');
   go('research');go('battle');go('workshop');
   ok(q('#tab-research').classList.contains('active'),'Workshop remembers Lab in this session');
   go('forge');ok(q('#tab-forge').classList.contains('active'),'direct Forge overrides remembered Lab');

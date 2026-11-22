@@ -51,3 +51,17 @@ Screenshot review found the sticky tab strip could cover a control positioned
 at the top of a scrolled panel. The final layout reserves space above the
 scrolling content. Native touch and accessibility coverage now asserts this
 separation. Final-source checks and Android delivery are pending.
+
+Final product SHA-256 `711f8e4bf5b04ec17ee52bace271e617ddb67bc59fa6c896a3fff88702a7421f`
+passed the Rift status and navigation contracts, Formation 517/12, Wisp Manage
+1182/12, Best now 1299/108, Wisp contribution 758 checks including Support
+research, native autosave, and 2048 recast plus 30498 offline checks. The
+released baseline failed the new live-total assertion. Separate old-meter
+and old-total controls each failed their intended assertion.
+
+[First final-layout pre-merge run](https://github.com/xariib/Lumenfall/actions/runs/45056785657)
+passed isolated offline catch-up and found one R3 fixture still expecting the
+main Wisps button to label the roster directly. The corrected fixture checks
+both Wisp subtab relationships, retaining the existing destination, focus,
+and persistence assertions. `r3-destinations` passed locally. Product bytes
+are identical to the locally validated final layout.
