@@ -243,7 +243,7 @@ async function runProfile(base, width, height, scale, motion) {
   await tap('restore-save-backup');
   const confirmedAt = await evaluate('Date.now()');
   await focus('save-restore-confirm-btn'); await key('Space');
-  await until("document.getElementById('settings-overlay').style.display==='none' && JSON.parse(localStorage.getItem('lumenfall_save_v2')).depth===33 && !document.body.classList.contains('app-paused')");
+  await until("document.readyState==='complete' && document.querySelector('[data-zone-index]') && document.getElementById('settings-overlay').style.display==='none' && JSON.parse(localStorage.getItem('lumenfall_save_v2')).depth===33 && !document.body.classList.contains('app-paused')");
   const restored = await snapshot(), state = JSON.parse(restored.primary);
   assert.equal(state.lumen, 777777, 'confirmed replacement survives reload');
   assert.equal(state.prisms, 31, 'restore currency preserved');

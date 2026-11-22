@@ -1,0 +1,54 @@
+{
+  "id": 44964691233,
+  "sha": "a1af8808049058fd2a91b464ad9506596a02565d",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44964691233",
+  "jobs": [
+    {
+      "id": 137030944798,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-22T00:02:47Z",
+      "completed": "2026-11-22T00:05:07Z",
+      "log": "job-137030944798.log.gz",
+      "rawSha256": "6e8a446478824b87f312961a96ee276f50047f3cbbaefe3a380aeeeeec72dd59",
+      "summary": [
+        "2026-11-22T00:03:24.7446947Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-22T00:05:03.8018434Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 137030944950,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-22T00:02:47Z",
+      "completed": "2026-11-22T00:18:58Z",
+      "log": "job-137030944950.log.gz",
+      "rawSha256": "fe0d487c2be59f5c853bb1ee14fc72d67ee3ba6affa74528f3ea54c737915211",
+      "summary": [
+        "2026-11-22T00:03:25.3786338Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:05:57.5289660Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-22T00:06:23.5792838Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-22T00:06:32.8677788Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:36579/index.html:14792:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:36579/index.html:14800:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"520f7c4bbdf2b48d13ce0211cd309fecff55b1849f1d852d57eacf3db01c17b3\",\"mutant\":true}",
+        "2026-11-22T00:07:26.4845450Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:07:51.9288579Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:08:52.3935354Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-22T00:12:29.8769269Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:12:39.9768384Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:12:50.2865057Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:12:50.3027863Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('next3x selection remains visible'));\u001b[0m",
+        "2026-11-22T00:17:02.6643174Z SyntaxError: Unexpected token '='",
+        "2026-11-22T00:18:15.4385368Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:18:35.9634315Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:18:38.9172978Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:18:42.1670128Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-22T00:18:45.0016853Z   observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"wisp-upgrade-display\", \"json_status\": \"fail\", \"json_scenario\": \"wisp-upgrade-display\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+        "2026-11-22T00:18:45.0020403Z   failure: { \"message\": \"bounded upgrades finish while Mastery remains a future goal\", \"stack\": \"Error: bounded upgrades finish while Mastery remains a future goal\\n    at ok (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:19749:56)\\n    at window.runWispUpgradeQa (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:19841:158)\\n    at HTMLDocument.run (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&qaFixture=fresh:20429:32)\" }",
+        "2026-11-22T00:18:45.0123157Z <pre id=\"qa-result\" data-status=\"fail\" data-scenario=\"wisp-upgrade-display\">{",
+        "2026-11-22T00:18:45.0124148Z   \"status\": \"fail\",",
+        "2026-11-22T00:18:45.0127304Z     \"stack\": \"Error: bounded upgrades finish while Mastery remains a future goal\\n    at ok (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&amp;qaFixture=fresh:19749:56)\\n    at window.runWispUpgradeQa (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&amp;qaFixture=fresh:19841:158)\\n    at HTMLDocument.run (http://127.0.0.1:41617/index.html?qaScenario=wisp-upgrade-display&amp;qaFixture=fresh:20429:32)\""
+      ]
+    }
+  ]
+}

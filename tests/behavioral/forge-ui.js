@@ -23,7 +23,7 @@ window.forgeUi=(()=>{
  }
 
  function checkTicks(){const s=state();ok(s.enemyHp<tickStart.enemyHp,'subsequent production ticks really advance combat');return {beforeHp:tickStart.enemyHp,afterHp:s.enemyHp,flags:b.getFlags()};}
- function preparePurchase(level){let s=state(),cost=b.forge.cost('luminoustracking',level,1);s.research.luminoustracking=level;s.lumen=level===8?cost.lumen:1e12;s.shards=level===8?cost.shard:1e12;s.researchQueue.luminoustracking=false;b.setState(s);b.renderLayout();prepare('[data-research="luminoustracking"]',true);}
+ function preparePurchase(level){let s=state(),cost=b.forge.cost('luminoustracking',level,1);s.maxDepthEver=320;s.research.luminoustracking=level;s.lumen=level===8?cost.lumen:1e12;s.shards=level===8?cost.shard:1e12;s.researchQueue.luminoustracking=false;b.setState(s);b.renderLayout();prepare('[data-research="luminoustracking"]',true);}
  function purchaseBefore(){return {state:state(),preview:b.forge.preview('luminoustracking',1),control:measure('[data-research="luminoustracking"]')};}
  // A fallback card/Queue need not be wholly visible. Purchases retain the
  // player's chosen scroll; only the actual activation target must be visible.

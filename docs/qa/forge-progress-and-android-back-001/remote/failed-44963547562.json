@@ -1,0 +1,23 @@
+{
+  "id": 44963547562,
+  "sha": "1409ff672bbab803cce4a550360c371e5e892237",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44963547562",
+  "jobs": [
+    {
+      "id": 137027404826,
+      "name": "forge",
+      "conclusion": "failure",
+      "started": "2026-11-21T23:48:13Z",
+      "completed": "2026-11-21T23:57:27Z",
+      "log": "job-137027404826.log.gz",
+      "rawSha256": "da576805e4705991f59ab5283f2655caa2bb867c78132fcf4ff6a0ae7097ad8d",
+      "summary": [
+        "2026-11-21T23:57:18.2459609Z {\"status\":\"fail\",\"sourceSha256\":\"f3c7d1d8aeffb22c70e2fcb7e0bc33b6914668f153c5bd4e6307b7a4c8d665fe\",\"node\":\"v20.20.2\",\"browser\":\"google-chrome\",\"profiles\":[],\"error\":\"AssertionError [ERR_ASSERTION]: actual native Current becomes paid first effect resonancecells\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-mobile-2761.cjs:50:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-mobile-2761.cjs:193:14)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/.forge-mobile-2761.cjs:270:6\",\"lastForgeExpression\":\"document.querySelector(\\\"[data-forge-card=\\\\\\\"resonancecells\\\\\\\"]\\\").querySelector(\\\"[data-forge-preview]\\\").textContent\",\"input\":[{\"type\":\"click\",\"target\":\"<button class=\\\"node-queue-toggle \\\" data-queue=\\\"masterwork\\\" aria-pressed=\\\"false\\\" data-state=\\\"available\\\" aria-label=\\\"Masterwork Tempering — Queue OFF\\\">Queue OFF</button>\",\"trusted\":true},{\"type\":\"click\",\"target\":\"<button class=\\\"node-queue-toggle \\\" data-queue=\\\"masterwork\\\" aria-pressed=\\\"false\\\" data-state=\\\"available\\\" aria-label=\\\"Masterwork Tempering — Queue OFF\\\">Queue OFF</button>\",\"trusted\":true},{\"type\":\"click\",\"target\":\"<span class=\\\"label\\\">Upgrade</span>\",\"trusted\":true},{\"type\":\"click\",\"target\":\"<button class=\\\"buy-btn\\\" data-research=\\\"charge\\\" data-plan-html=\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot",
+        "2026-11-21T23:57:18.2590717Z   throw new AssertionError(obj);",
+        "2026-11-21T23:57:18.2591373Z AssertionError [ERR_ASSERTION]: Forge browser acceptance failed"
+      ]
+    }
+  ]
+}

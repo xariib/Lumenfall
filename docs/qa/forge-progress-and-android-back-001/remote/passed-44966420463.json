@@ -1,0 +1,35 @@
+{
+  "id": 44966420463,
+  "sha": "1eeccf71df404d26832011e231e97c358249e0f0",
+  "event": "pull_request",
+  "conclusion": "success",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44966420463",
+  "jobs": [
+    {
+      "id": 137037167789,
+      "name": "Wisp scroll (ubuntu-latest)",
+      "conclusion": "success",
+      "started": "2026-11-22T00:27:10Z",
+      "completed": "2026-11-22T00:28:52Z",
+      "log": "job-137037167789.log.gz",
+      "rawSha256": "a0067d7353d74df7025cc503a1d727ac33aeeb0e4ee4fa830aa8dda53b204ea0",
+      "summary": [
+        "2026-11-22T00:28:04.5848783Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"linux\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"f3c7d1d8aeffb22c70e2fcb7e0bc33b6914668f153c5bd4e6307b7a4c8d665fe\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.484375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.",
+        "2026-11-22T00:28:04.5903043Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m"
+      ]
+    },
+    {
+      "id": 137037168601,
+      "name": "Wisp scroll (windows-latest)",
+      "conclusion": "success",
+      "started": "2026-11-22T00:23:59Z",
+      "completed": "2026-11-22T00:26:07Z",
+      "log": "job-137037168601.log.gz",
+      "rawSha256": "766de377d5e7e09d7c469e8646db6c7a62d214ab9bc1a514dc0d57894ff42e2c",
+      "summary": [
+        "2026-11-22T00:25:05.5327958Z {\"status\":\"pass\",\"node\":\"v24.19.0\",\"platform\":\"win32\",\"records\":[{\"name\":\"settled-setup\",\"exitcode\":0,\"status\":\"pass\",\"checks\":61,\"sourceSha256\":\"f3c7d1d8aeffb22c70e2fcb7e0bc33b6914668f153c5bd4e6307b7a4c8d665fe\",\"reflows\":[{\"width\":320,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":436.59375,\"layoutTop\":812.59375},\"after\":{\"top\":436.59375,\"layoutTop\":722.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":320,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":433.59375,\"layoutTop\":1102.59375},\"after\":{\"top\":433.59375,\"layoutTop\":1012.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"no-preference\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":1,\"motion\":\"reduce\",\"before\":{\"top\":422.59375,\"layoutTop\":784.59375},\"after\":{\"top\":422.59375,\"layoutTop\":694.59375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"no-preference\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.484375,\"card\":\"stone\"}},{\"width\":390,\"scale\":2,\"motion\":\"reduce\",\"before\":{\"top\":420.484375,\"layoutTop\":973.484375},\"after\":{\"top\":420.484375,\"layoutTop\":883.",
+        "2026-11-22T00:25:05.5663032Z \u001b[36;1m  assert.equal(data.status,'fail');assert.equal(data.mutation,mutation);\u001b[0m\r"
+      ]
+    }
+  ]
+}

@@ -39,7 +39,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
     ids.forEach(function(id){var r=node(id);
       [r.unlockDepth-1,r.unlockDepth,r.unlockDepth+1].forEach(function(depth){var s=seed();s.maxDepthEver=depth;s.depth=1;s.enemyDepth=1;s.enemyMaxHp=b.enemyHpFor(1);s.enemyHp=s.enemyMaxHp;s.lumen=1e10;s.shards=1e8;b.setState(s);var before=b.getState();f.buy(id,1);ok(b.getState().research[id]===(depth>=r.unlockDepth?1:0),'historical unlock '+id+' '+depth);if(depth<r.unlockDepth)same(b.getState(),before,'locked authoritative no mutation');});
       [0,8,9,10,19,20,21].forEach(function(k){[1,5,10,25,50,100,'max'].forEach(function(n){['funded','one','no-lumen','no-shards'].forEach(function(budget){
-        var s=seed();s.research[id]=k;var first=f.cost(id,k,1);s.lumen=budget==='funded'?1e14:budget==='no-lumen'?first.lumen-1:first.lumen;s.shards=budget==='funded'?1e14:budget==='no-shards'?first.shard-1:first.shard;
+        var s=seed();s.maxDepthEver=1100;s.research[id]=k;var first=f.cost(id,k,1);s.lumen=budget==='funded'?1e14:budget==='no-lumen'?first.lumen-1:first.lumen;s.shards=budget==='funded'?1e14:budget==='no-shards'?first.shard-1:first.shard;
         b.setState(s);var before=b.getState(),plan=f.plan(id,n),left=Math.max(0,caps[id]-k),expect=n==='max'?(budget==='funded'?left:budget==='one'?Math.min(1,left):0):(n<=left&&(budget==='funded'||budget==='one'&&n===1)?n:0);
         ok(plan.buyCount===expect,'actual count '+id+' '+k+' '+n+' '+budget);
         var cost=expect?f.cost(id,k,expect):{lumen:0,shard:0},quoted=n!=='max'&&n<=left?f.cost(id,k,n):cost;same(plan.cost,quoted,'exact fixed requested quote or Max affordable quote');
@@ -65,7 +65,7 @@ window.runForgeQa = function(b,ctx,assert,parity,summaryParity,near){
     b.renderLayout();document.querySelector('[data-tab="forge"]').click();
     ok(document.querySelector('[data-forge-card="arcanecal"]').textContent.includes('Current: ×1.12 source factor'),'Arcane source factor versus relative gain');
     ['arcanecal','conduction','luminoustracking'].forEach(function(id){
-      var s=seed();s.research[id]=8;var cost=f.cost(id,8,1);s.lumen=cost.lumen;s.shards=cost.shard;b.setState(s);b.renderLayout();ok(!document.querySelector('#tab-forge [data-mult]'),'Forge has no quantity selector');
+      var s=seed();s.maxDepthEver=1100;s.research[id]=8;var cost=f.cost(id,8,1);s.lumen=cost.lumen;s.shards=cost.shard;b.setState(s);b.renderLayout();ok(!document.querySelector('#tab-forge [data-mult]'),'Forge has no quantity selector');
       ok(!document.querySelector('[data-research="'+id+'"]').disabled&&f.plan(id,1).buyCount===1,'UI offers the exact funded single-level purchase');
       ok(f.preview(id,5).plan.buyCount===0,'fixed batch unavailable until fully funded and inside cap');
       s.lumen=0;s.shards=0;b.setState(s);b.renderLayout();ok(document.querySelector('[data-research="'+id+'"]').disabled && f.preview(id,5).plan.buyCount===0,'unaffordable UI no promise');

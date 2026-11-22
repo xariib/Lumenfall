@@ -9,6 +9,8 @@ try {
   fs.writeFileSync(path.join(main,'AndroidManifest.xml'),'<manifest><application><provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.fileprovider" /></application></manifest>');
   install(temp);
   assert(fs.readFileSync(path.join(java,'MainActivity.java'),'utf8').includes('registerPlugin(AppUpdaterPlugin.class);'));
+  assert(fs.readFileSync(path.join(java,'MainActivity.java'),'utf8').includes('GameBackNavigation.install(this);'));
+  assert(fs.existsSync(path.join(java,'GameBackNavigation.java')),'generated activity has its native Back implementation');
   assert(fs.readFileSync(path.join(main,'AndroidManifest.xml'),'utf8').includes('REQUEST_INSTALL_PACKAGES'));
   const manifest=fs.readFileSync(path.join(main,'AndroidManifest.xml'),'utf8');
   assert.equal((manifest.match(/android:name="androidx.core.content.FileProvider"/g)||[]).length,1,'Preserve exactly one original Capacitor provider');

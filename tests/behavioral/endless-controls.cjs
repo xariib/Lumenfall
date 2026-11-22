@@ -31,7 +31,7 @@ const specs=[
  ['lost-deep-sigils','sigilCurveWidth:100','sigilCurveWidth:300','independent late Sigil amount','endless-income.cjs'],
  ['wrong-final-ultimate','titan:240000000','titan:120000000','independent Ultimate price titan','endless-income.cjs'],
  ['sigil-rounding',"Amount.round(Amount.mul(base,factor),'floor')","Amount.round(Amount.mul(base,factor),'round')",'independent late Sigil amount','endless-income.cjs'],
- ['cartography-percent',"return creditAmount(Amount.round(Amount.mul(base,factor),'floor'),labExpansionLevel('sigilcartography'));","return Amount.round(Amount.mul(Amount.round(Amount.mul(base,factor),'floor'),1+labExpansionLevel('sigilcartography')/100),'floor');",'Cartography retains flat added Sigils','endless-income.cjs']
+ ['cartography-percent',"return creditAmount(baseSigilsFromBoss(depth),labExpansionLevel('sigilcartography'));","return Amount.round(Amount.mul(baseSigilsFromBoss(depth),1+labExpansionLevel('sigilcartography')/100),'floor');",'Cartography retains flat added Sigils','endless-income.cjs']
 ];
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'lumenfall-endless-controls-')),records=[];
 try{

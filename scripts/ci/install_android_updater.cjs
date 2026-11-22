@@ -10,10 +10,11 @@ function install(root = 'mobile/android') {
     @Override public void onCreate(android.os.Bundle savedInstanceState) {
         registerPlugin(AppUpdaterPlugin.class);
         super.onCreate(savedInstanceState);
+        GameBackNavigation.install(this);
     }
 }`);
   fs.writeFileSync(activity, code);
-  for (const file of ['AppUpdaterPlugin.java', 'UpdatePolicy.java', 'UpdateFileProvider.java'])
+  for (const file of ['AppUpdaterPlugin.java', 'UpdatePolicy.java', 'UpdateFileProvider.java', 'GameBackNavigation.java'])
     fs.copyFileSync(path.join(__dirname, '../../mobile/native', file), path.join(java, file));
   const manifest = path.join(main, 'AndroidManifest.xml');
   let xml = fs.readFileSync(manifest, 'utf8');

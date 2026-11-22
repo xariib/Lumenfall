@@ -146,7 +146,15 @@ const cases=String.raw`
    for(const field of ['nodes','longStudyLevels','activeStudies','owned','cometClaims','spirits','autoAscendEnabled','autoAscendTargetDepth','sigilResonanceUses','enemyHp','enemyDepth','enemyIsLuminous','luminousAccum'])ok(JSON.stringify(after[field])===JSON.stringify(before[field]),'purchase preserves '+field+' '+id);
    for(const other of Object.keys(before.research))if(other!==id)ok(after.research[other]===before.research[other],'other paid Forge retained '+other);
    ok(JSON.stringify(await ev('prismQa.forgePreview('+JSON.stringify(id)+',1).current'))===JSON.stringify(p.purchase),'actual Current equals shown Purchase impact '+id);
-   if(native)ok((await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent')).startsWith('Current: '+native[1]+'\n'),'actual native Current becomes paid first effect '+id);
+   if(native){
+    const shown=await ev('document.querySelector('+JSON.stringify(card)+').querySelector("[data-forge-preview]").textContent');
+    ok(shown.split('\n')[0]==='Current: '+native[1],'actual native Current becomes paid first effect '+id);
+    const nextRift={resonancecells:500,resonancereclaim:350}[id];
+    if(nextRift){
+     const next=await ev('(()=>{const c=document.querySelector('+JSON.stringify(card)+'),b=c.querySelector("[data-research]");return {disabled:b.disabled,label:b.textContent,prices:c.querySelectorAll("[data-price-currency]").length};})()');
+     ok(shown.indexOf('\n')===-1&&next.disabled&&next.label.includes('Unlocks at Rift '+nextRift)&&next.prices===0,'next rank is gated while the paid effect remains visible '+id);
+    }else ok(shown.includes('\nNext: '),'eligible next effect remains visible '+id);
+   }
    const fallback=await measure(queue);visible(fallback,'exhausted-wallet fallback '+id);ok(fallback.focus.queue===id,'same-row fallback focus '+id);
    const writes=await ev('window.__forgeWrites.slice('+writeStart+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;})');ok(writes.length===2&&new Set(writes).size===2,'one primary/recovery write per purchase '+id);
    const saved=await ev('prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k));})');ok(JSON.stringify(saved[0])===JSON.stringify(saved[1])&&saved[0].research[id]===1,'both slots persist actual purchase '+id);

@@ -1,0 +1,33 @@
+{
+  "id": 44964691429,
+  "sha": "a1af8808049058fd2a91b464ad9506596a02565d",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44964691429",
+  "jobs": [
+    {
+      "id": 137030945516,
+      "name": "lab",
+      "conclusion": "success",
+      "started": "2026-11-22T00:02:48Z",
+      "completed": "2026-11-22T00:06:05Z",
+      "log": "job-137030945516.log.gz",
+      "rawSha256": "d930b44f79c5c80372a27b70b4bfa85ede5843c623237234b086ebbc2fc79b1b",
+      "summary": [
+        "2026-11-22T00:03:30.5382134Z {\"status\":\"pass\",\"source_sha256\":\"f3c7d1d8aeffb22c70e2fcb7e0bc33b6914668f153c5bd4e6307b7a4c8d665fe\",\"checks\":3918,\"payoutCases\":180,\"routes\":[\"actual manual handler\",\"live/offline authoritative auto\",\"cold load\",\"actual backup restore\",\"primary corruption/recovery\",\"failed write/retry\",\"real Swift purchase\",\"atomic offline failure/rollback/retry\"],\"scope\":\"full game logic with DOM presentation stubbed; not browser layout or Android acceptance\"}"
+      ]
+    },
+    {
+      "id": 137030945732,
+      "name": "timed-slot-speed",
+      "conclusion": "failure",
+      "started": "2026-11-22T00:02:48Z",
+      "completed": "2026-11-22T00:03:44Z",
+      "log": "job-137030945732.log.gz",
+      "rawSha256": "4c8c963df071217c16b5e4eed0cb9b81b3aa6c03bb0c128d553b4536f96d3d5c",
+      "summary": [
+        "2026-11-22T00:03:42.0859516Z {\"status\":\"fail\",\"sourceSha256\":\"f3c7d1d8aeffb22c70e2fcb7e0bc33b6914668f153c5bd4e6307b7a4c8d665fe\",\"mutation\":null,\"checks\":0,\"profiles\":[],\"error\":\"Error: CDP deadline Browser.getVersion\\n    at Timeout._onTimeout (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/lab-speed-controls.cjs:28:146)\\n    at listOnTimeout (node:internal/timers:581:17)\\n    at process.processTimers (node:internal/timers:519:7)\",\"stderr\":\"[2398:2426:1122/000334.217620:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2398:2426:1122/000334.376877:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2398:2426:1122/000334.528844:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2398:2430:1122/000334.829922:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2398:2430:1122/000334.829979:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \\\"tcp\\\" and on UNIX \\\"unix\\\")\\n[2398:2430:1122/000334.829987:ERROR:dbus/bus.cc:406] Failed to conn"
+      ]
+    }
+  ]
+}

@@ -76,7 +76,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
     same(after.activeStudies,prior.activeStudies,'Forge purchase never creates a timed project');
   });
   [50,100].forEach(function(mult){
-    var funded=JSON.parse(JSON.stringify(seed)),remaining=Math.max(0,10-funded.research.charge),exact=b.forge.cost('charge',funded.research.charge,remaining);funded.lumen=exact.lumen;funded.shards=exact.shard;
+    var funded=JSON.parse(JSON.stringify(seed)),remaining=Math.max(0,10-funded.research.charge),exact=b.forge.cost('charge',funded.research.charge,remaining);funded.maxDepthEver=140;funded.lumen=exact.lumen;funded.shards=exact.shard;
     b.setState(funded);var plan=b.forge.plan('charge',mult),prior=b.getState();ok(!plan.affordable&&plan.buyCount===0&&plan.reason==='quantity','internal oversized quantity refuses');b.forge.buy('charge',mult);same(b.getState(),prior,'oversized quantity retains all balances');
     plan=b.forge.plan('charge','max');ok(plan.affordable&&plan.buyCount===remaining,'internal Max quotes cap remainder');b.forge.buy('charge','max');var after=b.getState();ok(after.research.charge===10&&after.lumen===0&&after.shards===0,'internal Max exact debit');
   });

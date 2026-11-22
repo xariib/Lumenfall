@@ -85,7 +85,9 @@ async function run(){
   }
   const capped=copy();capped.spirits.ember=10000;capped.wispUltimate.ember=false;await install(capped,'spirits');
   for(const selector of ['[data-wisp-card=ember] .wisp-level','[data-wisp-card=ember] .module-row','[data-wisp-card=ember] .wisp-rarity-section'])ok((await observe(selector)).gold,'independent Wisp cap gold '+selector);
-  capped.wispUltimate.ember=true;capped.wispMastery.ember=2000;await install(capped,'spirits');for(const selector of ['[data-wisp-card=ember] .ultimate-badge','[data-wisp-card=ember] .wisp-mastery-section'])ok((await observe(selector)).gold,'Ultimate/Mastery gold');
+  capped.wispUltimate.ember=true;capped.wispMastery.ember=2000;await install(capped,'spirits');
+  ok((await observe('[data-wisp-card=ember] .ultimate-badge')).gold,'completed Ultimate stays gold');
+  ok(!(await observe('[data-wisp-card=ember] .wisp-mastery-section')).gold&&await ev('document.querySelector("[data-mastery=ember]").disabled'),'continuing Mastery is locked by requirements instead of marked gold');
   await ev('document.querySelector("[data-wisp-card=ember] .module-row").scrollIntoView({block:"center"})');
   const wispShot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,'wisp-gold-'+width+'-'+scale+'.png'),Buffer.from(wispShot.data,'base64'));
   for(const id of await ev('upgradeQa.wisps'))capped.wispMastery[id]=2000;await install(capped,'spirits');ok((await ev('__upgradeErrors')).length===0,'all capped Mastery renders without guidance crash');

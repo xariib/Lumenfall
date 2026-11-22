@@ -33,4 +33,16 @@ for(const [index,id]of ids.entries()){
   q.set(s);const power=q.power(id),support=q.supportProfile(id);eq(b.mastery(sp).cost,{prism:20000+1000*rank,sigil:500000+50000*rank},id+' independent Mastery price');ok(b.buyMastery(sp),id+' real Mastery purchase');eq(q.get().wispMastery[id],rank+1,id+' exactly one rank');eq(q.get().prisms,A.exactSub('1e400',20000+1000*rank),id+' exact Prism debit');eq(q.get().sigils,A.exactSub('1e400',500000+50000*rank),id+' exact Sigil debit');ok(Math.abs(A.ratio(q.power(id),power)-1.1)<1e-12,id+' own Power compounds10%');eq(q.supportProfile(id),support,id+' ability timing/effect contract retained');
  }
 }
+for(const [rank,depth,lab,forge,tree] of [[2000,50200,492,401,210],[2001,50220,492,401,210],[5000,110200,500,500,250]]){
+ const s=seed('ember'),sp=q.sp('ember');s.wispMastery.ember=rank;
+ boundaries(s,'ember',{depth,lab,forge,tree},()=>b.mastery(sp),()=>b.buyMastery(sp),true);
+ const cost={prism:Math.ceil(2020000*Math.sqrt(depth/50200)),sigil:2*Math.floor(Math.floor(depth/10)*(1+((depth-6000)/100)**2))};
+ eq(b.mastery(sp).cost,cost,'new rank price grows with its required Rift');
+ const power=q.power('ember');ok(b.buyMastery(sp),'late rank is actually purchasable with capped support upgrades');
+ eq(q.get().wispMastery.ember,rank+1,'an additional late Mastery rank');
+ eq(q.get().prisms,A.exactSub('1e400',cost.prism),'exact late Prism spend');
+ eq(q.get().sigils,A.exactSub('1e400',cost.sigil),'exact late Sigil spend');
+ ok(Math.abs(A.ratio(q.power('ember'),power)-1.1)<1e-12,'late Mastery increases actual power');
+ q.load();eq(q.get().wispMastery.ember,rank+1,'late rank survives cold load');
+}
 console.log(JSON.stringify({status:'PASS',checks,sourceSha256:crypto.createHash('sha256').update(source).digest('hex'),wisps:8,rarityCases:40,ultimateCases:8,masteryCases:56,limits:'Independent calibrated requirement and exact price boundaries. Campaign pacing, UI and device acceptance are separate.'}));
