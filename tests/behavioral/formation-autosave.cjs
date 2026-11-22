@@ -59,14 +59,17 @@ async function run(){
   const contract=await evaluate(`(()=>{const b=window.__lumenfallQaBridge;b.uiMeasurementPause(true);b.resetFeedback();return runFormationAutosaveQa(b,window.__lumenfallQaContext,function(v,m){if(!v)throw Error(m);});})()`);
   await new Promise(resolve=>setTimeout(resolve,1750)); // Let real Ascend flashes expire.
   await evaluate(`(()=>{const b=window.__lumenfallQaBridge,s=formationAutosaveSeed(b);s.formationPresets.farm=[];b.setState(s);b.save();b.renderLayout();document.querySelector('[data-tab="spirits"]').click();if(${large}){const style=document.createElement('style');style.textContent='.formation-preset-title{font-size:1.64rem!important}.formation-preset-state{font-size:22px!important}.formation-preset-btn{font-size:24px!important}.formation-preset-btn span{font-size:20px!important}.formation-rebuild-note{font-size:1.5rem!important}.active-toggle{font-size:24px!important}.formation-member{font-size:22px!important}';document.head.appendChild(style);}window.formationObservation=function(){const b=window.__lumenfallQaBridge;return {state:b.getState(),primary:b.rawSave(),recovery:b.rawRecovery(),events:b.lifecycleTrace()};};})()`);
+  await tap('#nav-formation');
   await tap('[data-formation-preset="farm"]');
   let changed=await evaluate(`(()=>{const o=formationObservation();return {selected:o.state.activeFormationPreset,party:o.state.activeParty,saved:JSON.parse(o.primary).formationPresets.farm,recovery:o.primary===o.recovery,focus:document.activeElement.dataset.formationPreset};})()`);
   assert(changed.selected==='farm'&&changed.party.join(',')==='ember'&&!changed.saved.length&&changed.recovery&&changed.focus==='farm','native touch selects empty saved Farm with temporary Ember and preserves focus');
+  await tap('#nav-wisp-roster');
   await tap('[data-toggle="stone"]');
   changed=await evaluate(`(()=>{const o=formationObservation();return {party:o.state.activeParty,presets:o.state.formationPresets,saved:JSON.parse(o.primary).formationPresets,focus:document.activeElement.dataset.toggle};})()`);
   assert(changed.party.join(',')==='stone'&&changed.presets.farm.join(',')==='stone'&&JSON.stringify(changed.presets)===JSON.stringify(changed.saved)&&changed.focus==='stone','real touch Field autosaves only Farm and retains focus');
   await key('Space');
   assert(await evaluate(`(()=>{const o=formationObservation();return o.state.activeParty.join(',')==='stone'&&JSON.parse(o.primary).formationPresets.farm.join(',')==='stone'&&document.activeElement.dataset.toggle==='stone';})()`),'real keyboard last Bench retains one Wisp and focus');
+  await tap('#nav-formation');
   await tap('[data-formation-preset="boss"]');
   await key('Space'); // Establish keyboard modality for :focus-visible.
   const pure=await evaluate(`(()=>{const b=window.__lumenfallQaBridge,main=document.querySelector('main'),before=formationObservation(),scroll=main.scrollTop;b.renderLayout();return {same:JSON.stringify(formationObservation())===JSON.stringify(before),focus:document.activeElement.dataset.formationPreset,scroll:main.scrollTop===scroll};})()`);

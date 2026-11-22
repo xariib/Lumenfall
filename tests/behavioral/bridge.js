@@ -504,7 +504,7 @@ window.__lumenfallQaBridge = {
     bonds: function(){return JSON.parse(JSON.stringify(FORMATION_BONDS));},
     powered: function(){return poweredActiveIds();},
     active: function(){return JSON.parse(JSON.stringify(activeFormationBonds()));},
-    update: function(){updateBattleFast();},
+    update: function(live){updateBattleFast(live);},
     mutate: function(kind){
       var name=kind==='badge'?renderLabCapacityBadge:(kind==='bond'?activeFormationBonds:updateBattleFast);
       if(kind==='badge')renderLabCapacityBadge=function(){name();els['lab-capacity-badge'].textContent='99';els['lab-capacity-badge'].hidden=false;};

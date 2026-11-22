@@ -33,6 +33,14 @@ window.runNavWorkshopQa = function(b,ctx,assert){
   nav[4].focus();nav[4].dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
   ok(document.activeElement===nav[0],'main Right wraps to Wisps');
   nav[0].dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowLeft',bubbles:true}));ok(document.activeElement===nav[4],'main Left wraps to Deeds');
+  go('spirits');
+  var roster=q('#nav-wisp-roster'),formation=q('#nav-formation');
+  ok(roster.tabIndex===0&&formation.tabIndex===-1&&q('#tab-spirits').classList.contains('active'),'Wisps opens to the Roster');
+  roster.focus();roster.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
+  ok(document.activeElement===formation&&formation.tabIndex===0&&roster.tabIndex===-1&&formation.getAttribute('aria-selected')==='true','Wisps Right selects Formation with roving focus');
+  ok(nav[0].getAttribute('aria-current')==='page'&&q('#tab-formation').classList.contains('active')&&q('#tab-formation').getAttribute('aria-labelledby')===formation.id,'Formation stays inside the Wisps destination');
+  formation.dispatchEvent(new KeyboardEvent('keydown',{key:'Home',bubbles:true}));
+  ok(document.activeElement===roster&&roster.getAttribute('aria-selected')==='true','Wisps Home returns to the Roster');
   same(snapshot(),before,'all navigation preserves whole state, primary/recovery and events');
   [0,1,2].forEach(function(count){
     var s=b.freshStateSnapshot();s.maxDepthEver=101;

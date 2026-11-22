@@ -48,17 +48,19 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
   function seed(){return window.riftStatusSeed(b,ctx);}
   function install(s){b.setState(s);b.renderLayout();}
-  function powerText(id,state){
+  function currentPower(id,state){
     // Compose each actual passive contribution with contextual damage Bonds;
     // the UI now labels the same current DPS as the Wisp card.
     var m=b.wispFormulaSnapshot(id),value=m.wispPower*m.passiveGlobalPowerMult*m.formationDamageMult;
     var now=b.clockNow(),known=1,sources=state.supportBuffs&&state.supportBuffs.version===1?state.supportBuffs.sources:null;
     ['tide','aurora'].forEach(sourceId=>{var source=sources&&sources[sourceId];if(source&&now<source.until)known+=source.mult-1;});
     var legacy=state.buffUntil&&now<state.buffUntil?state.buffMult:1;
-    value*=Math.max(legacy,known);
-    if(value<1000)return String(Math.round(value*10)/10)+'/s';
+    return value*Math.max(legacy,known);
+  }
+  function powerText(value){
+    if(value<1000)return String(Math.round(value*10)/10);
     var units=['','K','M','B','T','Qa','Qi','Sx','Sp','Oc'],tier=Math.min(Math.floor(Math.log10(value)/3),units.length-1);
-    return (value/Math.pow(10,tier*3)).toFixed(2)+units[tier]+'/s';
+    return (value/Math.pow(10,tier*3)).toFixed(2)+units[tier];
   }
   function badge(){
     var free=Math.max(0,b.riftStatus.slots()-b.getState().activeStudies.length),el=q('#lab-capacity-badge');
@@ -143,21 +145,27 @@ window.runRiftStatusQa=async function(b,ctx,assert){
       same(cards.map(x=>x.dataset.riftWisp).sort(),state.activeParty.slice().sort(),'portraits show exactly the active formation members');
       cards.forEach(card=>{
         var id=card.dataset.riftWisp,powered=state.spirits[id]>0,value=powered?state.heroResource[id]:0,bar=card.querySelector('[role="progressbar"]'),power=card.querySelector('.rift-wisp-power'),status=card.querySelector('.rift-wisp-state');
-        ok(Number(bar.getAttribute('aria-valuenow'))===Math.round(value),'bar reads real ability resource');
+        var recast=Math.max(0,((state.supportRecastUntil||{})[id]||0)-b.clockNow())/1000;
+        var cycle=b.riftStatus.visualMetrics().cycle;
+        var supportCycle=state.longStudyLevels.supportduration>=8 ? Math.max(cycle,4.8) : 13;
+        var readiness=recast ? Math.min(value,100*Math.max(0,1-recast/supportCycle)) : value;
+        var percentReady=recast ? Math.floor(readiness) : Math.round(readiness);
+        ok(Number(bar.getAttribute('aria-valuenow'))===percentReady,'accessible bar reads readiness limited by charge and Support recast');
         var chargeScale=/^scaleX\(([^)]+)\)$/.exec(bar.firstElementChild.style.transform);
-        ok(chargeScale&&Math.abs(Number(chargeScale[1])*100-value)<=0.00001,'compositor bar matches charge within CSS serialization precision');
+        ok(chargeScale&&Math.abs(Number(chargeScale[1])*100-readiness)<=0.0001,'compositor bar matches readiness within CSS serialization precision');
         ok(getComputedStyle(bar.firstElementChild).transitionProperty==='transform'||getComputedStyle(bar.firstElementChild).transitionDuration==='0s','charge animation does not animate layout width');
         ok(bar.getAttribute('aria-valuemin')==='0'&&bar.getAttribute('aria-valuemax')==='100','ability charge retains its accessible percentage range');
-        var recast=Math.max(0,((state.supportRecastUntil||{})[id]||0)-b.clockNow())/1000;
-        var chargeSeconds=(1-value/100)*b.riftStatus.visualMetrics().cycle;
+        var chargeSeconds=(1-value/100)*cycle;
         var grants=['tapconduit','relay','sustainedchannel','victorycharge','resonancecascade'].some(key=>(state.research||{})[key]>0);
-        var expectedStatus=powered?(card.classList.contains('is-casting')?'Casting; ':recast>0&&value>=100?'Waiting for Support recast; ':value>=100?'Ready; ':'')+Math.round(value)+'% charged; '+Math.ceil(Math.max(recast,chargeSeconds))+(recast>0?' seconds until Support can cast again; extra charge does not bypass the interval':grants?' seconds by natural charge; grants can ready it earlier':' seconds to next ability'):'Unpowered — Empower this Wisp';
+        var expectedStatus=powered?(card.classList.contains('is-casting')?'Casting; ':!recast&&value>=100?'Ready; ':'')+(recast?percentReady+'% ready; ':'')+Math.round(value)+'% charged; '+Math.ceil(Math.max(recast,chargeSeconds))+(recast>0?' seconds until Support can cast again; extra charge does not bypass the interval':grants?' seconds by natural charge; grants can ready it earlier':' seconds to next ability'):'Unpowered — Empower this Wisp';
         ok(bar.getAttribute('aria-valuetext')===expectedStatus,'ability status and timing remain accessible and use actual charge speed');
-        var expectedPower=powerText(id,state);
+        var expectedPower=powerText(currentPower(id,state))+'/s';
         ok(power&&power.textContent===expectedPower&&power.title==='Current passive damage per second'&&power.getAttribute('aria-label')==='Current passive damage per second: '+expectedPower,'Rift card displays its authoritative current passive DPS');
         ok(status&&status.textContent===(!powered?'Lv 0':''),'powered Rift cards do not repeat ability status as visible text');
         ok(!card.querySelector('.rift-wisp-time')&&!/\b\d+(?:\.\d+)?\s*(?:s|sec|seconds)\b/i.test(card.textContent),'Rift card has no visible ability countdown');
       });
+      var total=state.activeParty.reduce((sum,id)=>sum+currentPower(id,state),0);
+      ok(q('#stat-idle').textContent===powerText(total),'Rift damage/sec totals the current contributions, including live Support');
       var active=b.riftStatus.active();
       ok(!q('#rift-bond-effects')&&!q('#tab-battle [data-bond-effect]')&&!q('#tab-battle .rift-bond-copy'),'Rift has no visible or accessible Bond boost list');
       active.forEach(x=>{
@@ -205,6 +213,27 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     ok(q('[data-rift-wisp="'+powerId+'"] .rift-charge').getAttribute('aria-valuetext').startsWith('Ready; 100% charged;'),'full real charge exposes Ready on the progressbar');
     s.spirits[s.activeParty[0]]=0;install(s);partyCheck();
     s.activeParty=s.activeParty.slice(1).reverse();install(s);partyCheck();
+    s=seed();s.activeParty=['ember','tide','aurora'];
+    s.activeParty.forEach(id=>{s.spirits[id]=10;s.heroResource[id]=100;});
+    var castTime=b.clockNow();
+    s.supportRecastUntil={tide:castTime+13000,aurora:castTime+11000};
+    s.supportBuffs={version:1,sources:{tide:{mult:1.25,until:castTime+3000},aurora:{mult:1.25,until:castTime+1000}}};
+    install(s);partyCheck();
+    var tideBar=q('[data-rift-wisp="tide"] .rift-charge'),initialBoostedTotal=q('#stat-idle').textContent;
+    ok(tideBar.getAttribute('aria-valuenow')==='0'&&tideBar.getAttribute('aria-valuetext').includes('100% charged; 13 seconds'),'full stored charge still shows the new Support recast');
+    b.advanceTime(2900);b.riftStatus.update();partyCheck();
+    var oneBoostTotal=q('#stat-idle').textContent;
+    b.advanceTime(100);b.riftStatus.update(true);partyCheck();
+    ok(tideBar.getAttribute('aria-valuenow')==='23'&&q('#stat-idle').textContent!==initialBoostedTotal,'bar advances and the total drops when the last Support expires');
+    ok(q('#stat-idle').textContent!==oneBoostTotal,'live fast refresh updates the total when Support expires between detail refreshes');
+    b.advanceTime(8000);b.riftStatus.update();partyCheck();
+    ok(tideBar.getAttribute('aria-valuenow')==='84'&&q('[data-rift-wisp="aurora"] .rift-charge').getAttribute('aria-valuenow')==='100','Support recast timers advance independently');
+    b.advanceTime(2000);b.riftStatus.update();partyCheck();
+    ok(tideBar.getAttribute('aria-valuenow')==='100'&&tideBar.getAttribute('aria-valuetext').startsWith('Ready;'),'Tide becomes ready at the deadline');
+    s.longStudyLevels.supportduration=8;s.research.charge=10;
+    s.supportRecastUntil={tide:b.clockNow()+2400,aurora:b.clockNow()+2400};
+    s.heroResource.tide=100;s.heroResource.aurora=25;install(s);partyCheck();
+    ok(Number(tideBar.getAttribute('aria-valuenow'))===50&&q('[data-rift-wisp="aurora"] .rift-charge').getAttribute('aria-valuenow')==='25','shortened cooldown and slower charge each limit readiness');
     s=seed();install(s);partyCheck();ok(q('#boss-combat').hidden,'regen hidden for ordinary enemies');
     s.depth=110;s.enemyDepth=110;s.enemyMaxHp=b.enemyHpFor(110);s.enemyHp=s.enemyMaxHp;install(s);
     var metrics=b.riftStatus.visualMetrics(),boss=q('#boss-combat');
