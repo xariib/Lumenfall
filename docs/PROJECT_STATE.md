@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+[Workshop and Mastery simulation](tasks/WORKSHOP_MASTERY_SIMULATION_001.md) on
+Android 0.2.153. The funded Lab schedule takes 1,102 days at 8×. The deep seeded
+Rift 60,001 scenario finishes its remaining Workshop on day 974 after prior
+Mastery investment. Prisms limited the next paid rank in the late-Mastery
+replay. [Full report and per-track results](qa/workshop-mastery-simulation-001/README.md).
+
 22 November: [Wisp Rift display and Formation tabs](tasks/WISP_RIFT_DISPLAY_001.md)
 shipped as [Android 0.2.153](https://github.com/xariib/Lumenfall/releases/tag/android-1000153).
 Support readiness follows charge and recast timing, the Rift Wisp damage total
