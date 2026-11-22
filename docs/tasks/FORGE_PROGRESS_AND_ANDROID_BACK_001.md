@@ -65,5 +65,20 @@ manual/Max/queue authority, onward Mastery purchases and refreshed mobile
 prerequisites. Independent one-second offline replays pass with the established
 HP tolerance and exact remaining save fields. The default legacy boundary
 test needs its established CI `--focus-f` flag. Actual V8 6.0 stays a separate
-required compatibility run. Next: candidate CI and private Android validation,
-integration and validation on main, then signed APK and public verification.
+required compatibility run.
+
+Private signed Android 0.2.151 passed
+[build 44963558195](https://github.com/xariib/Lumenfall/actions/runs/44963558195)
+at `1409ff67`. Android 12 dispatched system Back from Ember Manage, restored
+the roster focus and scroll, suppressed a native long press on game text, and
+kept the backup textarea selectable. The installed upgrade retained the prior
+save and signing identity. This build did not publish.
+[Android receipt](../qa/forge-progress-and-android-back-001/private-151/emulator-upgrade.json).
+
+Candidate CI at `1409ff67` exposed two stale browser fixtures. The Forge test
+now asserts the visible Rift lock and unavailable purchase after the first
+rank where the next rank is gated. The exact-funded Swift cap fixture now
+uses the required Rift 140 record and retains its debit and remainder checks.
+The targeted Lab-queue scenario passed locally. Product source is unchanged.
+Next run the candidate gates, then integrate, repeat validation on main and
+verify the signed public APK and in-app updater.

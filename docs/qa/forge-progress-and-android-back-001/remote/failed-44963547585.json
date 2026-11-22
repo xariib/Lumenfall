@@ -1,0 +1,45 @@
+{
+  "id": 44963547585,
+  "sha": "1409ff672bbab803cce4a550360c371e5e892237",
+  "event": "pull_request",
+  "conclusion": "failure",
+  "url": "https://github.com/xariib/Lumenfall/actions/runs/44963547585",
+  "jobs": [
+    {
+      "id": 137027404845,
+      "name": "Lumenfall isolated offline catch-up",
+      "conclusion": "success",
+      "started": "2026-11-21T23:48:12Z",
+      "completed": "2026-11-21T23:50:46Z",
+      "log": "job-137027404845.log.gz",
+      "rawSha256": "243f6309869a47122f9479969d1ec1f23b6935af5fdfd7e4a050454c64d80fd2",
+      "summary": [
+        "2026-11-21T23:49:05.3869141Z Behavioral QA coverage: offline 1/191 cases; both groups are required.",
+        "2026-11-21T23:50:42.8543982Z Behavioral QA passed: 1 deterministic scenario(s)."
+      ]
+    },
+    {
+      "id": 137027405072,
+      "name": "Lumenfall pre-merge validation",
+      "conclusion": "failure",
+      "started": "2026-11-21T23:48:13Z",
+      "completed": "2026-11-21T23:58:53Z",
+      "log": "job-137027405072.log.gz",
+      "rawSha256": "ecccce989832dd50e7619b60a327dcb6cef1dfbbeeb48f80cdd800b2f574aa40",
+      "summary": [
+        "2026-11-21T23:48:55.8103196Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-21T23:51:43.0174736Z {\"status\":\"pass\",\"checks\":492,\"records\":96,\"controls\":[{\"name\":\"forge\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"forge\\\",\\\"before\\\":{\\\"scroll\\\":3800,\\\"value\\\":0,\\\"focus\\\":\\\"<button class=\\\\\\\"buy-btn\\\\\\\" data-research=\\\\\\\"relay\\\\\\\" data-plan-html=\\\\\\\"&lt;span class=&quot;cost mono&quot; data-price-currency=&quot;lumen&quot; data-price-amount=&quot;493000&quot; style=&quot;color:var(--ink)&quot;&gt;&lt;span class=&quot;shape shape-trian\\\",\\\"tree\\\":null,\\\"errors\\\":[]},\\\"after\\\":{\\\"scroll\\\":3814,\\\"value\\\":1,\\\"focus\\\":\\\"<button class=\\\\\\\"node-queue-toggle \\\\\\\" data-queue=\\\\\\\"relay\\\\\\\" aria-pressed=\\\\\\\"false\\\\\\\" data-state=\\\\\\\"available\\\\\\\" aria-label=\\\\\\\"Resonance Relay — Queue OFF\\\\\\\">Queue OFF</button>\\\",\\\"tree\\\":null,\\\"errors\\\":[]}}\\n    at ok (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:44:27)\\n    at run (/home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:74:62)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async /home/runner/work/Lumenfall/Lumenfall/tests/behavioral/stationary-purchases.cjs:81:21\"},{\"name\":\"fallback\",\"detected\":true,\"error\":\"AssertionError [ERR_ASSERTION]: purchase must preserve scroll {\\\"width\\\":320,\\\"height\\\":568,\\\"scale\\\":1,\\\"input\\\":\\\"touch\\\",\\\"kind\\\":\\\"tree\\\",\\\"before\\\":{\\\"scroll\\\":1503,\\\"value\\\":0,\\",
+        "2026-11-21T23:52:14.8541137Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('real monotonic stall must advance more than one fixed tick'));\u001b[0m",
+        "2026-11-21T23:52:25.5563767Z {\"status\":\"fail\",\"records\":[],\"error\":\"Error: real monotonic stall must advance more than one fixed tick\\n    at check (http://127.0.0.1:40785/index.html:14792:48)\\n    at window.runLiveClockAcceptance (http://127.0.0.1:40785/index.html:14800:3)\",\"runtimeErrors\":[],\"sourceSha256\":\"520f7c4bbdf2b48d13ce0211cd309fecff55b1849f1d852d57eacf3db01c17b3\",\"mutant\":true}",
+        "2026-11-21T23:53:25.8443080Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-21T23:53:53.0149044Z Behavioral QA passed: 1 deterministic scenario(s).",
+        "2026-11-21T23:54:59.3470024Z \u001b[36;1massert.equal(bad.status,'fail');assert(bad.error.includes('replacement opens focused named modal'));\u001b[0m",
+        "2026-11-21T23:58:37.7804239Z   observed QA: { \"qa_count\": 1, \"qa_status\": \"fail\", \"qa_scenario\": \"r3-destinations\", \"json_status\": \"fail\", \"json_scenario\": \"r3-destinations\", \"runtime_markers\": [], \"runtime_error_count\": 0, \"json_error\": null, \"valid\": true }",
+        "2026-11-21T23:58:37.7810377Z   failure: { \"message\": \"internal Max quotes cap remainder\", \"stack\": \"Error: internal Max quotes cap remainder\\n    at assert (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&qaFixture=fresh:19865:61)\\n    at ok (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&qaFixture=fresh:17468:29)\\n    at http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&qaFixture=fresh:17538:39\\n    at Array.forEach (<anonymous>)\\n    at window.runR3DestinationsQa (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&qaFixture=fresh:17535:12)\\n    at HTMLDocument.run (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&qaFixture=fresh:20486:32)\" }",
+        "2026-11-21T23:58:37.7898802Z <pre id=\"qa-result\" data-status=\"fail\" data-scenario=\"r3-destinations\">{",
+        "2026-11-21T23:58:37.7899715Z   \"status\": \"fail\",",
+        "2026-11-21T23:58:37.7902735Z     \"stack\": \"Error: internal Max quotes cap remainder\\n    at assert (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:19865:61)\\n    at ok (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:17468:29)\\n    at http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:17538:39\\n    at Array.forEach (&lt;anonymous&gt;)\\n    at window.runR3DestinationsQa (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:17535:12)\\n    at HTMLDocument.run (http://127.0.0.1:42909/index.html?qaScenario=r3-destinations&amp;qaFixture=fresh:20486:32)\""
+      ]
+    }
+  ]
+}
