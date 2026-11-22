@@ -119,5 +119,45 @@ The local full run also exposed the old Luminous Tracking level 9/10 purchase
 fixture without a sufficient record. Both mobile motion profiles pass with the
 Rift 320 record and the same exact debit, focus fallback and cap checks. The
 Forge boundary tests separately exercise both sides of the new unlock.
-Next run the corrected candidate gates, integrate, validate on main and verify
-the signed public APK and in-app updater.
+
+## Integrated verification
+
+[PR 66](https://github.com/xariib/Lumenfall/pull/66) merged
+`6dca9616eb163d58a2e695afeb38e264a99b646f` as
+`6ec19ac5e666b319b6febff7910ab3be1533e045`. Both trees are
+`882dad255c82d2a091c6934dc5ad0ca3fda2b19a`. All nine
+[candidate workflows](../qa/forge-progress-and-android-back-001/remote/status-6dca9616.json)
+passed. The full pre-merge run passed
+[190 scenarios and 220 profile executions](../qa/forge-progress-and-android-back-001/remote/candidate-main-coverage.json)
+plus the separate offline catch-up job. No review findings were open. Review
+was limited to self-review and automated checks.
+
+The first integrated full run, [44973401595](https://github.com/xariib/Lumenfall/actions/runs/44973401595),
+passed isolated offline catch-up. Its final Lab slot browser step
+[timed out awaiting touch dispatch](../qa/forge-progress-and-android-back-001/remote/failed-44973401595-slot-mobile.json)
+after 52 passing checks. Lab core, slot challenge controls and the other eight
+integrated workflows passed. The same-commit retry passed the Lab step and
+the full [190 scenarios, 220 profile executions](../qa/forge-progress-and-android-back-001/remote/integrated-main-coverage.json),
+plus the separate offline catch-up. All [nine integrated workflows](../qa/forge-progress-and-android-back-001/remote/status-6ec19ac5.json)
+passed.
+
+[Android build 44978950976](https://github.com/xariib/Lumenfall/actions/runs/44978950976)
+published [Android 0.2.152](https://github.com/xariib/Lumenfall/releases/tag/android-1000152)
+with version code 1000152 and stable package `com.lumenfall.app`. APK SHA256
+`72bffdd82c9f7d2cbe41f48616deeecc6c9402ed79ac32dfcbaee498d646948e`.
+The packaged HTML matches the tested source and the certificate matches the
+production signer. Anonymous versioned and latest downloads match the signed
+artifact byte for byte. The public in-game feed points to 0.2.152.
+[Public verification](../qa/forge-progress-and-android-back-001/android-release/public-verification.json).
+
+The exact public APK passed the Android 12 signed upgrade and retained UID,
+both save slots and paid progress. The installed test opened Ember Manage,
+dispatched system Back, returned to the roster at scroll offset 199 and
+focused Ember again. Native long press selected no game text, and the backup
+textarea remained selectable. The actual updater performed a system-approved
+install and opened the new version. The retail build passed normal launch.
+[Installed acceptance](../qa/forge-progress-and-android-back-001/android-release/emulator-upgrade.json).
+
+Physical gesture and install, Google Play Protect, TalkBack, exact WebView60
+and human pacing remain open. No attached Android device was available for
+the phone checks. The owner's chat remains open for that acceptance.

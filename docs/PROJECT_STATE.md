@@ -1,7 +1,7 @@
 # Lumenfall — current delivery status
 
-20 November: [Wisp cards/PR65](tasks/WISP_CARD_REDESIGN_001.md) shipped0.2.150.
-Nine gates/190+1/native/update/public PASS; phone/Google acceptance open.
+22 November: [Forge and Android Back/PR66](tasks/FORGE_PROGRESS_AND_ANDROID_BACK_001.md) shipped0.2.152.
+Nine gates/native/feed PASS; phone/Google open.
 
 17 November: [Upgrade presentation/PR61](tasks/UPGRADE_STATES_001.md) shipped as
 [Android0.2.138](https://github.com/xariib/Lumenfall/releases/tag/android-1000138),
