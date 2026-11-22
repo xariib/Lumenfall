@@ -1,5 +1,14 @@
 # Lumenfall — current delivery status
 
+22 November: [Wisp Rift display and Formation tabs](tasks/WISP_RIFT_DISPLAY_001.md)
+shipped as [Android 0.2.153](https://github.com/xariib/Lumenfall/releases/tag/android-1000153).
+Support readiness follows charge and recast timing, the Rift Wisp damage total
+reflects live Support, and Wisps has a separate Formation & Bonds tab. Eight PR
+and nine exact-main workflows passed. Signed Android 12 upgrade, both saves,
+updater, retail launch, and anonymous APK verification passed.
+[Delivery evidence](qa/wisp-rift-display-001/android-0.2.153-verification.json).
+Physical-phone, TalkBack, and exact WebView60 acceptance remain open.
+
 22 November: [Forge and Android Back/PR66](tasks/FORGE_PROGRESS_AND_ANDROID_BACK_001.md) shipped0.2.152.
 Nine gates/native/feed PASS; phone/Google open.
 

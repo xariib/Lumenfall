@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-22T21:25:57.705Z",
+  "commit": "531737e2a85f17f07b4e8678c4b228d38086fdc4",
+  "runId": 45069859079,
+  "runUrl": "https://github.com/xariib/Lumenfall/actions/runs/45069859079",
+  "release": "https://github.com/xariib/Lumenfall/releases/tag/android-1000153",
+  "tag": "android-1000153",
+  "version": "0.2.153",
+  "versionCode": 1000153,
+  "apkSha256": "387666fe14a574989284e19d5da74ef4116775dfdcd415d4cf270c8774ed2925",
+  "certificateSha256": "A9:1C:BF:34:27:D2:CE:B1:CD:BE:07:E5:22:5F:17:D4:71:B1:82:9E:52:F7:AB:66:49:7E:75:49:75:AD:3E:21",
+  "package": "com.lumenfall.app",
+  "sourceSha256": "711f8e4bf5b04ec17ee52bace271e617ddb67bc59fa6c896a3fff88702a7421f",
+  "downloads": [
+    {
+      "url": "https://github.com/xariib/Lumenfall/releases/download/android-1000153/Lumenfall.apk",
+      "sha256": "387666fe14a574989284e19d5da74ef4116775dfdcd415d4cf270c8774ed2925",
+      "bytes": 5169099
+    },
+    {
+      "url": "https://github.com/xariib/Lumenfall/releases/latest/download/Lumenfall.apk",
+      "sha256": "387666fe14a574989284e19d5da74ef4116775dfdcd415d4cf270c8774ed2925",
+      "bytes": 5169099
+    }
+  ],
+  "anonymous": true,
+  "installed": {
+    "device": "google/sdk_gphone64_x86_64/emulator64_x86_64_arm64:12/SE1A.220826.008/10564458:userdebug/dev-keys",
+    "webview": "Current WebView Update Service state\n  Multiprocess enabled: true\n  Current WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  Minimum targetSdkVersion: 31\n  Minimum WebView version code: 447211487\n  Number of relros started: 1\n  Number of relros finished: 1\n  WebView package dirty: false\n  Any WebView package installed: true\n  Preferred WebView package (name, version): (com.google.android.webview, 91.0.4472.114)\n  WebView packages:\n    Valid package com.google.android.webview (versionName: 91.0.4472.114, versionCode: 447211487, targetSdkVersion: 31) is  installed/enabled for all users\n    com.google.android.webview.beta is NOT installed.\n    com.google.android.webview.dev is NOT installed.\n    com.google.android.webview.canary is NOT installed.\n    com.google.android.webview.debug is NOT installed.\n    com.android.webview is NOT installed.\n",
+    "bothSaveSlotsRetained": true,
+    "progressAndPaidStudyRetained": true,
+    "systemApprovedInstall": true,
+    "installerOpenLaunch": true,
+    "physicalDevice": false
+  },
+  "workflows": [
+    {
+      "id": 45064531962,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531962",
+      "path": ".github/workflows/comet-expansion-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531755,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531755",
+      "path": ".github/workflows/permanent-progression-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531617,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531617",
+      "path": ".github/workflows/wisp-scroll-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531887,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531887",
+      "path": ".github/workflows/migration-focused-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531871,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531871",
+      "path": ".github/workflows/lab-expansion-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531801,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531801",
+      "path": ".github/workflows/shared-ui-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531642,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531642",
+      "path": ".github/workflows/forge-expansion-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531567,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531567",
+      "path": ".github/workflows/tree-focused-qa.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    },
+    {
+      "id": 45064531555,
+      "url": "https://github.com/xariib/Lumenfall/actions/runs/45064531555",
+      "path": ".github/workflows/pre-merge-validation.yml",
+      "attempt": 1,
+      "conclusion": "success"
+    }
+  ]
+}

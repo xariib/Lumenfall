@@ -1,7 +1,8 @@
 # WISP_RIFT_DISPLAY_001
 
-Owner: this feature chat. Status: in progress. Baseline `3cd15943` / Android
-0.2.152 on current main. Branch `fix/wisp-rift-display-001` in
+This feature chat owns the task. Android 0.2.153 is published and verified on
+the emulator. Physical device acceptance remains open. Baseline `3cd15943`
+was Android 0.2.152. Branch `fix/wisp-rift-display-001` in
 `C:/lf-wisp-rift-display`. PR63 is the separate Play candidate and has no
 product HTML changes.
 
@@ -18,7 +19,6 @@ working. Verify mobile and keyboard access and existing CI/Android gates.
 
 References: [Support and DPS](TEAM_PROGRESSION_001.md),
 [Wisp menu](WISP_CARD_REDESIGN_001.md), [latest release](../PROJECT_STATE.md).
-Next: reproduce baseline and implement focused UI changes and coverage.
 
 ## Candidate checkpoint
 
@@ -36,9 +36,6 @@ alongside GitHub Linux CI. In the candidate, the original preset/field touch
 and focus checks passed on six profiles. A touch-target sizing issue from the
 move was corrected. The existing Support core/recast check passed 2,048 checks
 and the paired offline check passed 30,498 checks on the initial UI candidate.
-
-Next: finish exact-head browser and CI checks, integrate, and verify the
-signed Android build and updater. Physical device acceptance remains open.
 
 On the initial [PR67](https://github.com/xariib/Lumenfall/pull/67) candidate
 `db35d667`, Rift status, Wisp formulas, menu navigation and Wisp hierarchy
@@ -73,3 +70,31 @@ four eight-hour windows in one-second steps. The 230,400 one-second calls
 produced equal rewards and identical complete saved states, and all four state
 hashes matched the canonical reference. Only the golden source SHA changed.
 [Replay receipt](../qa/wisp-rift-display-001/independent-offline-replay.json).
+
+## Integrated release
+
+[PR67](https://github.com/xariib/Lumenfall/pull/67) merged candidate
+`ca404cb422415b2bdf6cb1b157dd93f6d2a1ebaa` as
+`531737e2a85f17f07b4e8678c4b228d38086fdc4`. Both trees are
+`52b934e3542d340e5f7877ae8dbb1abaed1b5404`. All eight applicable PR workflows
+and all nine exact-main workflows passed. Full stateful and isolated offline
+jobs are recorded in the [integrated run](https://github.com/xariib/Lumenfall/actions/runs/45064531555).
+The PR's Linux Wisp-scroll retry passed after a Chrome touch protocol timeout
+following 3,058 checks at the same source. Review used self-review and automated
+checks.
+
+[Android 0.2.153](https://github.com/xariib/Lumenfall/releases/tag/android-1000153)
+shipped from [build 45069859079](https://github.com/xariib/Lumenfall/actions/runs/45069859079),
+attempt 3. Attempt 1 passed the in-place signed upgrade, then the official
+release metadata request returned HTTP 403 with the anonymous GitHub quota
+exhausted. Attempt 2 was canceled during emulator acceptance. GitHub did not
+record a reason in the job log. Attempt 3 passed the signed upgrade, retained
+both saves and paid progress, verified the in-app updater and installer Open,
+and passed normal launch on retail Android 12. Anonymous latest and versioned
+APK downloads match the build digest and packaged source. The established
+package and signing certificate were verified.
+[Release verification](../qa/wisp-rift-display-001/android-0.2.153-verification.json).
+
+Next acceptance is physical-phone verification, including TalkBack and the
+exact WebView60 DOM where available. Keep the task and owner chat open for
+that acceptance.
