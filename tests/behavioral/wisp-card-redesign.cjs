@@ -17,7 +17,7 @@ if(process.argv.includes('--mutate-touch-buffer')){
 const marker='breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}';assert.equal(driver.split(marker).length,2);
 driver=driver.replace(marker,`wispIds:SPIRITS.map(function(sp){return sp.id;}),wispRender:renderSpirits,
  wispAdvice:function(id,action){openPowerAdvice({tab:'spirits',selector:'[data-'+action+'="'+id+'"]'});},
- wispFormationAdvice:function(){openPowerAdvice({tab:'spirits',selector:'#formation-best-now-btn'});},
+ wispFormationAdvice:function(){openPowerAdvice({tab:'formation',selector:'#formation-best-now-btn'});},
  wispSeed:function(){var s=freshState();s.maxDepthEver=250;s.totalKills=10000;s.longStudyLevels.wispascend=300;s.ascendCount=100;s.research.arcanecal=30;s.research.masterwork=10;s.questDay=todayStr();s.lastSeen=Date.now();s.lumen=s.shards=s.sigils=1e20;s.prisms=1e8;s.motes=99;s.activeParty=SPIRITS.slice(0,5).map(function(sp){return sp.id;});SPIRITS.forEach(function(sp){s.spirits[sp.id]=80;s.empowerQueue[sp.id]=false;});return s;},
  ${marker}`);
 const start=driver.indexOf(' for(const width of [320,390,430])'),end=driver.indexOf('\n}\n(async()=>{',start);assert(start>0&&end>start);
@@ -60,6 +60,7 @@ const body=String.raw`
   await ev('prismQa.wispFormationAdvice()');ok(await ev('!document.getElementById("tab-spirits").classList.contains("wisp-manager-open")&&document.activeElement===document.getElementById("formation-best-now-btn")&&document.activeElement.getBoundingClientRect().height>=44'),'hint returns from management to visible Formation action');
   ok(await ev('JSON.stringify(prismQa.get())')===before,'hint navigation preserves full game state');
   ok(await ev('JSON.stringify(prismQa.keys().map(function(k){return localStorage.getItem(k);}));')===slots,'all hint routes preserve both save slots');
+  await tap('#nav-wisp-roster');
   for(const input of ['touch','Space']){
    const p=await point('[data-wisp-details="ember"]');
    if(input==='touch')await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});

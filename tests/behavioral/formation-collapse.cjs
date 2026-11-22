@@ -8,7 +8,7 @@ if(process.argv.includes('--mutate-choice')){const anchor='var roleView=captureW
 const sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
 const marker="if(document.readyState==='loading'){";assert.equal(source.split(marker).length,2);
 source=source.replace('<head>',`<head><script>window.roleErrors=[];addEventListener('error',e=>roleErrors.push(e.message));addEventListener('unhandledrejection',e=>roleErrors.push(String(e.reason)));var roleInterval=setInterval;window.setInterval=function(fn,ms){return roleInterval(function(){if(window.roleRunIntervals)fn();},ms);};</script>`).replace(marker,`
-window.roleQa={today:todayStr,fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},set:function(s){state=acceptPersistedState(s);restoreEnemyOrSpawn();},render:renderAll,readout:renderWispRoles,compare:wispRoleComparison,lastRender:function(){return wispRoleLastRenderMs;}};
+window.roleQa={today:todayStr,fresh:freshState,get:function(){return JSON.parse(JSON.stringify(state));},set:function(s){state=acceptPersistedState(s);restoreEnemyOrSpawn();},render:renderAll,readout:renderWispRoles,compare:wispRoleComparison,markDirty:function(){liveSpiritsDirty=true;},lastRender:function(){return lastLiveSpiritsAt;}};
 if(!localStorage.getItem(SAVE_KEY)){var qaSeed=freshState();qaSeed.questDay=todayStr();localStorage.setItem(SAVE_KEY,JSON.stringify(qaSeed));}
 localStorage.setItem(STARTUP_INTRO_KEY,String(Date.now()));
 `+marker);
@@ -45,37 +45,49 @@ async function run(){
   await ev(`(()=>{var q=roleQa,s=q.fresh();s.questDay=q.today();s.maxDepthEver=250;s.depth=101;s.activeParty=['ember','tide','gale','thorn','aurora'];Object.keys(s.spirits).forEach(function(id){s.spirits[id]=100;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;});q.set(s);q.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab=spirits]').click();window.originalToggle=document.getElementById('formation-best-now-btn');})()`);
   await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');
   const observe=()=>ev("(()=>{var p=document.querySelector('.formation-help'),b=document.getElementById('formation-best-now-btn'),r=b.getBoundingClientRect(),content=document.getElementById('bond-card');return {flat:p.tagName==='SECTION'&&!p.querySelector('summary'),visible:content.checkVisibility(),focus:document.activeElement===b,same:b===originalToggle,fit:r.left>=0&&r.right<=innerWidth+1&&b.scrollWidth<=b.clientWidth+1,target:r.width>=44&&r.height>=44,text:content.innerHTML,removed:!document.getElementById('wisp-role-summary')&&!document.getElementById('formation-contribution-toggle')&&!document.getElementById('formation-contribution-panel'),boxed:p.classList.contains('card'),errors:roleErrors};})()");
+  ok(!(await observe()).visible,'Roster leaves Formation guidance in its own tab');
+  const touch=async(selector)=>{
+   await send('Page.captureScreenshot',{format:'png'});
+   const r=await ev(`(()=>{var e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,hit:e.contains(document.elementFromPoint(x,y))};})()`);
+   ok(r.hit&&r.width>=44&&r.height>=44,'native target is presented and44px '+selector+' '+JSON.stringify(r));
+   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});
+   await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   await ev('new Promise(resolve=>requestAnimationFrame(()=>resolve(true)))');
+  };
+  await touch('#nav-formation');
+  ok(await ev('document.querySelector("main").scrollTop===0&&document.querySelector("#formation-presets").checkVisibility()&&!document.querySelector("#spirit-list").checkVisibility()'),'one tap opens Formation and presets without scrolling through the roster');
   let o=await observe();ok(o.flat&&o.visible,'Bonds readable by default without a disclosure');ok(o.removed&&o.boxed,'Contribution removed and Bonds boxed');
+  await ev('document.getElementById("nav-formation").focus()');
+  await send('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'ArrowLeft',code:'ArrowLeft',windowsVirtualKeyCode:37});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowLeft',code:'ArrowLeft',windowsVirtualKeyCode:37});
+  ok(await ev('document.activeElement.id==="nav-wisp-roster"&&document.querySelector("#tab-spirits").classList.contains("active")'),'Left arrow switches to Roster and carries keyboard focus');
+  const showFormation=()=>ev('document.getElementById("nav-formation").click();originalToggle.focus({preventScroll:true});Promise.all(document.getElementById("tab-formation").getAnimations().map(a=>a.finished)).then(()=>true)');
+  await showFormation();
   const key=async(name)=>{await send('Input.dispatchKeyEvent',{type:name==='Enter'?'keyDown':'rawKeyDown',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13,...(name==='Enter'?{text:'\r'}:{})});await send('Input.dispatchKeyEvent',{type:'keyUp',key:name==='Space'?' ':name,code:name,windowsVirtualKeyCode:name==='Space'?32:13});};
   const activate=async(input)=>{
+   await ev('document.getElementById("nav-wisp-roster").click();Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');
    // Animation.finished resolves before animationend dispatch. Let the tab's
    // existing saved-scroll restoration finish before choosing an input point.
    await ev('new Promise(function(resolve){requestAnimationFrame(function(){resolve(true);});})');
-   await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');if(input==='touch'){
-   // Present the scrolled surface before delivering a native gesture. Layout
-   // coordinates alone can precede Chrome's composited hit-test surface.
-   await send('Page.captureScreenshot',{format:'png'});
-   const r=await ev('(()=>{var e=document.querySelector("[data-toggle=tide]"),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,width:r.width,height:r.height,hit:document.elementFromPoint(x,y)?.closest("button")===e};})()');
-   ok(r.hit&&r.width>=44&&r.height>=44,'native Tide target is presented and44px '+JSON.stringify(r));
-   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x,y:r.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-   await ev('new Promise(function(resolve){requestAnimationFrame(function(){resolve(true);});})');
-  }else await key(input);};
+   await ev('document.querySelector("[data-toggle=tide]").scrollIntoView({block:"center"});document.querySelector("[data-toggle=tide]").focus({preventScroll:true})');
+   if(input==='touch')await touch('[data-toggle=tide]');else await key(input);
+  };
   for(const input of ['Enter','Space','touch']){
    const previousSummary=(await observe()).text;
    await activate(input);
    ok(await ev('!roleQa.get().activeParty.includes("tide") && document.querySelector("[data-toggle=tide]").getAttribute("aria-pressed")==="false" && document.querySelector("[data-wisp-role=tide]").textContent.trim()===""'),'native '+input+' benches once without duplicate readout');
-   await ev('originalToggle.focus();roleQa.readout()');o=await observe();ok(o.text!==previousSummary,'formation change updates Bond guidance');
+   await showFormation();await ev('roleQa.readout()');o=await observe();ok(o.text!==previousSummary,'formation change updates Bond guidance');
    const before=await ev('JSON.stringify(roleQa.get())');
    await ev('roleQa.readout();roleQa.render();roleQa.readout()');o=await observe();
    ok(o.same&&o.focus&&o.flat&&o.visible,'guide/focus retained through role and full renders');ok(await ev('JSON.stringify(roleQa.get())')===before,'renders leave complete save state unchanged');
    ok(o.text.includes('Formation Bonds')&&o.text.includes('Kindling')&&o.text.includes('Pathfinder'),'existing Bond guidance retained');ok(o.fit&&o.target,'guide action fits and has44px target '+JSON.stringify({width,fontPercent,motion,o}));
-   await ev('document.querySelector("[data-tab=battle]").click();document.querySelector("[data-tab=spirits]").click();originalToggle.focus()');await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');ok((await observe()).visible,'tab return keeps flat guidance');
+   await ev('document.querySelector("[data-tab=battle]").click();document.querySelector("[data-tab=spirits]").click()');await showFormation();ok((await observe()).visible,'tab return keeps flat guidance');
    await activate(input);ok(await ev('roleQa.get().activeParty.includes("tide")&&document.querySelector("[data-toggle=tide]").getAttribute("aria-pressed")==="true"'),'native '+input+' fields once');
-   await ev('originalToggle.focus();roleQa.render();roleQa.readout()');o=await observe();ok(o.flat&&o.visible&&o.same&&o.focus,'formation renders preserve guide/focus');ok(o.errors.length===0,'no browser runtime errors');
+   await showFormation();await ev('roleQa.render();roleQa.readout()');o=await observe();ok(o.flat&&o.visible&&o.same&&o.focus,'formation renders preserve guide/focus');ok(o.errors.length===0,'no browser runtime errors');
   }
   await ev('originalToggle.scrollIntoView({block:"start"})');
   if(width===390&&motion==='reduce'){const shot=await send('Page.captureScreenshot',{format:'png'});fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'flat-'+fontPercent+'.png'),Buffer.from(shot.data,'base64'));}
-  for(let repeat=0;repeat<2;repeat++){await ev('originalToggle.focus();window.roleRunIntervals=true');const start=await ev('roleQa.lastRender()');await pause(1200);await ev('window.roleRunIntervals=false');const observed=await observe();ok(await ev('roleQa.lastRender()')>start,'actual periodic role render ran');ok(observed.flat&&observed.visible&&observed.same&&observed.focus,'live interval preserves guide and focus');}
+  for(let repeat=0;repeat<2;repeat++){const start=await ev('originalToggle.focus();roleQa.markDirty();window.roleRunIntervals=true;roleQa.lastRender()');await pause(1200);await ev('window.roleRunIntervals=false');const observed=await observe();ok(await ev('roleQa.lastRender()')>start,'actual live interval refreshed dirty Formation guidance');ok(observed.flat&&observed.visible&&observed.same&&observed.focus,'live interval preserves guide and focus');}
   records.push({width,fontPercent,motion,nativeInputs:['Enter','Space','touch']});
  }
  }

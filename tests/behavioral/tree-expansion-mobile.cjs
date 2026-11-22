@@ -381,6 +381,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const benchField=sel('data-toggle',firstFive[4]);
   const bench=await formationInput('bench-fifth',benchField,()=>key(' ','Space',32));ok(bench.stateAfter.activeParty.length===4,'native Space benches a member');
   const refield=await formationInput('field-replacement',field,()=>touchHere(field));same(refield.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'native touch fields a replacement within five');
+  await ev('prismQa.tab("formation")');
   const farm=await formationInput('preset-farm','[data-formation-preset="farm"]',()=>touchHere('[data-formation-preset="farm"]'));same(farm.stateAfter.activeParty,firstFive,'native Farm preset preservesfive');
   const push=await formationInput('preset-push','[data-formation-preset="push"]',()=>key('Enter','Enter',13));same(push.stateAfter.activeParty,firstFive.slice(0,4).concat('aurora'),'native Push restores five-member edited intent');
   const solo=copy(formation);solo.activeParty=['ember'];solo.formationPresets={push:['ember'],farm:['ember'],boss:['ember']};await install(solo,'spirits');
@@ -399,7 +400,8 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
    await install(push.stateAfter,'spirits');
   }
   for(const row of formationSamples){for(const name of ['spirits','nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','lumen','shards','motes','sigils','comets','prisms','treeTrainingProgress'])same(row.stateAfter[name],row.stateBefore[name],'Formation input preserves '+name+' '+row.id);ok(row.input.some(e=>e.trusted&&e.type==='click'),'trusted Formation input '+row.id);ok(!row.runtimeErrorsBefore.length&&!row.runtimeErrorsAfter.length,'no Formation runtime errors');}
-  await fit('#tab-spirits','six-member Formation');await prepare('[data-formation-preset="push"]',true);await shot('tree-six-'+width+'-'+scale+'-'+motion);
+  await ev('prismQa.tab("formation")');
+  await fit('#tab-formation','six-member Formation');await prepare('[data-formation-preset="push"]',true);await shot('tree-six-'+width+'-'+scale+'-'+motion);
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.key===' '),'trusted touch Enter and Space evidence');
   await ev('prismQa.treeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready('paid-state-reload');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('spirits')");
   const cold=await ev('prismQa.get()');for(const field of ['nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','activeParty','formationPresets','activeFormationPreset','autoAscendEnabled','autoAscendTargetDepth'])same(cold[field],committed[field],'actual reload retains paid '+field);

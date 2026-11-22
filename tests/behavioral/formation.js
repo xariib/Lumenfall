@@ -139,8 +139,10 @@ window.runP207LayoutQa = async function(b,ctx,assert){
   q('[data-tab="spirits"]').click();await document.fonts.ready;
   assert(document.documentElement.scrollWidth<=innerWidth,'no document horizontal overflow');
   assert(q('#formation-presets').scrollWidth<=q('#formation-presets').clientWidth+1,'intent labels fit');
-  var root=q('#formation-presets');root.scrollIntoView({block:'start'});
+  q('#nav-formation').click();
+  var root=q('#formation-presets');
   assert(root.textContent.includes('temporary startup support'),'startup support explained');
+  q('#nav-wisp-roster').click();
   ['void','tide','stone','gale','thorn'].forEach(function(id){
     b.openWisp(id);
     var card=q('[data-wisp-card="'+id+'"]'),button=card.querySelector('[data-empower-queue]');

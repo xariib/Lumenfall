@@ -38,8 +38,8 @@ async function run(){
  await send('Runtime.enable');await send('DOM.enable');
  for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
-  await ev(`document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab=spirits]').click();document.querySelector('.formation-help').open=true;`);
-  await ev('Promise.all(document.getElementById("tab-spirits").getAnimations().map(a=>a.finished)).then(()=>true)');
+  await ev(`document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab=spirits]').click();document.getElementById("nav-formation").click();`);
+  await ev('Promise.all(document.getElementById("tab-formation").getAnimations().map(a=>a.finished)).then(()=>true)');
   for(const mode of ['Push','Farm','Boss'])for(const input of ['Enter','Space','touch']){
    await ev(`(()=>{var q=roleQa,s=q.fresh();s.questDay=q.today();s.maxDepthEver=250;s.depth=s.enemyDepth=${mode==='Boss'?100:101};s.enemyHp=s.enemyMaxHp=1e12;s.activeParty=['titan'];s.activeFormationPreset='push';s.formationPresets={push:['titan'],farm:['ember'],boss:['stone']};Object.keys(s.spirits).forEach(function(id){s.spirits[id]=40;});if('${mode}'==='Farm'){s.riftMode='farm';s.farmReturnDepth=102;s.farmDepth=101;}q.set(s);q.render();window.originalBest=document.getElementById('formation-best-now-btn');})()`);
    await ev('Promise.all(originalBest.getAnimations().map(a=>a.finished)).then(()=>true)');
@@ -68,7 +68,7 @@ async function run(){
  const savedParty=await ev('roleQa.field();roleQa.get().activeParty');
  await send('Page.reload');await pause(150);for(let i=0;i<200;i++){try{if(await ev('!!window.roleQa&&!!document.querySelector("[data-wisp-role=ember]")'))break;}catch(e){if(!/context|navigated/.test(e.message))throw e;}await pause(20);}
  assert.deepEqual(await ev('roleQa.get().activeParty'),savedParty,'real reload keeps fielded team');checks++;
- await ev('document.querySelector("[data-tab=spirits]").click();document.querySelector(".formation-help").open=true;document.getElementById("formation-best-now-btn").focus();window.roleRunIntervals=true');await pause(1200);await ev('window.roleRunIntervals=false');ok(await ev('document.activeElement===document.getElementById("formation-best-now-btn")&&document.getElementById("formation-best-now-btn").getAttribute("aria-disabled")==="true"'),'live interval keeps same disabled action focus');
+ await ev('document.querySelector("[data-tab=spirits]").click();document.getElementById("nav-formation").click();document.getElementById("formation-best-now-btn").focus();window.roleRunIntervals=true');await pause(1200);await ev('window.roleRunIntervals=false');ok(await ev('document.activeElement===document.getElementById("formation-best-now-btn")&&document.getElementById("formation-best-now-btn").getAttribute("aria-disabled")==="true"'),'live interval keeps same disabled action focus');
  }
  fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status:'pass',checks,sourceSha256,browser:identity,profiles:records,scope:'Modern browser DOM/CSS/native input only; not Android textZoom/exact WebView60/physical/TalkBack'},null,2));console.log(JSON.stringify({status:'pass',checks,profiles:records.length,sourceSha256,browser:identity}));
 }
