@@ -87,6 +87,8 @@ fixture that used the old Mastery prices. The fixture now exercises the same
 exact and one-unit-short boundaries using the current quote. All 191 checks,
 including negative controls, pass on the candidate and the baseline. Game
 source and signed APK bytes are unaffected by the fixture correction.
+The stateful browser suite's independent Ultimate price assertions now use
+the rebalanced Ember and Titan prices and the total across all eight Wisps.
 
 Next: finish the corrected PR workflows, then integrate this feature and
 pass the main-commit checks. Public release and final Android acceptance
