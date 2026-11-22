@@ -66,5 +66,6 @@ Record before/after sizes and verify required GitHub checks before integration.
 - Only docs and context tooling are in scope. Self-review inspected the full
   diff. PR #63 changes the same status file in a separate section.
 
-Status: local checks passed. Next action: publish the branch, verify required
-Linux PR checks, integrate and record the integrated check result.
+Local checks passed. [PR #68](https://github.com/xariib/Lumenfall/pull/68)
+records the Linux CI results, integration and the integrated-version checks.
+Use its current status to determine the next action.
