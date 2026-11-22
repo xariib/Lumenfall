@@ -1,0 +1,101 @@
+{
+  "version": "worktree",
+  "sourceSha256": "19aba436787572d79d956a61139d98f36b1850f2f229ea8873fbfc61ce6eb9da",
+  "node": "v24.22.1",
+  "mastery": {
+    "zeroMastery": {
+      "startsAt": 1001,
+      "seconds": 1800,
+      "kills": 2815,
+      "endDepth": 3816
+    },
+    "masterworkGate": {
+      "rift": 5020,
+      "seconds": 120,
+      "kills": 0,
+      "damageToRegen": 0.03538398481036675
+    },
+    "tail": {
+      "start": 50180,
+      "startingRank": 2000,
+      "seconds": 120,
+      "kills": 38,
+      "record": 50218,
+      "beforeAscend": {
+        "sigils": 3921651784,
+        "prisms": 0,
+        "quote": 4578
+      },
+      "afterAscend": {
+        "sigils": 3921651784,
+        "prisms": 4578,
+        "depth": 6
+      },
+      "purchased": [
+        {
+          "rank": 2001,
+          "cost": {
+            "prism": 449,
+            "sigil": 1959547893
+          }
+        }
+      ],
+      "wallets": {
+        "prisms": 4129,
+        "sigils": 1962103891
+      },
+      "next": {
+        "reason": "requirements",
+        "cost": {
+          "prism": 449,
+          "sigil": 1962103871
+        },
+        "requirements": [
+          {
+            "key": "depth",
+            "label": "Rift",
+            "current": 50218,
+            "target": 50220,
+            "met": false
+          },
+          {
+            "key": "lab",
+            "label": "Wisp Ascendancy Lv.",
+            "current": 500,
+            "target": 492,
+            "met": true
+          },
+          {
+            "key": "forge",
+            "label": "Masterwork Tempering Lv.",
+            "current": 500,
+            "target": 401,
+            "met": true
+          },
+          {
+            "key": "tree",
+            "label": "Swift Ascension Lv.",
+            "current": 250,
+            "target": 210,
+            "met": true
+          }
+        ]
+      },
+      "prismShortfall": 0,
+      "oneRiftAscendsTotalPrisms": 91438,
+      "comparison": [
+        {
+          "rank": 2000,
+          "kills": 34,
+          "record": 50234
+        },
+        {
+          "rank": 2001,
+          "kills": 36,
+          "record": 50236
+        }
+      ],
+      "hpGrowthPer20": 1.0846341944833982
+    }
+  }
+}

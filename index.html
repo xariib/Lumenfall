@@ -3603,14 +3603,15 @@ var ENDLESS_PROGRESSION = {
   recruitLumen:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
   rarityLumenBase:{ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000},
   rarity:{level:[8,25,50,90,140],depth:[5,15,35,70,100],ascends:[0,1,5,15,40],lab:[0,5,15,40,91],forge:[0,1,3,6,10],shards:[15,1500,150000,5000000,250000000],lumen:[8,50,1000,50000,2500000]},
-  ultimate:{sigils:{ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000},module:15,depth:120,lab:92,forge:10,ascends:50},
-  mastery:{prismBase:20000,prismStep:1000,sigilBase:500000,sigilStep:50000,depthBase:200,depthStep:25,labBase:92,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
+  ultimate:{sigils:{ember:400,tide:500,stone:650,gale:850,thorn:1100,void:1400,aurora:1800,titan:2400},module:15,depth:120,lab:92,forge:10,ascends:50},
+  mastery:{depthBase:200,depthStep:25,labBase:92,ranksPerLab:5,swiftBase:10,ranksPerSwift:10,ranksPerForge:5},
   masterworkPowerPerLevel:.05,masterworkLevelsPerBand:5,masterworkRiftsPerBand:50,farmPassiveKillsPerSecond:2,
   riftCurveAnchors:[
     [100,100],[150,132.43720864865315],[200,150.11051873981472],[250,162.325784721862],
     [375,182.54772738846788],[500,195.91581091193484],[750,213.91248573909476],[1000,226.28001684600451]
   ],
-  tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,sigilCurveStart:6000,sigilCurveWidth:100
+  tailSlope:.03,speedMoteGrowth:1.8,hpBase:60,maxStudyWorkSec:864000,lateStudyCostStart:30,lateStudyCostGrowth:1.35,
+  studyPriceTailStart:100,studyPriceTailGrowth:1.025,sigilCurveStart:6000,sigilCurveWidth:100
 };
 var SPIRITS = [
   {id:'ember',  name:'Ember Wisp',      shortName:'Ember',  shape:'shape-triangle', color:'#e08a2e', unlockDepth:1,  baseCost:10,      basePower:1,     heroClass:'Starcaller',  role:'Burst',         resource:'mana',    abilityType:'dps',     abilityName:'Nova Burst'},
@@ -6618,6 +6619,7 @@ function updatePurchasePriceColors(root){
 }
 
 function isBoss(depth){ return depth>0 && depth%10===0; }
+function isMilestoneBoss(depth){ return depth>=1000 && depth%500===0; }
 
 var BOSS_TRAITS = [
   {id:'regrowth', name:'Regrowth', regen:0.009, abilityMult:1, tapMult:1, hint:'High regeneration — sustained Wisp damage matters.'},
@@ -6951,10 +6953,10 @@ function getWispMasteryPlan(sp,materialize){
   var rank=wispMasteryLevel(sp.id),g=ENDLESS_PROGRESSION.mastery;
   var tailStart=2000,tailRift=g.depthBase+g.depthStep*tailStart;
   var depth=rank<tailStart ? g.depthBase+g.depthStep*rank : tailRift+20*(rank-tailStart);
-  // Scale endgame prices with the currencies earned around the required Rift.
-  // Twenty Rifts include two bosses, keeping later Sigil prices in reach.
-  var cost=rank<tailStart ? {prism:g.prismBase+g.prismStep*rank,sigil:g.sigilBase+g.sigilStep*rank} :
-    {prism:Math.ceil(2020000*Math.sqrt(depth/tailRift)),sigil:Amount.mul(2,baseSigilsFromBoss(depth))};
+  // Use the base Prism curve and the two bosses before the gate. Reaching
+  // the gate Rift itself is sufficient even before that enemy is defeated.
+  var priorBoss=Math.floor((depth-1)/10)*10;
+  var cost={prism:Math.ceil(2*Math.sqrt(depth)),sigil:creditAmount(baseSigilsFromBoss(priorBoss),baseSigilsFromBoss(priorBoss-10))};
   var requirements=[wispRequirement('depth','Rift',state.maxDepthEver,depth),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),Math.min(500,g.labBase+Math.floor(rank/g.ranksPerLab))),wispRequirement('forge','Masterwork Tempering Lv.',researchLevel('masterwork'),Math.min(500,Math.ceil((rank+1)/g.ranksPerForge))),wispRequirement('tree','Swift Ascension Lv.',nodeLevel('swift'),Math.min(250,g.swiftBase+Math.floor(rank/g.ranksPerSwift)))];
   var ready=wispUpgradesMaxed(sp.id)&&(state.spirits[sp.id]||0)>0;
   var eligible=ready&&Number.isSafeInteger(rank+1)&&Number.isSafeInteger(depth)&&requirements.every(function(r){return r.met;});
@@ -7604,7 +7606,8 @@ function endlessCurveDepth(depth){
   return lower[1]+(depth-lower[0])*g.tailSlope;
 }
 function enemyHpFor(depth){
-  return Amount.round(Amount.mul(Amount.mul(ENDLESS_PROGRESSION.hpBase,Amount.pow(1.145,endlessCurveDepth(depth))),isBoss(depth)?6:1),'round');
+  var encounterMultiplier=isMilestoneBoss(depth)?9:isBoss(depth)?6:1;
+  return Amount.round(Amount.mul(Amount.mul(ENDLESS_PROGRESSION.hpBase,Amount.pow(1.145,endlessCurveDepth(depth))),encounterMultiplier),'round');
 }
 function enemyRewardFor(depth,luminous){
   return labEncounterReward(Amount.round(Amount.mul(Amount.mul(Amount.mul(Amount.mul(5,Amount.pow(1.11,endlessCurveDepth(depth))),isBoss(depth)?8:1),lumenMult()),formationRewardMult()),'round'),depth,luminous);
@@ -7744,7 +7747,7 @@ function announceDepthMilestone(depth,previousMax){
   }
   if(isBoss(depth)){
     var trait = bossTraitFor(depth);
-    showRiftMilestone('BOSS RIFT','Rift '+depth,trait ? trait.name : 'Boss encounter','#ef5b6b');
+    showRiftMilestone('BOSS RIFT','Rift '+depth,isMilestoneBoss(depth) ? trait.name+' · +50% boss HP' : trait.name,'#ef5b6b');
     flashBattleStage('boss');
     return;
   }
@@ -8570,8 +8573,11 @@ function studyCost(node, level){
   };
 }
 function futureStudyCostFactor(node,growth,level){
-  if(LEGACY_STUDY_IDS.indexOf(node.id)===-1||level<=ENDLESS_PROGRESSION.lateStudyCostStart)return Amount.pow(LEGACY_STUDY_IDS.indexOf(node.id)!==-1?1.6:growth,level);
-  return Amount.mul(Amount.pow(1.6,ENDLESS_PROGRESSION.lateStudyCostStart),Amount.pow(ENDLESS_PROGRESSION.lateStudyCostGrowth,level-ENDLESS_PROGRESSION.lateStudyCostStart));
+  if(LEGACY_STUDY_IDS.indexOf(node.id)===-1)return Amount.pow(growth,level);
+  var pacing=ENDLESS_PROGRESSION,start=pacing.lateStudyCostStart,tail=pacing.studyPriceTailStart;
+  if(level<=start)return Amount.pow(1.6,level);
+  var price=Amount.mul(Amount.pow(1.6,start),Amount.pow(pacing.lateStudyCostGrowth,Math.min(level,tail)-start));
+  return level<=tail ? price : Amount.mul(price,Amount.pow(pacing.studyPriceTailGrowth,level-tail));
 }
 function unlockedLongStudies(){
   return LONG_STUDIES.filter(function(l){ return state.maxDepthEver >= (l.unlockDepth||1); });

@@ -29,7 +29,9 @@ function integer(value){if(typeof value==='number')return BigInt(value);const [d
   equal(integer(q.get().sigils),before+reward,'actual boss payout exactly credits every earned Sigil');equal(integer(summary.sigilsGained),reward,'actual boss payout summary');
  }
 }
-const prices={ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000};
+const prices=process.argv.includes('--focus-f')?
+ {ember:400,tide:500,stone:650,gale:850,thorn:1100,void:1400,aurora:1800,titan:2400}:
+ {ember:40000000,tide:50000000,stone:65000000,gale:85000000,thorn:110000000,void:140000000,aurora:180000000,titan:240000000};
 for(const [id,base]of Object.entries(prices))for(const analysis of [0,1,10]){
  const x=app(source),q=x.q,b=q.endless,s=q.fresh();
  s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.maxDepthEver=200;s.depth=100;s.ascendCount=50;

@@ -1,9 +1,12 @@
 'use strict';
 const assert = require('node:assert/strict');
+const {execFileSync} = require('node:child_process');
 const fs = require('node:fs');
+const path = require('node:path');
 const {app} = require('./forge-expansion-harness.cjs');
 
-const html = fs.readFileSync(process.argv[2] || 'index.html', 'utf8');
+const file = process.argv[2] || 'index.html';
+const html = fs.readFileSync(file, 'utf8');
 const boot = "if(document.readyState==='loading'){";
 assert.equal(html.split(boot).length, 2);
 const {q} = app(html.replace(boot,
@@ -30,10 +33,11 @@ for (const [index, end] of boundaries.slice(1).entries()) {
   close(previous, endValue, 'band ends at the existing calibration');
 }
 
-for (const depth of [1, 39, 100, 120, 150, 191, 250, 369, 500, 711, 1000, 1800]) {
+for (const depth of [1, 39, 100, 120, 150, 191, 250, 369, 500, 711, 990, 1000, 1010, 1500, 1800]) {
   const boss = depth % 10 === 0;
+  const milestone = depth >= 1000 && depth % 500 === 0;
   const exp = exponent(depth);
-  assert.equal(q.enemyHp(depth), Math.round(60 * Math.pow(1.145, exp) * (boss ? 6 : 1)), 'enemy HP');
+  assert.equal(q.enemyHp(depth), Math.round(60 * Math.pow(1.145, exp) * (milestone ? 9 : boss ? 6 : 1)), 'enemy HP');
   assert.equal(q.lumen(depth), Math.round(5 * Math.pow(1.11, exp) * (boss ? 8 : 1)), 'Lumen drop');
   assert.equal(q.shards(depth), Math.round(Math.pow(1.09, exp) * (boss ? 5 : 1)), 'Shard drop');
 }
@@ -43,11 +47,12 @@ for (const [reward, growth] of [[q.enemyHp, 1.145], [q.lumen, 1.11], [q.shards, 
   close(amount.log10(next) - amount.log10(first), Math.log10(growth) * 0.03, 'wide amounts retain their growth rate');
 }
 
-for (const depth of [120, 121]) {
+for (const depth of [120, 121, 1000, 350000]) {
   const save = q.fresh();
   save.depth = save.maxDepthEver = save.enemyDepth = depth;
-  save.enemyMaxHp = Math.round(60 * Math.pow(1.145, priorExponent(depth)) * (depth % 10 === 0 ? 6 : 1));
-  save.enemyHp = save.enemyMaxHp * 0.625;
+  const oldExponent = depth < 1000 ? priorExponent(depth) : exponent(depth);
+  save.enemyMaxHp = amount.round(amount.mul(amount.mul(60, amount.pow(1.145, oldExponent)), depth % 10 === 0 ? 6 : 1), 'round');
+  save.enemyHp = amount.mul(save.enemyMaxHp, 0.625);
   save.lumen = 456;
   save.luminousAccum = 0.7;
   save.enemyIsLuminous = depth % 10 !== 0;
@@ -56,10 +61,11 @@ for (const depth of [120, 121]) {
   const restored = q.get();
   assert.notEqual(restored.enemyMaxHp, save.enemyMaxHp, 'old encounter adopts the new curve');
   assert.equal(restored.enemyMaxHp, q.enemyHp(depth));
-  close(restored.enemyHp / restored.enemyMaxHp, 0.625, 'old encounter retains damage dealt');
+  close(amount.ratio(restored.enemyHp, restored.enemyMaxHp), 0.625, 'old encounter retains damage dealt');
   assert.equal(restored.enemyIsLuminous, save.enemyIsLuminous);
   assert.equal(restored.luminousAccum, save.luminousAccum);
   assert.equal(restored.lumen, save.lumen);
   assert.equal(restored.maxDepthEver, depth);
 }
 console.log('PASS: exponential Rift bands, combat and reward formulas, wide amounts, and saved enemy migration');
+execFileSync(process.execPath, [path.join(__dirname, 'progression-balance.cjs'), file], {stdio: 'inherit'});

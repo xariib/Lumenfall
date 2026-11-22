@@ -10,7 +10,7 @@ const expected=calibrated?{forgeDepth:70,forgeLumen:1000000,forgeShards:25000,re
 if(dailyCalibration){expected.recruitLab=43;expected.lab=84;expected.mythicLab=78;}
 const focusCalibration=process.argv.includes('--focus-f');
 assert(!focusCalibration||dailyCalibration,'F retains daily-calibrated investment tables');
-if(focusCalibration){expected.recruitLab=47;expected.lab=92;expected.mythicLab=91;}
+if(focusCalibration){expected.recruitLab=47;expected.lab=92;expected.mythicLab=91;expected.ultimate=400;expected.voidUltimate=1400;expected.masteryPrisms=29;expected.masterySigils=37;}
 const source=original.replace("if(document.readyState==='loading'){",`window.endlessQa={
   unlocked:wispRecruitmentUnlocked,rarityPlan:getWispRarityPlan,rarity:buyRarity,
   ultimatePlan:getWispUltimatePlan,masteryPlan:getWispMasteryPlan,mastery:buyWispMastery,module:buyModule,
