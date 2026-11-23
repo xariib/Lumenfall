@@ -93,11 +93,22 @@ requirement. These are seeded boundary replays, with no calendar-time estimate.
   passed 26,112 checks across 12 Chromium profiles. It verified lock text,
   accessible names, switching between locks/prices, live affordability,
   completed presentation, and the final purchase's native keyboard focus.
+- `upgrade-affordability.cjs` passed 26,832 checks across 12 profiles. The
+  stateful `p2-wisp-progression-pacing` scenario passed on staged game assets.
+- All four independent eight-hour offline windows, each replayed one second
+  at a time, reproduced the original canonical hashes and matched their
+  released and candidate end states field for field. The source binding in
+  `offline-swift-current-golden.json` is the only fixture change.
+  [Offline replay evidence](../qa/wisp-ability-pacing-001/offline-replay.json).
 - A standalone `endless-progression-core.cjs` run stops on the historical Gale
   recruitment test. The identical failure reproduces at `5439b1e6` before this
-  change. The active recruitment and Wisp checks above pass.
+  change. The `--focus-f` invocation used in pre-merge CI passed 237 checks.
 
 Local Node 24.22.1. Game source SHA-256
 `94ff950c50fb7280287f2093e6f76f4fff8713dcdba7739e0fa421b5ea6ac1ca`.
-Self-review and automated checks only. Next action is exact-candidate CI,
-integration and signed Android acceptance under the feature workflow.
+Self-review and automated checks only. [PR #75](https://github.com/xariib/Lumenfall/pull/75)
+is awaiting the mandatory checks. The first Android candidate build runs on the
+same game bytes as the source binding follow-up.
+[Android candidate](https://github.com/xariib/Lumenfall/actions/runs/45211268132).
+Next action is exact-candidate CI, integration and signed Android acceptance
+under the feature workflow.
