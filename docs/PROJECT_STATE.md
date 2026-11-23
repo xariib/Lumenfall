@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+[Wisp roster refresh](tasks/WISP_LIVE_ROSTER_001.md) shipped as
+[Android 0.2.159](https://github.com/xariib/Lumenfall/releases/tag/android-1000159)
+from PR #70 at `c4686746`. Ordinary combat updates the existing cards while
+recruitment, upgrade gates, and Auto-Empower controls still refresh when earned.
+In the matched Farm 21 browser workload, live roster rebuilds fell from six to
+zero and DOM mutations from 3,673 to 937. All nine integrated workflows, signed
+Android emulator acceptance, and anonymous APK verification passed.
+[Delivery evidence](qa/wisp-live-roster-001/android-0.2.159-verification.json).
+Physical-phone battery, heat, handling, TalkBack, and exact WebView60 acceptance
+remain open.
+
 [Workshop funding and milestone bosses](tasks/PROGRESSION_BALANCE_001.md)
 shipped as [Android 0.2.156](https://github.com/xariib/Lumenfall/releases/tag/android-1000156)
 from PR #69 at `52871909`. A developed Rift 10,001 forecast finished

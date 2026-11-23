@@ -9,7 +9,8 @@ energy, thermal, and handling measurements pending.
 Owner: this feature chat. Baseline: main `5c2406fb`, released Android 0.2.156
 product `52871909`. Branch `feature/wisp-live-roster-001`, worktree
 `C:/lf-wisp-live-roster`. The only open PR at startup was the separate Google
-Play candidate. Status: implemented and browser-verified, integration pending.
+Play candidate. Status: merged and released in Android 0.2.159. Physical
+measurements remain open.
 No new binding rules.
 
 The earlier Android 0.2.153 browser probe at Farm 21 saw six defeats and six
@@ -86,5 +87,23 @@ eligibility defect at the updated assignment. Both controls fail their
 original assertions on Windows Chrome 158, including the funded Resonate
 assertion. The product bytes and all acceptance checks are unchanged.
 
-Next: pass the final PR checks, verify the integrated source, and run the
-signed Android delivery workflow.
+## Delivery
+
+All eight PR workflows passed on `899aa08f`. The merge `c4686746` has the
+exact tested tree. All nine integrated workflows passed, including 190 main
+behavioral scenarios and one isolated offline scenario. The full local
+affordability suite passed 26,832 purchase checks across 12 profiles and
+15,348 upgrade-state checks, plus the existing defect and native-input
+controls.
+
+[Android 0.2.159](https://github.com/xariib/Lumenfall/releases/tag/android-1000159)
+was published by [the signed release workflow](https://github.com/xariib/Lumenfall/actions/runs/45146641287).
+Installed Wisp controls, the signed upgrade, both save slots, paid Study
+progress, updater install and tamper checks, and retail launch passed.
+Anonymous release and latest downloads had the same APK hash, and the bundled
+HTML matched the integrated commit byte for byte. [Delivery receipt](../qa/wisp-live-roster-001/android-0.2.159-verification.json).
+Self-review and automated review only.
+
+Physical-phone heat, energy, handling, exact WebView60, and TalkBack
+acceptance remain pending. Continue those measurements when a device is
+available. The owner chat stays open for that follow-up.
