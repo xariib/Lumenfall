@@ -45,9 +45,19 @@ core, economy, offline, mobile and legacy-engine suites cover the new prices,
 effects and save endpoints. Baseline Node 24.22.1 core and economy passed 5,755
 and 14,074 checks on `13558740`. Candidate source SHA-256
 `dace738a5bb7f58ceacae74d5bf63b50da959758f842418b33db88c96928938d` passed source
-validation, 7,337 core checks, 14,146 economy checks and 3,392 checks on actual
-Node 8.3/V8 6.0. A browser fixture originally expected every rank to store a
-whole unit. It now checks the saved value for each actual first purchase.
+validation, 7,337 core checks, 14,146 economy checks, 200 credit-ledger checks
+and 3,392 checks on actual Node 8.3/V8 6.0. The exact-main mobile baseline
+passed 24,248 checks over twelve browser profiles. The candidate fixture now
+checks the saved value for each actual first purchase.
 
-Status: candidate in progress. Next: finish the local offline/mobile pass and
-run GitHub CI before integration and APK acceptance.
+Replayed four eight-hour windows through 115,200 one-second advances. All
+four gameplay state hashes, kill counts, Ascension counts and Prism totals
+equal the baseline in the [offline reference](../../tests/behavioral/offline-swift-current-golden.json).
+Only the source binding changed. The old generator's inline reward expectations
+predate the current reference, so the observed phases were compared directly
+against the frozen main reference before changing its source hash.
+
+[PR #72](https://github.com/xariib/Lumenfall/pull/72) contains the candidate.
+A [signed Android candidate build](https://github.com/xariib/Lumenfall/actions/runs/45154272218)
+is running against the matching product source. Next: complete the offline and
+mobile checks, let the final PR CI pass, then integrate and verify the release.
