@@ -42,3 +42,19 @@ reference source hash changed.
 Next: finish focused checks and PR gates, then verify the exact integrated
 change and signed Android package. Physical-phone, TalkBack and exact
 WebView60 acceptance remain open. Self-review only.
+
+The wordmark check passed 8,077 assertions across 12 profiles. The unchanged
+released baseline failed the new wordmark comparison in Workshop. All three
+existing shared layout controls still caught their intended defects. The
+Wisp management and hint check passed 1,182 assertions on retry after a local
+Chrome teardown timeout. The locked progression hint and live recruitment
+checks passed (901 and 34 assertions, respectively).
+
+The visual audit now checks the remaining Lab catalogue heading. Its old
+clipping control targeted the removed banner. The new control clamps the
+catalogue heading in a test copy and fails the measured bounds check. The
+unmodified quick profile passed 112 assertions. The same workflow still
+checks the heading acceptance and negative control.
+
+[PR #71](https://github.com/xariib/Lumenfall/pull/71) is open. The product
+bytes match the [signed candidate run](https://github.com/xariib/Lumenfall/actions/runs/45151796924).

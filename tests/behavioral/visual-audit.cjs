@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const source=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'validation-evidence/visual-audit');
 let driver=fs.readFileSync(path.join(__dirname,'prism-acceptance.cjs'),'utf8');
 function one(a,b){assert.equal(driver.split(a).length,2);driver=driver.replace(a,()=>b);}
-if(process.argv.includes('--mutate-lab-heading'))one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replace('height:auto;padding:12px;margin-bottom:8px;','height:64px;padding:12px;margin-bottom:8px;');");
+if(process.argv.includes('--mutate-lab-heading'))one("source=fs.readFileSync(sourcePath,'utf8');",String.raw`source=(()=>{const html=fs.readFileSync(sourcePath,'utf8');const anchor='  .study-catalogue-heading h3{';assert.equal(html.split(anchor).length,2);return html.replace(anchor,'  #tab-research .study-catalogue-heading{max-height:8px;overflow:hidden;}\n'+anchor);})();`);
 if(process.argv.includes('--mutate-currency-labels'))one("source=fs.readFileSync(sourcePath,'utf8');","source=fs.readFileSync(sourcePath,'utf8').replace('.hud .chip .lbl{','.hud .chip .lbl{visibility:hidden;');");
 one('breakdown:ascendPrismBreakdown,keys:function(){return [SAVE_KEY,RECOVERY_SAVE_KEY];}',String.raw`
  visualSeed:function(){var s=freshState();s.maxDepthEver=350;s.depth=81;s.lumen=1e12;s.shards=1e10;s.motes=5000;s.prisms=10000;s.comets=20;s.ascendCount=80;s.tutorialDone=true;s.questDay=todayStr();s.lastSeen=Date.now();SPIRITS.forEach(function(sp){s.spirits[sp.id]=50;s.empowerQueue[sp.id]=false;});s.activeParty=SPIRITS.slice(0,3).map(function(sp){return sp.id;});return s;},
@@ -76,6 +76,7 @@ driver=driver.slice(0,start)+String.raw`
   }
   await ev('prismQa.visualSet(prismQa.visualSeed(),"research")');await pause(300);await tap('[data-study-slot]');
   const catalogue=await ev('('+function(){const head=document.querySelector('.study-catalogue-heading'),title=document.getElementById('study-choices'),group=document.querySelector('[data-study-group]'),h=head.getBoundingClientRect(),t=title.getBoundingClientRect(),g=group.getBoundingClientRect();return {head:h.toJSON(),title:t.toJSON(),group:g.toJSON(),width:head.clientWidth,scroll:head.scrollWidth};}.toString()+')()');
+  ok(catalogue.title.top>=catalogue.head.top-1&&catalogue.title.bottom<=catalogue.head.bottom+1,'unclipped content in research catalogue heading '+JSON.stringify(catalogue));
   ok(catalogue.group.top>=catalogue.head.bottom-1,'first research group below sticky heading '+JSON.stringify({width,scale,catalogue}));
   ok(catalogue.scroll<=catalogue.width+1&&catalogue.title.right<=catalogue.head.right+1,'catalogue heading fits');
   samples.push({screen:'catalogue',bad:[],catalogue});
