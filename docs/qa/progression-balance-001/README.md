@@ -4,6 +4,8 @@ This report compares Android 0.2.153 at main `42c9cdf5` with the balance
 candidate. The game engine ran the combat, purchases, Ascend and Lab
 completion. Developed saves for each scenario were seeded with the listed
 prerequisites. The reported farming and purchases started with no wallets.
+The tested game source shipped in
+[Android 0.2.156](https://github.com/xariib/Lumenfall/releases/tag/android-1000156).
 
 ## Boss pacing
 

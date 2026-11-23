@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+[Workshop funding and milestone bosses](tasks/PROGRESSION_BALANCE_001.md)
+shipped as [Android 0.2.156](https://github.com/xariib/Lumenfall/releases/tag/android-1000156)
+from PR #69 at `52871909`. A developed Rift 10,001 forecast finished
+all 48 Workshop tracks in 1,020 days. Rifts 1,500 and 2,500 held after a
+one-hour Farm replay and cleared after longer investment in the paired
+test. All nine integrated workflows, signed Android upgrade, paid save
+retention, updater, retail launch and anonymous APK verification passed.
+[Balance report](qa/progression-balance-001/README.md) ·
+[Release evidence](qa/progression-balance-001/android-0.2.156-verification.json).
+Physical-phone, TalkBack, and exact WebView60 acceptance remain open.
+
 [Workshop and Mastery simulation](tasks/WORKSHOP_MASTERY_SIMULATION_001.md) on
 Android 0.2.153. The funded Lab schedule takes 1,102 days at 8×. The deep seeded
 Rift 60,001 scenario finishes its remaining Workshop on day 974 after prior

@@ -1,6 +1,7 @@
 # PROGRESSION_BALANCE_001 — Workshop, Mastery and boss pacing
 
-Status: in progress on `feature/progression-balance-001`.
+Status: published and verified as Android 0.2.156. Physical-phone,
+TalkBack, and exact WebView60 acceptance remain open.
 Baseline: main `42c9cdf5b5590b3f8fa51c6a9e803ff03a3bdbd1`, Android
 0.2.153. Owner: the current Workshop simulation and balance chat.
 
@@ -104,6 +105,38 @@ The local Windows Lab timer-focus case and medium Farm DOM timeout reproduce
 on 0.2.153. The candidate's native 12-hour offline case passes with staged
 assets. The corresponding required Linux tests passed on `5efc57bf`.
 
-Next: finish the corrected PR workflows, then integrate this feature and
-pass the main-commit checks. Public release and final Android acceptance
-are pending.
+The [corrected candidate](https://github.com/xariib/Lumenfall/actions/runs/45087765993)
+passed all eight workflows. Its first full Linux attempt passed 189 cases
+and reached 2,851 checks in Wisp scroll before Chromium stopped responding to
+`Input.dispatchTouchEvent`. The same test passed its dedicated workflow.
+The same-commit retry passed all 190 stateful cases, isolated offline
+catch-up, and normal browser smoke with the original deadlines and assertions.
+
+PR #69 merged at `52871909d091b61163d2f4e04c96ce764df00e19`.
+The integrated tree `b9d9fd3c72bda9982a1560f0bbb70ae86efc6708` matches the
+tested candidate. The hosted PR first reported a merge conflict against an
+old base. Merging current main into the feature branch produced the exact
+same tree and refreshed the PR. No conflict changes were required.
+
+All nine required workflows passed on the merge commit. The
+[integrated full regression](https://github.com/xariib/Lumenfall/actions/runs/45100269999)
+first stopped in a browser driver that observed an off-screen Support Lab
+card. The unchanged driver passed all 758 checks locally on the integrated
+source and also passed on the exact candidate tree. The integrated retry
+passed all 190 browser scenarios, isolated offline catch-up, and runtime
+smoke.
+
+## Android delivery
+
+[Android 0.2.156](https://github.com/xariib/Lumenfall/releases/tag/android-1000156)
+published from [build 45108523172](https://github.com/xariib/Lumenfall/actions/runs/45108523172).
+The signed in-place update on Android 12 retained both save slots and paid
+progress. The in-app updater rejected a tampered APK and passed the
+system-approved installation, installer Open and retail launch.
+Anonymous latest and versioned downloads match the signed workflow
+artifact, established package and certificate, and the exact packaged
+game source. [Verification](../qa/progression-balance-001/android-0.2.156-verification.json)
+includes the nine integrated runs.
+
+Next acceptance is a physical-phone run with TalkBack and the exact
+WebView60 where available. The feature remains open for that acceptance.
