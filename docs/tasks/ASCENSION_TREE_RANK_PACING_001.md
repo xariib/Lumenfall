@@ -159,5 +159,16 @@ Windows browser deadline. The repository CI deadline is unchanged.
 The native menu-scroll fix landed on main at `6ce6b26c` and is included in the
 updated PR. The combined source `c2461d0892c6ce09cf996c8e26647fd6d74f2742aa354178a963cba683630315`
 passed source validation, reproduced all four offline endpoint hashes, and
-produced identical results for all seven simulation scenarios. Integration
-and the signed Android acceptance remain open pending exact-source CI and APK checks.
+produced identical results for all seven simulation scenarios. The exact
+[Tree CI](https://github.com/xariib/Lumenfall/actions/runs/45177810077) passed.
+The [broader CI](https://github.com/xariib/Lumenfall/actions/runs/45177810179)
+passed isolated offline catch-up and is retrying its Lab modal-focus failure.
+All 17 refund defect controls passed locally on the exact source.
+
+The [signed combined candidate](https://github.com/xariib/Lumenfall/actions/runs/45177871242)
+failed the installed Wisps scroll-restoration check after returning from the
+menu. It observed scroll position 1,167 against a bottom of 1,182. The
+[menu main release](https://github.com/xariib/Lumenfall/actions/runs/45177175541)
+is also retrying its installed menu checks. Keep PR #72 open for integrated
+CI and Android acceptance. Next: verify the exact source with the remaining
+menu fix or a successful reproduced Android retest, then finish delivery.
