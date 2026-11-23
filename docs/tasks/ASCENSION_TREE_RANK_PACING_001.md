@@ -140,7 +140,17 @@ The five-track candidate took 450 Ascensions on the matching +10 Rift route.
 
 Full-Tree source `0d4f9e667bffdfb53d50ad1713a43a66ff44e852790d9d88d3f0b8c41152a0df`
 passed 10,485 Tree core checks, 15,664 economy checks, 4,674 Prism state checks,
-1,305 offline Tree checks, 622 Echo refund checks, and the Node 8.3 shared
-recruitment and Echo controls. All four independent offline replay states
-matched main and the previous candidate. The source binding alone changed.
+1,305 offline Tree checks, 622 Echo refund checks, 25,004 focused mobile
+checks, 6,228 collection-price checks with four causal controls, 31 browser
+recruitment/refund groups, and 4,947 checks in the Node 8.3 Tree suite. The
+Node 8.3 Prism replay passed 1,664 cases after adding intermediate Swift ranks.
+All four independent offline replay states matched main and the previous
+candidate. The source binding alone changed.
+
+The first [focused workflow](https://github.com/xariib/Lumenfall/actions/runs/45175280950)
+found an older browser assertion that expected the raw Swift level in the
+Ascend explanation. The test now checks the displayed rank and verifies the
+new half-rank payouts against an independent integer oracle. The standalone
+endless-progression core test's Gale research-boundary assertion reproduced
+on the previous candidate and the full Tree source.
 Android release remains dependent on the shared native menu-scroll fix.
