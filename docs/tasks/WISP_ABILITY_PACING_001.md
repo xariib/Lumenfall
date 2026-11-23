@@ -1,6 +1,6 @@
 # WISP_ABILITY_PACING_001
 
-Status: candidate implemented and focused checks passed. Owner is this feature chat.
+Status: integrated and released in Android 0.2.171. Owner is this feature chat.
 
 ## Requirement and baseline
 
@@ -106,9 +106,33 @@ requirement. These are seeded boundary replays, with no calendar-time estimate.
 
 Local Node 24.22.1. Game source SHA-256
 `94ff950c50fb7280287f2093e6f76f4fff8713dcdba7739e0fa421b5ea6ac1ca`.
-Self-review and automated checks only. [PR #75](https://github.com/xariib/Lumenfall/pull/75)
-is awaiting the mandatory checks. The first Android candidate build runs on the
-same game bytes as the source binding follow-up.
-[Android candidate](https://github.com/xariib/Lumenfall/actions/runs/45211268132).
-Next action is exact-candidate CI, integration and signed Android acceptance
-under the feature workflow.
+Self-review and automated checks only. All eight workflows for
+[PR #75](https://github.com/xariib/Lumenfall/pull/75) passed. Main advanced to
+the exact tested merge commit `09b87e84f8b31d0f294dc4683d88982fb0ad4615` by
+fast-forward. All nine dispatch workflows on that commit passed, including
+188 stateful scenarios, isolated offline catch-up and runtime smoke. Three
+initial Chromium startup timeouts passed on unchanged retries.
+[Integrated validation](../qa/wisp-ability-pacing-001/integrated-validation.json).
+
+The signed Android 12 [private build](https://github.com/xariib/Lumenfall/actions/runs/45211268132)
+0.2.170 passed in-place upgrade, retention of both save slots and paid
+progress, in-app update, installer Open and retail launch. Its game bytes
+match the integrated candidate. SHA-256
+`3d5c0d866fc87664f2b36d76636f3e3791ba7de545b41b4f00d746eed5f91859`.
+The [publish run](https://github.com/xariib/Lumenfall/actions/runs/45229183408)
+targets the integrated commit. Its first attempt reached the emulator updater
+fixture and received HTTP 403 with zero GitHub API quota remaining while
+fetching the official release metadata. The failure occurred before validating
+the official in-app install. Failed native diagnostics artifact `14846717403`
+contains `official-release-fetch.json`. The unchanged retry passed signed
+in-place upgrade, both save slots and paid progress, in-app update including
+tamper rejection and installer Open, retail launch and publication.
+
+[Android 0.2.171](https://github.com/xariib/Lumenfall/releases/tag/android-1000171)
+is current in the public update feed. Anonymous latest and versioned downloads
+match APK SHA-256 `2803824abf0e31f326bf2d61c4f737c0a942d999eee112f3fbbe342904f94647`.
+The APK retains package `com.lumenfall.app` and the established signer. The
+packaged game matches the exact integrated source.
+[Public verification](../qa/wisp-ability-pacing-001/android-public.json).
+Required automated and emulator acceptance is complete. Actual player pacing,
+physical-phone operation, exact WebView60 and TalkBack were not measured.
