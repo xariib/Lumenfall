@@ -69,5 +69,14 @@ the Deed is earned. A browser control on the first candidate reproduced the
 earned Deed with both controls missing. The revised source passes the same
 combat test with the per-Wisp and Formation controls present.
 
+The revised source passed the [signed Android emulator run](https://github.com/xariib/Lumenfall/actions/runs/45126502925),
+including installed Wisp controls, both save slots, paid Study progress,
+the in-app updater and the retail launch. Seven PR workflows passed.
+[Pre-merge](https://github.com/xariib/Lumenfall/actions/runs/45125559941)
+stopped at the existing exact-source hash check for the offline reference.
+The independent one-second replay reproduced all four eight-hour state
+hashes and reward totals on Node 24.22.1. Only the reference's source hash
+changed. [Offline replay](../qa/wisp-live-roster-001/offline-replay.json).
+
 Next: pass the final PR checks, verify the integrated source, and run the
 signed Android delivery workflow.
