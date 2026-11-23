@@ -68,10 +68,13 @@ and retail launch. Candidate acceptance used emulator Android 12 and WebView 91.
 isolated offline catch-up and found a stale mutation anchor in both existing
 recruitment-refund runners. Updating the anchor preserves the intended defect.
 Both local browser controls caught it at `legacy raw count visible`.
+All 17 development defect controls and 31 normal recruitment/refund browser
+groups passed. The independent exact Prism funding oracle passed as well.
 
-The separate [menu PR #71](https://github.com/xariib/Lumenfall/pull/71) edits the
-same offline reference. A merge rehearsal against `365bb808` found only that
-reference conflict. Its combined source `84100670` passed the Tree core,
-economy, exact credit, Node 8.3 and four-window offline reference checks.
-Next: recheck main for overlap, complete the final PR gates, integrate and
-verify the signed release. Physical-phone and exact WebView60 remain open.
+After [menu PR #71](https://github.com/xariib/Lumenfall/pull/71) landed on main
+at `365bb808`, the branch merged that baseline. The only conflict was the
+offline reference's source hash. Combined source `84100670` matched the
+rehearsal byte for byte, passed Tree core, economy, exact credit, Node 8.3 and
+source validation, and reproduced all four offline reference states exactly.
+Next: complete the PR gates on this combined source, then integrate and verify
+the signed release. Physical-phone and exact WebView60 remain open.

@@ -25,7 +25,7 @@ const tests=[
  ['tests/behavioral/tree-expansion-core.cjs','index.html'],
  ['tests/behavioral/prism-earning-state.cjs','index.html'],
  ['tests/behavioral/loadout-memory.cjs','--source','index.html',...(process.env.LUMENFALL_QA_CDP_CHROME?['--chrome',process.env.LUMENFALL_QA_CDP_CHROME]:[])],
- ['tests/behavioral/formation-best-now-core.cjs','index.html'],
+ ['tests/behavioral/formation-bonds.cjs','index.html'],
  ['tests/behavioral/wisp-contribution-core.cjs','index.html'],
  ['tests/behavioral/permanent-progression.cjs','index.html'],
  ['tests/behavioral/support-recast-current.cjs','index.html','--negative'],

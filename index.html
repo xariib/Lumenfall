@@ -1477,33 +1477,6 @@
   #tab-battle .stage[data-zone-theme="5"] .enemy-glyph:not(.boss){clip-path:polygon(50% 0,64% 27%,94% 18%,79% 48%,100% 68%,67% 73%,50% 100%,34% 73%,0 68%,21% 48%,6% 18%,36% 27%);}
 
 
-  /* Wisp desire / collection journey */
-  .roster-journey{
-    --roster-progress:0%;
-    position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:9px;
-    min-height:49px;margin-bottom:10px;padding:8px 10px 10px;border-radius:13px;
-    border:1px solid color-mix(in srgb,var(--prism) 22%,var(--line));
-    background:
-      radial-gradient(circle at 92% 0%,color-mix(in srgb,var(--prism) 11%,transparent),transparent 38%),
-      linear-gradient(145deg,color-mix(in srgb,var(--bg-elev-2) 91%,transparent),color-mix(in srgb,var(--bg-elev) 94%,transparent));
-    box-shadow:var(--inner-highlight);
-  }
-  .roster-journey::after{
-    content:'';position:absolute;left:0;bottom:0;width:var(--roster-progress);height:2px;
-    background:linear-gradient(90deg,var(--prism),var(--mote));
-    box-shadow:0 0 10px color-mix(in srgb,var(--prism) 45%,transparent);transition:width .3s ease;
-  }
-  .roster-count{
-    display:grid;place-items:center;width:34px;height:34px;border-radius:10px;
-    font-size:.64rem;font-weight:850;color:var(--prism);
-    background:color-mix(in srgb,var(--prism) 8%,var(--bg-elev));
-    border:1px solid color-mix(in srgb,var(--prism) 25%,var(--line));
-  }
-  .roster-copy{display:flex;flex-direction:column;gap:2px;min-width:0;}
-  .roster-copy strong{font-size:.69rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .roster-copy small{font-size:.57rem;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .roster-label{font-size:.47rem;font-weight:900;letter-spacing:.12em;color:var(--ink-dim);writing-mode:vertical-rl;transform:rotate(180deg);}
-
   .hero-card.wisp-reward-recruit{animation:wispRecruit .68s ease-out;}
   .hero-card.wisp-reward-rarity{animation:wispRarity .68s ease-out;}
   .hero-card.wisp-reward-ultimate{animation:wispUltimate .72s ease-out;}
@@ -1719,7 +1692,6 @@
   nav.tabbar button{min-width:44px;height:var(--nav-height);min-height:var(--nav-height);padding:4px 2px;}
   nav.tabbar .lb{font-size:10px;}
   main.rift-scroll-locked{padding:6px 10px;}
-  .shell:has(#tab-battle.active) .hud .brand{text-transform:uppercase;font-family:'Cinzel',serif;}
   #tab-battle.active{animation-name:riftPanelIn;}
   @keyframes riftPanelIn{from{opacity:0;}to{opacity:1;}}
   #tab-battle .stage{--ink:#f0effb;--ink-dim:#b5b4cb;--bg-elev:#13192d;--bg-elev-2:#1c2339;--line:#30364d;--danger:#ff7b92;--lumen:#e7c67e;--prism:#bd9bef;--shard:#82d2ec;--mote:#ffb4d5;--good:#9ed9b1;padding:8px 10px;gap:4px!important;background:radial-gradient(ellipse at 50% 38%,var(--land-far) 0,#11182d 47%,#0b1121 100%)!important;}
@@ -1824,10 +1796,6 @@
   .formation-help .formation-help-collapse,.formation-help[open] .formation-help-expand{display:none;}
   .formation-help[open] .formation-help-collapse{display:inline;}
   .formation-help>.section-sub{margin-top:12px;}
-  .formation-best-now{margin:12px 0;}
-  .formation-best-now button{width:100%;min-height:44px;white-space:normal;}
-  .formation-best-now button[aria-disabled="true"]{opacity:.6;cursor:default;}
-  .formation-best-now p{margin:8px 0;font-size:.8125rem;line-height:1.5;overflow-wrap:break-word;}
   .formation-help>summary:focus-visible{outline:2px solid var(--lumen);outline-offset:2px;}
   @media(max-height:650px){
     #tab-battle .stage{padding-top:4px;padding-bottom:4px;}
@@ -2153,7 +2121,6 @@
   #tab-spirits button,#tab-formation button{min-width:45px;min-height:45px;}
   #tab-spirits .hero-card{padding:12px;border-radius:16px;}
   #tab-spirits .hero-card::after{content:none;}
-  #tab-spirits .chapter-head{padding:12px 14px;min-height:70px;}
   #tab-formation .formation-preset-card{padding:10px 12px;}
   #tab-formation .formation-lineup{padding:5px 8px;margin:6px 0;min-height:32px;}
   #tab-formation .formation-member{display:inline-flex;align-items:center;}
@@ -2462,7 +2429,6 @@
     .stage .rift-navigation .region-label{font-size:10px;line-height:12px;margin-top:0;}
   }
   @media(max-height:680px) and (max-width:340px){.rift-prefix{display:none;}}
-  #tab-research>.chapter-head{min-height:64px;height:auto;padding:12px;margin-bottom:8px;}#tab-research .chapter-copy{max-width:calc(100% - 56px);}#tab-research .chapter-kicker{display:none;}#tab-research .chapter-head h2{font-size:1.25rem;}#tab-research .chapter-art{width:80px;height:64px;}
   #study-list .study-slot{padding:8px 12px;margin-bottom:8px;}#study-list .study-slot>h3{margin:0;font-size:.75rem;}#study-list .study-slot>.lock-note{margin:5px 0;font-size:.7rem;}
   #study-list .study-running{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;}
   #study-list .study-running>.study-select,#study-list .study-running>.study-bar-track,#study-list .study-running>.earned-effect,#study-list .study-running>.effect-note{grid-column:1/-1;}
@@ -3069,7 +3035,7 @@
   </div>
 
 <div id="wisp-sections" role="tablist" aria-label="Wisps sections" hidden>
-  <button class="wisp-section-btn" id="nav-wisp-roster" data-wisp-tab="spirits" role="tab" aria-selected="true" aria-controls="tab-spirits" type="button">Roster</button>
+  <button class="wisp-section-btn" id="nav-wisp-roster" data-wisp-tab="spirits" role="tab" aria-selected="true" aria-controls="tab-spirits" type="button">Wisps</button>
   <button class="wisp-section-btn" id="nav-formation" data-wisp-tab="formation" role="tab" aria-selected="false" aria-controls="tab-formation" type="button" tabindex="-1">Formation &amp; Bonds</button>
 </div>
   <main>
@@ -3166,7 +3132,6 @@
     </section>
 
     <section class="tab-panel" id="tab-spirits">
-      <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">Recruitment &amp; upgrades</span><h2>Wisps</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-wisps"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
       <section class="card late-power-guide" id="late-power-guide" aria-labelledby="late-power-title" hidden>
         <h3 id="late-power-title">Next power</h3>
         <p id="late-power-action"></p><p class="section-sub" id="late-power-detail"></p>
@@ -3174,30 +3139,22 @@
         <button type="button" class="mini-btn" id="late-power-open">Find upgrade</button>
       </section>
       <div class="hero-grid" id="spirit-list"></div>
-      <div class="roster-journey" id="roster-journey"></div>
     </section>
 
     <section class="tab-panel" id="tab-formation">
       <div id="formation-presets"></div>
       <section class="card formation-help" aria-labelledby="formation-help-title"><h3 id="formation-help-title">Formation Bonds</h3>
         <div class="section-sub">Up to <span id="formation-capacity">5</span> Wisps can be Active at once. Pair specific powered Wisps to activate simple Formation Bonds for Push, Farm or Boss fights.</div>
-        <div class="formation-best-now">
-          <button type="button" class="mini-btn" id="formation-best-now-btn" aria-disabled="true" aria-describedby="formation-best-now-team formation-best-now-status">Field Best now</button>
-          <p id="formation-best-now-team"></p>
-          <p id="formation-best-now-status"></p>
-        </div>
         <div class="card bond-card" id="bond-card"></div>
       </section>
     </section>
 
     <section class="tab-panel" id="tab-forge">
-      <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">Permanent power</span><h2>Rift Forge</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-forge"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
       <div class="section-sub">Instant, permanent upgrades. Kept on Ascend.</div>
       <div id="research-list"></div>
     </section>
 
     <section class="tab-panel" id="tab-research">
-      <header class="chapter-head"><div class="chapter-copy"><span class="chapter-kicker">Time into power</span><h2>Research Lab</h2></div><svg class="chapter-art" viewBox="0 0 180 110" aria-hidden="true" focusable="false" style="color:var(--chapter)"><use href="#chapter-lab"/><g class="scene-sparks" fill="currentColor"><path d="m60 21 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/><circle cx="150" cy="24" r="1.5"/><circle cx="163" cy="74" r="1"/><circle cx="53" cy="67" r="1.5"/></g></svg></header>
       <div class="section-sub">Select a Lab to choose research.</div>
       <div id="study-list"></div>
     </section>
@@ -7054,22 +7011,6 @@ function formationRecommendationText(){
   }).filter(Boolean);
   return focus.label + ': ' + names.join(' + ');
 }
-function bestNowFormationPlan(){
-  var focus=currentFormationFocus(),required=[];
-  focus.bonds.forEach(function(id){
-    var bond=FORMATION_BONDS.find(function(b){return b.id===id;});
-    if(bond) bond.ids.forEach(function(id){if(required.indexOf(id)===-1) required.push(id);});
-  });
-  var capacity=treeFormationCapacity();
-  var missing=required.filter(function(id){return (state.spirits[id]||0)<=0;});
-  var members=required.slice();
-  chosenFormationMembers().forEach(function(id){
-    if(members.length<capacity && members.indexOf(id)===-1 && (state.spirits[id]||0)>0) members.push(id);
-  });
-  var already=required.every(function(id){return state.activeParty.indexOf(id)!==-1 && (state.spirits[id]||0)>0;});
-  return {focus:focus,required:required,members:members,missing:missing,capacity:capacity,
-    already:already,available:required.length>0 && required.length<=capacity && missing.length===0 && !already};
-}
 
 /*
  * P1-03 Wisp power / gameplay-language contract
@@ -8136,19 +8077,6 @@ function commitFormationMembers(members){
   state.activeParty = members.filter(function(id){return (state.spirits[id]||0)>0;});
   state.formationRebuild = normalizeFormationRebuild({members:members,preset:preset},state);
   reconcileFormationRebuild(state);
-}
-function fieldBestNowFormation(){
-  if(!flushLiveProgress())return false;
-  var plan=bestNowFormationPlan();
-  if(!plan.available) return false;
-  if(!forgeCommitPaidMutation(function(){
-    commitFormationMembers(plan.members);
-    validateCometTrialParty(state);
-  })) return false;
-  renderSpirits();
-  updateBattleFast();
-  showToast(plan.focus.label+' Best now formation fielded.');
-  return true;
 }
 function applyFormationPreset(name){
   if(!flushLiveProgress())return false;
@@ -9472,7 +9400,7 @@ function setupOverlayFocus(){
 function cacheEls(){
   ['hud-lumen','hud-shard','hud-mote','hud-prism','hud-comet','hud-sigil','depth-label','rift-back-one','rift-forward-one','rift-push-btn','rift-farm-btn','lab-capacity-badge','enemy-name','buff-indicator','enemy-stage','enemy-glyph',
    'hp-fill','hp-text','stat-tap','stat-idle','spirit-list','formation-presets','bond-card','bond-summary','rift-party','boss-combat','research-list','study-list',
-   'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','roster-journey','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
+   'prism-preview','ascend-btn','ascend-note','auto-ascend-controls','node-list','ach-list','shop-list','comet-commands','comet-journal','legacy-comet-trials','comet-claim-history','theme-list','manifesto','toast',
    'daily-streak-badge','daily-quest-list','settings-overlay','settings-home','settings-encyclopedia','settings-title','settings-back','encyclopedia-content'
   ].forEach(function(id){ els[id]=document.getElementById(id); });
 }
@@ -9550,7 +9478,7 @@ function latePowerAdvice(){
       var tab=missing.key==='lab'?'research':missing.key==='forge'?'forge':'ascend';
       var selector=missing.key==='lab'?'[data-study-card="wispascend"],[data-running-study="wispascend"]':missing.key==='forge'?'[data-research="masterwork"]':'[data-node="swift"]';
       result=advice('MASTERY PATH',missing.label+' '+missing.current+' / '+missing.target,missing.key==='lab'?'Finish this Lab gate; farm and Empower during the wait.':'Develop this permanent upgrade for the next Mastery rank.',tab,selector,missing.key);
-    }else result=advice('PUSH','Push toward Rift '+next.plan.requirements[0].target,'Keep Empower queues active. Use Field Best now for your Push formation; farm Masterwork while building run Power.','formation','#formation-best-now-btn',next.sp.id);
+    }else result=advice('PUSH','Push toward Rift '+next.plan.requirements[0].target,'Keep Empower queues active. Review your Push formation; farm Masterwork while building run Power.','formation','[data-formation-preset=push]',next.sp.id);
   }
   if(result.kind==='MASTERY PATH'&&result.id==='lab'){
     var active=findActiveStudy('wispascend');
@@ -9963,20 +9891,6 @@ function renderFormationPresets(){
 }
 function renderFormationBonds(){
   renderFormationPresets();
-  var bestNow=document.getElementById('formation-best-now-btn');
-  if(bestNow){
-    var plan=bestNowFormationPlan();
-    var names=function(ids){return ids.map(function(id){return SPIRITS.find(function(sp){return sp.id===id;}).name;}).join(' + ');};
-    bestNow.textContent='Field Best now · '+plan.focus.label;
-    bestNow.setAttribute('aria-disabled',String(!plan.available));
-    document.getElementById('formation-best-now-team').textContent='Team: '+names(plan.members);
-    var destination=FORMATION_PRESET_LABELS[state.activeFormationPreset];
-    var note=plan.missing.length ? 'Recruit first: '+names(plan.missing)+'.' :
-      plan.required.length>plan.capacity ? 'This formation needs '+plan.required.length+' slots.' :
-      plan.already ? 'Best now Bonds are already fielded.' :
-      'Fields this team'+(destination ? ' and saves it to '+destination+'.' : '.')+' No currencies spent.';
-    document.getElementById('formation-best-now-status').textContent=note;
-  }
   if(els['bond-card']){
     var focus = currentFormationFocus();
     var rows = FORMATION_BONDS.map(function(bond){
@@ -10001,28 +9915,6 @@ function wispPortrait(sp){
 }
 
 
-function renderRosterJourney(){
-  var el = els['roster-journey'];
-  if(!el) return;
-  var recruited = SPIRITS.filter(function(sp){ return (state.spirits[sp.id]||0)>0; }).length;
-  var ready = SPIRITS.find(function(sp){ return wispRecruitmentUnlocked(sp) && (state.spirits[sp.id]||0)<=0; });
-  var next = SPIRITS.find(function(sp){ return !wispRecruitmentUnlocked(sp); });
-  var pct = Math.round(recruited/SPIRITS.length*100);
-  var target = ready
-    ? (getSpiritBuyPlan(ready).affordable
-      ? '<strong>'+ready.name+' is ready to recruit</strong><small>'+ready.heroClass+' · '+ready.role+'</small>'
-      : '<strong>'+ready.name+' has awakened</strong><small>'+formatNum(spiritCost(ready))+' Lumen to recruit · '+ready.heroClass+'</small>')
-    : (next
-      ? '<strong>Next Wisp: '+next.name+'</strong><small>Requires '+wispRecruitmentRequirementText(next)+' · '+next.heroClass+'</small>'
-      : '<strong>Every Wisp awakened</strong><small>Build your strongest '+treeFormationCapacity()+'-Wisp formation</small>');
-  var progress=pct+'%';
-  if(el.style.getPropertyValue('--roster-progress')!==progress)el.style.setProperty('--roster-progress',progress);
-  var html =
-    '<span class="roster-count mono">'+recruited+'/'+SPIRITS.length+'</span>'+
-    '<span class="roster-copy">'+target+'</span>'+
-    '<span class="roster-label">ROSTER</span>';
-  if(el.innerHTML!==html)el.innerHTML=html;
-}
 function pulseWispCard(id,tone){
   var card = els['spirit-list'] && els['spirit-list'].querySelector('[data-wisp-card="'+id+'"]');
   if(!card) return;
@@ -10258,7 +10150,6 @@ function renderSpirits(keepScroll){
   var focusedProgression=document.activeElement && document.activeElement.dataset.wispDetails;
   var focusedFinalUpgrade=document.activeElement && (document.activeElement.dataset.module || document.activeElement.dataset.ultimate);
   renderFormationBonds();
-  renderRosterJourney();
   lockedRosterWisps=[];
   nextRosterUpgradeRift=Infinity;
   var chosenMembers = chosenFormationMembers();
@@ -14218,7 +14109,6 @@ function checkAffordability(visibleOnly,force){
   var actionView=captureWispActionView();
   // Live labels can wrap as wallets change; a wallet refresh is not navigation.
   if(actionView)actionView.anchorTop=null;
-  renderRosterJourney();
   refreshWispUpgradeButtons();
   els['spirit-list'].querySelectorAll('[data-sigil-resonate]').forEach(function(btn){
     var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
@@ -14656,7 +14546,6 @@ function init(){
   document.getElementById('rift-back-one').onclick=function(){stepRift(-1);};
   document.getElementById('rift-forward-one').onclick=function(){stepRift(1);};
   document.getElementById('late-power-open').addEventListener('click',function(){openPowerAdvice(latePowerAdvice());});
-  document.getElementById('formation-best-now-btn').addEventListener('click',fieldBestNowFormation);
   document.getElementById('ascend-btn').addEventListener('click', function(){ doAscend(false); });
 
   document.getElementById('settings-btn').addEventListener('click', openSettings);
