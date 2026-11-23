@@ -90,6 +90,20 @@ source and signed APK bytes are unaffected by the fixture correction.
 The stateful browser suite's independent Ultimate price assertions now use
 the rebalanced Ember and Titan prices and the total across all eight Wisps.
 
+On `5efc57bf`, seven supporting workflows and the isolated offline job
+passed. The [full Linux run](https://github.com/xariib/Lumenfall/actions/runs/45081268726)
+passed 189 of 190 stateful scenarios. The reduced-motion Formation driver
+dispatched a touch using coordinates captured before the roster restored its
+scroll. The trace showed the adjacent Manage control received the touch.
+The real touch now waits for navigation and scrolling to reach the browser's
+compositor. Both the candidate and untouched 0.2.153 pass the same
+reduced-motion assertions with this driver. No game behavior or test
+assertions changed in this fix.
+
+The local Windows Lab timer-focus case and medium Farm DOM timeout reproduce
+on 0.2.153. The candidate's native 12-hour offline case passes with staged
+assets. The corresponding required Linux tests passed on `5efc57bf`.
+
 Next: finish the corrected PR workflows, then integrate this feature and
 pass the main-commit checks. Public release and final Android acceptance
 are pending.

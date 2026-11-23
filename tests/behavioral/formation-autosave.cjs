@@ -42,7 +42,20 @@ async function advance(ms=350){await evaluate('window.__lumenfallQaBridge.uiMeas
 
 async function key(key){const spec=key==='Space'?{key:' ',code:'Space',windowsVirtualKeyCode:32}:{key,code:key,windowsVirtualKeyCode:{ArrowDown:40,ArrowUp:38,Home:36,End:35,Tab:9,Enter:13,Escape:27}[key]};await send('Input.dispatchKeyEvent',{type:'rawKeyDown',...spec});await send('Input.dispatchKeyEvent',{type:'keyUp',...spec});}
 async function tap(selector){
- const r=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;if(r.width<44||r.height<44)throw Error('touch target below 44px '+${JSON.stringify(selector)}+' '+r.width+'x'+r.height);if(!e.contains(document.elementFromPoint(x,y)))throw Error('touch target obstructed '+${JSON.stringify(selector)});return {x:x,y:y};})()`);
+ const target=JSON.stringify(selector);
+ // Let the previous navigation restore its scroll, then let this scroll reach
+ // the compositor before dispatching real input.
+ const r=await evaluate(`(async()=>{
+  const painted=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  await painted();
+  document.querySelector(${target}).scrollIntoView({block:'center',behavior:'instant'});
+  await painted();
+  const el=document.querySelector(${target});
+  const rect=el.getBoundingClientRect(),x=rect.x+rect.width/2,y=rect.y+rect.height/2;
+  if(rect.width<44||rect.height<44)throw Error('touch target below 44px '+${target}+' '+rect.width+'x'+rect.height);
+  if(!el.contains(document.elementFromPoint(x,y)))throw Error('touch target obstructed '+${target});
+  return {x,y};
+ })()`);
  await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[r]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
 }
 async function run(){
