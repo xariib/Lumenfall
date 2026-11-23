@@ -76,5 +76,23 @@ at `365bb808`, the branch merged that baseline. The only conflict was the
 offline reference's source hash. Combined source `84100670` matched the
 rehearsal byte for byte, passed Tree core, economy, exact credit, Node 8.3 and
 source validation, and reproduced all four offline reference states exactly.
-Next: complete the PR gates on this combined source, then integrate and verify
-the signed release. Physical-phone and exact WebView60 remain open.
+
+On PR head `1ce90dcd`, the [Tree workflow](https://github.com/xariib/Lumenfall/actions/runs/45162893587)
+and seven other applicable PR jobs/workflows passed, including isolated offline
+catch-up. The [long pre-merge job](https://github.com/xariib/Lumenfall/actions/runs/45162893347/job/137652708519)
+passed the refund-control stage and continued. The exact combined source passed
+the twelve-profile mobile check (24,380 assertions) and offline Tree suite
+(1,185 assertions).
+
+Android release acceptance is blocked by the menu baseline. The
+[baseline release](https://github.com/xariib/Lumenfall/actions/runs/45162719090)
+failed twice at installed Wisps scroll restoration. The
+[combined candidate](https://github.com/xariib/Lumenfall/actions/runs/45165047079)
+reproduced that failure. Its saved scroll offset was 1,167 when the returning
+screen's maximum became 1,182. The menu owner is tracing this independently
+on `fix/menu-cleanup-native-scroll`. The last published release remains
+Android 0.2.159. The Tree PR and owner chat remain open.
+
+Next: after the menu fix lands, recheck source overlap and replay bindings,
+verify exact PR and integrated CI, and complete the signed Android release.
+Physical-phone and exact WebView60 remain open.
