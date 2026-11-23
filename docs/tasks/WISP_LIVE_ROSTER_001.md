@@ -78,5 +78,13 @@ The independent one-second replay reproduced all four eight-hour state
 hashes and reward totals on Node 24.22.1. Only the reference's source hash
 changed. [Offline replay](../qa/wisp-live-roster-001/offline-replay.json).
 
+The next [pre-merge run](https://github.com/xariib/Lumenfall/actions/runs/45127684115)
+passed that check and the ordinary purchase matrix, then stopped because
+the Resonate defect control targeted the old assignment syntax.
+`tests/behavioral/upgrade-affordability.cjs` now injects the same stale
+eligibility defect at the updated assignment. Both controls fail their
+original assertions on Windows Chrome 158, including the funded Resonate
+assertion. The product bytes and all acceptance checks are unchanged.
+
 Next: pass the final PR checks, verify the integrated source, and run the
 signed Android delivery workflow.
