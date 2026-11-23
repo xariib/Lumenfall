@@ -390,7 +390,7 @@ async function verifyInstalledRiftLooks(page,report){
  async function tap(selector){
    await page.evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center'})`);await pause(350);
    const point=await page.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,disabled:e.disabled,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
-   assert(point.width>=44&&point.height>=44&&point.hit&&!point.disabled,'Installed appearance control receives touch: '+selector);
+   assert(point.width>=44&&point.height>=44&&point.hit&&!point.disabled,'Installed appearance control receives touch: '+selector+' '+JSON.stringify(point));
    const p=nativePoint(report.androidTouch.transform,point);adb('shell','input','tap',String(p.x),String(p.y));await pause(350);
  }
  await tap('nav.tabbar [data-tab="deeds"]');
@@ -445,13 +445,39 @@ async function verifyInstalledRiftLooks(page,report){
  report.installedRiftLooks={status:'PASS',scene,screenshot:'release-evidence/installed-rift-looks.png',syntheticFixture:true};
  console.log('Android installed Rift appearances acceptance: '+JSON.stringify(report.installedRiftLooks));
  const rememberedMenus=[];
+ async function settleMenu(){
+   await page.evaluate(`(async()=>{
+     const panel=document.querySelector('.tab-panel.active');
+     if(panel&&typeof panel.getAnimations==='function'){
+       const entrance=panel.getAnimations().filter(animation=>Number.isFinite(animation.effect.getTiming().iterations));
+       await Promise.all(entrance.map(animation=>animation.finished.catch(()=>{})));
+     }
+     await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+   })()`);
+ }
+ async function revealWorkshopTab(name){
+   const gesture=await page.evaluate(`(()=>{
+     const main=document.querySelector('main'),r=main.getBoundingClientRect();
+     return main.scrollTop>0 ? {from:{x:r.left+14,y:r.top+r.height*.3},to:{x:r.left+14,y:r.top+r.height*.75}} : null;
+   })()`);
+   // Leave a remembered bottom through real user input before positioning the
+   // offscreen tab for the existing native tap and hit-target assertion.
+   if(gesture){
+     const from=nativePoint(report.androidTouch.transform,gesture.from);
+     const to=nativePoint(report.androidTouch.transform,gesture.to);
+     adb('shell','input','swipe',String(from.x),String(from.y),String(to.x),String(to.y),'320');
+     await settleMenu();
+   }
+   await tap('#workshop-head [data-tab="'+name+'"]');
+ }
  async function visitMenu(name){
    if(name==='forge'||name==='research'){
      await tap('nav.tabbar [data-tab="workshop"]');
-     if(!await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`))await tap('#workshop-head [data-tab="'+name+'"]');
+     if(!await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`))await revealWorkshopTab(name);
    }
    else await tap('nav.tabbar [data-tab="'+name+'"]');
    assert(await page.evaluate(`document.getElementById('tab-'+${JSON.stringify(name)}).classList.contains('active')`),'Installed native navigation activates '+name);
+   await settleMenu();
  }
  for(const name of ['spirits','forge','research','ascend','deeds']){
    await visitMenu(name);

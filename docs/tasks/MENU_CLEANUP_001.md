@@ -107,3 +107,30 @@ source passes all 422 checks across 12 profiles, including the original
 independent offsets and cancellation on touch. The [new offline replay](../qa/menu-cleanup-001/scroll-offline-replay.json)
 again matches all four full save states. Verify the identical race on a signed
 candidate and run the exact CI and public build before closing.
+
+[PR #73](https://github.com/xariib/Lumenfall/pull/73) carries the scroll fix.
+The signed Android 0.2.165 candidate passed at 6ce6b26c. Wisps restored
+1182/1182 and all five menus reached their actual bottom. Both save slots,
+paid Lab work, the in-app updater and the retail launch passed. The APK's
+HTML matched the follow-up source byte for byte.
+[Candidate receipt](../qa/menu-cleanup-001/android-scroll-candidate.json).
+
+The 398-check browser compatibility run also passed with ResizeObserver
+disabled, using the existing animation-end restore. The diagnostic run's
+separate updater failure was an anonymous GitHub API rate limit, HTTP 403.
+Release remains gated on PR #73, exact-commit validation and the public build.
+
+PR #73 was integrated at 6ce6b26c after all eight PR and nine dispatch
+workflows passed, including both 188-scenario runs and the isolated
+offline case. [Exact CI receipt](../qa/menu-cleanup-001/scroll-integrated-checks.json).
+Both public build attempts passed the Wisps scroll assertion but stopped
+at the native Lab tab hit-target check. The first attempt observed the
+new exact Wisps bottom and retained the Forge bottom before failing.
+[Lab failure receipt](../qa/menu-cleanup-001/android-lab-touch-first-attempt.json).
+
+The native acceptance follow-up retains the hit-target and bottom
+assertions. It uses an actual Android swipe to end bottom-follow before
+revealing the offscreen Workshop subtab, and measures each menu after
+its finite entrance animation and two compositor frames. The shipped
+HTML is identical to the signed 0.2.165 candidate. Verify the updated
+acceptance on the signed candidate and complete all release gates.
