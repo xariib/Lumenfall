@@ -11492,7 +11492,14 @@ function restoreMenuScrollPosition(main,position){
 }
 function settleMenuScrollPosition(main,panel,position){
   if(!position) return;
+  function restore(){
+    if(panel.classList.contains('active'))restoreMenuScrollPosition(main,position);
+  }
+  // A returned bottom follows late card and viewport layout until the player
+  // interacts with the menu. Older WebViews still restore at animation end.
+  var resize=position.bottom && typeof ResizeObserver==='function' ? new ResizeObserver(restore) : null;
   function cancel(){
+    if(resize)resize.disconnect();
     panel.removeEventListener('animationend',finished);
     ['wheel','touchstart','pointerdown'].forEach(function(type){main.removeEventListener(type,cancel);});
     document.removeEventListener('keydown',cancel,true);
@@ -11500,8 +11507,13 @@ function settleMenuScrollPosition(main,panel,position){
   }
   function finished(event){
     if(event.target!==panel)return;
-    if(panel.classList.contains('active'))restoreMenuScrollPosition(main,position);
-    cancel();
+    restore();
+    if(resize)panel.removeEventListener('animationend',finished);
+    else cancel();
+  }
+  if(resize){
+    resize.observe(panel);
+    resize.observe(main);
   }
   pendingMenuScrollRestore=cancel;
   panel.addEventListener('animationend',finished);
