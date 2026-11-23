@@ -21,8 +21,8 @@ and text scale, working Formation/Workshop controls and navigation, and
 recruitment waiting/affordable states on Wisp cards. Run affected and integrated
 gates and the existing signed Android update path. No new binding rules.
 
-Status: baseline identified. Next: reproduce the marked UI and compare menus,
-then implement and test the targeted cleanup.
+Status: released as Android 0.2.169. Physical-phone, exact WebView60, and
+TalkBack follow-up remains open.
 
 ## Implementation checkpoint
 
@@ -134,3 +134,34 @@ revealing the offscreen Workshop subtab, and measures each menu after
 its finite entrance animation and two compositor frames. The shipped
 HTML is identical to the signed 0.2.165 candidate. Verify the updated
 acceptance on the signed candidate and complete all release gates.
+
+[PR #74](https://github.com/xariib/Lumenfall/pull/74) is the native-test
+follow-up. Android 0.2.168 passed all native checks at 52f49177, including
+real Workshop navigation, both saves, paid Lab work, the updater and
+retail launch. The APK HTML SHA-256 is identical to the previous corrected
+candidate. [Candidate receipt](../qa/menu-cleanup-001/android-native-navigation-candidate.json).
+
+The Windows Wisp PR job initially hit a Chrome DevTools startup timeout
+before executing any assertions. Its isolated retry and the exact-commit
+Wisp workflow passed. The release is waiting on the two full regressions.
+
+## Verified release
+
+[Android 0.2.169](https://github.com/xariib/Lumenfall/releases/tag/android-1000169)
+contains PRs #71, #73, and #74 at 52f491779035b8d8c5f195cf4adf2b8d0aa8f385.
+All eight PR checks and all nine exact-commit dispatch checks passed before
+main advanced. Both full runs passed 188 stateful cases plus the isolated
+offline case. [Final CI receipt](../qa/menu-cleanup-001/native-navigation-integrated-checks.json).
+
+The [signed publish workflow](https://github.com/xariib/Lumenfall/actions/runs/45192982852)
+verified all five installed menu bottoms, including Wisps at 1182/1182,
+the real Workshop swipe and Lab tap, both save slots, paid Lab work, the
+approved in-app updater, and retail Android launch. The package and signing
+identity were verified. Public versioned and latest downloads had
+identical APK bytes. The updater feed identified the new version and the
+APK's HTML matched the exact integrated source.
+[Public verification](../qa/menu-cleanup-001/android-public.json).
+
+The review was performed by the feature owner and automated checks.
+Physical-phone, exact WebView60, and TalkBack checks remain open. The
+owner chat remains open for that device follow-up.

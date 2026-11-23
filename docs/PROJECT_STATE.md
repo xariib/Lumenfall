@@ -1,5 +1,16 @@
 # Lumenfall — current delivery status
 
+[Wisps and Workshop menu cleanup](tasks/MENU_CLEANUP_001.md) shipped as
+[Android 0.2.169](https://github.com/xariib/Lumenfall/releases/tag/android-1000169)
+through PRs #71, #73, and #74 at `52f49177`. The five marked panels and
+strip are gone, the Wisps tab has its new label, and Rift uses the shared
+Lumenfall wordmark. Returning to a remembered menu bottom follows late
+layout changes until the player interacts. All eight PR and nine
+exact-commit workflows passed. The signed emulator upgrade preserved
+both saves and paid Lab work. In-app updater, retail launch, and anonymous
+APK verification passed. [Public receipt](qa/menu-cleanup-001/android-public.json).
+Physical-phone, exact WebView60, and TalkBack checks remain open.
+
 [Wisp roster refresh](tasks/WISP_LIVE_ROSTER_001.md) shipped as
 [Android 0.2.159](https://github.com/xariib/Lumenfall/releases/tag/android-1000159)
 from PR #70 at `c4686746`. Ordinary combat updates the existing cards while
