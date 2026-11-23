@@ -100,6 +100,23 @@ window.powerQa={
   result.ultimateGate=!ultimateBefore && state.maxDepthEver===ENDLESS_PROGRESSION.ultimate.depth &&
     !!select('[data-wisp-card=ember] [data-ultimate-current]');
 
+  prepare(349,'push');
+  state.maxDepthEver=349;
+  RESEARCH.filter(function(node){return !node.retiredTo && (node.unlockDepth||0)<=349;}).forEach(function(node){
+   state.research[node.id]=Math.min(25,node.levelCap||25,200-legacyResearchLevels(state));
+  });
+  LONG_STUDIES.filter(function(node){return !node.retiredTo;}).slice(0,10).forEach(function(node){
+   state.longStudyLevels[node.id]=10;
+  });
+  renderSpirits();
+  var beforeAutomation=!!select('[data-empower-queue=ember]');
+  defeat();
+  result.autoEmpowerUnlock=!beforeAutomation && state.maxDepthEver>=350 && state.achieved.labmaster &&
+    !!select('[data-empower-queue=ember]') && !!document.querySelector('[data-empower-all]');
+  if(!result.autoEmpowerUnlock)result.automation={before:beforeAutomation,depth:state.maxDepthEver,
+    requirements:automationDeedRequirements('labmaster',state),unlocked:!!state.achieved.labmaster,
+    card:!!select('[data-empower-queue=ember]'),formation:!!document.querySelector('[data-empower-all]')};
+
   prepare(21,'farm');
   state.achieved.labmaster=true;state.empowerQueue.ember=true;
   state._autoEmpowerAccum=950;
@@ -177,6 +194,7 @@ async function main(){
    ok(roster.pushIdentity,'a new depth without an unlock keeps the existing card');
    ok(roster.rarityGate,'Rarity depth gate updates full requirement details');
    ok(roster.ultimateGate,'Ultimate depth gate reveals the current and next effects');
+   ok(roster.autoEmpowerUnlock,'earning Auto-Empower exposes roster and Formation controls '+JSON.stringify(roster.automation));
    ok(roster.autoEmpower,'Auto-Empower still refreshes the displayed Wisp level');
    ok(roster.resonance,'boss reclaimed Resonate uses update in place '+JSON.stringify(roster.reclaim));
   }

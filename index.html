@@ -14108,7 +14108,8 @@ function tick(){
   }
   // Hidden panels refresh on navigation. Keep persistence and all simulation
   // events above/below independent of which panel the player is viewing.
-  if(sim.empowers>0 || sim.completedStudies.length>0 || sim.researchBought>0 || sim.ascends>0)liveSpiritsDirty=true;
+  if(sim.empowers>0 || sim.completedStudies.length>0 || sim.researchBought>0 || sim.ascends>0 ||
+      sim.achievements.indexOf('labmaster')!==-1)liveSpiritsDirty=true;
   // Combat updates the existing roster unless it opens a previously locked section.
   if(sim.kills>0 && (liveTabVisible('formation') || (liveTabVisible('spirits') &&
       (state.maxDepthEver>=nextRosterUpgradeRift || lockedRosterWisps.some(function(sp){return wispRecruitmentUnlocked(sp);}))))) {

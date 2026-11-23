@@ -45,14 +45,29 @@ depth gates, Auto-Empower, and a real boss reclaim.
 Node 24.22.1 and Brave/Chromium 158 on Windows, 390×844 at DPR 2, six defeats
 in each five-second Farm 21 roster sample. The released baseline called the
 roster renderer six times and disconnected all eight original cards. The
-candidate called it zero times and kept all eight. Shell DOM mutations
-fell from 3,673 to 941 and Chromium main-thread task time from 386 to 196 ms.
-The 58-check candidate run passed, including hidden lifecycles. These are
+candidate called it zero times and kept all eight. In the final sample shell
+DOM mutations fell from 3,673 to 937 and Chromium main-thread task time from
+386 to 174 ms. The 59-check candidate run passed, including hidden lifecycles. These are
 browser workload measurements. [Browser receipts](../qa/wisp-live-roster-001).
 The first deterministic Auto-Empower fixture lacked a due timer, and the
 boss fixture lacked the burst needed to overcome regen. Both now exercise
 the real gameplay paths. Local source contract and task context checks pass.
 The released source fails the new card/button identity assertion as expected.
 
-Next: open the PR, run the existing scroll, Android, and integration gates,
-then record delivery.
+## Review and CI
+
+[PR #70](https://github.com/xariib/Lumenfall/pull/70) initial candidate
+`0b2c6081` passed the signed [Android emulator run](https://github.com/xariib/Lumenfall/actions/runs/45124412620).
+The [initial scroll workflow](https://github.com/xariib/Lumenfall/actions/runs/45124390323)
+passed on Windows and hit a Linux CDP touch deadline after 1,420 checks. The
+unchanged retry passed on both runners. Two supplemental local Windows runs
+timed out without driver output.
+
+Automated review found that earning the Auto-Empower Deed at Rift 350 left
+the controls absent until a separate refresh. The roster now refreshes when
+the Deed is earned. A browser control on the first candidate reproduced the
+earned Deed with both controls missing. The revised source passes the same
+combat test with the per-Wisp and Formation controls present.
+
+Next: pass the final PR checks, verify the integrated source, and run the
+signed Android delivery workflow.
