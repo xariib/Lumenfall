@@ -1,10 +1,11 @@
 # WISP_ABILITY_PACING_001
 
-Status: baseline reproduced, gameplay direction pending. Owner is this feature chat.
+Status: candidate implemented and focused checks passed. Owner is this feature chat.
 
 ## Requirement and baseline
 
 User feedback on 23 November 2026: “Abilities is very easy to max out”.
+Follow-up: “Not newer levels but harder to obtain max lvl”.
 The goal is to make maxing Wisp abilities a meaningful progression milestone.
 The [earlier pacing request](WISP_GAMEPLAY_PACING_001.md) specifically asked that
 later Wisps take time to develop their abilities after recruitment.
@@ -54,18 +55,49 @@ Rift 120, 50 Ascends, Arcane Calibration 10 and Wisp Ascendancy 92 for Ember
 through 176 for Titan, with a separate Sigil cost. Mastery currently requires
 level 20 plus the Ultimate and its own prerequisites.
 
-## Decision and acceptance
+## Selected pacing
 
-The first gameplay choice is whether to pace the existing cap of 20 for future
-purchases or add progression for already-maxed abilities. If the cap stays at
-20, keep the level-15 route to Ultimate and tune the final five levels against
-measured progression. If new ranks are requested, decide their effects and cost
-curve and keep existing Ultimate, Mastery and paid rewards valid. Owned levels
-and all current paid progression stay intact in either design.
+Keep the cap at 20. Levels 16–17 require Epic rarity on that Wisp, levels
+18–19 require Legendary, and level 20 requires Mythic. Apply a premium of
+2×, 4×, 8×, 16×, and 32× respectively to both base prices before the existing
+rounding and Module Fabrication discount. Existing Rift/Lab gates still apply.
+Rarity connects each ability to progress on that Wisp. The currency premium
+also raises the investment for a Wisp that has already reached Mythic. Ability
+effects and levels 1–15 stay as before, including the path to Ultimate.
+Mastery retains its prerequisites. Existing ranks and bonuses load as paid,
+including Modules bought below the newly required rarity. No schema migration.
 
-After direction is set, measure time or Rift milestones from representative
-fresh and developed saves. Verify boundaries and exact payment through the real
-button and purchase handler, lock explanations and live affordability, maxed
-presentation, save and paid-progression preservation, achievements, and relevant
-full regression and Android acceptance. Product changes and acceptance remain
-open. Next action is to resolve the cap choice and calibrate the candidate.
+Replayed both game versions with exact prices and normal purchase handlers.
+For all eight funded Wisps with the other requirements met, buying all available
+abilities gave level 15 at Common through Rare, 17 at Epic, 19 at Legendary and
+20 at Mythic. The full undiscounted currency cost rises by about 17.4×. Ember
+goes from 385,336 Lumen and 38,534 Shards total to 6,706,471 Lumen and 670,647
+Shards. Ember's final unlock follows Mythic at Rift 100, 40 Ascends, Wisp
+Ascendancy 91 and Arcane Calibration 10. Titan's follows Mythic at Rift 150,
+40 Ascends, Wisp Ascendancy 105 and Arcane Calibration 10. Both also require
+the Mythic Wisp level and price. Adaptive Growth can discount the Wisp level
+requirement. These are seeded boundary replays, with no calendar-time estimate.
+
+## Verification and delivery
+
+- `index.html` contains the pricing and prerequisite changes and reuses the
+  same purchase markup for first render and live affordability. The glossary
+  explains the new gates and directs players to the actual Ultimate requirements.
+- `node tests/behavioral/wisp-gameplay-pacing.cjs index.html --negative` passed
+  907 checks and eight negative controls, including all five purchase thresholds
+  for every Wisp, both exact debits, cap enforcement, and old paid levels.
+- `node tests/behavioral/full-game-audit.cjs index.html --negative` passed
+  318 checks and three controls. `workshop-card-clarity.cjs` passed 440 checks
+  plus its Deeds, purchase-pacing, and native recap checks.
+- `node tests/behavioral/wisp-upgrades.cjs --chrome <chrome> --card-layout`
+  passed 26,112 checks across 12 Chromium profiles. It verified lock text,
+  accessible names, switching between locks/prices, live affordability,
+  completed presentation, and the final purchase's native keyboard focus.
+- A standalone `endless-progression-core.cjs` run stops on the historical Gale
+  recruitment test. The identical failure reproduces at `5439b1e6` before this
+  change. The active recruitment and Wisp checks above pass.
+
+Local Node 24.22.1. Game source SHA-256
+`94ff950c50fb7280287f2093e6f76f4fff8713dcdba7739e0fa421b5ea6ac1ca`.
+Self-review and automated checks only. Next action is exact-candidate CI,
+integration and signed Android acceptance under the feature workflow.

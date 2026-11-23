@@ -34,9 +34,15 @@ window.runWispCardLayoutQa=function(baseline){
     Array.from(card.querySelectorAll('button,summary')).forEach(function(e){var r=e.getBoundingClientRect();if(r.height)ok(r.width>=44&&r.height>=44,'44px control '+e.outerHTML.slice(0,160));});
     if(stage<2){
       ['module','rarity','ultimate'].forEach(function(action){var e=card.querySelector('[data-'+action+']');ok(e&&e.getBoundingClientRect().height>=44,'unfinished '+action+' visible');});
-      ok(card.querySelector('[data-module]').querySelectorAll('.cost-icon').length===2,'both Module prices retained');
-      if(!baseline){
-        var upgrade=card.querySelector('[data-module]'),label={dps:'Upgrade Ability',breaker:'Upgrade Ability',ranged:'Upgrade Shards',druid:'Upgrade Lumen',support:'Upgrade Motes'}[b.spirit(id).abilityType];
+      var upgrade=card.querySelector('[data-module]');
+      if(!baseline&&stage===1){
+        ok(upgrade.disabled&&upgrade.dataset.state==='locked'&&upgrade.querySelectorAll('.cost-icon').length===0,'funded level 20 stays locked without prices '+id);
+        ok(upgrade.textContent.includes('Requires Mythic rarity')&&upgrade.getAttribute('aria-label').includes('Requires Mythic rarity'),'visible and accessible Mythic requirement '+id);
+      }else{
+        ok(upgrade.querySelectorAll('.cost-icon').length===2,'both eligible Module prices retained');
+      }
+      if(!baseline&&stage===0){
+        var label={dps:'Upgrade Ability',breaker:'Upgrade Ability',ranged:'Upgrade Shards',druid:'Upgrade Lumen',support:'Upgrade Motes'}[b.spirit(id).abilityType];
         ok(upgrade.textContent.includes(label)&&!upgrade.textContent.includes('Upgrade Module')&&!upgrade.textContent.includes('Upgrade Rewards'),'purchase label names the exact improvement '+id);
         ok(upgrade.getAttribute('aria-label').includes(label)&&upgrade.getAttribute('aria-label').includes(b.spirit(id).name),'accessible purchase name identifies effect and Wisp '+id);
       }
@@ -101,6 +107,22 @@ window.runWispCardLayoutQa=function(baseline){
     ok(document.querySelector('[data-rarity=ember]').disabled,'high ability level cannot bypass low Wisp-level rarity gate');
     gateState.spirits.ember=100;gateState.wispModules.ember=0;b.set(gateState);b.render();
     ok(!document.querySelector('[data-rarity=ember]').disabled,'zero ability upgrades do not block funded Wisp-level rarity purchase');
+
+    var finalStage=seed('ember',1);
+    [[15,2,'Epic'],[17,3,'Legendary'],[19,4,'Mythic']].forEach(function(gate){
+      finalStage.wispModules.ember=gate[0];finalStage.heroRarity.ember=gate[1];
+      b.set(finalStage);b.render();
+      var button=document.querySelector('[data-module=ember]');
+      ok(button.disabled&&button.textContent.trim()==='Requires '+gate[2]+' rarity','next rank explains '+gate[2]+' gate');
+      finalStage.heroRarity.ember+=1;b.set(finalStage);b.refresh();
+      ok(button===document.querySelector('[data-module=ember]')&&!button.disabled,'earning '+gate[2]+' opens the existing purchase control');
+      var cost=b.moduleCost('ember',gate[0]);
+      b.wallet(cost.lumen-1,cost.shard);b.refresh();
+      var lumen=button.querySelector('[data-price-currency=lumen]'),shard=button.querySelector('[data-price-currency=shard]');
+      ok(button.disabled&&Number(lumen.dataset.priceAmount)===cost.lumen&&Number(shard.dataset.priceAmount)===cost.shard&&getComputedStyle(lumen).color!==getComputedStyle(shard).color,'visible current prices flag Lumen shortfall '+gate[2]);
+      b.wallet(cost.lumen,cost.shard);b.refresh();
+      ok(!button.disabled&&getComputedStyle(button.querySelector('[data-price-currency=lumen]')).color===getComputedStyle(button.querySelector('[data-price-currency=shard]')).color,'funding both exact prices enables purchase '+gate[2]);
+    });
   }
   // Leave a representative starting card for the driver's geometry and screenshots.
   var representative=seed('ember',0);representative.achieved.labmaster=true;
