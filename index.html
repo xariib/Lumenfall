@@ -6918,7 +6918,8 @@ function refreshWispUpgradeButtons(){
   Object.keys(plans).forEach(function(key){
     els['spirit-list'].querySelectorAll('[data-'+key+']').forEach(function(btn){
       var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-'+key);});if(!sp)return;
-      var plan=plans[key](sp);btn.disabled=!plan.affordable;
+      var plan=plans[key](sp),disabled=!plan.affordable;
+      if(btn.disabled!==disabled)btn.disabled=disabled;
       if(plan.reason==='maxed'||plan.reason==='owned')return;
       var html=wispUpgradeButtonMarkup(sp,key,plan);
       if(btn.innerHTML!==html)btn.innerHTML=html;
@@ -6985,6 +6986,9 @@ function canSigilResonate(sp){
   if((state.heroResource[sp.id]||0)>=100) return false;
   if((state.sigilResonanceUses||0)>=sigilResonanceLimit()) return false;
   return forgeExactDebit(state.sigils,sigilResonanceCost());
+}
+function wispResonanceHelpText(){
+  return 'Requires all Wisp Ultimates. '+(sigilResonanceLimit()-(state.sigilResonanceUses||0))+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText();
 }
 function useSigilResonance(sp){
   if(!flushLiveProgress())return false;
@@ -10005,11 +10009,13 @@ function renderRosterJourney(){
     : (next
       ? '<strong>Next Wisp: '+next.name+'</strong><small>Requires '+wispRecruitmentRequirementText(next)+' · '+next.heroClass+'</small>'
       : '<strong>Every Wisp awakened</strong><small>Build your strongest '+treeFormationCapacity()+'-Wisp formation</small>');
-  el.style.setProperty('--roster-progress',pct+'%');
-  el.innerHTML =
+  var progress=pct+'%';
+  if(el.style.getPropertyValue('--roster-progress')!==progress)el.style.setProperty('--roster-progress',progress);
+  var html =
     '<span class="roster-count mono">'+recruited+'/'+SPIRITS.length+'</span>'+
     '<span class="roster-copy">'+target+'</span>'+
     '<span class="roster-label">ROSTER</span>';
+  if(el.innerHTML!==html)el.innerHTML=html;
 }
 function pulseWispCard(id,tone){
   var card = els['spirit-list'] && els['spirit-list'].querySelector('[data-wisp-card="'+id+'"]');
@@ -10059,14 +10065,14 @@ function renderWispRoles(){
   SPIRITS.forEach(function(sp){
     var el=els['spirit-list'].querySelector('[data-wisp-role="'+sp.id+'"]');if(!el) return;
     if(state.activeParty.indexOf(sp.id)===-1 || (state.spirits[sp.id]||0)<=0){
-      el.textContent='';
+      setLiveText(el,'');
     }else{
       var text='',rewards=abilityRewardPerCast(sp,state.spirits[sp.id]);
       // Live support and Bonds already belong to Rift; upgrade effects remain below.
       if(rewards.lumen>0) text+=roleValueLine('Lumen per cast',formatNum(rewards.lumen));
       if(rewards.shards>0) text+=roleValueLine('Shards per cast',formatNum(rewards.shards));
       if(rewards.lumen>0 || rewards.shards>0) text+='<p class="wisp-role-note">Before any overkill reward.</p>';
-      el.innerHTML=text;
+      if(el.innerHTML!==text)el.innerHTML=text;
     }
   });
   restoreWispActionView(roleView);
@@ -10161,6 +10167,7 @@ function highlightWispActions(){
   presentControlStates(els['spirit-list']);
 }
 var liveSpiritsDirty=false,lastLiveSpiritsAt=-Infinity,wispDisclosureInputPending=false,wispDisclosureInputTimer=null;
+var lockedRosterWisps=[],nextRosterUpgradeRift=Infinity;
 var managedWispId='',wispRosterScroll=null;
 function openWispManagement(id){
   var sp=SPIRITS.find(function(item){return item.id===id;});
@@ -10246,6 +10253,8 @@ function renderSpirits(keepScroll){
   var focusedFinalUpgrade=document.activeElement && (document.activeElement.dataset.module || document.activeElement.dataset.ultimate);
   renderFormationBonds();
   renderRosterJourney();
+  lockedRosterWisps=[];
+  nextRosterUpgradeRift=Infinity;
   var chosenMembers = chosenFormationMembers();
   var html = '';
   // Sort a presentation-only copy; simulation and saved party order are unchanged.
@@ -10259,6 +10268,7 @@ function renderSpirits(keepScroll){
     var level = state.spirits[sp.id];
     var unlocked = wispRecruitmentUnlocked(sp);
     if(!unlocked){
+      lockedRosterWisps.push(sp);
       html+='<div class="card hero-card locked" data-state="locked" aria-disabled="true" data-wisp-card="'+sp.id+'"><div class="hero-top">'+wispPortrait(sp)+'<div class="hero-id"><div class="name">'+sp.name+'</div><div class="class-tag lock-note" id="wisp-recruit-requirement-'+sp.id+'">'+('Requires '+wispRecruitmentRequirementText(sp))+'</div></div></div></div>';
       return;
     }
@@ -10272,6 +10282,7 @@ function renderSpirits(keepScroll){
     var rc = rarityCost(sp, tier);
     var rarityPlan=getWispRarityPlan(sp),canRarity=rarityPlan.affordable;
     var rarityRift=rarityPlan.requirements.find(function(r){return r.key==='depth'&&!r.met;});
+    if(rarityRift)nextRosterUpgradeRift=Math.min(nextRosterUpgradeRift,rarityRift.target);
     var rarityLabel=tier>=5?'Rarity maxed':rarityRift?'Unlocks at Rift '+rarityRift.target:'<span class="wisp-purchase-title">Rarity Up</span>'+purchasePriceMarkup('lumen',rc.lumen,'wisp-upgrade-price')+purchasePriceMarkup('shard',rc.shard,'wisp-upgrade-price');
     var modInfo = MODULE_INFO[sp.abilityType];
     var modLvl = moduleLevel(sp.id);
@@ -10291,14 +10302,14 @@ function renderSpirits(keepScroll){
     var ultCost = ultimateSigilCost(sp);
     var ultimatePlan=getWispUltimatePlan(sp);
     var ultimateRift=ultimatePlan.requirements.find(function(r){return r.key==='depth'&&!r.met;});
+    if(ultimateRift&&!ultimateUnlocked(sp.id))nextRosterUpgradeRift=Math.min(nextRosterUpgradeRift,ultimateRift.target);
     var resonanceOwned = allUltimatesOwned();
-    var resonanceUses = state.sigilResonanceUses||0;
     var resonanceDisabled = !canSigilResonate(sp);
     var resonanceHelpId = ('sigil-resonance-help-' + sp.id);
     var resonanceHtml = ultimateUnlocked(sp.id) ?
       (resonanceOwned ? '<button class="mini-btn sigil-resonance-btn" data-sigil-resonate="'+sp.id+'" aria-describedby="'+resonanceHelpId+'" '+(resonanceDisabled?'disabled':'')+'>Resonate — Fill ability to 100'+
         purchasePriceMarkup('sigil',sigilResonanceCost(),'',false,true)+'</button>' : '')+
-      '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">Requires all Wisp Ultimates. '+(sigilResonanceLimit()-resonanceUses)+' of '+sigilResonanceLimit()+' uses left this run, shared across all Wisps. Resets on Ascend.'+forgeResonanceBonusText()+'</p>' : '';
+      '<p class="sigil-resonance-help" id="'+resonanceHelpId+'">'+wispResonanceHelpText()+'</p>' : '';
     var ultimateHtml = '<div class="ultimate-row">'+(ultimateUnlocked(sp.id)
       ? '<div class="ultimate-badge">Ultimate Unlocked — '+ultimateEffectText(sp)+'</div>'+resonanceHtml
       : '<h3 class="wisp-ultimate-title">Ultimate</h3>'+(ultimateRift?'':wispUltimateEffectsMarkup(sp))+'<p class="ultimate-requirements" id="wisp-ultimate-requirement-'+sp.id+'">'+(ultimateRift?'Unlocks at Rift '+ultimateRift.target:'Requires Mythic rarity (highest rarity). Use Rarity Up. '+wispRequirementText(ultimatePlan.requirements.filter(function(r){return r.key!=='rarity';})))+'</p>'+
@@ -14097,7 +14108,12 @@ function tick(){
   }
   // Hidden panels refresh on navigation. Keep persistence and all simulation
   // events above/below independent of which panel the player is viewing.
-  if(sim.empowers>0 || sim.completedStudies.length>0 || sim.kills>0 || sim.ascends>0)liveSpiritsDirty=true;
+  if(sim.empowers>0 || sim.completedStudies.length>0 || sim.researchBought>0 || sim.ascends>0)liveSpiritsDirty=true;
+  // Combat updates the existing roster unless it opens a previously locked section.
+  if(sim.kills>0 && (liveTabVisible('formation') || (liveTabVisible('spirits') &&
+      (state.maxDepthEver>=nextRosterUpgradeRift || lockedRosterWisps.some(function(sp){return wispRecruitmentUnlocked(sp);}))))) {
+    liveSpiritsDirty=true;
+  }
   if(liveSpiritsDirty && Date.now()-lastLiveSpiritsAt>=500){
     if(liveTabVisible('spirits'))renderSpirits();
     else if(liveTabVisible('formation')){
@@ -14195,11 +14211,18 @@ function checkAffordability(visibleOnly,force){
   var actionView=captureWispActionView();
   // Live labels can wrap as wallets change; a wallet refresh is not navigation.
   if(actionView)actionView.anchorTop=null;
+  renderRosterJourney();
   refreshWispUpgradeButtons();
   els['spirit-list'].querySelectorAll('[data-sigil-resonate]').forEach(function(btn){
     var sp=SPIRITS.find(function(s){return s.id===btn.getAttribute('data-sigil-resonate');});
-    btn.disabled=!canSigilResonate(sp);
+    var disabled=!canSigilResonate(sp);
+    if(btn.disabled!==disabled)btn.disabled=disabled;
   });
+  var resonanceHelp=els['spirit-list'].querySelectorAll('.sigil-resonance-help');
+  if(resonanceHelp.length){
+    var helpText=wispResonanceHelpText();
+    resonanceHelp.forEach(function(el){setLiveText(el,helpText);});
+  }
   highlightWispActions();
   restoreWispActionView(actionView);
   }

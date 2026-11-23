@@ -20,6 +20,7 @@ window.powerQa={
   state.depth=21;state.farmDepth=21;state.maxDepthEver=250;state.riftMode='farm';state.farmReturnDepth=251;state.farmAutoResume=false;
   state.activeParty=['ember','void','tide'];state.lumen=0;
   SPIRITS.forEach(function(sp){state.spirits[sp.id]=25;state.empowerQueue[sp.id]=false;});
+  synchronizeRecruitmentEntitlements(state);
   state.activeStudies=[{id:'guardmastery',slot:0,remainingSec:1000,totalDurationSec:1000,speedMult:1}];
   state.lastSeen=Date.now();spawnEnemy(false);renderAll();activateTab(tab);resetLiveClock();
  },
@@ -30,8 +31,96 @@ window.powerQa={
   });
   window.powerMutations=0;new MutationObserver(function(records){window.powerMutations+=records.length;}).observe(document.querySelector('.shell'),{childList:true,subtree:true,attributes:true,characterData:true});
  },
- reset:function(){window.powerCalls={};window.powerMutations=0;window.powerStarDraws=0;window.powerTimerWakes=0;},
- sample:function(){return {calls:window.powerCalls,mutations:window.powerMutations,starDraws:window.powerStarDraws,timerWakes:window.powerTimerWakes,overlay:overlayFocus&&overlayFocus.el.id,depth:state.depth,kills:state.totalKills,remaining:state.activeStudies[0].remainingSec,errors:window.powerErrors};},
+ reset:function(){
+  window.powerCalls={};window.powerMutations=0;window.powerStarDraws=0;window.powerTimerWakes=0;
+  this.cards=Array.from(els['spirit-list'].querySelectorAll('[data-wisp-card]'));
+ },
+ sample:function(){
+  var replacedCards=this.cards.filter(function(card){return !card.isConnected;}).length;
+  return {calls:window.powerCalls,mutations:window.powerMutations,replacedCards:replacedCards,starDraws:window.powerStarDraws,timerWakes:window.powerTimerWakes,overlay:overlayFocus&&overlayFocus.el.id,depth:state.depth,kills:state.totalKills,remaining:state.activeStudies[0].remainingSec,errors:window.powerErrors};
+ },
+ rosterTransitions:function(){
+  var qa=this,ember=SPIRITS.find(function(sp){return sp.id==='ember';});
+  var tide=SPIRITS.find(function(sp){return sp.id==='tide';});
+  var result={};
+  function prepare(depth,mode){
+   qa.seed('spirits');
+   state.depth=depth;state.farmDepth=depth;state.riftMode=mode;
+   state.activeParty=['ember'];
+   spawnEnemy(false);
+  }
+  function defeat(){
+   state.enemyHp=1;
+   lastLiveSpiritsAt=0;lastAffordabilityAt=0;
+   resetLiveClock();liveClockMemo.monoMs-=100;
+   tick();
+  }
+  function select(selector){return els['spirit-list'].querySelector(selector);}
+  prepare(21,'farm');
+  state.spirits.tide=0;state.lumen=spiritCost(tide)-1;
+  renderSpirits();
+  var card=select('[data-wisp-card=tide]'),button=select('[data-empower=tide]');
+  var waiting=els['roster-journey'].textContent.indexOf('has awakened')!==-1;
+  var missing=button.disabled && button.querySelector('[data-price-currency=lumen]').style.color==='var(--danger)';
+  defeat();
+  result.wallet=missing && state.totalKills===1 && !button.disabled &&
+    button.querySelector('[data-price-currency=lumen]').style.color==='var(--ink)';
+  result.identity=card===select('[data-wisp-card=tide]') && button===select('[data-empower=tide]');
+  result.journey=waiting && els['roster-journey'].textContent.indexOf('is ready to recruit')!==-1;
+
+  prepare(21,'farm');
+  state.spirits.tide=0;delete state.recruitmentEntitlements.tide;
+  state.totalKills=ENDLESS_PROGRESSION.recruit.tide.kills-1;
+  renderSpirits();
+  var lockedTide=select('[data-wisp-card=tide]').classList.contains('locked');
+  defeat();
+  result.recruit=lockedTide && wispRecruitmentUnlocked(tide) &&
+    !select('[data-wisp-card=tide]').classList.contains('locked') && !!select('[data-empower=tide]');
+
+  prepare(251,'push');
+  state.maxDepthEver=251;
+  renderSpirits();
+  card=select('[data-wisp-card=ember]');
+  defeat();
+  result.pushIdentity=state.maxDepthEver===252 && card===select('[data-wisp-card=ember]');
+
+  prepare(4,'push');
+  state.maxDepthEver=4;
+  renderSpirits();
+  var rarityBefore=select('#wisp-rarity-requirement-ember').textContent;
+  defeat();
+  result.rarityGate=state.maxDepthEver===5 && rarityBefore==='Requires Rift 5' &&
+    select('#wisp-rarity-requirement-ember').textContent.indexOf('Wisp Lv.')!==-1;
+
+  prepare(ENDLESS_PROGRESSION.ultimate.depth-1,'push');
+  state.maxDepthEver=state.depth;
+  renderSpirits();
+  var ultimateBefore=!!select('[data-ultimate-current]');
+  defeat();
+  result.ultimateGate=!ultimateBefore && state.maxDepthEver===ENDLESS_PROGRESSION.ultimate.depth &&
+    !!select('[data-wisp-card=ember] [data-ultimate-current]');
+
+  prepare(21,'farm');
+  state.achieved.labmaster=true;state.empowerQueue.ember=true;
+  state._autoEmpowerAccum=950;
+  state.lumen=spiritCost(ember)-1;
+  renderSpirits();
+  defeat();
+  result.autoEmpower=state.spirits.ember>25 &&
+    select('[data-wisp-card=ember] .wisp-level').textContent==='Lv. '+state.spirits.ember;
+
+  prepare(20,'push');
+  state.research.resonancereclaim=1;
+  state.wispUltimate.ember=true;state.sigilResonanceUses=1;
+  state.heroResource.ember=100;
+  renderSpirits();
+  var help=select('#sigil-resonance-help-ember'),helpBefore=help.textContent;
+  defeat();
+  result.resonance=state.sigilResonanceUses===0 && help===select('#sigil-resonance-help-ember') &&
+    help.textContent!==helpBefore && help.textContent.indexOf(sigilResonanceLimit()+' of '+sigilResonanceLimit()+' uses left')!==-1;
+  if(!result.resonance)result.reclaim={kills:state.totalKills,depth:state.depth,uses:state.sigilResonanceUses,helpBefore:helpBefore,helpAfter:select('#sigil-resonance-help-ember').textContent};
+  return result;
+ },
  hidden:function(value){Object.defineProperty(document,'hidden',{configurable:true,value:value});document.dispatchEvent(new Event('visibilitychange'));}
 };`;
 const prelude=String.raw`<script>
@@ -70,10 +159,26 @@ async function main(){
   for(const tabName of (process.argv.includes('--quick')?[]:['battle','spirits','research','deeds'])){
    await ev('powerQa.seed('+JSON.stringify(tabName)+')');await pause(500);await ev('powerQa.reset()');const before=await metrics();
    await pause(5000);const after=await metrics(),sample=await ev('powerQa.sample()');
+   records.push({tab:tabName,...sample,taskMs:(after.TaskDuration-before.TaskDuration)*1000,scriptMs:(after.ScriptDuration-before.ScriptDuration)*1000,layoutCount:after.LayoutCount-before.LayoutCount,layoutMs:(after.LayoutDuration-before.LayoutDuration)*1000,measuredMs:(after.Timestamp-before.Timestamp)*1000});
    ok(sample.errors.length===0,'no runtime errors '+tabName);ok(sample.remaining<995,'real timed study advances '+tabName);ok(!sample.overlay,'benchmark is unobstructed gameplay '+tabName);
    if(tabName==='battle')ok(sample.calls.updateBattleFast>=40,'visible combat is rendered throughout measurement');
    if(!baseline){ok(sample.starDraws===0,'ambient stars do not repaint continuously');if(tabName!=='battle')ok(!sample.calls.updateBattleFast,'hidden Rift receives no recurring full renders '+tabName);if(tabName!=='spirits')ok(!sample.calls.renderSpirits,'hidden roster receives no recurring rebuilds '+tabName);}
-   records.push({tab:tabName,...sample,taskMs:(after.TaskDuration-before.TaskDuration)*1000,scriptMs:(after.ScriptDuration-before.ScriptDuration)*1000,layoutCount:after.LayoutCount-before.LayoutCount,layoutMs:(after.LayoutDuration-before.LayoutDuration)*1000,measuredMs:(after.Timestamp-before.Timestamp)*1000});
+   if(!baseline && tabName==='spirits'){
+    ok(sample.kills>=2,'steady Farm combat was active in the roster benchmark');
+    ok(!sample.calls.renderSpirits && sample.replacedCards===0,'ordinary kills keep all roster cards in place');
+   }
+  }
+  if(!baseline && !mutant && !autosaveMutant){
+   const roster=await ev('powerQa.rosterTransitions()');
+   ok(roster.identity,'kill income keeps the same Wisp card and purchase button '+JSON.stringify(roster));
+   ok(roster.wallet,'kill income updates the existing button and missing-resource color');
+   ok(roster.journey,'recruit summary reflects affordability without rebuilding cards');
+   ok(roster.recruit,'recruit defeat threshold opens the locked Wisp card');
+   ok(roster.pushIdentity,'a new depth without an unlock keeps the existing card');
+   ok(roster.rarityGate,'Rarity depth gate updates full requirement details');
+   ok(roster.ultimateGate,'Ultimate depth gate reveals the current and next effects');
+   ok(roster.autoEmpower,'Auto-Empower still refreshes the displayed Wisp level');
+   ok(roster.resonance,'boss reclaimed Resonate uses update in place '+JSON.stringify(roster.reclaim));
   }
   // Visible prices and state must be fresh when entering every panel.
   for(const tabName of ['battle','spirits','forge','research','ascend','deeds']){
