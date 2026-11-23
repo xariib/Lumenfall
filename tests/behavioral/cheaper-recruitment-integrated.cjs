@@ -32,7 +32,6 @@ for(const [raw,wallet] of [[0,17],[20,17],[21,17],[40,17],[95,0],[2000,0],[21,1e
 // credit ledger. No historical bundle can replace the accepted catalog.
 {
   const probe=app(source);
-  const splitRanks=new Set(['lumenmemory','chargememory','gentlegrowth','wallwisdom','recruitreserve']);
   for(const def of probe.q.defs().filter(d=>!d.retired&&!d.retiredTo&&d.id!=='bonds')){
     const a=app(source),q=a.q,s=seed(q);s.nodes.bonds=21;s.prisms=1e30;
     s.maxDepthEver=1000;s.nodes.swift=10;
@@ -40,7 +39,7 @@ for(const [raw,wallet] of [[0,17],[20,17],[21,17],[40,17],[95,0],[2000,0],[21,1e
     delete s.feedbackMigration;delete s.refundCredits;q.set(s);
     const plan=q.plan(def.id),before=clone(q.get());eq(plan.affordable,true,'credit can buy '+def.id);
     eq(q.buy(def.id),true,'real purchase '+def.id);eq(balance(q.get()),balance(before)-BigInt(plan.cost),'exact price '+def.id);
-    eq(q.get().nodes[def.id],before.nodes[def.id]+(splitRanks.has(def.id)?0.5:1),'one level '+def.id);
+    eq(q.get().nodes[def.id],before.nodes[def.id]+0.5,'one rank '+def.id);
     eq(q.get().prisms,1e30,'large existing wallet retained '+def.id);
     eq(q.accept(q.get()),q.get(),'debit receipt accepted '+def.id);
   }

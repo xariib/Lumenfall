@@ -10,7 +10,7 @@ var checks=0,phase='runtime',effects=[],priceCases=0,faultCases=0,instances=0;
 var P='lumenfall_save_v2',R='lumenfall_save_recovery_v1',CLOCK=2000000000000;
 var clone=function(value){return JSON.parse(JSON.stringify(value));};
 var identity={sourceSha256:hash(source),testSha256:hash(fs.readFileSync(__filename)),node:process.version,v8:process.versions.v8};
-function subtractHistorical(price){var digits='1000000000000000019884624838656'.split(''),carry=price;for(var i=digits.length-1;i>=0;i--){var n=Number(digits[i])-carry%10;carry=Math.floor(carry/10);if(n<0){n+=10;carry++;}digits[i]=String(n);}return digits.join('')+'e0';}
+function subtractHistorical(price){var digits='1000000000000000019884624838656'.split(''),carry=price;for(var i=digits.length-1;i>=0;i--){var n=Number(digits[i])-carry%10;carry=Math.floor(carry/10);if(n<0){n+=10;carry++;}digits[i]=String(n);}var written=digits.join(''),value=written.replace(/0+$/,'');return value+'e'+(written.length-value.length);}
 function eq(actual,expected,label){checks++;assert.deepStrictEqual(actual,expected,phase+': '+label);}
 function ok(value,label){checks++;assert(value,phase+': '+label);}
 function near(actual,expected,label){checks++;assert(Math.abs(actual-expected)<=1e-10*Math.max(1,Math.abs(expected)),phase+': '+label+' ('+actual+' versus '+expected+')');}
@@ -72,20 +72,20 @@ function freshWorld(){var a=app();a.q.set(seed(a.q));return a;}
 function cleared(q,clear){var s=seed(q);s.depth=s.enemyDepth=clear+1;s.nodes.swift=0;s.ascendRewardedDepth=0;s.ascendCount=3;s.spirits.ember=30;return s;}
 function scenario(id,fn){phase='effect '+id;var a=freshWorld();fn(a,a.q);effects.push(id);}
 var rows=[
-  ['echo',1,6,[2,3,4,6,8,11]],['bonds',1,20,null],['swift',1,null,null],
-  ['swiftcharter',100,1,[200]],['lumenmemory',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],['veteranrecruits',20,5,[20,55,130,300,650]],
-  ['rosterrecall',25,4,[60,185,550,1600]],['chargememory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],['supportmemory',60,1,[60]],['phasememory',40,1,[35]],
-  ['riftstep',30,5,[12,24,42,68,104]],['frontier',50,5,[20,35,55,80,110]],['stardust',60,5,[10,18,30,46,66]],
-  ['gentlegrowth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],['benchmentor',35,5,[10,18,30,46,66]],
-  ['empowerbatch',45,4,[15,28,46,70]],['wallwisdom',50,8,[5,7,10,12,17,19,26,28],0.5],['invitations',15,3,[4,9,16]],['recruitreserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
+  ['echo',1,12,[1,1,1,2,2,2,3,3,4,4,5,6],0.5],['bonds',1,40,null,0.5],['swift',1,500,null,0.5],
+  ['swiftcharter',100,2,[100,100],0.5],['lumenmemory',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],['veteranrecruits',20,10,[10,10,27,28,65,65,150,150,325,325],0.5],
+  ['rosterrecall',25,8,[30,30,92,93,275,275,800,800],0.5],['chargememory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],['supportmemory',60,2,[30,30],0.5],['phasememory',40,2,[17,18],0.5],
+  ['riftstep',30,10,[6,6,12,12,21,21,34,34,52,52],0.5],['frontier',50,10,[10,10,17,18,27,28,40,40,55,55],0.5],['stardust',60,10,[5,5,9,9,15,15,23,23,33,33],0.5],
+  ['gentlegrowth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],['benchmentor',35,10,[5,5,9,9,15,15,23,23,33,33],0.5],
+  ['empowerbatch',45,8,[7,8,14,14,23,23,35,35],0.5],['wallwisdom',50,8,[5,7,10,12,17,19,26,28],0.5],['invitations',15,6,[2,2,4,5,8,8],0.5],['recruitreserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
 ];
-function price(row,level){if(row[0]==='bonds')return Math.ceil(2*Math.pow(1.45,level));if(row[0]==='swift')return Math.ceil(3*Math.pow(1.5,level));return row[3][level];}
+function price(row,level){if(row[3])return row[3][level];var start=Math.floor(level/2),total=row[0]==='bonds'?Math.ceil(2*Math.pow(1.45,start)):Math.ceil(3*Math.pow(1.5,start));return level%2?Math.ceil(total/2):Math.floor(total/2);}
 phase='all twenty catalogs and paid endpoints';
 var catalog=freshWorld().q.defs();
 eq(catalog.filter(function(n){return !n.retired&&!n.retiredTo;}).map(function(n){return n.id;}).sort(),rows.map(function(r){return r[0];}).sort(),'exact active twenty IDs');
 eq(catalog.length,24,'all four retired IDs retained as records');
 rows.forEach(function(row){
-  var id=row[0],step=row[4]||1,levels=row[2]===null?[0,10,30,50]:Array.from({length:row[2]},function(_,i){return i;});
+  var id=row[0],step=row[4]||1,levels=id==='swift'?[0,1,10,11,30,50]:Array.from({length:row[2]},function(_,i){return i;});
   levels.forEach(function(level){
     phase='paid '+id+'/'+level;
     var a=freshWorld(),q=a.q,s=seed(q),cost=price(row,level),savedUnits=(level+1)*step;s.nodes[id]=level*step;s.prisms=cost-1;q.set(s);
@@ -97,7 +97,7 @@ rows.forEach(function(row){
     var cold=app(a.storage).q;eq([cold.get().nodes[id],cold.get().prisms],[savedUnits,0],'actual cold-load paid endpoint');
     eq(q.decode(q.encode(q.get())),q.get(),'actual backup codec roundtrip');priceCases++;
   });
-  if(row[2]!==null){[row[2]*step,(row[2]+1)*step,1000000].forEach(function(raw){
+  if(row[2]!==null){[row[2]*step,row[2]*step+(id==='echo'||id==='bonds'?1:step),1000000].forEach(function(raw){
     phase='cap '+id+'/'+raw;var a=freshWorld(),q=a.q,s=seed(q);s.nodes[id]=raw;q.set(s);var before=clone(q.get());
     eq(q.get().nodes[id],raw,'raw paid overcap record');if(rows.indexOf(row)>=3)eq(q.level(id),row[2]*step,'effective new cap');
     eq(q.plan(id).reason,'cap','exact cap gate');eq(q.buy(id),false,'cap handler refusal');eq(q.get(),before,'no cap mutation');
@@ -137,7 +137,7 @@ eq(invalid.rawPlan({id:'lumenmemory'}).reason,'invalid','catalog-object identity
 scenario('echo',function(a,q){q.get().nodes.echo=0;near(q.offlineRate(),.7,'original earning rate');q.get().nodes.echo=6;near(q.offlineRate(),1,'six actual paid ranks reach100%');q.get().longStudyLevels.riftattune=4;near(q.offlineRate(),1.4,'completed Lab stays additive');eq(q.offlineCap(),12,'hours unchanged');});
 scenario('bonds',function(a,q){var s=seed(q);s.spirits.tide=0;s.nodes.bonds=20;s.lumen=24;q.set(s);eq(q.spiritCost('tide'),24,'original40% price floor');eq(q.buySpirit('tide'),true,'real reduced recruitment');eq([q.get().lumen,q.get().spirits.tide],[0,1],'one paid recruit');});
 scenario('swift',function(a,q){var s=cleared(q,20);s.ascendRewardedDepth=20;s.prisms=100;q.set(s);eq(q.prism(21).gain,0,'same clear has no reward');q.get().nodes.swift=1;eq(q.prism(21).gain,0,'paid bonus cannot bypass new-record gate');var before=clone(q.get());eq(q.ascend(),false,'same clear cannot reset');eq(q.get(),before,'denial preserves complete save');q.get().depth=q.get().enemyDepth=22;eq(q.prism(22).gain,3,'next record retains paid4% bonus');eq(q.ascend(),true,'real manual record Ascend');eq(q.get().prisms,103,'actual record credit');});
-scenario('swiftcharter',function(a,q){var s=seed(q);s.prisms=200;q.set(s);eq(q.cost('swift'),173,'unowned Swift10 original quote');var mult=q.prismMult();eq(q.buy('swiftcharter'),true,'buy Charter200');eq(q.prismMult(),mult,'paid Swift multiplier unchanged');eq(q.cost('swift'),60,'future rank10 price60');q.get().prisms=60;eq(q.buy('swift'),true,'actual future Swift purchase');eq([q.get().nodes.swift,q.get().prisms],[11,0],'no converted or free Swift levels');[30,50].forEach(function(k){q.get().nodes.swift=k;eq(q.cost('swift'),k*6,'owned high-rank price '+k);});});
+scenario('swiftcharter',function(a,q){var s=seed(q);s.prisms=200;q.set(s);eq(q.cost('swift'),86,'unowned Swift20 original first-rank quote');var mult=q.prismMult();eq(q.buy('swiftcharter'),true,'buy first Charter rank for100');eq(q.cost('swift'),58,'half Charter gives a smaller discount');eq(q.buy('swiftcharter'),true,'buy second Charter rank for100');eq(q.prismMult(),mult,'paid Swift multiplier unchanged');eq(q.cost('swift'),30,'future rank20 price30');q.get().prisms=30;eq(q.buy('swift'),true,'actual future Swift purchase');eq([q.get().nodes.swift,q.get().prisms],[10.5,0],'one paid Swift rank');[30,50].forEach(function(k){q.get().nodes.swift=k;eq(q.cost('swift'),k*3,'owned high-rank first price '+k);});});
 scenario('lumenmemory',function(a,q){[[1,1234,61.7],[5,1000000000,250000],[5,0,0]].forEach(function(c){var s=cleared(q,50);s.nodes.lumenmemory=c[0];s.lumen=c[1];q.set(s);eq(q.ascend(),true,'real reset');eq(q.get().lumen,c[2],'event-time fraction/cap/empty');});});
 scenario('veteranrecruits',function(a,q){var s=seed(q);s.nodes.veteranrecruits=3;s.spirits.tide=0;s.lumen=60;q.set(s);eq(q.spiritPlan('tide').levels,4,'one quote includes three bonus levels');eq(q.buySpirit('tide'),true,'actual paid first recruitment');eq([q.get().spirits.tide,q.get().lumen],[4,0],'one price funds four initial levels');eq(q.ascend(),true,'reset');eq([q.get().spirits.ember,q.get().spirits.tide],[4,0],'reset Ember boosted and no implicit Recall');});
 scenario('rosterrecall',function(a,q){var s=cleared(q,50);s.nodes.rosterrecall=2;s.nodes.veteranrecruits=2;s.spirits.ember=5;s.spirits.tide=6;s.spirits.stone=7;s.spirits.gale=0;s.activeParty=['ember','tide','stone'];s.formationRebuild={members:['ember','tide','stone','gale'],preset:'push'};s.activeFormationPreset='push';s.formationPresets.push=s.formationRebuild.members.slice();q.set(s);eq(q.ascend(),true,'real Recall reset');eq([q.get().spirits.ember,q.get().spirits.tide,q.get().spirits.stone,q.get().spirits.gale],[3,3,3,0],'Ember excluded from two additional recalled paid members');eq(q.get().activeParty,['ember','tide','stone'],'pending unowned member has no power');});

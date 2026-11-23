@@ -96,3 +96,51 @@ Android 0.2.159. The Tree PR and owner chat remain open.
 Next: after the menu fix lands, recheck source overlap and replay bindings,
 verify exact PR and integrated CI, and complete the signed Android release.
 Physical-phone and exact WebView60 remain open.
+
+## Full Tree and Ascension count follow-up
+
+The player asked for smaller ranks on the full Tree and a simulation of the
+number of Ascensions needed to max it. For whole-unit or switch-like effects,
+they chose “Give each intermediate rank a smaller related benefit”.
+
+Apply the rank split to all nineteen purchasable tracks, retaining each old
+paid effect. An unpaired rank supplies the extra whole-unit Veteran Recruits,
+Roster Recall, Familiar Paths, Early Invitations, Bench Mentorship, and Steady
+Instruction benefit during odd-numbered Ascensions or their runs. Previously
+earned recruitment entitlements persist. Frontier Record adds its unpaired
+Prism on every second 25-Rift milestone, and Ascension Dust rounds down to
+whole Motes once per payout. Lasting Blessings and Unbroken Rhythm carry half
+the remaining duration or timer progress at the intermediate rank. Swift
+Charter gives half its future discount at the first rank. Echoing Rest, Cheaper
+Recruitment and Swift Ascension use 2.5, 1.5 and 2 percentage points per rank.
+Legacy overcap receipts and retired tracks retain their original paid terms.
+
+The [simulation](../../scripts/qa/ascension-tree-completion.cjs) and its
+[per-track receipts](../qa/ascension-tree-rank-pacing-001/full-tree-simulation.json)
+start at zero
+Prisms and Tree ranks, uses the production manual Ascension and purchase
+handlers, prioritizes Swift Charter, Frontier Record, and Swift Ascension, and
+spends every Prism in the Tree. Preset clear milestones start at Rift 15. The
+model measures Prism progression once a player clears each selected Rift. It
+does not model combat success, elapsed time, or competing Prism purchases.
+
+| Rift increase per Ascension | Ascensions to max | Final clear |
+| ---: | ---: | ---: |
+| 1 | 947 | 961 |
+| 5 | 563 | 2,825 |
+| 10 | 433 | 4,335 |
+| 25 | 320 | 7,990 |
+| 50 | 254 | 12,665 |
+
+Each route spent 200,177 Prisms on 678 purchases, including 186,825 Prisms on
+500 Swift Ascension ranks. At +10 Rifts per Ascension,
+buying restart upgrades before later Swift ranks took 466 Ascensions. Seeding
+20 completed Prism Clarity levels took 255 Ascensions with Swift first.
+The five-track candidate took 450 Ascensions on the matching +10 Rift route.
+
+Full-Tree source `0d4f9e667bffdfb53d50ad1713a43a66ff44e852790d9d88d3f0b8c41152a0df`
+passed 10,485 Tree core checks, 15,664 economy checks, 4,674 Prism state checks,
+1,305 offline Tree checks, 622 Echo refund checks, and the Node 8.3 shared
+recruitment and Echo controls. All four independent offline replay states
+matched main and the previous candidate. The source binding alone changed.
+Android release remains dependent on the shared native menu-scroll fix.

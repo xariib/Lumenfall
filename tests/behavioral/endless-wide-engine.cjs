@@ -29,7 +29,7 @@ const current=clone(q.get());ok(b.canShards('1e399'),'wide Shard affordability')
 eq(q.get().shards,'9e399','wide debit exact');
 eq(b.format('1e400'),'1e400','wide display');eq(b.riftFormat('1e400'),'1e400','Rift display');
 ok(b.buyNode(b.node('swift')),'wide-funded real Tree purchase');
-eq(big(q.get().prisms),10n**400n-3n,'exact Prism purchase');
+eq(big(q.get().prisms),10n**400n-1n,'exact Prism purchase');
 const saved=clone(q.get());ok(q.save(),'wide primary/recovery save');q.load();eq(q.get(),saved,'wide save/load idempotent');
 const backup=q.export();q.set(q.fresh());x.area.value=backup;q.restore();x.drain();eq(x.reloads(),1,'wide backup import owns a saved reload');q.load();eq(q.get(),saved,'wide backup preserves every field');
 x=app(source,[...x.storage]);q=x.q;b=q.endless;eq(q.get(),saved,'actual new page starts from restored wide save');
@@ -44,7 +44,7 @@ const migrated=clone(q.get());q.set(migrated);eq(q.get(),migrated,'migration rep
  const held=clone(q.get());held.prisms=0;held.refundCredits.prisms=held.refundCredits.prisms.filter(e=>e.amount>1e20);
  const receipt=held.feedbackMigration.receipts['node.bonds'];receipt.remainingCredits=held.refundCredits.prisms.filter(e=>e.id==='node.bonds').map(e=>e.amount);
  q.set(held);const balance=()=>q.get().refundCredits.prisms.reduce((sum,e)=>sum+big(e.amount),big(q.get().prisms));
- const before=balance();ok(b.buyNode(b.node('swift')),'real small Tree price funded by a huge old credit');eq(balance(),before-3n,'independent exact old-credit debit');
+ const before=balance();ok(b.buyNode(b.node('swift')),'real small Tree price funded by a huge old credit');eq(balance(),before-1n,'independent exact old-credit debit');
  ok(q.get().refundCredits.prisms.some(e=>a.wide(e.amount)),'partial debit promotes the held credit');
  ok(q.save(),'held credit saves with matching original-value receipt');const saved=clone(q.get());q.load();eq(q.get(),saved,'held-credit audit survives cold load');
 }

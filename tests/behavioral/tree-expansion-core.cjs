@@ -7,22 +7,22 @@ const {reward: oldPrismReward,reserve: protectedPrismReserve} = require('./prism
 // Independent acceptance constants, transcribed from the approved design.
 // No price, cap, unlock or expected effect is read out of the production table.
 const CATALOG = [
-  ['swiftcharter','Swift Charter',100,1,[200]],
+  ['swiftcharter','Swift Charter',100,2,[100,100],0.5],
   ['lumenmemory','Lumen Inheritance',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],
-  ['veteranrecruits','Veteran Recruits',20,5,[20,55,130,300,650]],
-  ['rosterrecall','Roster Recall',25,4,[60,185,550,1600]],
+  ['veteranrecruits','Veteran Recruits',20,10,[10,10,27,28,65,65,150,150,325,325],0.5],
+  ['rosterrecall','Roster Recall',25,8,[30,30,92,93,275,275,800,800],0.5],
   ['chargememory','Charge Memory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],
-  ['supportmemory','Lasting Blessings',60,1,[60]],
-  ['phasememory','Unbroken Rhythm',40,1,[35]],
-  ['riftstep','Familiar Paths',30,5,[12,24,42,68,104]],
-  ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
-  ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
+  ['supportmemory','Lasting Blessings',60,2,[30,30],0.5],
+  ['phasememory','Unbroken Rhythm',40,2,[17,18],0.5],
+  ['riftstep','Familiar Paths',30,10,[6,6,12,12,21,21,34,34,52,52],0.5],
+  ['frontier','Frontier Record',50,10,[10,10,17,18,27,28,40,40,55,55],0.5],
+  ['stardust','Ascension Dust',60,10,[5,5,9,9,15,15,23,23,33,33],0.5],
   ['gentlegrowth','Patient Growth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],
   ['formationseat','Formation Limit',75,1,[120]],
-  ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
-  ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
+  ['benchmentor','Bench Mentorship',35,10,[5,5,9,9,15,15,23,23,33,33],0.5],
+  ['empowerbatch','Steady Instruction',45,8,[7,8,14,14,23,23,35,35],0.5],
   ['wallwisdom','Wall Wisdom',50,8,[5,7,10,12,17,19,26,28],0.5],
-  ['invitations','Early Invitations',15,3,[4,9,16]],
+  ['invitations','Early Invitations',15,6,[2,2,4,5,8,8],0.5],
   ['recruitreserve','Recruitment Reserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
 ].map(([id,name,unlock,cap,prices,step=1]) => ({id,name,unlock,cap,prices,step}));
 const IDS = CATALOG.map(d => d.id), OLD_IDS = ['starlight','steady','echo','bonds','swift','momentum','reserves'];
@@ -36,6 +36,7 @@ const spec = id => CATALOG.find(d => d.id === id);
 const capFor = id => spec(id).cap*spec(id).step;
 const ranksFor = id => [...new Set([0,spec(id).step,1,capFor(id)-spec(id).step,capFor(id),capFor(id)+1])];
 const effective = (id,level) => Math.min(capFor(id),level);
+const inRun = (id,level,ascends) => ascends%2 ? Math.ceil(effective(id,level)) : Math.floor(effective(id,level));
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const sourcePath = process.argv[2] || path.join(__dirname,'../../index.html');
 const source = fs.readFileSync(sourcePath,'utf8');
@@ -69,14 +70,14 @@ function oldCost(sp,level,bonds=0) { return Math.round(sp.base*Math.pow(1.13,lev
 function rationalCost(sp,level,rank,bonds=0) {
   if(!rank || level<=25) return oldCost(sp,level,bonds);
   const exponent=BigInt(level-25);
-  const numerator=BigInt(sp.base)*113n**25n*BigInt(1130-10*rank)**exponent*BigInt(100-Math.min(60,3*bonds));
-  const denominator=100n**26n*1000n**exponent;
+  const numerator=BigInt(sp.base)*113n**25n*BigInt(1130-10*rank)**exponent*BigInt(1000-Math.min(600,30*bonds));
+  const denominator=100n**25n*1000n**(exponent+1n);
   const result=Number((2n*numerator+denominator)/(2n*denominator));
   assert(Number.isSafeInteger(result),'moderate independent rational oracle result');
   return result;
 }
-function frontier(clear,benchmark,rank) { return rank*Math.max(0,Math.floor(clear/25)-Math.floor(benchmark/25)); }
-function dust(gain,rank) { return rank*Math.min(10,Math.floor(gain/20)); }
+function frontier(clear,benchmark,rank) { return Array.from({length:Math.max(0,Math.floor(clear/25)-Math.floor(benchmark/25))},(_,i)=>i+1+Math.floor(benchmark/25)).reduce((sum,block)=>sum+(block%2?Math.floor(rank):Math.ceil(rank)),0); }
+function dust(gain,rank) { return Math.floor(rank*Math.min(10,Math.floor(gain/20))); }
 function oldBreakdown(clear,benchmark,swift=10,clarity=0) {
   const full=oldPrismReward(clear,0,swift,clarity);
   if(!full||clear<=benchmark) return {gain:0,full,reserve:0,progressBonus:0,cleared:clear,benchmark};
@@ -159,7 +160,7 @@ function nodeFaults(t,mutate) {
         t.eq(returned,true,'committed primary survives recovery failure '+id);
         t.eq(a.storage.get(R),r,'failed recovery stays at earlier endpoint '+id);
       }
-      t.eq(q.get().nodes[id],before.nodes[id]+(spec(id)?.step||1),'one level after failure/retry '+id);
+      t.eq(q.get().nodes[id],before.nodes[id]+(spec(id)?.step||0.5),'one level after failure/retry '+id);
       t.eq(q.get().prisms,before.prisms-cost,'one debit after failure/retry '+id);
       t.eq(app(source,a.storage).q.get(),q.get(),'cold load uses committed endpoint '+id);
     } finally {end();}
@@ -177,14 +178,14 @@ function deferredRefund(t,mutate) {
     s.nodes.reserves=2;s.nodes.bonds=8;s.prisms=2**54;s.questDay=q.day();s.lastSeen=CLOCK;q.set(s);q.save();
     const before=clone(q.get());t.eq(before.offline12hRefund.prismPrices,[6,10],'original refund price ledger');
     t.eq(before.offline12hRefund.prismsPaid,[false,false],'oversized wallet deferred historical refund');
-    t.eq(q.plan('bonds').cost,40,'Bonds old exact purchase price');
+    t.eq(q.plan('bonds').cost,20,'Bonds first rank of the old 40-Prism pair');
     const end=useMutation(q,mutate);a.fail(fault==='primary',fault==='recovery');
     try {
       const result=q.buy('bonds');
       if(fault==='primary') {t.eq(result,false,'failed refund/debit commit');t.eq(q.get(),before,'refund ledger and paid level roll back together');a.fail(false,false);t.eq(q.buy('bonds'),true,'refund transaction retry');}
       else t.eq(result,true,'refund/debit commits');
-      t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-40n+16n,'separate exact 40 debit and 16 old refund');
-      t.eq(q.get().nodes.bonds,9,'one Bonds level only');t.eq(q.get().nodes.reserves,2,'raw retired purchase record kept');
+      t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-20n+16n,'separate exact 20 debit and 16 old refund');
+      t.eq(q.get().nodes.bonds,8.5,'one Bonds rank only');t.eq(q.get().nodes.reserves,2,'raw retired purchase record kept');
       t.eq(q.get().offline12hRefund.prismsPaid,[true,true],'both old ledger bits paid once');
       const loaded=app(source,a.storage);t.eq(loaded.q.get().prisms,q.get().prisms,'reload cannot repeat refund');
       loaded.q.save();t.eq(loaded.q.get().prisms,q.get().prisms,'repeat save cannot repeat refund');
@@ -212,7 +213,9 @@ function legacyAndDefaults(t) {
   t.eq(q.get(),q.accept(q.get()),'normalization idempotent');q.save();t.eq(app(source,a.storage).q.get(),q.get(),'old paid state survives cold load');
   for(const [id,def] of Object.entries(LEGACY)) for(const level of [0,1,5,10,20,31]) {
     const test=world(q);test.nodes[id]=level;q.set(test);
-    t.eq(q.cost(id),Math.ceil(def.base*Math.pow(def.growth,level)),'literal unowned old price '+id+'/'+level);
+    const whole=Math.ceil(def.base*Math.pow(def.growth,level));
+    t.eq(q.cost(id,level),Math.floor(whole/2),'first rank share of old price '+id+'/'+level);
+    t.eq(q.cost(id,level+0.5),Math.ceil(whole/2),'second rank share of old price '+id+'/'+level);
   }
   for(const rank of [0,1,5,1000000]) for(const value of [-1,0,1,9,10,42,7.75,NaN]) {
     const test=world(q);test.nodes.benchmentor=rank;test.treeTrainingProgress=value;q.set(test);
@@ -222,22 +225,24 @@ function legacyAndDefaults(t) {
 }
 
 function charter(t,mutate) {
-  for(const raw of ranksFor('swiftcharter')) for(const level of [0,9,10,11,20,30,50]) {
+  for(const raw of ranksFor('swiftcharter')) for(const level of [0,0.5,9,9.5,10,10.5,11,20,30,50]) {
     const a=app(source),q=a.q,s=world(q);s.nodes.swift=level;s.nodes.swiftcharter=raw;q.set(s);const end=useMutation(q,mutate);
     try {
-      const expected=raw&&level>=10?60+6*(level-10):Math.ceil(3*Math.pow(1.5,level));
-      t.eq(q.cost('swift'),expected,'Charter affects only future level10+ price '+raw+'/'+level);
+      const pair=Math.floor(level),original=Math.ceil(3*Math.pow(1.5,pair)),discount=pair<10?0:Math.min(raw,1);
+      const total=Math.ceil(original*(1-discount)+6*pair*discount);
+      const expected=level===pair?Math.floor(total/2):Math.ceil(total/2);
+      t.eq(q.cost('swift'),expected,'Charter affects only future rank 20+ price '+raw+'/'+level);
       q.get().prisms=expected;const mult=q.prismMult();
       t.eq(q.buy('swift'),true,'actual Charter-path Swift purchase');t.eq(q.get().prisms,0,'Charter quote fully debited');
-      t.eq(q.get().nodes.swift,level+1,'same old paid Swift counter');t.near(q.prismMult(),mult+.04,'same earned4% bonus',1e-10);
+      t.eq(q.get().nodes.swift,level+0.5,'one paid Swift rank');t.near(q.prismMult(),mult+.02,'one earned 2% bonus',1e-10);
     } finally {end();}
   }
 }
 
 function veteran(t,mutate) {
-  for(const raw of ranksFor('veteranrecruits')) for(const id of ['tide','titan']) {
-    const a=app(source),q=a.q,s=world(q);s.nodes.veteranrecruits=raw;s.nodes.benchmentor=1;q.set(s);
-    const expected=1+effective('veteranrecruits',raw),cost=SPIRITS.find(sp=>sp.id===id).base;
+  for(const raw of ranksFor('veteranrecruits')) for(const ascends of [0,1]) for(const id of ['tide','titan']) {
+    const a=app(source),q=a.q,s=world(q);s.nodes.veteranrecruits=raw;s.nodes.benchmentor=1;s.ascendCount=ascends;q.set(s);
+    const expected=1+inRun('veteranrecruits',raw,ascends),cost=SPIRITS.find(sp=>sp.id===id).base;
     q.get().lumen=cost;const end=useMutation(q,mutate);
     try {
       t.eq(q.spiritPlan(id).levels,expected,'one paid recruitment grants starting levels');
@@ -249,7 +254,7 @@ function veteran(t,mutate) {
 }
 
 function gentle(t,mutate) {
-  for(const raw of ranksFor('gentlegrowth')) for(const level of [0,25,26,50,100]) for(const bonds of [0,7,20]) {
+  for(const raw of ranksFor('gentlegrowth')) for(const level of [0,25,26,50,100]) for(const bonds of [0,0.5,7,20]) {
     const a=app(source),q=a.q,s=world(q),sp=SPIRITS[0];s.nodes.gentlegrowth=raw;s.nodes.bonds=bonds;s.spirits.ember=level;
     if(level===0){s.spirits.tide=1;s.activeParty=['tide'];s.activeFormationPreset='';}
     q.set(s);t.eq(q.get().spirits.ember,level,'price fixture retains its requested Wisp level');
@@ -319,10 +324,10 @@ function formation(t,mutate) {
 }
 
 function mentor(t,mutate) {
-  for(const raw of ranksFor('benchmentor')) {
-    const a=app(source),q=a.q,s=world(q);s.nodes.benchmentor=raw;s.nodes.veteranrecruits=5;
+  for(const raw of ranksFor('benchmentor')) for(const ascends of [0,1]) {
+    const a=app(source),q=a.q,s=world(q);s.nodes.benchmentor=raw;s.nodes.veteranrecruits=5;s.ascendCount=ascends;
     s.spirits.ember=10;s.spirits.tide=2;s.spirits.stone=2;s.spirits.gale=1;s.activeParty=['ember','gale'];s.activeFormationPreset='';q.set(s);
-    const end=useMutation(q,mutate),rank=effective('benchmentor',raw);
+    const end=useMutation(q,mutate),rank=inRun('benchmentor',raw,ascends);
     try {
       for(let i=0;i<9;i++)t.eq(q.buySpirit('ember'),true,'successful paid action before tenth');
       t.eq(q.get().spirits.tide,2,'no early Bench award');t.eq(q.get().treeTrainingProgress,rank?9:0,'paid action count independent of levels');
@@ -344,11 +349,11 @@ function mentor(t,mutate) {
 }
 
 function batch(t,mutate) {
-  for(const raw of ranksFor('empowerbatch')) for(const enabled of [false,true]) {
-    const a=app(source),q=a.q,s=world(q);s.nodes.empowerbatch=raw;s.achieved.labmaster=enabled;
+  for(const raw of ranksFor('empowerbatch')) for(const ascends of [0,1]) for(const enabled of [false,true]) {
+    const a=app(source),q=a.q,s=world(q);s.nodes.empowerbatch=raw;s.ascendCount=ascends;s.achieved.labmaster=enabled;
     s.nodes.bonds=0;s.nodes.swift=0;s.spirits.ember=1;s.activeParty=['ember'];s.empowerQueue.ember=true;s._autoEmpowerAccum=1000;q.set(s);
     // Persisted phases cap below one second; this is the actual live event boundary.
-    q.get()._autoEmpowerAccum=1000;const before=clone(q.get()),end=useMutation(q,mutate),count=enabled?1+effective('empowerbatch',raw):0;
+    q.get()._autoEmpowerAccum=1000;const before=clone(q.get()),end=useMutation(q,mutate),count=enabled?1+inRun('empowerbatch',raw,ascends):0;
     try {
       const result=q.processAutoEmpower();
       t.eq(result.summary.empowers,count,'up to purchased throughput in one real timer event');
@@ -386,22 +391,22 @@ function reserve(t,mutate) {
 
 function invitations(t,mutate) {
   const gates=require('./wisp-gameplay-reference.cjs').recruitment;
-  for(const raw of ranksFor('invitations')) for(const sp of SPIRITS) {
-    const a=app(source),q=a.q,s=lowWorld(q,Math.max(1,gates[sp.id][0]-effective('invitations',raw)));s.lumen=1e15;s.totalKills=gates[sp.id][2];s.nodes.invitations=raw;s.spirits[sp.id]=0;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
+  for(const raw of ranksFor('invitations')) for(const ascends of [0,1]) for(const sp of SPIRITS) {
+    const depth=Math.max(1,gates[sp.id][0]-inRun('invitations',raw,ascends));
+    const a=app(source),q=a.q,s=lowWorld(q,depth);s.lumen=1e15;s.totalKills=gates[sp.id][2];s.nodes.invitations=raw;s.spirits[sp.id]=0;s.ascendCount=ascends;s.longStudyLevels.wispascend=gates[sp.id][1];q.set(s);
     const immutable=[q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],end=useMutation(q,mutate);
     try {
-      const depth=Math.max(1,gates[sp.id][0]-effective('invitations',raw));
       t.eq(q.unlock(sp.id),depth,'earlier future recruitment depth '+sp.id+'/'+raw);
       if(sp.id!=='ember') {t.eq(q.buySpirit(sp.id),true,'actual recruitment at earlier gate '+sp.id);t.eq(q.get().spirits[sp.id],1,'one normal paid recruit level');}
       t.eq([q.sp(sp.id).unlockDepth,q.rarityCost(sp.id,0),q.moduleCost(sp.id,0),q.ultimateCost(sp.id)],immutable,'raw permanent-price anchor unchanged '+sp.id);
-      if(depth>1) {const locked=lowWorld(q,depth-1);locked.nodes.invitations=raw;q.set(locked);const before=clone(q.get());t.eq(q.buySpirit(sp.id),false,'one Rift below reduced gate is locked');t.eq(q.get(),before,'reduced-gate rejection is pure');}
+      if(depth>1) {const locked=lowWorld(q,depth-1);locked.nodes.invitations=raw;locked.ascendCount=ascends;q.set(locked);const before=clone(q.get());t.eq(q.buySpirit(sp.id),false,'one Rift below reduced gate is locked');t.eq(q.get(),before,'reduced-gate rejection is pure');}
     } finally {end();}
   }
 }
 
 function transition(t,id,mutate) {
-  for(const raw of ranksFor(id)) {
-    const a=app(source),q=a.q,s=atCleared(q);s.nodes[id]=raw;s.activeFormationPreset='';
+  for(const raw of ranksFor(id)) for(const previousAscends of [3,4]) {
+    const a=app(source),q=a.q,s=atCleared(q);s.nodes[id]=raw;s.ascendCount=previousAscends;s.activeFormationPreset='';
     s.spirits.tide=20;s.spirits.stone=30;s.spirits.gale=40;s.spirits.thorn=50;s.spirits.void=60;
     s.activeParty=['ember','tide','stone','gale','thorn'];
     SPIRITS.forEach((sp,i)=>s.heroResource[sp.id]=7.25+i*11);
@@ -413,9 +418,9 @@ function transition(t,id,mutate) {
       t.eq(q.get().prisms,before.prisms+oldPrismReward(50,25,before.nodes.swift,0),'base Prism payout accompanies transition');
       t.eq(q.get().nodes[id],raw,'paid raw node level remains after reset');
       if(id==='lumenmemory')t.eq(q.get().lumen,Math.min(before.lumen*(rank/20),50000*rank),'exact owned Lumen carry');
-      if(id==='veteranrecruits')t.eq(q.get().spirits.ember,1+rank,'reset Ember uses paid starting level');
+      if(id==='veteranrecruits')t.eq(q.get().spirits.ember,1+inRun(id,raw,countBefore+1),'reset Ember uses paid starting level');
       if(id==='rosterrecall') {
-        const recalled=['tide','stone','gale','thorn'].slice(0,rank);
+        const recalled=['tide','stone','gale','thorn'].slice(0,inRun(id,raw,countBefore+1));
         t.eq(SPIRITS.filter(sp=>sp.id!=='ember'&&q.get().spirits[sp.id]>0).map(sp=>sp.id),recalled,'first paid additional remembered members recalled');
         recalled.forEach(key=>t.eq(q.get().spirits[key],1,'Recall recruits without buying an Empower'));
         t.eq(q.get().spirits.void,0,'recruited but unremembered Bench is not recalled');
@@ -426,14 +431,17 @@ function transition(t,id,mutate) {
         q.get().lumen=3138550867693;const charge=q.get().heroResource.titan;t.eq(q.buySpirit('titan'),true,'later dormant Wisp recruited at its unlock-economy price');t.eq(q.get().heroResource.titan,charge,'recruitment does not erase stored charge');
       }
       if(id==='supportmemory') {
-        t.eq(q.get().supportBuffs,rank?before.supportBuffs:null,'Support source snapshots retained exactly');
-        t.eq([q.get().buffUntil,q.get().buffMult],rank?[before.buffUntil,before.buffMult]:[0,1],'opaque legacy blessing retained without refresh');
+        const buffs=clone(before.supportBuffs);
+        for(const entry of Object.values(buffs.sources))entry.until=CLOCK+rank*(entry.until-CLOCK);
+        t.eq(q.get().supportBuffs,rank?buffs:null,'Support strength and paid share of remaining time retained');
+        t.eq([q.get().buffUntil,q.get().buffMult],rank?[CLOCK+rank*(before.buffUntil-CLOCK),before.buffMult]:[0,1],'opaque legacy blessing retained without refresh');
         t.eq(q.buff(CLOCK+5000),1,'original deadlines still expire after reset');
       }
-      if(id==='phasememory')t.eq([q.get()._autoTapAccum,q.get()._autoEmpowerAccum],rank?[375.125,847.5]:[0,0],'only existing unlocked timer phase carried');
+      if(id==='phasememory')t.eq([q.get()._autoTapAccum,q.get()._autoEmpowerAccum],[375.125*rank,847.5*rank],'paid share of existing unlocked timer phase carried');
       if(id==='riftstep') {
-        t.eq([q.get().depth,q.get().enemyDepth],[1+rank,1+rank],'new run enemy starts at purchased Rift');
-        t.eq(spawns,[{depth:1+rank,enemyDepth:1+rank}],'one actual reset spawn only');
+        const start=1+inRun(id,raw,countBefore+1);
+        t.eq([q.get().depth,q.get().enemyDepth],[start,start],'new run enemy starts at purchased Rift');
+        t.eq(spawns,[{depth:start,enemyDepth:start}],'one actual reset spawn only');
         t.eq([q.get().totalKills,q.get().shards,q.get().sigils,q.get().motes,q.get().maxDepthEver],[before.totalKills,before.shards,before.sigils,before.motes,before.maxDepthEver],'skipped Rifts grant no kills/resources/new record');
       }
     } finally {end();stop();}

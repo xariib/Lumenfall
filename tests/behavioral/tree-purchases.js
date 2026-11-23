@@ -13,9 +13,8 @@ window.runTreePurchaseQa=function(b,ctx,assert){
   function rejected(id,message){var before=observer();ok(b.treePurchases.buy(id)===false,message);same(observer(),before,message+' is a pure rejection');}
   function exactInteger(value){if(typeof value==='number')return BigInt(value);var p=value.split('e');return BigInt(p[0])*10n**BigInt(p[1]);}
 
-  // The last effective levels use the existing individually rounded prices:
-  // Echo level 5 -> 6 costs 11; Bonds level 19 -> 20 costs 2329.
-  [['echo',5,6,11],['bonds',19,20,2329]].forEach(function(row){
+  // The final ranks charge the second part of the original 11 and 2329 Prism prices.
+  [['echo',5.5,6,6],['bonds',19.5,20,1165]].forEach(function(row){
     var id=row[0],level=row[1],cap=row[2],cost=row[3];
     seed(id,level,cost-1);ok(button(id).disabled,'one Prism short is disabled '+id);
     rejected(id,'one Prism short handler '+id);
@@ -82,15 +81,15 @@ window.runTreePurchaseQa=function(b,ctx,assert){
   ok(wideButton&&wideButton.disabled&&widePlan.reason==='unaffordable'&&wideQuote&&wideQuote.dataset.priceAmount===String(widePlan.cost)&&wideQuote.textContent.trim().length>0,'last pre-cap price remains visible and matches the purchase plan: '+JSON.stringify({reason:widePlan.reason,cost:widePlan.cost,button:wideButton&&wideButton.outerHTML.slice(0,500)}));
   rejected('swift','unaffordable wide price cannot debit');
   seed('swift',0,Number.MAX_VALUE);
-  ok(!button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='3','large wallet keeps the exact visible price and currency icon');
-  ok(b.treePurchases.buy('swift'),'large wallet funds an exact purchase');ok(exactInteger(b.getState().prisms)===BigInt(Number.MAX_VALUE)-3n&&b.getState().nodes.swift===1,'independent exact three-Prism debit from native maximum');
+  ok(!button('swift').disabled&&button('swift').querySelector('.cost-icon')&&button('swift').querySelector('.cost').textContent.trim()==='1','large wallet keeps the exact visible price and currency icon');
+  ok(b.treePurchases.buy('swift'),'large wallet funds an exact purchase');ok(exactInteger(b.getState().prisms)===BigInt(Number.MAX_VALUE)-1n&&b.getState().nodes.swift===0.5,'independent exact one-Prism debit from native maximum');
   seed('swift',0,1e16);
-  ok(!button('swift').disabled&&button('swift').querySelector('.cost').textContent.trim()==='3','promoted payment keeps its visible three-Prism price');
-  ok(b.treePurchases.buy('swift'),'promoted payment succeeds');ok(exactInteger(b.getState().prisms)===BigInt(1e16)-3n&&b.getState().nodes.swift===1,'displayed three-Prism price charges exactly three');
-  seed('echo',0,1e16);
+  ok(!button('swift').disabled&&button('swift').querySelector('.cost').textContent.trim()==='1','promoted payment keeps its visible one-Prism price');
+  ok(b.treePurchases.buy('swift'),'promoted payment succeeds');ok(exactInteger(b.getState().prisms)===BigInt(1e16)-1n&&b.getState().nodes.swift===0.5,'displayed one-Prism price charges exactly one');
+  seed('echo',2,1e16);
   ok(!button('echo').disabled,'an exactly representable large-wallet payment remains available');
   ok(b.treePurchases.buy('echo'),'exact large-wallet payment succeeds');
-  ok(b.getState().nodes.echo===1&&exactInteger(b.getState().prisms)===BigInt(1e16)-2n,'exactly two Prisms charged');
+  ok(b.getState().nodes.echo===2.5&&exactInteger(b.getState().prisms)===BigInt(1e16)-2n,'exactly two Prisms charged');
   // Equal-price buttons must remain distinguishable after shared presentation
   // and affordability refresh, including the two initial two-Prism upgrades.
   seed('swift',0,1000);
@@ -100,7 +99,7 @@ window.runTreePurchaseQa=function(b,ctx,assert){
     b.refreshAffordability();
     ok(button(id).getAttribute('aria-label').startsWith(name+' — '),'refresh retains available upgrade name '+id);
   });
-  return {checks:checks,caps:{echo:6,bonds:20},legacyRawValuesPreserved:true,backupIdempotence:true};
+  return {checks:checks,caps:{echo:12,bonds:40},legacyRawValuesPreserved:true,backupIdempotence:true};
 };
 
 window.runTreePurchaseUiQa=async function(b,ctx,assert){

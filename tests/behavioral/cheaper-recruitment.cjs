@@ -105,23 +105,23 @@ async function run(){
  for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19));b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="bonds"]').scrollIntoView({block:'center'});})()`);
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19.5));b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="bonds"]').scrollIntoView({block:'center'});})()`);
   await new Promise(r=>setTimeout(r,280));
   let before=await evaluate('cheaperRecruitmentObservation()');
   assert(before.fit&&before.rect.width>=44&&before.rect.height>=44,'mobile fit/44px '+width+'/'+fontPercent+'/'+motion+' '+JSON.stringify({fit:before.fit,rect:before.rect}));
   assert(Math.min(...before.contrasts)>=4.5,'text contrast '+JSON.stringify(before.contrasts));
   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:before.rect.x+before.rect.width/2,y:before.rect.y+before.rect.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  let after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.state.prisms===997671,'real touch final purchase');
+  let after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.state.prisms===998835,'real touch final purchase');
   assert(after.disabled&&after.kind==='maxed'&&after.fit,'maxed state fit after native purchase');
   assert(after.focusedCard==='bonds'&&Math.abs(after.scroll-before.scroll)<=1,'final purchase retains Recruitment card and scroll');
   if(motion==='reduce')assert(after.reduced&&parseFloat(after.animation)<=.001,'reduced motion');
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19));b.render();document.querySelector('[data-node="echo"]').focus();})()`);
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19.5));b.render();document.querySelector('[data-node="echo"]').focus();})()`);
   await key('Tab');assert(await evaluate(`(()=>{var c=document.querySelector('[data-tree-node="bonds"]'),d=c.querySelector('.desc');return !c.querySelector('details,summary')&&d&&d.getClientRects().length&&d.textContent.includes('normal price before whole-Lumen rounding');})()`),'Recruitment explanation stays visible without a disclosure');
   let focused=await evaluate('cheaperRecruitmentObservation()');
   assert(focused.focused==='bonds'&&focused.focusStyle.style==='solid'&&parseFloat(focused.focusStyle.width)>=2,'visible keyboard focus on Recruitment');
   await key('Enter');after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.focusedCard==='bonds'&&Math.abs(after.scroll-focused.scroll)<=1,'native Enter cap retains Recruitment card and scroll');
   await evaluate('__cheaperRecruitment.render()');await key('Enter');const repeated=await evaluate('cheaperRecruitmentObservation()');assert(repeated.focusedCard==='bonds'&&Math.abs(repeated.scroll-after.scroll)<=1&&JSON.stringify(repeated.state)===JSON.stringify(after.state),'refresh and repeated Enter retain cap without buying another upgrade');
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(40));b.render();})()`);let legacy=await evaluate('cheaperRecruitmentObservation()');assert(legacy.fit&&legacy.text.includes('40 purchased levels preserved'),'legacy larger text fits');
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(40));b.render();})()`);let legacy=await evaluate('cheaperRecruitmentObservation()');assert(legacy.fit&&legacy.text.includes('80 purchased levels preserved'),'legacy larger text fits');
   records.push({kind:'mobile',width,fontPercent,motion,contrastMinimum:Math.min(...before.contrasts),target:[before.rect.width,before.rect.height],nativeTouch:true,nativeKeyboard:true,focusAfterCap:after.focusedCard,legacyFit:legacy.fit});
  }
  if(args.includes('--screenshot')){
