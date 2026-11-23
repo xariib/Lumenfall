@@ -29,7 +29,7 @@ const specs=[
  ['early-ultimate','module:15,depth:120','module:14,depth:120','Ultimate needs ability15'],
  ['comet-native-promotion','return Amount.wide(wallet)||Amount.wide(cost) ? debitAmount(wallet,cost) : wallet-cost;','return debitAmount(wallet,cost);','native exact Comet debit retains Number','endless-comet-amount.cjs'],
  ['lost-deep-sigils','sigilCurveWidth:100','sigilCurveWidth:300','independent late Sigil amount','endless-income.cjs'],
- ['wrong-final-ultimate','titan:240000000','titan:120000000','independent Ultimate price titan','endless-income.cjs'],
+ ['wrong-final-ultimate',process.argv.includes('--focus-f')?'titan:2400}':'titan:240000000}',process.argv.includes('--focus-f')?'titan:1200}':'titan:120000000}','independent Ultimate price titan','endless-income.cjs'],
  ['sigil-rounding',"Amount.round(Amount.mul(base,factor),'floor')","Amount.round(Amount.mul(base,factor),'round')",'independent late Sigil amount','endless-income.cjs'],
  ['cartography-percent',"return creditAmount(baseSigilsFromBoss(depth),labExpansionLevel('sigilcartography'));","return Amount.round(Amount.mul(baseSigilsFromBoss(depth),1+labExpansionLevel('sigilcartography')/100),'floor');",'Cartography retains flat added Sigils','endless-income.cjs']
 ];

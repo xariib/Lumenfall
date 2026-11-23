@@ -8,8 +8,8 @@ const fs = require('node:fs');
 const {app, CLOCK, clone} = require('../../tests/behavioral/forge-expansion-harness.cjs');
 const Amount = require('../lib/game-amount.cjs');
 
-const [scenario = 'all', output] = process.argv.slice(2);
-const source = fs.readFileSync('index.html', 'utf8');
+const [scenario = 'all', output, file = 'index.html'] = process.argv.slice(2);
+const source = fs.readFileSync(file, 'utf8');
 const marker = "if(document.readyState==='loading'){";
 assert.equal(source.split(marker).length, 2);
 const hooks = `window.endlessQa={
@@ -156,20 +156,25 @@ function collectDailyIncome(w, now, productiveHours) {
   return income;
 }
 
-function workshopForecast(productiveHours, boost, horizon, lateFarm = false) {
+function workshopForecast(productiveHours, boost, horizon, farmDepth = 1001) {
   const w = world();
   const {q, api, forge, lab} = w;
   const s = develop(q.fresh(), party, 10000);
-  place(s, lateFarm ? 60001 : 1001, lateFarm ? 60001 : 10000, true);
+  place(s, farmDepth, Math.max(10000, farmDepth), true);
   s.nodes.echo = 6;
   s.research.arcanecal = 10;
   s.longStudyLevels.wispascend = 176;
-  if (lateFarm) {
+  if (farmDepth === 60001) {
     // Existing paid prerequisites for the assumed late-game Ember rank.
     s.wispMastery.ember = 2490;
     s.research.masterwork = 498;
     s.nodes.swift = 250;
     s.longStudyLevels.wispascend = 500;
+  } else if (farmDepth === 10001) {
+    // Developed Rift 10,001 benchmark with the actual prerequisites for Rank 388.
+    s.wispMastery.ember = 388;
+    s.research.masterwork = 80;
+    s.nodes.swift = 70;
   }
   s.lumen = s.shards = s.motes = 0;
   for (const node of lab) s.studyQueue[node.id] = true;
@@ -291,8 +296,10 @@ function masteryReplay() {
 }
 
 const cases = {continuous: [24, true, 2400], halfday: [12, true, 4000], unboosted: [24, false, 5500],
-  deep: [12, true, 2400, true]};
-const result = {version: '0.2.153', sourceSha256: crypto.createHash('sha256').update(source).digest('hex'),
+  deep: [12, true, 2400, 60001], 'mid-depth': [12, true, 2400, 10001]};
+const sourceSha256 = crypto.createHash('sha256').update(source).digest('hex');
+const result = {version: sourceSha256 === '711f8e4bf5b04ec17ee52bace271e617ddb67bc59fa6c896a3fff88702a7421f' ? '0.2.153' : 'worktree',
+  sourceSha256,
   node: process.version};
 if (scenario === 'all' || scenario === 'catalog') result.catalog = catalogAndLabFloor();
 if (scenario === 'all' || scenario === 'mastery') result.mastery = masteryReplay();

@@ -4,7 +4,8 @@ const {spawn}=require('node:child_process');
 const {serve}=require('../../scripts/lib/static-server.cjs');
 const {findChrome}=require('../../scripts/lib/browser.cjs');
 const root=path.resolve(__dirname,'../..'),file=path.resolve(process.argv[2]||'index.html'),out=path.resolve(process.argv[3]||'docs/qa/endless-progression-001/mobile');
-const calibrated=!process.argv.includes('--initial-proposal'),dailyCalibration=calibrated&&!process.argv.includes('--prior-ak'),prismPrice=calibrated?20000:200,sigilPrice=calibrated?500000:5000,labBase=dailyCalibration?(process.argv.includes('--focus-f')?92:84):calibrated?32:30;
+const calibrated=!process.argv.includes('--initial-proposal'),dailyCalibration=calibrated&&!process.argv.includes('--prior-ak'),current=process.argv.includes('--focus-f');
+const prismPrice=current?29:calibrated?20000:200,sigilPrice=current?37:calibrated?500000:5000,labBase=dailyCalibration?(current?92:84):calibrated?32:30;
 assert(!dailyCalibration||calibrated,'daily calibration uses the measured investment table');
 const source=fs.readFileSync(file,'utf8'),marker="if(document.readyState==='loading'){";
 const bridge=`window.endlessUi={open:openWispManagement,close:closeWispManagement,
