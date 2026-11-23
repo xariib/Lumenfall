@@ -455,10 +455,34 @@ async function verifyInstalledRiftLooks(page,report){
  }
  for(const name of ['spirits','forge','research','ascend','deeds']){
    await visitMenu(name);
+   await page.evaluate(`(()=>{
+     const m=document.querySelector('main'),old=window.menuScrollTrace;
+     if(old)old.stop();
+     const history=[];
+     const measure=event=>{
+       const panel=document.querySelector('.tab-panel.active');
+       const row={event,at:Math.round(performance.now()),panel:panel?.id,top:m.scrollTop,max:m.scrollHeight-m.clientHeight,mainClass:m.className,panelHeight:panel?.offsetHeight,animation:panel&&getComputedStyle(panel).animationName};
+       history.push(row);
+     };
+     const listeners=['pointerdown','click','animationstart','animationend','scroll'].map(event=>{
+       const capture=e=>measure(event+':'+(e.target.id||e.target.dataset?.tab||e.target.nodeName));
+       document.addEventListener(event,capture,true);
+       return [event,capture];
+     });
+     const resize=new ResizeObserver(()=>measure('resize'));
+     resize.observe(m);resize.observe(document.getElementById('tab-spirits'));
+     window.menuScrollTrace={measure,history,stop:()=>{resize.disconnect();listeners.forEach(([name,fn])=>document.removeEventListener(name,fn,true));}};
+   })()`);
    const before=await page.evaluate(`(()=>{const m=document.querySelector('main');m.scrollTop=m.scrollHeight;return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
+   await page.evaluate("window.menuScrollTrace.measure('set bottom')");
    assert(before.max>0&&before.top>0,'Installed '+name+' fixture has a real scroll range and reaches its bottom');
    await tap('nav.tabbar [data-tab="battle"]');await visitMenu(name);
    const after=await page.evaluate(`(()=>{const m=document.querySelector('main');return {top:m.scrollTop,max:m.scrollHeight-m.clientHeight};})()`);
+   await page.evaluate("window.menuScrollTrace.measure('sample')");
+   await pause(400);
+   const trace=await page.evaluate("window.menuScrollTrace.measure('after settle');window.menuScrollTrace.history");
+   fs.writeFileSync('release-evidence/menu-scroll-trace-'+name+'.json',JSON.stringify(trace,null,2)+'\n');
+   console.log('Installed menu scroll trace '+name+' '+JSON.stringify(trace));
    rememberedMenus.push({name,before,after});
    const diagnostic=await page.evaluate(`(()=>{const m=document.querySelector('main');return {active:document.querySelector('.tab-panel.active').id,focused:document.activeElement?.outerHTML.slice(0,300),main:m.getBoundingClientRect().toJSON(),overflow:getComputedStyle(m).overflowY,events:riftLookEvents.slice(-12)};})()`);
    fs.writeFileSync('release-evidence/installed-menu-scroll.json',JSON.stringify({menus:rememberedMenus,diagnostic},null,2)+'\n');
