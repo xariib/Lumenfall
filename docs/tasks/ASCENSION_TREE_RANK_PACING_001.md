@@ -35,8 +35,8 @@ The open Google Play PR has a separate distribution scope.
 | Recruitment Reserve | 5 → 10 | Reserve 10% of the next recruit’s Lumen price |
 
 Split ranks are stored in the existing node value in half-unit increments.
-One old whole unit displays as two ranks and has the original effect. Promotion
-from an old save is idempotent and keeps the wallet intact. Primary, recovery
+One old whole unit displays as two ranks and has the original effect. Loading
+an old save is idempotent and keeps the wallet intact. Primary, recovery
 and backup saves in this build preserve half units. Older builds interpret the
 node value as a whole unit and can discard a new half unit if they rewrite it.
 
@@ -46,9 +46,10 @@ effects and save endpoints. Baseline Node 24.22.1 core and economy passed 5,755
 and 14,074 checks on `13558740`. Candidate source SHA-256
 `dace738a5bb7f58ceacae74d5bf63b50da959758f842418b33db88c96928938d` passed source
 validation, 7,337 core checks, 14,146 economy checks, 200 credit-ledger checks
-and 3,392 checks on actual Node 8.3/V8 6.0. The exact-main mobile baseline
-passed 24,248 checks over twelve browser profiles. The candidate fixture now
-checks the saved value for each actual first purchase.
+and 3,392 checks on actual Node 8.3/V8 6.0. The candidate passed 1,185 offline
+checks and 24,380 mobile checks at twelve browser profiles. The exact-main
+mobile baseline passed 24,248 checks. The regular and reduced-motion Tree
+purchase scenarios also passed with browser motion explicitly set via CDP.
 
 Replayed four eight-hour windows through 115,200 one-second advances. All
 four gameplay state hashes, kill counts, Ascension counts and Prism totals
@@ -58,6 +59,19 @@ predate the current reference, so the observed phases were compared directly
 against the frozen main reference before changing its source hash.
 
 [PR #72](https://github.com/xariib/Lumenfall/pull/72) contains the candidate.
-A [signed Android candidate build](https://github.com/xariib/Lumenfall/actions/runs/45154272218)
-is running against the matching product source. Next: complete the offline and
-mobile checks, let the final PR CI pass, then integrate and verify the release.
+The [signed Android candidate build](https://github.com/xariib/Lumenfall/actions/runs/45154272218)
+passed with matching product source, version 0.2.161, established package and
+signing identity, both saves and paid Study progress retained, in-app updater
+and retail launch. Candidate acceptance used emulator Android 12 and WebView 91.
+[Tree CI](https://github.com/xariib/Lumenfall/actions/runs/45154824052) passed.
+[Pre-merge](https://github.com/xariib/Lumenfall/actions/runs/45154823859) passed
+isolated offline catch-up and found a stale mutation anchor in both existing
+recruitment-refund runners. Updating the anchor preserves the intended defect.
+Both local browser controls caught it at `legacy raw count visible`.
+
+The separate [menu PR #71](https://github.com/xariib/Lumenfall/pull/71) edits the
+same offline reference. A merge rehearsal against `365bb808` found only that
+reference conflict. Its combined source `84100670` passed the Tree core,
+economy, exact credit, Node 8.3 and four-window offline reference checks.
+Next: recheck main for overlap, complete the final PR gates, integrate and
+verify the signed release. Physical-phone and exact WebView60 remain open.

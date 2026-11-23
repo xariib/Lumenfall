@@ -12,7 +12,7 @@ const mutation=option('--mutation','none');
 function mutate(from,to){if(!source.includes(from))throw Error('Missing production mutation anchor: '+mutation);source=source.replace(from,to);}
 if(mutation==='handler')mutate("if(node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};","if(node.id!=='bonds' && node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};");
 if(mutation==='ui')mutate("if(plan.reason==='cap'){kind='maxed';reason='Maxed';}","if(plan.reason==='cap'){kind='unavailable';reason='Unavailable';}");
-if(mutation==='raw')mutate('out.nodes[node.id] = nonNegativeInt(nodes[node.id],fresh.nodes[node.id]);','out.nodes[node.id] = Math.min(20,nonNegativeInt(nodes[node.id],fresh.nodes[node.id]));');
+if(mutation==='raw')mutate('out.nodes[node.id] = savedNodeUnits(node,nodes[node.id],fresh.nodes[node.id]);','out.nodes[node.id] = Math.min(20,savedNodeUnits(node,nodes[node.id],fresh.nodes[node.id]));');
 if(mutation==='refund')mutate('if(hasReceipt || raw<=20) return;','if(raw<=20) return;');
 if(mutation==='credit')mutate('var sum=exactPrismArithmetic(out.prisms,amount);','var sum=out.prisms+amount;');
 if(mutation==='free-credit')mutate('left=exactPrismArithmetic(balance,-take)','left=balance-take');
