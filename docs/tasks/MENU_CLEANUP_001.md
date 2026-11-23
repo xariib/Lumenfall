@@ -58,3 +58,52 @@ checks the heading acceptance and negative control.
 
 [PR #71](https://github.com/xariib/Lumenfall/pull/71) is open. The product
 bytes match the [signed candidate run](https://github.com/xariib/Lumenfall/actions/runs/45151796924).
+
+## Android candidate and integration validation
+
+The signed Android 0.2.160 candidate passed on the Android 12 emulator. Both
+save slots, paid Lab work, app launch, and the approved in-app updater were
+verified. The APK contains the exact candidate HTML and retains the installed
+package and signing identity. [Candidate receipt](../qa/menu-cleanup-001/android-candidate.json)
+and [installed Wisps screen](../qa/menu-cleanup-001/installed-wisps.png).
+Browser evidence includes 12 wordmark profiles and a 16-profile visual audit
+with 1,792 assertions. [Browser receipt](../qa/menu-cleanup-001/browser-verification.json).
+
+PR #71 head 365bb808 is the proposed fast-forward commit. The current main
+13558740 is its ancestor. The pull-request workflows and nine dispatch
+workflows are checking that exact commit. Advance main only after both sets
+succeed and main still has the checked baseline. Then dispatch the signed
+public build on main. The 0.2.160 APK is a candidate.
+
+All eight PR workflows and all nine dispatch workflows passed. Both full
+runs passed 188 stateful scenarios and the isolated offline catch-up case.
+[Workflow receipt](../qa/menu-cleanup-001/integrated-checks.json).
+GitHub reports PR #71 merged. Main was fast-forwarded from 13558740 to
+365bb8086b312d9d6a335d62950199e9db3bfcc9. Public signing and release verification
+are in progress in [the release workflow](https://github.com/xariib/Lumenfall/actions/runs/45162719090).
+
+The first two public build attempts stopped at installed Wisps scroll
+restoration. The emulator reached top=max=1182 before leaving and returned
+with top=1167, max=1182. The signed candidate reached the full bottom in
+that same check. Both public attempts withheld release. See the
+[first failure receipt](../qa/menu-cleanup-001/android-scroll-first-attempt.json).
+A diagnostic build on fix/menu-cleanup-native-scroll adds native scroll
+and layout observations around the unmodified assertion. Determine where
+the offset changes and verify the fix before publishing.
+
+The [emulator trace](../qa/menu-cleanup-001/android-scroll-trace.json) showed
+Wisps was still at 1182/1182 when leaving. On return a transient taller main
+viewport exposed a bottom of 1167 before the final bottom of 1182. The
+diagnostic run reached the correct bottom at animation end in all menus.
+That diagnostic run later stopped on an independent official updater
+metadata HTTP error.
+
+The follow-up observes the activated menu and main viewport only when a
+remembered bottom is being restored. It follows layout changes until the
+player touches, scrolls with the wheel, uses the keyboard, or changes menus.
+The original animation-end restore remains for older WebViews. The browser
+negative reproduced a 15-pixel late growth on the merged source. The repaired
+source passes all 422 checks across 12 profiles, including the original
+independent offsets and cancellation on touch. The [new offline replay](../qa/menu-cleanup-001/scroll-offline-replay.json)
+again matches all four full save states. Verify the identical race on a signed
+candidate and run the exact CI and public build before closing.

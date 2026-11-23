@@ -152,5 +152,12 @@ found an older browser assertion that expected the raw Swift level in the
 Ascend explanation. The test now checks the displayed rank and verifies the
 new half-rank payouts against an independent integer oracle. The standalone
 endless-progression core test's Gale research-boundary assertion reproduced
-on the previous candidate and the full Tree source.
-Android release remains dependent on the shared native menu-scroll fix.
+on the previous candidate and the full Tree source. The corrected Prism
+browser contract passed 5,935 checks in a local diagnostic with a longer
+Windows browser deadline. The repository CI deadline is unchanged.
+
+The native menu-scroll fix landed on main at `6ce6b26c` and is included in the
+updated PR. The combined source `c2461d0892c6ce09cf996c8e26647fd6d74f2742aa354178a963cba683630315`
+passed source validation, reproduced all four offline endpoint hashes, and
+produced identical results for all seven simulation scenarios. Integration
+and the signed Android acceptance remain open pending exact-source CI and APK checks.

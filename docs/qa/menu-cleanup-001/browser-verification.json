@@ -1,0 +1,83 @@
+{
+  "sourceSha256": "f56e82643afb5a9fb570906ade744126a7ab16e6d461f5663fbd10a92509d8a6",
+  "node": "v24.22.1",
+  "browser": "Chrome/158.0.8127.36",
+  "wordmark": {
+    "verdict": "PASS",
+    "profiles": 12,
+    "controls": [
+      {
+        "id": "normal",
+        "accepted": true,
+        "checks": 8077,
+        "actualGeometryCode": null
+      },
+      {
+        "id": "brand-spacing",
+        "accepted": true,
+        "checks": 1358,
+        "actualGeometryCode": "brand-glyph-intersects-settings"
+      },
+      {
+        "id": "wisp-header",
+        "accepted": true,
+        "checks": 203,
+        "actualGeometryCode": "wisp-glyph-intersects-toggle"
+      },
+      {
+        "id": "toast-leading",
+        "accepted": true,
+        "checks": 1972,
+        "actualGeometryCode": "toast-adjacent-glyph-lines-intersect"
+      }
+    ],
+    "releasedBaseline": {
+      "sourceSha256": "b3566d01030bcd557a1b78b39d5e03c28818a16a103aeb4d0d61e144162b356d",
+      "expectedFailure": "AssertionError [ERR_ASSERTION]: same wordmark as Rift in Workshop"
+    }
+  },
+  "formationControls": {
+    "status": "pass",
+    "checks": 517,
+    "profiles": 12
+  },
+  "wispManagement": {
+    "firstRun": "browser teardown deadline",
+    "retry": {
+      "status": "pass",
+      "checks": 1182,
+      "profiles": 12
+    }
+  },
+  "recruitmentAndLiveRefresh": {
+    "status": "pass",
+    "checks": 34
+  },
+  "powerHint": {
+    "status": "PASS",
+    "checks": 901
+  },
+  "labHeading": {
+    "quick": {
+      "status": "pass",
+      "checks": 112,
+      "profiles": 1
+    },
+    "control": {
+      "verdict": "fail",
+      "expectedFailure": "AssertionError [ERR_ASSERTION]: unclipped content in research catalogue heading"
+    }
+  },
+  "fullVisualAudit": {
+    "status": "pass",
+    "profiles": 16,
+    "checks": 1792
+  },
+  "touchMenuScroll": {
+    "status": "pass",
+    "checks": 398,
+    "profiles": 12,
+    "viewport": "legacy viewport emulation",
+    "instrumentedSourceSha256": "ddaf81d0faff2f8baa03ff036c398770dd6348d5468ab178c219c7d2dd954a2a"
+  }
+}

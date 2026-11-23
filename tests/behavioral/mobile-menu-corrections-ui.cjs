@@ -32,6 +32,17 @@ module.exports=async function({send,ev,pause,check,records,args}){
    await ev('var m=document.querySelector("main");m.scrollTop=m.scrollHeight');await tab('battle');await tab(name);
    check(await ev('(()=>{var m=document.querySelector("main");return Math.abs(m.scrollHeight-m.clientHeight-m.scrollTop)<=2})()'),'return restores bottom for '+name);
   }
+  // A roster row that grows after the tab has settled must keep the bottom
+  // visible until a player chooses a different scroll position.
+  await tab('spirits');await ev('document.querySelector("main").scrollTop=document.querySelector("main").scrollHeight');
+  await tab('battle');await tab('spirits');
+  await ev('var e=document.createElement("div");e.id="wisp-late-growth";e.style.height="15px";document.getElementById("tab-spirits").appendChild(e)');
+  await ev('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(true))))');
+  check(await ev('(()=>{var m=document.querySelector("main");return Math.abs(m.scrollHeight-m.clientHeight-m.scrollTop)<=2})()'),'Wisps remains at the bottom after a settled roster grows');
+  await ev('var m=document.querySelector("main");m.dispatchEvent(new Event("touchstart"));m.scrollTop=33;document.getElementById("wisp-late-growth").style.height="30px"');
+  await ev('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(true))))');
+  check(await ev('document.querySelector("main").scrollTop===33'),'touch cancels automatic bottom restoration before a later resize');
+  await ev('document.getElementById("wisp-late-growth").remove()');
   // Forge and Lab keep separate positions through the shared Workshop button.
   await tab('forge');await ev('document.querySelector("main").scrollTop=document.querySelector("main").scrollHeight');await tab('battle');
   await ev('document.querySelector("[data-tab=forge]").click();var e=document.createElement("div");e.id="menu-entry-growth";e.style.height="180px";document.getElementById("tab-forge").appendChild(e)');
