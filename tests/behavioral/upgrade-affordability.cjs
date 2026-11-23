@@ -94,7 +94,7 @@ try{
  if(!process.argv.includes('--controls-only'))execute(sourcePath,evidence,baseline?/all upgrade prices instrumented|wallet color|native disabled affordability/:null);
  if(process.argv.includes('--negative')||process.argv.includes('--controls-only')){
   const controls=[['all-white',"Amount.valid(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Amount.valid(amount) && false ? 'var(--danger)' : 'var(--ink)'",/wallet color/],
-   ['stale-resonate',"    btn.disabled=!canSigilResonate(sp);","    /* defect control: omit live Resonate eligibility */",/native disabled affordability.*sigil-resonate funded/]];
+   ['stale-resonate',"var disabled=!canSigilResonate(sp);","var disabled=btn.disabled; /* defect control: keep stale Resonate eligibility */",/native disabled affordability.*sigil-resonate funded/]];
   for(const [name,from,to,error] of controls){
    assert.equal(source.split(from).length,2,'unique control '+name);
    const mutant=path.join(path.dirname(sourcePath),'.upgrade-affordability-control-'+process.pid+'.html');

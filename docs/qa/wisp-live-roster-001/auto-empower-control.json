@@ -1,0 +1,10 @@
+{
+  "status": "fail",
+  "baseline": false,
+  "mutant": false,
+  "autosaveMutant": false,
+  "checks": 9,
+  "sourceSha256": "8aaf049bbf1ad6fb600b946cf833d6d04ad890b0cb5fa1b0586861425d30962a",
+  "error": "AssertionError [ERR_ASSERTION]: earning Auto-Empower exposes roster and Formation controls {\"before\":false,\"depth\":350,\"requirements\":[{\"key\":\"forge\",\"label\":\"Forge levels\",\"current\":200,\"target\":200},{\"key\":\"rift\",\"label\":\"Highest Rift\",\"current\":350,\"target\":350},{\"key\":\"lab\",\"label\":\"Lab levels\",\"current\":100,\"target\":100},{\"key\":\"subjects\",\"label\":\"Different Lab subjects\",\"current\":10,\"target\":10}],\"unlocked\":true,\"card\":false,\"formation\":false}\n    at ok (C:\\lf-wisp-live-roster\\tests\\behavioral\\mobile-power-browser.cjs:155:50)\n    at main (C:\\lf-wisp-live-roster\\tests\\behavioral\\mobile-power-browser.cjs:197:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "records": []
+}

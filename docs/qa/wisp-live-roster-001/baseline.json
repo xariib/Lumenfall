@@ -1,0 +1,136 @@
+{
+  "status": "pass",
+  "baseline": true,
+  "mutant": false,
+  "autosaveMutant": false,
+  "checks": 23,
+  "sourceSha256": "f6496a778013fc290b91f7dc2713464fe4a2e0fd734afb88561853770421b6c4",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/158.0.8127.42",
+    "revision": "@bd6d26d1bced03c17a98baa86d2cd3425d543d1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+    "jsVersion": "15.8.62.31"
+  },
+  "records": [
+    {
+      "tab": "battle",
+      "calls": {
+        "tick": 50,
+        "updateBattleFast": 50,
+        "checkAffordability": 50,
+        "renderDaily": 6
+      },
+      "mutations": 789,
+      "replacedCards": 0,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 6,
+      "remaining": 994.6215,
+      "errors": [],
+      "taskMs": 351.18400000000014,
+      "scriptMs": 167.04599999999996,
+      "layoutCount": 37,
+      "layoutMs": 17.816,
+      "measuredMs": 5009.0150000178255
+    },
+    {
+      "tab": "spirits",
+      "calls": {
+        "tick": 50,
+        "checkAffordability": 50,
+        "renderSpirits": 6,
+        "renderDaily": 6
+      },
+      "mutations": 3673,
+      "replacedCards": 8,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 6,
+      "remaining": 994.575,
+      "errors": [],
+      "taskMs": 385.85,
+      "scriptMs": 257.79299999999995,
+      "layoutCount": 6,
+      "layoutMs": 25.51999999999999,
+      "measuredMs": 5001.427999988664
+    },
+    {
+      "tab": "research",
+      "calls": {
+        "tick": 50,
+        "checkAffordability": 50,
+        "renderDaily": 6
+      },
+      "mutations": 774,
+      "replacedCards": 0,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 6,
+      "remaining": 994.5242999999523,
+      "errors": [],
+      "taskMs": 256.32199999999995,
+      "scriptMs": 152.05099999999993,
+      "layoutCount": 12,
+      "layoutMs": 6.515999999999966,
+      "measuredMs": 5003.867999999784
+    },
+    {
+      "tab": "deeds",
+      "calls": {
+        "tick": 50,
+        "checkAffordability": 50,
+        "renderDaily": 6
+      },
+      "mutations": 245,
+      "replacedCards": 0,
+      "starDraws": 0,
+      "timerWakes": 51,
+      "overlay": null,
+      "depth": 21,
+      "kills": 6,
+      "remaining": 994.580199999988,
+      "errors": [],
+      "taskMs": 318.95799999999986,
+      "scriptMs": 224.005,
+      "layoutCount": 14,
+      "layoutMs": 12.989999999999945,
+      "measuredMs": 5002.824000024702
+    }
+  ],
+  "hidden": {
+    "calls": {},
+    "mutations": 636,
+    "replacedCards": 0,
+    "starDraws": 0,
+    "timerWakes": 0,
+    "overlay": null,
+    "depth": 21,
+    "kills": 0,
+    "remaining": 999.997,
+    "errors": []
+  },
+  "resumed": {
+    "calls": {
+      "tick": 11,
+      "renderDaily": 2,
+      "updateBattleFast": 11,
+      "checkAffordability": 11
+    },
+    "mutations": 175,
+    "replacedCards": 0,
+    "starDraws": 0,
+    "timerWakes": 11,
+    "overlay": null,
+    "depth": 21,
+    "kills": 3,
+    "remaining": 997.1390000000596,
+    "errors": []
+  }
+}
