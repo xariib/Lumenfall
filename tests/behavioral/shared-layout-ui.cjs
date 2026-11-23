@@ -392,7 +392,16 @@ async function sharedScenario(){
  }
  observed=await dom('brand');log.brand.push({phase:'settings-return',measurement:observed});brand(observed);
  same(observed.context.layout,open.before.control.context.layout,'Rift geometry remains stable after both Settings paths');
- await input('nav.tabbar [data-tab="spirits"]','touch','navigate to Wisps');
+ const brandAppearance=d=>({font:d.brand.font,letterSpacing:d.brand.letterSpacing,transform:d.brand.textTransform,glyphs:d.brand.glyphs});
+ const riftBrand=brandAppearance(observed);
+ for(const [selector,name] of [['#nav-workshop','Workshop'],['#nav-forge','Forge'],['#nav-research','Lab'],['#nav-ascend','Ascend'],['#nav-deeds','Deeds'],['#nav-spirits','Wisps'],['#nav-formation','Formation & Bonds']]){
+  await page(function(sel){document.querySelector(sel).click();},selector);
+  await settle();
+  const menu=await dom('brand');
+  brand(menu);
+  same(brandAppearance(menu),riftBrand,'same wordmark as Rift in '+name);
+ }
+ await input('#nav-wisp-roster','touch','navigate to Wisps');
  ok(await page(function(){return document.getElementById('tab-spirits').classList.contains('active');}),'actual Wisp tab selected');
  const rosterBefore=await snapshot('#settings-btn');
  for(const spec of WISPS){

@@ -60,13 +60,13 @@ window.powerQa={
   state.spirits.tide=0;state.lumen=spiritCost(tide)-1;
   renderSpirits();
   var card=select('[data-wisp-card=tide]'),button=select('[data-empower=tide]');
-  var waiting=els['roster-journey'].textContent.indexOf('has awakened')!==-1;
+  var waiting=button.disabled && button.querySelector('strong').textContent==='Recruit';
   var missing=button.disabled && button.querySelector('[data-price-currency=lumen]').style.color==='var(--danger)';
   defeat();
   result.wallet=missing && state.totalKills===1 && !button.disabled &&
     button.querySelector('[data-price-currency=lumen]').style.color==='var(--ink)';
   result.identity=card===select('[data-wisp-card=tide]') && button===select('[data-empower=tide]');
-  result.journey=waiting && els['roster-journey'].textContent.indexOf('is ready to recruit')!==-1;
+  result.recruitAction=waiting && !button.disabled && button.querySelector('strong').textContent==='Recruit';
 
   prepare(21,'farm');
   state.spirits.tide=0;delete state.recruitmentEntitlements.tide;
@@ -189,7 +189,7 @@ async function main(){
    const roster=await ev('powerQa.rosterTransitions()');
    ok(roster.identity,'kill income keeps the same Wisp card and purchase button '+JSON.stringify(roster));
    ok(roster.wallet,'kill income updates the existing button and missing-resource color');
-   ok(roster.journey,'recruit summary reflects affordability without rebuilding cards');
+   ok(roster.recruitAction,'Recruit action reflects affordability without rebuilding cards');
    ok(roster.recruit,'recruit defeat threshold opens the locked Wisp card');
    ok(roster.pushIdentity,'a new depth without an unlock keeps the existing card');
    ok(roster.rarityGate,'Rarity depth gate updates full requirement details');

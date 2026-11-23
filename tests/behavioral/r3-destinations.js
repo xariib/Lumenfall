@@ -24,7 +24,11 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   ok(q('#research-list').closest('.tab-panel').id==='tab-forge','direct upgrades belong only to Forge');
   ok(q('#study-list').closest('.tab-panel').id==='tab-research','projects belong only to Lab');
   ok(document.querySelectorAll('#research-list').length===1 && document.querySelectorAll('#study-list').length===1,'unique live containers');
-  ok(q('#tab-forge h2').textContent==='Rift Forge' && q('#tab-research h2').textContent==='Research Lab','destination titles');
+  ok(q('#nav-wisp-roster').textContent.trim()==='Wisps','Wisps subtab label');
+  ok(!q('#tab-spirits .chapter-head,#tab-forge .chapter-head,#tab-research .chapter-head'),'marked banners removed');
+  ok(!q('#roster-journey') && !!q('#spirit-list [data-wisp-card]'),'roster strip removed and Wisp cards retained');
+  ok(!q('.formation-best-now,[id^=formation-best-now]'),'marked recommendation block removed');
+  ok(q('#tab-ascend .chapter-head') && q('#tab-deeds .chapter-head'),'Ascend and Deeds banners retained');
   ok(q('#tab-research .section-sub').textContent==='Select a Lab to choose research.','visible content explains direct Lab selection');
   ok(q('#node-list').closest('.tab-panel').id==='tab-ascend','Ascension Tree remains under Ascend');
   nav.forEach(function(btn){
@@ -40,6 +44,7 @@ window.runR3DestinationsQa = function(b,ctx,assert){
   });
   go('spirits');q('#nav-formation').click();
   ok(nav[0].getAttribute('aria-controls').split(' ').includes('tab-formation')&&q('#tab-formation').classList.contains('active')&&q('#tab-formation').getAttribute('aria-labelledby')==='nav-formation','main Wisps destination owns the labelled Formation subtab');
+  ok(q('#bond-card .bond-row') && q('[data-formation-preset=push]'),'Bond list and existing presets retained');
   go('research');go('battle');go('workshop');
   ok(q('#tab-research').classList.contains('active'),'Workshop remembers Lab in this session');
   go('forge');ok(q('#tab-forge').classList.contains('active'),'direct Forge overrides remembered Lab');
