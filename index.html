@@ -3622,6 +3622,8 @@ var RESOURCE_COLORS = {mana:'#4f8fe0', rage:'#e0524f', harmony:'#e0b34f', focus:
 var MODULE_MAX_LEVEL = 20;
 var MODULE_LATE_GROWTH = 1.18;
 var MODULE_LATE_GROWTH_START = 5;
+var MODULE_FINAL_LEVEL_START = 16;
+var MODULE_FINAL_RARITIES = [3,3,4,4,5];
 var RARITY_LEVEL_REQUIREMENTS = ENDLESS_PROGRESSION.rarity.level;
 var RARITY_SHARD_COSTS = ENDLESS_PROGRESSION.rarity.shards;
 var RARITY_LUMEN_BASE_MULTS = ENDLESS_PROGRESSION.rarity.lumen;
@@ -6821,7 +6823,9 @@ function sigilsFromBoss(depth){return creditAmount(baseSigilsFromBoss(depth),lab
 function moduleLevel(id){ return (state.wispModules && state.wispModules[id]) || 0; }
 function moduleMult(id){ return 1 + moduleLevel(id)*0.05; }
 function modulePacingMult(level){
-  return Math.pow(MODULE_LATE_GROWTH,Math.max(0,level-(MODULE_LATE_GROWTH_START-1)));
+  var lateLevels=Math.max(0,level+1-MODULE_LATE_GROWTH_START);
+  var finalLevels=Math.max(0,level+2-MODULE_FINAL_LEVEL_START);
+  return Math.pow(MODULE_LATE_GROWTH,lateLevels)*Math.pow(2,finalLevels);
 }
 // Later recruits are priced against the research economy that opens access.
 // Fixed catalog anchors never depend on the player's wallet or elapsed time.
@@ -6831,8 +6835,11 @@ function wispInvestmentBase(sp){
 }
 function moduleRequirements(sp,level){
   var rule=ENDLESS_PROGRESSION.recruit[sp.id],band=Math.floor(level/4);
-  return rule.lab ? [wispRequirement('depth','Rift',state.maxDepthEver,rule.depth+5*band),
+  var requirements=rule.lab ? [wispRequirement('depth','Rift',state.maxDepthEver,rule.depth+5*band),
     wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),rule.lab+2*band)] : [];
+  var rarity=MODULE_FINAL_RARITIES[level+1-MODULE_FINAL_LEVEL_START];
+  if(rarity)requirements.push(wispRequirement('rarity','Rarity tier',state.heroRarity[sp.id]||0,rarity));
+  return requirements;
 }
 function moduleCost(sp, level){
   var pacing = modulePacingMult(level);
@@ -6858,7 +6865,7 @@ function wispUpgradesMaxed(id){
 }
 function ultimateSigilCost(sp){ return labDiscountCost(ENDLESS_PROGRESSION.ultimate.sigils[sp.id],2*labExpansionLevel('ultimateanalysis')); }
 function wispRequirement(key,label,current,target){return {key:key,label:label,current:current,target:target,met:current>=target};}
-function wispRequirementText(requirements){return requirements.filter(function(r){return r.target>0;}).map(function(r){return r.label+' '+r.target;}).join(' · ');}
+function wispRequirementText(requirements){return requirements.filter(function(r){return r.target>0;}).map(function(r){return r.key==='rarity'?RARITY_NAMES[r.target]+' rarity':r.label+' '+r.target;}).join(' · ');}
 function wispUpgradeUnlockText(sp,plan){
   if(!(state.spirits[sp.id]>0))return 'Recruit this Wisp first';
   return 'Requires '+wispRequirementText(plan.requirements.filter(function(r){return !r.met;}));
@@ -7148,9 +7155,9 @@ function nodeCost(node){
  *
  * Early-Wisp Module levels 1-5 keep the previous curve. Later recruits use
  * their unlock-economy investment base. From level 6 onward an
- * additional 1.18x late-growth factor applies per level, preserving useful
- * early Modules while making the final third a serious permanent investment.
- * The cap remains 20 and every level keeps the existing +5% role-specific gain.
+ * additional 1.18x late-growth factor applies per level. Purchases for levels
+ * 16–20 add a doubling per level and require Epic, Epic, Legendary, Legendary,
+ * and Mythic rarity respectively. Every level keeps its +5% role-specific gain.
  *
  * Existing saves are never repriced retroactively: stored Rarity/Module levels
  * remain valid even if they exceed a new current-run level requirement.
@@ -10178,16 +10185,14 @@ function renderSpirits(keepScroll){
     var modInfo = MODULE_INFO[sp.abilityType];
     var modLvl = moduleLevel(sp.id);
     var modMaxed = Amount.ge(modLvl,MODULE_MAX_LEVEL);
-    var modCost = moduleCost(sp, modLvl);
-    var canModule = getWispModulePlan(sp).affordable;
+    var modulePlan = getWispModulePlan(sp);
     var moduleHtml =
       '<div class="module-row">' +
         '<div class="ability-effects wisp-effect-pair"><div role="group" aria-label="Current ability effect"><div class="module-effect" data-ability-current>'+modInfo.effect(modLvl)+'</div></div>' +
           (modMaxed?'':'<span class="wisp-effect-arrow" aria-hidden="true">→</span><div role="group" aria-label="Next ability effect"><div class="ability-effect-next" data-ability-next>'+modInfo.effect(modLvl+1)+'</div></div>')+'</div>' +
         (modMaxed ? '' :
-          '<button class="mini-btn" data-module="'+sp.id+'" '+(canModule?'':'disabled')+'><span class="wisp-purchase-title">'+modInfo.upgradeLabel+'</span>' +
-            purchasePriceMarkup('lumen',modCost.lumen,'wisp-upgrade-price') +
-            purchasePriceMarkup('shard',modCost.shard,'wisp-upgrade-price') +
+          '<button class="mini-btn" data-module="'+sp.id+'" '+(modulePlan.affordable?'':'disabled')+'>' +
+            wispUpgradeButtonMarkup(sp,'module',modulePlan) +
           '</button>') +
       '</div>';
     var ultCost = ultimateSigilCost(sp);
@@ -11111,7 +11116,7 @@ var ENCYCLOPEDIA_MECHANICS = [
   {name:'Ability Output', meta:'Combat / economy rule', desc:'Ability damage uses Wisp Power, Burst/Breaker damage Modules, Ultimates, Arcane Calibration, damage Bonds and boss ability modifiers. Gale/Thorn resources use their resource Modules, Ultimates, Resource Conduction and reward Bonds; Dual Channel and Overflow Conduit can add resources. Passive-only upgrades and Support buffs do not multiply ability damage or resources.'},
   {name:'Tap damage (Guardian Tap)', meta:'Damage from tapping the enemy', desc:'A tap starts at 20 damage plus 2% of general Active-party passive power. Strong opening hits help you build your Wisp party; Wisps provide the main ongoing damage as their power grows. Tap upgrades, Kindling, Support buffs and Guardian’s Mark then apply. Guardian Cadence can boost every fifth lifetime tap. Auto-Tap uses the same hit once per second after Tireless Vigil. Manual input is limited to 20 taps in a one-second window; page-script clicks are ignored.'},
   {name:'Rarity', meta:'Wisp progression', desc:'Rarity Up requires the shown Wisp level, Rift record, Ascends, completed Wisp Ascendancy and Arcane Calibration, plus Lumen and Shards. The first tier is an early goal; later tiers require repeated permanent development. Tiers run from Common to Mythic and multiply that Wisp’s Power, including passive damage and damaging/resource abilities. Every owned tier across the roster also adds +2% general passive-party power, even on Benched Wisps. Rarity stays through Ascend and does not strengthen Support buffs.'},
-  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Ultimate requires Mythic, ability level 15, Rift 120, 50 Ascends, Wisp Ascendancy level 30 and Arcane Calibration level 10, plus the displayed Sigil investment. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% to +50% before Amplifier Trim, both initially lasting 3s. Support Endurance extends future casts up to 6s; level 8 and sufficient Charge Rate unlock sustained uptime after at least 360 fastest dedicated research days. Modules and Ultimates stay through Ascend.'},
+  {name:'Modules & Ultimates', meta:'Wisp progression', desc:'Upgrade Ability improves burst damage. Upgrade Shards, Upgrade Lumen and Upgrade Motes improve those currency rewards. These permanent upgrades are called Modules, cost Lumen and Shards, and have 20 levels. Each level adds +5% to Burst/Breaker ability damage, Gale/Thorn ability resources, or Luminous Motes for a recruited Active Amplifier. Prices rise faster from level 16. Levels 16–17 require Epic rarity, 18–19 require Legendary, and level 20 requires Mythic. Ultimate requires Mythic, ability level 15 and the Rift, Ascend, Lab, Forge and Sigil requirements shown on the Wisp card. Ultimates double damaging/resource ability output; Amplifier buffs change from +25% to +50% before Amplifier Trim, both initially lasting 3s. Support Endurance extends future casts up to 6s; level 8 and sufficient Charge Rate unlock sustained uptime after at least 360 fastest dedicated research days. Modules and Ultimates stay through Ascend.'},
   {name:'Wisp Mastery', meta:'Repeatable permanent growth', desc:'A Mythic Wisp with ability level 20 and its Ultimate opens Mastery. Each explicit purchase consumes Prisms and Sigils and compounds its own Power by 10%, with no training timer. Successive ranks require deeper Rift records, completed Wisp Ascendancy, Masterwork Tempering (up to level 500) and Swift Ascension. Existing upgrades and purchased ranks stay through Ascend. Support buff strength, duration and recast timing remain unchanged.'},
   {name:'Endgame Currency Utility',meta:'Sigils and permanent Comet investments',desc:'Sigils fund Ultimates and Resonate. Comets fund permanent Astral upgrades. These investments remain through Ascend.'},
   {name:'Wisp Roles', meta:'Build label', desc:'Roles describe authoritative ability output: Burst delivers the highest raw ability coefficient; Breaker delivers heavy ability hits; Amplifier buffs passive Wisp damage and your tap damage; Shard Utility and Lumen Utility add their named resource to ability casts. These are output and utility roles, not defensive combat roles.'},
