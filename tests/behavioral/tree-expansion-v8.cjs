@@ -73,11 +73,11 @@ function cleared(q,clear){var s=seed(q);s.depth=s.enemyDepth=clear+1;s.nodes.swi
 function scenario(id,fn){phase='effect '+id;var a=freshWorld();fn(a,a.q);effects.push(id);}
 var rows=[
   ['echo',1,6,[2,3,4,6,8,11]],['bonds',1,20,null],['swift',1,null,null],
-  ['swiftcharter',100,1,[200]],['lumenmemory',15,5,[8,16,28,44,64]],['veteranrecruits',20,5,[5,10,18,30,46]],
-  ['rosterrecall',25,4,[15,30,55,90]],['chargememory',30,5,[12,22,38,60,90]],['supportmemory',60,1,[60]],['phasememory',40,1,[35]],
+  ['swiftcharter',100,1,[200]],['lumenmemory',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],['veteranrecruits',20,5,[20,55,130,300,650]],
+  ['rosterrecall',25,4,[60,185,550,1600]],['chargememory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],['supportmemory',60,1,[60]],['phasememory',40,1,[35]],
   ['riftstep',30,5,[12,24,42,68,104]],['frontier',50,5,[20,35,55,80,110]],['stardust',60,5,[10,18,30,46,66]],
-  ['gentlegrowth',40,5,[12,22,38,60,90]],['benchmentor',35,5,[10,18,30,46,66]],
-  ['empowerbatch',45,4,[15,28,46,70]],['wallwisdom',50,4,[12,22,36,54]],['invitations',15,3,[4,9,16]],['recruitreserve',25,5,[8,16,28,44,64]]
+  ['gentlegrowth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],['benchmentor',35,5,[10,18,30,46,66]],
+  ['empowerbatch',45,4,[15,28,46,70]],['wallwisdom',50,8,[5,7,10,12,17,19,26,28],0.5],['invitations',15,3,[4,9,16]],['recruitreserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
 ];
 function price(row,level){if(row[0]==='bonds')return Math.ceil(2*Math.pow(1.45,level));if(row[0]==='swift')return Math.ceil(3*Math.pow(1.5,level));return row[3][level];}
 phase='all twenty catalogs and paid endpoints';
@@ -85,31 +85,31 @@ var catalog=freshWorld().q.defs();
 eq(catalog.filter(function(n){return !n.retired&&!n.retiredTo;}).map(function(n){return n.id;}).sort(),rows.map(function(r){return r[0];}).sort(),'exact active twenty IDs');
 eq(catalog.length,24,'all four retired IDs retained as records');
 rows.forEach(function(row){
-  var id=row[0],levels=row[2]===null?[0,10,30,50]:Array.from({length:row[2]},function(_,i){return i;});
+  var id=row[0],step=row[4]||1,levels=row[2]===null?[0,10,30,50]:Array.from({length:row[2]},function(_,i){return i;});
   levels.forEach(function(level){
     phase='paid '+id+'/'+level;
-    var a=freshWorld(),q=a.q,s=seed(q),cost=price(row,level);s.nodes[id]=level;s.prisms=cost-1;q.set(s);
+    var a=freshWorld(),q=a.q,s=seed(q),cost=price(row,level),savedUnits=(level+1)*step;s.nodes[id]=level*step;s.prisms=cost-1;q.set(s);
     var before=clone(q.get());eq(q.cost(id),cost,'independent exact price');eq(q.plan(id).reason,'unaffordable','one Prism short');eq(q.buy(id),false,'short purchase refused');eq(q.get(),before,'refusal is pure');
-    q.get().prisms=cost;before=clone(q.get());eq(q.buy(id),true,'real exact purchase');eq(q.get().nodes[id],level+1,'one paid level');eq(q.get().prisms,0,'exact debit');
+    q.get().prisms=cost;before=clone(q.get());eq(q.buy(id),true,'real exact purchase');eq(q.get().nodes[id],savedUnits,'one paid level');eq(q.get().prisms,0,'exact debit');
     ['research','longStudyLevels','spirits','owned','activeParty','formationPresets','heroRarity','wispModules','wispUltimate','autoAscendEnabled','autoAscendTargetDepth'].forEach(function(key){eq(q.get()[key],before[key],'preserve '+key);});
     eq(a.writes.filter(function(k){return k===P||k===R;}),[P,R],'one primary/recovery pair');
-    [P,R].forEach(function(key){var saved=JSON.parse(a.storage.get(key));eq([saved.nodes[id],saved.prisms],[level+1,0],'stored paid endpoint '+key);});
-    var cold=app(a.storage).q;eq([cold.get().nodes[id],cold.get().prisms],[level+1,0],'actual cold-load paid endpoint');
+    [P,R].forEach(function(key){var saved=JSON.parse(a.storage.get(key));eq([saved.nodes[id],saved.prisms],[savedUnits,0],'stored paid endpoint '+key);});
+    var cold=app(a.storage).q;eq([cold.get().nodes[id],cold.get().prisms],[savedUnits,0],'actual cold-load paid endpoint');
     eq(q.decode(q.encode(q.get())),q.get(),'actual backup codec roundtrip');priceCases++;
   });
-  if(row[2]!==null){[row[2],row[2]+1,1000000].forEach(function(raw){
+  if(row[2]!==null){[row[2]*step,(row[2]+1)*step,1000000].forEach(function(raw){
     phase='cap '+id+'/'+raw;var a=freshWorld(),q=a.q,s=seed(q);s.nodes[id]=raw;q.set(s);var before=clone(q.get());
-    eq(q.get().nodes[id],raw,'raw paid overcap record');if(rows.indexOf(row)>=3)eq(q.level(id),row[2],'effective new cap');
+    eq(q.get().nodes[id],raw,'raw paid overcap record');if(rows.indexOf(row)>=3)eq(q.level(id),row[2]*step,'effective new cap');
     eq(q.plan(id).reason,'cap','exact cap gate');eq(q.buy(id),false,'cap handler refusal');eq(q.get(),before,'no cap mutation');
   });}
   if(rows.indexOf(row)>=3){
     phase='unlock and faults '+id;var a=freshWorld(),q=a.q,s=seed(q);s.depth=s.enemyDepth=1;s.maxDepthEver=row[1]-1;q.set(s);var before=clone(q.get());
     eq(q.plan(id).reason,'locked','one Rift below requirement');eq(q.buy(id),false,'locked handler refusal');eq(q.get(),before,'locked refusal pure');
-    s=seed(q);s.prisms=1e30;q.set(s);before=clone(q.get());eq(q.plan(id).reason,'available','exact wide wallet remains affordable');eq(q.buy(id),true,'one funded high-wallet level');eq(q.get().nodes[id],1,'one purchased rank');eq(q.get().prisms,subtractHistorical(row[3][0]),'independent exact high-wallet debit');
+    s=seed(q);s.prisms=1e30;q.set(s);before=clone(q.get());eq(q.plan(id).reason,'available','exact wide wallet remains affordable');eq(q.buy(id),true,'one funded high-wallet level');eq(q.get().nodes[id],step,'one purchased rank');eq(q.get().prisms,subtractHistorical(row[3][0]),'independent exact high-wallet debit');
     [true,false].forEach(function(primary){var b=freshWorld(),z=b.q,t=seed(z);t.prisms=row[3][0];z.set(t);z.save();var start=clone(z.get()),oldP=b.storage.get(P),oldR=b.storage.get(R);b.fail(primary,!primary);
       eq(z.buy(id),!primary,'primary failure or committed recovery failure result');
       if(primary){eq(z.get(),start,'whole paid endpoint rolled back');eq([b.storage.get(P),b.storage.get(R)],[oldP,oldR],'both old slots intact');}
-      else{eq([z.get().nodes[id],z.get().prisms],[1,0],'primary committed once');eq(JSON.parse(b.storage.get(P)).nodes[id],1,'primary paid record');eq(b.storage.get(R),oldR,'failed recovery retains preceding snapshot');b.fail(false,false);eq(app(b.storage).q.get().nodes[id],1,'cold load keeps primary ownership');}
+      else{eq([z.get().nodes[id],z.get().prisms],[step,0],'primary committed once');eq(JSON.parse(b.storage.get(P)).nodes[id],step,'primary paid record');eq(b.storage.get(R),oldR,'failed recovery retains preceding snapshot');b.fail(false,false);eq(app(b.storage).q.get().nodes[id],step,'cold load keeps primary ownership');}
       faultCases++;
     });
   }

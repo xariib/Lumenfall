@@ -109,21 +109,21 @@ const specs=[
  ['bonds','Cheaper Recruitment',1,20,null],
  ['swift','Swift Ascension',1,null,null],
  ['swiftcharter','Swift Charter',100,1,[200]],
- ['lumenmemory','Lumen Inheritance',15,5,[8,16,28,44,64]],
- ['veteranrecruits','Veteran Recruits',20,5,[5,10,18,30,46]],
- ['rosterrecall','Roster Recall',25,4,[15,30,55,90]],
- ['chargememory','Charge Memory',30,5,[12,22,38,60,90]],
+ ['lumenmemory','Lumen Inheritance',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],
+ ['veteranrecruits','Veteran Recruits',20,5,[20,55,130,300,650]],
+ ['rosterrecall','Roster Recall',25,4,[60,185,550,1600]],
+ ['chargememory','Charge Memory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],
  ['supportmemory','Lasting Blessings',60,1,[60]],
  ['phasememory','Unbroken Rhythm',40,1,[35]],
  ['riftstep','Familiar Paths',30,5,[12,24,42,68,104]],
  ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
  ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
- ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
+ ['gentlegrowth','Patient Growth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],
  ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
  ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
- ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
+ ['wallwisdom','Wall Wisdom',50,8,[5,7,10,12,17,19,26,28],0.5],
  ['invitations','Early Invitations',15,3,[4,9,16]],
- ['recruitreserve','Recruitment Reserve',25,5,[8,16,28,44,64]]
+ ['recruitreserve','Recruitment Reserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
 ];
 const start=driver.indexOf('  const samples=[];'),end=driver.indexOf("  await send('Target.disposeBrowserContext'",start);
 assert(start>0&&end>start,'one mobile profile body');
@@ -132,7 +132,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const digest=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
   const samples=[],effectSamples=[],locks=[],inputSamples=[],formationSamples=[],dustSamples=[],ids=specs.map(x=>x[0]),added=ids.slice(3);
   function price(row,level){if(row[0]==='bonds')return Math.ceil(2*Math.pow(1.45,level));if(row[0]==='swift')return Math.ceil(3*Math.pow(1.5,level));return row[4][level];}
-  function effect(id,raw){var r=specs.find(x=>x[0]===id),l=r[3]===null?raw:Math.min(raw,r[3]);
+  function effect(id,raw){var r=specs.find(x=>x[0]===id),l=r[3]===null?raw:Math.min(raw,r[3]*(r[5]||1));
    if(id==='echo')return ['+'+(5*l)+' percentage points offline rate',(70+5*l)+'% before Projects'];
    if(id==='bonds')return [(3*l)+'% Wisp recruiting discount',(100-3*l)+'% of normal price'];
    if(id==='swift')return ['+'+(4*l)+'% Prisms per Ascend'];
@@ -287,23 +287,23 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const charterLocked=copy(seed);charterLocked.nodes.swift=9;await install(charterLocked);ok(await ev("prismQa.treePlan('swiftcharter').reason")==='locked','Charter independently requires Swift10');ok(await ev("document.querySelector('[data-tree-node=swiftcharter]').textContent.includes('10')"),'Swift10 requirement visible');
   // Current contribution is independently checked at 0,1,cap and historical
   // raw overcap. Assigning old ownership must not claim an existing audit.
-  for(const r of specs){const id=r[0],levels=r[3]===null?[0,1,50]:[0,1,r[3],r[3]+1];
-   for(const level of Array.from(new Set(levels))){const s=copy(seed);s.nodes[id]=level;if(id==='echo'||id==='bonds')delete s.feedbackMigration[id==='echo'?'echoCreditAuditVersion':'bondsCreditAuditVersion'];await install(s);const t=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level))ok(t.includes(piece),'independent current effect '+id+'/'+level+' '+piece);const raw=await ev('prismQa.get().nodes['+JSON.stringify(id)+']');ok(raw===level,'render keeps raw paid value '+id+'/'+level);if(r[3]!==null&&level>=r[3])ok(await ev('document.querySelector('+JSON.stringify(sel('data-node',id))+').disabled&&document.querySelector('+JSON.stringify(sel('data-node',id))+').textContent.includes("Maxed")'),'cap control '+id+'/'+level);effectSamples.push({id,level,text:t});}
+  for(const r of specs){const id=r[0],step=r[5]||1,cap=r[3]*step,levels=r[3]===null?[0,1,50]:[0,step,1,cap,cap+step];
+   for(const level of Array.from(new Set(levels))){const s=copy(seed);s.nodes[id]=level;if(id==='echo'||id==='bonds')delete s.feedbackMigration[id==='echo'?'echoCreditAuditVersion':'bondsCreditAuditVersion'];await install(s);const t=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level))ok(t.includes(piece),'independent current effect '+id+'/'+level+' '+piece);const raw=await ev('prismQa.get().nodes['+JSON.stringify(id)+']');ok(raw===level,'render keeps raw paid value '+id+'/'+level);if(r[3]!==null&&level>=cap)ok(await ev('document.querySelector('+JSON.stringify(sel('data-node',id))+').disabled&&document.querySelector('+JSON.stringify(sel('data-node',id))+').textContent.includes("Maxed")'),'cap control '+id+'/'+level);effectSamples.push({id,level,text:t});}
   }
   for(let i=0;i<specs.length;i++){
-   const r=specs[i],id=r[0],button=sel('data-node',id),card=sel('data-tree-node',id),level=paid.nodes[id],cost=price(r,level);await install(paid);
+   const r=specs[i],id=r[0],button=sel('data-node',id),card=sel('data-tree-node',id),step=r[5]||1,level=paid.nodes[id]/step,next=(level+1)*step,cost=price(r,level);await install(paid);
    const plan=await ev('prismQa.treePlan('+JSON.stringify(id)+')');ok(plan.level===level&&plan.cost===cost&&plan.affordable,'independent first real quote '+id);
    const text=await ev('document.querySelector('+JSON.stringify(card)+').textContent');ok(text.includes(r[1])&&text.includes('Level '+level),'visible name and paid level '+id);if(r[3]!==null)ok(text.includes(id==='bonds'?' / '+r[3]:'Cap '+r[3]),'explicit cap '+id);
    async function wallet(amount,label){await ev('prismQa.treeWallet('+amount+');prismQa.treeRefresh()');const m=await ev('('+function(card){var e=document.querySelector(card),p=e.querySelector('[data-price-currency="prism"]'),b=e.querySelector('[data-node]'),probe=document.createElement('span');document.body.appendChild(probe);probe.style.color='var(--danger)';var red=getComputedStyle(probe).color;probe.style.color='var(--ink)';var ink=getComputedStyle(probe).color;probe.remove();return {count:e.querySelectorAll('[data-price-currency]').length,amount:Number(p.dataset.priceAmount),color:getComputedStyle(p).color,red:red,ink:ink,disabled:b.disabled,text:b.textContent,warning:e.querySelectorAll('.control-state').length};}.toString()+')('+JSON.stringify(card)+')');ok(m.count===1&&m.amount===cost,'one exact Prisms quote '+id+'/'+label);ok(m.color===(amount<cost?m.red:m.ink),'red only when unaffordable '+id+'/'+label);ok(m.disabled===(amount<cost),'live eligibility '+id+'/'+label);ok(m.warning===0&&!/need|short|missing|deficit|not enough/i.test(m.text),'no shortage UI '+id+'/'+label);return m;}
    await wallet(cost-1,'one short');await wallet(cost,'exact');const focused=await prepare(button,true);await ev('prismQa.treeRefresh()');const refresh=await measure(button);await frames();const refreshSettled=await measure(button);ok(refresh.focus.node===id&&refresh.scroll===focused.scroll,'unchanged-layout affordability retains focus and exact scroll '+id);ok(refreshSettled.scroll===focused.scroll,'unchanged-layout affordability exact scroll after native frames '+id);viewport(focused,refresh,'node',id,'affordability '+id+' immediate');viewport(focused,refreshSettled,'node',id,'affordability '+id+' settled');
    const before=await ev('prismQa.get()'),writes=await ev('window.__treeWrites.length');
    if(i%3===0)await touchHere(button);else await key(i%3===1?'Enter':' ',i%3===1?'Enter':'Space',i%3===1?13:32);
-   await frames();const after=await ev('prismQa.get()');ok(after.nodes[id]===level+1&&after.prisms===0,'one trusted exact purchase '+id);
+   await frames();const after=await ev('prismQa.get()');ok(after.nodes[id]===next&&after.prisms===0,'one trusted exact purchase '+id);
    for(const field of ['research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','spirits','activeParty','formationPresets','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','treeTrainingProgress'])same(after[field],before[field],'Tree buy preserves '+field+' '+id);
    for(const other of ids.concat(['starlight','steady','momentum','reserves']))if(other!==id)ok(after.nodes[other]===before.nodes[other],'only selected node changes '+id+'/'+other);
    ok(await ev('window.__treeWrites.slice('+writes+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'one primary/recovery save '+id);
-   ok(await ev('prismQa.keys().every(function(k){var s=JSON.parse(localStorage.getItem(k));return s.nodes['+JSON.stringify(id)+']==='+Number(level+1)+'&&s.prisms===0;})'),'both slots contain exact real endpoint '+id);
-   const rendered=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level+1))ok(rendered.includes(piece),'purchase immediately changes effect '+id);
+   ok(await ev('prismQa.keys().every(function(k){var s=JSON.parse(localStorage.getItem(k));return s.nodes['+JSON.stringify(id)+']==='+next+'&&s.prisms===0;})'),'both slots contain exact real endpoint '+id);
+   const rendered=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,next))ok(rendered.includes(piece),'purchase immediately changes effect '+id);
    // A separate funded purchase keeps the same enabled control, so viewport
    // checks do not depend on the product's disabled-control fallback policy.
    if(r[3]===null||level+2<r[3]){
@@ -405,7 +405,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.key===' '),'trusted touch Enter and Space evidence');
   await ev('prismQa.treeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready('paid-state-reload');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('spirits')");
   const cold=await ev('prismQa.get()');for(const field of ['nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','activeParty','formationPresets','activeFormationPreset','autoAscendEnabled','autoAscendTargetDepth'])same(cold[field],committed[field],'actual reload retains paid '+field);
-  ok(added.every(id=>cold.nodes[id]===1),'all seventeen actual new purchases survive reload');ok(cold.activeParty.length===5,'five-slot snapshot survives cold load');
+  ok(specs.slice(3).every(r=>cold.nodes[r[0]]===(r[5]||1)),'each actual first-rank purchase survives reload');ok(cold.activeParty.length===5,'five-slot snapshot survives cold load');
   const zero=copy(formation);zero.nodes.formationseat=0;zero.activeParty=six.activeParty;zero.formationPresets.push=six.activeParty;await install(zero,'spirits');ok(await ev('prismQa.get().activeParty.length')===5&&await ev('prismQa.treeCapacity()')===5,'zero-new capacity remains five');
   await install(committed);const ax=await send('Accessibility.getFullAXTree');for(const r of specs)ok(ax.nodes.some(n=>!n.ignored&&n.name&&n.name.value.includes(r[1])),'named Tree row exposed to AX '+r[0]);
   ok((await ev('window.__prismErrors')).length===0,'no browser runtime errors');records.push({width,scale,motion,nativeAnimationFrames:true,catalog,samples,effectSamples,locks,inputSamples,formationSamples,dustSamples,unavailableEmpower,sixMembers:six.activeParty,legacyMigration:{seed:legacySeedObservation,schema:migrated.schemaVersion,prisms:migrated.prisms,comets:migrated.comets,nodes:migrated.nodes,newDefaultZero:added.length},input});

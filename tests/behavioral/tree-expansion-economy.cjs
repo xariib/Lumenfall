@@ -13,15 +13,16 @@ const {integer}=require('./amount-oracle.cjs');
 const FIXTURE_PATH = path.join(__dirname, 'fixtures-pre-endless.json');
 const FIXTURE_SHA = 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753';
 const PRICES = {
-  swiftcharter: [200], lumenmemory: [8,16,28,44,64],
-  veteranrecruits: [5,10,18,30,46], rosterrecall: [15,30,55,90],
-  chargememory: [12,22,38,60,90], supportmemory: [60], phasememory: [35],
+  swiftcharter: [200], lumenmemory: [4,4,7,9,13,15,21,23,31,33],
+  veteranrecruits: [20,55,130,300,650], rosterrecall: [60,185,550,1600],
+  chargememory: [5,7,10,12,18,20,29,31,44,46], supportmemory: [60], phasememory: [35],
   riftstep: [12,24,42,68,104], frontier: [20,35,55,80,110],
-  stardust: [10,18,30,46,66], gentlegrowth: [12,22,38,60,90],
+  stardust: [10,18,30,46,66], gentlegrowth: [5,7,10,12,18,20,29,31,44,46],
   formationseat: [120], benchmentor: [10,18,30,46,66],
-  empowerbatch: [15,28,46,70], wallwisdom: [12,22,36,54],
-  invitations: [4,9,16], recruitreserve: [8,16,28,44,64]
+  empowerbatch: [15,28,46,70], wallwisdom: [5,7,10,12,17,19,26,28],
+  invitations: [4,9,16], recruitreserve: [4,4,7,9,13,15,21,23,31,33]
 };
+const SPLIT_RANKS = new Set(['lumenmemory','chargememory','gentlegrowth','wallwisdom','recruitreserve']);
 const BASE_COST = require('./wisp-gameplay-reference.cjs').bases;
 const HISTORICAL_BASE_COST={ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
 const IDS = Object.keys(BASE_COST);
@@ -57,16 +58,20 @@ function fixture(q, id) {
   return quiet(s);
 }
 function buyRanks(q, wanted, a) {
-  const total = Object.entries(wanted).reduce((sum,[id,rank]) => sum+PRICES[id].slice(0,rank).reduce((x,y)=>x+y,0),0);
+  const targets = Object.entries(wanted).map(([id,units]) => {
+    const step = SPLIT_RANKS.has(id) ? 0.5 : 1;
+    return {id,step,rank:units/step};
+  });
+  const total = targets.reduce((sum,{id,rank}) => sum+PRICES[id].slice(0,rank).reduce((x,y)=>x+y,0),0);
   const s = clone(q.get()); s.prisms = total; q.set(s);
   const receipts = [];
-  for (const [id,rank] of Object.entries(wanted)) {
+  for (const {id,rank,step} of targets) {
     for (let level=0;level<rank;level++) {
       const before = q.get().prisms, price = PRICES[id][level];
       a.eq(q.cost(id),price,'independent paid profile quote '+id+'/'+level);
       a.eq(q.buy(id),true,'actual paid profile purchase '+id+'/'+level);
       a.eq(before-q.get().prisms,price,'exact profile debit '+id+'/'+level);
-      a.eq(q.get().nodes[id],level+1,'one profile rank '+id+'/'+level);
+      a.eq(q.get().nodes[id],(level+1)*step,'one profile rank '+id+'/'+level);
       receipts.push({id,level:level+1,price});
     }
   }

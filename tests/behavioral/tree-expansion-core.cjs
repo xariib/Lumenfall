@@ -8,23 +8,23 @@ const {reward: oldPrismReward,reserve: protectedPrismReserve} = require('./prism
 // No price, cap, unlock or expected effect is read out of the production table.
 const CATALOG = [
   ['swiftcharter','Swift Charter',100,1,[200]],
-  ['lumenmemory','Lumen Inheritance',15,5,[8,16,28,44,64]],
-  ['veteranrecruits','Veteran Recruits',20,5,[5,10,18,30,46]],
-  ['rosterrecall','Roster Recall',25,4,[15,30,55,90]],
-  ['chargememory','Charge Memory',30,5,[12,22,38,60,90]],
+  ['lumenmemory','Lumen Inheritance',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],
+  ['veteranrecruits','Veteran Recruits',20,5,[20,55,130,300,650]],
+  ['rosterrecall','Roster Recall',25,4,[60,185,550,1600]],
+  ['chargememory','Charge Memory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],
   ['supportmemory','Lasting Blessings',60,1,[60]],
   ['phasememory','Unbroken Rhythm',40,1,[35]],
   ['riftstep','Familiar Paths',30,5,[12,24,42,68,104]],
   ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
   ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
-  ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
+  ['gentlegrowth','Patient Growth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],
   ['formationseat','Formation Limit',75,1,[120]],
   ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
   ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
-  ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
+  ['wallwisdom','Wall Wisdom',50,8,[5,7,10,12,17,19,26,28],0.5],
   ['invitations','Early Invitations',15,3,[4,9,16]],
-  ['recruitreserve','Recruitment Reserve',25,5,[8,16,28,44,64]]
-].map(([id,name,unlock,cap,prices]) => ({id,name,unlock,cap,prices}));
+  ['recruitreserve','Recruitment Reserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
+].map(([id,name,unlock,cap,prices,step=1]) => ({id,name,unlock,cap,prices,step}));
 const IDS = CATALOG.map(d => d.id), OLD_IDS = ['starlight','steady','echo','bonds','swift','momentum','reserves'];
 function integerAmount(value){if(typeof value==='number')return BigInt(value);const[d,e]=value.split('e');return Number(e)>=0?BigInt(d)*10n**BigInt(e):BigInt(d)/10n**BigInt(-Number(e));}
 const SPIRITS = [
@@ -32,8 +32,9 @@ const SPIRITS = [
   ['thorn',12,12000],['void',18,70000],['aurora',24,400000],['titan',32,2200000]
 ].map(([id]) => ({id,unlock:require('./wisp-gameplay-reference.cjs').recruitment[id][0],base:require('./wisp-gameplay-reference.cjs').bases[id]}));
 const LEGACY = {echo:{base:2,growth:1.4,cap:6},bonds:{base:2,growth:1.45,cap:20},swift:{base:3,growth:1.5}};
-const capFor = id => CATALOG.find(d => d.id === id).cap;
-const ranksFor = id => [...new Set([0,1,capFor(id),capFor(id)+1])];
+const spec = id => CATALOG.find(d => d.id === id);
+const capFor = id => spec(id).cap*spec(id).step;
+const ranksFor = id => [...new Set([0,spec(id).step,1,capFor(id)-spec(id).step,capFor(id),capFor(id)+1])];
 const effective = (id,level) => Math.min(capFor(id),level);
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const sourcePath = process.argv[2] || path.join(__dirname,'../../index.html');
@@ -67,8 +68,9 @@ function useMutation(q,mutate) { return mutate ? mutate(q) : () => {}; }
 function oldCost(sp,level,bonds=0) { return Math.round(sp.base*Math.pow(1.13,level)*(1-Math.min(.6,.03*bonds))); }
 function rationalCost(sp,level,rank,bonds=0) {
   if(!rank || level<=25) return oldCost(sp,level,bonds);
-  const numerator=BigInt(sp.base)*113n**25n*BigInt(113-rank)**BigInt(level-25)*BigInt(100-Math.min(60,3*bonds));
-  const denominator=100n**BigInt(level+1);
+  const exponent=BigInt(level-25);
+  const numerator=BigInt(sp.base)*113n**25n*BigInt(1130-10*rank)**exponent*BigInt(100-Math.min(60,3*bonds));
+  const denominator=100n**26n*1000n**exponent;
   const result=Number((2n*numerator+denominator)/(2n*denominator));
   assert(Number.isSafeInteger(result),'moderate independent rational oracle result');
   return result;
@@ -95,33 +97,34 @@ function catalogue(t,mutate) {
       const row=q.node(d.id);
       t.eq([row.name,row.unlockDepth,row.levelCap],[d.name,d.unlock,d.cap],'named capped unlock '+d.id);
       t.ok(row.desc&&row.treeGroup,'visible explanation and group '+d.id);
-      for(const raw of [...Array(d.cap+2).keys(),1000000]) {
+      for(const rank of [...Array(d.cap+2).keys(),1000000]) {
+        const raw=rank*d.step;
         const s=world(q);s.nodes[d.id]=raw;q.set(s);
         const before=clone(q.get());
-        t.eq(q.level(d.id),Math.min(raw,d.cap),'effective cap '+d.id+'/'+raw);
+        t.eq(q.level(d.id),Math.min(raw,capFor(d.id)),'effective cap '+d.id+'/'+raw);
         t.eq(q.get().nodes[d.id],raw,'raw paid level retained '+d.id+'/'+raw);
         const plan=q.plan(d.id);
         t.eq(q.get(),before,'quote is read-only '+d.id+'/'+raw);
         if(d.id==='formationseat'){t.eq(plan.reason,'retired','sixth-slot purchase stays retired');t.eq(q.buy(d.id),false,'retired slot cannot be bought');t.eq(q.get().prisms,s.prisms+(raw?120:0),'original paid price refunded once');continue;}
-        if(raw>=d.cap) {
+        if(rank>=d.cap) {
           t.eq(plan.reason,'cap','cap gate '+d.id+'/'+raw);
           t.eq(q.buy(d.id),false,'cap buy rejected '+d.id+'/'+raw);
           t.eq(q.get(),before,'cap rejection is pure '+d.id+'/'+raw);
           continue;
         }
-        t.eq(q.cost(d.id),d.prices[raw],'independent price '+d.id+'/'+raw);
-        t.eq(q.cost(d.id,raw),d.prices[raw],'explicit level price '+d.id+'/'+raw);
+        t.eq(q.cost(d.id),d.prices[rank],'independent price '+d.id+'/'+raw);
+        t.eq(q.cost(d.id,raw),d.prices[rank],'explicit level price '+d.id+'/'+raw);
         t.eq(q.get(),before,'explicit quote restores state '+d.id+'/'+raw);
-        for(const wallet of [d.prices[raw]-1,d.prices[raw],2**40,1e30]) {
+        for(const wallet of [d.prices[rank]-1,d.prices[rank],2**40,1e30]) {
           const paid=clone(s);paid.prisms=wallet;q.set(paid);const start=clone(q.get());
-          const allowed=wallet>=d.prices[raw];
+          const allowed=wallet>=d.prices[rank];
           t.eq(q.plan(d.id).affordable,allowed,'quoted debit eligibility '+d.id+'/'+raw+'/'+wallet);
           t.eq(q.buy(d.id),allowed,'actual exact purchase '+d.id+'/'+raw+'/'+wallet);
           if(!allowed) {t.eq(q.get(),start,'refused payment changes nothing '+d.id);continue;}
-          t.eq(integerAmount(q.get().prisms),BigInt(wallet)-BigInt(d.prices[raw]),'independent exact Prism debit '+d.id+'/'+raw);
-          t.eq(q.get().nodes[d.id],raw+1,'one paid level '+d.id+'/'+raw);
+          t.eq(integerAmount(q.get().prisms),BigInt(wallet)-BigInt(d.prices[rank]),'independent exact Prism debit '+d.id+'/'+raw);
+          t.eq(q.get().nodes[d.id],raw+d.step,'one paid level '+d.id+'/'+raw);
           for(const key of ['lumen','shards','sigils','motes','spirits','heroResource','treeTrainingProgress']) t.eq(q.get()[key],start[key],'purchase has no run-event grant '+d.id+'/'+key);
-          t.eq(JSON.parse(a.storage.get(P)).nodes[d.id],raw+1,'primary commits paid level '+d.id);
+          t.eq(JSON.parse(a.storage.get(P)).nodes[d.id],raw+d.step,'primary commits paid level '+d.id);
           t.eq(a.storage.get(P),a.storage.get(R),'recovery matches primary '+d.id);
         }
       }
@@ -129,8 +132,8 @@ function catalogue(t,mutate) {
       const s=lowWorld(q,d.unlock-1);q.set(s);const before=clone(q.get());
       t.eq(q.plan(d.id).reason,'locked','one Rift below unlock '+d.id);
       t.eq(q.buy(d.id),false,'locked handler '+d.id);t.eq(q.get(),before,'locked purchase is pure '+d.id);
-      const owned=lowWorld(q,1);owned.nodes[d.id]=d.cap;q.set(owned);
-      t.eq(q.level(d.id),d.cap,'paid effect survives current and record depth below unlock '+d.id);
+      const owned=lowWorld(q,1);owned.nodes[d.id]=capFor(d.id);q.set(owned);
+      t.eq(q.level(d.id),capFor(d.id),'paid effect survives current and record depth below unlock '+d.id);
     }
     const s=world(q);s.nodes.swift=9;q.set(s);
     t.eq(q.plan('swiftcharter').reason,'locked','Charter also requires existing Swift10');
@@ -156,7 +159,7 @@ function nodeFaults(t,mutate) {
         t.eq(returned,true,'committed primary survives recovery failure '+id);
         t.eq(a.storage.get(R),r,'failed recovery stays at earlier endpoint '+id);
       }
-      t.eq(q.get().nodes[id],before.nodes[id]+1,'one level after failure/retry '+id);
+      t.eq(q.get().nodes[id],before.nodes[id]+(spec(id)?.step||1),'one level after failure/retry '+id);
       t.eq(q.get().prisms,before.prisms-cost,'one debit after failure/retry '+id);
       t.eq(app(source,a.storage).q.get(),q.get(),'cold load uses committed endpoint '+id);
     } finally {end();}
@@ -165,7 +168,7 @@ function nodeFaults(t,mutate) {
 
 function nodeHugeDebit(t,mutate) {
   const a=app(source),q=a.q,s=world(q);s.prisms=1e30;q.set(s);const before=clone(q.get()),end=useMutation(q,mutate);
-  try {t.eq(q.buy('lumenmemory'),true,'large Tree price funds real ownership');t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-8n,'huge Prism wallet gains no free ownership');t.eq(q.get().nodes.lumenmemory,1,'one paid Tree level');} finally {end();}
+  try {t.eq(q.buy('lumenmemory'),true,'large Tree price funds real ownership');t.eq(integerAmount(q.get().prisms),BigInt(before.prisms)-4n,'huge Prism wallet gains no free ownership');t.eq(q.get().nodes.lumenmemory,0.5,'one paid Tree level');} finally {end();}
 }
 
 function deferredRefund(t,mutate) {
@@ -516,7 +519,7 @@ function wall(t,mutate) {
 }
 
 function paidState(q,automatic=false,clear=50) {
-  const s=atCleared(q,clear);CATALOG.forEach(d=>s.nodes[d.id]=d.cap);
+  const s=atCleared(q,clear);CATALOG.forEach(d=>s.nodes[d.id]=capFor(d.id));
   s.nodes.echo=10;s.nodes.bonds=28;s.nodes.swift=31;s.nodes.starlight=7;s.nodes.steady=9;s.nodes.momentum=11;
   q.forgeDefs().forEach(d=>s.research[d.id]=d.levelCap||7);
   s.longStudyLevels.labcapacity=2;
