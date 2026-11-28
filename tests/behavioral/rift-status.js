@@ -46,6 +46,11 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   var checks=0,q=s=>document.querySelector(s),copy=s=>JSON.parse(JSON.stringify(s));
   function ok(v,m){checks++;assert(v,m);}
   function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
+  // A combat visual has an elapsed-time deadline independent of the save calendar.
+  async function advanceCombatWindow(ms){
+    b.advanceTime(ms);
+    await new Promise(function(resolve){setTimeout(resolve,ms);});
+  }
   function seed(){return window.riftStatusSeed(b,ctx);}
   function install(s){b.setState(s);b.renderLayout();}
   function currentPower(id,state){
@@ -153,7 +158,8 @@ window.runRiftStatusQa=async function(b,ctx,assert){
         ok(Number(bar.getAttribute('aria-valuenow'))===percentReady,'accessible bar reads readiness limited by charge and Support recast');
         var chargeScale=/^scaleX\(([^)]+)\)$/.exec(bar.firstElementChild.style.transform);
         ok(chargeScale&&Math.abs(Number(chargeScale[1])*100-readiness)<=0.0001,'compositor bar matches readiness within CSS serialization precision');
-        ok(getComputedStyle(bar.firstElementChild).transitionProperty==='transform'||getComputedStyle(bar.firstElementChild).transitionDuration==='0s','charge animation does not animate layout width');
+        var chargeStyle=getComputedStyle(bar.firstElementChild);
+        ok(chargeStyle.transitionProperty==='transform'||chargeStyle.transitionProperty==='none'||chargeStyle.transitionDuration==='0s','charge animation does not animate layout width: '+id+' '+JSON.stringify([chargeStyle.transitionProperty,chargeStyle.transitionDuration]));
         ok(bar.getAttribute('aria-valuemin')==='0'&&bar.getAttribute('aria-valuemax')==='100','ability charge retains its accessible percentage range');
         var chargeSeconds=(1-value/100)*cycle;
         var grants=['tapconduit','relay','sustainedchannel','victorycharge','resonancecascade'].some(key=>(state.research||{})[key]>0);
@@ -251,7 +257,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     });
     if(!motion)ok(new Set(styles).size===8,'eight distinct Wisp cast identities');
     s=seed();s.activeParty=['ember'];s.spirits.ember=1;s.heroResource.ember=0;install(s);q('[data-tab="battle"]').click();b.resetFeedback();
-    var hp=b.getState().enemyHp;b.advanceTime(400);b.feedbackTick(false);b.riftStatus.update();
+    var hp=b.getState().enemyHp;await advanceCombatWindow(400);b.feedbackTick(false);b.riftStatus.update();
     ok(b.getState().enemyHp<hp,'passive projectile accompanies authoritative continuous damage');
     ok(motion?!q('.vfx-shot'):!!q('.vfx-shot.shot-ember'),'passive projectile uses its contributing Wisp identity');
     var shot=q('.vfx-shot');if(shot){
@@ -272,7 +278,8 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     partyCheck();
     ok(q('[data-rift-wisp="'+castId+'"] .rift-charge').getAttribute('aria-valuetext').startsWith('Casting; '),'actual cast event exposes status on the correct Wisp bar');
     ok(document.querySelectorAll('.combat-vfx').length===(matchMedia('(prefers-reduced-motion: reduce)').matches?0:12),'effects retain the twelve-effect bound and are absent in reduced motion');
-    b.advanceTime(700);b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
+    await advanceCombatWindow(700);
+    b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
     b.resetFeedback();q('[data-tab="spirits"]').click();b.riftStatus.emit(castId);ok(!q('.combat-vfx'),'no effects accumulate off Rift');q('[data-tab="battle"]').click();
     s=seed();s.buffUntil=b.clockNow()+2000;s.buffMult=1.25;install(s);
     var before=b.getState();for(var i=0;i<6;i++){b.renderLayout();document.querySelectorAll('nav.tabbar button').forEach(x=>x.click());}same(b.getState(),before,'status rendering/navigation observer-only');
