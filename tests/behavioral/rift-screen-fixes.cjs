@@ -32,23 +32,33 @@ driver=driver.slice(0,start)+String.raw`
   await ev('prismQa.fixture()');
   await ev("document.querySelectorAll('.rift-milestone').forEach(e=>e.remove())");
   if(width===390 && scale===1 && motion==='no-preference'){
-   for(const [w,h] of [[568,320],[740,360]]){
+   await run("state.depth=300;state.maxDepthEver=301;state.activeParty=['ember','tide','stone','gale','void'];state.cometTrial={id:'quiet',target:300,phase:'active',failed:false};state.lumen=state.shards=state.motes=state.sigils=state.prisms=state.comets=1e300;spawnEnemy(false);renderAll()");
+   for(const [w,h] of [[480,320],[568,320],[740,360],[320,480]])for(const textScale of [1,2]){
     await send('Emulation.setDeviceMetricsOverride',{width:w,height:h,deviceScaleFactor:1,mobile:true});
+    await ev('document.documentElement.style.fontSize='+JSON.stringify(16*textScale+'px'));
     await pause(100);
     const boxes=await ev('('+function(){
       const rect=id=>document.querySelector(id).getBoundingClientRect().toJSON();
       const brand=document.createRange();brand.selectNodeContents(document.querySelector('.hud .brand'));
-      return {enemy:rect('#enemy-stage'),party:rect('#rift-party'),stats:rect('.stage .stat-row'),nav:rect('nav.tabbar'),
+      return {enemy:rect('#enemy-stage'),nav:rect('nav.tabbar'),hud:rect('.hud'),
+        panels:['#enemy-stage','#rift-party','#boss-combat','#comet-trial-status','.stage .stat-row','.stage .rift-heading','#buff-indicator'].map(rect),
+        partyCount:document.querySelectorAll('#rift-party [data-rift-wisp]').length,
+        powersFit:Array.from(document.querySelectorAll('.rift-wisp-power')).every(e=>{
+          const value=e.getBoundingClientRect(),card=e.closest('.rift-wisp').getBoundingClientRect();
+          return value.left>=card.left && value.right<=card.right;
+        }),
+        clippedWallets:Array.from(document.querySelectorAll('.hud .val')).filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>[e.id,e.clientWidth,e.scrollWidth,e.textContent]),
         brand:brand.getBoundingClientRect().toJSON(),settings:rect('#settings-btn')};
     }.toString()+')()');
-    await shot('landscape-'+w+'x'+h);
+    if(textScale===1)await shot('compact-'+w+'x'+h);
     const separate=(a,b)=>a.right<=b.left+1 || b.right<=a.left+1 || a.bottom<=b.top+1 || b.bottom<=a.top+1;
-    ok(boxes.enemy.height>=120 && boxes.stats.bottom<=boxes.nav.top+1 && boxes.party.bottom<=boxes.nav.top+1 &&
-      separate(boxes.party,boxes.enemy) && separate(boxes.party,boxes.stats) && separate(boxes.enemy,boxes.stats) &&
-      boxes.brand.right<=boxes.settings.left,
-      'landscape enemy, Wisps and damage readouts fit above navigation '+JSON.stringify(boxes));
+    ok(boxes.enemy.height>=120 && boxes.partyCount===5 && boxes.powersFit && boxes.brand.right<=boxes.settings.left && !boxes.clippedWallets.length &&
+      boxes.panels.every((p,i)=>p.height>0 && p.top>=boxes.hud.bottom-1 && p.bottom<=boxes.nav.top+1 &&
+        boxes.panels.slice(0,i).every(other=>separate(p,other))),
+      'boss, trial, party, wallets and damage readouts fit '+w+'x'+h+' at '+textScale+'x '+JSON.stringify(boxes));
    }
    await send('Emulation.setDeviceMetricsOverride',{width,height:width===320?640:844,deviceScaleFactor:1,mobile:true});
+   await ev("document.documentElement.style.fontSize='16px';prismQa.fixture()");
    const initialTaps=await run('state.totalTaps');
    await ev("document.getElementById('enemy-stage').click()");
    ok(await run('state.totalTaps')===initialTaps,'page-generated clicks cannot earn manual attacks');
