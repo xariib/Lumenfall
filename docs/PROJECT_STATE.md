@@ -1,5 +1,11 @@
 # Lumenfall — current delivery status
 
+[Repository cleanup and release readiness](tasks/REPOSITORY_READINESS_001.md)
+tracks the smaller Android font payload, build dependency audit and the checks
+required by the APK publisher. Public game releases are recorded separately below.
+
+[Game quality audit](tasks/GAME_QUALITY_20261128.md) shipped as [Android 0.2.179](https://github.com/xariib/Lumenfall/releases/tag/android-1000179) through PR #76 at d0340052. Short screens now fit the full Rift party, boss and Comet Trial. Rapid Guardian input follows the rolling tap cap, Forge controls recover after clock changes, and Settings reports storage failures while keeping saves recoverable. All eight PR and nine exact-commit workflows passed. The signed Android upgrade preserved both saves and paid progress. Physical-phone, TalkBack and exact WebView 60 checks remain open. [Public verification](qa/game-quality-20261128/android-public.json).
+
 [Wisp ability pacing](tasks/WISP_ABILITY_PACING_001.md) shipped as
 [Android 0.2.171](https://github.com/xariib/Lumenfall/releases/tag/android-1000171)
 through PR #75 at `09b87e84`. Ability levels 16–17 require Epic, 18–19 require
