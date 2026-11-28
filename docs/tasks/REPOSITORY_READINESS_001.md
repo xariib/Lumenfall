@@ -8,7 +8,7 @@ The main tree contains 19,802 files. Three open PRs cover Play distribution (#63
 
 The Android build copies the entire fonts directory. Its 11 WOFF2 files represent five unique blobs. Cinzel has three copies of one blob and Manrope has five copies of another. IBM Plex Mono has three distinct blobs. Only the live stylesheet references the redundant font names in current product and test paths.
 
-Status is in progress. Compare font loading and rendering before and after consolidation, inspect notices and shipped assets, and verify integration against concurrent work.
+This cleanup is tracked in [PR #77](https://github.com/xariib/Lumenfall/pull/77).
 
 ## Cleanup and release checks
 
@@ -19,4 +19,8 @@ Status is in progress. Compare font loading and rendering before and after conso
 - Used OpenAI's [Game Playtest skill](https://github.com/openai/plugins/blob/main/plugins/game-studio/skills/game-playtest/SKILL.md) with the project's existing Chrome harness. Chrome 158.0.8127.36 loaded all 11 faces in both versions and rendered the same glyph sample to identical PNG bytes (SHA-256 `46c3e263fda531da8bfa5a8846afc32c7d9f9182f7ec75fa202fda39d22c71b8`).
 - Node 24.22.3 passed source validation, context, 1,509 archive checks, migration and historical 14-asset restoration, behavioral partition coverage and APK identity self-tests. Self-review found no change to game source or save logic. Asset size figures describe staged files; APK compression and signing affect the final size.
 
-Next action is PR validation and an unpublished Android build with packaged asset checks. Publication remains a separate user decision.
+The candidate visual audit passed 1,792 checks across 16 viewport, scale, and motion combinations. It produced 72 screenshots. The narrow Rift and Wisps screens were visually reviewed. A link scan located one more reference to the moved branding guide in the Visual Polish task, which now points to its new location.
+
+The full npm audit reported seven moderate development dependency entries and zero high or critical entries. The production-only audit was clean. The token lacked access to the private Dependabot alerts view and Projects boards. These API results cannot establish that no private alerts or boards exist. Play distribution remains tracked in [PR #63](https://github.com/xariib/Lumenfall/pull/63).
+
+Next action is to check the full PR suite and the [unpublished Android build](https://github.com/xariib/Lumenfall/actions/runs/46162116521), then record integration and Android evidence. Publication remains a separate user decision.
