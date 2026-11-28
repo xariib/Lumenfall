@@ -31,7 +31,7 @@ function app(saved){
 }
 const {reward:expected}=require('./prism-earning-reference.cjs');
 function seed(x,c,b,t,l){let s=x.b.fresh();s.lastSeen=2000000000000;s.questDay='2033-05-18';s.loginStreak=1;s.maxDepthEver=Math.max(250,c+1,b+1);s.depth=c+1;s.ascendRewardedDepth=b;s.nodes.swift=t;s.longStudyLevels.prismstudy=l;s.prisms=1000;s.owned.autoascend=true;s.autoAscendEnabled=false;s.autoAscendTargetDepth=c+1;s.activeParty=['ember'];s.spirits.ember=1;s.enemyDepth=c+1;s.enemyHp=s.enemyMaxHp=1e20;for(const id of Object.keys(s.empowerQueue))s.empowerQueue[id]=false;return s;}
-for(const c of [14,15,16,19,20,25,50,119,250])for(const benchmark of [0,15,c,500])for(const [tree,lab] of [[0,0],[1,0],[7,0],[10,10],[17,18]]){
+for(const c of [14,15,16,19,20,25,50,119,250])for(const benchmark of [0,15,c,500])for(const [tree,lab] of [[0,0],[0.5,1],[1,0],[7.5,0],[10,10],[17,18]]){
  const want=expected(c,benchmark,tree,lab);const x=app(),s=seed(x,c,benchmark,tree,lab);x.b.set(s);
  const before=clone(x.b.get());eq(x.b.preview().gain,want,'preview oracle');eq(x.b.get(),before,'preview purity');
  x.b.manual();eq(x.b.get().prisms,1000+want,'actual manual wallet credit');eq(x.b.get().nodes.swift,tree,'paid Tree retained');eq(x.b.get().longStudyLevels.prismstudy,lab,'completed Lab retained');eq(x.b.get().ascendRewardedDepth,c<15?benchmark:Math.max(c,benchmark),'reward benchmark');
@@ -41,9 +41,9 @@ for(const c of [14,15,16,19,20,25,50,119,250])for(const benchmark of [0,15,c,500
 }
 // Real purchase, repeat cap boundaries and no accidental refund/migration.
 {
- const x=app();x.b.set(seed(x,20,100,7,0));const cost=x.b.cost(),old=clone(x.b.get());x.b.buy();eq(x.b.get().nodes.swift,8,'real Swift handler purchases one');eq(x.b.get().prisms,old.prisms-cost,'exact original price debit');eq(x.b.preview().gain,expected(20,100,8,0),'new level affects canonical reward');
- const backup=x.b.export(),exported=x.b.decode(backup);eq(exported.nodes.swift,8,'backup contains paid level');
- const y=app();y.area.value=backup;y.b.restore();y.drain();eq(y.reloads(),1,'actual restore requests one reload');eq(y.storage.get(P),y.storage.get(R),'restore writes both slots');const z=app(y.storage);eq(z.b.get().prisms,old.prisms-cost,'restore preserves wallet without duplicate compensation');eq(z.b.get().nodes.swift,8,'restore preserves purchase');
+ const x=app();x.b.set(seed(x,20,19,7,0));const cost=x.b.cost(),old=clone(x.b.get());x.b.buy();eq(x.b.get().nodes.swift,7.5,'real Swift handler purchases one rank');eq(x.b.get().prisms,old.prisms-cost,'exact split price debit');eq(x.b.preview().gain,expected(20,19,7.5,0),'new rank affects canonical reward');
+ const backup=x.b.export(),exported=x.b.decode(backup);eq(exported.nodes.swift,7.5,'backup contains paid rank');
+ const y=app();y.area.value=backup;y.b.restore();y.drain();eq(y.reloads(),1,'actual restore requests one reload');eq(y.storage.get(P),y.storage.get(R),'restore writes both slots');const z=app(y.storage);eq(z.b.get().prisms,old.prisms-cost,'restore preserves wallet without duplicate compensation');eq(z.b.get().nodes.swift,7.5,'restore preserves purchase');
  z.area.value=backup;z.b.restore();z.drain();const zz=app(z.storage);eq(zz.b.get().prisms,old.prisms-cost,'repeated original backup remains replacement, not a refund');
 }
 // Recovery after corruption and exact retry after a failed write.

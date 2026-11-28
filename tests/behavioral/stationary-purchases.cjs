@@ -71,7 +71,7 @@ async function run(){
   ok(point.hit,'native input target visible '+kind);await pause(100);const before=await measure();
   if(input==='keyboard')await key();else{await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:point.x,y:point.y}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
   await pause(120);const after=await measure();const record={width,height,scale,input,kind,before,after};records.push(record);
-  ok(after.value===before.value+1,'one real purchase '+kind);ok(Math.abs(after.scroll-before.scroll)<=1,'purchase must preserve scroll '+JSON.stringify(record));
+  ok(after.value===before.value+(kind==='tree'?0.5:1),'one real purchase '+kind);ok(Math.abs(after.scroll-before.scroll)<=1,'purchase must preserve scroll '+JSON.stringify(record));
   await ev('scrollQa.refresh()');await pause(100);const refreshed=await measure();record.refreshed=refreshed;ok(Math.abs(refreshed.scroll-after.scroll)<=1,'refresh must preserve scroll '+kind);ok(refreshed.errors.length===0,'no runtime errors');
   if(kind==='tree')ok(after.tree==='swift'&&refreshed.tree==='swift','refresh must retain purchased Tree card');
  }

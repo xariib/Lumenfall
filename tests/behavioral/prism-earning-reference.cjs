@@ -7,25 +7,25 @@ function root(n){
   for(;;){const next=(x+n/x)/2n;if(next>=x)return x;x=next;}
 }
 function reward(clear,benchmark,tree,lab){
-  for(const value of [clear,benchmark,tree,lab])assert(Number.isSafeInteger(value)&&value>=0,'oracle requires nonnegative safe integers');
+  for(const value of [clear,benchmark,tree*2,lab])assert(Number.isSafeInteger(value)&&value>=0,'oracle requires safe integer Rift, Lab and Tree half-rank counts');
   if(clear<15||clear<=benchmark)return 0;
-  const p=(25n+BigInt(tree))*(20n+BigInt(lab));
-  const curve=q=>{const value=Number(root(4n*BigInt(clear)*q*q)/500n);assert(Number.isSafeInteger(value),'oracle result must be exactly representable');return Math.max(1,value);};
+  const p=(50n+BigInt(2*tree))*(20n+BigInt(lab));
+  const curve=q=>{const value=Number(root(4n*BigInt(clear)*q*q)/1000n);assert(Number.isSafeInteger(value),'oracle result must be exactly representable');return Math.max(1,value);};
   const full=curve(p);if(!benchmark)return full;
   let progress=0;
   if(clear>benchmark){
     const pp=p*p,upper=4n*pp*(BigInt(clear)+BigInt(benchmark)),right=64n*pp*pp*BigInt(clear)*BigInt(benchmark);
     // Independent integer search, not the production floating estimate/limbs.
     let low=0n,high=BigInt(full)+1n;
-    while(low<high){const mid=(low+high)/2n,rest=upper-mid*mid*250000n;if(rest<=0n||rest*rest<=right)high=mid;else low=mid+1n;}
+    while(low<high){const mid=(low+high)/2n,rest=upper-mid*mid*1000000n;if(rest<=0n||rest*rest<=right)high=mid;else low=mid+1n;}
     progress=Number(low);
   }
-  return Math.min(full,curve(p-400n)+progress);
+  return Math.min(full,curve(p-800n)+progress);
 }
 function reserve(clear,tree,lab){
   if(clear<15)return 0;
-  const p=(25n+BigInt(tree))*(20n+BigInt(lab))-400n;
-  return Math.max(1,Number(root(4n*BigInt(clear)*p*p)/500n));
+  const p=(50n+BigInt(2*tree))*(20n+BigInt(lab))-800n;
+  return Math.max(1,Number(root(4n*BigInt(clear)*p*p)/1000n));
 }
 function legacyPolicy(current,frozen){
   // A counterfactual for unchanged scheduler/economy comparisons only.
