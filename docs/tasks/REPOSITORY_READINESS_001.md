@@ -21,7 +21,7 @@ This cleanup is tracked in [PR #77](https://github.com/xariib/Lumenfall/pull/77)
 
 The candidate visual audit passed 1,792 checks across 16 viewport, scale, and motion combinations. It produced 72 screenshots. The narrow Rift and Wisps screens were visually reviewed. A link scan located one more reference to the moved branding guide in the Visual Polish task, which now points to its new location.
 
-The baseline full npm audit reported seven moderate development dependency entries and zero high or critical entries. The production-only audit was clean. The token lacked access to the private Dependabot alerts view and Projects boards. These API results cannot establish that no private alerts or boards exist. Play distribution remains tracked in [PR #63](https://github.com/xariib/Lumenfall/pull/63).
+The baseline full npm audit reported seven moderate development dependency entries and zero high or critical entries. The production-only audit was clean. GitHub initially returned HTTP 403 for Dependabot. Its response confirmed that alerts were disabled. Repository dependency alerts were enabled and the enabled setting was verified with HTTP 204. Secret scanning was already enabled with zero open alerts. The public Projects page showed zero open and zero closed boards. Private Projects queries require an additional account scope. Play distribution remains tracked in [PR #63](https://github.com/xariib/Lumenfall/pull/63).
 
 ## Android and playtest evidence
 
@@ -41,4 +41,4 @@ The concurrent game-quality feature shipped Android 0.2.179 and saved its releas
 
 [PR #77](https://github.com/xariib/Lumenfall/pull/77) records integration and the PR checks. Its prospective merge `0c4fffee` has the same tree as the reviewed source `2c7e17b9`. This checkpoint adds the Android receipt and recovery evidence to that merge. The nine manual [release-readiness runs](https://github.com/xariib/Lumenfall/actions?query=branch%3Avalidation%2Frepository-readiness-001+event%3Aworkflow_dispatch) record the result for the exact checkpoint commit. The Android publisher checks those runs and both full-suite jobs on the SHA selected for release.
 
-The cleanup covers the repository and signed emulator candidate. The public release reviewed here is 0.2.179. Physical-phone handling, TalkBack, exact WebView 60 and Play Console acceptance are still open. The private Projects and Dependabot dashboards were inaccessible with the available authorization. The next publication decision belongs to the owner.
+The cleanup covers the repository and signed emulator candidate. The public release reviewed here is 0.2.179. Physical-phone handling, TalkBack, exact WebView 60 and Play Console acceptance are still open. The [dependency alerts dashboard](https://github.com/xariib/Lumenfall/security/dependabot) provides ongoing GitHub findings. The authorized token could not inspect private Projects boards. The next publication decision belongs to the owner.
