@@ -31,6 +31,41 @@ driver=driver.slice(0,start)+String.raw`
   const run=code=>ev('prismQa.evaluate('+JSON.stringify(code)+')');
   await ev('prismQa.fixture()');
   await ev("document.querySelectorAll('.rift-milestone').forEach(e=>e.remove())");
+  ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-objective-row,#rift-objective,#rift-guidance-toggle,#rift-hint-overlay')"),'Rift hint bar, dialog and Settings toggle removed');
+  const geometry=await ev("(()=>{const box=s=>document.querySelector(s).getBoundingClientRect().toJSON(),main=document.querySelector('main');return {farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),enemy:box('#enemy-stage'),hud:box('.hud'),main:box('main'),stage:box('#tab-battle .stage'),nav:box('nav.tabbar'),order:Array.from(document.querySelectorAll('.rift-mode-row button')).map(e=>e.id),scroll:[main.scrollTop,main.scrollHeight,main.clientHeight],overflow:document.documentElement.scrollWidth>innerWidth+1}})()");
+  ok(geometry.farm.left<geometry.push.left&&geometry.order.join(',')==='rift-farm-btn,rift-push-btn','Farm left and Push right with matching DOM order');
+  ok(geometry.farm.width>=44&&geometry.farm.height>=44&&geometry.push.width>=44&&geometry.push.height>=44,'mode controls retain touch targets');
+  ok(geometry.main.top-geometry.hud.bottom<=10,'no reserved hint-bar gap');
+  ok(!geometry.overflow&&geometry.scroll[0]===0&&geometry.scroll[1]<=geometry.scroll[2]+1&&geometry.enemy.height>=120&&geometry.stage.bottom<=geometry.nav.top,'Rift fits viewport and attack target remains usable');
+  await tap('#rift-farm-btn');ok(await run('state.riftMode==="farm"'),'left Farm touch selects farming');
+  await ev("document.getElementById('rift-farm-btn').focus({preventScroll:true})");await key('Tab','Tab',9);ok(await ev('document.activeElement.id==="rift-push-btn"'),'Tab from Farm reaches Push');
+  await key('Enter','Enter',13);ok(await run('state.riftMode==="push"'),'right Push keyboard resumes pushing');
+  ok(await run('[SAVE_KEY,RECOVERY_SAVE_KEY].every(k=>JSON.parse(localStorage.getItem(k)).riftMode==="push")'),'mode actions persist in both save slots');
+  const samples=[];
+  await run('state.cometClaims.retired.rifttrail="settled";state.cometClaims.retired.starfallcrest="settled";state.cometCosmetics.trail=true;state.cometCosmetics.crest=true;applyRiftTheme()');
+  for(const id of await run('RIFT_THEMES.map(t=>t.id)')){
+   await run('selectRiftTheme('+JSON.stringify(id)+')');
+   const layers=await ev("(()=>{const q=s=>document.querySelector(s),style=s=>getComputedStyle(q(s));return {enemyZ:Number(style('#enemy-glyph').zIndex),auraZ:Number(style('.rift-cosmetic-aura').zIndex),fieldZ:Number(style('.rift-arena-field').zIndex),trailZ:parseInt(style('.comet-trail').zIndex,10)||0,trailVisible:style('.comet-trail').display!=='none',isolated:style('.enemy-visuals').isolation,field:!!q('.rift-arena-field .rift-enemy-field')&&!q('.rift-cosmetic-aura .rift-enemy-field')&&Number(style('.rift-enemy-field').opacity)===1&&style('.rift-enemy-field').fill==='rgb(10, 18, 37)',inert:style('.enemy-visuals').pointerEvents==='none'}})()");
+   ok(layers.enemyZ>layers.auraZ&&layers.isolated==='isolate'&&layers.inert,'enemy stays above theme fill in isolated inert artwork layer '+id);
+   ok(layers.field&&layers.fieldZ<layers.auraZ,'opaque arena center blocks landscape silhouettes below the ring '+id);
+   ok(layers.trailVisible&&layers.fieldZ<layers.trailZ&&layers.trailZ<=layers.auraZ,'legacy Comet Trail remains above the opaque field '+id);
+   const framing=await run('(function(){var failures=[],encounters=0;for(var d=1;d<=230;d++){state.depth=d;spawnEnemy(false);state.enemyIsLuminous=d%3===0;updateBattleFast();var aura=document.querySelector(".rift-cosmetic-aura"),box=aura.getBoundingClientRect(),cx=box.left+box.width/2,cy=box.top+box.height/2,r=Math.min(box.width,box.height)*132/320,art=document.querySelector(".creature-art use"),m=art.getScreenCTM(),b=art.getBBox(),corners=[[b.x,b.y-2],[b.x+b.width,b.y-2],[b.x,b.y+b.height+1],[b.x+b.width,b.y+b.height+1]],furthest=Math.max.apply(Math,corners.map(function(p){var x=m.a*p[0]+m.c*p[1]+m.e-cx,y=m.b*p[0]+m.d*p[1]+m.f-cy;return Math.sqrt(x*x+y*y);}));if(r-furthest<2)failures.push({d:d,room:r-furthest});encounters++;}return {failures:failures,encounters:encounters};})()');
+   ok(!framing.failures.length,'every species, boss and Luminous enemy fits '+id+' '+JSON.stringify(framing.failures));
+   if(width===390&&scale===1&&motion==='no-preference'){
+    for(const depth of [286,287,288]){
+     await run('state.depth='+depth+';spawnEnemy(false);updateBattleFast()');
+     await shot(id+'-rift-'+depth);
+    }
+   }
+   samples.push({theme:id,layers,encounters:framing.encounters});
+  }
+  await ev('prismQa.fixture()');
+  // The previous device preference must never recreate the removed UI.
+  await ev("localStorage.setItem('lumenfall_rift_guidance_hidden_v1','0');window.__riftReloadToken=true");await send('Page.reload');
+  let reloaded=false;for(let i=0;i<150&&!reloaded;i++){try{reloaded=await ev('!window.__riftReloadToken&&!!window.prismQa&&prismQa.initialized()');}catch(_){}if(!reloaded)await pause(30);}
+  ok(reloaded,'reload reaches a newly initialized document');await ready();await ev('prismQa.fixture()');
+  ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-guidance-toggle')"),'legacy shown preference cannot restore hints on reload');
+  ok(await run('!!document.getElementById("late-power-guide")&&typeof openPowerAdvice==="function"'),'Workshop power advice retained');
   if(width===390 && scale===1 && motion==='no-preference'){
    await run("state.depth=300;state.maxDepthEver=301;state.activeParty=['ember','tide','stone','gale','void'];state.cometTrial={id:'quiet',target:300,phase:'active',failed:false};state.lumen=state.shards=state.motes=state.sigils=state.prisms=state.comets=1e300;spawnEnemy(false);renderAll()");
    for(const [w,h] of [[480,320],[568,320],[740,360],[320,480]])for(const textScale of [1,2]){
@@ -73,41 +108,6 @@ driver=driver.slice(0,start)+String.raw`
    await ev("Object.defineProperty(performance,'now',{configurable:true,value:()=>0})");
    await run('resetLiveClock()');
   }
-  ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-objective-row,#rift-objective,#rift-guidance-toggle,#rift-hint-overlay')"),'Rift hint bar, dialog and Settings toggle removed');
-  const geometry=await ev("(()=>{const box=s=>document.querySelector(s).getBoundingClientRect().toJSON(),main=document.querySelector('main');return {farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),enemy:box('#enemy-stage'),hud:box('.hud'),main:box('main'),stage:box('#tab-battle .stage'),nav:box('nav.tabbar'),order:Array.from(document.querySelectorAll('.rift-mode-row button')).map(e=>e.id),scroll:[main.scrollTop,main.scrollHeight,main.clientHeight],overflow:document.documentElement.scrollWidth>innerWidth+1}})()");
-  ok(geometry.farm.left<geometry.push.left&&geometry.order.join(',')==='rift-farm-btn,rift-push-btn','Farm left and Push right with matching DOM order');
-  ok(geometry.farm.width>=44&&geometry.farm.height>=44&&geometry.push.width>=44&&geometry.push.height>=44,'mode controls retain touch targets');
-  ok(geometry.main.top-geometry.hud.bottom<=10,'no reserved hint-bar gap');
-  ok(!geometry.overflow&&geometry.scroll[0]===0&&geometry.scroll[1]<=geometry.scroll[2]+1&&geometry.enemy.height>=120&&geometry.stage.bottom<=geometry.nav.top,'Rift fits viewport and attack target remains usable');
-  await tap('#rift-farm-btn');ok(await run('state.riftMode==="farm"'),'left Farm touch selects farming');
-  await ev("document.getElementById('rift-farm-btn').focus({preventScroll:true})");await key('Tab','Tab',9);ok(await ev('document.activeElement.id==="rift-push-btn"'),'Tab from Farm reaches Push');
-  await key('Enter','Enter',13);ok(await run('state.riftMode==="push"'),'right Push keyboard resumes pushing');
-  ok(await run('[SAVE_KEY,RECOVERY_SAVE_KEY].every(k=>JSON.parse(localStorage.getItem(k)).riftMode==="push")'),'mode actions persist in both save slots');
-  const samples=[];
-  await run('state.cometClaims.retired.rifttrail="settled";state.cometClaims.retired.starfallcrest="settled";state.cometCosmetics.trail=true;state.cometCosmetics.crest=true;applyRiftTheme()');
-  for(const id of await run('RIFT_THEMES.map(t=>t.id)')){
-   await run('selectRiftTheme('+JSON.stringify(id)+')');
-   const layers=await ev("(()=>{const q=s=>document.querySelector(s),style=s=>getComputedStyle(q(s));return {enemyZ:Number(style('#enemy-glyph').zIndex),auraZ:Number(style('.rift-cosmetic-aura').zIndex),fieldZ:Number(style('.rift-arena-field').zIndex),trailZ:parseInt(style('.comet-trail').zIndex,10)||0,trailVisible:style('.comet-trail').display!=='none',isolated:style('.enemy-visuals').isolation,field:!!q('.rift-arena-field .rift-enemy-field')&&!q('.rift-cosmetic-aura .rift-enemy-field')&&Number(style('.rift-enemy-field').opacity)===1&&style('.rift-enemy-field').fill==='rgb(10, 18, 37)',inert:style('.enemy-visuals').pointerEvents==='none'}})()");
-   ok(layers.enemyZ>layers.auraZ&&layers.isolated==='isolate'&&layers.inert,'enemy stays above theme fill in isolated inert artwork layer '+id);
-   ok(layers.field&&layers.fieldZ<layers.auraZ,'opaque arena center blocks landscape silhouettes below the ring '+id);
-   ok(layers.trailVisible&&layers.fieldZ<layers.trailZ&&layers.trailZ<=layers.auraZ,'legacy Comet Trail remains above the opaque field '+id);
-   const framing=await run('(function(){var failures=[],encounters=0;for(var d=1;d<=230;d++){state.depth=d;spawnEnemy(false);state.enemyIsLuminous=d%3===0;updateBattleFast();var aura=document.querySelector(".rift-cosmetic-aura"),box=aura.getBoundingClientRect(),cx=box.left+box.width/2,cy=box.top+box.height/2,r=Math.min(box.width,box.height)*132/320,art=document.querySelector(".creature-art use"),m=art.getScreenCTM(),b=art.getBBox(),corners=[[b.x,b.y-2],[b.x+b.width,b.y-2],[b.x,b.y+b.height+1],[b.x+b.width,b.y+b.height+1]],furthest=Math.max.apply(Math,corners.map(function(p){var x=m.a*p[0]+m.c*p[1]+m.e-cx,y=m.b*p[0]+m.d*p[1]+m.f-cy;return Math.sqrt(x*x+y*y);}));if(r-furthest<2)failures.push({d:d,room:r-furthest});encounters++;}return {failures:failures,encounters:encounters};})()');
-   ok(!framing.failures.length,'every species, boss and Luminous enemy fits '+id+' '+JSON.stringify(framing.failures));
-   if(width===390&&scale===1&&motion==='no-preference'){
-    for(const depth of [286,287,288]){
-     await run('state.depth='+depth+';spawnEnemy(false);updateBattleFast()');
-     await shot(id+'-rift-'+depth);
-    }
-   }
-   samples.push({theme:id,layers,encounters:framing.encounters});
-  }
-  await ev('prismQa.fixture()');
-  // The previous device preference must never recreate the removed UI.
-  await ev("localStorage.setItem('lumenfall_rift_guidance_hidden_v1','0');window.__riftReloadToken=true");await send('Page.reload');
-  let reloaded=false;for(let i=0;i<150&&!reloaded;i++){try{reloaded=await ev('!window.__riftReloadToken&&!!window.prismQa&&prismQa.initialized()');}catch(_){}if(!reloaded)await pause(30);}
-  ok(reloaded,'reload reaches a newly initialized document');await ready();await ev('prismQa.fixture()');
-  ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-guidance-toggle')"),'legacy shown preference cannot restore hints on reload');
-  ok(await run('!!document.getElementById("late-power-guide")&&typeof openPowerAdvice==="function"'),'Workshop power advice retained');
   ok((await ev('window.__prismErrors')).length===0,'no runtime errors');
   records.push({width,scale,motion,geometry,samples});
 `+driver.slice(end);
