@@ -46,10 +46,13 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   var checks=0,q=s=>document.querySelector(s),copy=s=>JSON.parse(JSON.stringify(s));
   function ok(v,m){checks++;assert(v,m);}
   function same(a,c,m){ok(JSON.stringify(a)===JSON.stringify(c),m);}
-  // A combat visual has an elapsed-time deadline independent of the save calendar.
-  async function advanceCombatWindow(ms){
+  // Advance elapsed and calendar time together for the two combat deadlines.
+  // The host clock keeps ticking normally between explicit fixture advances.
+  var hostNow=performance.now.bind(performance),elapsedOffset=0;
+  var originalNow=Object.getOwnPropertyDescriptor(performance,'now');
+  function advanceCombatWindow(ms){
+    elapsedOffset+=ms;
     b.advanceTime(ms);
-    await new Promise(function(resolve){setTimeout(resolve,ms);});
   }
   function seed(){return window.riftStatusSeed(b,ctx);}
   function install(s){b.setState(s);b.renderLayout();}
@@ -76,6 +79,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
   b.resetFeedback();await window.__qaForgeStartup.promise;install(seed());
   var negative=ctx.scenario.startsWith('self-test-rift-status-')?ctx.scenario.split('-').pop():'';
   var undo=negative&&negative!=='buff'?b.riftStatus.mutate(negative):null;
+  Object.defineProperty(performance,'now',{configurable:true,value:function(){return hostNow()+elapsedOffset;}});
   try{
     ok(!q('#rift-study-status,.rift-study-btn'),'Rift Study DOM/control removed entirely');
     var guidanceLines=[window.riftGuidanceLineCheck(ok,'render')];
@@ -257,7 +261,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     });
     if(!motion)ok(new Set(styles).size===8,'eight distinct Wisp cast identities');
     s=seed();s.activeParty=['ember'];s.spirits.ember=1;s.heroResource.ember=0;install(s);q('[data-tab="battle"]').click();b.resetFeedback();
-    var hp=b.getState().enemyHp;await advanceCombatWindow(400);b.feedbackTick(false);b.riftStatus.update();
+    var hp=b.getState().enemyHp;advanceCombatWindow(400);b.feedbackTick(false);b.riftStatus.update();
     ok(b.getState().enemyHp<hp,'passive projectile accompanies authoritative continuous damage');
     ok(motion?!q('.vfx-shot'):!!q('.vfx-shot.shot-ember'),'passive projectile uses its contributing Wisp identity');
     var shot=q('.vfx-shot');if(shot){
@@ -278,7 +282,7 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     partyCheck();
     ok(q('[data-rift-wisp="'+castId+'"] .rift-charge').getAttribute('aria-valuetext').startsWith('Casting; '),'actual cast event exposes status on the correct Wisp bar');
     ok(document.querySelectorAll('.combat-vfx').length===(matchMedia('(prefers-reduced-motion: reduce)').matches?0:12),'effects retain the twelve-effect bound and are absent in reduced motion');
-    await advanceCombatWindow(700);
+    advanceCombatWindow(700);
     b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
     b.resetFeedback();q('[data-tab="spirits"]').click();b.riftStatus.emit(castId);ok(!q('.combat-vfx'),'no effects accumulate off Rift');q('[data-tab="battle"]').click();
     s=seed();s.buffUntil=b.clockNow()+2000;s.buffMult=1.25;install(s);
@@ -387,7 +391,11 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     var portraits=[...document.querySelectorAll('symbol[id^="wisp-"]')];
     ok(portraits.length===11&&wispArtIds.every(id=>document.getElementById('wisp-'+id))&&portraits.every(x=>document.querySelectorAll('[id="'+x.id+'"]').length===1),'all eight original Wisp portraits and three design templates have unique production symbols');
     return {checks,guidanceLines,worstNames:worst.text,worstMembers:worst.ids,observerOnly:true,queue:true,resume:true,artCoverage,vectorArt,traitRims:[...traitRims]};
-  }finally{if(undo)undo();}
+  }finally{
+    if(originalNow)Object.defineProperty(performance,'now',originalNow);
+    else delete performance.now;
+    if(undo)undo();
+  }
 };
 window.riftStatusMobile=(()=>{
  var b=window.__lumenfallQaBridge,ctx=window.__lumenfallQaContext,q=s=>document.querySelector(s),kind;
