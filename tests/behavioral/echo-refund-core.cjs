@@ -41,10 +41,10 @@ function contracts(html){
  // mixed-credit cases alone cannot detect a skipped numeric-wallet debit.
  {
   const q=app(html).q,s=q.fresh();s.prisms=17;q.set(s);
-  eq(q.plan('echo').cost,2,'literal first Echo wallet price');
+  eq(q.plan('echo').cost,1,'literal first Echo rank price');
   eq(q.buy('echo'),true,'ordinary wallet buys first Echo');
-  eq(q.get().prisms,15,'ordinary wallet is debited exactly');
-  eq(q.get().nodes.echo,1,'one purchased Echo level');
+  eq(q.get().prisms,16,'ordinary wallet is debited exactly');
+  eq(q.get().nodes.echo,0.5,'one purchased Echo rank');
   eq(q.get().feedbackMigration.receipts['node.echo'],undefined,'below-cap payment creates no refund');
  }
  // Every current Tree purchase pays the actual quoted price from mixed credits.
@@ -58,12 +58,12 @@ function contracts(html){
  }
  // Spend Echo's own credit and preserve each other permanent ledger.
  {
-  const a=app(html),q=a.q;q.set(old(q,7,1e30));eq(q.buy('swift'),true,'Echo-only credit payment');eq(q.get().refundCredits.prisms,[{id:'node.echo',amount:13}],'exact Echo debit');eq(q.get().feedbackMigration.receipts['node.echo'].remainingCredits,[13],'Echo debit audit');eq(q.accept(q.get()),q.get(),'spent Echo record canonical');
+  const a=app(html),q=a.q;q.set(old(q,7,1e30));eq(q.buy('swift'),true,'Echo-only credit payment');eq(q.get().refundCredits.prisms,[{id:'node.echo',amount:15}],'exact Echo debit');eq(q.get().feedbackMigration.receipts['node.echo'].remainingCredits,[15],'Echo debit audit');eq(q.accept(q.get()),q.get(),'spent Echo record canonical');
  }
  // Large credit and wallet balances now fund an exactly debited paid level.
  {
-  const integer=require('./amount-oracle.cjs').integer,q=app(html).q;q.set(old(q,250,1e100));const s=clone(q.get()),large=s.refundCredits.prisms.find(e=>e.id==='node.echo'&&e.amount>1e25);assert(large);s.prisms=0;s.refundCredits.prisms=[large];s.feedbackMigration.receipts['node.echo'].remainingCredits=[large.amount];q.set(s);const before=clone(q.get());eq(q.buy('swift'),true,'large credit funds a paid Swift level');eq(integer(q.get().prisms)+q.get().refundCredits.prisms.reduce((n,r)=>n+integer(r.amount),0n),BigInt(large.amount)-3n,'large credit exact conservation');eq(q.get().nodes.swift,before.nodes.swift+1,'one paid Swift level');eq(q.accept(q.get()),q.get(),'wide spent credit and audit remain canonical');
-  q.set(old(q,7,1e30));const empty=clone(q.get());empty.refundCredits.prisms=[];empty.feedbackMigration.receipts['node.echo'].remainingCredits=[];q.set(empty);const wallet=integer(q.get().prisms);eq(q.buy('swift'),true,'large wallet funds a paid Swift level');eq(integer(q.get().prisms),wallet-3n,'large wallet exact conservation');
+  const integer=require('./amount-oracle.cjs').integer,q=app(html).q;q.set(old(q,250,1e100));const s=clone(q.get()),large=s.refundCredits.prisms.find(e=>e.id==='node.echo'&&e.amount>1e25);assert(large);s.prisms=0;s.refundCredits.prisms=[large];s.feedbackMigration.receipts['node.echo'].remainingCredits=[large.amount];q.set(s);const before=clone(q.get());eq(q.buy('swift'),true,'large credit funds a paid Swift rank');eq(integer(q.get().prisms)+q.get().refundCredits.prisms.reduce((n,r)=>n+integer(r.amount),0n),BigInt(large.amount)-1n,'large credit exact conservation');eq(q.get().nodes.swift,before.nodes.swift+0.5,'one paid Swift rank');eq(q.accept(q.get()),q.get(),'wide spent credit and audit remain canonical');
+  q.set(old(q,7,1e30));const empty=clone(q.get());empty.refundCredits.prisms=[];empty.feedbackMigration.receipts['node.echo'].remainingCredits=[];q.set(empty);const wallet=integer(q.get().prisms);eq(q.buy('swift'),true,'large wallet funds a paid Swift rank');eq(integer(q.get().prisms),wallet-1n,'large wallet exact conservation');
  }
  for(const damage of ['price','range','missing','audit','deleted-credit','duplicated-credit','changed-credit','missing-balance','version']){
   const a=app(html),q=a.q;q.set(old(q,95,1e30));q.save();const accepted=clone(q.get()),bad=clone(accepted),r=bad.feedbackMigration.receipts['node.echo'];
@@ -84,7 +84,7 @@ function contracts(html){
  for(const failure of ['primary','recovery']){
   const a=app(html),q=a.q;q.set(old(q,7,1e30));q.save();const before=clone(q.get());a.fail(failure==='primary',failure==='recovery');eq(q.buy('swift'),failure!=='primary','atomic authoritative transaction '+failure);
   if(failure==='primary'){eq(q.get(),before,'full rollback');a.fail(false,false);eq(q.buy('swift'),true,'safe retry');}
-  eq(value(q.get()),value(before)-3n,'one exact persisted debit');eq(app(html,a.storage).q.get(),q.get(),'authoritative cold endpoint');
+  eq(value(q.get()),value(before)-1n,'one exact persisted debit');eq(app(html,a.storage).q.get(),q.get(),'authoritative cold endpoint');
  }
  {
   const q=app(html).q,s=old(q,10,17,21);s.schemaVersion=1;s.nodes.reserves=4;s.owned.offline24=true;s.owned.offline48=true;q.set(s);eq(q.get().prisms,3560,'independent F26+F21+Echo original prices');eq(q.get().comets,300,'independent F26 Comets');eq(q.accept(q.get()),q.get(),'three migration ledgers once');

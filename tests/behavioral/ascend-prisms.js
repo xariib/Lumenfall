@@ -1,15 +1,15 @@
 // Independent modern-browser QA oracle; not part of the production APK.
 function prismEarningOracle(c,benchmark,tree,lab){
   function root(n){if(n<2n)return n;var x=1n<<BigInt(Math.ceil(n.toString(2).length/2));for(;;){var y=(x+n/x)/2n;if(y>=x)return x;x=y;}}
-  var p=(25n+BigInt(tree))*(20n+BigInt(lab));
-  function curve(q){return c<15?0:Math.max(1,Number(root(4n*BigInt(c)*q*q)/500n));}
-  var full=curve(p),reserve=benchmark>0&&full>0?curve(p-400n):0,progress=0;
+  var p=(50n+BigInt(2*tree))*(20n+BigInt(lab));
+  function curve(q){return c<15?0:Math.max(1,Number(root(4n*BigInt(c)*q*q)/1000n));}
+  var full=curve(p),reserve=benchmark>0&&full>0?curve(p-800n):0,progress=0;
   if(c<=benchmark)return {full:full,reserve:0,progressBonus:0,gain:0};
   if(benchmark<=0)progress=full;
   else if(c>benchmark){
     var pp=p*p,upper=4n*pp*(BigInt(c)+BigInt(benchmark)),right=64n*pp*pp*BigInt(c)*BigInt(benchmark);
-    function covers(k){var remainder=upper-k*k*250000n;return remainder<=0n||remainder*remainder<=right;}
-    var k=BigInt(Math.max(0,Math.ceil(2*(Math.sqrt(c)-Math.sqrt(benchmark))*Number(p)/500)));
+    function covers(k){var remainder=upper-k*k*1000000n;return remainder<=0n||remainder*remainder<=right;}
+    var k=BigInt(Math.max(0,Math.ceil(2*(Math.sqrt(c)-Math.sqrt(benchmark))*Number(p)/1000)));
     while(!covers(k))k++;while(k>0n&&covers(k-1n))k--;progress=Number(k);
   }
   return {full:full,reserve:reserve,progressBonus:progress,gain:full===0?0:benchmark<=0?full:Math.min(full,reserve+progress)};
@@ -40,7 +40,7 @@ window.runAscendPrismsContract=function(b,ctx,assert){
     ok(document.getElementById('prism-preview').textContent==='+'+want.gain+' Prisms','actual DOM preview equals oracle');
     var text=document.getElementById('prism-calculation').textContent;
     ok(text.includes('You receive now'+want.gain+' Prisms'),'exact current reward explanation');
-    ok(text.includes(tree+' levels · +'+tree*4+'%')&&text.includes(lab+' completed levels · +'+lab*5+'%'),'actual Tree/completed Lab levels explained');
+    ok(text.includes(2*tree+' ranks · +'+tree*4+'%')&&text.includes(lab+' completed levels · +'+lab*5+'%'),'actual Tree ranks and completed Lab levels explained');
     ok(text.includes('Best rewarded clearRift '+benchmark)||benchmark===0||c<15,'reward benchmark explained');
     if(c>benchmark&&benchmark>0)ok(text.includes('rounded up once'),'approved new-depth rounding explained');
     b.renderLayout();same(b.getState(),before,'render has no state/economy effects');
@@ -73,6 +73,7 @@ window.runAscendPrismsContract=function(b,ctx,assert){
     });
   });
   [[0,0],[1,0],[0,1],[1,1],[17,18]].forEach(function(v){check(20,219,v[0],v[1],true);});
+  check(20,19,0.5,1);check(119,100,9.5,5);
   // Explicit thresholds cover the new protected-bonus repeat contract.
   [[17,18,22],[18,18,23],[18,19,23],[18,20,24],[44,0,18],[45,0,18],[58,0,23],[59,0,23],[0,0,2],[1,0,3],[4,0,4],[7,0,5],[9,0,6],[12,0,7]].forEach(function(v){
     check(20,19,v[0],v[1]);ok(records[records.length-1].reward===v[2],'independent whole-Prism eligible-record threshold');

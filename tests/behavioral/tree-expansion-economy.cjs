@@ -13,15 +13,16 @@ const {integer}=require('./amount-oracle.cjs');
 const FIXTURE_PATH = path.join(__dirname, 'fixtures-pre-endless.json');
 const FIXTURE_SHA = 'ab43604db1b5bce8b9990506f989676dfb0009cdcf2e514a8ccee9da166c8753';
 const PRICES = {
-  swiftcharter: [200], lumenmemory: [8,16,28,44,64],
-  veteranrecruits: [5,10,18,30,46], rosterrecall: [15,30,55,90],
-  chargememory: [12,22,38,60,90], supportmemory: [60], phasememory: [35],
-  riftstep: [12,24,42,68,104], frontier: [20,35,55,80,110],
-  stardust: [10,18,30,46,66], gentlegrowth: [12,22,38,60,90],
-  formationseat: [120], benchmentor: [10,18,30,46,66],
-  empowerbatch: [15,28,46,70], wallwisdom: [12,22,36,54],
-  invitations: [4,9,16], recruitreserve: [8,16,28,44,64]
+  swiftcharter: [100,100], lumenmemory: [4,4,7,9,13,15,21,23,31,33],
+  veteranrecruits: [10,10,27,28,65,65,150,150,325,325], rosterrecall: [30,30,92,93,275,275,800,800],
+  chargememory: [5,7,10,12,18,20,29,31,44,46], supportmemory: [30,30], phasememory: [17,18],
+  riftstep: [6,6,12,12,21,21,34,34,52,52], frontier: [10,10,17,18,27,28,40,40,55,55],
+  stardust: [5,5,9,9,15,15,23,23,33,33], gentlegrowth: [5,7,10,12,18,20,29,31,44,46],
+  formationseat: [120], benchmentor: [5,5,9,9,15,15,23,23,33,33],
+  empowerbatch: [7,8,14,14,23,23,35,35], wallwisdom: [5,7,10,12,17,19,26,28],
+  invitations: [2,2,4,5,8,8], recruitreserve: [4,4,7,9,13,15,21,23,31,33]
 };
+const SPLIT_RANKS = new Set(Object.keys(PRICES).filter(id => id !== 'formationseat'));
 const BASE_COST = require('./wisp-gameplay-reference.cjs').bases;
 const HISTORICAL_BASE_COST={ember:10,tide:60,stone:360,gale:2100,thorn:12000,void:70000,aurora:400000,titan:2200000};
 const IDS = Object.keys(BASE_COST);
@@ -57,16 +58,20 @@ function fixture(q, id) {
   return quiet(s);
 }
 function buyRanks(q, wanted, a) {
-  const total = Object.entries(wanted).reduce((sum,[id,rank]) => sum+PRICES[id].slice(0,rank).reduce((x,y)=>x+y,0),0);
+  const targets = Object.entries(wanted).map(([id,units]) => {
+    const step = SPLIT_RANKS.has(id) ? 0.5 : 1;
+    return {id,step,rank:units/step};
+  });
+  const total = targets.reduce((sum,{id,rank}) => sum+PRICES[id].slice(0,rank).reduce((x,y)=>x+y,0),0);
   const s = clone(q.get()); s.prisms = total; q.set(s);
   const receipts = [];
-  for (const [id,rank] of Object.entries(wanted)) {
+  for (const {id,rank,step} of targets) {
     for (let level=0;level<rank;level++) {
       const before = q.get().prisms, price = PRICES[id][level];
       a.eq(q.cost(id),price,'independent paid profile quote '+id+'/'+level);
       a.eq(q.buy(id),true,'actual paid profile purchase '+id+'/'+level);
       a.eq(before-q.get().prisms,price,'exact profile debit '+id+'/'+level);
-      a.eq(q.get().nodes[id],level+1,'one profile rank '+id+'/'+level);
+      a.eq(q.get().nodes[id],(level+1)*step,'one profile rank '+id+'/'+level);
       receipts.push({id,level:level+1,price});
     }
   }
@@ -78,6 +83,12 @@ function legacySwift(level) {
   return Number((numerator+denominator-1n)/denominator);
 }
 function charterSwift(level, owned) { return owned && level>=10 ? 6*level : legacySwift(level); }
+function swiftRankPrice(units, charter) {
+  const start = Math.floor(units);
+  const discount = start >= 10 ? Math.min(1, charter) : 0;
+  const pairPrice = Math.ceil((1-discount)*legacySwift(start) + discount*6*start);
+  return units === start ? Math.floor(pairPrice/2) : Math.ceil(pairPrice/2);
+}
 function frontier(cleared, benchmark, rank) {
   if (!Number.isSafeInteger(cleared) || !Number.isSafeInteger(benchmark) || cleared<15) return 0;
   return Math.max(0,Math.floor(cleared/25)-Math.floor(benchmark/25))*Math.min(5,rank);
@@ -121,33 +132,36 @@ function payoutSeed(q, cleared, benchmark, swift, clarity, recordRank, dustRank)
 
 function charterCase(source, a, mutation) {
   const x=app(source),q=x.q,s=seed(q);s.nodes.swift=10;s.prisms=200;q.set(s);
-  a.eq(q.cost('swift'),173,'unowned Swift10 keeps original173P');
+  a.eq(q.cost('swift'),86,'unowned Swift10 first rank costs 86 of the original173P');
   const before=clone(q.get()),preview=clone(q.prismPreview());
   const undo=mutation ? mutation(q) : ()=>{};
   try {
-    a.eq(q.buy('swiftcharter'),true,'actual200P Charter purchase');
+    a.eq(q.buy('swiftcharter'),true,'actual100P first Charter rank');
+    a.eq(q.get().prisms,100,'first Charter rank exact debit');
+    a.eq(q.cost('swift'),58,'first Charter rank reduces the future Swift10 quote');
+    a.eq(q.buy('swiftcharter'),true,'actual100P second Charter rank');
     a.eq(q.get().prisms,0,'Charter exact200P debit');
     a.eq(q.get().nodes.swift,10,'Charter grants no Swift level');
-    a.eq(q.cost('swift'),60,'owned Charter changes only future Swift10 quote to60P');
+    a.eq(q.cost('swift'),30,'full Charter changes the future Swift10 quote to30P');
     a.eq(q.prismPreview(),preview,'Charter keeps complete original Prism kernel/breakdown');
     a.eq(q.get().research,before.research,'Charter preserves existing Forge');
     a.eq(q.get().longStudyLevels,before.longStudyLevels,'Charter preserves existing Lab');
     a.eq(x.storage.get(P),x.storage.get(R),'Charter primary/recovery endpoint');
-    const cold=app(source,x.storage);a.eq(cold.q.cost('swift'),60,'cold load keeps paid Charter price');
+    const cold=app(source,x.storage);a.eq(cold.q.cost('swift'),30,'cold load keeps paid Charter price');
     const backup=q.export(),restored=app(source);restored.area.value=backup;
     restored.q.restore();restored.drain();
     a.eq(restored.reloads(),1,'real Charter backup restore requests reload');
     a.eq(app(source,restored.storage).q.get().nodes,q.get().nodes,'backup retains old and new paid Tree ownership');
   } finally {undo();}
-  return {legacyNext:173,charterFee:200,ownedNext:60,swiftBefore:10,swiftAfter:q.get().nodes.swift};
+  return {legacyNext:86,charterFee:200,ownedNext:30,swiftBefore:10,swiftAfter:q.get().nodes.swift};
 }
 function charterPrices(source,a) {
   const x=app(source),q=x.q;let rows=0;
-  for(const owned of [0,1,2])for(let level=0;level<=80;level++) {
+  for(const owned of [0,0.5,1,2])for(let level=0;level<=80;level+=0.5) {
     const s=seed(q);s.nodes.swift=level;s.nodes.swiftcharter=owned;q.set(s);
-    const old=legacySwift(level);
-    a.eq(old,Math.ceil(3*Math.pow(1.5,level)),'frozen legacy Swift Number path equals rational oracle '+level);
-    a.eq(q.cost('swift'),charterSwift(level,owned>0),'independent future Swift quote '+owned+'/'+level);
+    const pair=Math.floor(level),old=legacySwift(pair);
+    a.eq(old,Math.ceil(3*Math.pow(1.5,pair)),'frozen legacy Swift Number path equals rational oracle '+pair);
+    a.eq(q.cost('swift'),swiftRankPrice(level,owned),'independent future Swift quote '+owned+'/'+level);
     a.eq(q.get().nodes.swiftcharter,owned,'raw Charter overcap remains stored');
     rows++;
   }
@@ -157,12 +171,12 @@ function charterPrices(source,a) {
     const before=clone(q.get());a.eq(q.buy('swiftcharter'),want,'actual gated Charter handler '+depth+'/'+swift);
     if(!want)a.eq(q.get(),before,'locked Charter is complete no-op');
   }
-  for(const level of [9,10,11,20,30,50,75]) {
-    const s=seed(q);s.nodes.swift=level;s.nodes.swiftcharter=1;s.prisms=charterSwift(level,true);q.set(s);
+  for(const level of [9,9.5,10,10.5,11,20,30,50,75]) {
+    const s=seed(q);s.nodes.swift=level;s.nodes.swiftcharter=1;s.prisms=swiftRankPrice(level,1);q.set(s);
     a.eq(q.buy('swift'),true,'actual exactly funded Swift '+level);
     a.eq(q.get().prisms,0,'actual Swift consumes independent full quote '+level);
-    a.eq(q.get().nodes.swift,level+1,'actual Swift retains every earlier paid level '+level);
-    a.eq(app(source,x.storage).q.get().nodes.swift,level+1,'actual Swift endpoint reload '+level);
+    a.eq(q.get().nodes.swift,level+0.5,'actual Swift retains every earlier paid level '+level);
+    a.eq(app(source,x.storage).q.get().nodes.swift,level+0.5,'actual Swift endpoint reload '+level);
   }
   return {rows,purchase:charterCase(source,a)};
 }
@@ -287,13 +301,13 @@ function usefulBundle(cleared,swift,clarity,owned) {
   return {from:swift,to,price,gain,snapshotRewardEquivalent:Math.ceil(price/gain)};
 }
 function reinvestOracle(target,charter) {
-  let wallet=452,swift=6,ascends=0,spent=0,owned=false;
+  let wallet=452,swift=6,ascends=0,spent=0,owned=0;
   function earnUntil(quote){while(wallet<quote){assert(ascends<2000,'bounded forward-record oracle');wallet+=reward(95+ascends,94+ascends,swift,1);ascends++;}}
   while(swift<target) {
-    if(charter && swift>=10 && !owned) {
-      earnUntil(200);wallet-=200;spent+=200;owned=true;
+    while(charter && swift>=10 && owned<1) {
+      earnUntil(100);wallet-=100;spent+=100;owned+=0.5;
     }
-    const quote=charterSwift(swift,owned);earnUntil(quote);wallet-=quote;spent+=quote;swift++;
+    const quote=swiftRankPrice(swift,owned);earnUntil(quote);wallet-=quote;spent+=quote;swift+=0.5;
   }
   return {target,charter,ascends,spent,remainingPrisms:wallet};
 }
@@ -313,10 +327,10 @@ function actualReinvest(source,a,target,charter) {
     }
   }
   while(q.get().nodes.swift<target) {
-    if(charter && q.get().nodes.swift>=10 && !q.get().nodes.swiftcharter) {
-      earnUntil(200);a.eq(q.buy('swiftcharter'),true,'mature loop pays actual200P activation');spent+=200;
+    while(charter && q.get().nodes.swift>=10 && q.get().nodes.swiftcharter<1) {
+      earnUntil(100);a.eq(q.buy('swiftcharter'),true,'mature loop pays actual100P rank');spent+=100;
     }
-    const quote=charterSwift(q.get().nodes.swift,!!q.get().nodes.swiftcharter);earnUntil(quote);
+    const quote=swiftRankPrice(q.get().nodes.swift,q.get().nodes.swiftcharter);earnUntil(quote);
     a.eq(q.cost('swift'),quote,'mature future quote oracle');a.eq(q.buy('swift'),true,'mature loop actual Swift purchase');spent+=quote;
   }
   const result={target,charter,ascends,spent,remainingPrisms:q.get().prisms};

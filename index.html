@@ -3883,43 +3883,51 @@ var FORGE_PRICES = {
 var NODES = [
   {id:'starlight', name:'Starlight Affinity', desc:'+10% Lumen from every kill, per level.', baseCost:1, growth:1.35},
   {id:'steady',    name:'Steady Hands',        desc:'+8% tap damage, per level.',              baseCost:1, growth:1.30},
-  {id:'echo',      name:'Echoing Rest',        desc:'+5 percentage points offline earning rate per level, up to 100% before Projects (6 levels). Productive offline time stays capped at 12 hours.', baseCost:2, growth:1.40, levelCap:6},
-  {id:'bonds',     name:'Cheaper Recruitment', desc:'3 percentage points more discount per level, up to 60%. Wisp recruiting and Empower cost at least 40% of the normal price before whole-Lumen rounding. Level cap: 20.', baseCost:2, growth:1.45, levelCap:20},
+  {id:'echo',      name:'Echoing Rest',        desc:'+2.5 percentage points offline earning rate per rank, up to 100% before Projects. Productive offline time stays capped at 12 hours.', baseCost:2, growth:1.40, levelCap:12, rankStep:0.5},
+  {id:'bonds',     name:'Cheaper Recruitment', desc:'1.5 percentage points more discount per rank, up to 60%. Wisp recruiting and Empower cost at least 40% of the normal price before whole-Lumen rounding.', baseCost:2, growth:1.45, levelCap:40, rankStep:0.5},
 
-  {id:'swift',     name:'Swift Ascension',     desc:'+4% Prisms earned per Ascend, per level.', baseCost:3, growth:1.50},
+  {id:'swift',     name:'Swift Ascension',     desc:'+2% Prisms earned per Ascend, per rank.', baseCost:3, growth:1.50, levelCap:500, rankStep:0.5},
   {id:'momentum',  name:'Eternal Momentum',    desc:'+6% passive Wisp damage per level; also raises the Wisp-powered part of your tap damage.', baseCost:5, growth:1.55, requiresAchievement:'asc5'},
   {id:'reserves',  name:'Deep Reserves',       desc:'Retired offline extension. Previous purchases are refunded in Prisms.', baseCost:6, growth:1.60, requiresAchievement:'d100', retired:true}
 ];
 
-// Exact, finite Prism ladders. Old IDs and their literal price paths remain.
+// Exact, finite Prism ladders. Split ranks retain the original saved effect units.
 var TREE_EXPANSION = [
-  {id:'swiftcharter',name:'Swift Charter',treeGroup:'Prism paths',unlockDepth:100,requiresSwift:10,levelCap:1,prices:[200],desc:'Future Swift Ascension levels from level 10 cost 6 times the current level in Prisms. Keeps every existing +4% bonus.'},
-  {id:'lumenmemory',name:'Lumen Inheritance',treeGroup:'New beginnings',unlockDepth:15,levelCap:5,prices:[8,16,28,44,64],desc:'Keep 5% of your current Lumen per level when you Ascend, up to 50,000 Lumen per level. An empty wallet stays empty.'},
-  {id:'veteranrecruits',name:'Veteran Recruits',treeGroup:'Recruitment',unlockDepth:20,levelCap:5,prices:[5,10,18,30,46],desc:'Future first recruitment and Ember after Ascend start 1 level higher per rank. Pay only the recruitment price; bonus levels are not paid Empowers.'},
-  {id:'rosterrecall',name:'Roster Recall',treeGroup:'New beginnings',unlockDepth:25,levelCap:4,prices:[15,30,55,90],desc:'After Ascend, recruit one additional remembered Formation member per level who was recruited in the ending run. Uses Veteran Recruits. Pauses when starting Single Star.'},
-  {id:'chargememory',name:'Charge Memory',treeGroup:'New beginnings',unlockDepth:30,levelCap:5,prices:[12,22,38,60,90],desc:'Keep 20% of each Wisp’s charge per level through Ascend, up to 100%. Dormant charge waits for recruitment.'},
-  {id:'supportmemory',name:'Lasting Blessings',treeGroup:'New beginnings',unlockDepth:60,levelCap:1,prices:[60],desc:'Keep current Support blessings through Ascend with their existing strength and expiry. Never refreshes or extends a cast.'},
-  {id:'phasememory',name:'Unbroken Rhythm',treeGroup:'New beginnings',unlockDepth:40,levelCap:1,prices:[35],desc:'Keep the elapsed part of Auto-Tap and Auto-Empower’s current second through Ascend. Requires their existing Deed unlocks.'},
-  {id:'riftstep',name:'Familiar Paths',treeGroup:'New beginnings',unlockDepth:30,levelCap:5,prices:[12,24,42,68,104],desc:'Start 1 Rift further ahead per level after Ascend, up to Rift 6. Skipped enemies give no rewards or kill credit.'},
-  {id:'frontier',name:'Frontier Record',treeGroup:'Prism paths',unlockDepth:50,levelCap:5,prices:[20,35,55,80,110],desc:'Gain 1 extra Prism per level for each new block of 25 cleared Rifts beyond your rewarded benchmark. Repeated Rifts give no extra award.'},
-  {id:'stardust',name:'Ascension Dust',treeGroup:'Prism paths',unlockDepth:60,levelCap:5,prices:[10,18,30,46,66],desc:'Every 20 Prisms earned in an Ascend also gives 1 Mote per level, up to 10 Motes per level. No Prisms are spent.'},
-  {id:'gentlegrowth',name:'Patient Growth',treeGroup:'Recruitment',unlockDepth:40,levelCap:5,prices:[12,22,38,60,90],desc:'Above Wisp level 25, reduce future Empower price growth from 13% to 12% per level at rank 1, down to 8% at rank 5. Cheaper Recruitment still applies.'},
+  {id:'swiftcharter',name:'Swift Charter',treeGroup:'Prism paths',unlockDepth:100,requiresSwift:10,levelCap:2,rankStep:0.5,prices:[100,100],desc:'From Swift Ascension rank 20, the first Charter rank cuts half the difference between the original and discounted prices. Full Charter prices each pair of Swift ranks at 3 times the rank before the pair.'},
+  {id:'lumenmemory',name:'Lumen Inheritance',treeGroup:'New beginnings',unlockDepth:15,levelCap:10,rankStep:0.5,prices:[4,4,7,9,13,15,21,23,31,33],desc:'Keep 2.5% of your current Lumen per level when you Ascend, up to 25,000 Lumen per level. An empty wallet stays empty.'},
+  {id:'veteranrecruits',name:'Veteran Recruits',treeGroup:'Recruitment',unlockDepth:20,levelCap:10,rankStep:0.5,prices:[10,10,27,28,65,65,150,150,325,325],desc:'Every pair of ranks gives new recruits and reset Ember one extra starting level. An unpaired rank grants the extra level on odd-numbered Ascensions and during those runs.'},
+  {id:'rosterrecall',name:'Roster Recall',treeGroup:'New beginnings',unlockDepth:25,levelCap:8,rankStep:0.5,prices:[30,30,92,93,275,275,800,800],desc:'Every pair of ranks recalls one more eligible Formation member from the ending run. An unpaired rank recalls one extra on odd-numbered Ascensions. Pauses when starting Single Star.'},
+  {id:'chargememory',name:'Charge Memory',treeGroup:'New beginnings',unlockDepth:30,levelCap:10,rankStep:0.5,prices:[5,7,10,12,18,20,29,31,44,46],desc:'Keep 10% of each Wisp’s charge per level through Ascend, up to 100%. Dormant charge waits for recruitment.'},
+  {id:'supportmemory',name:'Lasting Blessings',treeGroup:'New beginnings',unlockDepth:60,levelCap:2,rankStep:0.5,prices:[30,30],desc:'Carry 50% of the remaining time on current Support blessings per rank through Ascend. Blessings keep their existing strength.'},
+  {id:'phasememory',name:'Unbroken Rhythm',treeGroup:'New beginnings',unlockDepth:40,levelCap:2,rankStep:0.5,prices:[17,18],desc:'Carry 50% of the current Auto-Tap and Auto-Empower timer progress per rank through Ascend. Requires their existing Deed unlocks.'},
+  {id:'riftstep',name:'Familiar Paths',treeGroup:'New beginnings',unlockDepth:30,levelCap:10,rankStep:0.5,prices:[6,6,12,12,21,21,34,34,52,52],desc:'Every pair of ranks starts the next run 1 Rift further ahead, up to Rift 6. An unpaired rank skips an extra Rift on odd-numbered Ascensions. Skipped enemies give no rewards or kill credit.'},
+  {id:'frontier',name:'Frontier Record',treeGroup:'Prism paths',unlockDepth:50,levelCap:10,rankStep:0.5,prices:[10,10,17,18,27,28,40,40,55,55],desc:'Every pair of ranks adds 1 Prism for each new 25-Rift milestone. An unpaired rank adds 1 Prism at every second milestone.'},
+  {id:'stardust',name:'Ascension Dust',treeGroup:'Prism paths',unlockDepth:60,levelCap:10,rankStep:0.5,prices:[5,5,9,9,15,15,23,23,33,33],desc:'Each rank adds half a Mote for every 20 Prisms earned in an Ascend, up to 5 Motes per rank. The total rounds down to whole Motes.'},
+  {id:'gentlegrowth',name:'Patient Growth',treeGroup:'Recruitment',unlockDepth:40,levelCap:10,rankStep:0.5,prices:[5,7,10,12,18,20,29,31,44,46],desc:'Above Wisp level 25, each rank reduces future Empower price growth by 0.5 percentage points, from 13% down to 8%. Cheaper Recruitment still applies.'},
   {id:'formationseat',name:'Formation Limit',treeGroup:'Recruitment',unlockDepth:75,levelCap:1,prices:[120],desc:'Five Active Wisps is the Formation limit. This retired purchase returns its original 120 Prisms once; all recruited Wisps and their upgrades stay.'},
-  {id:'benchmentor',name:'Bench Mentorship',treeGroup:'Recruitment',unlockDepth:35,levelCap:5,prices:[10,18,30,46,66],desc:'Every 10 paid recruit or Empower actions give 1 level per rank to the lowest-level other recruited Benched Wisp. Progress resets at Ascend; bonus levels never repeat the award.'},
-  {id:'empowerbatch',name:'Steady Instruction',treeGroup:'Automation',unlockDepth:45,levelCap:4,prices:[15,28,46,70],desc:'Auto-Empower can make 1 extra paid purchase per second per level, up to 5 purchases. Respects each Wisp’s toggle and existing unlock.'},
-  {id:'wallwisdom',name:'Wall Wisdom',treeGroup:'Automation',unlockDepth:50,levelCap:4,prices:[12,22,36,54],desc:'An unwinnable boss can trigger offline retreat 1 minute earlier per level, from 5 minutes to a 1-minute minimum. The 12-hour offline cap stays the same.'},
-  {id:'invitations',name:'Early Invitations',treeGroup:'Recruitment',unlockDepth:15,levelCap:3,prices:[4,9,16],desc:'Recruitment unlocks arrive 1 Rift earlier per level, down to Rift 1. Permanent Wisp upgrade prices stay the same.'},
-  {id:'recruitreserve',name:'Recruitment Reserve',treeGroup:'Automation',unlockDepth:25,levelCap:5,prices:[8,16,28,44,64],desc:'Auto-Empower prioritizes the next enabled recruit in your remembered Formation. Until affordable, reserve 20% of its Lumen price per level from other automatic Empowers.'}
+  {id:'benchmentor',name:'Bench Mentorship',treeGroup:'Recruitment',unlockDepth:35,levelCap:10,rankStep:0.5,prices:[5,5,9,9,15,15,23,23,33,33],desc:'Every 10 paid recruit or Empower actions, each pair of ranks gives the lowest-level other recruited Benched Wisp 1 level. An unpaired rank grants an extra level during odd-numbered Ascension runs.'},
+  {id:'empowerbatch',name:'Steady Instruction',treeGroup:'Automation',unlockDepth:45,levelCap:8,rankStep:0.5,prices:[7,8,14,14,23,23,35,35],desc:'Every pair of ranks permits 1 more Auto-Empower purchase per second, up to 5 purchases. An unpaired rank allows one more during odd-numbered Ascension runs.'},
+  {id:'wallwisdom',name:'Wall Wisdom',treeGroup:'Automation',unlockDepth:50,levelCap:8,rankStep:0.5,prices:[5,7,10,12,17,19,26,28],desc:'An unwinnable boss can trigger offline retreat 30 seconds earlier per level, from 5 minutes to a 1-minute minimum. The 12-hour offline cap stays the same.'},
+  {id:'invitations',name:'Early Invitations',treeGroup:'Recruitment',unlockDepth:15,levelCap:6,rankStep:0.5,prices:[2,2,4,5,8,8],desc:'Every pair of ranks brings recruitment unlocks 1 Rift earlier. An unpaired rank brings them an extra Rift earlier during odd-numbered Ascension runs. Earned unlocks remain available.'},
+  {id:'recruitreserve',name:'Recruitment Reserve',treeGroup:'Automation',unlockDepth:25,levelCap:10,rankStep:0.5,prices:[4,4,7,9,13,15,21,23,31,33],desc:'Auto-Empower prioritizes the next enabled recruit in your remembered Formation. Until affordable, reserve 10% of its Lumen price per level from other automatic Empowers.'}
 ];
 var TREE_BY_ID = Object.create(null);
 TREE_EXPANSION.forEach(function(node){TREE_BY_ID[node.id]=node;NODES.push(node);});
 NODES.forEach(function(node){if(node.levelCap===undefined)node.levelCap=250;});
+function savedNodeUnits(node,value,fallback){
+  var units=finiteNonNegative(value,fallback),whole=Math.floor(units);
+  return node.rankStep && units-whole>=node.rankStep ? whole+node.rankStep : whole;
+}
 function treeLevel(id,snapshot){
   var node=TREE_BY_ID[id],s=snapshot || state;
-  return node ? Math.min(node.levelCap,nonNegativeInt(s.nodes && s.nodes[id],0)) : 0;
+  return node ? Math.min(node.levelCap*(node.rankStep||1),savedNodeUnits(node,s.nodes && s.nodes[id],0)) : 0;
+}
+function treeRunBonus(id,snapshot,ascends){
+  var s=snapshot||state,units=treeLevel(id,s),whole=Math.floor(units);
+  return whole+(units>whole && Amount.gt(Amount.mod(ascends===undefined?s.ascendCount:ascends,2),0)?1:0);
 }
 function treeFormationCapacity(snapshot){return 5;}
-function treeWispUnlockDepth(sp,snapshot){return Math.max(1,ENDLESS_PROGRESSION.recruit[sp.id].depth-treeLevel('invitations',snapshot));}
+function treeWispUnlockDepth(sp,snapshot){return Math.max(1,ENDLESS_PROGRESSION.recruit[sp.id].depth-treeRunBonus('invitations',snapshot));}
 function wispRecruitmentUnlocked(sp,snapshot){
   var s=snapshot||state,rule=ENDLESS_PROGRESSION.recruit[sp.id];
   return !!(s.recruitmentEntitlements&&s.recruitmentEntitlements[sp.id]) ||
@@ -3943,23 +3951,24 @@ function treeExpansionEffect(id,level){
   var node=TREE_BY_ID[id];
   if(!node) return '';
   if(level===undefined) level=treeLevel(id);
-  level=Math.max(0,Math.min(node.levelCap,nonNegativeInt(level,0)));
-  if(id==='swiftcharter') return level?'Swift level 10 onward: 6 × current level Prisms':'Original Swift price curve';
+  level=Math.min(node.levelCap*(node.rankStep||1),savedNodeUnits(node,level,0));
+  if(id==='swiftcharter') return (100*level)+'% of the Charter discount from Swift rank 20';
   if(id==='lumenmemory') return (5*level)+'% Lumen carried · limit '+formatNum(50000*level)+' Lumen';
-  if(id==='veteranrecruits') return 'New recruits and reset Ember start at level '+(1+level);
-  if(id==='rosterrecall') return 'Recall up to '+level+' additional previously recruited Formation members';
+  var whole=Math.floor(level),extra=level>whole?' · +1 on odd-numbered Ascension runs':'';
+  if(id==='veteranrecruits') return 'New recruits and reset Ember start at level '+(1+whole)+extra;
+  if(id==='rosterrecall') return 'Recall up to '+whole+' additional previously recruited Formation members'+extra;
   if(id==='chargememory') return (20*level)+'% charge carried through Ascend';
-  if(id==='supportmemory') return level?'Current blessing strength and expiry survive Ascend':'Blessings end at Ascend';
-  if(id==='phasememory') return level?'Current automation second carries through Ascend':'Automation timers restart at Ascend';
-  if(id==='riftstep') return 'Next run starts at Rift '+(1+level);
-  if(id==='frontier') return level+' extra Prisms per new 25-Rift milestone';
+  if(id==='supportmemory') return (100*level)+'% of remaining blessing time carried through Ascend';
+  if(id==='phasememory') return (100*level)+'% of current automation timer progress carried through Ascend';
+  if(id==='riftstep') return 'Next run starts at Rift '+(1+whole)+extra;
+  if(id==='frontier') return whole+' extra Prisms per new 25-Rift milestone'+(level>whole?' · +1 on every second milestone':'');
   if(id==='stardust') return level+' Motes per 20 earned Prisms · limit '+(10*level)+' Motes per Ascend';
   if(id==='gentlegrowth') return (13-level)+'% Empower price growth after Wisp level 25';
   if(id==='formationseat') return 'Retired · five Active Wisps · 120 Prisms refunded';
-  if(id==='benchmentor') return level+' Bench levels per 10 paid actions'+(level?' · '+(state.treeTrainingProgress||0)+'/10 this run':'');
-  if(id==='empowerbatch') return 'Up to '+(1+level)+' paid Auto-Empowers per second';
+  if(id==='benchmentor') return whole+' Bench levels per 10 paid actions'+extra+(level?' · '+(state.treeTrainingProgress||0)+'/10 this run':'');
+  if(id==='empowerbatch') return 'Up to '+(1+whole)+' paid Auto-Empowers per second'+extra;
   if(id==='wallwisdom') return (5-level)+' minutes of offline boss grace';
-  if(id==='invitations') return 'Recruitment unlocks '+level+' Rifts earlier · minimum Rift 1';
+  if(id==='invitations') return 'Recruitment unlocks '+whole+' Rifts earlier · minimum Rift 1'+extra;
   return (20*level)+'% of the next remembered recruit’s price reserved';
 }
 
@@ -5652,7 +5661,7 @@ function normalizeCurrentSave(input,retainRecruitmentRefund,initializeSwiftRefun
   out.offline12hRefund = normalizeOffline12hRefund(source.offline12hRefund);
   // Paid capacity must be known before canonicalizing Formation snapshots.
   var nodes = isPlainObject(source.nodes) ? source.nodes : {};
-  NODES.forEach(function(node){ out.nodes[node.id] = nonNegativeInt(nodes[node.id],fresh.nodes[node.id]); });
+  NODES.forEach(function(node){ out.nodes[node.id] = savedNodeUnits(node,nodes[node.id],fresh.nodes[node.id]); });
   out.treeTrainingProgress=treeLevel('benchmentor',out) ? boundedInt(source.treeTrainingProgress,0,0,9) : 0;
 
   ['lumen','shards','prisms','comets','motes','sigils'].forEach(function(key){
@@ -6963,7 +6972,7 @@ function getWispMasteryPlan(sp,materialize){
   // the gate Rift itself is sufficient even before that enemy is defeated.
   var priorBoss=Math.floor((depth-1)/10)*10;
   var cost={prism:Math.ceil(2*Math.sqrt(depth)),sigil:creditAmount(baseSigilsFromBoss(priorBoss),baseSigilsFromBoss(priorBoss-10))};
-  var requirements=[wispRequirement('depth','Rift',state.maxDepthEver,depth),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),Math.min(500,g.labBase+Math.floor(rank/g.ranksPerLab))),wispRequirement('forge','Masterwork Tempering Lv.',researchLevel('masterwork'),Math.min(500,Math.ceil((rank+1)/g.ranksPerForge))),wispRequirement('tree','Swift Ascension Lv.',nodeLevel('swift'),Math.min(250,g.swiftBase+Math.floor(rank/g.ranksPerSwift)))];
+  var requirements=[wispRequirement('depth','Rift',state.maxDepthEver,depth),wispRequirement('lab','Wisp Ascendancy Lv.',longStudyLevel('wispascend'),Math.min(500,g.labBase+Math.floor(rank/g.ranksPerLab))),wispRequirement('forge','Masterwork Tempering Lv.',researchLevel('masterwork'),Math.min(500,Math.ceil((rank+1)/g.ranksPerForge))),wispRequirement('tree','Swift Ascension Lv.',2*nodeLevel('swift'),2*Math.min(250,g.swiftBase+Math.floor(rank/g.ranksPerSwift)))];
   var ready=wispUpgradesMaxed(sp.id)&&(state.spirits[sp.id]||0)>0;
   var eligible=ready&&Number.isSafeInteger(rank+1)&&Number.isSafeInteger(depth)&&requirements.every(function(r){return r.met;});
   var payment=eligible&&forgeExactDebit(state.sigils,cost.sigil)?prismPurchasePlan(cost.prism,!materialize):null;
@@ -7143,11 +7152,13 @@ function treeRationalEmpowerCost(sp,level,rank){
   var estimate=Amount.mul(Amount.mul(Amount.mul(investmentBase,Amount.pow(1.13,25)),Amount.pow(Amount.div(Amount.sub(113,rank),100),Amount.sub(level,25))),Amount.div(discountPercent,100));
   var result=Amount.round(estimate,'round');
   if(Amount.valid(estimate) && Amount.le(estimate,Number.MAX_SAFE_INTEGER)){
-    // Decimal limbs: denominator is 100^(level+1), so integer rounding needs
-    // only a decimal split. No BigInt syntax/runtime dependency on WebView60.
+    // Decimal limbs keep exact rounding for both whole- and half-percent growth.
+    // The first 25 growth steps and the discount use two decimal places.
     // Consecutive Empower quotes share the exact integer numerator. Keep one
     // cursor per Wisp, before the discount, to avoid rebuilding every power
     // after each level in repeated Ascend runs. Values and rounding are identical.
+    var growthPlaces=rank%1===0?2:3;
+    var growthNumerator=(113-rank)*(growthPlaces===2?1:10);
     var prior=treeEmpowerNumerators[sp.id],from=0;
     var reusable=prior && prior.base===investmentBase && prior.rank===rank && prior.level<=level;
     var digits=reusable?prior.digits.slice():String(investmentBase).split('').reverse().map(Number);
@@ -7160,10 +7171,11 @@ function treeRationalEmpowerCost(sp,level,rank){
       }
       while(carry){digits.push(carry%10);carry=Math.floor(carry/10);}
     }
-    for(var i=from;Amount.lt(i,level);i++) multiply(Amount.lt(i,25) ? 113 : Amount.sub(113,rank));
+    for(var i=from;Amount.lt(i,level);i++) multiply(Amount.lt(i,25) ? 113 : growthNumerator);
     treeEmpowerNumerators[sp.id]={base:investmentBase,rank:rank,level:level,digits:digits.slice()};
-    multiply(discountPercent);
-    var decimal=digits.reverse().join(''),places=Amount.mul(2,Amount.add(level,1)),cut=Amount.sub(decimal.length,places);
+    var discountPlaces=discountPercent%1===0?2:3;
+    multiply(discountPercent*(discountPlaces===2?1:10));
+    var decimal=digits.reverse().join(''),places=50+discountPlaces+growthPlaces*(level-25),cut=Amount.sub(decimal.length,places);
     result=Amount.gt(cut,0) ? Number(decimal.slice(0,cut)) : 0;
     if(Amount.ge(cut,0) && Amount.ge(Number(decimal.charAt(cut)),5)) result++;
   }
@@ -7181,9 +7193,13 @@ function spiritCost(sp){
 }
 function nodeCost(node){
   var level = state.nodes[node.id];
-  if(TREE_BY_ID[node.id]) return Amount.lt(level,node.levelCap) ? node.prices[level] : Infinity;
-  if(node.id==='swift' && Amount.ge(level,10) && treeLevel('swiftcharter')) return Amount.mul(6,level);
-  return Amount.round(Amount.mul(node.baseCost,Amount.pow(node.growth,level)),'ceil');
+  if(TREE_BY_ID[node.id]) return node.prices[level/(node.rankStep||1)] || Infinity;
+  if(!node.rankStep) return Amount.round(Amount.mul(node.baseCost,Amount.pow(node.growth,level)),'ceil');
+  var pair=Math.floor(level),charter=node.id==='swift' && pair>=10?treeLevel('swiftcharter'):0;
+  var discounted=6*pair;
+  var price=charter===1?discounted:Amount.round(Amount.mul(node.baseCost,Amount.pow(node.growth,pair)),'ceil');
+  if(charter===0.5) price=Amount.round(Amount.div(Amount.add(price,discounted),2),'ceil');
+  return Amount.round(Amount.div(price,2),level===pair?'floor':'ceil');
 }
 /*
  * P2-01B permanent Wisp pacing contract
@@ -8000,7 +8016,7 @@ function doTap(stageEl){
 
 function getSpiritBuyPlan(sp){
   if(SPIRITS.indexOf(sp)===-1) return {affordable:false,reason:'invalid'};
-  var level=state.spirits[sp.id]||0,levels=level===0 ? Amount.add(1,treeLevel('veteranrecruits')) : 1;
+  var level=state.spirits[sp.id]||0,levels=level===0 ? 1+treeRunBonus('veteranrecruits') : 1;
   if(Amount.ge(level,10000))return {affordable:false,reason:'maxed',level:level,cost:0};
   if(!wispRecruitmentUnlocked(sp)) return {affordable:false,reason:'locked',level:level};
   var cost=spiritCost(sp);
@@ -8011,7 +8027,7 @@ function getSpiritBuyPlan(sp){
   return {affordable:Amount.ge(state.lumen,cost),reason:Amount.ge(state.lumen,cost)?'available':'unaffordable',level:level,levels:levels,cost:cost,wasZero:level===0};
 }
 function treeMentorAfterPaid(sp){
-  var rank=treeLevel('benchmentor');
+  var rank=treeRunBonus('benchmentor');
   if(!rank) return;
   state.treeTrainingProgress=((state.treeTrainingProgress||0)+1)%10;
   if(state.treeTrainingProgress) return;
@@ -8237,7 +8253,7 @@ function buyNode(node){
     if(receipt) receipt.remainingCredits=plan.payment.remainingOwnCredits;
     var echoReceipt=state.feedbackMigration.receipts['node.echo'];
     if(echoReceipt) echoReceipt.remainingCredits=plan.payment.remainingEchoCredits;
-    state.nodes[node.id] = plan.level + 1;
+    state.nodes[node.id] = (plan.level+1)*(node.rankStep||1);
   })) return false;
 
   renderNodes();
@@ -8249,7 +8265,7 @@ function buyNode(node){
 
 function getNodeBuyPlan(node,materialize){
   if(Amount.lt(NODES.indexOf(node),0)) return {affordable:false,reason:'invalid'};
-  var level=nodeLevel(node.id);
+  var level=Amount.div(nodeLevel(node.id),node.rankStep||1);
   if(node.retired || node.retiredTo) return {affordable:false,reason:'retired',level:level};
   if(!treeNodeUnlocked(node)) return {affordable:false,reason:'locked',level:level};
   if(node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};
@@ -8824,11 +8840,11 @@ function prismSubtractWords(a,b){
   return out;
 }
 function prismDepthDifferenceCeil(cleared,benchmark,numerator,approximate){
-  var candidate=Math.ceil(approximate);
+  var candidate=Math.ceil(approximate),scale=numerator%1===0?1:2;
   if(!Number.isSafeInteger(cleared)||!Number.isSafeInteger(benchmark)||benchmark<0||
-      !Number.isSafeInteger(numerator)||numerator<0||!Number.isSafeInteger(candidate)||candidate<0) return candidate;
-  var c=prismIntegerWords(cleared),b=prismIntegerWords(benchmark),p=prismIntegerWords(numerator);
-  var pp=prismMultiplyWords(p,p),denominator=prismIntegerWords(250000);
+      !Number.isSafeInteger(numerator*scale)||numerator<0||!Number.isSafeInteger(candidate)||candidate<0) return candidate;
+  var c=prismIntegerWords(cleared),b=prismIntegerWords(benchmark),p=prismIntegerWords(numerator*scale);
+  var pp=prismMultiplyWords(p,p),denominator=prismIntegerWords(250000*scale*scale);
   var upper=prismMultiplyWords(prismIntegerWords(4),prismMultiplyWords(pp,prismAddWords(c,b)));
   var right=prismMultiplyWords(prismIntegerWords(64),
     prismMultiplyWords(prismMultiplyWords(pp,pp),prismMultiplyWords(c,b)));
@@ -8855,12 +8871,12 @@ function prismBonusNumerator(){
   return (25+tree)*(20+lab);
 }
 function prismCurveFloor(cleared,numerator,approximate){
-  var candidate=Math.floor(approximate);
+  var candidate=Math.floor(approximate),scale=numerator%1===0?1:2,base=prismBonusNumerator();
   // Keep the legacy Number fallback outside the safe-integer contract.
   // This is not a new gameplay cap or a claim of exact oversized currencies.
-  if(!Number.isSafeInteger(cleared) || cleared<0 || !Number.isSafeInteger(numerator) || numerator<0 ||
-      !Number.isSafeInteger(prismBonusNumerator()) || !Number.isSafeInteger(candidate) || candidate<0) return candidate;
-  var p=prismIntegerWords(numerator),denominator=prismIntegerWords(250000);
+  if(!Number.isSafeInteger(cleared) || cleared<0 || !Number.isSafeInteger(numerator*scale) || numerator<0 ||
+      !Number.isSafeInteger(base*(base%1===0?1:2)) || !Number.isSafeInteger(candidate) || candidate<0) return candidate;
+  var p=prismIntegerWords(numerator*scale),denominator=prismIntegerWords(250000*scale*scale);
   var target=prismMultiplyWords(prismIntegerWords(4),
     prismMultiplyWords(prismIntegerWords(cleared),prismMultiplyWords(p,p)));
   function compare(value){
@@ -8903,7 +8919,8 @@ function treeFrontierBonus(cleared,benchmark){
   if(!rank || cleared<15 || !Number.isFinite(cleared)) return 0;
   cleared=Math.floor(cleared);benchmark=Math.max(0,Math.min(cleared,Math.floor(benchmark)||0));
   if(!Number.isSafeInteger(cleared) || !Number.isSafeInteger(benchmark)) return 0;
-  return Math.max(0,Math.floor(cleared/25)-Math.floor(benchmark/25))*rank;
+  var first=Math.floor(benchmark/25),last=Math.floor(cleared/25),whole=Math.floor(rank);
+  return (last-first)*whole+(rank>whole ? Math.floor(last/2)-Math.floor(first/2) : 0);
 }
 function treeAppendFrontier(result){
   var bonus=treeFrontierBonus(result.cleared,result.benchmark);
@@ -8914,7 +8931,7 @@ function treeAppendFrontier(result){
   return result;
 }
 function treeAscendMotes(gain){
-  return Number.isFinite(gain) && gain>0 ? Math.min(10,Math.floor(gain/20))*treeLevel('stardust') : 0;
+  return Number.isFinite(gain) && gain>0 ? Math.floor(Math.min(10,Math.floor(gain/20))*treeLevel('stardust')) : 0;
 }
 function treeAscendMotesForWallet(gain,wallet){
   return treeAscendMotes(Amount.min(gain,debitAmount(creditAmount(wallet,gain),wallet)));
@@ -8950,11 +8967,11 @@ function applyAscendMutation(){
   state.formationRebuild = normalizeFormationRebuild(state.formationRebuild || {
     members:state.activeParty.slice(),preset:state.activeFormationPreset
   },state);
-  var cleared = Amount.sub(progressionDepth(),1);
+  var cleared = Amount.sub(progressionDepth(),1),nextAscends=creditAmount(state.ascendCount,1);
   finishCometTrial(cleared);
   var recall=state.formationRebuild ? state.formationRebuild.members.filter(function(id){
     return id!=='ember' && Amount.gt(state.spirits[id]||0,0) && SPIRITS.some(function(sp){return sp.id===id && wispRecruitmentUnlocked(sp);});
-  }).slice(0,treeLevel('rosterrecall')) : [];
+  }).slice(0,treeRunBonus('rosterrecall',state,nextAscends)) : [];
   // A purchased reset boon must not fail a newly requested Single Star trial.
   if(state.cometTrial && state.cometTrial.id==='single' && state.cometTrial.phase==='pending') recall=[];
   var gain = ascendPrismGain(progressionDepth());
@@ -8962,36 +8979,46 @@ function applyAscendMutation(){
   state.prisms=creditAmount(state.prisms,gain);
   state.motes=creditAmount(state.motes,dust);
   state.ascendRewardedDepth = Amount.max(state.ascendRewardedDepth||0,cleared);
-  state.ascendCount=creditAmount(state.ascendCount,1);
+  state.ascendCount=nextAscends;
   trackDaily('ascends');
-  state.depth = Amount.add(1,treeLevel('riftstep'));
+  state.depth = 1+treeRunBonus('riftstep');
   state.riftMode = 'push';
   state.farmDepth = 0;
   state.farmReturnDepth = 0;
   state.farmAutoResume = false;
   state.lumen = Amount.min(Amount.mul(state.lumen,Amount.div(treeLevel('lumenmemory'),20)),Amount.mul(50000,treeLevel('lumenmemory')));
   state.maxDepthEver = Amount.max(state.maxDepthEver,Amount.add(cleared,1));
-  if(!treeLevel('supportmemory')){
+  var blessingCarry=treeLevel('supportmemory');
+  if(!blessingCarry){
     state.buffUntil = 0;
     state.buffMult = 1;
     state.supportBuffs = null;
+  }else if(blessingCarry<1){
+    var now=gameplayNowMs();
+    function retainedUntil(until){return until>now?now+(until-now)*blessingCarry:until;}
+    state.buffUntil=retainedUntil(state.buffUntil);
+    if(state.supportBuffs)Object.keys(state.supportBuffs.sources).forEach(function(id){
+      var entry=state.supportBuffs.sources[id];entry.until=retainedUntil(entry.until);
+    });
   }
   state.canonicalAutomationClock={};
   var oldTapPhase=state._autoTapAccum||0,oldEmpowerPhase=state._autoEmpowerAccum||0;
   state.sigilResonanceUses = 0;
   state._autoTapAccum = 0;
   state._autoEmpowerAccum = 0;
-  if(treeLevel('phasememory')){
-    if(state.achieved.autotap) state._autoTapAccum=Amount.max(0,Amount.min(999.999,oldTapPhase));
-    if(state.achieved.labmaster) state._autoEmpowerAccum=Amount.max(0,Amount.min(999.999,oldEmpowerPhase));
+  var phaseCarry=treeLevel('phasememory');
+  if(phaseCarry){
+    if(state.achieved.autotap) state._autoTapAccum=Amount.max(0,Amount.min(999.999,oldTapPhase))*phaseCarry;
+    if(state.achieved.labmaster) state._autoEmpowerAccum=Amount.max(0,Amount.min(999.999,oldEmpowerPhase))*phaseCarry;
   }
   state.treeTrainingProgress=0;
   SPIRITS.forEach(function(sp){
     state.spirits[sp.id] = 0;
     state.heroResource[sp.id] = Amount.min(100,Amount.div(Amount.mul(state.heroResource[sp.id]||0,treeLevel('chargememory')),5));
   });
-  state.spirits['ember'] = Amount.add(1,treeLevel('veteranrecruits'));
-  recall.forEach(function(id){state.spirits[id]=Amount.add(1,treeLevel('veteranrecruits'));});
+  var veteranLevel=1+treeRunBonus('veteranrecruits');
+  state.spirits['ember'] = veteranLevel;
+  recall.forEach(function(id){state.spirits[id]=veteranLevel;});
   state.activeParty = ['ember'];
   reconcileFormationRebuild(state);
   spawnEnemy();
@@ -10810,7 +10837,7 @@ function prismCalculationText(breakdown){
   function approximate(value){return 'about '+value.toFixed(3);}
   var rows=[['Cleared Rift',String(breakdown.cleared)],
     ['Depth reward before bonuses',approximate(base)],
-    ['Swift Ascension',nodeLevel('swift')+' levels · +'+(nodeLevel('swift')*4)+'%'],
+    ['Swift Ascension',(nodeLevel('swift')*2)+' ranks · +'+(nodeLevel('swift')*4)+'%'],
     ['Ascendant Clarity',longStudyLevel('prismstudy')+' completed levels · +'+(longStudyLevel('prismstudy')*5)+'%'],
     ['Combined bonus',approximate(tree*lab)+'×']];
   if(breakdown.full>0){
@@ -10883,7 +10910,7 @@ function renderNodes(){
     if(!treeNodeUnlocked(node)){
       var reqAch = ACHIEVEMENTS.find(function(a){ return a.id===node.requiresAchievement; });
       var requirement=node.requiresAchievement ? ('Unlocks with the Deed “' + (reqAch?reqAch.name:'') + '”') : ('Unlocks at Rift ' + (node.unlockDepth||1));
-      if(node.requiresSwift) requirement=(requirement + ' · Swift Ascension level ' + node.requiresSwift);
+      if(node.requiresSwift) requirement=(requirement + ' · Swift Ascension rank ' + 2*node.requiresSwift);
       html=(html + '<div class="card node-card locked-node" data-tree-node="' + node.id + '" data-state="locked" aria-disabled="true">' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--ink-dim);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<p class="desc">'+node.desc+'</p>' + '<div class="desc lock-note">' + requirement + '</div>' + (Amount.gt(nodeLevel(node.id),0)?Amount.add(Amount.add(Amount.add(Amount.add('<div class="earned-effect" data-node-effect="',node.id),'">'),nodeEarnedEffect(node.id)),'</div>'):'') + '</div>' + '</div>');
       return;
     }
@@ -10893,7 +10920,7 @@ function renderNodes(){
     var unavailable = plan.reason==='unavailable';
     var priced = Amount.valid(plan.cost);
     var levelText=('Level ' + level + (node.levelCap!==undefined?Amount.add(' · Cap ',node.levelCap):'') + (node.levelCap!==undefined && Amount.gt(level,node.levelCap)?' · Saved level preserved':''));
-    if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,20) + ' / 20');if(Amount.gt(level,20))levelText=(levelText + ' · ' + formatGroupedNumber(level) + ' purchased levels preserved');}
+    if(node.id==='bonds'){levelText=('Level ' + Amount.min(level,node.levelCap) + ' / '+node.levelCap);if(Amount.gt(level,node.levelCap))levelText=(levelText + ' · ' + formatGroupedNumber(level) + ' purchased levels preserved');}
     html=(html + '<div class="card node-card" data-tree-node="' + node.id + '"' + (capped?' data-state="maxed"':'') + '>' + '<span class="shape shape-diamond" style="width:30px;height:30px;background:var(--prism);"></span>' + '<div class="node-info" style="flex:1;">' + '<div class="name">' + node.name + '</div>' + '<p class="desc">'+node.desc+'</p>' + '<div class="lvl" style="color:var(--prism);">' + levelText + '</div>' + '<div class="earned-effect" data-node-effect="' + node.id + '">Bonus: ' + nodeEarnedEffect(node.id) + '</div>' + '' + (node.id==='bonds' && state.feedbackMigration.receipts['node.bonds'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; ',state.feedbackMigration.receipts['node.bonds'].unpricedFrom ? 'refunds cover purchases with available prices.' : 'purchases above level 20 refunded in Prisms.'),'</div>') : '') + (node.id==='bonds' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + (node.id==='echo' && state.feedbackMigration.receipts['node.echo'] ? Amount.add(Amount.add('<div class="effect-note">Saved level preserved; purchases above level 6 refunded in Prisms',state.feedbackMigration.receipts['node.echo'].unpricedFrom ? ' where original prices are available' : ''),'.</div>') : '') + (node.id==='echo' && Amount.gt(prismRefundCreditTotal(),0) ? Amount.add(Amount.add('<div class="effect-note">Remaining Prism refund credit: ',Amount.valid(prismRefundCreditTotal()) ? formatNum(prismRefundCreditTotal()) : 'above display range'),'. Available for Tree purchases.</div>') : '') + '</div>' + '<button class="buy-btn" data-node="' + node.id + '" ' + (plan.affordable?'':'disabled') + ' aria-label="' + (capped?Amount.add(node.name,' maximum level reached'):unavailable?Amount.add(node.name,' price unavailable'):Amount.add(Amount.add(Amount.add(Amount.add(Amount.add(Amount.add('Buy ',node.name),' level '),Amount.add(level,1)),' for '),formatNum(plan.cost)),' Prisms')) + '" style="min-width:78px;">' + (capped?'<span class="label">Maxed</span>':unavailable&&!priced?'<span class="label">Unavailable</span>':Amount.add(Amount.add(Amount.add(purchasePriceMarkup('prism',plan.cost,'cost mono'),'<span class="label">'),unavailable?'Unavailable':'Prisms'),'</span>')) + '</button>' + '</div>');
   });
   replaceControlMarkup(els['node-list'],html);
@@ -12386,11 +12413,12 @@ function simulationProcessAutoTap(nowMs,policy,summary,clock){
 }
 function simulationProcessAutoEmpower(summary){
   var processed = 0;
+  var purchases=1+treeRunBonus('empowerbatch');
   while(state.achieved.labmaster && (state._autoEmpowerAccum||0)>=1000-1e-7){
     var empowerResidual = (state._autoEmpowerAccum||0)-1000;
     state._autoEmpowerAccum = Math.abs(empowerResidual)<1e-7 ? 0 : Math.max(0,empowerResidual);
     invalidateCanonicalAutomation('_autoEmpowerAccum');
-    for(var purchase=0;purchase<1+treeLevel('empowerbatch');purchase++){
+    for(var purchase=0;purchase<purchases;purchase++){
       if(!autoEmpowerTick()) break;
       summary.empowers++;
     }
