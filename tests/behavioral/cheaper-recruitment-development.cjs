@@ -9,7 +9,7 @@ let source=fs.readFileSync(sourcePath,'utf8');
 const mutation=option('--mutation','none');
 if(mutation==='handler')source=source.replace("if(node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};","if(node.id!=='bonds' && node.levelCap!==undefined && Amount.ge(level,node.levelCap)) return {affordable:false,reason:'cap',level:level};");
 if(mutation==='ui')source=source.replace("if(plan.reason==='cap'){kind='maxed';reason='Maxed';}","if(plan.reason==='cap'){kind='unavailable';reason='Unavailable';}");
-if(mutation==='raw')source=source.replace('out.nodes[node.id] = nonNegativeInt(nodes[node.id],fresh.nodes[node.id]);','out.nodes[node.id] = Math.min(20,nonNegativeInt(nodes[node.id],fresh.nodes[node.id]));');
+if(mutation==='raw')source=source.replace('out.nodes[node.id] = savedNodeUnits(node,nodes[node.id],fresh.nodes[node.id]);','out.nodes[node.id] = Math.min(20,savedNodeUnits(node,nodes[node.id],fresh.nodes[node.id]));');
 if(mutation==='refund')source=source.replace('if(hasReceipt || raw<=20) return;','if(raw<=20) return;');
 if(mutation==='credit')source=source.replace('var sum=exactPrismArithmetic(out.prisms,amount);','var sum=out.prisms+amount;');
 if(mutation==='free-credit')source=source.replace('left=exactPrismArithmetic(balance,-take)','left=balance-take');
@@ -103,15 +103,15 @@ async function run(){
   for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
    await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
    await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
-   await evaluate(`(()=>{var b=__cheaperRecruitment,s=cheaperLegacySeed(0,100);s.nodes.echo=5;b.set(s);b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="echo"]').scrollIntoView({block:'center'});})()`);
+   await evaluate(`(()=>{var b=__cheaperRecruitment,s=cheaperLegacySeed(0,100);s.nodes.echo=5.5;b.set(s);b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="echo"]').scrollIntoView({block:'center'});})()`);
    await new Promise(r=>setTimeout(r,280));
    const before=await evaluate('cheaperRecruitmentObservation("echo")');assert(before.fit&&before.rect.width>=44&&before.rect.height>=44,'Echo44px/text fit');assert(Math.min(...before.contrasts)>=4.5,'Echo contrast');
    await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:before.rect.x+before.rect.width/2,y:before.rect.y+before.rect.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-   let after=await evaluate('cheaperRecruitmentObservation("echo")');assert(after.state.nodes.echo===6&&after.state.prisms===89&&after.disabled&&after.fit,'actual final Echo purchase');assert(after.focusedCard==='echo'&&Math.abs(after.scroll-before.scroll)<=1,'Echo cap retains Echo card and scroll');
+   let after=await evaluate('cheaperRecruitmentObservation("echo")');assert(after.state.nodes.echo===6&&after.state.prisms===94&&after.disabled&&after.fit,'actual final Echo purchase');assert(after.focusedCard==='echo'&&Math.abs(after.scroll-before.scroll)<=1,'Echo cap retains Echo card and scroll');
    if(motion==='reduce')assert(after.reduced&&parseFloat(after.animation)<=.001,'Echo reduced motion');
    await evaluate(`(()=>{var b=__cheaperRecruitment,s=cheaperLegacySeed(0,1e30);s.nodes.echo=7;b.set(s);b.render();document.querySelector('[data-node="echo"]').scrollIntoView({block:'center'});})()`);
    const overcap=await evaluate('cheaperRecruitmentObservation("echo")');assert(overcap.fit&&overcap.text.includes('refunded in Prisms')&&overcap.text.includes('12 hours')&&overcap.text.includes('100%'),'Echo separates original refund, rate and time');
-   await evaluate('document.querySelector("[data-node=swift]").focus()');await key('Enter');const paid=await evaluate('__cheaperRecruitment.get()');assert(paid.nodes.swift===1&&paid.prisms===1e30&&paid.feedbackMigration.receipts['node.echo'].remainingCredits[0]===13,'actual keyboard spends Echo credit exactly');
+   await evaluate('document.querySelector("[data-node=swift]").focus()');await key('Enter');const paid=await evaluate('__cheaperRecruitment.get()');assert(paid.nodes.swift===0.5&&paid.prisms===1e30&&paid.feedbackMigration.receipts['node.echo'].remainingCredits[0]===15,'actual keyboard spends Echo credit exactly');
    records.push({kind:'echo-mobile',width,fontPercent,motion,contrastMinimum:Math.min(...before.contrasts),target:[before.rect.width,before.rect.height],realTouch:true,realKeyboard:true,refundFit:overcap.fit});
   }
   for(const raw of [7,95,2000]){
@@ -127,23 +127,23 @@ async function run(){
  for(const width of [320,390,430])for(const fontPercent of [100,200])for(const motion of ['no-preference','reduce']){
   await send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:motion}]});
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19));b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="bonds"]').scrollIntoView({block:'center'});})()`);
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19.5));b.render();document.documentElement.style.fontSize='${fontPercent}%';document.querySelector('[data-tab="ascend"]').click();document.querySelector('[data-node="bonds"]').scrollIntoView({block:'center'});})()`);
   await new Promise(r=>setTimeout(r,280));
   let before=await evaluate('cheaperRecruitmentObservation()');
   assert(before.fit&&before.rect.width>=44&&before.rect.height>=44,'mobile fit/44px '+width+'/'+fontPercent+'/'+motion+' '+JSON.stringify({fit:before.fit,rect:before.rect}));
   assert(Math.min(...before.contrasts)>=4.5,'text contrast '+JSON.stringify(before.contrasts));
   await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:before.rect.x+before.rect.width/2,y:before.rect.y+before.rect.height/2}]});await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  let after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.state.prisms===997671,'real touch final purchase');
+  let after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.state.prisms===998835,'real touch final purchase');
   assert(after.disabled&&after.kind==='maxed'&&after.fit,'maxed state fit after native purchase');
   assert(after.focusedCard==='bonds'&&Math.abs(after.scroll-before.scroll)<=1,'final purchase retains Recruitment card and scroll');
   if(motion==='reduce')assert(after.reduced&&parseFloat(after.animation)<=.001,'reduced motion');
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19));b.render();document.querySelector('[data-node="echo"]').focus();})()`);
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(19.5));b.render();document.querySelector('[data-node="echo"]').focus();})()`);
   await key('Tab');assert(await evaluate(`(()=>{var c=document.querySelector('[data-tree-node="bonds"]'),d=c.querySelector('.desc');return !c.querySelector('details,summary')&&d&&d.getClientRects().length&&d.textContent.includes('normal price before whole-Lumen rounding');})()`),'Recruitment explanation stays visible without a disclosure');
   let focused=await evaluate('cheaperRecruitmentObservation()');
   assert(focused.focused==='bonds'&&focused.focusStyle.style==='solid'&&parseFloat(focused.focusStyle.width)>=2,'visible keyboard focus on Recruitment');
   await key('Enter');after=await evaluate('cheaperRecruitmentObservation()');assert(after.state.nodes.bonds===20&&after.focusedCard==='bonds'&&Math.abs(after.scroll-focused.scroll)<=1,'native Enter cap retains Recruitment card and scroll');
   await evaluate('__cheaperRecruitment.render()');await key('Enter');const repeated=await evaluate('cheaperRecruitmentObservation()');assert(repeated.focusedCard==='bonds'&&Math.abs(repeated.scroll-after.scroll)<=1&&JSON.stringify(repeated.state)===JSON.stringify(after.state),'refresh and repeated Enter retain cap without buying another upgrade');
-  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(40));b.render();})()`);let legacy=await evaluate('cheaperRecruitmentObservation()');assert(legacy.fit&&legacy.text.includes('40 purchased levels preserved'),'legacy larger text fits');
+  await evaluate(`(()=>{var b=__cheaperRecruitment;b.set(cheaperRecruitmentSeed(40));b.render();})()`);let legacy=await evaluate('cheaperRecruitmentObservation()');assert(legacy.fit&&legacy.text.includes('80 purchased levels preserved'),'legacy larger text fits');
   records.push({kind:'mobile',width,fontPercent,motion,contrastMinimum:Math.min(...before.contrasts),target:[before.rect.width,before.rect.height],nativeTouch:true,nativeKeyboard:true,focusAfterCap:after.focusedCard,legacyFit:legacy.fit});
  }
  if(args.includes('--screenshot')){

@@ -5,7 +5,7 @@ const eol=source.includes('\r\n')?'\r\n':'\n';
 const transactionStart=source.indexOf('function forgeCommitPaidMutation(apply){'),transactionCopy=source.indexOf('  state=clonePersistedValue(base);',transactionStart);
 assert(transactionStart>=0&&transactionCopy>transactionStart,'paid transaction clone exists');
 const transactionPrefix=source.slice(transactionStart,transactionCopy);
-const singleAscend=source.includes('state.ascendCount=creditAmount(state.ascendCount,1);')?'state.ascendCount=creditAmount(state.ascendCount,1);':'state.ascendCount++;';
+const singleAscend='function applyAscendMutation(){';
 // Exact clock progress is now a second valid witness alongside falling HP.
 // Remove both witnesses to reproduce the same false-stall defect after integration.
 const exactProgress=' && (!binaryClock||binaryClock.elapsed()===binaryElapsedBefore) && actions===0 && !Amount.lt(state.enemyHp,hpBeforeAdvance)';

@@ -25,26 +25,26 @@ window.runCheaperRecruitmentContracts=function(){
     ok(button.textContent.trim()==='Maxed'&&!button.querySelector('.cost'),'maxed offers no next price');
     ok(button.getAttribute('aria-label').includes('Cheaper Recruitment')&&button.getAttribute('aria-label').includes('Maxed'),'accessible maxed name');
     var card=button.closest('.node-card');
-    ok(card.querySelector('.lvl').textContent.includes('20 / 20'),'effective level capped');
-    if(level>20)ok(card.querySelector('.lvl').textContent.includes(level.toLocaleString('en-US')+' purchased levels preserved'),'legacy raw count visible');
+    ok(card.querySelector('.lvl').textContent.includes('40 / 40'),'effective level capped');
+    if(level>20)ok(card.querySelector('.lvl').textContent.includes((level*2).toLocaleString('en-US')+' purchased levels preserved'),'legacy raw count visible');
     var effect=card.querySelector('[data-node-effect]').textContent;
     ok(effect.includes('60% Wisp recruiting discount (also Empower)')&&effect.includes('40% of normal price'),'cap earned effect');
     ok(effect.includes('before whole-Lumen rounding')&&card.textContent.includes('normal price before whole-Lumen rounding'),'floor wording qualifies existing integer rounding');
   });
   install(0);var forged=b.get();b.direct({id:'bonds',baseCost:0,growth:1});same(b.get(),forged,'upstream canonical Tree contract rejects forged node');var total=0;
-  for(var level=0;level<20;level++){
-    var price=Math.ceil(2*Math.pow(1.45,level)),before=b.get();total+=price;
+  for(var level=0;level<20;level+=0.5){
+    var pair=Math.ceil(2*Math.pow(1.45,Math.floor(level))),price=level%1?Math.ceil(pair/2):Math.floor(pair/2),before=b.get();total+=price;
     b.buy({id:'bonds',levelCap:0,baseCost:0,growth:1});
-    ok(b.get().nodes.bonds===level+1&&b.get().prisms===before.prisms-price,'canonical metadata and original debit '+level);
-    ok(b.discount()===Math.min(.6,(level+1)*.03),'original discount '+level);
+    ok(b.get().nodes.bonds===level+0.5&&b.get().prisms===before.prisms-price,'canonical metadata and original debit '+level);
+    ok(b.discount()===Math.min(.6,(level+0.5)*.03),'original discount '+level);
   }
-  ok(b.get().prisms===1000000-total,'all 20 prices paid exactly once');
-  install(19);var s=b.get();s.prisms=2329;b.set(s);b.buy({id:'bonds'});
-  ok(b.get().nodes.bonds===20&&b.get().prisms===0,'final level costs exactly 2329 Prisms');
-  install(19);s=b.get();s.prisms=2328;b.set(s);var before=b.get(),disk=b.disk();b.buy({id:'bonds'});
+  ok(b.get().prisms===1000000-total,'all 40 ranks paid exactly once');
+  install(19.5);var s=b.get();s.prisms=1165;b.set(s);b.buy({id:'bonds'});
+  ok(b.get().nodes.bonds===20&&b.get().prisms===0,'final rank costs exactly 1165 Prisms');
+  install(19.5);s=b.get();s.prisms=1164;b.set(s);var before=b.get(),disk=b.disk();b.buy({id:'bonds'});
   same(b.get(),before,'insufficient budget no debit');same(b.disk(),disk,'insufficient budget no save');
   [null,{}, {id:'missing'}].forEach(function(node){before=b.get();b.buy(node);same(b.get(),before,'unknown input cannot mutate');});
-  install(0);b.buy({id:'echo'});ok(b.get().nodes.echo===1&&b.get().prisms===999998,'active Tree upgrade keeps original price');var retired=b.get();b.buy({id:'starlight'});same(b.get(),retired,'upstream retired Tree upgrade cannot consume refund value');
+  install(0);b.buy({id:'echo'});ok(b.get().nodes.echo===0.5&&b.get().prisms===999999,'active Tree upgrade keeps original price');var retired=b.get();b.buy({id:'starlight'});same(b.get(),retired,'upstream retired Tree upgrade cannot consume refund value');
   // Existing nearest-integer recruiting prices are independent oracles.
   [0,1,19,20,21,40].forEach(function(raw){
     install(raw);b.spirits().forEach(function(sp){

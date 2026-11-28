@@ -287,11 +287,11 @@ function verify(source,negative=false) {
   const a=checks(),boundaries=[];
   ordinaryInterval(source,a);
   for(const kind of ['live','offline'])for(const config of [
-    {charge:0,phase:0},{charge:2,phase:0},{charge:0,phase:1},{charge:2,phase:1},
+    {charge:0,phase:0},{charge:0.5,phase:0},{charge:2,phase:0},{charge:0,phase:1},{charge:2,phase:1},
     {charge:2,phase:1,unsafeCount:true},{charge:2,phase:1,seconds:.5,equal:true},
     {charge:5,phase:1,seconds:.25,readyAbility:true}
   ])boundaries.push(endingPassive(source,a,{kind,...config}));
-  const deadlines=supportDeadlines(source,a),walls=[0,1,4].map(rank=>wallCase(source,a,rank));
+  const deadlines=supportDeadlines(source,a),walls=[0,0.5,1,4].map(rank=>wallCase(source,a,rank));
   const bounds=sixPartyBounds(source,a),long=longRuns(source,a),faults=offlineFaults(source,long.initial,a);
   delete long.initial;
   return {status:'pass',sourceSha256:hash(source),testSha256:hash(fs.readFileSync(__filename)),fixtureSha256:hash(fs.readFileSync(path.join(__dirname,'fixtures.json'))),historicalFixtureSha256:hash(fs.readFileSync(path.join(__dirname,'fixtures-pre-endless.json'))),
