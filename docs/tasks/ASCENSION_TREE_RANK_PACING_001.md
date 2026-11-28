@@ -172,3 +172,15 @@ menu. It observed scroll position 1,167 against a bottom of 1,182. The
 is also retrying its installed menu checks. Keep PR #72 open for integrated
 CI and Android acceptance. Next: verify the exact source with the remaining
 menu fix or a successful reproduced Android retest, then finish delivery.
+
+## Resumed against Android 0.2.179
+
+The current public game includes the Wisps menu fix and later Wisp ability and
+game-quality updates. Merging main `437f17fb` brought those changes into PR #72.
+The game source merged cleanly. The only conflict was the source binding for
+the offline replay. All four eight-hour endpoint states and canonical hashes
+matched the public game in the [paired replay](../qa/ascension-tree-rank-pacing-001/replay-0.2.179.json).
+The seven full-Tree simulations reproduced every recorded purchase and payout
+on source `1be798f5d590`. Local Tree economy passed 15,664 checks and Prism
+state passed 4,674 checks with Node 24.22.3. Next steps are PR validation,
+exact integration checks, signed Android upgrade and public delivery.

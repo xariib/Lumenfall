@@ -1,0 +1,173 @@
+{
+  "status": "PASS",
+  "pullRequest": 75,
+  "integration": "Fast-forward to the exact merge commit tested by the PR and workflow dispatches.",
+  "previousMain": "5439b1e64bd62c0b49263b9604c32a3c6b2c0db5",
+  "reviewedHead": "b2dcfdaa0a6d5ecbb7bf22cb0aa5e6cff47ca0f6",
+  "integratedCommit": "09b87e84f8b31d0f294dc4683d88982fb0ad4615",
+  "sourceSha256": "94ff950c50fb7280287f2093e6f76f4fff8713dcdba7739e0fa421b5ea6ac1ca",
+  "validationRef": "validation/wisp-ability-pacing-001",
+  "statefulScenariosPerRun": 188,
+  "isolatedOfflineScenariosPerRun": 1,
+  "runtimeSmokePerRun": "PASS",
+  "pullRequestWorkflows": [
+    {
+      "name": "Ascension Tree focused validation",
+      "id": 45212300585,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300585"
+    },
+    {
+      "name": "Comet shop and Deeds validation",
+      "id": 45212300311,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300311"
+    },
+    {
+      "name": "Permanent progression and direct cards validation",
+      "id": 45212300211,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300211"
+    },
+    {
+      "name": "Pre-merge validation",
+      "id": 45212300666,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300666"
+    },
+    {
+      "name": "Research Lab expansion validation",
+      "id": 45212300220,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300220"
+    },
+    {
+      "name": "Rift Forge expansion validation",
+      "id": 45212300238,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300238"
+    },
+    {
+      "name": "Shared UI layout validation",
+      "id": 45212300287,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300287"
+    },
+    {
+      "name": "Wisp scroll validation",
+      "id": 45212300348,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45212300348"
+    }
+  ],
+  "exactCommitWorkflows": [
+    {
+      "name": "Ascension Tree focused validation",
+      "id": 45216431660,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431660"
+    },
+    {
+      "name": "Comet shop and Deeds validation",
+      "id": 45216431696,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431696"
+    },
+    {
+      "name": "Migration focused regressions",
+      "id": 45216431899,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431899"
+    },
+    {
+      "name": "Permanent progression and direct cards validation",
+      "id": 45216431841,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431841"
+    },
+    {
+      "name": "Pre-merge validation",
+      "id": 45216431609,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431609"
+    },
+    {
+      "name": "Research Lab expansion validation",
+      "id": 45216431484,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431484"
+    },
+    {
+      "name": "Rift Forge expansion validation",
+      "id": 45216431706,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431706"
+    },
+    {
+      "name": "Shared UI layout validation",
+      "id": 45216431441,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431441"
+    },
+    {
+      "name": "Wisp scroll validation",
+      "id": 45216431952,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "html_url": "https://github.com/xariib/Lumenfall/actions/runs/45216431952"
+    }
+  ],
+  "initialBrowserStartupFailures": [
+    {
+      "workflowRun": 45212300220,
+      "job": 137824064786,
+      "error": "CDP deadline Browser.getVersion before browser assertions",
+      "retry": "PASS on unchanged source"
+    },
+    {
+      "workflowRun": 45216431841,
+      "job": 137838721967,
+      "error": "CDP deadline Browser.getVersion before browser assertions",
+      "retry": "PASS on unchanged source"
+    },
+    {
+      "workflowRun": 45216431952,
+      "job": 137838722634,
+      "error": "CDP deadline Browser.getVersion before browser assertions",
+      "retry": "PASS on unchanged source"
+    }
+  ]
+}

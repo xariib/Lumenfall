@@ -6,7 +6,9 @@ const mutants={
  cheap:['return lab>1 ? Math.max(sp.baseCost,Math.round(800*Math.pow(1.6,lab))) : sp.baseCost;','return sp.baseCost;'],
  sixth:['function treeFormationCapacity(snapshot){return 5;}','function treeFormationCapacity(snapshot){return 6;}'],
  repeatRefund:['if(!out.formationSeatRefund.paid){','if(true){'],
- abilityGate:["return rule.lab ? [wispRequirement('depth'","return false ? [wispRequirement('depth'"],
+ abilityGate:["var requirements=rule.lab ? [wispRequirement('depth'","var requirements=false ? [wispRequirement('depth'"],
+ finalAbilityRarity:['if(rarity)requirements.push(', 'if(false)requirements.push('],
+ finalAbilityPrice:['*Math.pow(2,finalLevels);', ';'],
  repeatDeed:['if(!state.achieved[a.id] && a.check(state)){','if(a.check(state)){'],
  earnedAccess:['function applyAchievementChecks(){\n  synchronizeRecruitmentEntitlements(state);','function applyAchievementChecks(){']
 };
@@ -39,11 +41,11 @@ for(const [id,[depth,lab,kills]]of Object.entries(gates)){
   }
  }
  // All costs grow from fixed anchors and remain independent of the wallet.
- for(const level of [0,4,10,19]){
-  const pacing=1.18**Math.max(0,level-4),cost=b.moduleCost(sp,level);
+ for(let level=0;level<20;level++){
+  const pacing=1.18**Math.max(0,level-4)*2**Math.max(0,level-14),cost=b.moduleCost(sp,level);
   eq(cost,{lumen:Math.round(anchors[id]*4*1.35**level*pacing),shard:Math.round(anchors[id]*.4*1.35**level*pacing)},'independent ability price '+id+'/'+level);
  }
- const funded=q.fresh();funded.spirits[id]=200;funded.maxDepthEver=depth;funded.longStudyLevels.wispascend=lab;funded.ascendCount=100;funded.research.arcanecal=10;funded.lumen=funded.shards='1e100';
+ const funded=q.fresh();funded.spirits[id]=200;funded.heroRarity[id]=5;funded.maxDepthEver=depth;funded.longStudyLevels.wispascend=lab;funded.ascendCount=100;funded.research.arcanecal=10;funded.lumen=funded.shards='1e100';
  q.set(funded);
  if(lab){
   for(let stage=0;stage<5;stage++){
@@ -53,8 +55,36 @@ for(const [id,[depth,lab,kills]]of Object.entries(gates)){
    q.get().maxDepthEver=depth;q.get().longStudyLevels.wispascend=lab;
   }
   q.get().wispModules[id]=4;const before=F.clone(q.get());eq(b.module(sp),false,'unlimited wallet cannot bypass ability development');eq(q.get(),before,'locked ability does not mutate');
+  q.get().heroRarity[id]=0;
   eq(b.rarityPlan(sp).eligible,false,'unlock alone cannot immediately raise rarity '+id);
  }
+ // Give the Wisp plenty of progress for its old gates, then isolate its new rarity gate.
+ const staged=q.fresh();staged.spirits[id]=200;staged.maxDepthEver=1000;staged.longStudyLevels.wispascend=200;
+ staged.wispModules[id]=14;q.set(staged);
+ const level15=b.moduleCost(sp,14);q.get().lumen=level15.lumen;q.get().shards=level15.shard;
+ ok(b.module(sp),'level 15 is available at Common with existing gates met '+id);
+ for(const [rank,rarity] of [[16,3],[17,3],[18,4],[19,4],[20,5]]){
+  const current=q.get(),cost=b.moduleCost(sp,rank-1);
+  current.heroRarity[id]=rarity-1;current.lumen=cost.lumen;current.shards=cost.shard;
+  const before=F.clone(current),slots=Array.from(x.storage);
+  eq(b.modulePlan(sp).reason,'requirements','final ability rarity gate '+id+'/'+rank);
+  eq(b.module(sp),false,'price alone cannot bypass rarity '+id+'/'+rank);
+  eq(q.get(),before,'rarity rejection does not change the state '+id+'/'+rank);
+  eq(Array.from(x.storage),slots,'rarity rejection does not change either save '+id+'/'+rank);
+  current.heroRarity[id]=rarity;
+  current.lumen=A.exactSub(cost.lumen,1);
+  eq(b.modulePlan(sp).reason,'funds','final ability Lumen one short '+id+'/'+rank);
+  current.lumen=cost.lumen;current.shards=A.exactSub(cost.shard,1);
+  eq(b.modulePlan(sp).reason,'funds','final ability Shards one short '+id+'/'+rank);
+  current.shards=cost.shard;
+  ok(b.module(sp),'exact price buys final ability rank '+id+'/'+rank);
+  eq([q.get().wispModules[id],q.get().lumen,q.get().shards],[rank,0,0],'all of both quoted amounts debited '+id+'/'+rank);
+ }
+ eq(b.modulePlan(sp).reason,'maxed','cap stays at 20 '+id);
+ const capped=F.clone(q.get());q.load();eq(q.get(),capped,'maxed rank persists through cold load '+id);
+ const legacy=F.clone(staged);legacy.heroRarity[id]=0;legacy.wispModules[id]=19;q.set(legacy);
+ ok(q.save(),'old rank can be resaved below the new rarity requirement '+id);q.load();
+ eq(q.get().wispModules[id],19,'older paid rank survives cold load '+id);
  const paid=q.fresh();paid.spirits[id]=99;paid.heroRarity[id]=5;paid.wispModules[id]=20;paid.wispUltimate[id]=true;paid.wispMastery[id]=4;paid.recruitmentEntitlements[id]=true;
  q.set(paid);for(const key of ['spirits','heroRarity','wispModules','wispUltimate','wispMastery'])eq(q.get()[key][id],paid[key][id],'preserve paid '+id+'/'+key);
  eq(b.recruit(sp),true,'preserve old access '+id);
