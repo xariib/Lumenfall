@@ -1,6 +1,10 @@
 'use strict';
 const assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
-const required=['pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml','lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml'];
+const required=[
+ 'pre-merge-validation.yml','comet-expansion-validation.yml','forge-expansion-validation.yml',
+ 'lab-expansion-validation.yml','shared-ui-validation.yml','tree-focused-qa.yml',
+ 'migration-focused-validation.yml','permanent-progression-validation.yml','wisp-scroll-validation.yml'
+];
 const repo=process.env.GITHUB_REPOSITORY,sha=process.env.GITHUB_SHA;
 assert.equal(repo,'xariib/Lumenfall');assert.equal(process.env.GITHUB_REF,'refs/heads/main','Only integrated main may publish');
 for(const file of required){

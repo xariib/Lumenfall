@@ -184,3 +184,9 @@ The seven full-Tree simulations reproduced every recorded purchase and payout
 on source `1be798f5d590`. Local Tree economy passed 15,664 checks and Prism
 state passed 4,674 checks with Node 24.22.3. Next steps are PR validation,
 exact integration checks, signed Android upgrade and public delivery.
+
+Main advanced to `4396ed35` during validation when the separate packaging
+cleanup merged. The Tree suite and isolated offline catch-up passed on both
+the PR and preliminary integration. The new main changes packaging and release
+checks. Its gameplay HTML is identical to 0.2.179. The combined release must
+pass the current nine workflows and Android upgrade, updater and launch checks.

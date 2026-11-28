@@ -34,7 +34,7 @@ Filer i samme række er kandidater; indlæs kun det, som den konkrete opgave kr�
 | Adfærd, parity og negative controls | `../tests/behavioral/` | Relevante scenarier og harness før QA/ændring |
 | CI-checks | `../.github/workflows/pre-merge-validation.yml` | Før PR-validering; run.cjs viser aktuelle controls |
 | Android/signing/publish | `../.github/workflows/build-android.yml`, `../scripts/verify_apk_identity.cjs`, `../mobile/` | Relevant app/release scope and trigger checks |
-| Branding og mobilreferencer | `../branding/README.md`, `brand-reference/README.md` | Relevant UI/branding-opgave |
+| Branding og mobilreferencer | `brand-reference/production.md`, `brand-reference/README.md` | Relevant UI/branding-opgave |
 | Historisk program og audits | `ROADMAP.md`, `audits/` | Baggrund til en konkret beslutning; ikke automatisk backlog |
 
 ## Eksterne originalpakker

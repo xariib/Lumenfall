@@ -77,4 +77,4 @@ on the same main commit. Verify signing, installed upgrade and public bytes;
 record physical phone/WebView60/TalkBack separately. No new binding rules.
 
 References: [workflow](../project/FEATURE_WORKFLOW.md),
-[brand](../../branding/README.md), [source](../../index.html).
+[brand](../brand-reference/production.md), [source](../../index.html).

@@ -1,6 +1,6 @@
 # Lumenfall Branding
 
-The production identity is the **Rift Crystal** mark in `lumenfall-mark.svg`.
+The production identity is the **Rift Crystal** mark. [Production SVG](../../branding/lumenfall-mark.svg)
 
 ## Direction
 
