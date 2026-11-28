@@ -203,3 +203,11 @@ passed. Separately, a synthetic 0.2.179 save with genuine purchases in every
 track preserved all 28 paid units, 99,213 Prisms, the payout preview and every
 Wisp price when loaded from either save slot. The next Roster Recall purchase
 survived restart in both cases.
+
+The [exact-commit regression](https://github.com/xariib/Lumenfall/actions/runs/46176249366)
+caught an obsolete Wisp Mastery test expectation at the first Swift gate. The
+game requires 20 displayed Swift ranks there, equivalent to the same 10 paid
+units in a pre-update save. The boundary test now seeds half-units, checks one
+displayed rank below each gate, and verifies the 420- and 500-rank late gates.
+Its 2,668 assertions passed across all eight Wisps. The candidate's twelve
+mobile Tree profiles also passed 25,004 assertions locally on a clean retry.

@@ -16,11 +16,12 @@ function masteryPriceAt(depth){
 }
 let checks=0;function eq(a,c,m){checks++;assert.deepEqual(a,c,m);}function ok(a,m){checks++;assert(a,m);}
 function seed(id){const s=q.fresh();s.lumen=s.shards=s.prisms=s.sigils='1e400';s.spirits[id]=140;s.heroRarity[id]=5;s.wispModules[id]=20;s.wispUltimate[id]=true;return s;}
-function setGate(s,id,key,value,mastery){if(key==='level')s.spirits[id]=value;else if(key==='rarity')s.heroRarity[id]=value;else if(key==='module')s.wispModules[id]=value;else if(key==='depth')s.maxDepthEver=value;else if(key==='ascends')s.ascendCount=value;else if(key==='lab')s.longStudyLevels.wispascend=value;else if(key==='forge')s.research[mastery?'masterwork':'arcanecal']=value;else if(key==='tree')s.nodes.swift=value;else throw Error(key);}
+// Tree targets use displayed ranks. Each rank occupies half a saved Swift unit.
+function setGate(s,id,key,value,mastery){if(key==='level')s.spirits[id]=value;else if(key==='rarity')s.heroRarity[id]=value;else if(key==='module')s.wispModules[id]=value;else if(key==='depth')s.maxDepthEver=value;else if(key==='ascends')s.ascendCount=value;else if(key==='lab')s.longStudyLevels.wispascend=value;else if(key==='forge')s.research[mastery?'masterwork':'arcanecal']=value;else if(key==='tree')s.nodes.swift=value/2;else throw Error(key);}
 function boundaries(s,id,requirements,plan,buy,mastery){
  for(const [key,target]of Object.entries(requirements))setGate(s,id,key,target,mastery);q.set(s);
  eq(Object.fromEntries(plan().requirements.map(r=>[r.key,r.target])),requirements,id+' independent requirements');ok(plan().affordable,id+' exact requirement boundary');
- for(const [key,target]of Object.entries(requirements)){if(!target)continue;const missing=clone(s);setGate(missing,id,key,target-1,mastery);q.set(missing);const before=clone(q.get());eq(plan().affordable,false,id+' below '+key);eq(buy(),false,id+' purchase rejects missing '+key);eq(q.get(),before,id+' missing '+key+' is atomic');}q.set(s);
+ for(const [key,target]of Object.entries(requirements)){if(!target)continue;const missing=clone(s);setGate(missing,id,key,target-1,mastery);q.set(missing);const before=clone(q.get());if(key==='tree')eq(plan().requirements.find(r=>r.key==='tree').current,target-1,id+' displays the missing half-unit as one rank');eq(plan().affordable,false,id+' below '+key);eq(buy(),false,id+' purchase rejects missing '+key);eq(q.get(),before,id+' missing '+key+' is atomic');}q.set(s);
 }
 for(const [index,id]of ids.entries()){
  const sp=q.sp(id);
@@ -36,14 +37,14 @@ for(const [index,id]of ids.entries()){
  }
  for(const rank of [0,4,5,9,10,99,1999]){
   const s=seed(id);s.wispMastery[id]=rank;
-  boundaries(s,id,{depth:200+25*rank,lab:labBase+Math.floor(rank/5),forge:Math.ceil((rank+1)/5),tree:10+Math.floor(rank/10)},()=>b.mastery(sp),()=>b.buyMastery(sp),true);
+  boundaries(s,id,{depth:200+25*rank,lab:labBase+Math.floor(rank/5),forge:Math.ceil((rank+1)/5),tree:20+2*Math.floor(rank/10)},()=>b.mastery(sp),()=>b.buyMastery(sp),true);
   for(const [key,value]of [['rarity',4],['module',19],['ultimate',false]]){const missing=clone(s);if(key==='ultimate')missing.wispUltimate[id]=value;else setGate(missing,id,key,value,true);if(rank>0){const before=clone(q.get());assert.throws(()=>q.accept(missing),/Incomplete Wisp Mastery prerequisites/,'existing ranks cannot load incomplete prerequisites');checks++;eq(q.get(),before,id+' rejected invalid save retains current state');continue;}q.set(missing);const before=clone(q.get());eq(b.mastery(sp).affordable,false,id+' Mastery needs '+key);eq(b.buyMastery(sp),false,id+' incomplete Wisp cannot buy Mastery');eq(q.get(),before,id+' ready gate is atomic');}
   q.set(s);const power=q.power(id),support=q.supportProfile(id);
   const cost=focusCalibration?masteryPriceAt(200+25*rank):{prism:20000+1000*rank,sigil:500000+50000*rank};
   eq(b.mastery(sp).cost,cost,id+' independent Mastery price');ok(b.buyMastery(sp),id+' real Mastery purchase');eq(q.get().wispMastery[id],rank+1,id+' exactly one rank');eq(q.get().prisms,A.exactSub('1e400',cost.prism),id+' exact Prism debit');eq(q.get().sigils,A.exactSub('1e400',cost.sigil),id+' exact Sigil debit');ok(Math.abs(A.ratio(q.power(id),power)-1.1)<1e-12,id+' own Power compounds10%');eq(q.supportProfile(id),support,id+' ability timing/effect contract retained');
  }
 }
-for(const [rank,depth,lab,forge,tree] of [[2000,50200,492,401,210],[2001,50220,492,401,210],[5000,110200,500,500,250]]){
+for(const [rank,depth,lab,forge,tree] of [[2000,50200,492,401,420],[2001,50220,492,401,420],[5000,110200,500,500,500]]){
  const s=seed('ember'),sp=q.sp('ember');s.wispMastery.ember=rank;
  boundaries(s,'ember',{depth,lab,forge,tree},()=>b.mastery(sp),()=>b.buyMastery(sp),true);
  const cost=focusCalibration?masteryPriceAt(depth):{prism:Math.ceil(2020000*Math.sqrt(depth/50200)),sigil:2*Math.floor(Math.floor(depth/10)*(1+((depth-6000)/100)**2))};
