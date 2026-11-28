@@ -190,3 +190,16 @@ cleanup merged. The Tree suite and isolated offline catch-up passed on both
 the PR and preliminary integration. The new main changes packaging and release
 checks. Its gameplay HTML is identical to 0.2.179. The combined release must
 pass the current nine workflows and Android upgrade, updater and launch checks.
+
+The preliminary [Shared UI run](https://github.com/xariib/Lumenfall/actions/runs/46174735982)
+and the earlier [full regression](https://github.com/xariib/Lumenfall/actions/runs/45177810179)
+identified test controls that depended on exact assignment syntax. The Prism
+rounding controls now inject their original floor/ceil shortcuts at the entry
+to each rounding function. The Mastery loss control clears ownership at the
+Ascension mutation entry. On the combined game, the standalone Prism suite
+passed 341,654 assertions and all seven controls, and all 21 endless controls
+detected their intended faults. The preliminary [signed upgrade](https://github.com/xariib/Lumenfall/actions/runs/46174746187)
+passed. Separately, a synthetic 0.2.179 save with genuine purchases in every
+track preserved all 28 paid units, 99,213 Prisms, the payout preview and every
+Wisp price when loaded from either save slot. The next Roster Recall purchase
+survived restart in both cases.
