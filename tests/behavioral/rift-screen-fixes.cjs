@@ -31,6 +31,48 @@ driver=driver.slice(0,start)+String.raw`
   const run=code=>ev('prismQa.evaluate('+JSON.stringify(code)+')');
   await ev('prismQa.fixture()');
   await ev("document.querySelectorAll('.rift-milestone').forEach(e=>e.remove())");
+  if(width===390 && scale===1 && motion==='no-preference'){
+   await run("state.depth=300;state.maxDepthEver=301;state.activeParty=['ember','tide','stone','gale','void'];state.cometTrial={id:'quiet',target:300,phase:'active',failed:false};state.lumen=state.shards=state.motes=state.sigils=state.prisms=state.comets=1e300;spawnEnemy(false);renderAll()");
+   for(const [w,h] of [[480,320],[568,320],[740,360],[320,480]])for(const textScale of [1,2]){
+    await send('Emulation.setDeviceMetricsOverride',{width:w,height:h,deviceScaleFactor:1,mobile:true});
+    await ev('document.documentElement.style.fontSize='+JSON.stringify(16*textScale+'px'));
+    await pause(100);
+    const boxes=await ev('('+function(){
+      const rect=id=>document.querySelector(id).getBoundingClientRect().toJSON();
+      const brand=document.createRange();brand.selectNodeContents(document.querySelector('.hud .brand'));
+      return {enemy:rect('#enemy-stage'),nav:rect('nav.tabbar'),hud:rect('.hud'),
+        panels:['#enemy-stage','#rift-party','#boss-combat','#comet-trial-status','.stage .stat-row','.stage .rift-heading','#buff-indicator'].map(rect),
+        partyCount:document.querySelectorAll('#rift-party [data-rift-wisp]').length,
+        powersFit:Array.from(document.querySelectorAll('.rift-wisp-power')).every(e=>{
+          const value=e.getBoundingClientRect(),card=e.closest('.rift-wisp').getBoundingClientRect();
+          return value.left>=card.left && value.right<=card.right;
+        }),
+        clippedWallets:Array.from(document.querySelectorAll('.hud .val')).filter(e=>e.scrollWidth>e.clientWidth+1).map(e=>[e.id,e.clientWidth,e.scrollWidth,e.textContent]),
+        brand:brand.getBoundingClientRect().toJSON(),settings:rect('#settings-btn')};
+    }.toString()+')()');
+    if(textScale===1)await shot('compact-'+w+'x'+h);
+    const separate=(a,b)=>a.right<=b.left+1 || b.right<=a.left+1 || a.bottom<=b.top+1 || b.bottom<=a.top+1;
+    ok(boxes.enemy.height>=120 && boxes.partyCount===5 && boxes.powersFit && boxes.brand.right<=boxes.settings.left && !boxes.clippedWallets.length &&
+      boxes.panels.every((p,i)=>p.height>0 && p.top>=boxes.hud.bottom-1 && p.bottom<=boxes.nav.top+1 &&
+        boxes.panels.slice(0,i).every(other=>separate(p,other))),
+      'boss, trial, party, wallets and damage readouts fit '+w+'x'+h+' at '+textScale+'x '+JSON.stringify(boxes));
+   }
+   await send('Emulation.setDeviceMetricsOverride',{width,height:width===320?640:844,deviceScaleFactor:1,mobile:true});
+   await ev("document.documentElement.style.fontSize='16px';prismQa.fixture()");
+   const initialTaps=await run('state.totalTaps');
+   await ev("document.getElementById('enemy-stage').click()");
+   ok(await run('state.totalTaps')===initialTaps,'page-generated clicks cannot earn manual attacks');
+   await ev("window.riftInputTime=1;Object.defineProperty(performance,'now',{configurable:true,value:()=>window.riftInputTime});document.getElementById('enemy-stage').focus()");
+   await run('resetLiveClock()');
+   for(let press=0;press<80;press++){
+    await ev('window.riftInputTime='+(1+press*25));
+    await key('Enter','Enter',13);
+    if(press===39)ok(await run('state.totalTaps')-initialTaps===20,'manual input respects the first one-second cap');
+   }
+   ok(await run('state.totalTaps')-initialTaps===40,'holding a fast input rate still earns the next window of manual attacks');
+   await ev("Object.defineProperty(performance,'now',{configurable:true,value:()=>0})");
+   await run('resetLiveClock()');
+  }
   ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-objective-row,#rift-objective,#rift-guidance-toggle,#rift-hint-overlay')"),'Rift hint bar, dialog and Settings toggle removed');
   const geometry=await ev("(()=>{const box=s=>document.querySelector(s).getBoundingClientRect().toJSON(),main=document.querySelector('main');return {farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),enemy:box('#enemy-stage'),hud:box('.hud'),main:box('main'),stage:box('#tab-battle .stage'),nav:box('nav.tabbar'),order:Array.from(document.querySelectorAll('.rift-mode-row button')).map(e=>e.id),scroll:[main.scrollTop,main.scrollHeight,main.clientHeight],overflow:document.documentElement.scrollWidth>innerWidth+1}})()");
   ok(geometry.farm.left<geometry.push.left&&geometry.order.join(',')==='rift-farm-btn,rift-push-btn','Farm left and Push right with matching DOM order');
