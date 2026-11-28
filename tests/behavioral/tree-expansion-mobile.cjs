@@ -105,25 +105,25 @@ one("const result={status:'fail',sourceSha256:","const result={status:'fail',mig
 one("await shot('failure');result.input=await ev('window.__prismInput');",String.raw`await shot('failure');result.input=await ev('window.__prismInput');result.syntheticStorage=await ev("['lumenfall_save_v2','lumenfall_save_recovery_v1'].map(function(k){return {key:k,raw:localStorage.getItem(k)};})");result.syntheticLoadedState=await ev('window.prismQa?prismQa.get():null');result.syntheticSeedObservation=await ev('window.__treeLegacySeedObservation||null');fs.writeFileSync(path.join(evidence,'failure-dom.html'),await ev('document.documentElement.outerHTML'));result.failureDom='failure-dom.html';`);
 // Independent frozen DESIGN rows: id, displayed name, unlock, cap, price ladder.
 const specs=[
- ['echo','Echoing Rest',1,6,[2,3,4,6,8,11]],
- ['bonds','Cheaper Recruitment',1,20,null],
- ['swift','Swift Ascension',1,null,null],
- ['swiftcharter','Swift Charter',100,1,[200]],
- ['lumenmemory','Lumen Inheritance',15,5,[8,16,28,44,64]],
- ['veteranrecruits','Veteran Recruits',20,5,[5,10,18,30,46]],
- ['rosterrecall','Roster Recall',25,4,[15,30,55,90]],
- ['chargememory','Charge Memory',30,5,[12,22,38,60,90]],
- ['supportmemory','Lasting Blessings',60,1,[60]],
- ['phasememory','Unbroken Rhythm',40,1,[35]],
- ['riftstep','Familiar Paths',30,5,[12,24,42,68,104]],
- ['frontier','Frontier Record',50,5,[20,35,55,80,110]],
- ['stardust','Ascension Dust',60,5,[10,18,30,46,66]],
- ['gentlegrowth','Patient Growth',40,5,[12,22,38,60,90]],
- ['benchmentor','Bench Mentorship',35,5,[10,18,30,46,66]],
- ['empowerbatch','Steady Instruction',45,4,[15,28,46,70]],
- ['wallwisdom','Wall Wisdom',50,4,[12,22,36,54]],
- ['invitations','Early Invitations',15,3,[4,9,16]],
- ['recruitreserve','Recruitment Reserve',25,5,[8,16,28,44,64]]
+ ['echo','Echoing Rest',1,12,[1,1,1,2,2,2,3,3,4,4,5,6],0.5],
+ ['bonds','Cheaper Recruitment',1,40,null,0.5],
+ ['swift','Swift Ascension',1,500,null,0.5],
+ ['swiftcharter','Swift Charter',100,2,[100,100],0.5],
+ ['lumenmemory','Lumen Inheritance',15,10,[4,4,7,9,13,15,21,23,31,33],0.5],
+ ['veteranrecruits','Veteran Recruits',20,10,[10,10,27,28,65,65,150,150,325,325],0.5],
+ ['rosterrecall','Roster Recall',25,8,[30,30,92,93,275,275,800,800],0.5],
+ ['chargememory','Charge Memory',30,10,[5,7,10,12,18,20,29,31,44,46],0.5],
+ ['supportmemory','Lasting Blessings',60,2,[30,30],0.5],
+ ['phasememory','Unbroken Rhythm',40,2,[17,18],0.5],
+ ['riftstep','Familiar Paths',30,10,[6,6,12,12,21,21,34,34,52,52],0.5],
+ ['frontier','Frontier Record',50,10,[10,10,17,18,27,28,40,40,55,55],0.5],
+ ['stardust','Ascension Dust',60,10,[5,5,9,9,15,15,23,23,33,33],0.5],
+ ['gentlegrowth','Patient Growth',40,10,[5,7,10,12,18,20,29,31,44,46],0.5],
+ ['benchmentor','Bench Mentorship',35,10,[5,5,9,9,15,15,23,23,33,33],0.5],
+ ['empowerbatch','Steady Instruction',45,8,[7,8,14,14,23,23,35,35],0.5],
+ ['wallwisdom','Wall Wisdom',50,8,[5,7,10,12,17,19,26,28],0.5],
+ ['invitations','Early Invitations',15,6,[2,2,4,5,8,8],0.5],
+ ['recruitreserve','Recruitment Reserve',25,10,[4,4,7,9,13,15,21,23,31,33],0.5]
 ];
 const start=driver.indexOf('  const samples=[];'),end=driver.indexOf("  await send('Target.disposeBrowserContext'",start);
 assert(start>0&&end>start,'one mobile profile body');
@@ -131,27 +131,28 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const copy=x=>JSON.parse(JSON.stringify(x)),sel=(a,id)=>'['+a+'="'+id+'"]',same=(a,b,m)=>ok(JSON.stringify(a)===JSON.stringify(b),m);
   const digest=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
   const samples=[],effectSamples=[],locks=[],inputSamples=[],formationSamples=[],dustSamples=[],ids=specs.map(x=>x[0]),added=ids.slice(3);
-  function price(row,level){if(row[0]==='bonds')return Math.ceil(2*Math.pow(1.45,level));if(row[0]==='swift')return Math.ceil(3*Math.pow(1.5,level));return row[4][level];}
-  function effect(id,raw){var r=specs.find(x=>x[0]===id),l=r[3]===null?raw:Math.min(raw,r[3]);
+  function price(row,level){if(row[4])return row[4][level];const pair=Math.floor(level/2),total=row[0]==='bonds'?Math.ceil(2*Math.pow(1.45,pair)):Math.ceil(3*Math.pow(1.5,pair));return level%2?Math.ceil(total/2):Math.floor(total/2);}
+  function effect(id,raw){var r=specs.find(x=>x[0]===id),l=r[3]===null?raw:Math.min(raw,r[3]*(r[5]||1));
    if(id==='echo')return ['+'+(5*l)+' percentage points offline rate',(70+5*l)+'% before Projects'];
    if(id==='bonds')return [(3*l)+'% Wisp recruiting discount',(100-3*l)+'% of normal price'];
-   if(id==='swift')return ['+'+(4*l)+'% Prisms per Ascend'];
-   if(id==='swiftcharter')return [l?'Swift level 10 onward: 6 × current level Prisms':'Original Swift price curve'];
+   if(id==='swift')return ['+'+(4*raw>=1000?(4*raw/1000).toFixed(2)+'K':4*raw)+'% Prisms per Ascend'];
+   if(id==='swiftcharter')return [(100*l)+'% of the Charter discount from Swift rank 20'];
    if(id==='lumenmemory')return [(5*l)+'% Lumen carried','limit '+(l?(50*l).toFixed(2)+'K':'0')+' Lumen'];
-   if(id==='veteranrecruits')return ['New recruits and reset Ember start at level '+(1+l)];
-   if(id==='rosterrecall')return ['Recall up to '+l+' additional previously recruited Formation members'];
+   const whole=Math.floor(l),extra=l>whole?['+1 on odd-numbered Ascension runs']:[];
+   if(id==='veteranrecruits')return ['New recruits and reset Ember start at level '+(1+whole)].concat(extra);
+   if(id==='rosterrecall')return ['Recall up to '+whole+' additional previously recruited Formation members'].concat(extra);
    if(id==='chargememory')return [(20*l)+'% charge carried through Ascend'];
-   if(id==='supportmemory')return [l?'Current blessing strength and expiry survive Ascend':'Blessings end at Ascend'];
-   if(id==='phasememory')return [l?'Current automation second carries through Ascend':'Automation timers restart at Ascend'];
-   if(id==='riftstep')return ['Next run starts at Rift '+(1+l)];
-   if(id==='frontier')return [l+' extra Prisms per new 25-Rift milestone'];
+   if(id==='supportmemory')return [(100*l)+'% of remaining blessing time carried through Ascend'];
+   if(id==='phasememory')return [(100*l)+'% of current automation timer progress carried through Ascend'];
+   if(id==='riftstep')return ['Next run starts at Rift '+(1+whole)].concat(extra);
+   if(id==='frontier')return [whole+' extra Prisms per new 25-Rift milestone'].concat(l>whole?['+1 on every second milestone']:[]);
    if(id==='stardust')return [l+' Motes per 20 earned Prisms','limit '+(10*l)+' Motes per Ascend'];
    if(id==='gentlegrowth')return [(13-l)+'% Empower price growth after Wisp level 25'];
    if(id==='formationseat')return [(5+l)+' chosen Formation slots'];
-   if(id==='benchmentor')return [l+' Bench levels per 10 paid actions'].concat(l?['0/10 this run']:[]);
-   if(id==='empowerbatch')return ['Up to '+(1+l)+' paid Auto-Empowers per second'];
+   if(id==='benchmentor')return [whole+' Bench levels per 10 paid actions'].concat(extra,l?['0/10 this run']:[]);
+   if(id==='empowerbatch')return ['Up to '+(1+whole)+' paid Auto-Empowers per second'].concat(extra);
    if(id==='wallwisdom')return [(5-l)+' minutes of offline boss grace'];
-   if(id==='invitations')return ['Recruitment unlocks '+l+' Rifts earlier','minimum Rift 1'];
+   if(id==='invitations')return ['Recruitment unlocks '+whole+' Rifts earlier','minimum Rift 1'].concat(extra);
    return [(20*l)+'% of the next remembered recruit’s price reserved'];
   }
   async function install(s,tab){await ev('prismQa.treeSet('+JSON.stringify(s)+','+JSON.stringify(tab||'ascend')+')');await ev('Promise.all(document.getElementById('+JSON.stringify('tab-'+(tab||'ascend'))+').getAnimations().map(function(a){return a.finished;})).then(function(){return true;})');}
@@ -284,26 +285,26 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   await prepare(sel('data-node','echo'),false);await shot('tree-first-'+width+'-'+scale+'-'+motion);
   const locked=copy(seed);locked.depth=locked.enemyDepth=locked.maxDepthEver=1;locked.enemyHp=locked.enemyMaxHp=100;await install(locked);
   for(const r of specs.slice(3)){const card=sel('data-tree-node',r[0]);const m=await ev('('+function(card,id){var e=document.querySelector(card),b=e&&e.querySelector('[data-node]');return {exists:!!e,text:e&&e.textContent,disabled:!b||b.disabled};}.toString()+')('+JSON.stringify(card)+','+JSON.stringify(r[0])+')');ok(m.exists&&m.disabled&&m.text.includes(r[1])&&m.text.includes('Rift '+r[2])&&!m.text.includes('???'),'named locked row and exact unlock '+r[0]);locks.push({id:r[0],text:m.text});}
-  const charterLocked=copy(seed);charterLocked.nodes.swift=9;await install(charterLocked);ok(await ev("prismQa.treePlan('swiftcharter').reason")==='locked','Charter independently requires Swift10');ok(await ev("document.querySelector('[data-tree-node=swiftcharter]').textContent.includes('10')"),'Swift10 requirement visible');
+  const charterLocked=copy(seed);charterLocked.nodes.swift=9;await install(charterLocked);ok(await ev("prismQa.treePlan('swiftcharter').reason")==='locked','Charter independently requires Swift rank 20');ok(await ev("document.querySelector('[data-tree-node=swiftcharter]').textContent.includes('rank 20')"),'Swift rank 20 requirement visible');
   // Current contribution is independently checked at 0,1,cap and historical
   // raw overcap. Assigning old ownership must not claim an existing audit.
-  for(const r of specs){const id=r[0],levels=r[3]===null?[0,1,50]:[0,1,r[3],r[3]+1];
-   for(const level of Array.from(new Set(levels))){const s=copy(seed);s.nodes[id]=level;if(id==='echo'||id==='bonds')delete s.feedbackMigration[id==='echo'?'echoCreditAuditVersion':'bondsCreditAuditVersion'];await install(s);const t=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level))ok(t.includes(piece),'independent current effect '+id+'/'+level+' '+piece);const raw=await ev('prismQa.get().nodes['+JSON.stringify(id)+']');ok(raw===level,'render keeps raw paid value '+id+'/'+level);if(r[3]!==null&&level>=r[3])ok(await ev('document.querySelector('+JSON.stringify(sel('data-node',id))+').disabled&&document.querySelector('+JSON.stringify(sel('data-node',id))+').textContent.includes("Maxed")'),'cap control '+id+'/'+level);effectSamples.push({id,level,text:t});}
+  for(const r of specs){const id=r[0],step=r[5]||1,cap=r[3]*step,overcap=id==='echo'||id==='bonds'?cap+1:cap+step,levels=[0,step,1,cap,overcap];
+   for(const level of Array.from(new Set(levels))){const s=copy(seed);s.nodes[id]=level;if(id==='echo'||id==='bonds')delete s.feedbackMigration[id==='echo'?'echoCreditAuditVersion':'bondsCreditAuditVersion'];await install(s);const t=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level))ok(t.includes(piece),'independent current effect '+id+'/'+level+' '+piece);const raw=await ev('prismQa.get().nodes['+JSON.stringify(id)+']');ok(raw===level,'render keeps raw paid value '+id+'/'+level);if(r[3]!==null&&level>=cap)ok(await ev('document.querySelector('+JSON.stringify(sel('data-node',id))+').disabled&&document.querySelector('+JSON.stringify(sel('data-node',id))+').textContent.includes("Maxed")'),'cap control '+id+'/'+level);effectSamples.push({id,level,text:t});}
   }
   for(let i=0;i<specs.length;i++){
-   const r=specs[i],id=r[0],button=sel('data-node',id),card=sel('data-tree-node',id),level=paid.nodes[id],cost=price(r,level);await install(paid);
+   const r=specs[i],id=r[0],button=sel('data-node',id),card=sel('data-tree-node',id),step=r[5]||1,level=paid.nodes[id]/step,next=(level+1)*step,cost=price(r,level);await install(paid);
    const plan=await ev('prismQa.treePlan('+JSON.stringify(id)+')');ok(plan.level===level&&plan.cost===cost&&plan.affordable,'independent first real quote '+id);
    const text=await ev('document.querySelector('+JSON.stringify(card)+').textContent');ok(text.includes(r[1])&&text.includes('Level '+level),'visible name and paid level '+id);if(r[3]!==null)ok(text.includes(id==='bonds'?' / '+r[3]:'Cap '+r[3]),'explicit cap '+id);
    async function wallet(amount,label){await ev('prismQa.treeWallet('+amount+');prismQa.treeRefresh()');const m=await ev('('+function(card){var e=document.querySelector(card),p=e.querySelector('[data-price-currency="prism"]'),b=e.querySelector('[data-node]'),probe=document.createElement('span');document.body.appendChild(probe);probe.style.color='var(--danger)';var red=getComputedStyle(probe).color;probe.style.color='var(--ink)';var ink=getComputedStyle(probe).color;probe.remove();return {count:e.querySelectorAll('[data-price-currency]').length,amount:Number(p.dataset.priceAmount),color:getComputedStyle(p).color,red:red,ink:ink,disabled:b.disabled,text:b.textContent,warning:e.querySelectorAll('.control-state').length};}.toString()+')('+JSON.stringify(card)+')');ok(m.count===1&&m.amount===cost,'one exact Prisms quote '+id+'/'+label);ok(m.color===(amount<cost?m.red:m.ink),'red only when unaffordable '+id+'/'+label);ok(m.disabled===(amount<cost),'live eligibility '+id+'/'+label);ok(m.warning===0&&!/need|short|missing|deficit|not enough/i.test(m.text),'no shortage UI '+id+'/'+label);return m;}
    await wallet(cost-1,'one short');await wallet(cost,'exact');const focused=await prepare(button,true);await ev('prismQa.treeRefresh()');const refresh=await measure(button);await frames();const refreshSettled=await measure(button);ok(refresh.focus.node===id&&refresh.scroll===focused.scroll,'unchanged-layout affordability retains focus and exact scroll '+id);ok(refreshSettled.scroll===focused.scroll,'unchanged-layout affordability exact scroll after native frames '+id);viewport(focused,refresh,'node',id,'affordability '+id+' immediate');viewport(focused,refreshSettled,'node',id,'affordability '+id+' settled');
    const before=await ev('prismQa.get()'),writes=await ev('window.__treeWrites.length');
    if(i%3===0)await touchHere(button);else await key(i%3===1?'Enter':' ',i%3===1?'Enter':'Space',i%3===1?13:32);
-   await frames();const after=await ev('prismQa.get()');ok(after.nodes[id]===level+1&&after.prisms===0,'one trusted exact purchase '+id);
+   await frames();const after=await ev('prismQa.get()');ok(after.nodes[id]===next&&after.prisms===0,'one trusted exact purchase '+id);
    for(const field of ['research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','spirits','activeParty','formationPresets','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','treeTrainingProgress'])same(after[field],before[field],'Tree buy preserves '+field+' '+id);
    for(const other of ids.concat(['starlight','steady','momentum','reserves']))if(other!==id)ok(after.nodes[other]===before.nodes[other],'only selected node changes '+id+'/'+other);
    ok(await ev('window.__treeWrites.slice('+writes+').filter(function(k){return prismQa.keys().indexOf(k)!==-1;}).length')===2,'one primary/recovery save '+id);
-   ok(await ev('prismQa.keys().every(function(k){var s=JSON.parse(localStorage.getItem(k));return s.nodes['+JSON.stringify(id)+']==='+Number(level+1)+'&&s.prisms===0;})'),'both slots contain exact real endpoint '+id);
-   const rendered=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,level+1))ok(rendered.includes(piece),'purchase immediately changes effect '+id);
+   ok(await ev('prismQa.keys().every(function(k){var s=JSON.parse(localStorage.getItem(k));return s.nodes['+JSON.stringify(id)+']==='+next+'&&s.prisms===0;})'),'both slots contain exact real endpoint '+id);
+   const rendered=await ev('document.querySelector('+JSON.stringify(sel('data-node-effect',id))+').textContent');for(const piece of effect(id,next))ok(rendered.includes(piece),'purchase immediately changes effect '+id);
    // A separate funded purchase keeps the same enabled control, so viewport
    // checks do not depend on the product's disabled-control fallback policy.
    if(r[3]===null||level+2<r[3]){
@@ -325,17 +326,17 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   if(width===320&&scale===1&&motion==='no-preference'){
    const s=copy(seed);s.nodes.frontier=0;s.prisms=100000;
    await viewportControl('summary',s,'ascend',sel('data-node','frontier'),'node','frontier',async row=>{
-    ok(row.stateBefore.nodes.frontier===0&&row.stateBefore.prisms===100000&&row.stateAfter.nodes.frontier===1&&row.stateAfter.prisms===99980,'actual Frontier zero-to-one for20 '+row.id);
-    const expectedNodes=copy(row.stateBefore.nodes);expectedNodes.frontier=1;same(row.stateAfter.nodes,expectedNodes,'only Frontier node changes '+row.id);
+    ok(row.stateBefore.nodes.frontier===0&&row.stateBefore.prisms===100000&&row.stateAfter.nodes.frontier===0.5&&row.stateAfter.prisms===99990,'actual first Frontier rank for10 '+row.id);
+    const expectedNodes=copy(row.stateBefore.nodes);expectedNodes.frontier=0.5;same(row.stateAfter.nodes,expectedNodes,'only Frontier node changes '+row.id);
     for(const field of ['research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','spirits','activeParty','formationPresets','autoAscendEnabled','autoAscendTargetDepth','lumen','shards','motes','sigils','comets','treeTrainingProgress'])same(row.stateAfter[field],row.stateBefore[field],'summary control preserves '+field+' '+row.id);
-    ok(row.slots.every(slot=>slot.state.nodes.frontier===1&&slot.state.prisms===99980),'both saved endpoints contain exact Frontier debit '+row.id);
+    ok(row.slots.every(slot=>slot.state.nodes.frontier===0.5&&slot.state.prisms===99990),'both saved endpoints contain exact Frontier debit '+row.id);
    });
   }
   // The actual Ascend calculation displays Dust from represented Prism credit.
   // Exact wide wallets retain every credited Prism and its eligible Dust.
   for(const wallet of [100000,1e30]){
    const dustState=copy(paid);dustState.prisms=wallet;await install(dustState);
-   const gain=(await ev('prismQa.breakdown(101)')).gain,expected=Math.min(10,Math.floor(gain/20));
+   const gain=(await ev('prismQa.breakdown(101)')).gain,expected=Math.floor(Math.min(10,Math.floor(gain/20))/2);
    ok(gain>=20,'Dust preview fixture has a whole twenty-Prism bundle');
    const preview=await ev('('+function(){var root=document.querySelector('#prism-calculation'),term=Array.from(root.querySelectorAll('dt')).find(function(e){return e.textContent==='Ascension Dust';});return {dust:term&&term.nextElementSibling.textContent,note:document.querySelector('#ascend-note').textContent};}.toString()+')()');
    ok(preview.dust===expected+' Motes','Dust preview uses actual represented credit');
@@ -405,7 +406,7 @@ const cases='  const specs='+JSON.stringify(specs)+';\n'+String.raw`
   const input=await ev('window.__prismInput');ok(input.some(e=>e.trusted&&e.type==='click')&&input.some(e=>e.trusted&&e.key==='Enter')&&input.some(e=>e.trusted&&e.key===' '),'trusted touch Enter and Space evidence');
   await ev('prismQa.treeSave()');const committed=await ev('prismQa.get()');await ev('window.prismQa=null');await send('Page.reload');await ready('paid-state-reload');await ev('document.documentElement.style.fontSize='+JSON.stringify(16*scale+'px'));await ev("prismQa.tab('spirits')");
   const cold=await ev('prismQa.get()');for(const field of ['nodes','research','longStudyLevels','activeStudies','owned','heroRarity','wispModules','wispUltimate','activeParty','formationPresets','activeFormationPreset','autoAscendEnabled','autoAscendTargetDepth'])same(cold[field],committed[field],'actual reload retains paid '+field);
-  ok(added.every(id=>cold.nodes[id]===1),'all seventeen actual new purchases survive reload');ok(cold.activeParty.length===5,'five-slot snapshot survives cold load');
+  ok(specs.slice(3).every(r=>cold.nodes[r[0]]===(r[5]||1)),'each actual first-rank purchase survives reload');ok(cold.activeParty.length===5,'five-slot snapshot survives cold load');
   const zero=copy(formation);zero.nodes.formationseat=0;zero.activeParty=six.activeParty;zero.formationPresets.push=six.activeParty;await install(zero,'spirits');ok(await ev('prismQa.get().activeParty.length')===5&&await ev('prismQa.treeCapacity()')===5,'zero-new capacity remains five');
   await install(committed);const ax=await send('Accessibility.getFullAXTree');for(const r of specs)ok(ax.nodes.some(n=>!n.ignored&&n.name&&n.name.value.includes(r[1])),'named Tree row exposed to AX '+r[0]);
   ok((await ev('window.__prismErrors')).length===0,'no browser runtime errors');records.push({width,scale,motion,nativeAnimationFrames:true,catalog,samples,effectSamples,locks,inputSamples,formationSamples,dustSamples,unavailableEmpower,sixMembers:six.activeParty,legacyMigration:{seed:legacySeedObservation,schema:migrated.schemaVersion,prisms:migrated.prisms,comets:migrated.comets,nodes:migrated.nodes,newDefaultZero:added.length},input});

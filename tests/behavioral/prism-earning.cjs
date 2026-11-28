@@ -47,8 +47,8 @@ function caught(name,transform,c,b,t,l){const changed=transform(block);assert.no
 caught('old-repeat-penalizes-bonus',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = Math.max(1,Math.floor(full*ASCEND_REPEAT_REWARD_RATE));'),20,19,7,0);
 caught('drop-tree',s=>s.replace("var tree = nodeLevel('swift');",'var tree = 0;'),20,0,10,0);
 caught('drop-completed-lab',s=>s.replace("var lab = longStudyLevel('prismstudy');",'var lab = 0;'),25,0,0,10);
-caught('floating-full-floor',s=>s.replace('var candidate=Math.floor(approximate);','var candidate=Math.floor(approximate); return candidate;'),25,0,10,10);
-caught('floating-progress-ceil',s=>s.replace('var candidate=Math.ceil(approximate);','var candidate=Math.ceil(approximate); return candidate;'),49,16,35,5);
+caught('floating-full-floor',s=>s.replace('function prismCurveFloor(cleared,numerator,approximate){','$& return Math.floor(approximate);'),25,0,10,10);
+caught('floating-progress-ceil',s=>s.replace('function prismDepthDifferenceCeil(cleared,benchmark,numerator,approximate){','$& return Math.ceil(approximate);'),49,16,35,5);
 caught('displayed-vs-cleared-rift',s=>s.replace('progressionDepth() : depth)-1','progressionDepth() : depth)'),24,0,0,0);
 caught('count-bonus-twice',s=>s.replace('var reserve = ascendRepeatPrismGainForCleared(cleared);','var reserve = 2*ascendRepeatPrismGainForCleared(cleared);'),20,19,7,0);
 e.state=seed(20,219,0,2);const pending=e.ascendPrismBreakdown().gain;e.state.activeStudies=[{id:'prismstudy',remainingSec:1}];equal(e.ascendPrismBreakdown().gain,pending,'paid but unfinished study grants no early bonus');

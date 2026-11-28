@@ -39,7 +39,7 @@ for(const [raw,wallet] of [[0,17],[20,17],[21,17],[40,17],[95,0],[2000,0],[21,1e
     delete s.feedbackMigration;delete s.refundCredits;q.set(s);
     const plan=q.plan(def.id),before=clone(q.get());eq(plan.affordable,true,'credit can buy '+def.id);
     eq(q.buy(def.id),true,'real purchase '+def.id);eq(balance(q.get()),balance(before)-BigInt(plan.cost),'exact price '+def.id);
-    eq(q.get().nodes[def.id],before.nodes[def.id]+1,'one level '+def.id);
+    eq(q.get().nodes[def.id],before.nodes[def.id]+0.5,'one rank '+def.id);
     eq(q.get().prisms,1e30,'large existing wallet retained '+def.id);
     eq(q.accept(q.get()),q.get(),'debit receipt accepted '+def.id);
   }
@@ -47,10 +47,10 @@ for(const [raw,wallet] of [[0,17],[20,17],[21,17],[40,17],[95,0],[2000,0],[21,1e
 for(const fault of ['primary','recovery']){
   const a=app(source),q=a.q,s=seed(q);s.nodes.bonds=21;s.prisms=1e30;
   delete s.feedbackMigration;delete s.refundCredits;q.set(s);q.save();
-  const before=clone(q.get());eq(q.plan('lumenmemory').cost,8,'accepted first Lumen Memory price');a.fail(fault==='primary',fault==='recovery');
+  const before=clone(q.get());eq(q.plan('lumenmemory').cost,4,'accepted first Lumen Inheritance price');a.fail(fault==='primary',fault==='recovery');
   eq(q.buy('lumenmemory'),fault!=='primary','authoritative primary transaction '+fault);
   if(fault==='primary'){eq(q.get(),before,'wallet/receipt/ownership rollback');a.fail(false,false);eq(q.buy('lumenmemory'),true,'retry');}
-  eq(balance(q.get()),balance(before)-8n,'one exact credit debit');
+  eq(balance(q.get()),balance(before)-4n,'one exact credit debit');
   eq(app(source,a.storage).q.get(),q.get(),'authoritative persisted endpoint');
 }
 // Existing fixed-12h restitution settles independently of F21.

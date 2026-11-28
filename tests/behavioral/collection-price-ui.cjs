@@ -22,7 +22,7 @@ const cases=String.raw`
   const specs=[
    {tab:'forge',button:'[data-research="arcanecal"]',card:'[data-forge-card="arcanecal"]',prices:{lumen:15000,shard:120},field:'research',id:'arcanecal'},
    {tab:'research',button:'[data-study="guardmastery"]',card:'[data-study-card="guardmastery"]',prices:{lumen:600,shard:40},field:'activeStudies',id:'guardmastery'},
-   {tab:'ascend',button:'[data-node="swift"]',card:null,prices:{prism:3},field:'nodes',id:'swift'},
+   {tab:'ascend',button:'[data-node="swift"]',card:null,prices:{prism:1},field:'nodes',id:'swift'},
    {tab:'deeds',button:'[data-shop="astralcore"]',card:null,prices:{comet:750},field:'astralUpgrades',id:'astralcore'}
   ];
   for(const spec of specs){
@@ -61,7 +61,7 @@ const cases=String.raw`
    const before=await ev('prismQa.get()');await tap(spec.button);const after=await ev('prismQa.get()');
    for(const kind of Object.keys(spec.prices))ok(after[walletKeys[kind]]===before[walletKeys[kind]]-spec.prices[kind],'real touch exact debit '+spec.tab+' '+kind);
    if(spec.field==='activeStudies')ok(after.activeStudies.some(s=>s.id===spec.id),'real paid Study starts');
-   else ok(after[spec.field][spec.id]===(spec.field==='owned'?true:1),'real touch grants purchased value '+spec.tab);
+   else ok(after[spec.field][spec.id]===(spec.field==='nodes'?0.5:1),'real touch grants purchased value '+spec.tab);
    for(const key of ['nodes','research','longStudyLevels'])for(const id of Object.keys(before[key]))if(!(key===spec.field&&id===spec.id))ok(after[key][id]===before[key][id],'old paid levels retained '+key+' '+id);
    const saved=await ev('prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k));})');ok(JSON.stringify(saved[0])===JSON.stringify(saved[1]),'two saved slots match after purchase');
    for(const kind of Object.keys(spec.prices))ok(saved[0][walletKeys[kind]]===after[walletKeys[kind]],'paid wallet saved '+kind);
@@ -73,10 +73,10 @@ const cases=String.raw`
   await tap('[data-node="swift"]');
   const wideAfter=await ev('prismQa.get()');
   const exactInteger=value=>{const [coefficient,exponent='0']=String(value).split('e');return BigInt(coefficient)*10n**BigInt(exponent);};
-  ok(exactInteger(wideAfter.prisms)===10000000000000000n-3n,'wide wallet exact debit retains every Prism');
-  ok(wideAfter.nodes.swift===1,'wide wallet grants exactly one upgrade');
+  ok(exactInteger(wideAfter.prisms)===10000000000000000n-1n,'wide wallet exact debit retains every Prism');
+  ok(wideAfter.nodes.swift===0.5,'wide wallet grants exactly one upgrade rank');
   const wideSaved=await ev('prismQa.keys().map(function(k){return JSON.parse(localStorage.getItem(k));})');
-  ok(wideSaved.every(s=>exactInteger(s.prisms)===10000000000000000n-3n&&s.nodes.swift===1),'wide wallet exact debit saved in both slots');
+  ok(wideSaved.every(s=>exactInteger(s.prisms)===10000000000000000n-1n&&s.nodes.swift===0.5),'wide wallet exact debit saved in both slots');
   ok((await ev('window.__prismErrors')).length===0,'no runtime error');records.push({width,scale,motion,samples,input:await ev('window.__prismInput')});
 `;
 driver=driver.slice(0,start)+cases+driver.slice(end);
@@ -104,7 +104,7 @@ try{
    const pairs=[['stale-refresh',"function updatePurchasePriceColors(root){","function updatePurchasePriceColors(root){ return;"],
     ['all-white',"Amount.valid(amount) && missing ? 'var(--danger)' : 'var(--ink)'","Amount.valid(amount) && false ? 'var(--danger)' : 'var(--ink)'"],
     ['retired-card-returns',"replaceControlMarkup(els['node-list'],html);","replaceControlMarkup(els['node-list'],html+legacyUpgradeSection(legacyHtml));"],
-    ['rounded-wide-debit','function prismExactAmountPlan(cost,quoteOnly){','function prismExactAmountPlan(cost,quoteOnly){ if(state.prisms===1e16&&cost===3)return {prisms:state.prisms-cost,credits:[],remainingOwnCredits:0,remainingEchoCredits:0};']];
+    ['rounded-wide-debit','function prismExactAmountPlan(cost,quoteOnly){','function prismExactAmountPlan(cost,quoteOnly){ if(state.prisms===1e16&&cost===1)return {prisms:state.prisms-cost,credits:[],remainingOwnCredits:0,remainingEchoCredits:0};']];
    for(const [name,from,to] of pairs){assert.equal(source.split(from).length,2,'unique real mutant marker');execute(name,source.replace(from,to),true);}
   }
  }
