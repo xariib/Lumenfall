@@ -2519,6 +2519,26 @@
   #theme-list .theme-card .name{font-size:.875rem;}
   #theme-list .theme-card .desc{line-height:1.5;}
   @media(prefers-reduced-motion:reduce){.enemy-glyph .creature-art>use{animation:none;}}
+
+  @media (orientation:landscape) and (min-width:540px) and (max-height:480px){
+    .shell,nav.tabbar{max-width:800px;width:100%;}
+    .hud{grid-template-columns:minmax(198px,1.4fr) repeat(3,minmax(0,1fr));}
+    .hud-title-row{grid-column:1;grid-row:1/3;}
+    .hud .brand{font-size:16px;}
+    #tab-battle .stage{
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      grid-template-rows:auto 1fr auto auto auto;column-gap:12px!important;
+    }
+    .stage .rift-heading{grid-column:1;grid-row:1;display:flex;flex-direction:column;}
+    .stage .rift-navigation{width:100%;}
+    .stage .rift-heading .rift-mode-row{width:100%;}
+    .stage .battle-row{grid-column:2;grid-row:1/6;margin:0;}
+    .stage .buff-indicator{grid-column:1;grid-row:2;justify-self:center;}
+    .stage .comet-trial-status{grid-column:1;grid-row:3;text-align:center;}
+    .stage .bond-summary{grid-column:1;grid-row:4;}
+    .stage .stat-row{grid-column:1;grid-row:5;}
+  }
+  body.battle-covered #toast{z-index:41;}
 </style>
 </head>
 <body>
@@ -6487,9 +6507,10 @@ function copyCurrentSaveBackup(){
 function restoreSaveBackup(){
   var textarea = document.getElementById('save-backup-code');
   var oldRecovery = null;
-  var recoveryWritten = false;
+  var restored;
+  try{ restored = decodeSaveBackup(textarea.value); }
+  catch(e){ showToast('That backup code is not valid or supported.'); return; }
   try{
-    var restored = decodeSaveBackup(textarea.value);
     restored.lastSeen = Date.now();
     restored.schemaVersion = SAVE_SCHEMA_VERSION;
     restored = acceptPersistedState(restored,'backup');
@@ -6497,7 +6518,6 @@ function restoreSaveBackup(){
 
     oldRecovery = localStorage.getItem(RECOVERY_SAVE_KEY);
     localStorage.setItem(RECOVERY_SAVE_KEY,serialized);
-    recoveryWritten = true;
     try{
       localStorage.setItem(SAVE_KEY,serialized);
     }catch(primaryError){
@@ -6525,11 +6545,8 @@ function restoreSaveBackup(){
     showToast('Save restored. Reloading…');
     setTimeout(function(){ location.reload(); }, 120);
   }catch(e){
-    if(recoveryWritten && reloadInProgress===false && oldRecovery!==null){
-      // Best-effort rollback is already attempted above when the primary write fails.
-    }
     reloadInProgress = false;
-    showToast('That backup code is not valid or supported.');
+    showToast('Could not write the backup to storage. Keep your code and try again.');
   }
 }
 
@@ -7625,7 +7642,7 @@ function emitCombatVfx(type,color,wispId){
   if(!stageEl || document.hidden || overlayFocus || !document.getElementById('tab-battle').classList.contains('active')) return;
   if(wispId){
     var card=document.querySelector('[data-rift-wisp="'+wispId+'"]');
-    if(card && type!=='shot') card.setAttribute('data-cast-until',String(Date.now()+650));
+    if(card && type!=='shot') card.setAttribute('data-cast-until',String(simulationWorkNow()+650));
   }
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var arena=stageEl.closest('.battle-row');
@@ -7649,7 +7666,7 @@ function emitCombatVfx(type,color,wispId){
     fx.style.setProperty('--from-y',(from.y-area.y+from.height/2-5)+'px');
     fx.style.setProperty('--to-x',(to.x-area.x+to.width/2-5)+'px');
     fx.style.setProperty('--to-y',(to.y-area.y+to.height/2-5)+'px');
-    card.setAttribute('data-shot-until',String(Date.now()+300));
+    card.setAttribute('data-shot-until',String(simulationWorkNow()+300));
   }
   if(color) fx.style.setProperty('--vfx-color',color);
   layer.appendChild(fx);
@@ -7659,7 +7676,7 @@ function emitCombatVfx(type,color,wispId){
 var passiveFxAt=-Infinity,passiveFxIndex=0;
 function presentPassiveWispAttack(){
   if(document.hidden || overlayFocus || !els['enemy-stage'] || !document.getElementById('tab-battle').classList.contains('active') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var now=Date.now();if(now-passiveFxAt<350)return;
+  var now=simulationWorkNow();if(now-passiveFxAt<350)return;
   var ids=poweredActiveIds();if(!ids.length)return;
   var id=ids[passiveFxIndex%ids.length],sp=SPIRITS.find(function(x){return x.id===id;});
   passiveFxAt=now;passiveFxIndex=(passiveFxIndex+1)%ids.length;
@@ -9053,13 +9070,17 @@ function doAscend(auto){
 
 function performReset(){
   if(resetInProgress) return;
+  try{localStorage.setItem(RESET_PENDING_KEY,'1');}
+  catch(e){
+    showToast('Could not start the reset. Check device storage and try again.');
+    return;
+  }
   cancelOfflineCatchup();
   offlinePending = false;
   resetInProgress = true;
   clearAscendFeedback();
 
   try{
-    localStorage.setItem(RESET_PENDING_KEY,'1');
     localStorage.removeItem(SAVE_KEY);
     localStorage.removeItem(RECOVERY_SAVE_KEY);
     localStorage.removeItem(STARTUP_INTRO_KEY);
@@ -9656,8 +9677,9 @@ function updateBattleFast(live){
   setLiveText(els['hp-text'],formatRiftNumber(Amount.max(0,state.enemyHp))+' / '+formatRiftNumber(state.enemyMaxHp));
   renderHud();
   var detailsKey=state.depth+'|'+!!state.enemyIsLuminous;
-  if(live && Date.now()-lastBattleDetailsAt<500 && updateBattleFast.detailsKey===detailsKey) return;
-  lastBattleDetailsAt=Date.now();updateBattleFast.detailsKey=detailsKey;
+  var detailTime=simulationWorkNow();
+  if(live && detailTime-lastBattleDetailsAt<500 && updateBattleFast.detailsKey===detailsKey) return;
+  lastBattleDetailsAt=detailTime;updateBattleFast.detailsKey=detailsKey;
   var commandViewport=captureControlViewport(els['comet-commands']);
   var trialStatus=document.getElementById('comet-trial-status');
   if(trialStatus){trialStatus.textContent=cometTrialStatus();trialStatus.hidden=!state.cometTrial;}
@@ -9832,10 +9854,11 @@ function renderRiftParty(nowMs,buffFactor){
     var recast=supportRecastSeconds(sp,nowMs);
     var seconds=Math.max(recast,(1-charge/100)*abilityCycleSeconds());
     var readiness=recast>0 ? Math.min(charge,100*Math.max(0,1-recast/supportCycleSeconds())) : charge;
-    var casting=powered && Date.now()<Number(card.getAttribute('data-cast-until')||0);
+    var effectTime=simulationWorkNow();
+    var casting=powered && effectTime<Number(card.getAttribute('data-cast-until')||0);
     var label=!powered ? 'Lv 0' : '';
     card.classList.toggle('unpowered',!powered);card.classList.toggle('is-casting',casting);
-    card.classList.toggle('is-attacking',powered && Date.now()<Number(card.getAttribute('data-shot-until')||0));
+    card.classList.toggle('is-attacking',powered && effectTime<Number(card.getAttribute('data-shot-until')||0));
     var status=card.querySelector('.rift-wisp-state');if(status.textContent!==label)status.textContent=label;
     var power=card.querySelector('.rift-wisp-power'),powerText=formatRiftNumber(chipEffectivePower(id,buffFactor))+'/s';
     if(power.textContent!==powerText)power.textContent=powerText;
@@ -11218,7 +11241,7 @@ function renderDaily(force){
   }
   var now = Date.now();
   var elapsed = now-lastDailyRenderAt;
-  if(!force && elapsed<DAILY_RENDER_INTERVAL_MS){
+  if(!force && elapsed>=0 && elapsed<DAILY_RENDER_INTERVAL_MS){
     if(!dailyRenderTimer){
       dailyRenderTimer = setTimeout(function(){
         dailyRenderTimer = null;
@@ -13903,7 +13926,7 @@ function presentLiveRiftResult(before,sim){
   if(!sim.kills || sim.ascends || document.hidden || startupIntroPlaying ||
       !document.getElementById('tab-battle').classList.contains('active') ||
       Array.from(document.querySelectorAll('.overlay')).some(overlayVisible)) return;
-  var now = Date.now();
+  var now = simulationWorkNow();
   if(now-liveRiftFeedbackAt<1850 || document.querySelector('.rift-milestone')) return;
   var milestone = 0;
   if(before.mode==='push' && state.maxDepthEver>before.maxDepth){
@@ -14023,7 +14046,8 @@ function tick(){
       (state.maxDepthEver>=nextRosterUpgradeRift || lockedRosterWisps.some(function(sp){return wispRecruitmentUnlocked(sp);}))))) {
     liveSpiritsDirty=true;
   }
-  if(liveSpiritsDirty && Date.now()-lastLiveSpiritsAt>=500){
+  var uiTime=Date.now();
+  if(liveSpiritsDirty && (uiTime<lastLiveSpiritsAt || uiTime-lastLiveSpiritsAt>=500)){
     if(liveTabVisible('spirits'))renderSpirits();
     else if(liveTabVisible('formation')){
       liveSpiritsDirty=false;lastLiveSpiritsAt=Date.now();
@@ -14047,7 +14071,7 @@ function tick(){
     renderHud();
   }
   checkAffordability(true);
-  if(liveTabVisible('spirits')){renderWispDamage();if(Date.now()-wispRoleLastRenderMs>=1000)renderWispRoles();}
+  if(liveTabVisible('spirits')){renderWispDamage();if(uiTime<wispRoleLastRenderMs || uiTime-wispRoleLastRenderMs>=1000)renderWispRoles();}
   presentLiveRiftResult(feedbackBefore,sim);
   presentForegroundDailyReward();
   return true;
@@ -14112,7 +14136,7 @@ var AFFORDABILITY_REFRESH_MS = 500;
 var lastAffordabilityAt = 0;
 function checkAffordability(visibleOnly,force){
   var now = Date.now();
-  if(!force && Amount.lt(Amount.sub(now,lastAffordabilityAt),AFFORDABILITY_REFRESH_MS)) return;
+  if(!force && now>=lastAffordabilityAt && now-lastAffordabilityAt<AFFORDABILITY_REFRESH_MS) return;
   lastAffordabilityAt = now;
   function refresh(tab){return !visibleOnly || liveTabVisible(tab);}
   renderLabCapacityBadge();
@@ -14543,9 +14567,9 @@ function init(){
     if(!e.isTrusted) return;
     var now = liveMonotonicNow();
     if(now===null)now=Date.now();
+    while(recentTapTimes.length && now-recentTapTimes[0]>=1000) recentTapTimes.shift();
+    if(recentTapTimes.length>=MAX_TAPS_PER_SEC) return;
     recentTapTimes.push(now);
-    while(recentTapTimes.length && now - recentTapTimes[0] > 1000) recentTapTimes.shift();
-    if(recentTapTimes.length > MAX_TAPS_PER_SEC) return;
     doTap(stageEl);
   }
   stageEl.addEventListener('pointerdown',function(e){ e.preventDefault(); guardianInput(e); });
@@ -14586,6 +14610,7 @@ function init(){
   });
   document.getElementById('reset-confirm-btn').addEventListener('click', function(){
     performReset();
+    if(!resetInProgress)return;
     document.getElementById('reset-confirm-row').style.display = 'none';
     document.getElementById('reset-row').style.display = 'block';
   });

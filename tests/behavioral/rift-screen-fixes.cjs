@@ -31,6 +31,38 @@ driver=driver.slice(0,start)+String.raw`
   const run=code=>ev('prismQa.evaluate('+JSON.stringify(code)+')');
   await ev('prismQa.fixture()');
   await ev("document.querySelectorAll('.rift-milestone').forEach(e=>e.remove())");
+  if(width===390 && scale===1 && motion==='no-preference'){
+   for(const [w,h] of [[568,320],[740,360]]){
+    await send('Emulation.setDeviceMetricsOverride',{width:w,height:h,deviceScaleFactor:1,mobile:true});
+    await pause(100);
+    const boxes=await ev('('+function(){
+      const rect=id=>document.querySelector(id).getBoundingClientRect().toJSON();
+      const brand=document.createRange();brand.selectNodeContents(document.querySelector('.hud .brand'));
+      return {enemy:rect('#enemy-stage'),party:rect('#rift-party'),stats:rect('.stage .stat-row'),nav:rect('nav.tabbar'),
+        brand:brand.getBoundingClientRect().toJSON(),settings:rect('#settings-btn')};
+    }.toString()+')()');
+    await shot('landscape-'+w+'x'+h);
+    const separate=(a,b)=>a.right<=b.left+1 || b.right<=a.left+1 || a.bottom<=b.top+1 || b.bottom<=a.top+1;
+    ok(boxes.enemy.height>=120 && boxes.stats.bottom<=boxes.nav.top+1 && boxes.party.bottom<=boxes.nav.top+1 &&
+      separate(boxes.party,boxes.enemy) && separate(boxes.party,boxes.stats) && separate(boxes.enemy,boxes.stats) &&
+      boxes.brand.right<=boxes.settings.left,
+      'landscape enemy, Wisps and damage readouts fit above navigation '+JSON.stringify(boxes));
+   }
+   await send('Emulation.setDeviceMetricsOverride',{width,height:width===320?640:844,deviceScaleFactor:1,mobile:true});
+   const initialTaps=await run('state.totalTaps');
+   await ev("document.getElementById('enemy-stage').click()");
+   ok(await run('state.totalTaps')===initialTaps,'page-generated clicks cannot earn manual attacks');
+   await ev("window.riftInputTime=1;Object.defineProperty(performance,'now',{configurable:true,value:()=>window.riftInputTime});document.getElementById('enemy-stage').focus()");
+   await run('resetLiveClock()');
+   for(let press=0;press<80;press++){
+    await ev('window.riftInputTime='+(1+press*25));
+    await key('Enter','Enter',13);
+    if(press===39)ok(await run('state.totalTaps')-initialTaps===20,'manual input respects the first one-second cap');
+   }
+   ok(await run('state.totalTaps')-initialTaps===40,'holding a fast input rate still earns the next window of manual attacks');
+   await ev("Object.defineProperty(performance,'now',{configurable:true,value:()=>0})");
+   await run('resetLiveClock()');
+  }
   ok(await ev("!document.querySelector('#rift-guidance-slot,#rift-hints-toggle,#rift-objective-row,#rift-objective,#rift-guidance-toggle,#rift-hint-overlay')"),'Rift hint bar, dialog and Settings toggle removed');
   const geometry=await ev("(()=>{const box=s=>document.querySelector(s).getBoundingClientRect().toJSON(),main=document.querySelector('main');return {farm:box('#rift-farm-btn'),push:box('#rift-push-btn'),enemy:box('#enemy-stage'),hud:box('.hud'),main:box('main'),stage:box('#tab-battle .stage'),nav:box('nav.tabbar'),order:Array.from(document.querySelectorAll('.rift-mode-row button')).map(e=>e.id),scroll:[main.scrollTop,main.scrollHeight,main.clientHeight],overflow:document.documentElement.scrollWidth>innerWidth+1}})()");
   ok(geometry.farm.left<geometry.push.left&&geometry.order.join(',')==='rift-farm-btn,rift-push-btn','Farm left and Push right with matching DOM order');
