@@ -272,7 +272,9 @@ window.runRiftStatusQa=async function(b,ctx,assert){
     partyCheck();
     ok(q('[data-rift-wisp="'+castId+'"] .rift-charge').getAttribute('aria-valuetext').startsWith('Casting; '),'actual cast event exposes status on the correct Wisp bar');
     ok(document.querySelectorAll('.combat-vfx').length===(matchMedia('(prefers-reduced-motion: reduce)').matches?0:12),'effects retain the twelve-effect bound and are absent in reduced motion');
-    b.advanceTime(700);b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
+    b.advanceTime(700);
+    await new Promise(function(resolve){setTimeout(resolve,700);});
+    b.riftStatus.update();ok(!q('.rift-wisp.is-casting'),'cast marker expires');
     b.resetFeedback();q('[data-tab="spirits"]').click();b.riftStatus.emit(castId);ok(!q('.combat-vfx'),'no effects accumulate off Rift');q('[data-tab="battle"]').click();
     s=seed();s.buffUntil=b.clockNow()+2000;s.buffMult=1.25;install(s);
     var before=b.getState();for(var i=0;i<6;i++){b.renderLayout();document.querySelectorAll('nav.tabbar button').forEach(x=>x.click());}same(b.getState(),before,'status rendering/navigation observer-only');

@@ -239,6 +239,14 @@ async function runProfile(base, width, height, scale, motion) {
   await evaluate("window.__saveUiTest.originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='lumenfall_save_v2')throw Error('test write failure');return window.__saveUiTest.originalSetItem.call(this,k,v)}");
   await tap('save-restore-confirm-btn');
   unchanged(original, await snapshot(), 'failed primary write rolls recovery back');
+  assert.match(await evaluate("document.getElementById('toast').textContent"), /stor(age|e)/i,
+    'a storage failure explains why the valid backup could not be saved');
+  assert(await evaluate(`(()=>{
+    const toast=document.getElementById('toast'), r=toast.getBoundingClientRect();
+    toast.style.pointerEvents='auto';
+    try{return document.elementFromPoint(r.left+r.width/2,r.top+r.height/2)===toast;}
+    finally{toast.style.pointerEvents='';}
+  })()`), 'the restore message is painted in front of the open settings dialog');
   await evaluate('Storage.prototype.setItem=window.__saveUiTest.originalSetItem');
   await tap('restore-save-backup');
   const confirmedAt = await evaluate('Date.now()');
@@ -253,7 +261,16 @@ async function runProfile(base, width, height, scale, motion) {
   assert.equal(restored.primary, restored.recovery, 'restored primary/recovery agree');
   assert.deepEqual(restored.errors, [], 'no uncaught errors/rejections');
   // Full Reset still requires its own explicit action after Restore.
-  await tap('settings-btn'); await tap('reset-btn'); await tap('reset-confirm-btn');
+  await tap('settings-btn'); await tap('reset-btn');
+  const beforeReset = await snapshot();
+  await evaluate("window.__saveUiTest.originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='lumenfall_reset_pending_v1')throw Error('test storage failure');return window.__saveUiTest.originalSetItem.call(this,k,v)}");
+  await tap('reset-confirm-btn');
+  const failedReset=await snapshot();
+  unchanged(beforeReset, failedReset, 'failed reset request keeps both saves');
+  assert(failedReset.resetConfirmation && await evaluate("!document.body.classList.contains('app-paused')"),
+    'failed reset keeps the game active and the confirmation available for retry');
+  await evaluate('Storage.prototype.setItem=window.__saveUiTest.originalSetItem');
+  await tap('reset-confirm-btn');
   await until("localStorage.getItem('lumenfall_reset_pending_v1')===null && JSON.parse(localStorage.getItem('lumenfall_save_v2')||'null')?.depth===1");
   const reset = JSON.parse((await snapshot()).primary);
   assert.equal(reset.lumen, 0, 'confirmed Reset clears currency');
